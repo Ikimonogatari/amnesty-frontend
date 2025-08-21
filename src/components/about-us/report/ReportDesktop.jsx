@@ -16,7 +16,7 @@ export default function ReportDesktop() {
         setLoading(true);
         const response = await fetch(
           `${
-            process.env.NEXT_PUBLIC_API_URL
+            process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api'
           }/reports?populate=*`
         );
         if (!response.ok) {

@@ -14,7 +14,7 @@ export default async function handler(
 
     // Forward the request to the production API service
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_PROD_API_USERS_URL}/contact-request/submit`,
+      `${process.env.NEXT_PUBLIC_PROD_API_USERS_URL || 'https://api.amnesty.mn/users'}/contact-request/submit`,
       {
         name,
         email,

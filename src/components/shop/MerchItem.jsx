@@ -11,7 +11,7 @@ export default function MerchItem({ merchItem }) {
     const directUrl = merchItem.images.data.attributes.url;
     imageUrl = directUrl.startsWith("http")
       ? directUrl
-      : `${process.env.NEXT_PUBLIC_MEDIA_URL}${directUrl}`;
+      : `${process.env.NEXT_PUBLIC_MEDIA_URL || 'http://localhost:1337'}${directUrl}`;
   } else {
     imageUrl = "/images/no-image-icon.png";
   }

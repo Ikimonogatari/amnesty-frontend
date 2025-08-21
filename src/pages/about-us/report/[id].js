@@ -27,7 +27,7 @@ export default function ReportDetail() {
         // Fetch single report
         const reportResponse = await fetch(
           `${
-            process.env.NEXT_PUBLIC_API_URL
+            process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api'
           }/reports/${id}?populate=deep`
         );
         if (!reportResponse.ok) {
@@ -39,7 +39,7 @@ export default function ReportDetail() {
         // Fetch all reports for related section
         const allReportsResponse = await fetch(
           `${
-            process.env.NEXT_PUBLIC_API_URL
+            process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api'
           }/reports?populate=deep`
         );
         if (!allReportsResponse.ok) {
