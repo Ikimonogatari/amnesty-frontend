@@ -1,10 +1,10 @@
 // API Configuration for Amnesty CMS
 export const API_CONFIG = {
   // Base URL for the Strapi CMS API
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337/api',
+  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://152.42.244.47:1337/api',
 
   // Media URL for images and files
-  MEDIA_URL: process.env.NEXT_PUBLIC_MEDIA_URL || 'http://localhost:1337',
+  MEDIA_URL: process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337',
 
   // Users API URL for contact form and other user-related features
   USERS_API_URL: process.env.NEXT_PUBLIC_PROD_API_USERS_URL || 'https://api.amnesty.mn/users',
@@ -212,7 +212,7 @@ export const buildPostApiUrl = (endpoint, params = {}) => {
 // Helper function to get image URL from Strapi media
 export const getImageUrl = (
   imageData,
-  baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || 'http://localhost:1337'
+  baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337'
 ) => {
   if (!imageData) return null;
 

@@ -4,7 +4,7 @@
 
 import { FetcherPost, FetcherPut } from "@/utils/fetcher";
 
-const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL || 'http://localhost:3001';
+const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL || 'http://152.42.244.47:3001';
 
 // Helper function for authenticated requests
 const getAuthHeaders = () => {
