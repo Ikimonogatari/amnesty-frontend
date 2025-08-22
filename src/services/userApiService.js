@@ -5,8 +5,7 @@
 import { FetcherPost, FetcherPut } from "@/utils/fetcher";
 import Cookies from "js-cookie";
 
-const USER_API_BASE_URL =
-  process.env.NEXT_PUBLIC_USER_API_URL || "http://152.42.244.47:3001";
+const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
 
 // Cookie names (matches old project)
 const COOKIES = {
