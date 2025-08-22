@@ -135,14 +135,12 @@ export default function Register() {
       }
       const successMessage =
         "ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ! ᠲᠠ ᠻᠣᠳ ᠢ᠋ᠭ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᢈᠡᠰᠦᠭ ᠲᠦ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
-      setMessage(successMessage);
       toast.success(successMessage, { duration: 6000 });
     } catch (error) {
       const errorMessage =
         error.response?.data?.message ||
         error.message ||
         "ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
-      setMessage(errorMessage);
       toast.error(errorMessage);
     } finally {
       setLoading(false);
@@ -154,6 +152,9 @@ export default function Register() {
 
     if (loading) return;
 
+    console.log("=== FORM SUBMISSION DEBUG ===");
+    console.log("Full formData:", JSON.stringify(formData, null, 2));
+
     // Enhanced validation like old project
     if (!formData.groupId) {
       const errorMessage = "ᠲᠠ ᠪᠦᠯᠦᠭ ᠢ᠋ᠭ ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ!";
@@ -162,6 +163,11 @@ export default function Register() {
     }
 
     if (!formData.subGroupId) {
+      console.log(
+        "SubGroupId validation failed:",
+        formData.subGroupId,
+        typeof formData.subGroupId
+      );
       const errorMessage = "ᠲᠠ ᠳᠡᠳ ᠪᠦᠯᠦᠭ ᠢ᠋ᠭ ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ!";
       toast.error(errorMessage);
       return;
@@ -209,7 +215,6 @@ export default function Register() {
         error.response?.data?.message ||
         error.message ||
         "ᠪᠦᠷᠲᠦᠭᠡᠯ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
-      setMessage(errorMessage);
       toast.error(errorMessage);
     } finally {
       setLoading(false);
@@ -232,8 +237,12 @@ export default function Register() {
   // Filter subgroups based on selected group
   const availableSubGroups =
     groups.userSubGroups?.filter(
-      (subGroup) => subGroup.userGroupId === parseInt(formData.groupId)
+      (subGroup) => subGroup.userGroupId === formData.groupId
     ) || [];
+
+  // Debug logging
+  console.log("Current formData:", formData);
+  console.log("Available subgroups:", availableSubGroups);
 
   return (
     <Layout>
@@ -293,7 +302,7 @@ export default function Register() {
                     >
                       {formData.groupId
                         ? groups.userGroups?.find(
-                            (group) => group.id === parseInt(formData.groupId)
+                            (group) => group.id === formData.groupId
                           )?.title || "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"
                         : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}{" "}
                       {isGroupDropdownOpen ? "◀" : "▶"}
@@ -305,11 +314,12 @@ export default function Register() {
                             key={group.id}
                             type="button"
                             onClick={() => {
-                              setFormData({
-                                ...formData,
+                              console.log("Setting groupId to:", group.id);
+                              setFormData((prev) => ({
+                                ...prev,
                                 groupId: group.id,
                                 subGroupId: null,
-                              });
+                              }));
                               setIsGroupDropdownOpen(false);
                             }}
                             className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0"
@@ -362,8 +372,7 @@ export default function Register() {
                     >
                       {formData.subGroupId
                         ? availableSubGroups.find(
-                            (subGroup) =>
-                              subGroup.id === parseInt(formData.subGroupId)
+                            (subGroup) => subGroup.id === formData.subGroupId
                           )?.title || "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"
                         : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}{" "}
                       {isSubGroupDropdownOpen ? "◀" : "▶"}
@@ -373,7 +382,11 @@ export default function Register() {
                         <button
                           type="button"
                           onClick={() => {
-                            setFormData({ ...formData, subGroupId: null });
+                            console.log("Clearing subGroupId");
+                            setFormData((prev) => ({
+                              ...prev,
+                              subGroupId: null,
+                            }));
                             setIsSubGroupDropdownOpen(false);
                           }}
                           className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200"
@@ -389,10 +402,14 @@ export default function Register() {
                             key={subGroup.id}
                             type="button"
                             onClick={() => {
-                              setFormData({
-                                ...formData,
+                              console.log(
+                                "Setting subGroupId to:",
+                                subGroup.id
+                              );
+                              setFormData((prev) => ({
+                                ...prev,
                                 subGroupId: subGroup.id,
-                              });
+                              }));
                               setIsSubGroupDropdownOpen(false);
                             }}
                             className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0"
