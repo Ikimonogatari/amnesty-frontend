@@ -3,13 +3,22 @@
 // Based on the comprehensive mn version functionality
 
 import { FetcherPost, FetcherPut } from "@/utils/fetcher";
+import Cookies from "js-cookie";
 
-const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL || 'http://152.42.244.47:3001';
+const USER_API_BASE_URL =
+  process.env.NEXT_PUBLIC_USER_API_URL || "http://152.42.244.47:3001";
+
+// Cookie names (matches old project)
+const COOKIES = {
+  MEMBER_TOKEN: "amnesty_member_token",
+};
 
 // Helper function for authenticated requests
 const getAuthHeaders = () => {
   if (typeof window !== "undefined") {
-    const token = localStorage.getItem("auth_token");
+    // Try to get token from cookies first, fallback to localStorage
+    const token =
+      Cookies.get(COOKIES.MEMBER_TOKEN) || localStorage.getItem("auth_token");
     return token ? { Authorization: `Bearer ${token}` } : {};
   }
   return {};
@@ -31,12 +40,12 @@ export const authService = {
     }
   },
 
-  // Send SMS verification code
+  // Send SMS verification code (matches old project)
   async sendVerificationCode(phone) {
     try {
       const response = await FetcherPost(
         "/auth/verify",
-        { phone },
+        { phone: String(phone) },
         USER_API_BASE_URL
       );
       return response;
@@ -45,17 +54,47 @@ export const authService = {
     }
   },
 
-  // Login user
+  // Login user (matches old project)
   async login(credentials) {
     try {
       const response = await FetcherPost(
         "/auth/login",
-        credentials,
+        {
+          phone: String(credentials.phone),
+          password: credentials.password,
+        },
         USER_API_BASE_URL
       );
-      if (response.token && typeof window !== "undefined") {
-        localStorage.setItem("auth_token", response.token);
+
+      // Handle token storage like old project
+      if (response.payload?.token && typeof window !== "undefined") {
+        const token = response.payload.token.bearer;
+        const expires = response.payload.token.expires;
+
+        // Store in cookies like old project
+        const isDev = process.env.NODE_ENV === "development";
+
+        if (isDev) {
+          Cookies.set(COOKIES.MEMBER_TOKEN, token, {
+            path: "/",
+            expires: expires ? new Date(expires * 1000) : 7, // 7 days default
+          });
+        } else {
+          Cookies.set(COOKIES.MEMBER_TOKEN, token, {
+            path: "/",
+            secure: true,
+            sameSite: "strict",
+            expires: expires ? new Date(expires * 1000) : 7, // 7 days default
+          });
+        }
+
+        // Also store in localStorage as fallback
+        localStorage.setItem("auth_token", token);
+        if (expires) {
+          localStorage.setItem("auth_token_expires", expires);
+        }
       }
+
       return response;
     } catch (error) {
       throw error;
@@ -65,16 +104,21 @@ export const authService = {
   // Logout user
   logout() {
     if (typeof window !== "undefined") {
+      // Remove from cookies
+      Cookies.remove(COOKIES.MEMBER_TOKEN, { path: "/" });
+
+      // Remove from localStorage as fallback
       localStorage.removeItem("auth_token");
+      localStorage.removeItem("auth_token_expires");
     }
   },
 
-  // Reset password - send verification
+  // Reset password - send verification (matches old project)
   async resetPasswordSendCode(phone) {
     try {
       const response = await FetcherPost(
-        "/auth/reset-password/send",
-        { phone },
+        "/auth/resetPass",
+        { phone: String(phone) },
         USER_API_BASE_URL
       );
       return response;
@@ -83,12 +127,26 @@ export const authService = {
     }
   },
 
-  // Reset password - confirm with code
-  async resetPasswordConfirm(data) {
+  // Reset password - verify code (matches old project)
+  async resetPasswordVerifyCode(phone, verifyCode) {
     try {
       const response = await FetcherPost(
-        "/auth/reset-password/confirm",
-        data,
+        "/auth/resetPassVerify",
+        { phone: String(phone), verifyCode },
+        USER_API_BASE_URL
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Reset password - confirm with new password (matches old project)
+  async resetPasswordConfirm(token, password) {
+    try {
+      const response = await FetcherPost(
+        "/auth/resetPassConfirm",
+        { token, password },
         USER_API_BASE_URL
       );
       return response;

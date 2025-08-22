@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import userApiService from "@/services/userApiService";
 import Layout from "@/components/layout/Layout";
 import Button from "@/components/common/Button";
+import toast from "react-hot-toast";
 
 export default function Register() {
   const router = useRouter();
@@ -23,7 +24,8 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
   const [availableAfter, setAvailableAfter] = useState(null);
-  const [message, setMessage] = useState("");
+  const [isGroupDropdownOpen, setIsGroupDropdownOpen] = useState(false);
+  const [isSubGroupDropdownOpen, setIsSubGroupDropdownOpen] = useState(false);
 
   // Load user groups on component mount
   useEffect(() => {
@@ -42,6 +44,29 @@ export default function Register() {
     }
     return () => clearInterval(interval);
   }, [timeLeft, availableAfter]);
+
+  // Close dropdowns when clicking outside (same as contact page)
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isGroupDropdownOpen &&
+        !event.target.closest(".group-dropdown-container")
+      ) {
+        setIsGroupDropdownOpen(false);
+      }
+      if (
+        isSubGroupDropdownOpen &&
+        !event.target.closest(".subgroup-dropdown-container")
+      ) {
+        setIsSubGroupDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isGroupDropdownOpen, isSubGroupDropdownOpen]);
 
   const loadUserGroups = async () => {
     try {
@@ -88,7 +113,14 @@ export default function Register() {
   };
 
   const sendSmsCode = async () => {
-    if (formData.phone.length !== 8 || loading) return;
+    if (loading) return;
+
+    // Validation like old project
+    if (!formData.phone || String(formData.phone).length !== 8) {
+      const errorMessage = "ᠲᠠ ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷᠠᠭ᠎ᠠ ᠵᠦᠪ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
 
     setLoading(true);
     try {
@@ -101,15 +133,17 @@ export default function Register() {
         setTimeLeft(availableTime - currentTime);
         setAvailableAfter(availableTime);
       }
-      setMessage(
-        "ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ! ᠲᠠ ᠻᠣᠳ ᠢ᠋ᠭ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᢈᠡᠰᠦᠭ ᠲᠦ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!"
-      );
+      const successMessage =
+        "ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ! ᠲᠠ ᠻᠣᠳ ᠢ᠋ᠭ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᢈᠡᠰᠦᠭ ᠲᠦ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      setMessage(successMessage);
+      toast.success(successMessage, { duration: 6000 });
     } catch (error) {
-      setMessage(
+      const errorMessage =
         error.response?.data?.message ||
-          error.message ||
-          "ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
-      );
+        error.message ||
+        "ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
+      setMessage(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -118,7 +152,45 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (loading || !isFormValid()) return;
+    if (loading) return;
+
+    // Enhanced validation like old project
+    if (!formData.groupId) {
+      const errorMessage = "ᠲᠠ ᠪᠦᠯᠦᠭ ᠢ᠋ᠭ ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (!formData.subGroupId) {
+      const errorMessage = "ᠲᠠ ᠳᠡᠳ ᠪᠦᠯᠦᠭ ᠢ᠋ᠭ ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (!formData.phone || String(formData.phone).length !== 8) {
+      const errorMessage = "ᠲᠠ ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷᠠᠭ᠎ᠠ ᠵᠦᠪ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (!formData.phoneVerifyCode || formData.phoneVerifyCode.length !== 6) {
+      const errorMessage = "ᠲᠠ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᠢ᠋ᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (!formData.password || formData.password.length < 6) {
+      const errorMessage =
+        "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠬᠠᠮᠤᠭᠢᠢᠨ ᠪᠠᠭᠠᠳᠠᠭ᠎ᠠ 6 ᠲᠡᠮᠳᠡᠭᠲᠦ ᠪᠠᠢᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (formData.password !== formData.passwordConfirm) {
+      const errorMessage = "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠲᠠᠠᠷᠠᢈᠤᠭᠦᠢ ᠪᠠᠢᠨ᠎ᠠ!";
+      toast.error(errorMessage);
+      return;
+    }
 
     setLoading(true);
     try {
@@ -130,13 +202,15 @@ export default function Register() {
         password: formData.password,
       });
 
+      toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠪᠦᠷᠲᠦᠭᠡᠯᠡᠭᠡ!");
       router.push("/member?registered=true");
     } catch (error) {
-      setMessage(
+      const errorMessage =
         error.response?.data?.message ||
-          error.message ||
-          "ᠪᠦᠷᠲᠦᠭᠡᠯ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
-      );
+        error.message ||
+        "ᠪᠦᠷᠲᠦᠭᠡᠯ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
+      setMessage(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -180,29 +254,6 @@ export default function Register() {
               </h1>
             </div>
 
-            {/* Message */}
-            {message && (
-              <div className="mb-6 flex justify-center">
-                <div
-                  className={`p-4 rounded-lg max-w-md ${
-                    message.includes("ᠠᠯᠳᠠᠭ᠎ᠠ")
-                      ? "bg-red-100 text-red-700"
-                      : "bg-green-100 text-green-700"
-                  }`}
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                    minHeight: "150px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {message}
-                </div>
-              </div>
-            )}
-
             <form
               onSubmit={handleSubmit}
               className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto"
@@ -222,22 +273,57 @@ export default function Register() {
                   >
                     ᠪᠦᠯᠦᠭ*:
                   </label>
-                  <select
-                    name="groupId"
-                    value={formData.groupId}
-                    onChange={handleInputChange}
-                    className="border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    {groups.userGroups?.map((group) => (
-                      <option key={group.id} value={group.id}>
-                        {group.title}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="relative group-dropdown-container">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setIsGroupDropdownOpen(!isGroupDropdownOpen)
+                      }
+                      className="border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12 bg-white text-sm"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                        height: "auto",
+                        minHeight: "2.5rem",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "0.5rem 0.25rem",
+                      }}
+                    >
+                      {formData.groupId
+                        ? groups.userGroups?.find(
+                            (group) => group.id === parseInt(formData.groupId)
+                          )?.title || "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"
+                        : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}{" "}
+                      {isGroupDropdownOpen ? "◀" : "▶"}
+                    </button>
+                    {isGroupDropdownOpen && (
+                      <div className="absolute top-0 left-24 bg-white border border-gray-300 rounded-md shadow-lg z-10 flex">
+                        {groups.userGroups?.map((group) => (
+                          <button
+                            key={group.id}
+                            type="button"
+                            onClick={() => {
+                              setFormData({
+                                ...formData,
+                                groupId: group.id,
+                                subGroupId: null,
+                              });
+                              setIsGroupDropdownOpen(false);
+                            }}
+                            className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0"
+                            style={{
+                              writingMode: "vertical-lr",
+                              textOrientation: "upright",
+                            }}
+                          >
+                            {group.title}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
                 {/* Sub Group Selection */}
                 <div className="flex flex-row gap-2 col-span-1 md:col-span-1">
@@ -252,24 +338,75 @@ export default function Register() {
                   >
                     ᠳᠡᠳ ᠪᠦᠯᠦᠭ*:
                   </label>
-                  <select
-                    name="subGroupId"
-                    value={formData.subGroupId || ""}
-                    onChange={handleInputChange}
-                    disabled={!formData.groupId}
-                    className="border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    <option value="">ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ</option>
-                    {availableSubGroups.map((subGroup) => (
-                      <option key={subGroup.id} value={subGroup.id}>
-                        {subGroup.title}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="relative subgroup-dropdown-container">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        formData.groupId &&
+                        setIsSubGroupDropdownOpen(!isSubGroupDropdownOpen)
+                      }
+                      disabled={!formData.groupId}
+                      className={`border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12 bg-white text-sm ${
+                        !formData.groupId ? "opacity-50 cursor-not-allowed" : ""
+                      }`}
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                        height: "auto",
+                        minHeight: "2.5rem",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "0.5rem 0.25rem",
+                      }}
+                    >
+                      {formData.subGroupId
+                        ? availableSubGroups.find(
+                            (subGroup) =>
+                              subGroup.id === parseInt(formData.subGroupId)
+                          )?.title || "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"
+                        : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}{" "}
+                      {isSubGroupDropdownOpen ? "◀" : "▶"}
+                    </button>
+                    {isSubGroupDropdownOpen && formData.groupId && (
+                      <div className="absolute top-0 left-24 bg-white border border-gray-300 rounded-md shadow-lg z-10 flex">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setFormData({ ...formData, subGroupId: null });
+                            setIsSubGroupDropdownOpen(false);
+                          }}
+                          className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200"
+                          style={{
+                            writingMode: "vertical-lr",
+                            textOrientation: "upright",
+                          }}
+                        >
+                          ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ
+                        </button>
+                        {availableSubGroups.map((subGroup) => (
+                          <button
+                            key={subGroup.id}
+                            type="button"
+                            onClick={() => {
+                              setFormData({
+                                ...formData,
+                                subGroupId: subGroup.id,
+                              });
+                              setIsSubGroupDropdownOpen(false);
+                            }}
+                            className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0"
+                            style={{
+                              writingMode: "vertical-lr",
+                              textOrientation: "upright",
+                            }}
+                          >
+                            {subGroup.title}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
                 {/* Phone Number */}
                 <div className="flex flex-row gap-2 col-span-1 md:col-span-1">

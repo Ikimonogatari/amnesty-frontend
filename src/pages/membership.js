@@ -6,6 +6,7 @@ import MemberMobile from "@/components/member/MemberMobile";
 import SectionTitle from "@/components/common/SectionTitle";
 import Layout from "@/components/layout/Layout";
 import toast from "react-hot-toast";
+import Cookies from "js-cookie";
 
 export default function Member() {
   const router = useRouter();
@@ -28,15 +29,18 @@ export default function Member() {
   }, [registered]);
 
   const checkAuthStatus = async () => {
-    const token = localStorage.getItem("auth_token");
+    // Check for token in cookies first, fallback to localStorage
+    const token = Cookies.get("amnesty_member_token") || localStorage.getItem("auth_token");
     if (token) {
       try {
         const userData = await userApiService.user.getProfile();
         setUser(userData);
         setIsLoggedIn(true);
       } catch (error) {
-        // Token is invalid, remove it
+        // Token is invalid, remove it from both places
+        Cookies.remove("amnesty_member_token", { path: "/" });
         localStorage.removeItem("auth_token");
+        localStorage.removeItem("auth_token_expires");
         setIsLoggedIn(false);
       }
     }
@@ -45,7 +49,18 @@ export default function Member() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (loading || !loginData.phone || !loginData.password) return;
+    if (loading) return;
+
+    // Validation like old project
+    if (!loginData.phone || String(loginData.phone).length !== 8) {
+      toast.error("ᠲᠠ ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷᠠᠭ᠎ᠠ ᠵᠦᠪ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
+      return;
+    }
+
+    if (!loginData.password || loginData.password.length === 0) {
+      toast.error("ᠲᠠ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
+      return;
+    }
 
     setLoading(true);
     try {
@@ -54,8 +69,8 @@ export default function Member() {
         password: loginData.password,
       });
 
-      if (response.token) {
-        localStorage.setItem("auth_token", response.token);
+      if (response.payload?.token) {
+        // Token is already stored in cookies by the authService
         const userData = await userApiService.user.getProfile();
         setUser(userData);
         setIsLoggedIn(true);

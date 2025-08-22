@@ -41,8 +41,8 @@ export default function MemberMobile({
         password: data.password,
       });
 
-      if (response.token) {
-        localStorage.setItem("auth_token", response.token);
+      if (response.payload?.token) {
+        // Token is already stored in cookies by the authService
         toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠨᠡᠪᠲᠡᠷᠡᠯᠡᠭᠡ!");
         reset();
         // Trigger parent component to refresh user data

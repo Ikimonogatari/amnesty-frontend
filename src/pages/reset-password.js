@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import userApiService from "@/services/userApiService";
 import Layout from "@/components/layout/Layout";
 import Button from "@/components/common/Button";
+import toast from "react-hot-toast";
 
 export default function ResetPassword() {
   const router = useRouter();
@@ -14,7 +15,21 @@ export default function ResetPassword() {
     confirmPassword: "",
   });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [resetToken, setResetToken] = useState("");
+  const [timeLeft, setTimeLeft] = useState(0);
+
+  // Countdown timer effect
+  useEffect(() => {
+    let interval = null;
+    if (timeLeft > 0) {
+      interval = setInterval(() => {
+        setTimeLeft((timeLeft) => timeLeft - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [timeLeft]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,57 +42,129 @@ export default function ResetPassword() {
   const sendResetCode = async (e) => {
     e.preventDefault();
 
-    if (loading || !formData.phone || formData.phone.length !== 8) return;
+    if (loading) return;
 
-    setLoading(true);
-    try {
-      await userApiService.auth.resetPasswordSendCode(formData.phone);
-      setStep(2);
-      setMessage("ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ!");
-    } catch (error) {
-      setMessage(
-        error.response?.data?.message ||
-          error.message ||
-          "ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
-      );
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const confirmReset = async (e) => {
-    e.preventDefault();
-
-    if (
-      loading ||
-      !formData.code ||
-      formData.newPassword !== formData.confirmPassword ||
-      formData.newPassword.length < 6
-    ) {
-      setMessage("ᠮᠡᠳᠡᢉᠡᠯᠦᠯ ᠪᠤᠷᠤᠤ ᠡᠰᠡᢉᠡ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠲᠠᠠᠷᠠᢈᠤᠭᠦᠢ ᠪᠠᠢᠨ᠎ᠠ");
+    // Validation like old project
+    if (!formData.phone || String(formData.phone).length !== 8) {
+      const errorMessage = "ᠲᠠ ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷᠠᠭ᠎ᠠ ᠵᠦᠪ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
       return;
     }
 
     setLoading(true);
     try {
-      await userApiService.auth.resetPasswordConfirm({
-        phone: formData.phone,
-        code: formData.code,
-        newPassword: formData.newPassword,
-      });
-
-      setMessage(
-        "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠰᠣᠯᠢᠭᠡᠳᠯᠡᢉᠡ! ᠲᠠ ᠰᠢᠨ᠎ᠡ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡᠷᠡᢉᠡ ᠨᠡᠪᠲᠡᠷᠡᢈᠦ ᠣᠷᠣ ᠪᠣᠯᠨ᠎ᠠ."
+      const response = await userApiService.auth.resetPasswordSendCode(
+        formData.phone
       );
+
+      // Handle countdown timer like old project
+      if (response.payload?.availableAfter) {
+        const currentTime = Math.floor(Date.now() / 1000);
+        const resetTime = response.payload.availableAfter - currentTime;
+        if (resetTime > 0) {
+          setTimeLeft(resetTime);
+        }
+      }
+
+      setStep(2);
+      toast.success("ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ!");
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const verifyResetCode = async (e) => {
+    e.preventDefault();
+
+    if (loading) return;
+
+    // Validation like old project
+    if (!formData.code || formData.code.length !== 6) {
+      const errorMessage = "ᠲᠠ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᠢ᠋ᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await userApiService.auth.resetPasswordVerifyCode(
+        formData.phone,
+        formData.code
+      );
+
+      // Store the reset token from response
+      if (response.payload?.token) {
+        setResetToken(response.payload.token);
+        setStep(3);
+        toast.success("ᠻᠣᠳ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᠭᠳᠠᠢ! ᠰᠢᠨ᠎ᠡ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ.");
+      }
+    } catch (error) {
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "ᠻᠣᠳ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
+      toast.error(errorMessage);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const confirmNewPassword = async (e) => {
+    e.preventDefault();
+
+    if (loading) return;
+
+    // Enhanced validation like old project
+    if (!resetToken) {
+      const errorMessage = "ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ ᠢ᠋ᠭ ᠡᠮᠦᠨᠡ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (!formData.newPassword || formData.newPassword.length < 6) {
+      const errorMessage = "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠬᠠᠮᠤᠭᠢᠢᠨ ᠪᠠᠭᠠᠳᠠᠭ᠎ᠠ 6 ᠲᠡᠮᠳᠡᠭᠲᠦ ᠪᠠᠢᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (!formData.confirmPassword) {
+      const errorMessage = "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠳᠠᠪᠲᠠᢈᠤ ᠬᠡᠰᠡᠭ ᠢ᠋ᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    if (formData.newPassword !== formData.confirmPassword) {
+      const errorMessage = "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠲᠠᠠᠷᠠᢈᠤᠭᠦᠢ ᠪᠠᠢᠨ᠎ᠠ!";
+      toast.error(errorMessage);
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await userApiService.auth.resetPasswordConfirm(
+        resetToken,
+        formData.newPassword
+      );
+
+      const successMessage =
+        "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠰᠣᠯᠢᠭᠡᠳᠯᠡᢉᠡ! ᠲᠠ ᠰᠢᠨ᠎ᠡ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡᠷᠡᢉᠡ ᠨᠡᠪᠲᠡᠷᠡᢈᠦ ᠣᠷᠣ ᠪᠣᠯᠨ᠎ᠠ.";
+      toast.success(successMessage);
+
       setTimeout(() => {
         router.push("/member");
       }, 2000);
     } catch (error) {
-      setMessage(
+      const errorMessage =
         error.response?.data?.message ||
-          error.message ||
-          "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠣᠯᠢᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
-      );
+        error.message ||
+        "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠣᠯᠢᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -102,28 +189,7 @@ export default function ResetPassword() {
               </h1>
             </div>
 
-            {/* Message */}
-            {message && (
-              <div className="mb-6 flex justify-center">
-                <div
-                  className={`p-4 rounded-lg max-w-md ${
-                    message.includes("ᠠᠯᠳᠠᠭ᠎ᠠ")
-                      ? "bg-red-100 text-red-700"
-                      : "bg-green-100 text-green-700"
-                  }`}
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                    minHeight: "150px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  {message}
-                </div>
-              </div>
-            )}
+
 
             {/* Step 1: Phone Input */}
             {step === 1 && (
@@ -184,10 +250,10 @@ export default function ResetPassword() {
               </form>
             )}
 
-            {/* Step 2: Code Verification and New Password */}
+            {/* Step 2: Code Verification */}
             {step === 2 && (
               <form
-                onSubmit={confirmReset}
+                onSubmit={verifyResetCode}
                 className="flex flex-row gap-6 w-full max-w-4xl mx-auto"
               >
                 <div className="flex flex-row gap-4">
@@ -305,7 +371,7 @@ export default function ResetPassword() {
                         formData.newPassword !== formData.confirmPassword ||
                         formData.newPassword.length < 6
                       }
-                      onClick={confirmReset}
+                      onClick={verifyResetCode}
                       className="py-3 px-3 min-h-max text-lg"
                     />
                   </div>

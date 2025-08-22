@@ -17,13 +17,17 @@ export default async function handler(req, res) {
       firstName,
       lastName,
       email,
+      phone,
       phoneNumber,
       countryCode,
       country,
     } = req.body;
 
+    // Use phone field (like old project) or fallback to phoneNumber
+    const phoneField = phone || phoneNumber;
+
     // Validation
-    if (!amount || !firstName || !lastName || !email || !phoneNumber) {
+    if (!amount || !firstName || !lastName || !email || !phoneField) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -38,7 +42,7 @@ export default async function handler(req, res) {
       firstName,
       lastName,
       email,
-      phone: phoneNumber,
+      phone: phoneField,
       country: countryCode || country || "MN",
       createdAt: new Date().toISOString(),
     };
@@ -50,7 +54,6 @@ export default async function handler(req, res) {
       payload: mockInvoiceData,
     });
   } catch (error) {
-
     res.status(500).json({
       success: false,
       message: "Internal server error",
