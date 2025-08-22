@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import HeaderMobile from "@/components/layout/HeaderMobile";
@@ -7,6 +8,11 @@ import DonateFloatingButton from "@/components/common/DonateFloatingButton";
 
 export default function Layout({ children }) {
   const scrollRef = useRef(null);
+  const router = useRouter();
+
+  // Pages that need flex-1 instead of h-full for proper layout
+  const flexPages = ["/reset-password", "/register"];
+  const isFlexPage = flexPages.includes(router.pathname);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -29,11 +35,13 @@ export default function Layout({ children }) {
       {/* Desktop Layout - Horizontal scrolling for Mongolian script */}
       <div
         ref={scrollRef}
-        className="min-h-screen w-full overflow-x-auto overflow-y-hidden flex items-center justify-start hidden md:flex"
+        className="h-screen w-screen overflow-x-auto overflow-y-hidden items-center justify-start hidden md:flex"
         style={{ scrollBehavior: "smooth" }}
       >
         <Header />
-        <div className="min-h-screen flex-shrink-0 flex-1">{children}</div>
+        <div className={`${isFlexPage ? "flex-1" : "h-full"} flex-shrink-0`}>
+          {children}
+        </div>
         <Footer />
       </div>
 
