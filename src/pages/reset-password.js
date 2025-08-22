@@ -102,7 +102,9 @@ export default function ResetPassword() {
       if (response.payload?.token) {
         setResetToken(response.payload.token);
         setStep(3);
-        toast.success("ᠻᠣᠳ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᠭᠳᠠᠢ! ᠰᠢᠨ᠎ᠡ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ.");
+        toast.success(
+          "ᠻᠣᠳ ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᠭᠳᠠᠢ! ᠰᠢᠨ᠎ᠡ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ."
+        );
       }
     } catch (error) {
       const errorMessage =
@@ -128,7 +130,8 @@ export default function ResetPassword() {
     }
 
     if (!formData.newPassword || formData.newPassword.length < 6) {
-      const errorMessage = "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠬᠠᠮᠤᠭᠢᠢᠨ ᠪᠠᠭᠠᠳᠠᠭ᠎ᠠ 6 ᠲᠡᠮᠳᠡᠭᠲᠦ ᠪᠠᠢᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!";
+      const errorMessage =
+        "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠬᠠᠮᠤᠭᠢᠢᠨ ᠪᠠᠭᠠᠳᠠᠭ᠎ᠠ 6 ᠲᠡᠮᠳᠡᠭᠲᠦ ᠪᠠᠢᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!";
       toast.error(errorMessage);
       return;
     }
@@ -188,8 +191,6 @@ export default function ResetPassword() {
                 ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠡᠷᠭᠡᢉᠡᢈᠦ
               </h1>
             </div>
-
-
 
             {/* Step 1: Phone Input */}
             {step === 1 && (
