@@ -247,7 +247,7 @@ export default function NewsDesktop() {
             </button>
           </div>
           <div className="h-full flex gap-4">
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 max-w-[900px] min-h-[900px]">
+            <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-4">
               {isLoading ? (
                 // Loading placeholders to maintain layout
                 Array.from({ length: 9 }).map((_, index) => (
@@ -261,7 +261,7 @@ export default function NewsDesktop() {
                   </div>
                 ))
               ) : newsItems.length > 0 ? (
-                newsItems.slice(0, 9).map((item) => (
+                newsItems.map((item) => (
                   <div
                     key={item.id}
                     className="w-full h-full flex items-end space-x-4"

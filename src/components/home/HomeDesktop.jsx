@@ -137,11 +137,11 @@ export default function HomeDesktop() {
               />
             }
           />
-          <div className="h-full grid grid-cols-[repeat(auto-fit,minmax(270px,1fr))] grid-rows-3 gap-10 max-w-[540px]">
-            {newsItems.map((item) => (
+          <div className="h-full grid grid-cols-2 grid-rows-3 grid-flow-col gap-10">
+            {newsItems.slice(0, 6).map((item) => (
               <div
                 key={item.id}
-                className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
+                className="col-span-1 flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => handleNewsClick(item.id)}
               >
                 <h3
@@ -156,12 +156,13 @@ export default function HomeDesktop() {
                     ? `${item.title.substring(0, 50)}...`
                     : item.title}
                 </h3>
-                <div className="relative w-[270px] h-full">
+                <div className="relative h-full aspect-square">
                   <Image
                     src={item.image}
                     alt={item.title}
-                    fill
-                    className="w-full h-full object-cover rounded-xl"
+                    width={330}
+                    height={330}
+                    className="aspect-square object-cover rounded-xl"
                     onError={(e) => {
                       e.target.src = "/images/news1.png"; // fallback image
                     }}
