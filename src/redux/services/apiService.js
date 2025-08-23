@@ -40,7 +40,7 @@ export const apiService = createApi({
           name: data.name,
           email: data.email,
           phone: data.phone,
-          subject: "Contact Form Submission",
+          subject: data.subject || "Contact Form Submission",
           message: data.message,
           type: data.contactType,
           token: data.token,

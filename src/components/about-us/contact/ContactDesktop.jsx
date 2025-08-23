@@ -3,9 +3,11 @@ import { useForm, Controller } from "react-hook-form";
 import StaticHeader from "@/components/common/StaticHeader";
 import { useSubmitContactFormMutation } from "../../../redux/services/apiService";
 import toast from "react-hot-toast";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function ContactDesktop() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [token, setToken] = useState(null);
   const [submitContactForm, { isLoading }] = useSubmitContactFormMutation();
 
   const contactTypeOptions = [
@@ -48,8 +50,17 @@ export default function ContactDesktop() {
     };
   }, [isDropdownOpen]);
 
+  const turnstileCallback = (token) => {
+    setToken(token);
+  };
+
   const onSubmit = async (data) => {
     if (isLoading) return;
+
+    if (!token) {
+      toast.error("ᠬᠦᠮᠦᠨ ᠦ ᠪᠠᠳᠤᠯᠠᠭᠠ ᠢ᠋ ᠪᠠᠳᠤᠯᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ");
+      return;
+    }
 
     try {
       await submitContactForm({
@@ -57,7 +68,9 @@ export default function ContactDesktop() {
         name: data.name,
         email: data.email,
         phone: data.phone,
+        subject: data.subject || "Contact Form Submission",
         message: data.message,
+        token: token,
       }).unwrap();
 
       // Show success toast
@@ -68,7 +81,6 @@ export default function ContactDesktop() {
       // Reset form
       reset();
     } catch (error) {
-
       // Show error toast
       toast.error(
         "ᠬᠦᠰᠡᠯᠲᠡ ᠢᠯᠭᠡᠭᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ: " +
@@ -378,6 +390,26 @@ export default function ContactDesktop() {
                   {errors.message.message}
                 </div>
               )}
+            </div>
+
+            {/* Turnstile CAPTCHA */}
+            <div className="flex gap-2">
+              <div className="flex flex-col">
+                <p className="text-xs mb-2">CAPTCHA Verification:</p>
+                <Turnstile
+                  siteKey={
+                    process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY
+                  }
+                  onSuccess={turnstileCallback}
+                  onError={(error) => console.error("Turnstile error:", error)}
+                  onExpire={() => console.log("Turnstile expired")}
+                  theme="light"
+                />
+                <p className="text-xs mt-1">
+                  Site Key:{" "}
+                  {process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY}
+                </p>
+              </div>
             </div>
 
             {/* Submit Button */}
