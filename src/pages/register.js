@@ -71,28 +71,23 @@ export default function Register() {
   const loadUserGroups = async () => {
     try {
       const response = await userApiService.user.getUserGroups();
-      setGroups(response.payload || response);
+      console.log("=== USER GROUPS API RESPONSE ===");
+      console.log("Full response:", JSON.stringify(response, null, 2));
+      console.log("Response.payload:", response.payload);
+      console.log("Response structure:", Object.keys(response));
+
+      const groupsData = response.payload || response;
+      console.log("Groups data to set:", groupsData);
+      setGroups(groupsData);
     } catch (error) {
-      // Provide default groups as fallback
+      console.warn("Failed to load user groups:", error);
+      // Set empty groups - show empty dropdowns
       setGroups({
-        userGroups: [
-          { id: 1, title: "ᠠᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ" },
-          { id: 2, title: "ᠣᠷᠣᠨ ᠨᠤᠲᠤᠭ ᠤᠨ ᠪᠦᠯᠦᠭ" },
-          { id: 3, title: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠪᠦᠯᠦᠭ" },
-        ],
-        userSubGroups: [
-          { id: 1, userGroupId: 1, title: "ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ" },
-          { id: 2, userGroupId: 1, title: "ᠳᠠᠷᠬᠠᠨ" },
-          { id: 3, userGroupId: 2, title: "ᠰᠤᠷᠭᠠᠯᠲᠠ" },
-          { id: 4, userGroupId: 2, title: "ᠠᠵᠢᠯ ᠤᠨ ᠪᠠᠢᠭᠤᠯᠯᠠᠭᠠ" },
-          { id: 5, userGroupId: 3, title: "ᠡᠮᠡᠭᠲᠡᠢ ᠶᠢᠨ ᠡᠷᠬᠡ" },
-          { id: 6, userGroupId: 3, title: "ᠡᠷᠡᠭᠲᠡᠢ ᠶᠢᠨ ᠡᠷᠬᠡ" },
-        ],
+        userGroups: [],
+        userSubGroups: [],
       });
-      console.warn(
-        "ᠪᠦᠯᠦᠭ ᠦᠨ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ ᠠᠴᠠᠭᠠᠯᠠᢈᠠᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ, ᠠᠨᠠᠭᠠᠬᠢ ᠪᠦᠯᠦᠭ ᠢ ᠬᠡᠷᠡᠭᠯᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ",
-        error
-      );
+      console.log("=== EMPTY GROUPS SET ===");
+      console.log("API failed, showing empty dropdowns");
     }
   };
 
@@ -242,7 +237,24 @@ export default function Register() {
 
   // Debug logging
   console.log("Current formData:", formData);
+  console.log("All userSubGroups:", groups.userSubGroups);
   console.log("Available subgroups:", availableSubGroups);
+  console.log("Filtering by groupId:", formData.groupId);
+
+  // Auto-select first subgroup when group changes and subgroups are available
+  useEffect(() => {
+    if (
+      formData.groupId &&
+      availableSubGroups.length > 0 &&
+      !formData.subGroupId
+    ) {
+      console.log("Auto-selecting first subgroup:", availableSubGroups[0].id);
+      setFormData((prev) => ({
+        ...prev,
+        subGroupId: availableSubGroups[0].id,
+      }));
+    }
+  }, [formData.groupId, availableSubGroups.length]);
 
   return (
     <Layout>

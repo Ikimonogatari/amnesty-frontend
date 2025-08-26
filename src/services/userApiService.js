@@ -363,13 +363,23 @@ export const userService = {
   // Get user groups
   async getUserGroups() {
     try {
-      const response = await fetch(`${USER_API_BASE_URL}/user-groups`, {
+      const response = await fetch("/api/user-groups", {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          ...getAuthHeaders(),
         },
       });
-      return await response.json();
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Failed to load user groups");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
