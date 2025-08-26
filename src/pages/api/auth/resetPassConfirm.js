@@ -15,7 +15,6 @@ export default async function handler(req, res) {
       "User-Agent":
         "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0",
       "Accept-Language": "en-US,en;q=0.5",
-      "Accept-Encoding": "gzip, deflate, br, zstd",
       Origin: "https://amnesty.mn",
       Connection: "keep-alive",
       "Sec-Fetch-Dest": "empty",

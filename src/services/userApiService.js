@@ -111,14 +111,14 @@ export const authService = {
         if (isDev) {
           Cookies.set(COOKIES.MEMBER_TOKEN, token, {
             path: "/",
-            expires: expires ? new Date(expires * 1000) : 7, // 7 days default
+            expires: expires || 7, // Use expires directly like old project
           });
         } else {
           Cookies.set(COOKIES.MEMBER_TOKEN, token, {
             path: "/",
             secure: true,
             sameSite: "strict",
-            expires: expires ? new Date(expires * 1000) : 7, // 7 days default
+            expires: expires || 7, // Use expires directly like old project
           });
         }
 
@@ -287,13 +287,25 @@ export const userService = {
   // Get user profile
   async getProfile() {
     try {
-      const response = await fetch(`${USER_API_BASE_URL}/me`, {
+      const authHeaders = getAuthHeaders();
+      const response = await fetch("/api/users/me", {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          ...getAuthHeaders(),
+          ...authHeaders,
         },
       });
-      return await response.json();
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Failed to get user profile");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
