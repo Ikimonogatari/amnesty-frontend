@@ -446,13 +446,52 @@ export const memberService = {
   // Get user events
   async getUserEvents() {
     try {
-      const response = await fetch(`${USER_API_BASE_URL}/events/list`, {
+      const authHeaders = getAuthHeaders();
+      const response = await fetch("/api/users/events", {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          ...getAuthHeaders(),
+          ...authHeaders,
         },
       });
-      return await response.json();
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Failed to get user events");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // Upload avatar
+  async uploadAvatar(formData) {
+    try {
+      const authHeaders = getAuthHeaders();
+      const response = await fetch("/api/users/avatar", {
+        method: "POST",
+        headers: {
+          ...authHeaders,
+        },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Failed to upload avatar");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
@@ -461,16 +500,27 @@ export const memberService = {
   // Get payment history
   async getPaymentHistory() {
     try {
-      const response = await fetch(
-        `${USER_API_BASE_URL}/payment/list?status=paid`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            ...getAuthHeaders(),
-          },
-        }
-      );
-      return await response.json();
+      const authHeaders = getAuthHeaders();
+      const response = await fetch("/api/users/payments", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          ...authHeaders,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(
+          data.message || "Failed to get payment history"
+        );
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }

@@ -41,15 +41,6 @@ export default function DonationMobile({
 
   return (
     <div className="w-full min-h-screen bg-white md:hidden">
-      <div className="relative w-full h-[40vh]">
-        <StaticHeader
-          image="/images/news1.png"
-          alt="Donation Page Header"
-          width="100%"
-          title="ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ"
-        />
-      </div>
-
       <div className="p-4">
         <div className="bg-[#48483D] text-white rounded-lg p-6 mb-6">
           <h2 className="text-xl font-bold mb-4 text-center">ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ</h2>

@@ -24,7 +24,7 @@ export default function HeaderMobile() {
     { text: "ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ", link: "/participation" },
     { text: "ᠮᠡᠳᠡᢉᠡ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ", link: "/news" },
     { text: "ᠡᠷᠬᠡᢉᠡ ᠮᠡᠳᠢᠶᠡ", link: "/right" },
-    { text: "ᠭᠢᠰᠦᠦᠨᠴᠢᠯᠡᠯ", link: "/membership" },
+    { text: "ᠭᠢᠰᠦᠦᠨᠴᠢᠯᠡᠯ", link: "/member" },
     { text: "ᠬᠠᠨᠳᠢᠪ", link: "/donation" },
     { text: "ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ", link: "/contact" },
   ];

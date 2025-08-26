@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import userApiService from "@/services/userApiService";
 import MemberDesktop from "@/components/member/MemberDesktop";
 import MemberMobile from "@/components/member/MemberMobile";
+import UserProfile from "@/components/member/UserProfile";
 import SectionTitle from "@/components/common/SectionTitle";
 import Layout from "@/components/layout/Layout";
 import toast from "react-hot-toast";
@@ -14,6 +15,7 @@ export default function Member() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [userGroups, setUserGroups] = useState(null);
   const [loginData, setLoginData] = useState({
     phone: "",
     password: "",
@@ -30,12 +32,21 @@ export default function Member() {
 
   const checkAuthStatus = async () => {
     // Check for token in cookies first, fallback to localStorage
-    const token = Cookies.get("amnesty_member_token") || localStorage.getItem("auth_token");
+    const token =
+      Cookies.get("amnesty_member_token") || localStorage.getItem("auth_token");
     if (token) {
       try {
         const userData = await userApiService.user.getProfile();
         setUser(userData);
         setIsLoggedIn(true);
+
+        // Also load user groups for the profile
+        try {
+          const groups = await userApiService.user.getUserGroups();
+          setUserGroups(groups);
+        } catch (groupError) {
+          console.error("Failed to load user groups:", groupError);
+        }
       } catch (error) {
         // Token is invalid, remove it from both places
         Cookies.remove("amnesty_member_token", { path: "/" });
@@ -76,6 +87,7 @@ export default function Member() {
         setIsLoggedIn(true);
         toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠨᠡᠪᠲᠡᠷᠡᠯᠡᠭᠡ!");
         setLoginData({ phone: "", password: "" });
+        router.push("/member");
       }
     } catch (error) {
       toast.error(
@@ -94,7 +106,16 @@ export default function Member() {
     setIsLoggedIn(false);
     setUser(null);
     toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠭᠠᠷᠯᠠᠭ᠎ᠠ");
+    router.push("/member");
   };
+
+  if (isLoggedIn && user) {
+    return (
+      <Layout>
+        <UserProfile userData={user} userGroups={userGroups} />
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

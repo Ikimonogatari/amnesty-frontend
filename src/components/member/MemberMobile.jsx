@@ -381,7 +381,7 @@ export default function MemberMobile({
               </p>
             </div>
             <button
-              onClick={() => router.push("/member/membership")}
+              onClick={() => router.push("/member")}
               className="p-2 rounded-md text-xs font-bold bg-green-500 text-white hover:bg-green-600"
               style={{
                 writingMode: "vertical-lr",

@@ -1,0 +1,936 @@
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import userApiService from "@/services/userApiService";
+import toast from "react-hot-toast";
+import Cookies from "js-cookie";
+import { Edit2 } from "lucide-react";
+
+export default function UserProfile({ userData, userGroups }) {
+  const router = useRouter();
+  const [parentTabIndex, setParentTabIndex] = useState(0);
+  const [childTabIndex, setChildTabIndex] = useState(0);
+  const [userEvents, setUserEvents] = useState([]);
+  const [paymentHistory, setPaymentHistory] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+
+  // Tab definitions with Mongolian script
+  const parentTabs = [
+    { key: "my_profile", label: "ᠮᠢᠨᠦ ᠪᠦᠷᠲᠡᠭᠦᠯ" },
+    { key: "events", label: "ᠡᠸᠡᠨᠲᠦᠦᠳ" },
+    { key: "shop", label: "ᠡᠮᠨᠧᠰᠲᠢ ᠳᠡᠯᠭᠦᠦᠷ" },
+    { key: "donation", label: "ᠬᠠᠨᠳᠢᠸ" },
+    { key: "logout", label: "ᠭᠠᠷᠠᠬᠤ" },
+  ];
+
+  const childTabs = [
+    { key: "my_info", label: "ᠮᠢᠨᠦ ᠲᠤᠬᠠᠢ" },
+    { key: "my_events", label: "ᠮᠢᠨᠦ ᠣᠷᠣᠯᠴᠠᠰᠠᠨ ᠡᠸᠡᠨᠲᠦᠦᠳ" },
+    { key: "my_subscriptions", label: "ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ" },
+    { key: "change_pass", label: "ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠣᠯᠢᠬᠤ" },
+  ];
+
+  // Add "Become Member" tab if not a member
+  if (!userData?.payload?.isMember) {
+    childTabs.push({
+      key: "become_member",
+      label: "ᠭᠢᠰᠦᠦᠨ ᠪᠣᠯᠬᠤ",
+    });
+  }
+
+  useEffect(() => {
+    const { profileUpdated, childTabIndex: queryChildTabIndex } = router.query;
+
+    if (profileUpdated === "true") {
+      toast.success("ᠪᠦᠷᠲᠡᠭᠦᠯ ᠰᠢᠨᠡᠴᠢᠯᠡᠭᠳᠡᠯᠡᠭ!");
+      router.replace("/member");
+    }
+
+    if (queryChildTabIndex) {
+      setChildTabIndex(Number(queryChildTabIndex));
+      router.replace("/member");
+    }
+  }, [router.query]);
+
+  useEffect(() => {
+    if (childTabIndex === 1) {
+      // My Events tab
+      loadUserEvents();
+    } else if (childTabIndex === 2) {
+      // My Subscriptions tab
+      loadPaymentHistory();
+    }
+  }, [childTabIndex]);
+
+  const loadUserEvents = async () => {
+    try {
+      setLoading(true);
+      const response = await userApiService.member.getUserEvents();
+      console.log("Events API Response:", response);
+      // Handle the proper API response structure: response.payload.data
+      const eventsData = response?.payload?.data || [];
+      console.log("Events data array:", eventsData);
+      setUserEvents(Array.isArray(eventsData) ? eventsData : []);
+    } catch (error) {
+      console.error("Failed to load user events:", error);
+      toast.error("ᠡᠸᠡᠨᠲ ᠠᠴᠠᠭᠠᠯᠠᠬᠤᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ");
+      setUserEvents([]); // Set empty array on error
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadPaymentHistory = async () => {
+    try {
+      setPaymentLoading(true);
+      const response = await userApiService.member.getPaymentHistory();
+      console.log("Payments API Response:", response);
+      // Handle the proper API response structure: response.payload.data
+      const paymentData = response?.payload?.data || [];
+      console.log("Payments data array:", paymentData);
+      setPaymentHistory(Array.isArray(paymentData) ? paymentData : []);
+    } catch (error) {
+      console.error("Failed to load payment history:", error);
+      toast.error("ᠲᠥᠯᠪᠦᠷᠢ ᠶᠢᠨ ᠲᠡᠦᠬᠡ ᠠᠴᠠᠭᠠᠯᠠᠬᠤᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ");
+      setPaymentHistory([]); // Set empty array on error
+    } finally {
+      setPaymentLoading(false);
+    }
+  };
+
+  const onParentTabPress = (tab) => {
+    switch (tab.key) {
+      case "my_profile":
+        // Stay on current page
+        break;
+      case "events":
+        router.push("/participation/events");
+        break;
+      case "shop":
+        router.push("/merch");
+        break;
+      case "donation":
+        router.push("/donation");
+        break;
+      case "logout":
+        logout();
+        break;
+    }
+  };
+
+  const logout = () => {
+    userApiService.auth.logout();
+    toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠭᠠᠷᠯᠠᠭ!");
+    router.push("/member");
+  };
+
+  const onChildTabPress = (tab, index) => {
+    setChildTabIndex(index);
+  };
+
+  const changeAvatar = () => {
+    const fileInput = document.createElement("input");
+    fileInput.style.display = "none";
+    fileInput.type = "file";
+    fileInput.name = "file";
+    fileInput.accept = "image/jpg,image/jpeg,image/png";
+
+    fileInput.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append("image", file);
+
+      try {
+        const token =
+          Cookies.get("amnesty_member_token") ||
+          localStorage.getItem("auth_token");
+
+        const response = await fetch("/api/users/avatar", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        });
+
+        if (response.ok) {
+          toast.success("ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠭᠳᠡᠯᠡᠭ!");
+          router.push("/member?profileUpdated=true");
+        } else {
+          const errorData = await response.json();
+          toast.error(
+            errorData.message || "ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
+          );
+        }
+      } catch (error) {
+        console.error("Avatar upload error:", error);
+        toast.error("ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ");
+      }
+    };
+
+    fileInput.click();
+  };
+
+  const user = userData?.payload;
+  const userFullName =
+    [user?.firstName, user?.lastName].filter(Boolean).join(" ") || user?.phone;
+  const avatar = user?.avatar || "/images/default-man.jpg";
+
+  return (
+    <div className="container mx-auto">
+      <div className="m-4 w-full">
+        {/* Parent Navigation Tabs */}
+        <div className="flex justify-end mb-5">
+          {parentTabs.map((tab, index) => (
+            <button
+              key={tab.key}
+              onClick={() => onParentTabPress(tab)}
+              className={`ml-2 px-3 py-2 text-md font-[Oswald] ${
+                index === 0
+                  ? "bg-[#2D2D2D] text-white"
+                  : "bg-[#eee] text-black hover:bg-gray-300"
+              }`}
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Main Content Layout */}
+        <div className="flex flex-col lg:flex-row font-[Oswald]">
+          {/* Left Sidebar - User Info */}
+          <div>
+            <div className="w-full lg:w-[280px] border mr-5 p-5">
+              <div
+                className="mb-10 text-xl text-center"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {userFullName}
+              </div>
+              <div className="flex flex-col justify-center items-center">
+                <div
+                  className="relative w-[128px] h-[128px] bg-[#eee] rounded-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${avatar})` }}
+                >
+                  <div className="absolute top-0 right-[-15px] cursor-pointer">
+                    <button onClick={changeAvatar}>
+                      <Edit2 size={20} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 text-sm">
+                <div className="flex">
+                  <div
+                    className="font-bold"
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    ID:
+                  </div>
+                  <div
+                    className="flex-1 text-right"
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    {user?.id}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content Area */}
+          <div className="flex-1">
+            {/* Child Tabs */}
+            <div className="flex-1 border p-5">
+              {childTabs.map((tab, index) => (
+                <button
+                  key={tab.key}
+                  onClick={() => onChildTabPress(tab, index)}
+                  className={`mr-2 px-3 py-2 text-md font-[Oswald] ${
+                    index === childTabIndex
+                      ? "bg-[#2D2D2D] text-white"
+                      : "bg-[#eee] text-black hover:bg-gray-300"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+
+            <div className="h-5" />
+
+            {/* Content Area */}
+            <div className="flex-1 border p-5">
+              {childTabIndex === 0 && <MyInfo userData={user} />}
+              {childTabIndex === 1 && (
+                <MyEvents events={userEvents} loading={loading} />
+              )}
+              {childTabIndex === 2 && (
+                <MySubscriptions
+                  payments={paymentHistory}
+                  loading={paymentLoading}
+                />
+              )}
+              {childTabIndex === 3 && <ChangePassword />}
+              {childTabIndex === 4 && !user?.isMember && (
+                <BecomeMember userData={user} userGroups={userGroups} />
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Component for My Info tab
+function MyInfo({ userData }) {
+  const formatDate = (dateString) => {
+    if (!dateString) return "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ";
+    const date = new Date(dateString);
+    return date
+      .toLocaleDateString("mn-MN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      })
+      .replace(/\./g, "/");
+  };
+
+  const getMembershipStatus = () => {
+    if (userData?.isMember) return "ᠭᠢᠰᠦᠦᠨ";
+    if (userData?.isMemberInfoConfirmed) return "ᠪᠠᠳᠤᠯᠠᠭᠠ ᠪᠠᠳᠤᠯᠠᠭᠰᠠᠨ";
+    return "ᠭᠢᠰᠦᠦᠨ ᠪᠢᠰᠢ";
+  };
+
+  return (
+    <div className="space-y-6">
+      {/* Membership Status Section */}
+      <div className="border-b pb-4">
+        <h3
+          className="text-lg font-bold mb-3"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠭᠢᠰᠦᠦᠨ ᠴᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠢᠳᠠᠯ
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠭᠢᠰᠦᠦᠨ ᠴᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠢᠳᠠᠯ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {getMembershipStatus()}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠡᠯᠡᠰᠦᠭᠰᠡᠨ ᠡᠳᠦᠷ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {formatDate(userData?.dateCreated)}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Information Section */}
+      <div className="border-b pb-4">
+        <h3
+          className="text-lg font-bold mb-3"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠬᠣᠯᠪᠣᠭᠠ ᠪᠠᠷᠢᠬᠤ ᠮᠡᠳᠡᠭᠡ
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.phone || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠢ᠋ᠮᠡᠢᠯ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.email || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Personal Information Section */}
+      <div className="border-b pb-4">
+        <h3
+          className="text-lg font-bold mb-3"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠬᠤᠪᠢ ᠶᠢᠨ ᠮᠡᠳᠡᠭᠡ
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠨᠡᠷᠡ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.firstName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠣᠪᠣᠭ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.lastName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠬᠦᠢᠲᠡᠨ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.gender === "male"
+                ? "ᠡᠷᠡᠭᠲᠡᠢ"
+                : userData?.gender === "female"
+                ? "ᠡᠮᠡᠭᠲᠡᠢ"
+                : "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠲᠥᠷᠥᠭᠰᠡᠨ ᠡᠳᠦᠷ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {formatDate(userData?.birthday)}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠤᠯᠤᠰ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.country || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠬᠣᠲᠠ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.city || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠬᠠᠶᠢᠭ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.address || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠠᠵᠢᠯ ᠤᠨ ᠭᠠᠵᠠᠷ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.occupation || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Statistics Section */}
+      <div>
+        <h3
+          className="text-lg font-bold mb-3"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠰᠲᠠᠲᠢᠰᠲᠢᠺ
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠣᠨᠣᠭ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.points || 0}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠡᠸᠡᠨᠲ ᠦᠨ ᠴᠠᠭ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.eventHours || 0}
+            </p>
+          </div>
+          <div>
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠣᠷᠣᠯᠴᠠᠭᠰᠠᠨ ᠡᠸᠡᠨᠲ:
+            </label>
+            <p
+              className="text-sm text-gray-900"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userData?.countEvents || 0}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Component for My Events tab
+function MyEvents({ events, loading }) {
+  if (loading) {
+    return (
+      <div className="text-center py-8">
+        <p
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠠᠴᠠᠭᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
+        </p>
+      </div>
+    );
+  }
+
+  // Ensure events is always an array
+  const eventsArray = Array.isArray(events) ? events : [];
+
+  if (eventsArray.length === 0) {
+    return (
+      <div className="text-center py-8">
+        <p
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠲᠠ ᠠᠯᠢ ᠡᠸᠡᠨᠲ ᠳ᠋ᠤ ᠣᠷᠣᠯᠴᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ ᠪᠠᠢᠨ᠎ᠠ
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-4">
+      <h2
+        className="text-lg font-bold mb-4"
+        style={{
+          writingMode: "vertical-lr",
+          textOrientation: "upright",
+        }}
+      >
+        ᠮᠢᠨᠦ ᠣᠷᠣᠯᠴᠠᠰᠠᠨ ᠡᠸᠡᠨᠲᠦᠦᠳ
+      </h2>
+      <div className="space-y-3">
+        {eventsArray.map((event, index) => (
+          <div key={event.id || index} className="border rounded-lg p-4">
+            <h3
+              className="font-medium mb-2"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {event.title || "ᠨᠡᠷᠡᠢᠳᠦᠯ ᠦᠭᠡᠢ"}
+            </h3>
+            <p className="text-sm text-gray-600">
+              {event.start_date
+                ? new Date(event.start_date).toLocaleDateString()
+                : "ᠡᠳᠦᠷ ᠦᠭᠡᠢ"}
+            </p>
+            {event.address && (
+              <p className="text-sm text-gray-500 mt-1">{event.address}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Component for My Subscriptions tab
+function MySubscriptions({ payments = [], loading = false }) {
+  // Handle loading state
+  if (loading) {
+    return (
+      <div className="space-y-4">
+        <h2
+          className="text-lg font-bold mb-4"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ
+        </h2>
+        <p
+          className="text-gray-500"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠠᠴᠠᠭᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
+        </p>
+      </div>
+    );
+  }
+
+  // Handle empty payments
+  if (!payments || payments.length === 0) {
+    return (
+      <div className="space-y-4">
+        <h2
+          className="text-lg font-bold mb-4"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ
+        </h2>
+        <p
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+          }}
+        >
+          ᠲᠥᠯᠦᠭᠰᠡᠨ ᠬᠠᠨᠳᠢᠸ ᠦᠭᠡᠢ ᠪᠠᠢᠨ᠎ᠠ
+        </p>
+      </div>
+    );
+  }
+
+  // Ensure payments is an array
+  const paymentsArray = Array.isArray(payments) ? payments : [];
+
+  return (
+    <div className="space-y-4">
+      <h2
+        className="text-lg font-bold mb-4"
+        style={{
+          writingMode: "vertical-lr",
+          textOrientation: "upright",
+        }}
+      >
+        ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ
+      </h2>
+      <div className="space-y-3">
+        {paymentsArray.map((payment, index) => (
+          <div key={payment.id || index} className="border rounded-lg p-4">
+            <div className="flex justify-between items-start mb-2">
+              <h3
+                className="font-medium"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {payment.description || payment.type || "ᠬᠠᠨᠳᠢᠸ"}
+              </h3>
+              <span className="text-lg font-bold text-green-600">
+                ₮{payment.amount || "0"}
+              </span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-600">
+              <span
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {payment.created_at || payment.date
+                  ? new Date(
+                      payment.created_at || payment.date
+                    ).toLocaleDateString()
+                  : "ᠡᠳᠦᠷ ᠦᠭᠡᠢ"}
+              </span>
+              <span
+                className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {payment.status === "paid"
+                  ? "ᠲᠥᠯᠦᠭᠰᠡᠨ"
+                  : payment.status || "ᠲᠥᠯᠦᠭᠰᠡᠨ"}
+              </span>
+            </div>
+            {payment.invoice_id && (
+              <p className="text-xs text-gray-500 mt-1">
+                Invoice: #{payment.invoice_id}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// Component for Change Password tab
+function ChangePassword() {
+  return (
+    <div className="space-y-4">
+      <h2
+        className="text-lg font-bold mb-4"
+        style={{
+          writingMode: "vertical-lr",
+          textOrientation: "upright",
+        }}
+      >
+        ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠣᠯᠢᠬᠤ
+      </h2>
+      <p
+        style={{
+          writingMode: "vertical-lr",
+          textOrientation: "upright",
+        }}
+      >
+        ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠣᠯᠢᠬᠤ ᠬᠡᠰᠡᠭ ᠢᠯᠡᠷᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ
+      </p>
+    </div>
+  );
+}
+
+// Component for Become Member tab
+function BecomeMember({ userData, userGroups }) {
+  return (
+    <div className="space-y-4">
+      <h2
+        className="text-lg font-bold mb-4"
+        style={{
+          writingMode: "vertical-lr",
+          textOrientation: "upright",
+        }}
+      >
+        ᠭᠢᠰᠦᠦᠨ ᠪᠣᠯᠬᠤ
+      </h2>
+      <p
+        style={{
+          writingMode: "vertical-lr",
+          textOrientation: "upright",
+        }}
+      >
+        ᠡᠮᠨᠧᠰᠲᠢ ᠶᠢᠨ ᠭᠢᠰᠦᠦᠨ ᠪᠣᠯᠬᠤ ᠬᠡᠰᠡᠭ ᠢᠯᠡᠷᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ
+      </p>
+    </div>
+  );
+}
