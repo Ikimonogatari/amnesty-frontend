@@ -331,14 +331,25 @@ export const userService = {
   // Upload avatar
   async uploadAvatar(formData) {
     try {
-      const response = await fetch(`${USER_API_BASE_URL}/me/avatar`, {
+      const authHeaders = getAuthHeaders();
+      const response = await fetch("/api/users/avatar", {
         method: "POST",
         headers: {
-          ...getAuthHeaders(),
+          ...authHeaders,
         },
         body: formData,
       });
-      return await response.json();
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Failed to upload avatar");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
@@ -460,33 +471,6 @@ export const memberService = {
       if (!response.ok) {
         // Create an error object that matches the expected format
         const error = new Error(data.message || "Failed to get user events");
-        error.response = { data };
-        throw error;
-      }
-
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  },
-
-  // Upload avatar
-  async uploadAvatar(formData) {
-    try {
-      const authHeaders = getAuthHeaders();
-      const response = await fetch("/api/users/avatar", {
-        method: "POST",
-        headers: {
-          ...authHeaders,
-        },
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        // Create an error object that matches the expected format
-        const error = new Error(data.message || "Failed to upload avatar");
         error.response = { data };
         throw error;
       }

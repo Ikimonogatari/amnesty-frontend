@@ -1,3 +1,10 @@
+// Disable the default body parser
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 // Next.js API route to proxy /users/me/avatar requests to avoid CORS issues
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -7,13 +14,10 @@ export default async function handler(req, res) {
   try {
     const userApiUrl =
       process.env.NEXT_PUBLIC_USER_API_URL || "https://api.amnesty.mn/users";
+    const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
     // Get authorization header from the request
     const authHeader = req.headers.authorization;
-
-    if (!authHeader) {
-      return res.status(401).json({ message: "Authorization header required" });
-    }
 
     const headers = {
       "User-Agent":
@@ -27,25 +31,38 @@ export default async function handler(req, res) {
       DNT: "1",
       "Sec-GPC": "1",
       Priority: "u=0",
-      Authorization: authHeader,
     };
 
-    // Forward the request body (FormData) directly
+    // Add authorization header if provided
+    if (authHeader) {
+      headers["Authorization"] = authHeader;
+    } else if (apiKey) {
+      headers["Authorization"] = `Bearer ${apiKey}`;
+    }
+
+    // Forward content-type to preserve multipart boundary
+    if (req.headers["content-type"]) {
+      headers["Content-Type"] = req.headers["content-type"];
+    }
+
+    // Forward the raw request as a stream
     const response = await fetch(`${userApiUrl}/me/avatar`, {
       method: "POST",
       headers,
-      body: req.body,
+      body: req,
+      duplex: "half", // Required for streaming request body
     });
 
-    // Handle the response properly - let fetch handle decompression
+    // Handle the response properly
     if (!response.ok) {
       const errorText = await response.text();
+      console.error("Avatar upload backend error:", errorText);
       return res.status(response.status).json({
         message: errorText || `HTTP ${response.status}`,
       });
     }
 
-    // Parse as JSON directly - fetch handles decompression automatically
+    // Parse as JSON directly
     const responseData = await response.json();
     console.log("=== AVATAR UPLOAD PROXY SUCCESS ===");
     console.log("Response status:", response.status);

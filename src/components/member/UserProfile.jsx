@@ -143,30 +143,15 @@ export default function UserProfile({ userData, userGroups }) {
       formData.append("image", file);
 
       try {
-        const token =
-          Cookies.get("amnesty_member_token") ||
-          localStorage.getItem("auth_token");
-
-        const response = await fetch("/api/users/avatar", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        });
-
-        if (response.ok) {
-          toast.success("ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠭᠳᠡᠯᠡᠭ!");
-          router.push("/member?profileUpdated=true");
-        } else {
-          const errorData = await response.json();
-          toast.error(
-            errorData.message || "ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
-          );
-        }
+        const response = await userApiService.user.uploadAvatar(formData);
+        toast.success("ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠭᠳᠡᠯᠡᠭ!");
+        router.push("/member?profileUpdated=true");
       } catch (error) {
         console.error("Avatar upload error:", error);
-        toast.error("ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ");
+        toast.error(
+          error?.response?.data?.message ||
+            "ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
+        );
       }
     };
 
