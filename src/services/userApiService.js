@@ -28,12 +28,24 @@ export const authService = {
   // Register new user
   async register(userData) {
     try {
-      const response = await FetcherPost(
-        "/auth/register",
-        userData,
-        USER_API_BASE_URL
-      );
-      return response;
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Registration failed");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
@@ -42,12 +54,24 @@ export const authService = {
   // Send SMS verification code (matches old project)
   async sendVerificationCode(phone) {
     try {
-      const response = await FetcherPost(
-        "/auth/verify",
-        { phone: String(phone) },
-        USER_API_BASE_URL
-      );
-      return response;
+      const response = await fetch("/api/auth/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: String(phone) }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "SMS verification failed");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
@@ -56,19 +80,30 @@ export const authService = {
   // Login user (matches old project)
   async login(credentials) {
     try {
-      const response = await FetcherPost(
-        "/auth/login",
-        {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           phone: String(credentials.phone),
           password: credentials.password,
-        },
-        USER_API_BASE_URL
-      );
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Login failed");
+        error.response = { data };
+        throw error;
+      }
 
       // Handle token storage like old project
-      if (response.payload?.token && typeof window !== "undefined") {
-        const token = response.payload.token.bearer;
-        const expires = response.payload.token.expires;
+      if (data.payload?.token && typeof window !== "undefined") {
+        const token = data.payload.token.bearer;
+        const expires = data.payload.token.expires;
 
         // Store in cookies like old project
         const isDev = process.env.NODE_ENV === "development";
@@ -94,7 +129,7 @@ export const authService = {
         }
       }
 
-      return response;
+      return data;
     } catch (error) {
       throw error;
     }
@@ -115,12 +150,24 @@ export const authService = {
   // Reset password - send verification (matches old project)
   async resetPasswordSendCode(phone) {
     try {
-      const response = await FetcherPost(
-        "/auth/resetPass",
-        { phone: String(phone) },
-        USER_API_BASE_URL
-      );
-      return response;
+      const response = await fetch("/api/auth/resetPass", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: String(phone) }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Reset password failed");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
@@ -129,12 +176,24 @@ export const authService = {
   // Reset password - verify code (matches old project)
   async resetPasswordVerifyCode(phone, verifyCode) {
     try {
-      const response = await FetcherPost(
-        "/auth/resetPassVerify",
-        { phone: String(phone), verifyCode },
-        USER_API_BASE_URL
-      );
-      return response;
+      const response = await fetch("/api/auth/resetPassVerify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: String(phone), verifyCode }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Code verification failed");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
@@ -143,12 +202,24 @@ export const authService = {
   // Reset password - confirm with new password (matches old project)
   async resetPasswordConfirm(token, password) {
     try {
-      const response = await FetcherPost(
-        "/auth/resetPassConfirm",
-        { token, password },
-        USER_API_BASE_URL
-      );
-      return response;
+      const response = await fetch("/api/auth/resetPassConfirm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Create an error object that matches the expected format
+        const error = new Error(data.message || "Password reset failed");
+        error.response = { data };
+        throw error;
+      }
+
+      return data;
     } catch (error) {
       throw error;
     }
