@@ -14,6 +14,13 @@ export const apiService = createApi({
     baseUrl: API_CONFIG.BASE_URL,
     prepareHeaders: (headers) => {
       headers.set("Content-Type", "application/json");
+
+      // Add Strapi API key for authentication
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+      if (apiKey) {
+        headers.set("Authorization", `Bearer ${apiKey}`);
+      }
+
       return headers;
     },
   }),
@@ -33,19 +40,35 @@ export const apiService = createApi({
   endpoints: (builder) => ({
     // Contact form submission
     submitContactForm: builder.mutation({
-      query: (data) => ({
-        url: `${API_CONFIG.USERS_API_URL}/contact-request/submit`,
-        method: "POST",
-        body: {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          subject: data.subject || "Contact Form Submission",
-          message: data.message,
-          type: data.contactType,
-          token: data.token,
-        },
-      }),
+      queryFn: async (data) => {
+        try {
+          const response = await fetch("/api/contact-request/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: data.name,
+              email: data.email,
+              phone: data.phone,
+              subject: data.subject || "Contact Form Submission",
+              message: data.message,
+              contactType: data.contactType,
+              token: data.token,
+            }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            return { error: { status: response.status, data: errorData } };
+          }
+
+          const result = await response.json();
+          return { data: result };
+        } catch (error) {
+          return { error: { status: "FETCH_ERROR", error: error.message } };
+        }
+      },
       invalidatesTags: ["Contact"],
     }),
 

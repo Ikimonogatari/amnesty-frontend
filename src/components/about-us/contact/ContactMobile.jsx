@@ -394,7 +394,6 @@ export default function ContactMobile() {
             {/* Turnstile CAPTCHA */}
             <div className="flex gap-2">
               <div className="flex flex-col">
-                <p className="text-xs mb-2">CAPTCHA:</p>
                 <Turnstile
                   siteKey={
                     process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY
