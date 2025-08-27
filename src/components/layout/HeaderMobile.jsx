@@ -1,11 +1,11 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function HeaderMobile() {
   const [showMenu, setShowMenu] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
   const [menuTransitioning, setMenuTransitioning] = useState(false);
 
   const toggleMenu = () => {
@@ -13,20 +13,72 @@ export default function HeaderMobile() {
     setShowMenu(!showMenu);
   };
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
+  const toggleDropdown = (index) => {
+    setActiveDropdown(activeDropdown === index ? null : index);
   };
 
-  // Same menu items as desktop
+  // Same menu items as desktop - exact old web order
   const menuItems = [
-    { text: "ᠪᠢᠳᠨᠢ ᠲᠤᠬᠠᠢ", hasDropdown: true },
+    {
+      text: "ᠪᠢᠳᠨᠢ ᠲᠤᠬᠠᠢ",
+      hasDropdown: true,
+      dropdownItems: [
+        { text: "ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠪᠦᠲᠦᠬ", link: "/about/1" },
+        { text: "ᠮᠦᠢ ᠲᠦᠦᠬᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ", link: "/about/2" },
+        { text: "ᠲᠠᠢᠯᠠᠨ", link: "/about/3" },
+        { text: "ᠶᠡᠷᠦᠨᠬᠢᠶ ᠴᠤᠤᠯᠭᠠᠨ", link: "/about/5" },
+        { text: "ᠲᠦᠭᠡᠮᠡᠯ ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ", link: "/faq" },
+        { text: "ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ", link: "/contact" },
+      ],
+    },
     { text: "ᠬᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ", link: "/campaign" },
-    { text: "ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ", link: "/participation" },
-    { text: "ᠮᠡᠳᠡᢉᠡ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ", link: "/news" },
-    { text: "ᠡᠷᠬᠡᢉᠡ ᠮᠡᠳᠢᠶᠡ", link: "/right" },
-    { text: "ᠭᠢᠰᠦᠦᠨᠴᠢᠯᠡᠯ", link: "/member" },
-    { text: "ᠬᠠᠨᠳᠢᠪ", link: "/donation" },
-    { text: "ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ", link: "/contact" },
+    {
+      text: "ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ᠎ᠠ",
+      hasDropdown: true,
+      dropdownItems: [
+        {
+          text: "ᠣᠯᠠᠨ ᠨᠢᠶᠲᠡ ᠶᠢᠨ ᠠᠷᠭ᠎ᠠ ᠬᠡᠮᠵᠢᠶ᠎ᠡ",
+          link: "/participation/events",
+        },
+        {
+          text: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ",
+          link: "/participation/youthhumanrights",
+        },
+        {
+          text: "ᠰᠠᠢᠨ ᠳᠤᠷᠤᠨ ᠪᠣᠯᠣᠨ ᠳᠠᠳᠯᠠᠭ᠎ᠠ ᠶᠢᠨ ᠠᠵᠢᠯ",
+          link: "/participation/volunteer",
+        },
+        {
+          text: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠢᠳᠦᠨ",
+          link: "/participation/humanrighteye",
+        },
+        {
+          text: "ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠢᠴᠢᠴᠡᠭᠡᠶ᠎ᠡ",
+          link: "/campaign/writeforrights",
+        },
+      ],
+    },
+    {
+      text: "ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠭᠡᠯᠡᠯ",
+      hasDropdown: true,
+      dropdownItems: [
+        { text: "ᠮᠡᠳᠡᠭᠡ", link: "/news" },
+        { text: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠶᠢᠷ ᠰᠤᠤᠷᠢ", link: "/news?type=statements" },
+        { text: "ᠰᠠᠢᠨ ᠮᠡᠳᠡᠭᠡ", link: "/news?type=good_news" },
+      ],
+    },
+    {
+      text: "ᠡᠷᠬᠡᠭᠡ ᠮᠡᠳᠢᠶᠡ",
+      hasDropdown: true,
+      dropdownItems: [
+        { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/lessons" },
+        { text: "ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/online-lessons" },
+        { text: "ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠨ", link: "/library" },
+        { text: "ᠺᠢᠳᠧᠣ", link: "/videos" },
+        { text: "ᠫᠣᠳᠺᠠᠰᠲ", link: "/podcasts" },
+      ],
+    },
+    { text: "ᠭᠢᠰᠦᠨ ᠴᠢᠯᠡᠯ", link: "/member" },
   ];
 
   useEffect(() => {
@@ -34,7 +86,7 @@ export default function HeaderMobile() {
     if (showMenu) {
       document.body.style.overflow = "hidden";
     } else {
-      setShowDropdown(false);
+      setActiveDropdown(null);
       document.body.style.overflow = "";
     }
 
@@ -94,7 +146,7 @@ export default function HeaderMobile() {
         />
 
         <div className="mt-4 px-4">
-          {/* 2x4 Grid Layout for Mobile */}
+          {/* 2x3 Grid Layout for Mobile - spans top to bottom, then continues in col 2 */}
           <div className="grid grid-cols-2 gap-3">
             {menuItems.map((item, index) => (
               <div key={index} className="relative">
@@ -102,7 +154,7 @@ export default function HeaderMobile() {
                   <div>
                     <div
                       className="p-2 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center"
-                      onClick={toggleDropdown}
+                      onClick={() => toggleDropdown(index)}
                     >
                       <p
                         className="text-black font-bold text-xs"
@@ -114,65 +166,37 @@ export default function HeaderMobile() {
                         {item.text}
                       </p>
                     </div>
-                    {showDropdown && (
+                    {activeDropdown === index && (
                       <div className="absolute left-[105px] top-[-30px] bg-white rounded-xl p-4 w-auto z-30 border border-[#E3E3E3] shadow-lg">
                         <div className="flex justify-between items-center">
-                          <div className="flex gap-4">
-                            <div className="flex flex-col items-center cursor-pointer group">
-                              <p
-                                className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
-                                style={{
-                                  writingMode: "vertical-lr",
-                                  textOrientation: "upright",
-                                }}
-                              >
-                                ᠪᠢᠳᠡ ᢈᠡᠨ ᠪᠤᠢ?
-                              </p>
-                            </div>
-                            <div className="flex flex-col items-center cursor-pointer group">
-                              <p
-                                className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
-                                style={{
-                                  writingMode: "vertical-lr",
-                                  textOrientation: "upright",
-                                }}
-                              >
-                                ᠪᠢᠳᠡ ᠶᠠᠭᠤ ᢈᠢᠳᠡᢉ ᠪᠤᠢ?
-                              </p>
-                            </div>
-                            <div className="flex flex-col items-center cursor-pointer group">
-                              <p
-                                className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
-                                style={{
-                                  writingMode: "vertical-lr",
-                                  textOrientation: "upright",
-                                }}
-                              >
-                                ᠪᠢᠳᠡᠨ ᠦ᠋ ᠲᠡᠦᢈᠡ
-                              </p>
-                            </div>
-                            <div className="flex flex-col items-center cursor-pointer group">
-                              <p
-                                className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
-                                style={{
-                                  writingMode: "vertical-lr",
-                                  textOrientation: "upright",
-                                }}
-                              >
-                                ᠪᠢᠳᠡᠨ ᠦ᠋ ᠠᠵᠢᠯ
-                              </p>
-                            </div>
-                            <div className="flex flex-col items-center cursor-pointer group">
-                              <p
-                                className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
-                                style={{
-                                  writingMode: "vertical-lr",
-                                  textOrientation: "upright",
-                                }}
-                              >
-                                ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ
-                              </p>
-                            </div>
+                          <div className="grid grid-cols-2 gap-6">
+                            {item.dropdownItems.map(
+                              (dropdownItem, dropdownIndex) => (
+                                <Link
+                                  key={dropdownIndex}
+                                  href={dropdownItem.link}
+                                >
+                                  <div
+                                    className={`flex flex-col items-center cursor-pointer group py-2 px-1 rounded-md hover:bg-gray-50 transition-all duration-200 ${
+                                      dropdownIndex <
+                                      item.dropdownItems.length - 1
+                                        ? "border-b border-gray-200"
+                                        : ""
+                                    }`}
+                                  >
+                                    <p
+                                      className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
+                                      style={{
+                                        writingMode: "vertical-lr",
+                                        textOrientation: "upright",
+                                      }}
+                                    >
+                                      {dropdownItem.text}
+                                    </p>
+                                  </div>
+                                </Link>
+                              )
+                            )}
                           </div>
                         </div>
                       </div>
