@@ -24,15 +24,27 @@ export default function BannerSlider({
         setFeaturedNewsError(null);
 
         try {
-          // Fetch regular news posts for homepage slider
+          // For consistency between environments, always use latest posts
+          // This ensures production and local show the same number of items
           const response = await apiService.posts.getPostsList({
-            page: 1,
-            pageSize: 6, // Limit to 6 posts for homepage
+            pageSize: 6, // Use same format as homepage news section
             sort: "publishedAt:desc",
           });
 
           // Handle the response structure - getPostsList returns { data: [...], meta: {...} }
           const newsData = response?.data || [];
+
+          // Debug logging to check image URLs
+          if (newsData.length > 0) {
+            console.log(
+              "Banner Debug - First post cover data:",
+              newsData[0]?.cover
+            );
+            console.log(
+              "Banner Debug - Image URL:",
+              getImageUrl(newsData[0]?.cover)
+            );
+          }
 
           setFeaturedNewsData(newsData);
         } catch (error) {
@@ -49,35 +61,12 @@ export default function BannerSlider({
   // Convert featured news data to banner format (like old web)
   const dynamicImages = featuredNewsData
     ? featuredNewsData.map((newsPost) => {
-        // getPostsList returns flattened data, no .attributes needed
+        // Now always using posts data (flattened format) for consistency
         const post = newsPost;
-
-        // Get cover image URL - handle the cover structure from getPostsList
-        let coverImageUrl = null;
-        if (post.cover) {
-          // Cover might be a string URL or an object
-          if (typeof post.cover === "string") {
-            coverImageUrl = post.cover;
-          } else if (post.cover.url) {
-            coverImageUrl = post.cover.url;
-          } else if (post.cover.formats) {
-            // Try different formats in order of preference
-            coverImageUrl =
-              post.cover.formats.large?.url ||
-              post.cover.formats.medium?.url ||
-              post.cover.formats.small?.url ||
-              post.cover.formats.thumbnail?.url ||
-              post.cover.url;
-          }
-        }
 
         return {
           id: post.id,
-          src: coverImageUrl
-            ? `${
-                process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
-              }${coverImageUrl}`
-            : "/images/news1.png",
+          src: getImageUrl(post.cover) || "/images/news1.png",
           alt: post.title || `News ${post.id}`,
           caption: {
             title: post.short_description || post.title || "ᠮᠡᠳᠡᢉᠡ",
@@ -212,15 +201,26 @@ export default function BannerSlider({
               className="h-full relative flex-shrink-0"
               style={{ width: "100%" }}
             >
-              <Image
+              {/* Use background-image approach like old web for better compatibility */}
+              <div
+                className="w-full h-full bg-cover bg-center bg-no-repeat md:rounded-xl"
+                style={{
+                  backgroundImage: image.src
+                    ? `url(${image.src})`
+                    : "url(/images/news1.png)",
+                }}
+              />
+              {/* Fallback image element to handle loading errors */}
+              <img
                 src={image.src}
-                alt={image.alt || `Banner image ${index + 1}`}
-                fill
-                style={{ objectFit: "cover", objectPosition: "center" }}
-                className="md:rounded-xl"
-                priority={index === 0}
+                alt=""
+                style={{ display: "none" }}
                 onError={(e) => {
-                  e.target.src = "/images/news1.png"; // fallback image
+                  // If image fails to load, update the parent div's background
+                  const parentDiv = e.target.parentElement;
+                  if (parentDiv) {
+                    parentDiv.style.backgroundImage = "url(/images/news1.png)";
+                  }
                 }}
               />
               {image.caption && (

@@ -56,10 +56,9 @@ export default function HomeMobile() {
       setError(null);
 
       try {
-        // Use the correct posts/list API endpoint
+        // Use the exact same API call as old web: posts/list?limit=6
         const posts = await apiService.posts.getPostsList({
-          page: 1,
-          pageSize: 6,
+          pageSize: 6, // This will use 'limit' format like old web
         });
 
         // Handle the consistent data structure

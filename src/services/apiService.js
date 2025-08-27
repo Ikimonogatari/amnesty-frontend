@@ -47,9 +47,17 @@ export const postsService = {
         populate: "*",
         sort: "publishedAt:desc",
         locale: "mn",
-        "pagination[page]": params.page || 1,
-        "pagination[pageSize]": params.pageSize || 10,
       };
+
+      // If pageSize is provided and no page, use simple 'limit' format (like old web)
+      // This is for homepage compatibility with old API format
+      if (params.pageSize && !params.page) {
+        queryParams.limit = params.pageSize;
+      } else {
+        // Use Strapi v4 pagination format for other cases
+        queryParams["pagination[page]"] = params.page || 1;
+        queryParams["pagination[pageSize]"] = params.pageSize || 10;
+      }
 
       // Add filters directly to queryParams (not nested)
       if (params.filters) {

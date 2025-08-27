@@ -293,8 +293,8 @@ export default function SingleNews() {
       </div>
 
       {/* Desktop Layout */}
-      <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
-        {/* News Title Header */}
+      <div className="h-full p-4 hidden sm:flex gap-7">
+        {/* News Title Header - Full Width */}
         <StaticHeader
           image={coverImage}
           alt="News Page Header"
@@ -302,67 +302,12 @@ export default function SingleNews() {
           title={post.title}
         />
 
-        {/* Published Date Section */}
-        <div className="flex gap-4">
-          <h2
-            className="text-2xl font-bold"
-            style={{
-              writingMode: "vertical-lr",
-              textOrientation: "upright",
-            }}
-          >
-            ᠣᠭᠲᠠᠷᠭᠤᠯ
-          </h2>
-          <div
-            className="text-xl text-gray-600"
-            style={{
-              writingMode: "vertical-lr",
-              textOrientation: "upright",
-            }}
-          >
-            {publishedAt}
-          </div>
-        </div>
-
-        {/* Share Section */}
-        <div className="flex gap-4">
-          <h2
-            className="text-2xl font-bold"
-            style={{
-              writingMode: "vertical-lr",
-              textOrientation: "upright",
-            }}
-          >
-            ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
-          </h2>
-          <div className="flex flex-col gap-4">
-            <button
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-              onClick={() => handleShare("facebook")}
-              className="flex items-center gap-2 bg-[#385898] text-white px-4 py-3 text-sm font-semibold hover:bg-[#2d4373] transition-colors"
-            >
-              <Facebook size={16} />
-              Facebook
-            </button>
-            <button
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-              onClick={() => handleShare("general")}
-              className="flex items-center gap-2 bg-gray-600 text-white px-4 py-3 text-sm font-semibold hover:bg-gray-700 transition-colors"
-            >
-              <Share2 size={16} />
-              ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
-            </button>
-          </div>
-        </div>
-
-        {/* Short Description Section */}
-        {post.short_description && (
+        {/* Main Content Container - Limited Width */}
+        <div
+          className="flex gap-7 overflow-x-auto"
+          style={{ maxWidth: "calc(100vw - 1100px)" }}
+        >
+          {/* Published Date Section */}
           <div className="flex gap-4">
             <h2
               className="text-2xl font-bold"
@@ -371,72 +316,137 @@ export default function SingleNews() {
                 textOrientation: "upright",
               }}
             >
-              ᠲᠣᠪᠴᠢᠶᠠᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ
+              ᠣᠭᠲᠠᠷᠭᠤᠯ
             </h2>
             <div
-              className="text-lg text-gray-800 max-w-[600px]"
+              className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
               }}
             >
-              {post.short_description}
+              {publishedAt}
             </div>
           </div>
-        )}
 
-        {/* Main Content Section */}
-        <div className="flex gap-4">
-          <h2
-            className="text-2xl font-bold"
-            style={{
-              writingMode: "vertical-lr",
-              textOrientation: "upright",
-            }}
-          >
-            ᠠᠭᠤᠯᠭ᠎ᠠ
-          </h2>
-          <div
-            className="prose prose-lg max-w-none text-base max-w-[600px]"
-            style={{
-              writingMode: "vertical-lr",
-              textOrientation: "upright",
-            }}
-            dangerouslySetInnerHTML={{ __html: post.body }}
-          />
+          {/* Share Section */}
+          <div className="flex gap-4">
+            <h2
+              className="text-2xl font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
+            </h2>
+            <div className="flex flex-col gap-4">
+              <button
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+                onClick={() => handleShare("facebook")}
+                className="flex items-center gap-2 bg-[#385898] text-white px-4 py-3 text-sm font-semibold hover:bg-[#2d4373] transition-colors"
+              >
+                <Facebook size={16} />
+                Facebook
+              </button>
+              <button
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+                onClick={() => handleShare("general")}
+                className="flex items-center gap-2 bg-gray-600 text-white px-4 py-3 text-sm font-semibold hover:bg-gray-700 transition-colors"
+              >
+                <Share2 size={16} />
+                ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
+              </button>
+            </div>
+          </div>
+
+          {/* Short Description Section */}
+          {post.short_description && (
+            <div className="flex gap-4">
+              <h2
+                className="text-2xl font-bold flex-shrink-0"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠲᠣᠪᠴᠢᠶᠠᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ
+              </h2>
+              <div
+                className="text-lg text-gray-800"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {post.short_description}
+              </div>
+            </div>
+          )}
+
+          {/* Main Content Section */}
+          <div className="flex gap-4">
+            <h2
+              className="text-2xl font-bold flex-shrink-0"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠠᠭᠤᠯᠭ᠎ᠠ
+            </h2>
+            <div
+              className="prose prose-lg text-base break-words"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+              dangerouslySetInnerHTML={{ __html: post.body }}
+            />
+          </div>
+
+          {/* Topics Section */}
+          {post.post_topics && post.post_topics.length > 0 && (
+            <div className="flex gap-4">
+              <h2
+                className="text-2xl font-bold flex-shrink-0"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠰᠡᠳᠡᠪ
+              </h2>
+              <div className="flex flex-col gap-2">
+                {post.post_topics.map((topic) => (
+                  <span
+                    key={topic.id}
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                    className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer inline-block"
+                    onClick={() => router.push(`/news?topic=${topic.slug}`)}
+                  >
+                    {topic.title_mn || topic.title}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Topics Section */}
-        {post.post_topics && post.post_topics.length > 0 && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠰᠡᠳᠡᠪ
-            </h2>
-            <div className="flex flex-col gap-2">
-              {post.post_topics.map((topic) => (
-                <span
-                  key={topic.id}
-                  className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer inline-block"
-                  onClick={() => router.push(`/news?topic=${topic.slug}`)}
-                >
-                  {topic.title_mn || topic.title}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Related News Section */}
+        {/* Related News Section - Fixed Position */}
         {recommended && recommended.length > 0 && (
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-shrink-0">
             <h2
-              className="text-2xl font-bold"
+              className="text-2xl font-bold flex-shrink-0"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -444,7 +454,7 @@ export default function SingleNews() {
             >
               ᠰᠠᠨᠠᠭᠤᠯᠬᠤ ᠮᠡᠳᠡᢉᠡ
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 max-w-[900px] min-h-[900px]">
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 w-[900px]">
               {recommended.slice(0, 9).map((item, index) => (
                 <div
                   key={item.id || index}
