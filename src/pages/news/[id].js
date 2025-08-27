@@ -14,7 +14,6 @@ export default function SingleNews() {
 
   const [post, setPost] = useState(null);
   const [recommended, setRecommended] = useState([]);
-  const [relatedNews, setRelatedNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,27 +29,26 @@ export default function SingleNews() {
         const postData = await apiService.posts.getPostById(id);
         setPost(postData);
 
-        // Fetch recommended posts
-        const recommendedData = await apiService.posts.getRecommendedPosts({
-          limit: 6,
-        });
-        setRecommended(
-          Array.isArray(recommendedData)
-            ? recommendedData
-            : recommendedData?.data || []
-        );
-
-        // If post has featured topic, fetch related news
+        // If post has featured topic, fetch related news (like old web)
         if (postData?.featured_topic?.id) {
           const relatedData = await apiService.posts.getPostsList({
-            page: 1,
             pageSize: 6,
             filters: {
               "filters[post_topics][id][$eq]": postData.featured_topic.id,
               "filters[id][$ne]": id, // Exclude current post
             },
           });
-          setRelatedNews(relatedData?.data || []);
+          setRecommended(relatedData?.data || []);
+        } else {
+          // Fallback to general recommended posts if no featured topic
+          const recommendedData = await apiService.posts.getRecommendedPosts({
+            limit: 6,
+          });
+          setRecommended(
+            Array.isArray(recommendedData)
+              ? recommendedData
+              : recommendedData?.data || []
+          );
         }
       } catch (err) {
         setError(err);
@@ -277,6 +275,9 @@ export default function SingleNews() {
                         alt={item.title || "News image"}
                         fill
                         className="object-cover rounded"
+                        onError={(e) => {
+                          e.target.src = "/images/news1.png"; // fallback image
+                        }}
                       />
                       <Button
                         text="ᠮᠡᠳᠡᢉᠡ"
@@ -284,6 +285,11 @@ export default function SingleNews() {
                         className="absolute -top-1 -right-1 text-black text-xs px-1 py-0.5"
                       />
                     </div>
+                    <Button
+                      text="ᠤᠩᠰᠢᠬᠤ"
+                      type="secondary"
+                      className="text-black h-48"
+                    />
                   </div>
                 ))}
               </div>
@@ -293,104 +299,75 @@ export default function SingleNews() {
       </div>
 
       {/* Desktop Layout */}
-      <div className="h-full p-4 hidden sm:flex gap-7">
-        {/* News Title Header - Full Width */}
+      <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto">
+        {/* News Title Header */}
         <StaticHeader
           image={coverImage}
           alt="News Page Header"
           width="90rem"
           title={post.title}
         />
-
-        {/* Main Content Container - Limited Width */}
-        <div
-          className="flex gap-7 overflow-x-auto"
-          style={{ maxWidth: "calc(100vw - 1100px)" }}
-        >
-          {/* Published Date Section */}
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠣᠭᠲᠠᠷᠭᠤᠯ
-            </h2>
-            <div
-              className="text-xl text-gray-600"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              {publishedAt}
-            </div>
+        {/* Published Date Section */}
+        <div className="flex gap-4">
+          <h2
+            className="text-2xl font-bold"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            ᠣᠭᠲᠠᠷᠭᠤᠯ
+          </h2>
+          <div
+            className="text-xl text-gray-600"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            {publishedAt}
           </div>
+        </div>
 
-          {/* Share Section */}
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
+        {/* Share Section */}
+        <div className="flex gap-4">
+          <h2
+            className="text-2xl font-bold"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
+          </h2>
+          <div className="flex flex-col gap-4">
+            <button
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
               }}
+              onClick={() => handleShare("facebook")}
+              className="flex items-center gap-2 bg-[#385898] text-white px-4 py-3 text-sm font-semibold hover:bg-[#2d4373] transition-colors"
             >
+              <Facebook size={16} />
+              Facebook
+            </button>
+            <button
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+              onClick={() => handleShare("general")}
+              className="flex items-center gap-2 bg-gray-600 text-white px-4 py-3 text-sm font-semibold hover:bg-gray-700 transition-colors"
+            >
+              <Share2 size={16} />
               ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
-            </h2>
-            <div className="flex flex-col gap-4">
-              <button
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-                onClick={() => handleShare("facebook")}
-                className="flex items-center gap-2 bg-[#385898] text-white px-4 py-3 text-sm font-semibold hover:bg-[#2d4373] transition-colors"
-              >
-                <Facebook size={16} />
-                Facebook
-              </button>
-              <button
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-                onClick={() => handleShare("general")}
-                className="flex items-center gap-2 bg-gray-600 text-white px-4 py-3 text-sm font-semibold hover:bg-gray-700 transition-colors"
-              >
-                <Share2 size={16} />
-                ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
-              </button>
-            </div>
+            </button>
           </div>
+        </div>
 
-          {/* Short Description Section */}
-          {post.short_description && (
-            <div className="flex gap-4">
-              <h2
-                className="text-2xl font-bold flex-shrink-0"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠲᠣᠪᠴᠢᠶᠠᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ
-              </h2>
-              <div
-                className="text-lg text-gray-800"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                {post.short_description}
-              </div>
-            </div>
-          )}
-
-          {/* Main Content Section */}
+        {/* Short Description Section */}
+        {post.short_description && (
           <div className="flex gap-4">
             <h2
               className="text-2xl font-bold flex-shrink-0"
@@ -399,52 +376,74 @@ export default function SingleNews() {
                 textOrientation: "upright",
               }}
             >
-              ᠠᠭᠤᠯᠭ᠎ᠠ
+              ᠲᠣᠪᠴᠢᠶᠠᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ
             </h2>
             <div
-              className="prose prose-lg text-base break-words"
+              className="text-lg text-gray-800"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
               }}
-              dangerouslySetInnerHTML={{ __html: post.body }}
-            />
-          </div>
-
-          {/* Topics Section */}
-          {post.post_topics && post.post_topics.length > 0 && (
-            <div className="flex gap-4">
-              <h2
-                className="text-2xl font-bold flex-shrink-0"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠰᠡᠳᠡᠪ
-              </h2>
-              <div className="flex flex-col gap-2">
-                {post.post_topics.map((topic) => (
-                  <span
-                    key={topic.id}
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer inline-block"
-                    onClick={() => router.push(`/news?topic=${topic.slug}`)}
-                  >
-                    {topic.title_mn || topic.title}
-                  </span>
-                ))}
-              </div>
+            >
+              {post.short_description}
             </div>
-          )}
+          </div>
+        )}
+
+        {/* Main Content Section */}
+        <div className="flex gap-4">
+          <h2
+            className="text-2xl font-bold flex-shrink-0"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            ᠠᠭᠤᠯᠭ᠎ᠠ
+          </h2>
+          <div
+            className="prose prose-lg text-base break-words"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+            dangerouslySetInnerHTML={{ __html: post.body }}
+          />
         </div>
 
-        {/* Related News Section - Fixed Position */}
+        {/* Topics Section */}
+        {post.post_topics && post.post_topics.length > 0 && (
+          <div className="flex gap-4">
+            <h2
+              className="text-2xl font-bold flex-shrink-0"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠰᠡᠳᠡᠪ
+            </h2>
+            <div className="flex flex-col gap-2">
+              {post.post_topics.map((topic) => (
+                <span
+                  key={topic.id}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                  className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer inline-block"
+                  onClick={() => router.push(`/news?topic=${topic.slug}`)}
+                >
+                  {topic.title_mn || topic.title}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Related News Section */}
         {recommended && recommended.length > 0 && (
-          <div className="flex gap-4 flex-shrink-0">
+          <div className="flex gap-4">
             <h2
               className="text-2xl font-bold flex-shrink-0"
               style={{
@@ -454,12 +453,11 @@ export default function SingleNews() {
             >
               ᠰᠠᠨᠠᠭᠤᠯᠬᠤ ᠮᠡᠳᠡᢉᠡ
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 w-[900px]">
-              {recommended.slice(0, 9).map((item, index) => (
+            <div className="grid grid-cols-2 grid-rows-3 grid-flow-col gap-4">
+              {recommended.slice(0, 6).map((item, index) => (
                 <div
                   key={item.id || index}
-                  className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/news/${item.id}`)}
+                  className="w-full h-full flex items-end space-x-4"
                 >
                   <h3
                     className="max-w-16 line-clamp-3 h-full text-sm"
@@ -482,17 +480,22 @@ export default function SingleNews() {
                       alt={item.title || "News image"}
                       fill
                       className="object-cover rounded-xl w-full h-full"
+                      onError={(e) => {
+                        e.target.src = "/images/news1.png"; // fallback image
+                      }}
                     />
                     <Button
                       text="ᠮᠡᠳᠡᢉᠡ"
                       type="primary"
-                      className="absolute top-0 right-0 text-black"
+                      className="absolute top-0 right-0 text-black cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={() => router.push(`/news/${item.id}`)}
                     />
                   </div>
                   <Button
                     text="ᠤᠩᠰᠢᠬᠤ"
                     type="secondary"
-                    className="text-black h-48"
+                    className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => router.push(`/news/${item.id}`)}
                   />
                 </div>
               ))}
