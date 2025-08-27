@@ -264,9 +264,12 @@ export default function SingleNews() {
                         textOrientation: "upright",
                       }}
                     >
-                      {item.title?.length > 40
-                        ? `${item.title.substring(0, 40)}...`
-                        : item.title}
+                      {(item.short_description || item.title)?.length > 40
+                        ? `${(item.short_description || item.title).substring(
+                            0,
+                            40
+                          )}...`
+                        : item.short_description || item.title}
                     </h3>
                     <div className="relative aspect-square w-[150px] h-[150px] flex-shrink-0">
                       <Image
@@ -454,11 +457,14 @@ export default function SingleNews() {
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
                     }}
-                    title={item.title}
+                    title={item.short_description || item.title}
                   >
-                    {item.title?.length > 50
-                      ? `${item.title.substring(0, 50)}...`
-                      : item.title}
+                    {(item.short_description || item.title)?.length > 50
+                      ? `${(item.short_description || item.title).substring(
+                          0,
+                          50
+                        )}...`
+                      : item.short_description || item.title}
                   </h3>
                   <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
                     <Image

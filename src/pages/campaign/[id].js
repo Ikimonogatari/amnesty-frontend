@@ -294,9 +294,12 @@ export default function CampaignDetail() {
                         textOrientation: "upright",
                       }}
                     >
-                      {post.title?.length > 40
-                        ? `${post.title.substring(0, 40)}...`
-                        : post.title}
+                      {(post.short_description || post.title)?.length > 40
+                        ? `${(post.short_description || post.title).substring(
+                            0,
+                            40
+                          )}...`
+                        : post.short_description || post.title}
                     </h3>
                     <div className="relative aspect-square w-[150px] h-[150px] flex-shrink-0">
                       <Image
@@ -481,11 +484,14 @@ export default function CampaignDetail() {
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
                     }}
-                    title={post.title}
+                    title={post.short_description || post.title}
                   >
-                    {post.title?.length > 50
-                      ? `${post.title.substring(0, 50)}...`
-                      : post.title}
+                    {(post.short_description || post.title)?.length > 50
+                      ? `${(post.short_description || post.title).substring(
+                          0,
+                          50
+                        )}...`
+                      : post.short_description || post.title}
                   </h3>
                   <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
                     <Image

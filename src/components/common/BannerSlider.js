@@ -74,11 +74,13 @@ export default function BannerSlider({
         return {
           id: post.id,
           src: coverImageUrl
-            ? `${process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337'}${coverImageUrl}`
+            ? `${
+                process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
+              }${coverImageUrl}`
             : "/images/news1.png",
           alt: post.title || `News ${post.id}`,
           caption: {
-            title: post.title || "ᠮᠡᠳᠡᢉᠡ",
+            title: post.short_description || post.title || "ᠮᠡᠳᠡᢉᠡ",
             description: post.short_description || post.description || "",
           },
           // Add link to news detail page (like old web)

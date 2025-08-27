@@ -92,7 +92,12 @@ export default function NewsMobile() {
     switch (activeCategory) {
       case "news":
       case "good_news":
-        title = item.attributes?.title || item.title || `ᠭᠠᠷᠴᠢᠭ ${index + 1}`;
+        title =
+          item.attributes?.short_description ||
+          item.short_description ||
+          item.attributes?.title ||
+          item.title ||
+          `ᠭᠠᠷᠴᠢᠭ ${index + 1}`;
         image =
           getImageUrl(item.attributes?.cover || item.cover) ||
           "/images/news1.png";

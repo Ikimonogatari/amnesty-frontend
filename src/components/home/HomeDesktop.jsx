@@ -78,7 +78,7 @@ export default function HomeDesktop() {
   const newsItems = postsData.map((post) => {
     return {
       id: post.id,
-      title: post.title || "ᠭᠠᠷᠴᠢᠭ ᠦᠭᠡᠢ",
+      title: post.short_description || post.title || "ᠭᠠᠷᠴᠢᠭ ᠦᠭᠡᠢ",
       image: getImageUrl(post.cover) || "/images/news1.png",
       body: post.short_description || post.body || "",
       category: "news",
