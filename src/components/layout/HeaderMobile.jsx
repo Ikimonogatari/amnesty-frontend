@@ -167,12 +167,13 @@ export default function HeaderMobile() {
                       </p>
                     </div>
                     {activeDropdown === index && (
-                      <div className="absolute left-[105px] top-[-30px] bg-white rounded-xl p-4 w-auto z-30 border border-[#E3E3E3] shadow-lg">
+                      <div className="absolute left-[105px] top-[-30px] bg-white rounded-xl p-4 w-[60px] z-30 border border-[#E3E3E3] shadow-lg">
                         <div className="flex justify-between items-center">
-                          <div className="grid grid-cols-2 gap-6">
+                          <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-6">
                             {item.dropdownItems.map(
                               (dropdownItem, dropdownIndex) => (
                                 <Link
+                                  className="col-span-1 w-auto"
                                   key={dropdownIndex}
                                   href={dropdownItem.link}
                                 >
