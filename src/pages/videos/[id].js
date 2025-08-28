@@ -32,9 +32,9 @@ export default function VideoDetail() {
         const relatedData = await videosService.getVideos({
           pageSize: 6,
         });
-        setRelatedVideos(
-          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || []
-        );
+        const filteredData =
+          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || [];
+        setRelatedVideos(filteredData);
       } catch (err) {
         setError(err);
       } finally {
@@ -440,10 +440,10 @@ export default function VideoDetail() {
                 textOrientation: "upright",
               }}
             >
-              ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠪᠢᠳᠢᠶᠣ
+              ᠲᠤᠰ ᠮᠡᠳᠡᠵᠦ ᠦᠵᠡᠬᠦ
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 max-w-[900px] min-h-[900px]">
-              {relatedVideos.slice(0, 9).map((item, index) => (
+            <div className="grid grid-cols-1 grid-rows-3 gap-4 min-h-[900px]">
+              {relatedVideos.slice(0, 3).map((item, index) => (
                 <div
                   key={item.id || index}
                   className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"

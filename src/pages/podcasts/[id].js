@@ -458,64 +458,6 @@ export default function PodcastDetail() {
             </div>
           </div>
         )}
-
-        {/* Related Podcasts Section */}
-        {relatedPodcasts && relatedPodcasts.length > 0 && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠫᠣᠳᠻᠠᠰᠲ
-            </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 max-w-[900px] min-h-[900px]">
-              {relatedPodcasts.slice(0, 9).map((item, index) => (
-                <div
-                  key={item.id || index}
-                  className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/podcasts/${item.id}`)}
-                >
-                  <h3
-                    className="max-w-16 line-clamp-3 h-full text-sm"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    title={item.title}
-                  >
-                    {item.title?.length > 50
-                      ? `${item.title.substring(0, 50)}...`
-                      : item.title}
-                  </h3>
-                  <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
-                    <Image
-                      src={
-                        getImageUrl(item.thumbnail || item.cover) ||
-                        "/images/news1.png"
-                      }
-                      alt={item.title || "Podcast image"}
-                      fill
-                      className="object-cover rounded-xl w-full h-full"
-                    />
-                    <Button
-                      text="ᠫᠣᠳᠻᠠᠰᠲ"
-                      type="primary"
-                      className="absolute top-0 right-0 text-black"
-                    />
-                  </div>
-                  <Button
-                    text="ᠤᠩᠰᠢᠬᠤ"
-                    type="secondary"
-                    className="text-black h-48"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </Layout>
   );

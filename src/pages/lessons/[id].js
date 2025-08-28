@@ -39,9 +39,9 @@ export default function LessonDetail() {
         const relatedData = await lessonsService.getLessons({
           pageSize: 6,
         });
-        setRelatedLessons(
-          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || []
-        );
+        const filteredData =
+          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || [];
+        setRelatedLessons(filteredData);
       } catch (err) {
         setError(err);
       } finally {
@@ -126,7 +126,7 @@ export default function LessonDetail() {
             {/* Course Title */}
             <div className="flex justify-center mb-2">
               <h2
-                className="text-lg font-bold text-gray-900"
+                className="text-lg font-bold text-gray-900 max-h-[300px]"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
@@ -218,41 +218,45 @@ export default function LessonDetail() {
             </div>
 
             {/* Mobile Tab Content */}
-            <div className="min-h-[150px] max-h-[300px] overflow-y-auto flex justify-center">
+            <div className="min-h-[150px] max-h-[300px] overflow-hidden flex justify-center">
               {activeTab === "introduction" && (
-                <div className="flex flex-row gap-4 items-center">
+                <div className="flex flex-col gap-4 items-center w-full h-full">
                   {lesson.description && (
-                    <div
-                      className="text-sm text-gray-700 break-words"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                      dangerouslySetInnerHTML={{
-                        __html: lesson.description,
-                      }}
-                    />
+                    <div className="flex-1 overflow-x-auto overflow-y-hidden max-w-[280px] w-full">
+                      <div
+                        className="text-sm text-gray-700 break-words h-[200px]"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: lesson.description,
+                        }}
+                      />
+                    </div>
                   )}
 
-                  {/* Mobile Registration Link */}
+                  {/* Mobile Registration Link - Always Visible */}
                   {lesson.external_link && (
-                    <Button
-                      onClick={() => {
-                        window.open(
-                          lesson.external_link.startsWith("http")
-                            ? lesson.external_link
-                            : `https://${lesson.external_link}`,
-                          "_blank"
-                        );
-                      }}
-                      text="ᠬᠢᠴᠡᠡᠯᠳ ᠪᠦᠷᠲᠦᠭᠦᠯᠬᠦ"
-                      type="primary"
-                      className="whitespace-nowrap rounded min-h-max transition-colors text-xs px-2 py-1"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    />
+                    <div className="flex-shrink-0 mt-2">
+                      <Button
+                        onClick={() => {
+                          window.open(
+                            lesson.external_link.startsWith("http")
+                              ? lesson.external_link
+                              : `https://${lesson.external_link}`,
+                            "_blank"
+                          );
+                        }}
+                        text="ᠬᠢᠴᠡᠡᠯᠳ ᠪᠦᠷᠲᠦᠭᠦᠯᠬᠦ"
+                        type="primary"
+                        className="whitespace-nowrap rounded min-h-max transition-colors text-xs px-2 py-1"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      />
+                    </div>
                   )}
                 </div>
               )}
@@ -604,78 +608,63 @@ export default function LessonDetail() {
             </div>
           </div>
 
-          {/* Right Sidebar */}
-          <div className="flex-shrink-0 w-[300px] space-y-4 overflow-y-auto max-h-[calc(100vh-120px)]">
-            {/* Related Lessons Section */}
-            {relatedLessons && relatedLessons.length > 0 && (
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                <div className="flex justify-center mb-4">
-                  <h2
-                    className="text-lg font-bold text-gray-900"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
+          {/* Related Lessons Section - News Grid Layout */}
+          {relatedLessons && relatedLessons.length > 0 && (
+            <div className="flex gap-4">
+              <h2
+                className="text-2xl font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
+              </h2>
+              <div className="grid grid-cols-1 grid-rows-3 gap-4 min-h-[900px]">
+                {relatedLessons.slice(0, 3).map((item, index) => (
+                  <div
+                    key={item.id || index}
+                    className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => router.push(`/lessons/${item.id}`)}
                   >
-                    ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
-                  </h2>
-                </div>
-                <div className="space-y-3">
-                  {relatedLessons.slice(0, 4).map((item, index) => (
-                    <div
-                      key={item.id || index}
-                      className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
-                      onClick={() => router.push(`/lessons/${item.id}`)}
+                    <h3
+                      className="max-w-16 line-clamp-3 h-full text-sm"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                      title={item.title}
                     >
-                      <div className="relative w-16 h-16 flex-shrink-0">
-                        <Image
-                          src={
-                            getImageUrl(item.thumbnail || item.cover) ||
-                            "/images/news1.png"
-                          }
-                          alt={item.title || "Lesson image"}
-                          fill
-                          className="object-cover rounded"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3
-                          className="text-sm font-medium text-gray-900 line-clamp-3"
-                          style={{
-                            writingMode: "vertical-lr",
-                            textOrientation: "upright",
-                          }}
-                          title={item.title}
-                        >
-                          {item.title?.length > 30
-                            ? `${item.title.substring(0, 30)}...`
-                            : item.title}
-                        </h3>
-                        {item.lesson_length && (
-                          <p
-                            className="text-xs text-gray-500 mt-1"
-                            style={{
-                              writingMode: "vertical-lr",
-                              textOrientation: "upright",
-                            }}
-                          >
-                            {convertTextNumbers(item.lesson_length)}
-                          </p>
-                        )}
-                      </div>
-                      <div className="flex-shrink-0">
-                        <Button
-                          text="ᠦᠵᠡᠬᠦ"
-                          type="primary"
-                          className="text-xs px-2 py-1"
-                        />
-                      </div>
+                      {item.title?.length > 50
+                        ? `${item.title.substring(0, 50)}...`
+                        : item.title}
+                    </h3>
+                    <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
+                      <Image
+                        src={
+                          getImageUrl(item.thumbnail || item.cover) ||
+                          "/images/news1.png"
+                        }
+                        alt={item.title || "Lesson image"}
+                        fill
+                        className="object-cover rounded-xl w-full h-full"
+                      />
+                      <Button
+                        text="ᠬᠢᠴᠡᠡᠯ"
+                        type="primary"
+                        className="absolute top-0 right-0 text-black"
+                      />
                     </div>
-                  ))}
-                </div>
+                    <Button
+                      text="ᠤᠩᠰᠢᠬᠤ"
+                      type="secondary"
+                      className="text-black h-48"
+                    />
+                  </div>
+                ))}
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </Layout>

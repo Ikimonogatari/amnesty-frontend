@@ -5,11 +5,16 @@ import Image from "next/image";
 import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
 import { librariesService } from "@/services/apiService";
-import { getImageUrl } from "@/utils/fetcher";
+import { getImageUrl, toMongolianNumbers } from "@/utils/fetcher";
 
 export default function LibraryDetail() {
   const router = useRouter();
   const { id } = router.query;
+
+  const convertTextNumbers = (text) => {
+    if (!text) return text;
+    return String(text).replace(/\d/g, (digit) => toMongolianNumbers(digit));
+  };
 
   const [library, setLibrary] = useState(null);
   const [relatedLibraries, setRelatedLibraries] = useState([]);
@@ -24,17 +29,15 @@ export default function LibraryDetail() {
       setError(null);
 
       try {
-        // Fetch single library item
         const libraryData = await librariesService.getLibraryById(id);
         setLibrary(libraryData);
 
-        // Fetch related library items
         const relatedData = await librariesService.getLibraries({
-          pageSize: 6,
+          pageSize: 9,
         });
-        setRelatedLibraries(
-          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || []
-        );
+        const filteredData =
+          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || [];
+        setRelatedLibraries(filteredData);
       } catch (err) {
         setError(err);
       } finally {
@@ -45,7 +48,6 @@ export default function LibraryDetail() {
     fetchData();
   }, [id]);
 
-  // Loading state
   if (isLoading) {
     return (
       <Layout>
@@ -64,7 +66,6 @@ export default function LibraryDetail() {
     );
   }
 
-  // Error state
   if (error || !library) {
     return (
       <Layout>
@@ -80,7 +81,7 @@ export default function LibraryDetail() {
               onClick={() => router.push("/library")}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              ᠡᠷᠬᠡ ᠮᠡᠳᠡᠬᠦ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
+              ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ ᠤᠨ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
             </button>
           </div>
         </div>
@@ -95,6 +96,9 @@ export default function LibraryDetail() {
         library.image ||
         library.featured_image
     ) || "/images/news1.png";
+
+  const pdfUrl =
+    getImageUrl(library.pdf_file) || library.file_url || library.pdf_file;
 
   return (
     <Layout>
@@ -125,6 +129,26 @@ export default function LibraryDetail() {
 
         {/* Mobile Content */}
         <div className="flex flex-col gap-6 p-4">
+          {/* Mobile PDF Viewer */}
+          {pdfUrl && (
+            <div>
+              <h2 className="text-xl font-bold mb-4">PDF ᠨᠣᠮ</h2>
+              <object
+                data={pdfUrl}
+                type="application/pdf"
+                className="w-full h-[400px] border rounded"
+              >
+                <div className="w-full h-[400px] bg-gray-100 border rounded flex items-center justify-center">
+                  <Button
+                    onClick={() => window.open(pdfUrl, "_blank")}
+                    text="PDF ᠲᠠᠲᠠᠬᠤ"
+                    type="primary"
+                  />
+                </div>
+              </object>
+            </div>
+          )}
+
           {/* Mobile Description */}
           {(library.description || library.content || library.introduction) && (
             <div className="flex flex-row gap-2">
@@ -174,45 +198,6 @@ export default function LibraryDetail() {
               >
                 {library.author}
               </p>
-            </div>
-          )}
-
-          {/* Mobile PDF Viewer */}
-          {(library.pdf_file || library.file_url) && (
-            <div className="w-full">
-              <h3 className="text-lg font-bold mb-3">ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ</h3>
-              <div className="w-full aspect-[1/1.41] mb-4">
-                <object
-                  data={library.pdf_file || library.file_url}
-                  type="application/pdf"
-                  width="100%"
-                  height="100%"
-                  className="shadow-md rounded border"
-                >
-                  <div className="w-full h-full bg-gray-100 shadow-md rounded border flex items-center justify-center">
-                    <div className="text-center p-4">
-                      <div className="w-16 h-16 mx-auto mb-3 text-gray-400">
-                        <svg fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                        </svg>
-                      </div>
-                      <p className="text-gray-600 text-sm mb-3">PDF номын санг уншихын тулд доорх товчийг дарна уу</p>
-                    </div>
-                  </div>
-                </object>
-              </div>
-              <a
-                href={library.pdf_file || library.file_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                download
-                className="w-full flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg"
-              >
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
-                </svg>
-                PDF ᠲᠠᠲᠠᠬᠤ
-              </a>
             </div>
           )}
 
@@ -271,56 +256,49 @@ export default function LibraryDetail() {
         </div>
       </div>
 
-      {/* Desktop Layout */}
+      {/* Desktop Layout - Same as Podcast */}
       <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
+        {/* Library Title Header */}
+        <StaticHeader
+          image={coverImage}
+          alt="Library Page Header"
+          width="90rem"
+          title={library.title || library.name}
+        />
+
         {/* PDF Viewer Section */}
-        {(library.pdf_file || library.file_url) && (
+        {pdfUrl && (
           <div className="flex gap-4">
-            <div className="flex flex-col gap-4 items-center">
-              <h1
-                className="text-3xl font-bold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-                title={library.title || library.name}
-              >
-                {library.title || library.name || "ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ"}
-              </h1>
-              <h2
-                className="text-xl font-medium text-gray-600"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ
-              </h2>
-            </div>
-            <div className="relative">
+            <h2
+              className="text-2xl font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              PDF ᠨᠣᠮ
+            </h2>
+            <div className="flex items-center">
               <object
-                data={library.pdf_file || library.file_url}
+                data={pdfUrl}
                 type="application/pdf"
-                width="800"
-                height="600"
-                className="shadow-lg rounded-lg"
+                className="w-[800px] h-[600px] shadow-lg rounded-lg"
               >
                 <div className="w-[800px] h-[600px] bg-gray-100 shadow-lg rounded-lg flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-4 text-gray-400">
+                    <div className="w-16 h-16 mx-auto mb-4 text-gray-400">
                       <svg fill="currentColor" viewBox="0 0 24 24">
                         <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
                       </svg>
                     </div>
-                    <p className="text-gray-600 mb-4">PDF ᠨᠣᠮ ᠤᠨ ᠰᠠᠨ ᠬᠠᠷᠠᠭᠠᠨ ᠥᠭᠡᠷᠴᠢᠭᠦᠯᠦᠭᠴᠢ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠠᠯᠢᠭᠠ ᠭᠠᠷᠪᠠ</p>
-                    <a
-                      href={library.pdf_file || library.file_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    >
-                      PDF ᠬᠠᠷᠠᠬᠤ
-                    </a>
+                    <p className="text-gray-600 mb-4">
+                      PDF viewer not supported
+                    </p>
+                    <Button
+                      onClick={() => window.open(pdfUrl, "_blank")}
+                      text="PDF ᠲᠠᠲᠠᠬᠤ"
+                      type="primary"
+                    />
                   </div>
                 </div>
               </object>
@@ -380,8 +358,8 @@ export default function LibraryDetail() {
           </div>
         )}
 
-        {/* File Download Section */}
-        {(library.pdf_file || library.file_url) && (
+        {/* Library Index */}
+        {library.index && (
           <div className="flex gap-4">
             <h2
               className="text-2xl font-bold"
@@ -390,31 +368,16 @@ export default function LibraryDetail() {
                 textOrientation: "upright",
               }}
             >
-              ᠹᠠᠢᠯ ᠲᠠᠲᠠᠬᠤ
+              ᠳᠤᠭᠠᠷ ᠨᠣᠮᠸᠷ
             </h2>
-            <div className="flex flex-col items-start gap-4">
-              <a
-                href={library.pdf_file || library.file_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                download
-                className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors"
-              >
-                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
-                </svg>
-                PDF ᠲᠠᠲᠠᠬᠤ
-              </a>
-              {(library.amnesty_published_at || library.publishedAt) && (
-                <div className="text-sm text-gray-600">
-                  <p>ᠨᠢᠭᠡᠳᠦᠯᠡᠨ ᠤᠭᠰᠠᠰᠠᠨ ᠤᠨ ᠡᠳᠦᠷ: {new Date(library.amnesty_published_at || library.publishedAt).toLocaleDateString('mn-MN')}</p>
-                </div>
-              )}
-              {library.index && (
-                <div className="text-sm text-gray-600">
-                  <p>Index Number: {library.index}</p>
-                </div>
-              )}
+            <div
+              className="text-xl text-gray-600"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {convertTextNumbers(library.index)}
             </div>
           </div>
         )}
@@ -431,8 +394,8 @@ export default function LibraryDetail() {
             >
               ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠨᠣᠮ
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 max-w-[900px] min-h-[900px]">
-              {relatedLibraries.slice(0, 9).map((item, index) => (
+            <div className="grid grid-cols-1 grid-rows-3 gap-4 min-h-[900px]">
+              {relatedLibraries.slice(0, 3).map((item, index) => (
                 <div
                   key={item.id || index}
                   className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"

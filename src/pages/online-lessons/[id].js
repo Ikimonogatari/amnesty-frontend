@@ -4,12 +4,18 @@ import Layout from "@/components/layout/Layout";
 import Image from "next/image";
 import Button from "@/components/common/Button";
 import { onlineLessonsService } from "@/services/apiService";
-import { getImageUrl } from "@/utils/fetcher";
+import { getImageUrl, toMongolianNumbers } from "@/utils/fetcher";
 import StaticHeader from "@/components/common/StaticHeader";
 
 export default function OnlineLessonDetail() {
   const router = useRouter();
   const { id } = router.query;
+
+  // Helper function to convert numbers within text to Mongolian numerals
+  const convertTextNumbers = (text) => {
+    if (!text) return text;
+    return String(text).replace(/\d/g, (digit) => toMongolianNumbers(digit));
+  };
 
   const [onlineLesson, setOnlineLesson] = useState(null);
   const [relatedLessons, setRelatedLessons] = useState([]);
@@ -33,9 +39,9 @@ export default function OnlineLessonDetail() {
         const relatedData = await onlineLessonsService.getOnlineLessons({
           pageSize: 6,
         });
-        setRelatedLessons(
-          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || []
-        );
+        const filteredData =
+          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || [];
+        setRelatedLessons(filteredData);
       } catch (err) {
         setError(err);
       } finally {
@@ -98,178 +104,242 @@ export default function OnlineLessonDetail() {
     <Layout>
       {/* Mobile Layout */}
       <div className="sm:hidden flex flex-col w-full">
+        <StaticHeader
+          image={coverImage}
+          alt="Online Lesson Page Header"
+          width="90rem"
+          title={onlineLesson.title}
+        />
+
         {/* Mobile Content */}
         <div className="flex flex-col gap-6 p-4">
-          {/* Mobile Title */}
-          <div className="text-center py-4">
-            <h1
-              className="text-lg font-bold mb-2"
-              style={{
-                writingMode: "horizontal-tb",
-                textOrientation: "mixed",
-              }}
-            >
-              {onlineLesson.title || "ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ"}
-            </h1>
-            <p
-              className="text-sm text-gray-600"
-              style={{
-                writingMode: "horizontal-tb",
-                textOrientation: "mixed",
-              }}
-            >
-              ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ
-            </p>
+          {/* Mobile Course Info Section */}
+          <div className="flex flex-col items-center gap-4 bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+            {/* Course Image */}
+            <Image
+              src={coverImage}
+              alt={onlineLesson.title || "Online lesson cover"}
+              height={120}
+              width={200}
+              className="w-[200px] h-[120px] object-contain"
+            />
+
+            {/* Course Title */}
+            <div className="flex justify-center mb-2">
+              <h2
+                className="text-lg font-bold text-gray-900 max-h-[300px]"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {onlineLesson.title || "ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ"}
+              </h2>
+            </div>
+
+            {/* Course Metadata */}
+            <div className="flex flex-row gap-4 justify-center">
+              <div
+                className="text-gray-600 text-sm"
+                style={{
+                  writingMode: "vertical-lr",
+                }}
+              >
+                ID: {toMongolianNumbers(onlineLesson.id)}
+              </div>
+              {onlineLesson.lesson_length && (
+                <div
+                  className="text-gray-600 text-sm"
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
+                >
+                  ᠬᠤᠭᠠᠴᠠᠭ᠎ᠠ: {convertTextNumbers(onlineLesson.lesson_length)}
+                </div>
+              )}
+              {onlineLesson.level && (
+                <div
+                  className="text-gray-600 text-sm"
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
+                >
+                  ᠲᠦᠪᠰᠢᠨ: {onlineLesson.level}
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Mobile Video/Content */}
-          {onlineLesson.video_url && (
-            <div className="w-full">
-              <h3 className="text-lg font-bold mb-3">ᠰᠤᠷᠭᠠᠯ</h3>
-              <div className="w-full aspect-video relative shadow-md rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={onlineLesson.video_url}
-                  title={onlineLesson.title || "Online Lesson"}
-                  className="border-0 w-full h-full"
-                  allowFullScreen
-                  frameBorder="0"
-                />
-              </div>
+          {/* Mobile Tabs Section */}
+          <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+            {/* Mobile Tab Buttons */}
+            <div className="flex flex-row justify-center gap-4 mb-4 border-b border-gray-200 pb-2">
+              <button
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
+                  activeTab === "introduction"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+                onClick={() => setActiveTab("introduction")}
+              >
+                ᠲᠠᠨᠢᠯᠴᠤᠭᠤᠯᠭ᠎ᠠ
+              </button>
+              <button
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
+                  activeTab === "content"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+                onClick={() => setActiveTab("content")}
+              >
+                ᠠᠭᠤᠯᠭ᠎ᠠ
+              </button>
+              <button
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
+                  activeTab === "additional"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+                onClick={() => setActiveTab("additional")}
+              >
+                ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ
+              </button>
             </div>
-          )}
 
-          {/* Mobile Description */}
-          {onlineLesson.description && (
-            <div className="flex flex-row gap-2">
-              <h2
-                className="text-xl font-bold mb-4"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠲᠠᠢᠯᠪᠤᠷᠢ
-              </h2>
-              <div
-                className="text-base text-gray-800"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-                dangerouslySetInnerHTML={{
-                  __html: onlineLesson.description,
-                }}
-              />
-            </div>
-          )}
+            {/* Mobile Tab Content */}
+            <div className="min-h-[150px] max-h-[300px] overflow-hidden flex justify-center">
+              {activeTab === "introduction" && (
+                <div className="flex flex-col gap-4 items-center w-full h-full">
+                  {onlineLesson.description && (
+                    <div className="flex-1 overflow-x-auto overflow-y-hidden max-w-[280px] w-full">
+                      <div
+                        className="text-sm text-gray-700 break-words h-[200px]"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: onlineLesson.description,
+                        }}
+                      />
+                    </div>
+                  )}
 
-          {/* Mobile Duration */}
-          {onlineLesson.lesson_length && (
-            <div className="flex flex-row gap-2">
-              <h3
-                className="text-lg font-semibold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠤᠷᠲᠤ
-              </h3>
-              <p
-                className="text-base text-gray-600"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                {onlineLesson.lesson_length}
-              </p>
-            </div>
-          )}
+                  {/* Mobile Academy Link - Always Visible */}
+                  {onlineLesson.amnesty_academy_url && (
+                    <div className="flex-shrink-0 mt-2">
+                      <Button
+                        onClick={() => {
+                          window.open(
+                            onlineLesson.amnesty_academy_url.startsWith("http")
+                              ? onlineLesson.amnesty_academy_url
+                              : `https://${onlineLesson.amnesty_academy_url}`,
+                            "_blank"
+                          );
+                        }}
+                        text="ᠬᠢᠴᠡᠡᠯ ᠦᠵᠡᠬᠦ"
+                        type="primary"
+                        className="whitespace-nowrap rounded min-h-max transition-colors text-xs px-2 py-1"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
 
-          {/* Mobile Level */}
-          {onlineLesson.level && (
-            <div className="flex flex-row gap-2">
-              <h3
-                className="text-lg font-semibold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠲᠦᠪᠰᠢᠨ
-              </h3>
-              <p
-                className="text-base text-gray-600"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                {onlineLesson.level}
-              </p>
-            </div>
-          )}
-
-          {/* Mobile Academy Link */}
-          {onlineLesson.amnesty_academy_url && (
-            <div className="w-full">
-              <h3 className="text-lg font-bold mb-3">ᠬᠢᠴᠡᠡᠯ ᠦᠵᠡᠬᠦ</h3>
-              <a
-                href={
-                  onlineLesson.amnesty_academy_url.startsWith("http")
-                    ? onlineLesson.amnesty_academy_url
-                    : `https://${onlineLesson.amnesty_academy_url}`
-                }
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M7.07,18.28C7.5,17.38 10.12,16.5 12,16.5C13.88,16.5 16.5,17.38 16.93,18.28C15.57,19.36 13.86,20 12,20C10.14,20 8.43,19.36 7.07,18.28M18.36,16.83C16.93,15.09 13.46,14.5 12,14.5C10.54,14.5 7.07,15.09 5.64,16.83C4.62,15.5 4,13.82 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,13.82 19.38,15.5 18.36,16.83M12,6C10.06,6 8.5,7.56 8.5,9.5C8.5,11.44 10.06,13 12,13C13.94,13 15.5,11.44 15.5,9.5C15.5,7.56 13.94,6 12,6M12,11A1.5,1.5 0 0,1 10.5,9.5A1.5,1.5 0 0,1 12,8A1.5,1.5 0 0,1 13.5,9.5A1.5,1.5 0 0,1 12,11Z" />
-                </svg>
-                ᠬᠢᠴᠡᠡᠯ ᠦᠵᠡᠬᠦ
-              </a>
-            </div>
-          )}
-
-          {/* Mobile Related Lessons */}
-          {relatedLessons && relatedLessons.length > 0 && (
-            <div className="flex flex-row gap-2">
-              <h2
-                className="text-xl font-bold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
-              </h2>
-              <div className="grid grid-cols-1 gap-4">
-                {relatedLessons.slice(0, 6).map((item, index) => (
-                  <div
-                    key={item.id || index}
-                    className="flex gap-4 max-h-[150px] cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/online-lessons/${item.id}`)}
-                  >
-                    <h3
-                      className="text-sm font-medium line-clamp-3 mb-2"
+              {activeTab === "content" && (
+                <div className="flex justify-center">
+                  {onlineLesson.content ? (
+                    <div
+                      className="text-sm text-gray-700 break-words"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: onlineLesson.content,
+                      }}
+                    />
+                  ) : (
+                    <p
+                      className="text-sm text-gray-500"
                       style={{
                         writingMode: "vertical-lr",
                         textOrientation: "upright",
                       }}
                     >
-                      {item.title?.length > 40
-                        ? `${item.title.substring(0, 40)}...`
-                        : item.title}
-                    </h3>
-                    <div className="relative aspect-square w-[150px] h-[150px] flex-shrink-0">
+                      ᠠᠭᠤᠯᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {activeTab === "additional" && (
+                <div className="flex justify-center">
+                  {onlineLesson.extra_details ? (
+                    <div
+                      className="text-sm text-gray-700 break-words"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: onlineLesson.extra_details,
+                      }}
+                    />
+                  ) : (
+                    <p
+                      className="text-sm text-gray-500"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                    >
+                      ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Related Lessons */}
+          {relatedLessons && relatedLessons.length > 0 && (
+            <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+              <div className="flex justify-center mb-4">
+                <h2
+                  className="text-lg font-bold text-gray-900"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
+                </h2>
+              </div>
+              <div className="space-y-3">
+                {relatedLessons.slice(0, 4).map((item, index) => (
+                  <div
+                    key={item.id || index}
+                    className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
+                    onClick={() => router.push(`/online-lessons/${item.id}`)}
+                  >
+                    <div className="relative w-12 h-12 flex-shrink-0">
                       <Image
                         src={
                           getImageUrl(item.thumbnail || item.cover) ||
@@ -279,10 +349,37 @@ export default function OnlineLessonDetail() {
                         fill
                         className="object-cover rounded"
                       />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className="text-sm font-medium text-gray-900 line-clamp-2"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        title={item.title}
+                      >
+                        {item.title?.length > 25
+                          ? `${item.title.substring(0, 25)}...`
+                          : item.title}
+                      </h3>
+                      {item.lesson_length && (
+                        <p
+                          className="text-xs text-gray-500 mt-1"
+                          style={{
+                            writingMode: "vertical-lr",
+                            textOrientation: "upright",
+                          }}
+                        >
+                          {convertTextNumbers(item.lesson_length)}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex-shrink-0">
                       <Button
-                        text="ᠰᠤᠷᠭᠠᠯ"
+                        text="ᠦᠵᠡᠬᠦ"
                         type="primary"
-                        className="absolute -top-1 -right-1 text-black text-xs px-1 py-0.5"
+                        className="text-xs px-1 py-0.5"
                       />
                     </div>
                   </div>
@@ -294,26 +391,31 @@ export default function OnlineLessonDetail() {
       </div>
 
       {/* Desktop Layout */}
-      <div className="max-h-screen overflow-y-hidden hidden sm:block">
-        <div className="flex gap-6 p-4">
-          <StaticHeader image={coverImage} title={onlineLesson.title} />
+      <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
+        {/* Online Lesson Title Header */}
+        <StaticHeader
+          image={coverImage}
+          alt="Online Lesson Page Header"
+          width="90rem"
+          title={onlineLesson.title}
+        />
 
-          {/* Right Content Section */}
-          <div className="flex-1 flex gap-6">
-            {/* Main Content */}
-            <div className="flex-1 bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+        {/* Content Section */}
+        <div className="flex-1 flex gap-6 overflow-hidden">
+          {/* Main Content */}
+          <div className="flex flex-row items-center gap-6 bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+            <div className="flex flex-col items-center justify-center gap-4">
               {/* Course Image */}
-              <div className="relative w-full h-[200px] mb-4 rounded-lg overflow-hidden">
-                <Image
-                  src={coverImage}
-                  alt={onlineLesson.title || "Online lesson cover"}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              <Image
+                src={coverImage}
+                alt={onlineLesson.title || "Online lesson cover"}
+                height={240}
+                width={120}
+                className="w-[240px] h-[140px] object-contain"
+              />
 
               {/* Course Title */}
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center gap-4 mb-4">
                 <h2
                   className="text-lg font-bold text-gray-900"
                   style={{
@@ -323,347 +425,246 @@ export default function OnlineLessonDetail() {
                 >
                   {onlineLesson.title || "ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ"}
                 </h2>
-              </div>
+                {/* Course Metadata - Matching Lessons Page */}
+                <div className="flex gap-2 justify-center">
+                  <div className="flex flex-row gap-2 text-sm">
+                    <div
+                      className="text-gray-600"
+                      style={{
+                        writingMode: "vertical-lr",
+                      }}
+                    >
+                      ID: {toMongolianNumbers(onlineLesson.id)}
+                    </div>
 
-              {/* Course Metadata */}
-              <div className="flex gap-4 mb-6 justify-center">
-                <div className="flex flex-col gap-2 text-sm">
-                  <div
-                    className="text-gray-600"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    ID:
-                  </div>
-                  {onlineLesson.lesson_length && (
-                    <div
-                      className="text-gray-600"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      ᠤᠷᠲᠤ:
-                    </div>
-                  )}
-                  {onlineLesson.level && (
-                    <div
-                      className="text-gray-600"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      ᠲᠦᠪᠰᠢᠨ:
-                    </div>
-                  )}
-                  {onlineLesson.price !== undefined &&
-                    onlineLesson.price !== null && (
+                    {onlineLesson.lesson_length && (
                       <div
                         className="text-gray-600"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
-                        ᠦᠨᠡ:
+                        ᠬᠤᠭᠠᠴᠠᠭ᠎ᠠ:{" "}
+                        {convertTextNumbers(onlineLesson.lesson_length)}
                       </div>
                     )}
-                  {onlineLesson.age_rating && (
-                    <div
-                      className="text-gray-600"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      ᠨᠠᠰᠤᠨ ᠤ ᠦᠦᠷᠭᠡᠭ:
-                    </div>
-                  )}
-                </div>
-                <div className="flex flex-col gap-2 text-sm">
-                  <div
-                    className="font-medium"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    {onlineLesson.id}
-                  </div>
-                  {onlineLesson.lesson_length && (
-                    <div
-                      className="font-medium"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      {onlineLesson.lesson_length}
-                    </div>
-                  )}
-                  {onlineLesson.level && (
-                    <div
-                      className="font-medium"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      {onlineLesson.level}
-                    </div>
-                  )}
-                  {onlineLesson.price !== undefined &&
-                    onlineLesson.price !== null && (
+                    {onlineLesson.level && (
                       <div
-                        className="font-medium"
+                        className="text-gray-600"
+                        style={{
+                          writingMode: "vertical-lr",
+                        }}
+                      >
+                        ᠲᠦᠪᠰᠢᠨ: {onlineLesson.level}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tabs Section */}
+            <div className="gap-6 h-full flex justify-center items-center">
+              {/* Tab Buttons */}
+              <div className="flex flex-col justify-start gap-2 border-r border-gray-200 pr-4">
+                <button
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
+                    activeTab === "introduction"
+                      ? "border-blue-500 text-blue-600"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                  onClick={() => setActiveTab("introduction")}
+                >
+                  ᠲᠠᠨᠢᠯᠴᠤᠭᠤᠯᠭ᠎ᠠ
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
+                    activeTab === "content"
+                      ? "border-blue-500 text-blue-600"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                  onClick={() => setActiveTab("content")}
+                >
+                  ᠠᠭᠤᠯᠭ᠎ᠠ
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
+                    activeTab === "additional"
+                      ? "border-blue-500 text-blue-600"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                  onClick={() => setActiveTab("additional")}
+                >
+                  ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ
+                </button>
+              </div>
+
+              {/* Tab Content */}
+              <div className="flex justify-center items-center h-[500px]">
+                {activeTab === "introduction" && (
+                  <div className="flex flex-row gap-4 items-center max-h-[calc(100vh-120px)]">
+                    {onlineLesson.description && (
+                      <div
+                        className="text-sm text-gray-700 break-words"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: onlineLesson.description,
+                        }}
+                      />
+                    )}
+
+                    {/* Academy Link */}
+                    {onlineLesson.amnesty_academy_url && (
+                      <Button
+                        onClick={() => {
+                          window.open(
+                            onlineLesson.amnesty_academy_url.startsWith("http")
+                              ? onlineLesson.amnesty_academy_url
+                              : `https://${onlineLesson.amnesty_academy_url}`,
+                            "_blank"
+                          );
+                        }}
+                        text="ᠬᠢᠴᠡᠡᠯ ᠦᠵᠡᠬᠦ"
+                        type="primary"
+                        className="whitespace-nowrap rounded min-h-max transition-colors"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
+
+                {activeTab === "content" && (
+                  <div className="flex flex-col gap-4 items-center">
+                    {onlineLesson.content ? (
+                      <div
+                        className="text-sm text-gray-700 break-words"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: onlineLesson.content,
+                        }}
+                      />
+                    ) : (
+                      <p
+                        className="text-sm text-gray-500"
                         style={{
                           writingMode: "vertical-lr",
                           textOrientation: "upright",
                         }}
                       >
-                        {onlineLesson.price === 0
-                          ? "ᠦᠨᠡᠭᠦᠢ"
-                          : `${onlineLesson.price.toLocaleString()} ₮`}
-                      </div>
+                        ᠠᠭᠤᠯᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                      </p>
                     )}
-                  {onlineLesson.age_rating && (
-                    <div
-                      className="font-medium"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      {onlineLesson.age_rating}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Tabs Section */}
-              <div className="border-t border-gray-200 pt-4">
-                <div className="flex justify-center gap-4 border-b border-gray-200 mb-4">
-                  <button
-                    className={`px-2 py-4 text-sm font-medium border-b-2 transition-colors ${
-                      activeTab === "introduction"
-                        ? "border-blue-500 text-blue-600"
-                        : "border-transparent text-gray-500 hover:text-gray-700"
-                    }`}
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    onClick={() => setActiveTab("introduction")}
-                  >
-                    ᠲᠠᠨᠢᠯᠴᠤᠭᠤᠯᠭ᠎ᠠ
-                  </button>
-                  <button
-                    className={`px-2 py-4 text-sm font-medium border-b-2 transition-colors ${
-                      activeTab === "content"
-                        ? "border-blue-500 text-blue-600"
-                        : "border-transparent text-gray-500 hover:text-gray-700"
-                    }`}
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    onClick={() => setActiveTab("content")}
-                  >
-                    ᠠᠭᠤᠯᠭ᠎ᠠ
-                  </button>
-                  <button
-                    className={`px-2 py-4 text-sm font-medium border-b-2 transition-colors ${
-                      activeTab === "additional"
-                        ? "border-blue-500 text-blue-600"
-                        : "border-transparent text-gray-500 hover:text-gray-700"
-                    }`}
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    onClick={() => setActiveTab("additional")}
-                  >
-                    ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ
-                  </button>
-                </div>
-
-                {/* Tab Content */}
-                <div className="min-h-[200px] flex justify-center">
-                  {activeTab === "introduction" && (
-                    <div className="flex flex-col gap-4 items-center">
-                      {onlineLesson.description && (
-                        <div
-                          className="text-sm text-gray-700 max-w-[300px]"
-                          style={{
-                            writingMode: "vertical-lr",
-                            textOrientation: "upright",
-                          }}
-                        >
-                          {onlineLesson.description}
-                        </div>
-                      )}
-
-                      {/* Academy Link */}
-                      {onlineLesson.amnesty_academy_url && (
-                        <div className="flex justify-center">
-                          <a
-                            href={
-                              onlineLesson.amnesty_academy_url.startsWith(
-                                "http"
-                              )
-                                ? onlineLesson.amnesty_academy_url
-                                : `https://${onlineLesson.amnesty_academy_url}`
-                            }
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-6 rounded transition-colors"
-                            style={{
-                              writingMode: "vertical-lr",
-                              textOrientation: "upright",
-                            }}
-                          >
-                            ᠬᠢᠴᠡᠡᠯ ᠦᠵᠡᠬᠦ
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {activeTab === "content" && (
-                    <div className="flex flex-col gap-4 items-center">
-                      {onlineLesson.introduction ? (
-                        <div
-                          className="text-sm text-gray-700 max-w-[300px]"
-                          style={{
-                            writingMode: "vertical-lr",
-                            textOrientation: "upright",
-                          }}
-                          dangerouslySetInnerHTML={{
-                            __html: onlineLesson.introduction,
-                          }}
-                        />
-                      ) : (
-                        <p
-                          className="text-sm text-gray-500"
-                          style={{
-                            writingMode: "vertical-lr",
-                            textOrientation: "upright",
-                          }}
-                        >
-                          ᠠᠭᠤᠯᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
-                        </p>
-                      )}
-                    </div>
-                  )}
-
-                  {activeTab === "additional" && (
-                    <div className="flex flex-col gap-4 items-center">
-                      {onlineLesson.extra_details ? (
-                        <div
-                          className="text-sm text-gray-700 max-w-[300px]"
-                          style={{
-                            writingMode: "vertical-lr",
-                            textOrientation: "upright",
-                          }}
-                          dangerouslySetInnerHTML={{
-                            __html: onlineLesson.extra_details,
-                          }}
-                        />
-                      ) : (
-                        <p
-                          className="text-sm text-gray-500"
-                          style={{
-                            writingMode: "vertical-lr",
-                            textOrientation: "upright",
-                          }}
-                        >
-                          ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
-                        </p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Sidebar */}
-            <div className="flex-shrink-0 w-[300px] space-y-4">
-              {/* Related Online Lessons Section */}
-              {relatedLessons && relatedLessons.length > 0 && (
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="flex justify-center mb-4">
-                    <h2
-                      className="text-lg font-bold text-gray-900"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ
-                    </h2>
                   </div>
-                  <div className="space-y-3">
-                    {relatedLessons.slice(0, 4).map((item, index) => (
+                )}
+
+                {activeTab === "additional" && (
+                  <div className="flex flex-col gap-4 items-center">
+                    {onlineLesson.extra_details ? (
                       <div
-                        key={item.id || index}
-                        className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
-                        onClick={() =>
-                          router.push(`/online-lessons/${item.id}`)
-                        }
+                        className="text-sm text-gray-700 break-words"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: onlineLesson.extra_details,
+                        }}
+                      />
+                    ) : (
+                      <p
+                        className="text-sm text-gray-500"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
                       >
-                        <div className="relative w-16 h-16 flex-shrink-0">
-                          <Image
-                            src={
-                              getImageUrl(item.thumbnail || item.cover) ||
-                              "/images/news1.png"
-                            }
-                            alt={item.title || "Online lesson image"}
-                            fill
-                            className="object-cover rounded"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h3
-                            className="text-sm font-medium text-gray-900 line-clamp-3"
-                            style={{
-                              writingMode: "vertical-lr",
-                              textOrientation: "upright",
-                            }}
-                            title={item.title}
-                          >
-                            {item.title?.length > 30
-                              ? `${item.title.substring(0, 30)}...`
-                              : item.title}
-                          </h3>
-                          {item.lesson_length && (
-                            <p
-                              className="text-xs text-gray-500 mt-1"
-                              style={{
-                                writingMode: "vertical-lr",
-                                textOrientation: "upright",
-                              }}
-                            >
-                              {item.lesson_length}
-                            </p>
-                          )}
-                        </div>
-                        <div className="flex-shrink-0">
-                          <Button
-                            text="ᠦᠵᠡᠬᠦ"
-                            type="primary"
-                            className="text-xs px-2 py-1"
-                          />
-                        </div>
-                      </div>
-                    ))}
+                        ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                      </p>
+                    )}
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
+
+          {/* Related Online Lessons Section - News Grid Layout */}
+          {relatedLessons && relatedLessons.length > 0 && (
+            <div className="flex gap-4">
+              <h2
+                className="text-2xl font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
+              </h2>
+              <div className="grid grid-cols-1 grid-rows-3 gap-4 min-h-[900px]">
+                {relatedLessons.slice(0, 3).map((item, index) => (
+                  <div
+                    key={item.id || index}
+                    className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
+                    onClick={() => router.push(`/online-lessons/${item.id}`)}
+                  >
+                    <h3
+                      className="max-w-16 line-clamp-3 h-full text-sm"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                      title={item.title}
+                    >
+                      {item.title?.length > 50
+                        ? `${item.title.substring(0, 50)}...`
+                        : item.title}
+                    </h3>
+                    <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
+                      <Image
+                        src={
+                          getImageUrl(item.thumbnail || item.cover) ||
+                          "/images/news1.png"
+                        }
+                        alt={item.title || "Online lesson image"}
+                        fill
+                        className="object-cover rounded-xl w-full h-full"
+                      />
+                      <Button
+                        text="ᠰᠤᠷᠭᠠᠯ"
+                        type="primary"
+                        className="absolute top-0 right-0 text-black"
+                      />
+                    </div>
+                    <Button
+                      text="ᠤᠩᠰᠢᠬᠤ"
+                      type="secondary"
+                      className="text-black h-48"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Layout>
