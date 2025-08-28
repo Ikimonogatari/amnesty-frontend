@@ -5,6 +5,7 @@ import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
 import Fetcher, { getImageUrl } from "@/utils/fetcher";
+import Layout from "@/components/layout/Layout";
 
 export default function VideosIndex() {
   const router = useRouter();
@@ -89,91 +90,99 @@ export default function VideosIndex() {
   }
 
   return (
-    <div className="w-full">
-      {/* Desktop Layout */}
-      <div className="hidden sm:flex h-screen overflow-hidden">
-        <StaticHeader
-          title="ᠸᠢᠳᠧᠣ"
-          description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
-          backgroundImage="/images/news1.png"
-        />
-
-        {/* Desktop Introduction Section */}
-        <div className="flex-shrink-0 w-96 bg-gray-50 p-8 overflow-y-auto">
-          <h2
-            className="text-2xl font-bold mb-6"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ
-          </h2>
-          <p
-            className="text-gray-700 leading-relaxed"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
-          </p>
-        </div>
-
-        {/* Desktop Grid Layout */}
-        <div className="flex-1 p-8 overflow-y-auto">
-          <GridLayout
-            items={videos}
-            isLoading={isLoading}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            basePath="/videos"
-            categoryButtonText="ᠸᠢᠳᠧᠣ"
-            emptyStateText="ᠸᠢᠳᠧᠣ ᠦᠭᠡᠢ"
-            getImageUrl={getVideoImageUrl}
-            getTitle={getVideoTitle}
-            itemType="video"
+    <Layout>
+      <div className="w-full">
+        {/* Desktop Layout */}
+        <div className="hidden sm:flex h-screen overflow-hidden">
+          <StaticHeader
+            title="ᠸᠢᠳᠧᠣ"
+            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
+            backgroundImage="/images/news1.png"
           />
-        </div>
-      </div>
 
-      {/* Mobile Layout */}
-      <div className="block sm:hidden">
-        <StaticHeader
-          title="ᠸᠢᠳᠧᠣ"
-          description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
-          backgroundImage="/images/news1.png"
-        />
-
-        <div className="p-4">
-          {/* Mobile Introduction Section */}
-          <div className="mb-6 bg-gray-50 p-4 rounded-lg">
+          {/* Desktop Introduction Section */}
+          <div className="flex-shrink-0 bg-gray-50 p-8">
             <h2
-              className="text-lg font-bold mb-3"
+              className="text-2xl font-bold mb-6"
               style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
             >
               ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ
             </h2>
             <p
-              className="text-gray-700 text-sm"
+              className="text-gray-700 leading-relaxed"
               style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
             >
               ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
             </p>
           </div>
 
-          {/* Mobile Grid Layout */}
-          <GridLayout
-            items={videos}
-            isLoading={isLoading}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            basePath="/videos"
-            categoryButtonText="ᠸᠢᠳᠧᠣ"
-            emptyStateText="ᠸᠢᠳᠧᠣ ᠦᠭᠡᠢ"
-            getImageUrl={getVideoImageUrl}
-            getTitle={getVideoTitle}
-            itemType="video"
+          {/* Desktop Grid Layout */}
+          <div className="flex-1 p-8 overflow-y-auto">
+            <GridLayout
+              items={videos}
+              isLoading={isLoading}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              basePath="/videos"
+              categoryButtonText="ᠸᠢᠳᠧᠣ"
+              emptyStateText="ᠸᠢᠳᠧᠣ ᠦᠭᠡᠢ"
+              getImageUrl={getVideoImageUrl}
+              getTitle={getVideoTitle}
+              itemType="video"
+            />
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="block sm:hidden">
+          <StaticHeader
+            title="ᠸᠢᠳᠧᠣ"
+            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
+            backgroundImage="/images/news1.png"
           />
+
+          <div className="p-4">
+            {/* Mobile Introduction Section */}
+            <div className="mb-6 bg-gray-50 p-4 rounded-lg">
+              <h2
+                className="text-lg font-bold mb-3"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ
+              </h2>
+              <p
+                className="text-gray-700 text-sm"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
+              </p>
+            </div>
+
+            {/* Mobile Grid Layout */}
+            <GridLayout
+              items={videos}
+              isLoading={isLoading}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              basePath="/videos"
+              categoryButtonText="ᠸᠢᠳᠧᠣ"
+              emptyStateText="ᠸᠢᠳᠧᠣ ᠦᠭᠡᠢ"
+              getImageUrl={getVideoImageUrl}
+              getTitle={getVideoTitle}
+              itemType="video"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

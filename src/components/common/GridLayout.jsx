@@ -21,6 +21,7 @@ import { toMongolianNumbers } from "@/utils/fetcher";
  * @param {string} emptyStateText - Text to show when no items
  * @param {function} getImageUrl - Function to extract image URL from item
  * @param {function} getTitle - Function to extract title from item
+ * @param {function} renderAdditionalContent - Optional function to render additional content below image
  */
 export default function GridLayout({
   items = [],
@@ -34,8 +35,24 @@ export default function GridLayout({
   getImageUrl,
   getTitle,
   itemType = "item", // for different styling (e.g., "video" for play button)
+  renderAdditionalContent, // Optional function to render additional content
 }) {
   const router = useRouter();
+
+  // Debug logging
+  console.log("🔧 GridLayout props:", {
+    itemsLength: items?.length || 0,
+    isLoading,
+    currentPage,
+    totalPages,
+    basePath,
+    itemType,
+    hasAdditionalContent: !!renderAdditionalContent,
+  });
+
+  if (items?.length > 0) {
+    console.log("📋 First item structure:", items[0]);
+  }
 
   const handleItemClick = (item) => {
     router.push(`${basePath}/${item.id}`);
@@ -63,11 +80,11 @@ export default function GridLayout({
               items.map((item, index) => (
                 <div
                   key={item.id || index}
-                  className="w-full h-full flex items-end space-x-4 gap-2"
+                  className="w-full h-full flex items-end gap-4 max-h-[400px]"
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="min-w-16 line-clamp-3 h-full text-sm cursor-pointer hover:text-blue-600 transition-colors"
+                    className="min-w-12 max-h-[400px] line-clamp-3 h-full text-sm cursor-pointer hover:text-blue-600 transition-colors"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
@@ -84,7 +101,7 @@ export default function GridLayout({
                   </h3>
 
                   {/* Main Image with proper aspect ratio */}
-                  <div className="relative w-full h-full max-h-[400px]">
+                  <div className="relative h-[400px] w-[400px]">
                     <Image
                       src={
                         getImageUrl ? getImageUrl(item) : "/images/news1.png"
@@ -123,14 +140,24 @@ export default function GridLayout({
                       onClick={() => handleItemClick(item)}
                     />
                   </div>
+                  <div
+                    className={`flex flex-col h-full ${
+                      renderAdditionalContent
+                        ? "justify-between"
+                        : "justify-end"
+                    }`}
+                  >
+                    {/* Additional Content (e.g., podcast links) */}
+                    {renderAdditionalContent && renderAdditionalContent(item)}
 
-                  {/* Right Action Button */}
-                  <Button
-                    text={"ᠤᠩᠰᠢᠬᠤ"}
-                    type="secondary"
-                    className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
-                    onClick={() => handleItemClick(item)}
-                  />
+                    {/* Right Action Button */}
+                    <Button
+                      text={"ᠤᠩᠰᠢᠬᠤ"}
+                      type="secondary"
+                      className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
+                      onClick={() => handleItemClick(item)}
+                    />
+                  </div>
                 </div>
               ))
             ) : (
@@ -151,24 +178,27 @@ export default function GridLayout({
             )}
           </div>
 
-          {/* Desktop Pagination - EXACT NEWS STYLE */}
-          <div className="flex flex-row sm:flex-col justify-center sm:justify-start items-center gap-2 flex-shrink-0">
-            <Button
-              text={<ChevronUp />}
-              type="chevron"
-              onClick={() => onPageChange(currentPage - 1)}
-              disabled={currentPage === 1 || isLoading}
-            />
-            <p className="text-sm">
-              {toMongolianNumbers(currentPage)}/{toMongolianNumbers(totalPages)}
-            </p>
-            <Button
-              text={<ChevronDown />}
-              type="chevron"
-              onClick={() => onPageChange(currentPage + 1)}
-              disabled={currentPage === totalPages || isLoading}
-            />
-          </div>
+          {/* Desktop Pagination - Only show if there are multiple pages */}
+          {totalPages > 1 && (
+            <div className="flex flex-row sm:flex-col justify-center sm:justify-start items-center gap-2 flex-shrink-0">
+              <Button
+                text={<ChevronUp />}
+                type="chevron"
+                onClick={() => onPageChange(currentPage - 1)}
+                disabled={currentPage === 1 || isLoading}
+              />
+              <p className="text-sm">
+                {toMongolianNumbers(currentPage)}/
+                {toMongolianNumbers(totalPages)}
+              </p>
+              <Button
+                text={<ChevronDown />}
+                type="chevron"
+                onClick={() => onPageChange(currentPage + 1)}
+                disabled={currentPage === totalPages || isLoading}
+              />
+            </div>
+          )}
         </div>
       </div>
 
@@ -251,24 +281,26 @@ export default function GridLayout({
           )}
         </div>
 
-        {/* Mobile Pagination - EXACT NEWS STYLE */}
-        <div className="flex justify-center items-center gap-2 mt-4">
-          <Button
-            text={<ChevronLeft />}
-            type="chevron"
-            onClick={() => onPageChange(currentPage - 1)}
-            disabled={currentPage === 1 || isLoading}
-          />
-          <p className="text-sm">
-            {toMongolianNumbers(currentPage)}/{toMongolianNumbers(totalPages)}
-          </p>
-          <Button
-            text={<ChevronRight />}
-            type="chevron"
-            onClick={() => onPageChange(currentPage + 1)}
-            disabled={currentPage === totalPages || isLoading}
-          />
-        </div>
+        {/* Mobile Pagination - Only show if there are multiple pages */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-2 mt-4">
+            <Button
+              text={<ChevronLeft />}
+              type="chevron"
+              onClick={() => onPageChange(currentPage - 1)}
+              disabled={currentPage === 1 || isLoading}
+            />
+            <p className="text-sm">
+              {toMongolianNumbers(currentPage)}/{toMongolianNumbers(totalPages)}
+            </p>
+            <Button
+              text={<ChevronRight />}
+              type="chevron"
+              onClick={() => onPageChange(currentPage + 1)}
+              disabled={currentPage === totalPages || isLoading}
+            />
+          </div>
+        )}
       </div>
     </>
   );
