@@ -4,6 +4,7 @@ import userApiService from "@/services/userApiService";
 import Layout from "@/components/layout/Layout";
 import Button from "@/components/common/Button";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function ResetPassword() {
   const router = useRouter();
@@ -175,8 +176,8 @@ export default function ResetPassword() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 w-full flex justify-center items-center bg-[#363636] min-h-screen h-full py-10">
-        <div className="w-full max-w-2xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="container mx-auto px-4 w-full flex justify-center items-center bg-white/10 min-h-screen h-full py-10">
+        <div className="w-full max-w-2xl mx-auto rounded-lg border shadow-lg overflow-hidden">
           <div className="p-8 lg:p-12 flex flex-col sm:flex-row gap-6">
             {/* Title */}
             <div className="text-center mb-8">

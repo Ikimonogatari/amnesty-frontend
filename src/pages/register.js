@@ -258,8 +258,8 @@ export default function Register() {
 
   return (
     <Layout>
-      <div className="container mx-auto px-4 w-full flex justify-center items-center bg-[#363636] min-h-screen h-full py-10">
-        <div className="w-full max-w-6xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="container mx-auto px-4 w-full flex justify-center items-center bg-white/10 min-h-screen h-full py-10">
+        <div className="w-full max-w-6xl mx-auto rounded-lg border shadow-lg overflow-hidden">
           <div className="w-full p-8 lg:p-12 flex flex-col sm:flex-row gap-6">
             {/* Title */}
             <div className="text-center mb-8">
