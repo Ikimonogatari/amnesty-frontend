@@ -4,6 +4,7 @@ import Image from "next/image";
 import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 import Fetcher, { getImageUrl } from "@/utils/fetcher";
 import Layout from "@/components/layout/Layout";
 
@@ -59,19 +60,7 @@ export default function OnlineLessonsIndex() {
 
   // Loading state
   if (isLoading && onlineLessons.length === 0) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-900 mx-auto"></div>
-          <p
-            className="mt-4 text-gray-600"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-          </p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner size="sm" />;
   }
 
   // Error state

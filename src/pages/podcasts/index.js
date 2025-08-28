@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
 import PageIntroduction from "@/components/common/PageIntroduction";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 import Fetcher, { getImageUrl } from "@/utils/fetcher";
+import Layout from "@/components/layout/Layout";
 
 export default function PodcastsIndex() {
   const router = useRouter();
@@ -59,19 +62,7 @@ export default function PodcastsIndex() {
 
   // Loading state
   if (isLoading && podcasts.length === 0) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-900 mx-auto"></div>
-          <p
-            className="mt-4 text-gray-600"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-          </p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner size="sm" />;
   }
 
   // Error state

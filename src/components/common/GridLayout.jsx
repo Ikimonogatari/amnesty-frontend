@@ -64,12 +64,13 @@ export default function GridLayout({
       <div className="hidden sm:block h-full">
         <div className="h-full flex gap-4">
           <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-4">
-            {isLoading ? (
-              // Loading placeholders to maintain layout
+            {isLoading || !items ? (
+              // Loading placeholders to maintain layout - consistent between server and client
               Array.from({ length: 9 }).map((_, index) => (
                 <div
-                  key={`loading-${index}`}
+                  key={`loading-desktop-${index}`}
                   className="w-full h-full flex items-end space-x-4"
+                  suppressHydrationWarning={false}
                 >
                   <div className="max-w-16 h-full bg-gray-200 animate-pulse rounded"></div>
                   <div className="relative h-[300px] w-[300px] aspect-square shadow-md bg-gray-200 animate-pulse rounded-xl"></div>
@@ -205,10 +206,14 @@ export default function GridLayout({
       {/* Mobile Layout */}
       <div className="block sm:hidden">
         <div className="grid grid-cols-1 gap-4">
-          {isLoading ? (
-            // Loading placeholders to maintain layout
+          {isLoading || !items ? (
+            // Loading placeholders to maintain layout - consistent between server and client
             Array.from({ length: 6 }).map((_, index) => (
-              <div key={`loading-${index}`} className="flex gap-4">
+              <div
+                key={`loading-mobile-${index}`}
+                className="flex gap-4"
+                suppressHydrationWarning={false}
+              >
                 <div className="relative w-[100px] h-[100px] flex-shrink-0 bg-gray-200 animate-pulse rounded"></div>
                 <div className="flex-1">
                   <div className="h-4 bg-gray-200 animate-pulse rounded mb-2"></div>

@@ -15,7 +15,7 @@ export default function PageIntroduction({
 }) {
   if (variant === "desktop") {
     return (
-      <div className="flex-shrink-0 w-96 bg-gray-50 p-8 overflow-y-auto">
+      <div className="flex-shrink-0 bg-gray-50 p-8 overflow-y-auto">
         <h2
           className="text-2xl font-bold mb-6"
           style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
