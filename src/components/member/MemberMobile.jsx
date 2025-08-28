@@ -8,14 +8,7 @@ import { useForm } from "react-hook-form";
 import { authService } from "@/services/userApiService";
 import { useState } from "react";
 
-export default function MemberMobile({
-  user,
-  onLogout,
-  onLogin,
-  loginData,
-  setLoginData,
-  loading,
-}) {
+export default function MemberMobile({ user, onLogout, onLogin }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -25,7 +18,7 @@ export default function MemberMobile({
     formState: { errors },
     reset,
   } = useForm({
-    mode: "onChange",
+    mode: "onSubmit", // Changed from "onChange" to reduce re-renders
     defaultValues: {
       phone: "",
       password: "",

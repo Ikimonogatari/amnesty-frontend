@@ -16,11 +16,6 @@ export default function Member() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
   const [userGroups, setUserGroups] = useState(null);
-  const [loginData, setLoginData] = useState({
-    phone: "",
-    password: "",
-  });
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     checkAuthStatus();
@@ -89,18 +84,12 @@ export default function Member() {
         user={isLoggedIn ? user : null}
         onLogout={handleLogout}
         onLogin={handleLogin}
-        loginData={loginData}
-        setLoginData={setLoginData}
-        loading={loading}
       />
 
       <MemberMobile
         user={isLoggedIn ? user : null}
         onLogout={handleLogout}
         onLogin={handleLogin}
-        loginData={loginData}
-        setLoginData={setLoginData}
-        loading={loading}
       />
     </Layout>
   );
