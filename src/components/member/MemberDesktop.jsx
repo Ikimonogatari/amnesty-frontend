@@ -46,7 +46,11 @@ export default function MemberDesktop({
         toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠨᠡᠪᠲᠡᠷᠡᠯᠡᠭᠡ!");
         reset();
         // Trigger parent component to refresh user data
-        router.push("/member");
+        if (onLogin) {
+          onLogin(); // Use parent handler for better state management
+        } else {
+          router.push("/member");
+        }
       }
     } catch (error) {
       let errorMessage = "ᠦᠨᠴᠠᠷᠠᠭᠤᠯᠠᠭᠰᠠᠨ ᠠᠯᠳᠠᠭ᠎ᠠ";

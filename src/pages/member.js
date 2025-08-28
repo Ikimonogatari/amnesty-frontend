@@ -57,47 +57,13 @@ export default function Member() {
     }
   };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    if (loading) return;
-
-    // Validation like old project
-    if (!loginData.phone || String(loginData.phone).length !== 8) {
-      toast.error("ᠲᠠ ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷᠠᠭ᠎ᠠ ᠵᠦᠪ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
-      return;
-    }
-
-    if (!loginData.password || loginData.password.length === 0) {
-      toast.error("ᠲᠠ ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
-      return;
-    }
-
-    setLoading(true);
+  const handleLogin = async () => {
     try {
-      const response = await userApiService.auth.login({
-        phone: loginData.phone,
-        password: loginData.password,
-      });
-
-      if (response.payload?.token) {
-        // Token is already stored in cookies by the authService
-        const userData = await userApiService.user.getProfile();
-        setUser(userData);
-        setIsLoggedIn(true);
-        toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠨᠡᠪᠲᠡᠷᠡᠯᠡᠭᠡ!");
-        setLoginData({ phone: "", password: "" });
-        router.push("/member");
-      }
+      // Check auth status after successful login from child components
+      await checkAuthStatus();
+      router.push("/member");
     } catch (error) {
-      toast.error(
-        "ᠨᠡᠪᠲᠡᠷᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ: " +
-          (error.response?.data?.message ||
-            error.message ||
-            "ᠦᠨᠴᠠᠷᠠᠭᠤᠯᠠᠭᠰᠠᠨ ᠠᠯᠳᠠᠭ᠎ᠠ")
-      );
-    } finally {
-      setLoading(false);
+      console.error("Error refreshing auth status:", error);
     }
   };
 

@@ -46,7 +46,11 @@ export default function MemberMobile({
         toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠨᠡᠪᠲᠡᠷᠡᠯᠡᠭᠡ!");
         reset();
         // Trigger parent component to refresh user data
-        window.location.reload();
+        if (onLogin) {
+          onLogin(); // Use parent handler for better state management
+        } else {
+          router.push("/member");
+        }
       }
     } catch (error) {
       let errorMessage = "ᠦᠨᠴᠠᠷᠠᠭᠤᠯᠠᠭᠰᠠᠨ ᠠᠯᠳᠠᠭ᠎ᠠ";
