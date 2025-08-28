@@ -84,7 +84,7 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="min-w-12 max-h-[400px] line-clamp-3 h-full text-sm cursor-pointer hover:text-blue-600 transition-colors"
+                    className="min-w-12 max-h-[400px] line-clamp-3 h-full text-xs cursor-pointer hover:text-blue-600 transition-colors"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
@@ -209,7 +209,7 @@ export default function GridLayout({
             // Loading placeholders to maintain layout
             Array.from({ length: 6 }).map((_, index) => (
               <div key={`loading-${index}`} className="flex gap-4">
-                <div className="relative w-24 h-24 flex-shrink-0 bg-gray-200 animate-pulse rounded"></div>
+                <div className="relative w-[100px] h-[100px] flex-shrink-0 bg-gray-200 animate-pulse rounded"></div>
                 <div className="flex-1">
                   <div className="h-4 bg-gray-200 animate-pulse rounded mb-2"></div>
                   <div className="h-3 bg-gray-200 animate-pulse rounded mb-1"></div>
@@ -221,15 +221,26 @@ export default function GridLayout({
             items.map((item, index) => (
               <div
                 key={item.id || index}
-                className="flex gap-4 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors"
+                className="flex gap-4 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors max-h-[200px]"
                 onClick={() => handleItemClick(item)}
               >
-                <div className="relative w-24 h-24 flex-shrink-0">
+                <h3
+                  className="text-sm font-medium line-clamp-2 max-h-[200px] overflow-x-auto"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {getTitle ? getTitle(item) : item.title}
+                </h3>
+
+                <div className="relative w-[200px] h-[200px] flex-shrink-0">
                   <Image
                     src={getImageUrl ? getImageUrl(item) : "/images/news1.png"}
                     alt={getTitle ? getTitle(item) : item.title || "Item image"}
-                    fill
-                    className="object-cover rounded"
+                    height={200}
+                    width={200}
+                    className="object-cover rounded-lg w-full h-full shadow-md"
                     onError={(e) => {
                       e.target.src = "/images/news1.png";
                     }}
@@ -249,20 +260,6 @@ export default function GridLayout({
                       </div>
                     </div>
                   )}
-                </div>
-
-                <div className="flex-1 min-w-0">
-                  <h3
-                    className="text-sm font-medium line-clamp-2 mb-2"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    {getTitle ? getTitle(item) : item.title}
-                  </h3>
-
-                  {/* Additional mobile metadata can be added here based on item type */}
                 </div>
               </div>
             ))
