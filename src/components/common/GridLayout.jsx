@@ -22,6 +22,7 @@ import { toMongolianNumbers } from "@/utils/fetcher";
  * @param {function} getImageUrl - Function to extract image URL from item
  * @param {function} getTitle - Function to extract title from item
  * @param {function} renderAdditionalContent - Optional function to render additional content below image
+ * @param {boolean} hideCategoryButton - Whether to hide the category/read button
  */
 export default function GridLayout({
   items = [],
@@ -36,6 +37,7 @@ export default function GridLayout({
   getTitle,
   itemType = "item", // for different styling (e.g., "video" for play button)
   renderAdditionalContent, // Optional function to render additional content
+  hideCategoryButton = false, // Hide the category/read button
 }) {
   const router = useRouter();
 
@@ -48,6 +50,7 @@ export default function GridLayout({
     basePath,
     itemType,
     hasAdditionalContent: !!renderAdditionalContent,
+    hideCategoryButton,
   });
 
   if (items?.length > 0) {
@@ -55,6 +58,10 @@ export default function GridLayout({
   }
 
   const handleItemClick = (item) => {
+    // Don't navigate for merchandise items - they have external shop links
+    if (itemType === "merchandise") {
+      return; // Do nothing - let the shop link in renderAdditionalContent handle the click
+    }
     router.push(`${basePath}/${item.id}`);
   };
 
@@ -85,13 +92,21 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="min-w-12 max-h-[400px] line-clamp-3 h-full text-xs cursor-pointer hover:text-blue-600 transition-colors"
+                    className={`min-w-12 max-h-[400px] line-clamp-3 h-full text-xs transition-colors ${
+                      itemType === "merchandise"
+                        ? ""
+                        : "cursor-pointer hover:text-blue-600"
+                    }`}
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
                     }}
                     title={getTitle ? getTitle(item) : item.title}
-                    onClick={() => handleItemClick(item)}
+                    onClick={
+                      itemType === "merchandise"
+                        ? undefined
+                        : () => handleItemClick(item)
+                    }
                   >
                     {(() => {
                       const title = getTitle ? getTitle(item) : item.title;
@@ -133,13 +148,23 @@ export default function GridLayout({
                       </div>
                     )}
 
-                    {/* Category Button on Image */}
-                    <Button
-                      text={categoryButtonText}
-                      type="primary"
-                      className="absolute top-0 right-0 text-black cursor-pointer hover:opacity-80 transition-opacity"
-                      onClick={() => handleItemClick(item)}
-                    />
+                    {/* Category Button on Image - conditionally rendered */}
+                    {!hideCategoryButton && (
+                      <Button
+                        text={categoryButtonText}
+                        type="primary"
+                        className={`absolute top-0 right-0 text-black transition-opacity ${
+                          itemType === "merchandise"
+                            ? ""
+                            : "cursor-pointer hover:opacity-80"
+                        }`}
+                        onClick={
+                          itemType === "merchandise"
+                            ? undefined
+                            : () => handleItemClick(item)
+                        }
+                      />
+                    )}
                   </div>
                   <div
                     className={`flex flex-col h-full ${
@@ -151,13 +176,15 @@ export default function GridLayout({
                     {/* Additional Content (e.g., podcast links) */}
                     {renderAdditionalContent && renderAdditionalContent(item)}
 
-                    {/* Right Action Button */}
-                    <Button
-                      text={"ᠤᠩᠰᠢᠬᠤ"}
-                      type="secondary"
-                      className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
-                      onClick={() => handleItemClick(item)}
-                    />
+                    {/* Right Action Button - conditionally rendered */}
+                    {!hideCategoryButton && (
+                      <Button
+                        text={"ᠤᠩᠰᠢᠬᠤ"}
+                        type="secondary"
+                        className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
+                        onClick={() => handleItemClick(item)}
+                      />
+                    )}
                   </div>
                 </div>
               ))
@@ -226,8 +253,16 @@ export default function GridLayout({
             items.map((item, index) => (
               <div
                 key={item.id || index}
-                className="flex gap-4 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors max-h-[200px]"
-                onClick={() => handleItemClick(item)}
+                className={`flex gap-4 p-2 rounded transition-colors max-h-[200px] ${
+                  itemType === "merchandise"
+                    ? ""
+                    : "cursor-pointer hover:bg-gray-50"
+                }`}
+                onClick={
+                  itemType === "merchandise"
+                    ? undefined
+                    : () => handleItemClick(item)
+                }
               >
                 <h3
                   className="text-sm font-medium line-clamp-2 max-h-[200px] overflow-x-auto"

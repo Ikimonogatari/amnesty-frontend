@@ -1,7 +1,66 @@
-import BannerSlider from "@/components/common/BannerSlider";
-import { bannerImages } from "@/constants/bannerImages";
-import MerchItem from "./MerchItem";
 import StaticHeader from "../common/StaticHeader";
+import GridLayout from "@/components/common/GridLayout";
+import { getImageUrl } from "@/utils/fetcher";
+
+// Helper functions for GridLayout component
+const getMerchImageUrl = (merch) => {
+  if (!merch?.images?.data?.attributes?.url) {
+    return "/images/no-image-icon.png";
+  }
+
+  const directUrl = merch.images.data.attributes.url;
+  return directUrl.startsWith("http")
+    ? directUrl
+    : `${
+        process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
+      }${directUrl}`;
+};
+
+const getMerchTitle = (merch) => {
+  return merch?.title || "ᠠᠳᠠᠯᠢᠬᠠᠨ ᠪᠠᠷᠠᠭ᠎ᠠ";
+};
+
+const renderMerchPrice = (merch) => {
+  let price = merch?.price;
+
+  if (price == null) {
+    price = 0;
+  } else {
+    price = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  return (
+    <div className="flex flex-col gap-1 mt-1">
+      <div
+        className="text-xs font-bold text-center"
+        style={{
+          writingMode: "vertical-lr",
+          textOrientation: "upright",
+        }}
+      >
+        {price} ₮
+      </div>
+      <div className="flex items-center justify-center">
+        <a
+          className="border border-gray-300 py-1 px-2 text-[10px] font-[Oswald] rounded-md hover:bg-gray-100 transition-colors"
+          href={merch?.shop_link || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()} // Prevent grid item click
+        >
+          <span
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            ᠵᠠᠬᠢᠶᠠᠯᠠᠬᠤ
+          </span>
+        </a>
+      </div>
+    </div>
+  );
+};
 
 export default function ShopMobile({ merchandise = [] }) {
   return (
@@ -45,27 +104,22 @@ export default function ShopMobile({ merchandise = [] }) {
             </div>
           </div>
 
-          {/* Products Section */}
-          <div className="flex gap-4 overflow-x-auto">
-            {merchandise.length > 0 ? (
-              merchandise.map((merchItem) => (
-                <div key={merchItem.id} className="flex-shrink-0">
-                  <MerchItem merchItem={merchItem} />
-                </div>
-              ))
-            ) : (
-              <div
-                className="text-xs text-gray-500 flex items-center justify-center min-w-[150px]"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                  minHeight: "60px",
-                }}
-              >
-                ᠪᠠᠷᠠᠭ᠎ᠠ ᠪᠦᠲᠡᠭᠡᠳᠬᠦᠦᠨ ᠣᠯᠣᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃
-              </div>
-            )}
-          </div>
+          {/* Products Section using GridLayout */}
+          <GridLayout
+            items={merchandise}
+            isLoading={false}
+            currentPage={1}
+            totalPages={1}
+            onPageChange={() => {}} // No pagination for shop
+            basePath="/shop" // Shop items don't have individual pages, but we need this for consistency
+            categoryButtonText="ᠪᠠᠷᠠᠭ᠎ᠠ"
+            emptyStateText="ᠪᠠᠷᠠᠭ᠎ᠠ ᠪᠦᠲᠡᠭᠡᠳᠬᠦᠦᠨ ᠣᠯᠣᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃"
+            getImageUrl={getMerchImageUrl}
+            getTitle={getMerchTitle}
+            itemType="merchandise"
+            renderAdditionalContent={renderMerchPrice}
+            hideCategoryButton={true}
+          />
         </div>
       </div>
     </div>
