@@ -84,7 +84,7 @@ export default function OnlineLessonsIndex() {
           <StaticHeader
             title="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ"
             description="ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠨ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/online-lessons/header-img-online-lessons.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -125,7 +125,7 @@ export default function OnlineLessonsIndex() {
           <StaticHeader
             title="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ"
             description="ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠨ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/online-lessons/header-img-online-lessons.jpg"
           />
 
           <div className="p-4">

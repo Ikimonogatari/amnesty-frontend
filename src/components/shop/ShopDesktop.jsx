@@ -3,14 +3,13 @@ import MerchItem from "./MerchItem";
 import SectionTitle from "../common/SectionTitle";
 
 export default function ShopDesktop({ merchandise = [] }) {
-
   return (
     <div className="h-full hidden sm:flex gap-10 flex-shrink-0 p-4">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/merch/header-img-amnestyshop.jpg"
         alt="Shop Page Header"
         width="90rem"
-        title="ᠪᠠᠷᠠᠭ᠎ᠠ ᠦᠢᠯᠡᠳᠦᠯ"
+        title="ᠡᠮᠨᠧᠰᠲᠢ ᠳᠡᠯᠭᠦᠦᠷ"
       />
       <div className="h-full p-4">
         <div className="h-full flex gap-10">

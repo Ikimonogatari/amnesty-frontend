@@ -64,10 +64,10 @@ export default function FaqMobile() {
   return (
     <div className="h-full w-full block sm:hidden">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/faq/header-img.jpg"
         alt="FAQ Page Header"
         width="100%"
-        title="ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ"
+        title="ᠲᠦᠭᠡᠮᠡᠯ ᠠᠰᠤᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ"
       />
       <div className="flex flex-col gap-4 p-4">
         {faqItems.map((item, index) => (

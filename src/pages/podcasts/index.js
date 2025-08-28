@@ -86,7 +86,7 @@ export default function PodcastsIndex() {
           <StaticHeader
             title="ᠫᠣᠳᠺᠠᠰᠲ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠫᠣᠳᠺᠠᠰᠲ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/podcasts/header-img.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -120,7 +120,7 @@ export default function PodcastsIndex() {
           <StaticHeader
             title="ᠫᠣᠳᠺᠠᠰᠲ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠫᠣᠳᠺᠠᠰᠲ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/podcasts/header-img.jpg"
           />
 
           <div className="p-4">

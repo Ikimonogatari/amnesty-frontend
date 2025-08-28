@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Button from "@/components/common/Button";
-import StaticHeader from "@/components/common/StaticHeader";
+
 import { getImageUrl } from "@/utils/fetcher";
 
 export default function WriteForRightsMobile({ actions = [], error = null }) {
@@ -87,16 +87,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
 
   return (
     <div className="sm:hidden flex flex-col min-h-screen bg-[#43a6ac]">
-      {/* Header Section */}
-      <div className="relative">
-        <StaticHeader
-          imageSrc="/images/campaign/writeforrights-header.jpg"
-          alt="ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ"
-          width={400}
-          title="ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ"
-        />
-      </div>
-
       {/* Main Content */}
       <div className="flex-1 space-y-4 p-4">
         {/* Introduction */}

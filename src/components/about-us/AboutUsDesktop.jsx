@@ -9,10 +9,10 @@ export default function AboutUsDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/about/header-img.jpg"
         alt="About Us Page Header"
         width="90rem"
-        title="ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠱᠢᠨ᠋ᠯ ᠨᠢ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠬᠤ"
+        title="ᠪᠢᠳᠡᠨᠢ ᠲᠤᠬᠠᠢ"
       />
       <div className="h-full p-4 flex gap-10">
         <h2
@@ -156,7 +156,7 @@ export default function AboutUsDesktop() {
                   )}
                   {i === 5 && (
                     <a
-                      href="/about-us/history"
+                      href="/about/2"
                       className="mt-2 border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all"
                       style={{
                         writingMode: "vertical-lr",

@@ -84,8 +84,7 @@ export default function LessonsIndex() {
         <div className="hidden sm:flex h-screen overflow-hidden">
           <StaticHeader
             title="ᠰᠤᠷᠭᠠᠯᠲᠤ"
-            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/lessons/header-img-lessons.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -118,7 +117,7 @@ export default function LessonsIndex() {
           <StaticHeader
             title="ᠰᠤᠷᠭᠠᠯᠲᠤ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/lessons/header-img-lessons.jpg"
           />
 
           <div className="p-4">

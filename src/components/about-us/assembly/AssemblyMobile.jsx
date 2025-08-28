@@ -9,10 +9,10 @@ export default function AssemblyMobile() {
     <div className="block sm:hidden overflow-x-auto overflow-y-hidden">
       <div className="flex flex-col gap-4 h-full">
         <StaticHeader
-          image="/images/news1.png"
+          image="/images/generalassembly/general1.png"
           alt="Assembly Page Header"
           width="100%"
-          title="ᠶᠡᠷᠦᠩᢈᠡᠢ ᠴᠢᠭᠤᠯᠭᠠᠨ"
+          title="ᠶᠡᠷᠦᠩᠬᠡᠢ ᠴᠤᠤᠯᠭᠠᠨ"
         />
         <div className="flex flex-col gap-4 p-4">
           {/* First text section with image */}

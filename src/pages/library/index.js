@@ -81,15 +81,15 @@ export default function LibraryIndex() {
         {/* Desktop Layout */}
         <div className="hidden sm:flex h-screen overflow-hidden">
           <StaticHeader
-            title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-            backgroundImage="/images/news1.png"
+            image="/images/libraries/header-img-library.jpg"
           />
 
           {/* Desktop Introduction Section */}
           <PageIntroduction
             variant="desktop"
-            title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ"
           />
 
@@ -113,16 +113,16 @@ export default function LibraryIndex() {
         {/* Mobile Layout */}
         <div className="block sm:hidden">
           <StaticHeader
-            title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-            backgroundImage="/images/news1.png"
+            image="/images/libraries/header-img-library.jpg"
           />
 
           <div className="p-4">
             {/* Mobile Introduction Section */}
             <PageIntroduction
               variant="mobile"
-              title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+              title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
               description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ"
             />
 

@@ -8,7 +8,7 @@ export default function StructureDiagramMobile() {
       <div className="z-10 flex gap-[51px] absolute top-[68px] w-full h-full">
         <div className="flex flex-col gap-[106px] ml-[78px]">
           <Link
-            href="/about-us/structure/managers"
+            href="/about/1/managers"
             className="border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
           >
             <p
@@ -22,7 +22,7 @@ export default function StructureDiagramMobile() {
             </p>
           </Link>
           <Link
-            href="/about-us/structure/control-managers"
+            href="/about/1/control-managers"
             className="border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
           >
             <p
@@ -37,7 +37,7 @@ export default function StructureDiagramMobile() {
           </Link>
         </div>
         <Link
-          href="/about-us/structure/chapter-members"
+          href="/about/1/chapter-members"
           className="mt-[67px] border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
         >
           <p
@@ -51,7 +51,7 @@ export default function StructureDiagramMobile() {
           </p>
         </Link>
         <Link
-          href="/about-us/structure/chapter-members"
+          href="/about/1/chapter-members"
           className="mt-[68px] border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
         >
           <p
@@ -66,7 +66,7 @@ export default function StructureDiagramMobile() {
         </Link>
         <div className="flex flex-col gap-[100px]">
           <Link
-            href="/about-us/structure/chapter-members"
+            href="/about/1/chapter-members"
             className="border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
           >
             <p
@@ -80,7 +80,7 @@ export default function StructureDiagramMobile() {
             </p>
           </Link>
           <Link
-            href="/about-us/structure/chapter-members"
+            href="/about/1/chapter-members"
             className="border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
           >
             <p

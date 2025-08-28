@@ -36,6 +36,7 @@ export const apiService = createApi({
     "CompanyWork",
     "CompanyWorkFeature",
     "Contact",
+    "Report",
   ],
   endpoints: (builder) => ({
     // Contact form submission
@@ -81,11 +82,13 @@ export const apiService = createApi({
         // Add category filter if provided
         const queryParams = [];
         if (params.post_category) {
-          queryParams.push(`post_category=${encodeURIComponent(params.post_category)}`);
+          queryParams.push(
+            `post_category=${encodeURIComponent(params.post_category)}`
+          );
         }
 
         if (queryParams.length > 0) {
-          url += `?${queryParams.join('&')}`;
+          url += `?${queryParams.join("&")}`;
         }
 
         return url.replace(API_CONFIG.BASE_URL, "");
@@ -96,12 +99,15 @@ export const apiService = createApi({
           data: response.data || [],
           meta: {
             pagination: {
-              pageCount: Math.ceil((response.data?.length || 0) / (arg["pagination[pageSize]"] || 9)),
+              pageCount: Math.ceil(
+                (response.data?.length || 0) /
+                  (arg["pagination[pageSize]"] || 9)
+              ),
               pageSize: arg["pagination[pageSize]"] || 9,
               page: arg["pagination[page]"] || 1,
-              total: response.data?.length || 0
-            }
-          }
+              total: response.data?.length || 0,
+            },
+          },
         };
       },
       providesTags: ["Post"],
@@ -296,16 +302,35 @@ export const apiService = createApi({
       providesTags: ["FAQ"],
     }),
 
-    // Reports endpoints - using standard Strapi API
+    // Reports endpoints - using standard Strapi API (matching old web sorting)
     getReports: builder.query({
       query: (params = {}) => {
-        // Simple endpoint without complex pagination
-        return "/reports";
+        // Extract pageSize from params to avoid duplication
+        const { pageSize, page, sort, ...otherParams } = params;
+
+        const url = buildApiUrl(API_CONFIG.ENDPOINTS.REPORTS, {
+          "pagination[pageSize]":
+            pageSize || API_CONFIG.PAGINATION.DEFAULT_PAGE_SIZE,
+          "pagination[page]": page || 1,
+          sort: sort || "id:desc", // Match old web sorting by ID descending
+          ...otherParams,
+        });
+        return url.replace(API_CONFIG.BASE_URL, "");
       },
       transformResponse: (response) => {
         return formatStrapiResponse(response);
       },
       providesTags: ["Report"],
+    }),
+
+    getReportById: builder.query({
+      query: (id) => {
+        return `/reports/${id}`;
+      },
+      transformResponse: (response) => {
+        return formatStrapiResponse(response);
+      },
+      providesTags: (result, error, id) => [{ type: "Report", id }],
     }),
 
     // Slideshows endpoints - using standard Strapi API
@@ -428,6 +453,7 @@ export const {
   useGetLibraryByIdQuery,
   useGetFaqsQuery,
   useGetReportsQuery,
+  useGetReportByIdQuery,
   useGetSlideshowsQuery,
   useGetCompanyWorksQuery,
   useGetCompanyWorkByIdQuery,

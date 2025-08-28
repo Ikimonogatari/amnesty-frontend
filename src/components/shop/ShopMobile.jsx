@@ -7,10 +7,10 @@ export default function ShopMobile({ merchandise = [] }) {
   return (
     <div className="h-full flex flex-col sm:hidden gap-7">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/merch/header-img-amnestyshop.jpg"
         alt="Shop Page Header"
         width="100%"
-        title="ᠪᠠᠷᠠᠭ᠎ᠠ ᠦᠢᠯᠡᠳᠦᠯ"
+        title="ᠡᠮᠨᠧᠰᠲᠢ ᠳᠡᠯᠭᠦᠦᠷ"
       />
       <div className="h-full p-4">
         <div className="h-full flex flex-col gap-7">

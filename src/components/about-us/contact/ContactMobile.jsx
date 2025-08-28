@@ -94,10 +94,10 @@ export default function ContactMobile() {
   return (
     <div className="h-full w-full block sm:hidden p-4">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/aboutContact/header-img.png"
         alt="Contact Page Header"
         width="100%"
-        title="ᠬᠠᠷᠢᠯᠴᠠᠬᠤ ᠬᠠᠪᠰᠤᠷᠠᠯ"
+        title="ᠬᠣᠯᠪᠠᠭᠠᠨ ᠪᠠᠷᠢᠬᠤ"
       />
       <div className="flex gap-10 max-h-[150px] overflow-x-auto">
         <div className="flex gap-2">

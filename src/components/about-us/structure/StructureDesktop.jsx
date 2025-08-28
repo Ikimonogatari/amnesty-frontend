@@ -43,10 +43,10 @@ export default function StructureDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0 min-w-screen">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/aboutSub1/header-img.png"
         alt="Structure Page Header"
         width="90rem"
-        title="ᠵᠦᠢᠯ ᠦ᠋ᠨ ᠪᠠᠢᠭᠤᠯᠤᠯᠲᠠ"
+        title="ᠪᠠᠶᠢᠭᠤᠯᠤᠯ ᠤᠨ ᠪᠦᠲᠦᠴᠡ"
       />
 
       <div className="flex gap-12 p-4 h-full">

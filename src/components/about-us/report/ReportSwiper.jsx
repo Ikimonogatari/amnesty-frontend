@@ -14,6 +14,7 @@ import { useRef, useState, useEffect } from "react";
 import SectionTitle from "@/components/common/SectionTitle";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { getImageUrl } from "@/config/api";
 
 // Custom hook for Mongolian numeral conversion
 const useMongolianNumeral = () => {
@@ -65,39 +66,47 @@ export default function ReportSwiper({
   }, []);
 
   // Convert reports data to slides format
+  // Remove duplicates and invalid data first
+  const validReports =
+    reports && Array.isArray(reports)
+      ? reports
+          .filter((report) => report && report.id) // Remove invalid entries
+          .filter(
+            (report, index, self) =>
+              index ===
+              self.findIndex((r) => r.id?.toString() === report.id?.toString())
+          ) // Remove duplicates
+      : [];
+
   const slides =
-    reports.length > 0
-      ? reports.map((report, index) => {
+    validReports.length > 0
+      ? validReports.map((report, index) => {
+          // RTK Query flattens attributes, but cover is still nested
           const imageUrl =
-            report.attributes?.cover?.data?.attributes?.url ||
-            report.cover_url ||
-            "/images/dummy-image.png";
+            report?.cover?.data?.attributes?.url || "/images/dummy-image.png";
 
           // Add base URL if the image URL is a relative path from the API
           const fullImageUrl = imageUrl.startsWith("/uploads/")
             ? `${
-                process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337'
+                process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
               }${imageUrl}`
             : imageUrl;
 
-          const pdfUrl =
-            report.attributes?.pdf_file?.data?.attributes?.url ||
-            report.pdf_url;
+          // RTK Query flattens attributes, but pdf_file is still nested
+          const pdfUrl = report?.pdf_file?.data?.attributes?.url;
 
-          // Add base URL if the PDF URL is a relative path from the API
-          const fullPdfUrl =
-            pdfUrl && pdfUrl.startsWith("/uploads/")
-              ? `${
-                  process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337'
-                }${pdfUrl}`
-              : pdfUrl;
+          // Handle PDF URL exactly like old web
+          let fullPdfUrl = pdfUrl;
+          if (pdfUrl && !pdfUrl.includes("https:")) {
+            fullPdfUrl = `https://${pdfUrl}`;
+          }
+
+          // RTK Query flattens attributes, so title is directly accessible
+          const reportTitle = report?.title || `ᠲᠠᠶᠢᠯᠤᠨ ${index + 1}`;
 
           return {
             id: report.id || index + 1,
-            title:
-              report.attributes?.title ||
-              report.title ||
-              `ᠲᠠᠶᠢᠯᠤᠨ ${index + 1}`,
+            title: reportTitle,
             image: fullImageUrl,
             pdfUrl: fullPdfUrl,
           };
@@ -110,6 +119,8 @@ export default function ReportSwiper({
             image: "/images/dummy-image.png",
           },
         ];
+
+  console.log("🔧 ReportSwiper - Final slides array:", slides);
 
   const handlePrevSlide = () => {
     if (swiperRef.current) {
@@ -129,7 +140,7 @@ export default function ReportSwiper({
 
   const handleSlideClick = (slide) => {
     if (slide.id) {
-      router.push(`/about-us/report/${slide.id}`);
+      router.push(`/about/3/${slide.id}`);
     }
   };
 
@@ -165,8 +176,8 @@ export default function ReportSwiper({
         )}
         <Swiper
           direction={isMobile ? "horizontal" : "vertical"}
-          slidesPerView={isMobile ? (slides.length === 1 ? 1 : 1.8) : 3}
-          spaceBetween={isMobile ? 20 : 40}
+          slidesPerView={isMobile ? (slides.length === 1 ? 1 : 1.8) : 4}
+          spaceBetween={isMobile ? 20 : 30}
           navigation={false}
           pagination={false}
           modules={[Navigation, Pagination]}
@@ -176,8 +187,8 @@ export default function ReportSwiper({
           }}
           onSlideChange={handleSlideChange}
         >
-          {slides.map((slide) => (
-            <SwiperSlide key={slide.id}>
+          {slides.map((slide, index) => (
+            <SwiperSlide key={`${slide.id}-${index}`}>
               <div
                 className={`w-full h-full flex gap-4 cursor-pointer hover:opacity-80 transition-opacity duration-300`}
                 onClick={() => handleSlideClick(slide)}
@@ -194,8 +205,8 @@ export default function ReportSwiper({
                   </p>
                 </div>
                 <Image
-                  src={slide.image}
-                  alt={slide.title || ""}
+                  src={getImageUrl(slide?.cover?.data?.attributes?.url)}
+                  alt={""}
                   width={200}
                   height={112.5}
                   className={`rounded-lg shadow-lg relative z-0 w-full max-w-[130px] sm:min-w-[200px] sm:max-w-[200px] aspect-[290/204]`}
@@ -213,14 +224,22 @@ export default function ReportSwiper({
           text={isMobile ? <ChevronLeft /> : <ChevronUp />}
           type="chevron"
           onClick={handlePrevSlide}
+          disabled={currentSlide === 1}
         />
-        <p className="text-sm">
-          {toMongolianNumeral(currentSlide)}/{toMongolianNumeral(slides.length)}
-        </p>
+        <div className="text-center">
+          <p className="text-sm font-bold">
+            {toMongolianNumeral(currentSlide)}/
+            {toMongolianNumeral(slides.length)}
+          </p>
+          {slides.length > 5 && (
+            <p className="text-xs text-gray-500">ᠦᠷᠭᠦᠯᠵᠢᠯᠡᢉᠦ</p>
+          )}
+        </div>
         <Button
           text={isMobile ? <ChevronRight /> : <ChevronDown />}
           type="chevron"
           onClick={handleNextSlide}
+          disabled={currentSlide === slides.length}
         />
       </div>
     </div>

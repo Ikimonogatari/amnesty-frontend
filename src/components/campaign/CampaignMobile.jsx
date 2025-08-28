@@ -104,10 +104,10 @@ export default function CampaignMobile() {
   return (
     <div className="h-full w-full block sm:hidden">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/campaign/header-img.png"
         alt="Campaign Page Header"
         width="100%"
-        title="ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠬᠦᠷᠦᠭᠡᠯᠭᠡ"
+        title="ᠪᠢᠳᠡ ᠶᠠᠭᠤᠮ ᠬᠢᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ?"
       />
 
       <div className="h-full p-4 flex flex-col gap-7">

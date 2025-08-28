@@ -8,10 +8,10 @@ export default function YouthDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 overflow-x-auto w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/participation/youthhumanrights/zaluuchuudbulegfull1.png"
         alt="Youth Page Header"
         width="90rem"
-        title="ᠵᠠᠯᠠᠭᠤᠴᠤᠳ ᠤ᠋ᠨ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ"
+        title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠵᠠᠯᠤᠴᠢᠳ"
       />
 
       <div className="h-full p-4 flex gap-20">

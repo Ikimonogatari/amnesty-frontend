@@ -6,10 +6,10 @@ import { toMongolianNumbers } from "@/utils/fetcher";
 
 // Sample data for top 5 provinces - this should come from API in real implementation
 const top5Provinces = [
-  { provinceName: "Улаанбаатар", count: 25, percent: 25.0 },
-  { provinceName: "Төв", count: 18, percent: 18.0 },
-  { provinceName: "Орхон", count: 16, percent: 16.0 },
-  { provinceName: "Дархан-Уул", count: 14, percent: 14.0 },
+  { provinceName: "ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ", count: 25, percent: 25.0 },
+  { provinceName: "ᠲᠦᠪ", count: 18, percent: 18.0 },
+  { provinceName: "ᠣᠷᠬᠣᠨ", count: 16, percent: 16.0 },
+  { provinceName: "ᠳᠠᠷᠬᠠᠨ ᠤᠤᠯ", count: 14, percent: 14.0 },
 ];
 
 // Arch visualization data - all yellow dots
@@ -47,10 +47,10 @@ export default function EyeDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/participation/humanrighteye/header-img.png"
         alt="Youth Page Header"
         width="90rem"
-        title="ᠵᠠᠯᠠᠭᠤᠴᠤᠳ ᠤ᠋ᠨ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ"
+        title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠦᠳᠦ"
       />
       <div className="h-full p-4 flex gap-20">
         <div className="flex gap-10">

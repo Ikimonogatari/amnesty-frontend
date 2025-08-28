@@ -3,6 +3,7 @@ import Button from "@/components/common/Button";
 import BannerSlider from "@/components/common/BannerSlider";
 import GridLayout from "@/components/common/GridLayout";
 import RelatedItems from "@/components/common/RelatedItems";
+import StaticHeader from "@/components/common/StaticHeader";
 import {
   ChevronLeft,
   ChevronRight,
@@ -160,9 +161,37 @@ export default function NewsDesktop() {
     }
   };
 
+  // Get static header image and title based on active category (matching old web exactly)
+  const getHeaderData = () => {
+    switch (activeCategory) {
+      case "statements":
+        return {
+          image: "/images/news/header-img-statements.jpg",
+          title: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠢᠷ ᠰᠤᠤᠷᠢ",
+        };
+      case "good_news":
+        return {
+          image: "/images/news/header-img-good-news.jpg",
+          title: "ᠣᠨᠴᠠᠯᠠᠬᠤ ᠮᠡᠳᠡᠭᠡ",
+        };
+      default:
+        return {
+          image: "/images/news/image-news-header.jpg",
+          title: "ᠮᠡᠳᠡᠭᠡ",
+        };
+    }
+  };
+
+  const headerData = getHeaderData();
+
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0">
-      <BannerSlider width="90rem" useDynamic={true} />
+      <StaticHeader
+        image={headerData.image}
+        alt="News Page Header"
+        width="90rem"
+        title={headerData.title}
+      />
       <div className="h-full p-4">
         <div className="h-full flex gap-10">
           {/* Category Navigation Buttons */}

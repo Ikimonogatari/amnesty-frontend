@@ -5,10 +5,10 @@ export default function HistoryMobile() {
     <div className="w-full min-h-screen bg-white block sm:hidden">
       <div className="relative w-full h-[40vh]">
         <StaticHeader
-          image="/images/news1.png"
+          image="/images/aboutSub2/header-img.png"
           alt="History Page Header"
           width="100%"
-          title="ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ ᠦ᠋ᠨ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ"
+          title="ᠮᠡᠢ ᠲᠦᠦᠬᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ"
         />
       </div>
 

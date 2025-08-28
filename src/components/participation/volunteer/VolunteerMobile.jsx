@@ -6,10 +6,10 @@ export default function VolunteerMobile() {
   return (
     <div className="h-full w-full block sm:hidden p-4">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/participation/volunteer/header-img.png"
         alt="Youth Page Header"
         width="100%"
-        title="ᠵᠠᠯᠠᠭᠤᠴᠤᠳ ᠤ᠋ᠨ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ"
+        title="ᠳᠡᠯᠬᠡᠢ ᠶᠢᠷᠲᠡᠨ ᠦ ᠶᠡᠷ ᠳᠡ ᠶᠠᠪᠤ ᠣᠳᠣᠣ"
       />
       <div className="flex flex-col gap-7">
         {volunteerItems.map((item) => (

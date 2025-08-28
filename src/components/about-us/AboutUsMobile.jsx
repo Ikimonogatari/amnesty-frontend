@@ -10,10 +10,10 @@ export default function AboutUsMobile() {
   return (
     <div className="h-full flex flex-col gap-7 w-auto flex-shrink-0 sm:hidden">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/about/header-img.jpg"
         alt="About Us Page Header"
         width="100%"
-        title="ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠱᠢᠨ᠋ᠯ ᠨᠢ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠬᠤ"
+        title="ᠪᠢᠳᠡᠨᠢ ᠲᠤᠬᠠᠢ"
       />
       <div className="max-h-[200px] h-full p-2 flex gap-2">
         <h2
@@ -168,7 +168,7 @@ export default function AboutUsMobile() {
                     )}
                     {i === 5 && (
                       <a
-                        href="/about-us/history"
+                        href="/about/2"
                         className="mt-2 border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all mx-auto"
                         style={{
                           writingMode: "vertical-lr",

@@ -5,36 +5,22 @@ import { bannerImages } from "@/constants/bannerImages";
 import ReportSwiper from "./ReportSwiper";
 import { useRouter } from "next/router";
 import StaticHeader from "@/components/common/StaticHeader";
+import { useGetReportsQuery } from "@/redux/services/apiService";
 
 export default function ReportMobile() {
-  const [reports, setReports] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchReports = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch(
-          `${
-            process.env.NEXT_PUBLIC_API_URL || 'http://152.42.244.47:1337/api'
-          }/reports?populate=*`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setReports(data.data || []);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Use RTK Query for better caching and state management
+  const {
+    data: reportsData,
+    isLoading: loading,
+    error: queryError,
+  } = useGetReportsQuery({
+    pageSize: 100, // Get all reports
+  });
 
-    fetchReports();
-  }, []);
+  const reports = reportsData || [];
+  const error = queryError?.message;
 
   if (loading) {
     return (
@@ -73,10 +59,10 @@ export default function ReportMobile() {
   return (
     <div className="block sm:hidden">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/aboutSub4/header-img.png"
         alt="Report Page Header"
         width="100%"
-        title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠶᠢᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ"
+        title="ᠲᠠᠶᠢᠯᠠᠨ"
       />
       <div className="flex flex-col gap-8 h-full">
         <ReportSwiper

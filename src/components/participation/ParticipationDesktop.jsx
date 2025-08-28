@@ -17,10 +17,10 @@ export default function ParticipationDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0 min-w-screen">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/participation/header-img.png"
         alt="Participation Page Header"
         width="90rem"
-        title="ᠣᠷᠣᠯᠴᠠᠬᠤ ᠬᠤᠪᠢ"
+        title="ᠲᠠᠨ ᠤ ᠣᠷᠣᠯᠴᠠᠭᠠᠨ"
       />
 
       <div className="h-full p-4 flex gap-20">

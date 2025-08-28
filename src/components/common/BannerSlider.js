@@ -224,41 +224,83 @@ export default function BannerSlider({
                 }}
               />
               {image.caption && (
-                <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white max-w-xs rounded-xl gap-8 p-16">
-                  <h3
-                    className="text-2xl font-bold mb-3"
-                    style={{
-                      writingMode: "vertical-rl",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    {image.caption.title}
-                  </h3>
-                  <p
-                    className="text-gray-200"
-                    style={{
-                      writingMode: "vertical-rl",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    {image.caption.description}
-                  </p>
-                  {image.link ? (
-                    <a href={image.link}>
+                <>
+                  {/* Desktop Caption */}
+                  <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white max-w-xs rounded-xl gap-8 p-16">
+                    <h3
+                      className="text-2xl font-bold mb-3"
+                      style={{
+                        writingMode: "vertical-rl",
+                        textOrientation: "upright",
+                      }}
+                    >
+                      {image.caption.title}
+                    </h3>
+                    <p
+                      className="text-gray-200"
+                      style={{
+                        writingMode: "vertical-rl",
+                        textOrientation: "upright",
+                      }}
+                    >
+                      {image.caption.description}
+                    </p>
+                    {image.link ? (
+                      <a href={image.link}>
+                        <Button
+                          text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
+                          type="primary"
+                          className="text-black h-40"
+                        />
+                      </a>
+                    ) : (
                       <Button
                         text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
                         type="primary"
                         className="text-black h-40"
                       />
-                    </a>
-                  ) : (
-                    <Button
-                      text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
-                      type="primary"
-                      className="text-black h-40"
-                    />
-                  )}
-                </div>
+                    )}
+                  </div>
+
+                  {/* Mobile Caption */}
+                  <div className="md:hidden absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4">
+                    <div className="flex items-end justify-between gap-4">
+                      <div className="flex-1">
+                        <h3
+                          className="text-lg font-bold mb-2 line-clamp-2"
+                          style={{
+                            writingMode: "vertical-lr",
+                            textOrientation: "upright",
+                            maxHeight: "60px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          {image.caption.title}
+                        </h3>
+                        <p
+                          className="text-sm text-gray-200 line-clamp-2"
+                          style={{
+                            writingMode: "vertical-lr",
+                            textOrientation: "upright",
+                            maxHeight: "40px",
+                            overflow: "hidden",
+                          }}
+                        >
+                          {image.caption.description}
+                        </p>
+                      </div>
+                      {image.link && (
+                        <a href={image.link} className="flex-shrink-0">
+                          <Button
+                            text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
+                            type="primary"
+                            className="text-black text-sm px-3 py-2 h-auto"
+                          />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </>
               )}
             </div>
           ))}

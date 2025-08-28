@@ -110,10 +110,10 @@ export default function CampaignDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0 min-w-screen">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/campaign/header-img.png"
         alt="Campaign Page Header"
         width="90rem"
-        title="ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠬᠦᠷᠦᠭᠡᠯᠭᠡ"
+        title="ᠪᠢᠳᠡ ᠶᠠᠭᠤᠮ ᠬᠢᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ?"
       />
 
       <div className="h-full p-4 flex gap-32">

@@ -66,10 +66,10 @@ export default function FaqDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/faq/header-img.jpg"
         alt="FAQ Page Header"
         width="90rem"
-        title="ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ"
+        title="ᠲᠦᠭᠡᠮᠡᠯ ᠠᠰᠤᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ"
       />
       <div className="flex gap-6 max-h-screen overflow-y-auto p-4">
         {faqItems.map((item, index) => (

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Button from "@/components/common/Button";
-import StaticHeader from "@/components/common/StaticHeader";
+
 import { getImageUrl } from "@/utils/fetcher";
 
 export default function WriteForRightsDesktop({ actions = [], error = null }) {
@@ -87,13 +87,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
 
   return (
     <div className="h-full hidden sm:flex overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
-      {/* Header Section */}
-      <StaticHeader
-        imageSrc="/images/campaign/writeforrights-header.jpg"
-        alt="ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ"
-        title="ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ"
-      />
-
       {/* Actions List Section */}
       <div className="bg-[#43a6ac] p-6 flex flex-row gap-4 flex-shrink-0">
         <div className="flex flex-row gap-2">

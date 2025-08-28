@@ -197,9 +197,37 @@ export default function NewsMobile() {
     );
   }
 
+  // Get static header image and title based on active category (matching old web exactly)
+  const getHeaderData = () => {
+    switch (activeCategory) {
+      case "statements":
+        return {
+          image: "/images/news/header-img-statements.jpg",
+          title: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠢᠷ ᠰᠤᠤᠷᠢ",
+        };
+      case "good_news":
+        return {
+          image: "/images/news/header-img-good-news.jpg",
+          title: "ᠣᠨᠴᠠᠯᠠᠬᠤ ᠮᠡᠳᠡᠭᠡ",
+        };
+      default:
+        return {
+          image: "/images/news/image-news-header.jpg",
+          title: "ᠮᠡᠳᠡᠭᠡ",
+        };
+    }
+  };
+
+  const headerData = getHeaderData();
+
   return (
     <div className="block sm:hidden h-full overflow-y-auto overflow-x-hidden">
-      <BannerSlider width="90rem" useDynamic={true} />
+      <StaticHeader
+        image={headerData.image}
+        alt="News Page Header"
+        width="100%"
+        title={headerData.title}
+      />
       <div className="p-4 flex gap-5">
         {/* Category Buttons */}
         <div className="flex flex-col gap-2">

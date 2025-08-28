@@ -274,7 +274,7 @@ export default function MemberDesktop({
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/members/header-img.jpg"
         alt="Member Page Header"
         width="90rem"
         title="ᠭᠢᠰᠦᠦᠨᠴᠢᠯᠡᠯ"

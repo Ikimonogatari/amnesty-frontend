@@ -85,7 +85,7 @@ export default function VideosIndex() {
           <StaticHeader
             title="ᠸᠢᠳᠧᠣ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/videos/header-img-video.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -118,7 +118,7 @@ export default function VideosIndex() {
           <StaticHeader
             title="ᠸᠢᠳᠧᠣ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
-            backgroundImage="/images/news1.png"
+            image="/images/videos/header-img-video.jpg"
           />
 
           <div className="p-4">

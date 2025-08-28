@@ -82,10 +82,10 @@ export default function StructureManagersDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 overflow-x-auto w-auto flex-shrink-0 max-h-screen sm:overflow-y-hidden min-w-screen">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/aboutSub1/managers/header-img.png"
         alt="Managers Page Header"
         width="90rem"
-        title="ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ"
+        title="ᠤᠳᠤᠷᠢᠳᠠᠬᠤ ᠵᠥᠪᠯᠥᠯ"
       />
 
       <div className="flex gap-12 p-4 h-full">

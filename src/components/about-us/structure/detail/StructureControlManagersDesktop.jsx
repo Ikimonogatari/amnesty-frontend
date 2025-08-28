@@ -34,7 +34,7 @@ export default function StructureControlManagersDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 overflow-x-auto w-auto flex-shrink-0 max-h-screen sm:overflow-y-hidden min-w-screen">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/aboutSub1/managers/header-img.png"
         alt="Control Managers Page Header"
         width="90rem"
         title="ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠯᠡᠯ"

@@ -714,6 +714,92 @@ export const statementsService = {
   },
 };
 
+// Company Works Service - For campaigns
+export const companyWorksService = {
+  async getCompanyWorks(params = {}) {
+    try {
+      const queryParams = {
+        populate: "*",
+        sort: "publishedAt:desc",
+        locale: "mn",
+        "pagination[page]": params.page || 1,
+        "pagination[pageSize]": params.pageSize || 10,
+        ...params,
+      };
+
+      const endpoint = buildEndpointUrl(
+        API_ENDPOINTS.COMPANY_WORKS,
+        queryParams
+      );
+      const response = await Fetcher(endpoint);
+      return formatStrapiResponse(response);
+    } catch (error) {
+      console.error("Error fetching company works:", error);
+      throw error;
+    }
+  },
+
+  async getCompanyWorkById(id) {
+    try {
+      const endpoint = buildEndpointUrl(
+        `${API_ENDPOINTS.COMPANY_WORKS}/${id}`,
+        {
+          populate: "*",
+          locale: "mn",
+        }
+      );
+      const response = await Fetcher(endpoint);
+      return formatStrapiResponse(response);
+    } catch (error) {
+      console.error("Error fetching company work:", error);
+      throw error;
+    }
+  },
+};
+
+// Company Work Features Service - For campaign features
+export const companyWorkFeaturesService = {
+  async getCompanyWorkFeatures(params = {}) {
+    try {
+      const queryParams = {
+        populate: "*",
+        sort: "publishedAt:desc",
+        locale: "mn",
+        "pagination[page]": params.page || 1,
+        "pagination[pageSize]": params.pageSize || 10,
+        ...params,
+      };
+
+      const endpoint = buildEndpointUrl(
+        API_ENDPOINTS.COMPANY_WORK_FEATURES,
+        queryParams
+      );
+      const response = await Fetcher(endpoint);
+      return formatStrapiResponse(response);
+    } catch (error) {
+      console.error("Error fetching company work features:", error);
+      throw error;
+    }
+  },
+
+  async getCompanyWorkFeatureById(id) {
+    try {
+      const endpoint = buildEndpointUrl(
+        `${API_ENDPOINTS.COMPANY_WORK_FEATURES}/${id}`,
+        {
+          populate: "*",
+          locale: "mn",
+        }
+      );
+      const response = await Fetcher(endpoint);
+      return formatStrapiResponse(response);
+    } catch (error) {
+      console.error("Error fetching company work feature:", error);
+      throw error;
+    }
+  },
+};
+
 // Export all services
 export default {
   posts: postsService,
@@ -724,6 +810,8 @@ export default {
   stories: storiesService,
   reports: reportsService,
   campaigns: campaignsService,
+  companyWorks: companyWorksService,
+  companyWorkFeatures: companyWorkFeaturesService,
   settings: settingsService,
   merch: merchService,
   faqs: faqsService,

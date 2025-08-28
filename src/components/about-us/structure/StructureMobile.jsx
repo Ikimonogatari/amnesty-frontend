@@ -9,10 +9,10 @@ export default function StructureMobile() {
     <div className="w-full block sm:hidden">
       <div className="relative w-full h-[40hv]">
         <StaticHeader
-          image="/images/news1.png"
+          image="/images/aboutSub1/header-img.png"
           alt="Structure Page Header"
           width="100%"
-          title="ᠵᠦᠢᠯ ᠦ᠋ᠨ ᠪᠠᠢᠭᠤᠯᠤᠯᠲᠠ"
+          title="ᠪᠠᠶᠢᠭᠤᠯᠤᠯ ᠤᠨ ᠪᠦᠲᠦᠴᠡ"
         />
       </div>
       <div className="flex flex-col gap-12 p-4 h-full">

@@ -2,43 +2,43 @@
 export const heroBannerConfigs = {
   campaign: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "БИД ЮУ ХИЙДЭГ ВЭ?",
+    title: "ᠪᠢᠳᠡ ᠶᠠᠭᠤᠮ ᠬᠢᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ?",
     description:
       "Бид шударга бус явдалтай тэмцэж, хүний эрхийг хөхүүлэн дэмжих дэлхий нийтийн хөдөлгөөн юм.",
   },
   news: {
-    backgroundImage: "/images/banners/news-header.jpg",
-    title: "МЭДЭЭ МЭДЭЭЛЭЛ",
+    backgroundImage: "/images/news/header-img.jpg",
+    title: "ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠭᠦᠯᠡᠯ",
   },
   about: {
-    backgroundImage: "/images/banners/about-header.png",
-    title: "БИДНИЙ ТУХАЙ",
+    backgroundImage: "/images/about/header-img.jpg",
+    title: "ᠪᠢᠳᠡᠨᠢ ᠲᠤᠬᠠᠢ",
   },
   donation: {
-    backgroundImage: "/images/banners/donation-header.jpg",
-    title: "ХҮНИЙ ЭРХИЙН ТӨЛӨӨ ХАНДИВ ӨГӨХ",
+    backgroundImage: "/images/donate/header-img-donation.jpg",
+    title: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠬᠠᠨᠳᠢᠪ ᠥᠭᠦᠬᠦ",
     description:
       "Монголын Эмнести Интернэшнл нь аливаа улс төрийн үзэл суртал, шашин шүтлэгээс хараат бусаар үйл ажиллагаагаа явуулдаг бөгөөд засгийн газрууд, улс төрийн намуудаас кампанит ажил, судалгаа хийх зорилгоор санхүүжилт авдаггүй. Иймээс таны хандив бидний хүний эрхийн төлөөх тэмцэлд маш чухал юм.",
   },
   participation: {
-    backgroundImage: "/images/banners/campaign-header.jpg", // reusing campaign image as placeholder
-    title: "ТАНЫ ОРОЛЦОО",
+    backgroundImage: "/images/participation/header-img.png",
+    title: "ᠲᠠᠨ ᠤ ᠣᠷᠣᠯᠴᠠᠭᠠᠨ",
   },
   right: {
     backgroundImage: "/images/banners/campaign-header.jpg", // reusing campaign image as placeholder
-    title: "ХҮНИЙ ЭРХ",
+    title: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ",
   },
   member: {
-    backgroundImage: "/images/banners/about-header.png", // reusing about image as placeholder
-    title: "ГИШҮҮНЧЛЭЛ",
+    backgroundImage: "/images/members/header-img.jpg",
+    title: "ᠭᠢᠰᠦᠨᠴᠢᠯᠡᠯ",
   },
   shop: {
     backgroundImage: "/images/banners/campaign-header.jpg", // reusing campaign image as placeholder
-    title: "ДЭЛГҮҮР",
+    title: "ᠳᠡᠯᠭᠦᠦᠷ",
   },
   writeforrights: {
     backgroundImage: "/images/banners/campaign-header.jpg", // reusing campaign image as placeholder
-    title: "ЭРХИЙН ТӨЛӨӨ БИЧИХ",
+    title: "ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠢᠴᠢᠬᠦ",
   },
 };
 
@@ -46,58 +46,58 @@ export const heroBannerConfigs = {
 export const campaignBanners = {
   1: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ЗОРИГТОН КАМПАНИТ АЖИЛ",
+    title: "ᠵᠣᠷᠢᠭᠲᠣᠨ ᠬᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ",
   },
   2: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ТЕХНОЛОГИ БА ХҮНИЙ ЭРХ",
+    title: "ᠲᠡᠬᠨᠣᠯᠣᠭᠢ ᠪᠠ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ",
   },
   3: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ЭРСДЭЛД БУЙ ХҮМҮҮС",
+    title: "ᠡᠷᠰᠳᠡᠯᠳ ᠪᠤᠶ ᠬᠦᠮᠦᠰ",
   },
   4: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ЭМЭГТЭЙЧҮҮДИЙН ЭРХ",
+    title: "ᠡᠮᠡᠭᠲᠡᠶᠴᠦᠦᠳ ᠤᠨ ᠡᠷᠬᠡ",
   },
   5: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ХҮНИЙ ЭРХИЙН БОЛОВСРОЛ",
+    title: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ",
   },
   6: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ЦААЗААР АВАХ ЯЛЫН ЭСРЭГ",
+    title: "ᠴᠠᠠᠵᠠᠭᠠᠷ ᠠᠪᠠᠬᠤ ᠶᠠᠯᠤᠨ ᠡᠰᠦᠷᠭᠡ",
   },
   7: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ХҮНИЙГ ХҮНДЭЛ",
+    title: "ᠬᠦᠮᠦᠨ ᠢ ᠬᠦᠨᠳᠡᠯ",
   },
   8: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ОРОН БАЙРТАЙ БАЙХ ЭРХ",
+    title: "ᠣᠷᠣᠨ ᠪᠠᠶᠢᠷᠲᠠᠢ ᠪᠠᠶᠢᠬᠤ ᠡᠷᠬᠡ",
   },
   9: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ДҮРВЭГСЭД БА ЦАГААЧДЫН ЭРХ",
+    title: "ᠳᠦᠷᠪᠡᠭᠰᠡᠳ ᠪᠠ ᠴᠠᠭᠠᠴᠢᠨ ᠤ ᠡᠷᠬᠡ",
   },
   10: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ҮЗЭЛ БОДЛОО ЧӨЛӨӨТЭЙ ИЛЭРХИЙЛЭХ ЭРХ",
+    title: "ᠦᠵᠡᠯ ᠪᠣᠳᠣᠯᠠᠭ᠎ᠠ ᠴᠦᠯᠦᠭᠲᠡᠶ ᠢᠯᠡᠷᠡᠬᠦᠢᠯᠡᠬᠦ ᠡᠷᠬᠡ",
   },
   11: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "МИНИЙ БИЕ МИНИЙ ЭРХ",
+    title: "ᠮᠢᠨᠤ ᠪᠢᠶ᠎ᠡ ᠮᠢᠨᠤ ᠡᠷᠬᠡ",
   },
   12: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ЭРҮҮДЭН ШҮҮХИЙГ ЗОГСООЁ",
+    title: "ᠡᠷᠦᠦᠳᠡᠨ ᠰᠦᠦᠬᠡᠢᠢᠭ ᠵᠣᠭᠰᠣᠣᠶ᠎ᠣ",
   },
   13: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ЭДИЙН ЗАСАГ, НИЙГЭМ, СОЁЛЫН ЭРХИЙН ТӨЛӨӨ",
+    title: "ᠡᠳᠡ ᠶᠢᠨ ᠵᠠᠰᠠᠯ, ᠨᠢᠶᠭᠡᠮ, ᠰᠦᠭᠦᠯ ᠦᠨ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ",
   },
   14: {
     backgroundImage: "/images/banners/campaign-header.jpg",
-    title: "ХҮНИЙГ ХҮНДЭЛ",
+    title: "ᠬᠦᠮᠦᠨ ᠢ ᠬᠦᠨᠳᠡᠯ",
   },
 };

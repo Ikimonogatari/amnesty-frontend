@@ -7,7 +7,7 @@ export default function StructureDiagram() {
       <div className="z-10 flex gap-[202px] absolute top-[260px] left-[330px] w-full h-full">
         <div className="flex flex-col gap-[390px]">
           <Link
-            href="/about-us/structure/managers"
+            href="/about/1/managers"
             className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
@@ -16,7 +16,7 @@ export default function StructureDiagram() {
             </p>
           </Link>
           <Link
-            href="/about-us/structure/control-managers"
+            href="/about/1/control-managers"
             className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
@@ -26,7 +26,7 @@ export default function StructureDiagram() {
           </Link>
         </div>
         <Link
-          href="/about-us/structure/chapter-members"
+          href="/about/1/chapter-members"
           className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100 mt-[245px]"
           style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
         >
@@ -35,7 +35,7 @@ export default function StructureDiagram() {
           </p>
         </Link>
         <Link
-          href="/about-us/structure/chapter-members"
+          href="/about/1/chapter-members"
           className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100 mt-[255px]"
           style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
         >
@@ -45,7 +45,7 @@ export default function StructureDiagram() {
         </Link>
         <div className="flex flex-col gap-[390px]">
           <Link
-            href="/about-us/structure/chapter-members"
+            href="/about/1/chapter-members"
             className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
@@ -54,7 +54,7 @@ export default function StructureDiagram() {
             </p>
           </Link>
           <Link
-            href="/about-us/structure/chapter-members"
+            href="/about/1/chapter-members"
             className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >

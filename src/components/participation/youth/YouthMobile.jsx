@@ -10,10 +10,10 @@ export default function YouthDesktop() {
   return (
     <div className="h-full w-full block sm:hidden">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/participation/youthhumanrights/zaluuchuudbulegfull1.png"
         alt="Youth Page Header"
         width="100%"
-        title="ᠵᠠᠯᠠᠭᠤᠴᠤᠳ ᠤ᠋ᠨ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ"
+        title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠵᠠᠯᠤᠴᠢᠳ"
       />
       <div className="h-full flex flex-col gap-7">
         <div className="flex flex-row gap-2 max-h-[212px] p-4">
