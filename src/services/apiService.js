@@ -168,11 +168,19 @@ export const eventsService = {
     try {
       const queryParams = {
         populate: "*",
-        sort: "start_date:asc",
-        locale: "mn",
+        sort: params.sort || "start_date:asc",
+        locale: params.locale || "mn",
         "pagination[page]": params.page || 1,
-        "pagination[pageSize]": params.pageSize || 10,
+        "pagination[pageSize]": params.pageSize || 100, // Increase default to get more events
+        ...params, // Include all other params directly (for date filters)
       };
+
+      // Add any filters from params.filters if they exist
+      if (params.filters) {
+        Object.keys(params.filters).forEach((key) => {
+          queryParams[key] = params.filters[key];
+        });
+      }
 
       const endpoint = buildEndpointUrl(API_ENDPOINTS.EVENTS, queryParams);
       const response = await Fetcher(endpoint);

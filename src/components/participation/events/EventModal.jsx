@@ -99,7 +99,7 @@ export default function EventModal({
                   textOrientation: "upright",
                 }}
               >
-                {selectedEvent.address || "ᠲᠣᠭᠲᠠᠭᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ"}
+                {selectedEvent.location || "ᠲᠣᠭᠲᠠᠭᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ"}
               </p>
             </div>
             <div className="flex flex-col items-center gap-2">

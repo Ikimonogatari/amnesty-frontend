@@ -3,7 +3,7 @@ import { eventsService } from "@/services/apiService";
 import EventModal from "./EventModal";
 
 export default function EventsDesktop() {
-  const [currentDate, setCurrentDate] = useState(new Date(2025, 5, 1)); // June 2025 to match test event
+  const [currentDate, setCurrentDate] = useState(new Date()); // Current date
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [events, setEvents] = useState({});
@@ -71,25 +71,41 @@ export default function EventsDesktop() {
       const startDate = new Date(year, month, 1);
       const endDate = new Date(year, month + 1, 0);
 
+      // Format dates for API (YYYY-MM-DD)
+      const startDateStr = startDate.toISOString().split("T")[0];
+      const endDateStr = endDate.toISOString().split("T")[0];
+
+      console.log(
+        `Fetching events for ${year}-${
+          month + 1
+        }: ${startDateStr} to ${endDateStr}`
+      );
+
+      // Simple approach: get events that start before end of month and end after start of month
+      // This will capture all events that overlap with the current month
       const params = {
-        "filters[start_date][$gte]": startDate.toISOString().split("T")[0],
-        "filters[start_date][$lte]": endDate.toISOString().split("T")[0],
+        "filters[start_date][$lte]": endDateStr,
+        "filters[end_date][$gte]": startDateStr,
         sort: "start_date:asc",
         populate: "*",
         locale: "mn",
+        "pagination[pageSize]": 100, // Get more events
       };
 
       const response = await eventsService.getEvents(params);
+      console.log("Events API response:", response);
 
       if (response && (response.data || Array.isArray(response))) {
         const eventData = response.data || response;
+        console.log(`Found ${eventData.length} events for this month`);
         processEventsData(eventData);
       } else {
-        // No events found for this month
+        console.log("No events found for this month");
         setEvents({});
       }
     } catch (err) {
-      setError(err.message);
+      console.error("Error fetching events:", err);
+      setError(err.message || "Failed to fetch events");
       // Clear events on error
       setEvents({});
     } finally {
@@ -101,70 +117,93 @@ export default function EventsDesktop() {
   const processEventsData = (eventData) => {
     const eventsMap = {};
 
+    if (!Array.isArray(eventData)) {
+      console.warn("Event data is not an array:", eventData);
+      return;
+    }
+
+    console.log("Processing events data:", eventData);
+
     eventData.forEach((event, index) => {
-      // Handle both possible event structures
-      const eventAttrs = event.attributes || event;
+      try {
+        // Handle both possible event structures
+        const eventAttrs = event.attributes || event;
 
-      const startDate = new Date(eventAttrs.start_date);
-      const endDate = new Date(eventAttrs.end_date);
-      const dateKey = startDate.toISOString().split("T")[0];
-
-      // For events in 2025, use a reference date in 2025 for comparison
-      const currentDate = new Date();
-      const referenceDate =
-        currentDate.getFullYear() < 2025 ? new Date(2025, 0, 1) : currentDate;
-      const isPastEvent = endDate < referenceDate;
-
-      // Color coding based on event type and status
-      let eventColor = "bg-[#D9D9D9]"; // Default/past events
-      if (!isPastEvent) {
-        if (eventAttrs.members_only) {
-          eventColor = "bg-[#FB00FF]"; // Members only - purple
-        } else {
-          eventColor = "bg-[#FFFF00]"; // Public events - yellow
+        if (!eventAttrs.start_date || !eventAttrs.end_date) {
+          console.warn("Event missing required dates:", eventAttrs);
+          return;
         }
-      }
 
-      const eventObj = {
-        id: event.id,
-        title: eventAttrs.title,
-        color: eventColor,
-        type: eventAttrs.event_type || "ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ",
-        startTime: formatTime(eventAttrs.start_date),
-        endTime: formatTime(eventAttrs.end_date),
-        description: eventAttrs.body || "",
-        location: eventAttrs.address || "",
-        membersOnly: eventAttrs.members_only || false,
-        isPast: isPastEvent,
-        startDate: eventAttrs.start_date,
-        endDate: eventAttrs.end_date,
-      };
+        const startDate = new Date(eventAttrs.start_date);
+        const endDate = new Date(eventAttrs.end_date);
 
-      // Handle multiple events on the same date
-      if (eventsMap[dateKey]) {
-        // For now, keep the first event (could be enhanced to show multiple)
-      } else {
-        eventsMap[dateKey] = eventObj;
-      }
+        // Skip invalid dates
+        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+          console.warn("Invalid date found in event:", eventAttrs);
+          return;
+        }
 
-      // Also add events for multi-day events (if end date is different)
-      if (startDate.toDateString() !== endDate.toDateString()) {
-        const currentDateIter = new Date(startDate);
-        currentDateIter.setDate(currentDateIter.getDate() + 1);
+        const dateKey = startDate.toISOString().split("T")[0];
 
-        while (currentDateIter <= endDate) {
-          const multiDayKey = currentDateIter.toISOString().split("T")[0];
-          if (!eventsMap[multiDayKey]) {
-            eventsMap[multiDayKey] = {
-              ...eventObj,
-              title: `${eventObj.title} (continued)`,
-            };
+        // Use current date for comparison (removed 2025 specific logic)
+        const currentDate = new Date();
+        const isPastEvent = endDate < currentDate;
+
+        // Color coding based on event type and status
+        let eventColor = "bg-[#D9D9D9]"; // Default/past events
+        if (!isPastEvent) {
+          if (eventAttrs.members_only) {
+            eventColor = "bg-[#FB00FF]"; // Members only - purple
+          } else {
+            eventColor = "bg-[#FFFF00]"; // Public events - yellow
           }
-          currentDateIter.setDate(currentDateIter.getDate() + 1);
         }
+
+        const eventObj = {
+          id: event.id,
+          title: eventAttrs.title || "Unnamed Event",
+          color: eventColor,
+          type: eventAttrs.event_type || "ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ",
+          startTime: formatTime(eventAttrs.start_date),
+          endTime: formatTime(eventAttrs.end_date),
+          description: eventAttrs.body || "",
+          location: eventAttrs.address || "",
+          membersOnly: eventAttrs.members_only || false,
+          isPast: isPastEvent,
+          startDate: eventAttrs.start_date,
+          endDate: eventAttrs.end_date,
+        };
+
+        // Handle multiple events on the same date
+        if (eventsMap[dateKey]) {
+          // For now, keep the first event (could be enhanced to show multiple)
+          console.log(`Multiple events on ${dateKey}, keeping first one`);
+        } else {
+          eventsMap[dateKey] = eventObj;
+        }
+
+        // Also add events for multi-day events (if end date is different)
+        if (startDate.toDateString() !== endDate.toDateString()) {
+          const currentDateIter = new Date(startDate);
+          currentDateIter.setDate(currentDateIter.getDate() + 1);
+
+          while (currentDateIter <= endDate) {
+            const multiDayKey = currentDateIter.toISOString().split("T")[0];
+            if (!eventsMap[multiDayKey]) {
+              eventsMap[multiDayKey] = {
+                ...eventObj,
+                title: `${eventObj.title} (continued)`,
+              };
+            }
+            currentDateIter.setDate(currentDateIter.getDate() + 1);
+          }
+        }
+      } catch (error) {
+        console.error("Error processing event:", event, error);
       }
     });
 
+    console.log("Processed events map:", eventsMap);
     setEvents(eventsMap);
   };
 
@@ -246,7 +285,13 @@ export default function EventsDesktop() {
             isLastInRow ? "" : "border-r"
           }`}
         >
-          <div className="absolute top-2 left-2 text-xs opacity-50">
+          <div
+            className="absolute top-2 left-2 text-xs opacity-50"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
             {daysOfWeek[(((firstDay - 1 - i) % 7) + 7) % 7]}
           </div>
           <div
