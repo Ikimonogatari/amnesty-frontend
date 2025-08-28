@@ -142,11 +142,11 @@ export default function YouthDesktop() {
           </h2>
           <div className="relative z-0">
             <img
-              src="/images/dummy-bg.png"
+              src="/images/participation/youthhumanrights/youthcollective_new.jpg"
               alt=""
               className="h-full w-full z-0"
             />
-            <div className="w-full h-full flex justify-center items-center gap-5 absolute top-0 left-0">
+            <div className="w-full h-full flex justify-center items-center gap-5 absolute top-0 left-0 bg-black/20 backdrop-blur-sm">
               <h2
                 className="text-white text-2xl font-bold z-10"
                 style={{
