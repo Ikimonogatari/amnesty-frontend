@@ -5,6 +5,7 @@ import { bannerImages } from "@/constants/bannerImages";
 import { useSubmitContactFormMutation } from "../../../redux/services/apiService";
 import toast from "react-hot-toast";
 import StaticHeader from "@/components/common/StaticHeader";
+import ContactBanner from "@/components/common/ContactBanner";
 import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function ContactMobile() {
@@ -99,6 +100,9 @@ export default function ContactMobile() {
         width="100%"
         title="ᠬᠣᠯᠪᠠᠭᠠᠨ ᠪᠠᠷᠢᠬᠤ"
       />
+
+      <ContactBanner isMobile={true} />
+
       <div className="flex gap-10 max-h-[150px] overflow-x-auto">
         <div className="flex gap-2">
           <h2

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import StaticHeader from "@/components/common/StaticHeader";
+import ContactBanner from "@/components/common/ContactBanner";
 import { useSubmitContactFormMutation } from "../../../redux/services/apiService";
 import toast from "react-hot-toast";
 import { Turnstile } from "@marsidev/react-turnstile";
@@ -97,6 +98,9 @@ export default function ContactDesktop() {
         width="90rem"
         title="ᠬᠣᠯᠪᠠᠭᠠᠨ ᠪᠠᠷᠢᠬᠤ"
       />
+
+      <ContactBanner isMobile={false} />
+
       <div className="flex gap-16 p-4 h-full">
         <div className="flex gap-7">
           <h2
@@ -334,7 +338,7 @@ export default function ContactDesktop() {
                               field.onChange(option.value);
                               setIsDropdownOpen(false);
                             }}
-                            className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 h-full flex items-center justify-center"
+                            className="w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 h-full flex items-center justify-center"
                             style={{
                               writingMode: "vertical-lr",
                               textOrientation: "upright",
