@@ -21,6 +21,7 @@ export default function HeaderMobile() {
   const menuItems = [
     {
       text: "ᠪᠢᠳᠨᠢ ᠲᠤᠬᠠᠢ",
+      link: "/about",
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠪᠦᠲᠦᠬ", link: "/about/1" },
@@ -34,6 +35,7 @@ export default function HeaderMobile() {
     { text: "ᠬᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ", link: "/campaign" },
     {
       text: "ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ᠎ᠠ",
+      link: "/participation",
       hasDropdown: true,
       dropdownItems: [
         {
@@ -60,6 +62,7 @@ export default function HeaderMobile() {
     },
     {
       text: "ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠭᠡᠯᠡᠯ",
+      link: "/news",
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠮᠡᠳᠡᠭᠡ", link: "/news" },
@@ -69,6 +72,7 @@ export default function HeaderMobile() {
     },
     {
       text: "ᠡᠷᠬᠡᠭᠡ ᠮᠡᠳᠢᠶᠡ",
+      link: "/right",
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/lessons" },
@@ -152,19 +156,33 @@ export default function HeaderMobile() {
               <div key={index} className="relative">
                 {item.hasDropdown ? (
                   <div>
-                    <div
-                      className="p-2 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center"
-                      onClick={() => toggleDropdown(index)}
-                    >
-                      <p
-                        className="text-black font-bold text-xs"
-                        style={{
-                          writingMode: "vertical-lr",
-                          textOrientation: "upright",
-                        }}
+                    <div className="flex flex-col items-center">
+                      <Link href={item.link || "#"}>
+                        <div className="p-2 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
+                          <p
+                            className="text-black font-bold text-xs"
+                            style={{
+                              writingMode: "vertical-lr",
+                              textOrientation: "upright",
+                            }}
+                          >
+                            {item.text}
+                          </p>
+                        </div>
+                      </Link>
+                      <button
+                        className="mt-1 p-1 cursor-pointer hover:bg-gray-100 rounded transition-colors"
+                        onClick={() => toggleDropdown(index)}
                       >
-                        {item.text}
-                      </p>
+                        <Icon
+                          icon={
+                            activeDropdown === index
+                              ? "mdi:chevron-up"
+                              : "mdi:chevron-down"
+                          }
+                          className="text-gray-600 text-sm"
+                        />
+                      </button>
                     </div>
                     {activeDropdown === index && (
                       <div className="absolute left-[105px] top-[-30px] bg-white rounded-xl p-4 w-[60px] z-30 border border-[#E3E3E3] shadow-lg">

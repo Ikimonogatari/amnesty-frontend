@@ -77,10 +77,10 @@ export default function PodcastDetail() {
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠫᠣᠳᠻᠠᠰᠲ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
             <button
-              onClick={() => router.push("/right")}
+              onClick={() => router.push("/podcasts")}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              ᠡᠷᠬᠡ ᠮᠡᠳᠡᠬᠦ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
+              ᠫᠣᠳᠺᠠᠰᠲ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
             </button>
           </div>
         </div>
@@ -181,6 +181,53 @@ export default function PodcastDetail() {
             </div>
           )}
 
+          {/* Mobile External Links - Spotify & Apple */}
+          {(podcast.url_spotify_podcasts || podcast.url_apple_podcasts) && (
+            <div className="flex flex-row items-start gap-4">
+              <h3
+                className="text-lg font-semibold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠴᠠᠬᠢᠮ ᠳᠤ ᠰᠣᠨᠣᠰᠬᠤ
+              </h3>
+              <div className="flex gap-2">
+                {podcast.url_spotify_podcasts && (
+                  <a
+                    href={podcast.url_spotify_podcasts}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-3 py-2 text-[#1ed760] hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      src="/icons/spotify.png"
+                      className="w-[20px]"
+                      alt="Spotify"
+                    />
+                    <span className="text-[16px]">Spotify</span>
+                  </a>
+                )}
+                {podcast.url_apple_podcasts && (
+                  <a
+                    href={podcast.url_apple_podcasts}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-3 py-2 hover:opacity-80 transition-opacity"
+                  >
+                    <img
+                      src="/icons/applePodcasts.png"
+                      className="w-[20px]"
+                      alt="Apple Podcasts"
+                    />
+                    <span className="text-[16px] text-white">Apple</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* Mobile Host */}
           {podcast.host && (
             <div className="flex flex-row gap-2">
@@ -222,7 +269,7 @@ export default function PodcastDetail() {
                   <div
                     key={item.id || index}
                     className="flex gap-4 max-h-[150px] cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/right/podcasts/${item.id}`)}
+                    onClick={() => router.push(`/podcasts/${item.id}`)}
                   >
                     <h3
                       className="text-sm font-medium line-clamp-3 mb-2"
@@ -363,6 +410,55 @@ export default function PodcastDetail() {
           </div>
         )}
 
+        {/* Desktop External Links - Spotify & Apple */}
+        {(podcast.url_spotify_podcasts || podcast.url_apple_podcasts) && (
+          <div className="flex gap-4">
+            <h2
+              className="text-2xl font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠴᠠᠬᠢᠮ ᠳᠤ ᠰᠣᠨᠣᠰᠬᠤ
+            </h2>
+            <div className="flex flex-col gap-4 items-start">
+              {podcast.url_spotify_podcasts && (
+                <a
+                  href={podcast.url_spotify_podcasts}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-4 py-3 text-[#1ed760] hover:opacity-80 transition-opacity"
+                >
+                  <img
+                    src="/icons/spotify.png"
+                    className="w-[24px]"
+                    alt="Spotify"
+                  />
+                  <span className="text-[18px] font-medium">Spotify</span>
+                </a>
+              )}
+              {podcast.url_apple_podcasts && (
+                <a
+                  href={podcast.url_apple_podcasts}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-4 py-3 hover:opacity-80 transition-opacity"
+                >
+                  <img
+                    src="/icons/applePodcasts.png"
+                    className="w-[24px]"
+                    alt="Apple Podcasts"
+                  />
+                  <span className="text-[18px] font-medium text-white">
+                    Apple
+                  </span>
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Related Podcasts Section */}
         {relatedPodcasts && relatedPodcasts.length > 0 && (
           <div className="flex gap-4">
@@ -380,7 +476,7 @@ export default function PodcastDetail() {
                 <div
                   key={item.id || index}
                   className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/right/podcasts/${item.id}`)}
+                  onClick={() => router.push(`/podcasts/${item.id}`)}
                 >
                   <h3
                     className="max-w-16 line-clamp-3 h-full text-sm"

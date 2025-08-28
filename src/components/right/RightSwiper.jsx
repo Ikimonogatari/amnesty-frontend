@@ -109,32 +109,32 @@ export default function RightSwiper({
     // Determine the route based on section title
     let route = "";
 
-    // Check if section title contains specific keywords
+    // Check if section title contains specific keywords - updated to match new page structure
     if (
       sectionTitle.includes("ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
       sectionTitle.toLowerCase().includes("online lesson")
     ) {
-      route = `/right/online-lessons/${itemId}`;
+      route = `/online-lessons/${itemId}`;
     } else if (
       sectionTitle.includes("ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
       sectionTitle.toLowerCase().includes("lesson")
     ) {
-      route = `/right/lessons/${itemId}`;
+      route = `/lessons/${itemId}`;
     } else if (
       sectionTitle.includes("ᠸᠢᠳᠧᠤ") ||
       sectionTitle.toLowerCase().includes("video")
     ) {
-      route = `/right/videos/${itemId}`;
+      route = `/videos/${itemId}`;
     } else if (
       sectionTitle.includes("ᠨᠣᠮ ᠲᠣᠪᠴᠢᠮᠠᠯ") ||
       sectionTitle.toLowerCase().includes("librar")
     ) {
-      route = `/right/libraries/${itemId}`;
+      route = `/library/${itemId}`;
     } else if (
       sectionTitle.includes("ᠫᠣᠳᠺᠠᠰᠲ") ||
       sectionTitle.toLowerCase().includes("podcast")
     ) {
-      route = `/right/podcasts/${itemId}`;
+      route = `/podcasts/${itemId}`;
     } else {
       return;
     }
@@ -147,16 +147,26 @@ export default function RightSwiper({
     return (
       <div className="h-full flex flex-col sm:flex-row gap-4 sm:gap-8 overflow-x-auto sm:overflow-auto">
         <div className="flex flex-row gap-4 sm:gap-8">
-          <div className="flex gap-2 sm:gap-8 max-h-[120px] sm:max-h-max">
+          <div className="flex gap-2 sm:gap-8 h-full min-h-[200px] sm:h-auto overflow-visible">
             <h1
-              className="text-xs sm:text-2xl font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              className="text-xs sm:text-2xl font-bold overflow-visible"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
             >
               {title}
             </h1>
             <p
-              className="text-[8px] sm:text-sm font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              className="text-[8px] sm:text-sm font-bold overflow-visible"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
             >
               {description}
             </p>
@@ -182,16 +192,26 @@ export default function RightSwiper({
   return (
     <div className="h-full flex flex-col sm:flex-row gap-4 sm:gap-8 overflow-x-auto sm:overflow-auto">
       <div className="flex flex-row gap-4 sm:gap-8">
-        <div className="flex gap-2 sm:gap-8 max-h-[120px] sm:max-h-max">
+        <div className="flex gap-2 sm:gap-8 h-full min-h-[200px] sm:h-auto overflow-visible">
           <h1
-            className="text-xs sm:text-2xl font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            className="text-xs sm:text-2xl font-bold overflow-visible"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              wordBreak: "keep-all",
+              lineHeight: "1.2",
+            }}
           >
             {title}
           </h1>
           <p
-            className="text-[8px] sm:text-sm font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            className="text-[8px] sm:text-sm font-bold overflow-visible"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              wordBreak: "keep-all",
+              lineHeight: "1.2",
+            }}
           >
             {description}
           </p>
@@ -202,10 +222,14 @@ export default function RightSwiper({
           containerClassName="hidden sm:block"
         />
       </div>
-      <div className="flex flex-row gap-2 max-h-[200px] sm:max-h-max">
+      <div className="flex flex-row gap-2 h-full min-h-[280px] sm:h-auto">
         <p
-          className="text-[10px] font-bold block sm:hidden border-r pr-2"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          className="text-[10px] font-bold block sm:hidden border-r pr-2 overflow-visible"
+          style={{
+            writingMode: "vertical-lr",
+            textOrientation: "upright",
+            wordBreak: "keep-all",
+          }}
         >
           {sectionTitle}
         </p>
@@ -229,21 +253,31 @@ export default function RightSwiper({
                 className="w-full h-full flex gap-2 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => navigateToDetail({ id: slide.id })}
               >
-                <div className="flex flex-col items-center gap-4 justify-between max-h-[200px] sm:max-h-max">
+                <div className="flex flex-col items-center gap-2 justify-start h-full min-h-[200px] sm:min-h-[270px] sm:h-auto w-fit">
                   <p
-                    className="text-[9px] sm:text-sm"
+                    className="text-[10px] sm:text-base font-medium text-center overflow-visible max-h-[140px] sm:max-h-[200px] flex-shrink-0"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
+                      lineHeight: "1.3",
+                      wordBreak: "keep-all",
+                      whiteSpace: "nowrap",
+                      minWidth: "20px",
+                      maxWidth: "30px",
                     }}
+                    title={slide.title}
                   >
-                    {slide.title}
+                    {slide.title.length > 15
+                      ? `${slide.title.substring(0, 15)}...`
+                      : slide.title}
                   </p>
+                  <div className="flex-1"></div>
                   <p
-                    className="text-[9px] sm:text-sm"
+                    className="text-[9px] sm:text-sm font-medium flex-shrink-0"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
+                      lineHeight: "1.2",
                     }}
                   >
                     {slide.duration}

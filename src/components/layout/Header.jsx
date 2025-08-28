@@ -19,6 +19,7 @@ export default function Header() {
   const menuItems = [
     {
       text: "ᠪᠢᠳᠨᠢ ᠲᠤᠬᠠᠢ",
+      link: "/about",
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠪᠦᠲᠦᠬ", link: "/about/1" },
@@ -32,6 +33,7 @@ export default function Header() {
     { text: "ᠬᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ", link: "/campaign" },
     {
       text: "ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ᠎ᠠ",
+      link: "/participation",
       hasDropdown: true,
       dropdownItems: [
         {
@@ -58,6 +60,7 @@ export default function Header() {
     },
     {
       text: "ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠭᠡᠯᠡᠯ",
+      link: "/news",
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠮᠡᠳᠡᠭᠡ", link: "/news" },
@@ -67,6 +70,7 @@ export default function Header() {
     },
     {
       text: "ᠡᠷᠬᠡᠭᠡ ᠮᠡᠳᠢᠶᠡ",
+      link: "/right",
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/lessons" },
@@ -101,17 +105,19 @@ export default function Header() {
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={handleMouseLeave}
                   >
-                    <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
-                      <p
-                        className="text-black font-bold text-sm"
-                        style={{
-                          writingMode: "vertical-lr",
-                          textOrientation: "upright",
-                        }}
-                      >
-                        {item.text}
-                      </p>
-                    </div>
+                    <Link href={item.link || "#"}>
+                      <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
+                        <p
+                          className="text-black font-bold text-sm"
+                          style={{
+                            writingMode: "vertical-lr",
+                            textOrientation: "upright",
+                          }}
+                        >
+                          {item.text}
+                        </p>
+                      </div>
+                    </Link>
                     {activeDropdown === index && (
                       <div className="absolute left-[38px] top-[-30px] bg-white rounded-xl p-6 w-[96px] z-30 border border-[#E3E3E3] shadow-lg">
                         <div className="flex justify-between items-center">

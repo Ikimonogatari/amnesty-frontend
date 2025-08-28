@@ -77,7 +77,7 @@ export default function LibraryDetail() {
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
             <button
-              onClick={() => router.push("/right")}
+              onClick={() => router.push("/library")}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               ᠡᠷᠬᠡ ᠮᠡᠳᠡᠬᠦ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
@@ -177,25 +177,41 @@ export default function LibraryDetail() {
             </div>
           )}
 
-          {/* Mobile File Download */}
-          {library.file_url && (
-            <div className="flex flex-row gap-2">
-              <h3
-                className="text-lg font-semibold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠹᠠᠢᠯ
-              </h3>
+          {/* Mobile PDF Viewer */}
+          {(library.pdf_file || library.file_url) && (
+            <div className="w-full">
+              <h3 className="text-lg font-bold mb-3">ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ</h3>
+              <div className="w-full aspect-[1/1.41] mb-4">
+                <object
+                  data={library.pdf_file || library.file_url}
+                  type="application/pdf"
+                  width="100%"
+                  height="100%"
+                  className="shadow-md rounded border"
+                >
+                  <div className="w-full h-full bg-gray-100 shadow-md rounded border flex items-center justify-center">
+                    <div className="text-center p-4">
+                      <div className="w-16 h-16 mx-auto mb-3 text-gray-400">
+                        <svg fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                        </svg>
+                      </div>
+                      <p className="text-gray-600 text-sm mb-3">PDF номын санг уншихын тулд доорх товчийг дарна уу</p>
+                    </div>
+                  </div>
+                </object>
+              </div>
               <a
-                href={library.file_url}
+                href={library.pdf_file || library.file_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm"
+                download
+                className="w-full flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg"
               >
-                ᠲᠠᠲᠠᠬᠤ
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+                </svg>
+                PDF ᠲᠠᠲᠠᠬᠤ
               </a>
             </div>
           )}
@@ -217,7 +233,7 @@ export default function LibraryDetail() {
                   <div
                     key={item.id || index}
                     className="flex gap-4 max-h-[150px] cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/right/libraries/${item.id}`)}
+                    onClick={() => router.push(`/library/${item.id}`)}
                   >
                     <h3
                       className="text-sm font-medium line-clamp-3 mb-2"
@@ -257,13 +273,60 @@ export default function LibraryDetail() {
 
       {/* Desktop Layout */}
       <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
-        {/* Library Title Header */}
-        <StaticHeader
-          image={coverImage}
-          alt="Library Page Header"
-          width="90rem"
-          title={library.title || library.name}
-        />
+        {/* PDF Viewer Section */}
+        {(library.pdf_file || library.file_url) && (
+          <div className="flex gap-4">
+            <div className="flex flex-col gap-4 items-center">
+              <h1
+                className="text-3xl font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+                title={library.title || library.name}
+              >
+                {library.title || library.name || "ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ"}
+              </h1>
+              <h2
+                className="text-xl font-medium text-gray-600"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ
+              </h2>
+            </div>
+            <div className="relative">
+              <object
+                data={library.pdf_file || library.file_url}
+                type="application/pdf"
+                width="800"
+                height="600"
+                className="shadow-lg rounded-lg"
+              >
+                <div className="w-[800px] h-[600px] bg-gray-100 shadow-lg rounded-lg flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="w-20 h-20 mx-auto mb-4 text-gray-400">
+                      <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                      </svg>
+                    </div>
+                    <p className="text-gray-600 mb-4">PDF ᠨᠣᠮ ᠤᠨ ᠰᠠᠨ ᠬᠠᠷᠠᠭᠠᠨ ᠥᠭᠡᠷᠴᠢᠭᠦᠯᠦᠭᠴᠢ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠠᠯᠢᠭᠠ ᠭᠠᠷᠪᠠ</p>
+                    <a
+                      href={library.pdf_file || library.file_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    >
+                      PDF ᠬᠠᠷᠠᠬᠤ
+                    </a>
+                  </div>
+                </div>
+              </object>
+            </div>
+          </div>
+        )}
 
         {/* Library Description */}
         {(library.description || library.content || library.introduction) && (
@@ -318,7 +381,7 @@ export default function LibraryDetail() {
         )}
 
         {/* File Download Section */}
-        {library.file_url && (
+        {(library.pdf_file || library.file_url) && (
           <div className="flex gap-4">
             <h2
               className="text-2xl font-bold"
@@ -329,15 +392,29 @@ export default function LibraryDetail() {
             >
               ᠹᠠᠢᠯ ᠲᠠᠲᠠᠬᠤ
             </h2>
-            <div className="flex items-center">
+            <div className="flex flex-col items-start gap-4">
               <a
-                href={library.file_url}
+                href={library.pdf_file || library.file_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded text-lg"
+                download
+                className="flex items-center gap-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors"
               >
-                ᠹᠠᠢᠯ ᠲᠠᠲᠠᠬᠤ
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" />
+                </svg>
+                PDF ᠲᠠᠲᠠᠬᠤ
               </a>
+              {(library.amnesty_published_at || library.publishedAt) && (
+                <div className="text-sm text-gray-600">
+                  <p>ᠨᠢᠭᠡᠳᠦᠯᠡᠨ ᠤᠭᠰᠠᠰᠠᠨ ᠤᠨ ᠡᠳᠦᠷ: {new Date(library.amnesty_published_at || library.publishedAt).toLocaleDateString('mn-MN')}</p>
+                </div>
+              )}
+              {library.index && (
+                <div className="text-sm text-gray-600">
+                  <p>Index Number: {library.index}</p>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -359,7 +436,7 @@ export default function LibraryDetail() {
                 <div
                   key={item.id || index}
                   className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/right/libraries/${item.id}`)}
+                  onClick={() => router.push(`/library/${item.id}`)}
                 >
                   <h3
                     className="max-w-16 line-clamp-3 h-full text-sm"

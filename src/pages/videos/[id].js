@@ -77,10 +77,10 @@ export default function VideoDetail() {
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠪᠢᠳᠢᠶᠣ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
             <button
-              onClick={() => router.push("/right")}
+              onClick={() => router.push("/videos")}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              ᠡᠷᠬᠡ ᠮᠡᠳᠡᠬᠦ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
+              ᠪᠢᠳᠢᠶᠣ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
             </button>
           </div>
         </div>
@@ -88,6 +88,7 @@ export default function VideoDetail() {
     );
   }
 
+  // Cover image for fallbacks if needed
   const coverImage =
     getImageUrl(video.thumbnail || video.cover || video.image) ||
     "/images/news1.png";
@@ -96,44 +97,66 @@ export default function VideoDetail() {
     <Layout>
       {/* Mobile Layout */}
       <div className="sm:hidden flex flex-col w-full">
-        {/* Mobile Hero Section */}
-        <div className="relative h-[200px] w-full flex-shrink-0">
-          <Image
-            src={coverImage}
-            alt={video.title || "Video cover"}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-40" />
-          <div className="absolute inset-0 flex items-center justify-center">
+        {/* Mobile Content */}
+        <div className="flex flex-col gap-6 p-4">
+          {/* Mobile Video Title */}
+          <div className="text-center py-4">
             <h1
-              className="p-4 text-white text-lg font-bold text-center"
+              className="text-lg font-bold mb-2"
               style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
+                writingMode: "horizontal-tb",
+                textOrientation: "mixed",
               }}
             >
               {video.title || "ᠪᠢᠳᠢᠶᠣ"}
             </h1>
+            <p
+              className="text-sm text-gray-600"
+              style={{
+                writingMode: "horizontal-tb",
+                textOrientation: "mixed",
+              }}
+            >
+              ᠪᠢᠳᠢᠶᠣ
+            </p>
           </div>
-        </div>
 
-        {/* Mobile Content */}
-        <div className="flex flex-col gap-6 p-4">
           {/* Mobile Video Player */}
-          {video.video_url && (
-            <div>
-              <h2 className="text-xl font-bold mb-4">ᠪᠢᠳᠢᠶᠣ</h2>
-              <div className="w-full aspect-video relative">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={video.video_url}
-                  title="Video Player"
-                  className="border-0 rounded"
-                  allowFullScreen
-                />
+          {video.youtube_video_id || video.video_url ? (
+            <div className="w-full aspect-video relative shadow-md rounded-lg overflow-hidden">
+              <iframe
+                width="100%"
+                height="100%"
+                src={
+                  video.youtube_video_id
+                    ? `https://www.youtube.com/embed/${video.youtube_video_id}`
+                    : video.video_url
+                }
+                title={video.title || "Video Player"}
+                className="border-0 w-full h-full"
+                allowFullScreen
+                frameBorder="0"
+              />
+            </div>
+          ) : (
+            <div className="w-full aspect-video relative bg-gray-200 shadow-md rounded-lg overflow-hidden flex items-center justify-center">
+              <Image
+                src={coverImage}
+                alt={video.title || "Video cover"}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="text-white text-center">
+                  <svg
+                    className="w-16 h-16 mx-auto mb-2 opacity-75"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  <p className="text-sm">ᠪᠢᠳᠢᠶᠣ ᠦᠭᠡᠢ</p>
+                </div>
               </div>
             </div>
           )}
@@ -160,6 +183,32 @@ export default function VideoDetail() {
                   __html: video.description,
                 }}
               />
+            </div>
+          )}
+
+          {/* Mobile Publication Date */}
+          {(video.createdAt || video.publishedAt) && (
+            <div className="flex flex-row gap-2">
+              <h3
+                className="text-lg font-semibold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠣᠭᠨᠣᠭ᠎ᠠ
+              </h3>
+              <p
+                className="text-base text-gray-600"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {new Date(
+                  video.createdAt || video.publishedAt
+                ).toLocaleDateString("mn-MN")}
+              </p>
             </div>
           )}
 
@@ -204,7 +253,7 @@ export default function VideoDetail() {
                   <div
                     key={item.id || index}
                     className="flex gap-4 max-h-[150px] cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/right/videos/${item.id}`)}
+                    onClick={() => router.push(`/videos/${item.id}`)}
                   >
                     <h3
                       className="text-sm font-medium line-clamp-3 mb-2"
@@ -243,19 +292,21 @@ export default function VideoDetail() {
 
       {/* Desktop Layout */}
       <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
-        {/* Video Title Header */}
-        <StaticHeader
-          image={coverImage}
-          alt="Video Page Header"
-          width="90rem"
-          title={video.title}
-        />
-
-        {/* Video Player Section */}
-        {video.video_url && (
-          <div className="flex gap-4">
+        {/* Main Video Player Section */}
+        <div className="flex gap-4">
+          <div className="flex flex-col gap-4 items-center">
+            <h1
+              className="text-3xl font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+              title={video.title}
+            >
+              {video.title || "ᠪᠢᠳᠢᠶᠣ"}
+            </h1>
             <h2
-              className="text-2xl font-bold"
+              className="text-xl font-medium text-gray-600"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -263,18 +314,46 @@ export default function VideoDetail() {
             >
               ᠪᠢᠳᠢᠶᠣ
             </h2>
-            <div className="w-[600px] h-[315px] relative">
+          </div>
+          {video.youtube_video_id || video.video_url ? (
+            <div className="w-[800px] h-[450px] relative shadow-lg rounded-lg overflow-hidden">
               <iframe
-                width="600"
-                height="315"
-                src={video.video_url}
-                title="Video Player"
-                className="border-0"
+                width="800"
+                height="450"
+                src={
+                  video.youtube_video_id
+                    ? `https://www.youtube.com/embed/${video.youtube_video_id}`
+                    : video.video_url
+                }
+                title={video.title || "Video Player"}
+                className="border-0 w-full h-full"
                 allowFullScreen
+                frameBorder="0"
               />
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="w-[800px] h-[450px] relative bg-gray-200 shadow-lg rounded-lg overflow-hidden flex items-center justify-center">
+              <Image
+                src={coverImage}
+                alt={video.title || "Video cover"}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                <div className="text-white text-center">
+                  <svg
+                    className="w-20 h-20 mx-auto mb-4 opacity-75"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  <p className="text-lg">ᠪᠢᠳᠢᠶᠣ ᠦᠭᠡᠢ</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Video Description */}
         {video.description && (
@@ -298,6 +377,32 @@ export default function VideoDetail() {
                 __html: video.description,
               }}
             />
+          </div>
+        )}
+
+        {/* Publication Date Section */}
+        {(video.createdAt || video.publishedAt) && (
+          <div className="flex gap-4">
+            <h2
+              className="text-2xl font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠣᠭᠨᠣᠭ᠎ᠠ
+            </h2>
+            <div
+              className="text-xl text-gray-600"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {new Date(
+                video.createdAt || video.publishedAt
+              ).toLocaleDateString("mn-MN")}
+            </div>
           </div>
         )}
 
@@ -342,7 +447,7 @@ export default function VideoDetail() {
                 <div
                   key={item.id || index}
                   className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/right/videos/${item.id}`)}
+                  onClick={() => router.push(`/videos/${item.id}`)}
                 >
                   <h3
                     className="max-w-16 line-clamp-3 h-full text-sm"

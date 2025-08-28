@@ -5,16 +5,23 @@ import Image from "next/image";
 import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
 import { lessonsService } from "@/services/apiService";
-import { getImageUrl } from "@/utils/fetcher";
+import { getImageUrl, toMongolianNumbers } from "@/utils/fetcher";
 
 export default function LessonDetail() {
   const router = useRouter();
   const { id } = router.query;
 
+  // Helper function to convert numbers within text to Mongolian numerals
+  const convertTextNumbers = (text) => {
+    if (!text) return text;
+    return String(text).replace(/\d/g, (digit) => toMongolianNumbers(digit));
+  };
+
   const [lesson, setLesson] = useState(null);
   const [relatedLessons, setRelatedLessons] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeTab, setActiveTab] = useState("introduction");
 
   useEffect(() => {
     if (!id) return;
@@ -77,7 +84,7 @@ export default function LessonDetail() {
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠰᠤᠷᠭᠠᠯ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
             <button
-              onClick={() => router.push("/right")}
+              onClick={() => router.push("/lessons")}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               ᠡᠷᠬᠡ ᠮᠡᠳᠡᠬᠦ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
@@ -96,111 +103,238 @@ export default function LessonDetail() {
     <Layout>
       {/* Mobile Layout */}
       <div className="sm:hidden flex flex-col w-full">
-        {/* Mobile Hero Section */}
-        <div className="relative h-[200px] w-full flex-shrink-0">
-          <Image
-            src={coverImage}
-            alt={lesson.title || "Lesson cover"}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-40" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1
-              className="p-4 text-white text-lg font-bold text-center"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              {lesson.title || "ᠰᠤᠷᠭᠠᠯ"}
-            </h1>
-          </div>
-        </div>
+        <StaticHeader
+          image={coverImage}
+          alt="Lesson Page Header"
+          width="90rem"
+          title={lesson.title}
+        />
 
         {/* Mobile Content */}
         <div className="flex flex-col gap-6 p-4">
-          {/* Mobile Description */}
-          {lesson.description && (
-            <div className="flex flex-row gap-2">
+          {/* Mobile Course Info Section */}
+          <div className="flex flex-col items-center gap-4 bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+            {/* Course Image */}
+            <Image
+              src={coverImage}
+              alt={lesson.title || "Lesson cover"}
+              height={120}
+              width={200}
+              className="w-[200px] h-[120px] object-contain"
+            />
+
+            {/* Course Title */}
+            <div className="flex justify-center mb-2">
               <h2
-                className="text-xl font-bold mb-4"
+                className="text-lg font-bold text-gray-900"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
                 }}
               >
-                ᠲᠠᠢᠯᠪᠤᠷᠢ
+                {lesson.title || "ᠰᠤᠷᠭᠠᠯ"}
               </h2>
+            </div>
+
+            {/* Course Metadata */}
+            <div className="flex flex-row gap-4 justify-center">
               <div
-                className="text-base text-gray-800"
+                className="text-gray-600 text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
-                dangerouslySetInnerHTML={{
-                  __html: lesson.description,
-                }}
-              />
+              >
+                ID: {toMongolianNumbers(lesson.id)}
+              </div>
+              {lesson.lesson_length && (
+                <div
+                  className="text-gray-600 text-sm"
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
+                >
+                  ᠬᠤᠭᠠᠴᠠᠭ᠎ᠠ: {convertTextNumbers(lesson.lesson_length)}
+                </div>
+              )}
+              {lesson.seats && (
+                <div
+                  className="text-gray-600 text-sm"
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
+                >
+                  ᠬᠦᠮᠦᠨ ᠦ ᠲᠣᠭ᠎ᠠ: {toMongolianNumbers(lesson.seats)}
+                </div>
+              )}
             </div>
-          )}
+          </div>
 
-          {/* Mobile Duration */}
-          {lesson.lesson_length && (
-            <div className="flex flex-row gap-2">
-              <h3
-                className="text-lg font-semibold"
+          {/* Mobile Tabs Section */}
+          <div className="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+            {/* Mobile Tab Buttons */}
+            <div className="flex flex-row justify-center gap-4 mb-4 border-b border-gray-200 pb-2">
+              <button
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
+                  activeTab === "introduction"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
                 }}
+                onClick={() => setActiveTab("introduction")}
               >
-                ᠤᠷᠲᠤ
-              </h3>
-              <p
-                className="text-base text-gray-600"
+                ᠲᠠᠨᠢᠯᠴᠤᠭᠤᠯᠭ᠎ᠠ
+              </button>
+              <button
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
+                  activeTab === "content"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
                 }}
+                onClick={() => setActiveTab("content")}
               >
-                {lesson.lesson_length}
-              </p>
+                ᠠᠭᠤᠯᠭ᠎ᠠ
+              </button>
+              <button
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
+                  activeTab === "additional"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+                onClick={() => setActiveTab("additional")}
+              >
+                ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ
+              </button>
             </div>
-          )}
 
-          {/* Mobile Related Lessons */}
-          {relatedLessons && relatedLessons.length > 0 && (
-            <div className="flex flex-row gap-2">
-              <h2
-                className="text-xl font-bold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
-              </h2>
-              <div className="grid grid-cols-1 gap-4">
-                {relatedLessons.slice(0, 6).map((item, index) => (
-                  <div
-                    key={item.id || index}
-                    className="flex gap-4 max-h-[150px] cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/right/lessons/${item.id}`)}
-                  >
-                    <h3
-                      className="text-sm font-medium line-clamp-3 mb-2"
+            {/* Mobile Tab Content */}
+            <div className="min-h-[150px] max-h-[300px] overflow-y-auto flex justify-center">
+              {activeTab === "introduction" && (
+                <div className="flex flex-row gap-4 items-center">
+                  {lesson.description && (
+                    <div
+                      className="text-sm text-gray-700 break-words"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: lesson.description,
+                      }}
+                    />
+                  )}
+
+                  {/* Mobile Registration Link */}
+                  {lesson.external_link && (
+                    <Button
+                      onClick={() => {
+                        window.open(
+                          lesson.external_link.startsWith("http")
+                            ? lesson.external_link
+                            : `https://${lesson.external_link}`,
+                          "_blank"
+                        );
+                      }}
+                      text="ᠬᠢᠴᠡᠡᠯᠳ ᠪᠦᠷᠲᠦᠭᠦᠯᠬᠦ"
+                      type="primary"
+                      className="whitespace-nowrap rounded min-h-max transition-colors text-xs px-2 py-1"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                    />
+                  )}
+                </div>
+              )}
+
+              {activeTab === "content" && (
+                <div className="flex justify-center">
+                  {lesson.content ? (
+                    <div
+                      className="text-sm text-gray-700 break-words"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: lesson.content,
+                      }}
+                    />
+                  ) : (
+                    <p
+                      className="text-sm text-gray-500"
                       style={{
                         writingMode: "vertical-lr",
                         textOrientation: "upright",
                       }}
                     >
-                      {item.title?.length > 40
-                        ? `${item.title.substring(0, 40)}...`
-                        : item.title}
-                    </h3>
-                    <div className="relative aspect-square w-[150px] h-[150px] flex-shrink-0">
+                      ᠠᠭᠤᠯᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {activeTab === "additional" && (
+                <div className="flex justify-center">
+                  {lesson.extra_details ? (
+                    <div
+                      className="text-sm text-gray-700 break-words"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: lesson.extra_details,
+                      }}
+                    />
+                  ) : (
+                    <p
+                      className="text-sm text-gray-500"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                    >
+                      ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Related Lessons */}
+          {relatedLessons && relatedLessons.length > 0 && (
+            <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+              <div className="flex justify-center mb-4">
+                <h2
+                  className="text-lg font-bold text-gray-900"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
+                </h2>
+              </div>
+              <div className="space-y-3">
+                {relatedLessons.slice(0, 4).map((item, index) => (
+                  <div
+                    key={item.id || index}
+                    className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
+                    onClick={() => router.push(`/lessons/${item.id}`)}
+                  >
+                    <div className="relative w-12 h-12 flex-shrink-0">
                       <Image
                         src={
                           getImageUrl(item.thumbnail || item.cover) ||
@@ -210,10 +344,37 @@ export default function LessonDetail() {
                         fill
                         className="object-cover rounded"
                       />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className="text-sm font-medium text-gray-900 line-clamp-2"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        title={item.title}
+                      >
+                        {item.title?.length > 25
+                          ? `${item.title.substring(0, 25)}...`
+                          : item.title}
+                      </h3>
+                      {item.lesson_length && (
+                        <p
+                          className="text-xs text-gray-500 mt-1"
+                          style={{
+                            writingMode: "vertical-lr",
+                            textOrientation: "upright",
+                          }}
+                        >
+                          {convertTextNumbers(item.lesson_length)}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex-shrink-0">
                       <Button
-                        text="ᠰᠤᠷᠭᠠᠯ"
+                        text="ᠦᠵᠡᠬᠦ"
                         type="primary"
-                        className="absolute -top-1 -right-1 text-black text-xs px-1 py-0.5"
+                        className="text-xs px-1 py-0.5"
                       />
                     </div>
                   </div>
@@ -234,112 +395,288 @@ export default function LessonDetail() {
           title={lesson.title}
         />
 
-        {/* Lesson Description */}
-        {lesson.description && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠲᠠᠢᠯᠪᠤᠷᠢ
-            </h2>
-            <div
-              className="text-lg text-gray-800 max-w-[600px]"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-              dangerouslySetInnerHTML={{
-                __html: lesson.description,
-              }}
-            />
-          </div>
-        )}
+        {/* Content Section */}
+        <div className="flex-1 flex gap-6 overflow-hidden">
+          {/* Main Content */}
+          <div className="flex flex-row items-center gap-6 bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+            <div className="flex flex-col items-center justify-center gap-4">
+              {/* Course Image */}
+              <Image
+                src={coverImage}
+                alt={lesson.title || "Lesson cover"}
+                height={240}
+                width={120}
+                className="w-[240px] h-[140px] object-contain"
+              />
 
-        {/* Duration Section */}
-        {lesson.lesson_length && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠤᠷᠲᠤ
-            </h2>
-            <div
-              className="text-xl text-gray-600"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              {lesson.lesson_length}
+              {/* Course Title */}
+              <div className="flex justify-center gap-4 mb-4">
+                <h2
+                  className="text-lg font-bold text-gray-900"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {lesson.title || "ᠰᠤᠷᠭᠠᠯ"}
+                </h2>
+                {/* Course Metadata - Matching Old Web */}
+                <div className="flex gap-2 justify-center">
+                  <div className="flex flex-row gap-2 text-sm">
+                    <div
+                      className="text-gray-600"
+                      style={{
+                        writingMode: "vertical-lr",
+                      }}
+                    >
+                      ID: {toMongolianNumbers(lesson.id)}
+                    </div>
+
+                    {lesson.lesson_length && (
+                      <div
+                        className="text-gray-600"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      >
+                        ᠬᠤᠭᠠᠴᠠᠭ᠎ᠠ: {convertTextNumbers(lesson.lesson_length)}
+                      </div>
+                    )}
+                    {lesson.seats && (
+                      <div
+                        className="text-gray-600"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      >
+                        ᠬᠦᠮᠦᠨ ᠦ ᠲᠣᠭ᠎ᠠ: {toMongolianNumbers(lesson.seats)}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tabs Section */}
+            <div className="gap-6 h-full flex justify-center items-center">
+              {/* Tab Buttons */}
+              <div className="flex flex-col justify-start gap-2 border-r border-gray-200 pr-4">
+                <button
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
+                    activeTab === "introduction"
+                      ? "border-blue-500 text-blue-600"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                  onClick={() => setActiveTab("introduction")}
+                >
+                  ᠲᠠᠨᠢᠯᠴᠤᠭᠤᠯᠭ᠎ᠠ
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
+                    activeTab === "content"
+                      ? "border-blue-500 text-blue-600"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                  onClick={() => setActiveTab("content")}
+                >
+                  ᠠᠭᠤᠯᠭ᠎ᠠ
+                </button>
+                <button
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
+                    activeTab === "additional"
+                      ? "border-blue-500 text-blue-600"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                  onClick={() => setActiveTab("additional")}
+                >
+                  ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ
+                </button>
+              </div>
+
+              {/* Tab Content */}
+              <div className="flex justify-center items-center h-[500px]">
+                {activeTab === "introduction" && (
+                  <div className="flex flex-row gap-4 items-center max-h-[calc(100vh-120px)]">
+                    {lesson.description && (
+                      <div
+                        className="text-sm text-gray-700 break-words"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: lesson.description,
+                        }}
+                      />
+                    )}
+
+                    {/* Registration Link */}
+                    {lesson.external_link && (
+                      <Button
+                        onClick={() => {
+                          window.open(
+                            lesson.external_link.startsWith("http")
+                              ? lesson.external_link
+                              : `https://${lesson.external_link}`,
+                            "_blank"
+                          );
+                        }}
+                        text="ᠬᠢᠴᠡᠡᠯᠳ ᠪᠦᠷᠲᠦᠭᠦᠯᠬᠦ"
+                        type="primary"
+                        className="whitespace-nowrap rounded transition-colors"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      />
+                    )}
+                  </div>
+                )}
+
+                {activeTab === "content" && (
+                  <div className="flex flex-col gap-4 items-center">
+                    {lesson.content ? (
+                      <div
+                        className="text-sm text-gray-700 max-w-[250px] break-words"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: lesson.content,
+                        }}
+                      />
+                    ) : (
+                      <p
+                        className="text-sm text-gray-500"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      >
+                        ᠠᠭᠤᠯᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {activeTab === "additional" && (
+                  <div className="flex flex-col gap-4 items-center">
+                    {lesson.extra_details ? (
+                      <div
+                        className="text-sm text-gray-700 break-words"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: lesson.extra_details,
+                        }}
+                      />
+                    ) : (
+                      <p
+                        className="text-sm text-gray-500"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      >
+                        ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        )}
 
-        {/* Related Lessons Section */}
-        {relatedLessons && relatedLessons.length > 0 && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
-            </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] grid-rows-3 gap-4 max-w-[900px] min-h-[900px]">
-              {relatedLessons.slice(0, 9).map((item, index) => (
-                <div
-                  key={item.id || index}
-                  className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/right/lessons/${item.id}`)}
-                >
-                  <h3
-                    className="max-w-16 line-clamp-3 h-full text-sm"
+          {/* Right Sidebar */}
+          <div className="flex-shrink-0 w-[300px] space-y-4 overflow-y-auto max-h-[calc(100vh-120px)]">
+            {/* Related Lessons Section */}
+            {relatedLessons && relatedLessons.length > 0 && (
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                <div className="flex justify-center mb-4">
+                  <h2
+                    className="text-lg font-bold text-gray-900"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
                     }}
-                    title={item.title}
                   >
-                    {item.title?.length > 50
-                      ? `${item.title.substring(0, 50)}...`
-                      : item.title}
-                  </h3>
-                  <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
-                    <Image
-                      src={
-                        getImageUrl(item.thumbnail || item.cover) ||
-                        "/images/news1.png"
-                      }
-                      alt={item.title || "Lesson image"}
-                      fill
-                      className="object-cover rounded-xl w-full h-full"
-                    />
-                    <Button
-                      text="ᠰᠤᠷᠭᠠᠯ"
-                      type="primary"
-                      className="absolute top-0 right-0 text-black"
-                    />
-                  </div>
-                  <Button
-                    text="ᠤᠩᠰᠢᠬᠤ"
-                    type="secondary"
-                    className="text-black h-48"
-                  />
+                    ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
+                  </h2>
                 </div>
-              ))}
-            </div>
+                <div className="space-y-3">
+                  {relatedLessons.slice(0, 4).map((item, index) => (
+                    <div
+                      key={item.id || index}
+                      className="flex items-start gap-3 p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
+                      onClick={() => router.push(`/lessons/${item.id}`)}
+                    >
+                      <div className="relative w-16 h-16 flex-shrink-0">
+                        <Image
+                          src={
+                            getImageUrl(item.thumbnail || item.cover) ||
+                            "/images/news1.png"
+                          }
+                          alt={item.title || "Lesson image"}
+                          fill
+                          className="object-cover rounded"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3
+                          className="text-sm font-medium text-gray-900 line-clamp-3"
+                          style={{
+                            writingMode: "vertical-lr",
+                            textOrientation: "upright",
+                          }}
+                          title={item.title}
+                        >
+                          {item.title?.length > 30
+                            ? `${item.title.substring(0, 30)}...`
+                            : item.title}
+                        </h3>
+                        {item.lesson_length && (
+                          <p
+                            className="text-xs text-gray-500 mt-1"
+                            style={{
+                              writingMode: "vertical-lr",
+                              textOrientation: "upright",
+                            }}
+                          >
+                            {convertTextNumbers(item.lesson_length)}
+                          </p>
+                        )}
+                      </div>
+                      <div className="flex-shrink-0">
+                        <Button
+                          text="ᠦᠵᠡᠬᠦ"
+                          type="primary"
+                          className="text-xs px-2 py-1"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </Layout>
   );
