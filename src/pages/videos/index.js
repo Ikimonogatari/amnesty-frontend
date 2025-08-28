@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
+import PageIntroduction from "@/components/common/PageIntroduction";
 import Fetcher, { getImageUrl } from "@/utils/fetcher";
-import Layout from "@/components/layout/Layout";
 
 export default function VideosIndex() {
   const router = useRouter();
@@ -101,20 +99,11 @@ export default function VideosIndex() {
           />
 
           {/* Desktop Introduction Section */}
-          <div className="flex-shrink-0 bg-gray-50 p-8">
-            <h2
-              className="text-2xl font-bold mb-6"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ
-            </h2>
-            <p
-              className="text-gray-700 leading-relaxed"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
-            </p>
-          </div>
+          <PageIntroduction
+            variant="desktop"
+            title="ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
+            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ"
+          />
 
           {/* Desktop Grid Layout */}
           <div className="flex-1 p-8 overflow-y-auto">
@@ -144,26 +133,11 @@ export default function VideosIndex() {
 
           <div className="p-4">
             {/* Mobile Introduction Section */}
-            <div className="mb-6 bg-gray-50 p-4 rounded-lg">
-              <h2
-                className="text-lg font-bold mb-3"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ
-              </h2>
-              <p
-                className="text-gray-700 text-sm"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
-              </p>
-            </div>
+            <PageIntroduction
+              variant="mobile"
+              title="ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
+              description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ"
+            />
 
             {/* Mobile Grid Layout */}
             <GridLayout

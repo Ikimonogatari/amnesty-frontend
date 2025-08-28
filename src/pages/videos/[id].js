@@ -100,30 +100,16 @@ export default function VideoDetail() {
     <Layout>
       {/* Mobile Layout */}
       <div className="sm:hidden flex flex-col w-full">
+        {/* Mobile StaticHeader */}
+        <StaticHeader
+          image={coverImage}
+          alt={video.title || "ᠪᠢᠳᠢᠶᠣ"}
+          title={video.title || "ᠪᠢᠳᠢᠶᠣ"}
+          width="100%"
+        />
+
         {/* Mobile Content */}
         <div className="flex flex-col gap-6 p-4">
-          {/* Mobile Video Title */}
-          <div className="text-center py-4">
-            <h1
-              className="text-lg font-bold mb-2"
-              style={{
-                writingMode: "horizontal-tb",
-                textOrientation: "mixed",
-              }}
-            >
-              {video.title || "ᠪᠢᠳᠢᠶᠣ"}
-            </h1>
-            <p
-              className="text-sm text-gray-600"
-              style={{
-                writingMode: "horizontal-tb",
-                textOrientation: "mixed",
-              }}
-            >
-              ᠪᠢᠳᠢᠶᠣ
-            </p>
-          </div>
-
           {/* Mobile Video Player */}
           {video.youtube_video_id || video.video_url ? (
             <div className="w-full aspect-video relative shadow-md rounded-lg overflow-hidden">

@@ -25,16 +25,16 @@ export default function StaticHeader({
 
   return (
     <div
-      className="relative md:p-4 h-full w-full min-h-[250px]"
+      className="relative md:p-4 h-full w-full min-h-[250px] md:min-h-[300px]"
       style={getResponsiveStyle()}
     >
-      <div className="h-full relative">
+      <div className="h-full relative flex justify-center items-center w-full">
         <Image
           src={image}
           alt={alt}
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
-          className="md:rounded-xl"
+          className="md:rounded-xl h-full min-h-[250px] md:min-h-[300px] z-0 absolute"
           priority
           onError={(e) => {
             e.target.src = "/images/news1.png"; // fallback image
@@ -43,7 +43,7 @@ export default function StaticHeader({
         {title && (
           <>
             {/* Desktop Title Overlay */}
-            <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white w-full max-w-xs rounded-xl items-center justify-center p-16 overflow-hidden">
+            <div className="hidden md:flex h-full mr-auto bg-black/50 backdrop-blur-lg text-white w-full max-w-xs rounded-xl items-center justify-center p-16 overflow-hidden">
               <h1
                 className="text-3xl font-bold font-mongolian text-center max-h-full overflow-y-auto break-words"
                 style={{
@@ -56,10 +56,10 @@ export default function StaticHeader({
             </div>
 
             {/* Mobile Title Overlay */}
-            <div className="flex md:hidden absolute inset-0 bg-black/50 backdrop-blur-sm text-white items-center justify-center p-4 z-10 overflow-hidden">
-              <div className="max-w-[200px] max-h-[200px] overflow-hidden">
+            <div className="md:hidden w-full p-4 text-white z-30 h-full">
+              <div className="flex items-center justify-center w-full h-full">
                 <h1
-                  className="text-sm font-bold font-mongolian text-center px-3 py-2 bg-black/60 rounded-lg backdrop-blur-md shadow-lg overflow-y-auto break-words max-h-[180px]"
+                  className="text-base font-bold font-mongolian text-center px-4 py-3 bg-black/60 rounded-lg backdrop-blur-md shadow-lg overflow-y-auto break-words max-h-[200px] max-w-[200px] leading-tight"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",

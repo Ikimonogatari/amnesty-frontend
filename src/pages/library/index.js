@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Image from "next/image";
-import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
+import PageIntroduction from "@/components/common/PageIntroduction";
 import Fetcher, { getImageUrl } from "@/utils/fetcher";
+import Layout from "@/components/layout/Layout";
 
 export default function LibraryIndex() {
   const router = useRouter();
@@ -87,89 +87,73 @@ export default function LibraryIndex() {
   }
 
   return (
-    <div className="w-full">
-      {/* Desktop Layout */}
-      <div className="hidden sm:flex h-screen overflow-hidden">
-        <StaticHeader
-          title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-          description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-          backgroundImage="/images/news1.png"
-        />
-
-        {/* Desktop Introduction Section */}
-        <div className="flex-shrink-0 w-96 bg-gray-50 p-8 overflow-y-auto">
-          <h2
-            className="text-2xl font-bold mb-6"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ
-          </h2>
-          <p
-            className="text-gray-700 leading-relaxed"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ
-          </p>
-        </div>
-
-        {/* Desktop Grid Layout */}
-        <div className="flex-1 p-8 overflow-y-auto">
-          <GridLayout
-            items={libraries}
-            isLoading={isLoading}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            basePath="/library"
-            categoryButtonText="ᠨᠣᠮ"
-            emptyStateText="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠦᠭᠡᠢ"
-            getImageUrl={getLibraryImageUrl}
-            getTitle={getLibraryTitle}
+    <Layout>
+      <div className="w-full">
+        {/* Desktop Layout */}
+        <div className="hidden sm:flex h-screen overflow-hidden">
+          <StaticHeader
+            title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            backgroundImage="/images/news1.png"
           />
-        </div>
-      </div>
 
-      {/* Mobile Layout */}
-      <div className="block sm:hidden">
-        <StaticHeader
-          title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-          description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-          backgroundImage="/images/news1.png"
-        />
+          {/* Desktop Introduction Section */}
+          <PageIntroduction
+            variant="desktop"
+            title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ"
+          />
 
-        <div className="p-4">
-          {/* Mobile Introduction Section */}
-          <div className="mb-6 bg-gray-50 p-4 rounded-lg">
-            <h2
-              className="text-lg font-bold mb-3"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ
-            </h2>
-            <p
-              className="text-gray-700 text-sm"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ
-            </p>
+          {/* Desktop Grid Layout */}
+          <div className="flex-1 p-8 overflow-y-auto">
+            <GridLayout
+              items={libraries}
+              isLoading={isLoading}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              basePath="/library"
+              categoryButtonText="ᠨᠣᠮ"
+              emptyStateText="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠦᠭᠡᠢ"
+              getImageUrl={getLibraryImageUrl}
+              getTitle={getLibraryTitle}
+            />
           </div>
+        </div>
 
-          {/* Mobile Grid Layout */}
-          <GridLayout
-            items={libraries}
-            isLoading={isLoading}
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-            basePath="/library"
-            categoryButtonText="ᠨᠣᠮ"
-            emptyStateText="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠦᠭᠡᠢ"
-            getImageUrl={getLibraryImageUrl}
-            getTitle={getLibraryTitle}
+        {/* Mobile Layout */}
+        <div className="block sm:hidden">
+          <StaticHeader
+            title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+            backgroundImage="/images/news1.png"
           />
+
+          <div className="p-4">
+            {/* Mobile Introduction Section */}
+            <PageIntroduction
+              variant="mobile"
+              title="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
+              description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ"
+            />
+
+            {/* Mobile Grid Layout */}
+            <GridLayout
+              items={libraries}
+              isLoading={isLoading}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              basePath="/library"
+              categoryButtonText="ᠨᠣᠮ"
+              emptyStateText="ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠦᠭᠡᠢ"
+              getImageUrl={getLibraryImageUrl}
+              getTitle={getLibraryTitle}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 }
 

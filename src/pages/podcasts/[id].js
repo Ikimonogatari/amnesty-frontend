@@ -96,28 +96,13 @@ export default function PodcastDetail() {
     <Layout>
       {/* Mobile Layout */}
       <div className="sm:hidden flex flex-col w-full">
-        {/* Mobile Hero Section */}
-        <div className="relative h-[200px] w-full flex-shrink-0">
-          <Image
-            src={coverImage}
-            alt={podcast.title || "Podcast cover"}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-40" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1
-              className="p-4 text-white text-lg font-bold text-center"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              {podcast.title || "ᠫᠣᠳᠻᠠᠰᠲ"}
-            </h1>
-          </div>
-        </div>
+        {/* Mobile StaticHeader */}
+        <StaticHeader
+          image={coverImage}
+          alt={podcast.title || "ᠫᠣᠳᠻᠠᠰᠲ"}
+          title={podcast.title || "ᠫᠣᠳᠻᠠᠰᠲ"}
+          width="100%"
+        />
 
         {/* Mobile Content */}
         <div className="flex flex-col gap-6 p-4">
