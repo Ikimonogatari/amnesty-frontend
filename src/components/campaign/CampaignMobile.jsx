@@ -44,16 +44,24 @@ export default function CampaignMobile() {
       }))
     : [];
 
+  // Static image paths for the first 3 feature items (from old web)
+  const staticFeatureImages = [
+    "/images/campaign/211568.png",
+    "/images/campaign/211450.png",
+    "/images/campaign/211464.png",
+  ];
+
   // Convert features data to changeitems format, with fallback to static data
   const changeitems =
     featuresData && featuresData.length > 0
-      ? featuresData.slice(0, 3).map((feature) => ({
+      ? featuresData.slice(0, 3).map((feature, index) => ({
           id: feature.id,
           title: feature.title || "ᠰᠤᠳᠤᠯᠭ᠎ᠠ",
           description:
             feature.description ||
             feature.content ||
             "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃",
+          image: staticFeatureImages[index] || "/images/campaign/211568.png",
         }))
       : [
           {
@@ -61,18 +69,21 @@ export default function CampaignMobile() {
             title: "ᠰᠤᠳᠤᠯᠭ᠎ᠠ",
             description:
               "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
+            image: "/images/campaign/211568.png",
           },
           {
             id: 2,
             title: "ᠨᠥᠯᠦᢉᠡᠯᠡᠯ ᠦ᠋ᠨ ᠠᠵᠢᠯ",
             description:
               "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
+            image: "/images/campaign/211450.png",
           },
           {
             id: 3,
             title: "ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ᠂ ᠠᠻᠼ",
             description:
               "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
+            image: "/images/campaign/211464.png",
           },
         ];
 
@@ -118,27 +129,53 @@ export default function CampaignMobile() {
           >
             ᠪᠢᠳᠡ ᢈᠡᠷᢈᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠶ᠋ᠢ ᢈᠢᠳᠡᢉ ᠪᠤᠢ?
           </h2>
-          <div className="h-full w-full flex max-h-[150px] gap-7 overflow-x-auto">
+          <div className="h-full w-full flex max-h-[150px] gap-4 overflow-x-auto">
             {changeitems.map((item) => (
-              <div key={item.id} className="flex gap-2">
-                <h4
-                  className="text-[10px] font-bold"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  {item.title}
-                </h4>
-                <p
-                  className="text-[10px]"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  {item.description}
-                </p>
+              <div
+                key={item.id}
+                className="flex gap-2 flex-shrink-0 min-w-[220px] max-w-[220px]"
+              >
+                {/* Feature Image */}
+                <div className="flex-shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={90}
+                    height={60}
+                    className="object-cover rounded"
+                    onError={(e) => {
+                      e.target.src = "/images/campaign/211568.png"; // fallback image
+                    }}
+                  />
+                </div>
+                {/* Title Container */}
+                <div className="flex-shrink-0 w-[30px] max-h-[140px] overflow-hidden">
+                  <h4
+                    className="text-[10px] font-bold"
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    {item.title.length > 15
+                      ? `${item.title.substring(0, 15)}...`
+                      : item.title}
+                  </h4>
+                </div>
+                {/* Description Container */}
+                <div className="flex-1 max-h-[140px] overflow-hidden">
+                  <p
+                    className="text-[10px]"
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    {item.description.length > 80
+                      ? `${item.description.substring(0, 80)}...`
+                      : item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

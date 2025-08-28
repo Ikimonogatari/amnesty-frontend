@@ -42,16 +42,24 @@ export default function CampaignDesktop() {
       }))
     : [];
 
+  // Static image paths for the first 3 feature items (from old web)
+  const staticFeatureImages = [
+    "/images/campaign/211568.png",
+    "/images/campaign/211450.png",
+    "/images/campaign/211464.png",
+  ];
+
   // Convert features data to changeitems format, with fallback to static data
   const changeitems =
     featuresData && featuresData.length > 0
-      ? featuresData.slice(0, 3).map((feature) => ({
+      ? featuresData.slice(0, 3).map((feature, index) => ({
           id: feature.id,
           title: feature.title || "ᠰᠤᠳᠤᠯᠭ᠎ᠠ",
           description:
             feature.description ||
             feature.content ||
             "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃",
+          image: staticFeatureImages[index] || "/images/campaign/211568.png",
         }))
       : [
           {
@@ -59,18 +67,21 @@ export default function CampaignDesktop() {
             title: "ᠰᠤᠳᠤᠯᠭ᠎ᠠ",
             description:
               "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
+            image: "/images/campaign/211568.png",
           },
           {
             id: 2,
             title: "ᠨᠥᠯᠦᢉᠡᠯᠡᠯ ᠦ᠋ᠨ ᠠᠵᠢᠯ",
             description:
               "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
+            image: "/images/campaign/211450.png",
           },
           {
             id: 3,
             title: "ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ᠂ ᠠᠻᠼ",
             description:
               "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
+            image: "/images/campaign/211464.png",
           },
         ];
 
@@ -121,25 +132,46 @@ export default function CampaignDesktop() {
           <SectionTitle title={"ᠪᠢᠳᠡ ᢈᠡᠷᢈᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠶ᠋ᠢ ᢈᠢᠳᠡᢉ ᠪᠤᠢ?"} />
           <div className="h-full w-full grid grid-cols-1 grid-rows-3 gap-10">
             {changeitems.map((item) => (
-              <div key={item.id} className="flex gap-5">
-                <h4
-                  className="text-2xl font-bold"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  {item.title}
-                </h4>
-                <p
-                  className="text-sm font-bold"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  {item.description}
-                </p>
+              <div key={item.id} className="flex gap-5 w-full">
+                {/* Feature Image */}
+                <div className="flex-shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={180}
+                    height={120}
+                    className="object-cover rounded-lg"
+                    onError={(e) => {
+                      e.target.src = "/images/campaign/211568.png"; // fallback image
+                    }}
+                  />
+                </div>
+                {/* Title Container */}
+                <div className="flex-shrink-0 w-[80px] max-h-[200px] overflow-hidden">
+                  <h4
+                    className="text-2xl font-bold"
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    {item.title}
+                  </h4>
+                </div>
+                {/* Description Container */}
+                <div className="flex-1 max-h-[200px] overflow-hidden">
+                  <p
+                    className="text-sm font-bold"
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    {item.description.length > 200
+                      ? `${item.description.substring(0, 200)}...`
+                      : item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
