@@ -73,6 +73,42 @@ export const apiService = createApi({
       invalidatesTags: ["Contact"],
     }),
 
+    // Human Rights Report submission
+    submitHumanRightsReport: builder.mutation({
+      queryFn: async (data) => {
+        try {
+          const response = await fetch("/api/human-right-reports/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              phone: data.phone,
+              otp: data.otp,
+              evidenceCode: data.evidenceCode,
+              incident: data.incident,
+              outcome: data.outcome,
+              authorities: data.authorities,
+              details: data.details,
+              message: data.message,
+              images: data.images,
+            }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            return { error: { status: response.status, data: errorData } };
+          }
+
+          const result = await response.json();
+          return { data: result };
+        } catch (error) {
+          return { error: { status: "FETCH_ERROR", error: error.message } };
+        }
+      },
+      invalidatesTags: ["Report"],
+    }),
+
     // Posts endpoints - using custom list endpoint
     getPosts: builder.query({
       query: (params = {}) => {
@@ -461,4 +497,5 @@ export const {
   useGetCompanyWorkFeatureByIdQuery,
   useGetHomepageContentQuery,
   useSubmitContactFormMutation,
+  useSubmitHumanRightsReportMutation,
 } = apiService;

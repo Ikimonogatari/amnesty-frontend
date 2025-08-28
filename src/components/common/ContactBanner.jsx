@@ -55,12 +55,7 @@ export default function ContactBanner({ isMobile = false }) {
           >
             ᠴᠠᠬᠢᠮ ᠱᠤᠳᠠᠨ:
           </p>
-          <p
-            className="text-black text-sm sm:text-base"
-            style={{ writingMode: "vertical-lr" }}
-          >
-            info@amnesty.mn
-          </p>
+
           <p
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
             className="text-black text-sm sm:text-base"
