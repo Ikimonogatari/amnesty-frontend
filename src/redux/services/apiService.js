@@ -72,23 +72,37 @@ export const apiService = createApi({
       invalidatesTags: ["Contact"],
     }),
 
-    // Posts endpoints - using standard Strapi API
+    // Posts endpoints - using custom list endpoint
     getPosts: builder.query({
       query: (params = {}) => {
-        // Extract pageSize from params to avoid duplication
-        const { pageSize, page, sort, ...otherParams } = params;
+        // Use the posts/list endpoint which is working
+        let url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.POSTS_LIST}`;
 
-        const url = buildApiUrl(API_CONFIG.ENDPOINTS.POSTS, {
-          "pagination[pageSize]":
-            pageSize || API_CONFIG.PAGINATION.DEFAULT_PAGE_SIZE,
-          "pagination[page]": page || 1,
-          sort: sort || "publishedAt:desc",
-          ...otherParams,
-        });
+        // Add category filter if provided
+        const queryParams = [];
+        if (params.post_category) {
+          queryParams.push(`post_category=${encodeURIComponent(params.post_category)}`);
+        }
+
+        if (queryParams.length > 0) {
+          url += `?${queryParams.join('&')}`;
+        }
+
         return url.replace(API_CONFIG.BASE_URL, "");
       },
-      transformResponse: (response) => {
-        return formatStrapiResponse(response);
+      transformResponse: (response, meta, arg) => {
+        // The /posts/list endpoint returns data in flattened format, not nested attributes
+        return {
+          data: response.data || [],
+          meta: {
+            pagination: {
+              pageCount: Math.ceil((response.data?.length || 0) / (arg["pagination[pageSize]"] || 9)),
+              pageSize: arg["pagination[pageSize]"] || 9,
+              page: arg["pagination[page]"] || 1,
+              total: response.data?.length || 0
+            }
+          }
+        };
       },
       providesTags: ["Post"],
     }),

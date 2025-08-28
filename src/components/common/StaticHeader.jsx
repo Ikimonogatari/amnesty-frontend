@@ -43,9 +43,9 @@ export default function StaticHeader({
         {title && (
           <>
             {/* Desktop Title Overlay */}
-            <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white w-full max-w-xs rounded-xl items-center justify-center p-16">
+            <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white w-full max-w-xs rounded-xl items-center justify-center p-16 overflow-hidden">
               <h1
-                className="text-3xl font-bold font-mongolian text-center"
+                className="text-3xl font-bold font-mongolian text-center max-h-full overflow-y-auto break-words"
                 style={{
                   writingMode: "vertical-rl",
                   textOrientation: "upright",
@@ -56,16 +56,20 @@ export default function StaticHeader({
             </div>
 
             {/* Mobile Title Overlay */}
-            <div className="flex md:hidden bg-black/50 backdrop-blur-sm text-white items-center justify-center p-4 z-10">
-              <h1
-                className="text-sm font-bold font-mongolian text-center px-4 py-2 bg-black/60 rounded-lg backdrop-blur-md shadow-lg max-h-[180px]"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                {title}
-              </h1>
+            <div className="flex md:hidden absolute inset-0 bg-black/50 backdrop-blur-sm text-white items-center justify-center p-4 z-10 overflow-hidden">
+              <div className="max-w-[200px] max-h-[200px] overflow-hidden">
+                <h1
+                  className="text-sm font-bold font-mongolian text-center px-3 py-2 bg-black/60 rounded-lg backdrop-blur-md shadow-lg overflow-y-auto break-words max-h-[180px]"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                    wordBreak: "break-all",
+                    overflowWrap: "break-word",
+                  }}
+                >
+                  {title}
+                </h1>
+              </div>
             </div>
           </>
         )}

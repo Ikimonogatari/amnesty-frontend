@@ -5,6 +5,7 @@ import apiService from "@/services/apiService";
 import { getImageUrl, formatMongolianDate } from "@/utils/fetcher";
 import Button from "@/components/common/Button";
 import Layout from "@/components/layout/Layout";
+import RelatedItems from "@/components/common/RelatedItems";
 import { Share2, Facebook } from "lucide-react";
 import StaticHeader from "@/components/common/StaticHeader";
 
@@ -238,62 +239,13 @@ export default function SingleNews() {
 
           {/* Mobile Related News */}
           {recommended && recommended.length > 0 && (
-            <div className="flex flex-row gap-2">
-              <h2
-                className="text-xl font-bold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠰᠠᠨᠠᠭᠤᠯᠬᠤ ᠮᠡᠳᠡᢉᠡ
-              </h2>
-              <div className="grid grid-cols-1 gap-4">
-                {recommended.slice(0, 6).map((item, index) => (
-                  <div
-                    key={item.id || index}
-                    className="flex gap-4 max-h-[150px] cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/news/${item.id}`)}
-                  >
-                    <h3
-                      className="text-sm font-medium line-clamp-3 mb-2"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                    >
-                      {(item.short_description || item.title)?.length > 40
-                        ? `${(item.short_description || item.title).substring(
-                            0,
-                            40
-                          )}...`
-                        : item.short_description || item.title}
-                    </h3>
-                    <div className="relative aspect-square w-[150px] h-[150px] flex-shrink-0">
-                      <Image
-                        src={getImageUrl(item.cover) || "/images/news1.png"}
-                        alt={item.title || "News image"}
-                        fill
-                        className="object-cover rounded"
-                        onError={(e) => {
-                          e.target.src = "/images/news1.png"; // fallback image
-                        }}
-                      />
-                      <Button
-                        text="ᠮᠡᠳᠡᢉᠡ"
-                        type="primary"
-                        className="absolute -top-1 -right-1 text-black text-xs px-1 py-0.5"
-                      />
-                    </div>
-                    <Button
-                      text="ᠤᠩᠰᠢᠬᠤ"
-                      type="secondary"
-                      className="text-black h-48"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
+            <RelatedItems
+              items={recommended.slice(0, 6)}
+              sectionTitle="ᠰᠠᠨᠠᠭᠤᠯᠬᠤ ᠮᠡᠳᠡᢉᠡ"
+              primaryButtonText="ᠤᠩᠰᠢᠬᠤ"
+              itemType="news"
+              maxItems={6}
+            />
           )}
         </div>
       </div>
@@ -443,64 +395,13 @@ export default function SingleNews() {
 
         {/* Related News Section */}
         {recommended && recommended.length > 0 && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold flex-shrink-0"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠰᠠᠨᠠᠭᠤᠯᠬᠤ ᠮᠡᠳᠡᢉᠡ
-            </h2>
-            <div className="grid grid-cols-2 grid-rows-3 grid-flow-col gap-4">
-              {recommended.slice(0, 6).map((item, index) => (
-                <div
-                  key={item.id || index}
-                  className="w-full h-full flex items-end space-x-4"
-                >
-                  <h3
-                    className="max-w-16 line-clamp-3 h-full text-sm"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    title={item.short_description || item.title}
-                  >
-                    {(item.short_description || item.title)?.length > 50
-                      ? `${(item.short_description || item.title).substring(
-                          0,
-                          50
-                        )}...`
-                      : item.short_description || item.title}
-                  </h3>
-                  <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
-                    <Image
-                      src={getImageUrl(item.cover) || "/images/news1.png"}
-                      alt={item.title || "News image"}
-                      fill
-                      className="object-cover rounded-xl w-full h-full"
-                      onError={(e) => {
-                        e.target.src = "/images/news1.png"; // fallback image
-                      }}
-                    />
-                    <Button
-                      text="ᠮᠡᠳᠡᢉᠡ"
-                      type="primary"
-                      className="absolute top-0 right-0 text-black cursor-pointer hover:opacity-80 transition-opacity"
-                      onClick={() => router.push(`/news/${item.id}`)}
-                    />
-                  </div>
-                  <Button
-                    text="ᠤᠩᠰᠢᠬᠤ"
-                    type="secondary"
-                    className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/news/${item.id}`)}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <RelatedItems
+            items={recommended.slice(0, 3)}
+            sectionTitle="ᠰᠠᠨᠠᠭᠤᠯᠬᠤ ᠮᠡᠳᠡᢉᠡ"
+            primaryButtonText="ᠤᠩᠰᠢᠬᠤ"
+            itemType="news"
+            maxItems={3}
+          />
         )}
       </div>
     </Layout>

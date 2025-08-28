@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Image from "next/image";
 import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
+import RelatedItems from "@/components/common/RelatedItems";
 import { librariesService } from "@/services/apiService";
 import { getImageUrl, toMongolianNumbers } from "@/utils/fetcher";
 
@@ -32,11 +33,14 @@ export default function LibraryDetail() {
         const libraryData = await librariesService.getLibraryById(id);
         setLibrary(libraryData);
 
-        const relatedData = await librariesService.getLibraries({
-          pageSize: 9,
-        });
-        const filteredData =
-          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || [];
+        // Fetch related libraries - match old web approach
+        const relatedData = await librariesService.getLibraries();
+        console.log("ALL libraries data:", relatedData);
+        const allLibraries = relatedData?.data || relatedData || [];
+        const filteredData = Array.isArray(allLibraries)
+          ? allLibraries.filter((item) => item.id !== parseInt(id))
+          : [];
+        console.log("Filtered libraries:", filteredData);
         setRelatedLibraries(filteredData);
       } catch (err) {
         setError(err);
@@ -383,63 +387,13 @@ export default function LibraryDetail() {
         )}
 
         {/* Related Libraries Section */}
-        {relatedLibraries && relatedLibraries.length > 0 && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠨᠣᠮ
-            </h2>
-            <div className="grid grid-cols-1 grid-rows-3 gap-4 min-h-[900px]">
-              {relatedLibraries.slice(0, 3).map((item, index) => (
-                <div
-                  key={item.id || index}
-                  className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/library/${item.id}`)}
-                >
-                  <h3
-                    className="max-w-16 line-clamp-3 h-full text-sm"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    title={item.title || item.name}
-                  >
-                    {(item.title || item.name)?.length > 50
-                      ? `${(item.title || item.name).substring(0, 50)}...`
-                      : item.title || item.name}
-                  </h3>
-                  <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
-                    <Image
-                      src={
-                        getImageUrl(
-                          item.thumbnail || item.cover || item.image
-                        ) || "/images/news1.png"
-                      }
-                      alt={item.title || item.name || "Library image"}
-                      fill
-                      className="object-cover rounded-xl w-full h-full"
-                    />
-                    <Button
-                      text="ᠨᠣᠮ"
-                      type="primary"
-                      className="absolute top-0 right-0 text-black"
-                    />
-                  </div>
-                  <Button
-                    text="ᠤᠩᠰᠢᠬᠤ"
-                    type="secondary"
-                    className="text-black h-48"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        <RelatedItems
+          items={relatedLibraries}
+          sectionTitle="ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠨᠣᠮ"
+          primaryButtonText="ᠨᠣᠮ"
+          itemType="library"
+          maxItems={3}
+        />
       </div>
     </Layout>
   );

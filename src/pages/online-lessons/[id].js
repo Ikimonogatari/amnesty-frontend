@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Layout from "@/components/layout/Layout";
 import Image from "next/image";
 import Button from "@/components/common/Button";
+import RelatedItems from "@/components/common/RelatedItems";
 import { onlineLessonsService } from "@/services/apiService";
 import { getImageUrl, toMongolianNumbers } from "@/utils/fetcher";
 import StaticHeader from "@/components/common/StaticHeader";
@@ -35,12 +36,14 @@ export default function OnlineLessonDetail() {
         const lessonData = await onlineLessonsService.getOnlineLessonById(id);
         setOnlineLesson(lessonData);
 
-        // Fetch related online lessons
-        const relatedData = await onlineLessonsService.getOnlineLessons({
-          pageSize: 6,
-        });
-        const filteredData =
-          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || [];
+        // Fetch related online lessons - match old web approach
+        const relatedData = await onlineLessonsService.getOnlineLessons();
+        console.log("ALL online lessons data:", relatedData);
+        const allLessons = relatedData?.data || relatedData || [];
+        const filteredData = Array.isArray(allLessons)
+          ? allLessons.filter((item) => item.id !== parseInt(id))
+          : [];
+        console.log("Filtered online lessons:", filteredData);
         setRelatedLessons(filteredData);
       } catch (err) {
         setError(err);
@@ -608,63 +611,14 @@ export default function OnlineLessonDetail() {
             </div>
           </div>
 
-          {/* Related Online Lessons Section - News Grid Layout */}
-          {relatedLessons && relatedLessons.length > 0 && (
-            <div className="flex gap-4">
-              <h2
-                className="text-2xl font-bold"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
-              </h2>
-              <div className="grid grid-cols-1 grid-rows-3 gap-4 min-h-[900px]">
-                {relatedLessons.slice(0, 3).map((item, index) => (
-                  <div
-                    key={item.id || index}
-                    className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => router.push(`/online-lessons/${item.id}`)}
-                  >
-                    <h3
-                      className="max-w-16 line-clamp-3 h-full text-sm"
-                      style={{
-                        writingMode: "vertical-lr",
-                        textOrientation: "upright",
-                      }}
-                      title={item.title}
-                    >
-                      {item.title?.length > 50
-                        ? `${item.title.substring(0, 50)}...`
-                        : item.title}
-                    </h3>
-                    <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
-                      <Image
-                        src={
-                          getImageUrl(item.thumbnail || item.cover) ||
-                          "/images/news1.png"
-                        }
-                        alt={item.title || "Online lesson image"}
-                        fill
-                        className="object-cover rounded-xl w-full h-full"
-                      />
-                      <Button
-                        text="ᠰᠤᠷᠭᠠᠯ"
-                        type="primary"
-                        className="absolute top-0 right-0 text-black"
-                      />
-                    </div>
-                    <Button
-                      text="ᠤᠩᠰᠢᠬᠤ"
-                      type="secondary"
-                      className="text-black h-48"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* Related Online Lessons Section */}
+          <RelatedItems
+            items={relatedLessons}
+            sectionTitle="ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ"
+            primaryButtonText="ᠰᠤᠷᠭᠠᠯ"
+            itemType="online-lessons"
+            maxItems={3}
+          />
         </div>
       </div>
     </Layout>

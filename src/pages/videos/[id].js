@@ -4,6 +4,7 @@ import Layout from "@/components/layout/Layout";
 import Image from "next/image";
 import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
+import RelatedItems from "@/components/common/RelatedItems";
 import { videosService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 
@@ -28,12 +29,14 @@ export default function VideoDetail() {
         const videoData = await videosService.getVideoById(id);
         setVideo(videoData);
 
-        // Fetch related videos
-        const relatedData = await videosService.getVideos({
-          pageSize: 6,
-        });
-        const filteredData =
-          relatedData?.data?.filter((item) => item.id !== parseInt(id)) || [];
+        // Fetch related videos - match old web approach
+        const relatedData = await videosService.getVideos();
+        console.log("ALL videos data:", relatedData);
+        const allVideos = relatedData?.data || relatedData || [];
+        const filteredData = Array.isArray(allVideos)
+          ? allVideos.filter((item) => item.id !== parseInt(id))
+          : [];
+        console.log("Filtered videos:", filteredData);
         setRelatedVideos(filteredData);
       } catch (err) {
         setError(err);
@@ -431,62 +434,13 @@ export default function VideoDetail() {
         )}
 
         {/* Related Videos Section */}
-        {relatedVideos && relatedVideos.length > 0 && (
-          <div className="flex gap-4">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              ᠲᠤᠰ ᠮᠡᠳᠡᠵᠦ ᠦᠵᠡᠬᠦ
-            </h2>
-            <div className="grid grid-cols-1 grid-rows-3 gap-4 min-h-[900px]">
-              {relatedVideos.slice(0, 3).map((item, index) => (
-                <div
-                  key={item.id || index}
-                  className="w-full h-full flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => router.push(`/videos/${item.id}`)}
-                >
-                  <h3
-                    className="max-w-16 line-clamp-3 h-full text-sm"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                    title={item.title}
-                  >
-                    {item.title?.length > 50
-                      ? `${item.title.substring(0, 50)}...`
-                      : item.title}
-                  </h3>
-                  <div className="relative h-[300px] w-[300px] aspect-square shadow-md">
-                    <Image
-                      src={
-                        getImageUrl(item.thumbnail || item.cover) ||
-                        "/images/news1.png"
-                      }
-                      alt={item.title || "Video image"}
-                      fill
-                      className="object-cover rounded-xl w-full h-full"
-                    />
-                    <Button
-                      text="ᠪᠢᠳᠢᠶᠣ"
-                      type="primary"
-                      className="absolute top-0 right-0 text-black"
-                    />
-                  </div>
-                  <Button
-                    text="ᠤᠩᠰᠢᠬᠤ"
-                    type="secondary"
-                    className="text-black h-48"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        <RelatedItems
+          items={relatedVideos}
+          sectionTitle="ᠲᠤᠰ ᠮᠡᠳᠡᠵᠦ ᠦᠵᠡᠬᠦ"
+          primaryButtonText="ᠪᠢᠳᠢᠶᠣ"
+          itemType="videos"
+          maxItems={3}
+        />
       </div>
     </Layout>
   );

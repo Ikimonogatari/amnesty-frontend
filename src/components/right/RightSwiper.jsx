@@ -149,7 +149,7 @@ export default function RightSwiper({
         <div className="flex flex-row gap-4 sm:gap-8">
           <div className="flex gap-2 sm:gap-8 h-full min-h-[200px] sm:h-auto overflow-visible">
             <h1
-              className="text-xs sm:text-2xl font-bold overflow-visible"
+              className="text-xs sm:text-2xl font-bold max-h-[300px] overflow-y-auto"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -160,7 +160,7 @@ export default function RightSwiper({
               {title}
             </h1>
             <p
-              className="text-[8px] sm:text-sm font-bold overflow-visible"
+              className="text-[8px] sm:text-sm font-bold max-h-[400px] overflow-y-auto"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -194,7 +194,7 @@ export default function RightSwiper({
       <div className="flex flex-row gap-4 sm:gap-8">
         <div className="flex gap-2 sm:gap-8 h-full min-h-[200px] sm:h-auto overflow-visible">
           <h1
-            className="text-xs sm:text-2xl font-bold overflow-visible"
+            className="text-xs sm:text-2xl font-bold max-h-[300px] overflow-y-auto"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
@@ -205,7 +205,7 @@ export default function RightSwiper({
             {title}
           </h1>
           <p
-            className="text-[8px] sm:text-sm font-bold overflow-visible"
+            className="text-[8px] sm:text-sm font-bold max-h-[400px] overflow-y-auto"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
@@ -224,7 +224,7 @@ export default function RightSwiper({
       </div>
       <div className="flex flex-row gap-2 h-full min-h-[280px] sm:h-auto">
         <p
-          className="text-[10px] font-bold block sm:hidden border-r pr-2 overflow-visible"
+          className="text-[10px] font-bold block sm:hidden border-r pr-2 max-h-[250px] overflow-y-auto"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",

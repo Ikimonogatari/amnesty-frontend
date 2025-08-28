@@ -6,45 +6,43 @@ import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
 import Fetcher, { getImageUrl } from "@/utils/fetcher";
 
-export default function VideosIndex() {
+export default function OnlineLessonsIndex() {
   const router = useRouter();
-  const [videos, setVideos] = useState([]);
+  const [onlineLessons, setOnlineLessons] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const pageSize = 9; // Match news page items per page
 
-  // Fetch videos data
+  // Fetch online lessons data
   useEffect(() => {
-    fetchVideos(currentPage);
+    fetchOnlineLessons(currentPage);
   }, [currentPage]);
 
-  const fetchVideos = async (page) => {
+  const fetchOnlineLessons = async (page) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const response = await Fetcher(
-        "/videos?populate=deep&sort[publishedAt]=desc"
-      );
+      const response = await Fetcher("/online-lessons?populate=deep");
 
       if (response?.data && Array.isArray(response.data)) {
         // Client-side pagination to match old web behavior
-        const allVideos = response.data;
+        const allOnlineLessons = response.data;
         const startIndex = (page - 1) * pageSize;
         const endIndex = startIndex + pageSize;
-        const paginatedVideos = allVideos.slice(startIndex, endIndex);
+        const paginatedLessons = allOnlineLessons.slice(startIndex, endIndex);
 
-        setVideos(paginatedVideos);
-        setTotalPages(Math.ceil(allVideos.length / pageSize));
+        setOnlineLessons(paginatedLessons);
+        setTotalPages(Math.ceil(allOnlineLessons.length / pageSize));
       } else {
-        setVideos([]);
+        setOnlineLessons([]);
         setTotalPages(1);
       }
     } catch (err) {
       setError(err);
-      setVideos([]);
+      setOnlineLessons([]);
       setTotalPages(1);
     } finally {
       setIsLoading(false);
@@ -59,7 +57,7 @@ export default function VideosIndex() {
   };
 
   // Loading state
-  if (isLoading && videos.length === 0) {
+  if (isLoading && onlineLessons.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -93,8 +91,8 @@ export default function VideosIndex() {
       {/* Desktop Layout */}
       <div className="hidden sm:flex h-screen overflow-hidden">
         <StaticHeader
-          title="ᠸᠢᠳᠧᠣ"
-          description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
+          title="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ"
+          description="ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠨ ᠳᠠᠪᠲᠠᠨ"
           backgroundImage="/images/news1.png"
         />
 
@@ -104,30 +102,29 @@ export default function VideosIndex() {
             className="text-2xl font-bold mb-6"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ
+            ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ
           </h2>
           <p
             className="text-gray-700 leading-relaxed"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
+            ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
           </p>
         </div>
 
         {/* Desktop Grid Layout */}
         <div className="flex-1 p-8 overflow-y-auto">
           <GridLayout
-            items={videos}
+            items={onlineLessons}
             isLoading={isLoading}
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
-            basePath="/videos"
-            categoryButtonText="ᠸᠢᠳᠧᠣ"
-            emptyStateText="ᠸᠢᠳᠧᠣ ᠦᠭᠡᠢ"
-            getImageUrl={getVideoImageUrl}
-            getTitle={getVideoTitle}
-            itemType="video"
+            basePath="/online-lessons"
+            categoryButtonText="ᠰᠤᠷᠭᠠᠯᠲᠤ"
+            emptyStateText="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠭᠡᠢ"
+            getImageUrl={getOnlineLessonImageUrl}
+            getTitle={getOnlineLessonTitle}
           />
         </div>
       </div>
@@ -135,8 +132,8 @@ export default function VideosIndex() {
       {/* Mobile Layout */}
       <div className="block sm:hidden">
         <StaticHeader
-          title="ᠸᠢᠳᠧᠣ"
-          description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
+          title="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ"
+          description="ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠨ ᠳᠠᠪᠲᠠᠨ"
           backgroundImage="/images/news1.png"
         />
 
@@ -147,29 +144,28 @@ export default function VideosIndex() {
               className="text-lg font-bold mb-3"
               style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
             >
-              ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ
+              ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ
             </h2>
             <p
               className="text-gray-700 text-sm"
               style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
             >
-              ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
+              ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
             </p>
           </div>
 
           {/* Mobile Grid Layout */}
           <GridLayout
-            items={videos}
+            items={onlineLessons}
             isLoading={isLoading}
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={handlePageChange}
-            basePath="/videos"
-            categoryButtonText="ᠸᠢᠳᠧᠣ"
-            emptyStateText="ᠸᠢᠳᠧᠣ ᠦᠭᠡᠢ"
-            getImageUrl={getVideoImageUrl}
-            getTitle={getVideoTitle}
-            itemType="video"
+            basePath="/online-lessons"
+            categoryButtonText="ᠰᠤᠷᠭᠠᠯᠲᠤ"
+            emptyStateText="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠭᠡᠢ"
+            getImageUrl={getOnlineLessonImageUrl}
+            getTitle={getOnlineLessonTitle}
           />
         </div>
       </div>
@@ -178,13 +174,13 @@ export default function VideosIndex() {
 }
 
 // Helper functions for GridLayout component
-const getVideoImageUrl = (video) => {
+const getOnlineLessonImageUrl = (lesson) => {
   return (
-    getImageUrl(video.attributes?.thumbnail || video.attributes?.cover) ||
+    getImageUrl(lesson.attributes?.thumbnail || lesson.attributes?.cover) ||
     "/images/news1.png"
   );
 };
 
-const getVideoTitle = (video) => {
-  return video.attributes?.title || video.title || "ᠸᠢᠳᠧᠣ";
+const getOnlineLessonTitle = (lesson) => {
+  return lesson.attributes?.title || lesson.title || "ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ";
 };
