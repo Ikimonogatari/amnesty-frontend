@@ -3,6 +3,9 @@ export default function Button({
   onClick,
   type = "primary",
   className = "",
+  href,
+  target,
+  rel,
 }) {
   let buttonClasses;
 
@@ -18,6 +21,27 @@ export default function Button({
     buttonClasses = `${className} text-[10px] sm:text-sm z-10 bg-[#FFFFFF99] opacity-60 px-2 py-4 rounded-lg`;
   } else {
     buttonClasses = `${className} border border-solid border-[#E3E3E3] rounded-[10px] w-[50px] py-6 flex items-center justify-center hover:brightness-105 transition-all`;
+  }
+
+  // If href is provided, render as anchor tag, otherwise render as button
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        rel={rel}
+        className={buttonClasses}
+        style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+      >
+        <p
+          className={`${
+            type !== "chevron" && "pl-1 sm:pl-2"
+          } font-bold text-[10px] sm:text-base`}
+        >
+          {text}
+        </p>
+      </a>
+    );
   }
 
   return (

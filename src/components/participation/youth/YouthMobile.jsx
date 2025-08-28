@@ -102,17 +102,26 @@ export default function YouthDesktop() {
             ᢈᠡᠷᠡᢉᠵᠢᢉᠦᠯᢈᠦ ᠦᠶᠢᠯᠡ ᠶᠠᠪᠤᠴᠠ ᠶ᠋ᠢ ᠲᠣᠳᠤᠷᠬᠠᠶᠢᠯᠠᠭᠰᠠᠨ
           </p>
           <div className="flex flex-col gap-2">
-            <button className="bg-white rounded-[6px] py-3 px-1 flex items-center justify-center hover:brightness-105 transition-all">
+            <a
+              href="https://www.amnesty.org/ar/wp-content/uploads/2021/08/act760032006en.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white rounded-[6px] py-3 px-1 flex items-center justify-center hover:brightness-105 transition-all border border-gray-300"
+            >
               <p
                 style={{
                   writingMode: "vertical-lr",
                 }}
-                className="pl-2"
+                className="pl-2 text-black font-bold"
               >
                 ᠠᠩᢉᠯᠢ
               </p>
-            </button>
-            <button className="bg-[#FFFF00] rounded-[6px] px-1 py-3 flex flex-col gap-2 items-center justify-center hover:brightness-105 transition-all">
+            </a>
+            <a
+              href="https://www.amnesty.org/ar/wp-content/uploads/2021/08/act760032006en.pdf"
+              download="youth-activism-engagement-participation-guide.pdf"
+              className="bg-[#FFFF00] rounded-[6px] px-1 py-3 flex flex-col gap-2 items-center justify-center hover:brightness-105 transition-all"
+            >
               <Download width={20} height={20} />
               <p
                 style={{
@@ -122,7 +131,7 @@ export default function YouthDesktop() {
               >
                 ᠲᠠᠲᠠᠬᠤ
               </p>
-            </button>
+            </a>
           </div>
         </div>
         <div className="gap-2 p-4 max-h-[200px] flex flex-row items-start">
@@ -155,6 +164,9 @@ export default function YouthDesktop() {
               <Button
                 text="ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᢈᠥᠳᠡᠯᢉᠡᢉᠡᠨ ᠳ᠋ᠦ ᠨᠢᢉᠡᠳᢈᠦ"
                 type="banner"
+                href="https://www.amnesty.org/en/about-us/our-leadership/#tab-youth"
+                target="_blank"
+                rel="noopener noreferrer"
               />
             </div>
           </div>
