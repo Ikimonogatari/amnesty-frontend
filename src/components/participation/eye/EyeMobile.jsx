@@ -697,7 +697,7 @@ export default function EyeMobile() {
                           : `${process.env.NEXT_PUBLIC_USER_API_URL}/${coverImage}`
                       }
                       alt="Cover preview"
-                      className="max-w-[300px] max-h-[300px] w-auto h-auto object-cover rounded-lg border border-gray-300"
+                      className="min-w-[200px] min-h-[200px] aspect-square object-cover rounded-lg border border-gray-300"
                     />
                     <button
                       type="button"
@@ -705,7 +705,7 @@ export default function EyeMobile() {
                         setCoverImage("");
                         setCoverImageName("");
                       }}
-                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center hover:bg-red-600"
+                      className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center hover:bg-red-600"
                     >
                       ×
                     </button>
@@ -1009,70 +1009,18 @@ export default function EyeMobile() {
                 />
               </div>
 
-              {/* Image Upload */}
-              <div className="flex gap-2 flex-col">
-                <p
-                  className="text-xs"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  ᠵᠢᠷᠤᠭ (3 ᠬᠡᠮᠡᠯ)
-                </p>
-                <input
-                  type="file"
-                  multiple
-                  accept="image/jpg,image/jpeg,image/png"
-                  onChange={handleImageUpload}
-                  className="hidden"
-                  id="image-upload-mobile"
-                />
-                <Button
-                  text="ᠵᠢᠷᠤᠭ ᢈᠥᠭᠢᠯᠡᠬᠦ"
-                  type="secondary"
-                  onClick={() =>
-                    document.getElementById("image-upload-mobile").click()
-                  }
-                  className="text-[10px]"
-                />
-                {/* Display uploaded images */}
-                {uploadedImages.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
-                    {uploadedImages.map((img) => (
-                      <div key={img.id} className="relative">
-                        <img
-                          src={img.preview}
-                          alt={img.name}
-                          className="w-8 h-8 object-cover rounded border"
-                        />
-                        <button
-                          type="button"
-                          onClick={() => removeImage(img.id)}
-                          className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-3 h-3 text-[8px] flex items-center justify-center"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-
               {/* Submit Button */}
-              <div className="flex gap-2 items-end">
-                <Button
-                  text={isSubmitting ? "ᠢᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ..." : "ᠢᠯᠠᠬᠤ"}
-                  type="primary"
-                  onClick={handleSubmit(onSubmit)}
-                  disabled={isSubmitting || !isOtpSent}
-                  className={`${
-                    isSubmitting || !isOtpSent
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:bg-blue-600"
-                  } transition-colors text-[10px]`}
-                />
-              </div>
+              <Button
+                text={isSubmitting ? "ᠢᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ..." : "ᠢᠯᠠᠬᠤ"}
+                type="primary"
+                onClick={handleSubmit(onSubmit)}
+                disabled={isSubmitting || !isOtpSent}
+                className={`${
+                  isSubmitting || !isOtpSent
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-blue-600"
+                } transition-colors text-[10px] max-h-max`}
+              />
             </form>
           </div>
         </div>
