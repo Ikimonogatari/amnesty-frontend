@@ -554,7 +554,7 @@ export default function EyeDesktop() {
           </div>
         </div>
 
-        <div className="flex gap-7 mt-4 w-full">
+        <div className="flex gap-7 mt-4">
           <h2
             className="text-sm font-bold"
             style={{
@@ -583,7 +583,7 @@ export default function EyeDesktop() {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex gap-2 overflow-x-auto w-full"
+            className="flex gap-2 overflow-x-auto"
           >
             {/* Phone Number Field */}
             <div className="flex gap-2">
