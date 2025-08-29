@@ -330,7 +330,7 @@ export default function SingleNews() {
             ᠠᠭᠤᠯᠭ᠎ᠠ
           </h2>
           <div
-            className="prose prose-lg text-base break-words"
+            className="prose prose-lg text-base break-words max-w-8xl overflow-x-auto"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
