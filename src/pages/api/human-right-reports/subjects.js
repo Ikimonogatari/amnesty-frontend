@@ -1,34 +1,19 @@
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
+  if (req.method !== "GET") {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
   try {
+    // Make request to backend API
     const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
 
-    // Forward the request to backend API
-    console.log(
-      "Forwarding auth header:",
-      req.headers.authorization ? "✅ Present" : "❌ Missing"
-    );
-    console.log(
-      "Sending to API:",
-      `${USER_API_BASE_URL}/human-right-reports/create`
-    );
-    console.log("Request body:", JSON.stringify(req.body, null, 2));
-
     const response = await fetch(
-      `${USER_API_BASE_URL}/human-right-reports/create`,
+      `${USER_API_BASE_URL}/human-right-reports/subjects`,
       {
-        method: "POST",
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          // Forward Authorization header if present
-          ...(req.headers.authorization
-            ? { Authorization: req.headers.authorization }
-            : {}),
         },
-        body: JSON.stringify(req.body),
       }
     );
 
@@ -41,18 +26,26 @@ export default async function handler(req, res) {
       // If not JSON, it's probably an error page
       const textResponse = await response.text();
       console.error(
-        "Submit API returned non-JSON:",
+        "Subjects API returned non-JSON:",
         textResponse.substring(0, 500)
       );
       return res.status(500).json({
-        message: `Submit API returned non-JSON response (status: ${response.status})`,
+        message: `Subjects API returned non-JSON response (status: ${response.status})`,
         debug: textResponse.substring(0, 200),
+        // Fallback subjects
+        payload: [
+          { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+          { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ" },
+          { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ" },
+          { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ" },
+          { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ" },
+        ],
       });
     }
   } catch (error) {
-    console.error("Human rights report submit error:", error);
+    console.error("Human rights subjects fetch error:", error);
     return res.status(500).json({
-      message: error?.message || "Failed to submit human rights report",
+      message: error?.message || "Failed to fetch human rights subjects",
     });
   }
 }

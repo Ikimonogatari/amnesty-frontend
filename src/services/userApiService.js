@@ -779,12 +779,27 @@ export const contactService = {
   // Upload cover image for human rights report
   async uploadCoverImage(formData) {
     try {
-      const response = await FetcherPost(
-        "/human-right-reports/cover",
-        formData,
-        USER_API_BASE_URL
+      const authHeaders = getAuthHeaders();
+      const response = await fetch(
+        `${USER_API_BASE_URL}/human-right-reports/cover`,
+        {
+          method: "POST",
+          headers: {
+            // Don't set Content-Type for FormData - browser will set multipart boundary
+            ...authHeaders,
+          },
+          body: formData, // FormData directly, not JSON.stringify
+        }
       );
-      return response;
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          `Upload failed: ${errorData.message || response.statusText}`
+        );
+      }
+
+      return await response.json();
     } catch (error) {
       throw error;
     }

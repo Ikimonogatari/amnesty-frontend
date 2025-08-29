@@ -84,9 +84,10 @@ export default function EyeDesktop() {
   useEffect(() => {
     const loadSubjects = async () => {
       try {
-        const response = await userApiService.contact.getHumanRightsSubjects();
-        if (response.payload && response.payload.length > 0) {
-          setHumanRightsSubjects(response.payload);
+        const response = await fetch("/api/human-right-reports/subjects");
+        const data = await response.json();
+        if (response.ok && data.payload && data.payload.length > 0) {
+          setHumanRightsSubjects(data.payload);
         } else {
           // Fallback to common human rights subjects if API fails
           setHumanRightsSubjects([
@@ -205,17 +206,23 @@ export default function EyeDesktop() {
       formData.append("cover", file);
 
       try {
-        // Use the cover upload endpoint
+        // Use local API proxy to avoid CORS
         const response = await fetch("/api/human-right-reports/cover", {
           method: "POST",
           body: formData,
         });
         const data = await response.json();
 
-        if (data.payload?.cover) {
+        console.log("Cover upload response:", data);
+
+        // Check if response has payload with cover (successful upload)
+        if (response.ok && data?.payload?.cover) {
           setCoverImage(data.payload.cover);
           setCoverImageName(file.name);
           toast.success("ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠢᠯᠠᠭᠰᠠᠨ!");
+        } else {
+          console.error("Unexpected response format:", data);
+          toast.error("ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠢᠯᠠᠬᠤᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ!");
         }
       } catch (error) {
         console.error("Cover image upload error:", error);
@@ -282,23 +289,63 @@ export default function EyeDesktop() {
     }
 
     try {
+      // Format data to match the working curl structure
       const formData = {
-        ...data,
+        subjectId: parseInt(data.subjectId),
+        title: data.incident || "", // Using incident as title
+        message: data.details || "", // Using details as message
         coverImage: coverImage,
-        images: uploadedImages.map((img) => img.file),
+        provinceId: 21, // Default province ID (you may need to get this from form)
+        phone: data.phone,
+        verifyCode: data.otp, // OTP is called verifyCode in API
       };
 
-      const response = await submitHumanRightsReport(formData);
+      console.log("Sending form data:", JSON.stringify(formData, null, 2));
 
-      if (response.data) {
+      // Get auth headers for the request (same way as userApiService)
+      const getAuthHeaders = () => {
+        if (typeof window !== "undefined") {
+          const token =
+            localStorage.getItem("auth_token") ||
+            document.cookie
+              .split("; ")
+              .find((row) => row.startsWith("amnesty_member_token="))
+              ?.split("=")[1];
+          return token ? { Authorization: `Bearer ${token}` } : {};
+        }
+        return {};
+      };
+      const authHeaders = getAuthHeaders();
+      console.log("Auth headers for form submission:", authHeaders);
+
+      // Use local API proxy to avoid CORS and auth issues
+      const response = await fetch("/api/human-right-reports/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...authHeaders,
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.payload) {
         toast.success("ᠮᠡᠳᠡᠭᠡᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠤ᠋ᠨ ᠳᠠᠷᠤᠭᠠ ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠢᠯᠠᠬᠤ ᠪᠣᠯᠤᠨᠠ!");
         setIsSubmitted(true);
         reset();
-        setUploadedImages([]);
         setIsOtpSent(false);
         setCoverImage("");
         setCoverImageName("");
-      } else if (response.error) {
+      } else if (result.error) {
+        console.error("Submit error:", result.error);
+        if (result.error.code === "AUTH_ERROR") {
+          toast.error(
+            "ᠨᠢᠭᠤᠴᠠ ᠨᠣᠮ ᠢ ᠪᠠᠲᠠᠯᠭᠠᠵᠢᠯᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ! ᠳᠠᠬᠢᠨ ᠨᠢᠷᠤᠭᠤᠯᠤᠨ᠎ᠠ ᠤᠤ!"
+          );
+        } else {
+          toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
+        }
+      } else {
         toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
       }
     } catch (error) {
@@ -659,24 +706,46 @@ export default function EyeDesktop() {
               >
                 ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ*
               </p>
-              <div className="relative flex justify-center items-center">
-                <input
-                  type="text"
-                  value={coverImageName}
-                  readOnly
-                  placeholder=""
-                  className="cursor-pointer z-10 h-full w-20 border border-gray-300 text-center"
-                  onClick={handleCoverImageUpload}
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                />
-                {!coverImage && (
+              {coverImage ? (
+                <div className="relative">
+                  <img
+                    src={
+                      coverImage.startsWith("http")
+                        ? coverImage
+                        : `${process.env.NEXT_PUBLIC_USER_API_URL}/${coverImage}`
+                    }
+                    alt="Cover preview"
+                    className="max-w-[400px] max-h-[400px] h-full w-full aspect-square object-cover rounded-lg border border-gray-300"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCoverImage("");
+                      setCoverImageName("");
+                    }}
+                    className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center hover:bg-red-600"
+                  >
+                    ×
+                  </button>
+                </div>
+              ) : (
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={coverImageName}
+                    readOnly
+                    placeholder=""
+                    className="cursor-pointer z-10 h-full w-20 border border-gray-300 text-center"
+                    onClick={handleCoverImageUpload}
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  />
                   <button
                     type="button"
                     onClick={handleCoverImageUpload}
-                    className="z-10 absolute w-20 h-full flex flex-col justify-center items-center gap-2"
+                    className="z-10 absolute w-20 h-full flex flex-col justify-center items-center gap-2 top-0 left-0"
                   >
                     <img
                       src="/icons/upload.png"
@@ -693,8 +762,8 @@ export default function EyeDesktop() {
                       ᠵᠢᠷᠤᠭ ᠬᠤᠤᠯᠠᠬᠤ
                     </span>
                   </button>
-                )}
-              </div>
+                </div>
+              )}
             </div>
 
             {/* Human Rights Subject Selection */}
@@ -962,68 +1031,18 @@ export default function EyeDesktop() {
               />
             </div>
 
-            {/* Image Upload */}
-            <div className="flex gap-2 flex-col">
-              <p
-                className="text-sm"
-                style={{
-                  writingMode: "vertical-lr",
-                  textOrientation: "upright",
-                }}
-              >
-                ᠵᠢᠷᠤᠭ (3 ᠬᠡᠮᠡᠯ)
-              </p>
-              <input
-                type="file"
-                multiple
-                accept="image/jpg,image/jpeg,image/png"
-                onChange={handleImageUpload}
-                className="hidden"
-                id="image-upload"
-              />
-              <Button
-                text="ᠵᠢᠷᠤᠭ ᢈᠥᠭᠢᠯᠡᠬᠦ"
-                type="secondary"
-                onClick={() => document.getElementById("image-upload").click()}
-                className="text-xs"
-              />
-              {/* Display uploaded images */}
-              {uploadedImages.length > 0 && (
-                <div className="flex flex-wrap gap-1">
-                  {uploadedImages.map((img) => (
-                    <div key={img.id} className="relative">
-                      <img
-                        src={img.preview}
-                        alt={img.name}
-                        className="w-12 h-12 object-cover rounded border"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImage(img.id)}
-                        className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center"
-                      >
-                        ×
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
             {/* Submit Button */}
-            <div className="flex gap-2 items-end">
-              <Button
-                text={isSubmitting ? "ᠢᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ..." : "ᠢᠯᠠᠬᠤ"}
-                type="primary"
-                onClick={handleSubmit(onSubmit)}
-                disabled={isSubmitting || !isOtpSent}
-                className={`${
-                  isSubmitting || !isOtpSent
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-blue-600"
-                } transition-colors`}
-              />
-            </div>
+            <Button
+              text={isSubmitting ? "ᠢᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ..." : "ᠢᠯᠠᠬᠤ"}
+              type="primary"
+              onClick={handleSubmit(onSubmit)}
+              disabled={isSubmitting || !isOtpSent}
+              className={`${
+                isSubmitting || !isOtpSent
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:bg-blue-600"
+              } transition-colors`}
+            />
           </form>
         </div>
       </div>

@@ -74,9 +74,10 @@ export default function EyeMobile() {
   useEffect(() => {
     const loadSubjects = async () => {
       try {
-        const response = await userApiService.contact.getHumanRightsSubjects();
-        if (response.payload && response.payload.length > 0) {
-          setHumanRightsSubjects(response.payload);
+        const response = await fetch("/api/human-right-reports/subjects");
+        const data = await response.json();
+        if (response.ok && data.payload && data.payload.length > 0) {
+          setHumanRightsSubjects(data.payload);
         } else {
           // Fallback to common human rights subjects if API fails
           setHumanRightsSubjects([
@@ -194,17 +195,23 @@ export default function EyeMobile() {
       formData.append("cover", file);
 
       try {
-        // Use the cover upload endpoint
+        // Use local API proxy to avoid CORS
         const response = await fetch("/api/human-right-reports/cover", {
           method: "POST",
           body: formData,
         });
         const data = await response.json();
 
-        if (data.payload?.cover) {
+        console.log("Cover upload response:", data);
+
+        // Check if response has payload with cover (successful upload)
+        if (response.ok && data?.payload?.cover) {
           setCoverImage(data.payload.cover);
           setCoverImageName(file.name);
           toast.success("ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠢᠯᠠᠭᠰᠠᠨ!");
+        } else {
+          console.error("Unexpected response format:", data);
+          toast.error("ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠢᠯᠠᠬᠤᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ!");
         }
       } catch (error) {
         console.error("Cover image upload error:", error);
@@ -269,23 +276,63 @@ export default function EyeMobile() {
     }
 
     try {
+      // Format data to match the working curl structure
       const formData = {
-        ...data,
+        subjectId: parseInt(data.subjectId),
+        title: data.incident || "", // Using incident as title
+        message: data.details || "", // Using details as message
         coverImage: coverImage,
-        images: uploadedImages.map((img) => img.file),
+        provinceId: 21, // Default province ID (you may need to get this from form)
+        phone: data.phone,
+        verifyCode: data.otp, // OTP is called verifyCode in API
       };
 
-      const response = await submitHumanRightsReport(formData);
+      console.log("Sending form data:", JSON.stringify(formData, null, 2));
 
-      if (response.data) {
+      // Get auth headers for the request (same way as userApiService)
+      const getAuthHeaders = () => {
+        if (typeof window !== "undefined") {
+          const token =
+            localStorage.getItem("auth_token") ||
+            document.cookie
+              .split("; ")
+              .find((row) => row.startsWith("amnesty_member_token="))
+              ?.split("=")[1];
+          return token ? { Authorization: `Bearer ${token}` } : {};
+        }
+        return {};
+      };
+      const authHeaders = getAuthHeaders();
+      console.log("Auth headers for form submission:", authHeaders);
+
+      // Use local API proxy to avoid CORS and auth issues
+      const response = await fetch("/api/human-right-reports/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          ...authHeaders,
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+
+      if (response.ok && result.payload) {
         toast.success("ᠮᠡᠳᠡᠭᠡᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠤ᠋ᠨ ᠳᠠᠷᠤᠭᠠ ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠢᠯᠠᠬᠤ ᠪᠣᠯᠤᠨᠠ!");
         setIsSubmitted(true);
         reset();
-        setUploadedImages([]);
         setIsOtpSent(false);
         setCoverImage("");
         setCoverImageName("");
-      } else if (response.error) {
+      } else if (result.error) {
+        console.error("Submit error:", result.error);
+        if (result.error.code === "AUTH_ERROR") {
+          toast.error(
+            "ᠨᠢᠭᠤᠴᠠ ᠨᠣᠮ ᠢ ᠪᠠᠲᠠᠯᠭᠠᠵᠢᠯᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ! ᠳᠠᠬᠢᠨ ᠨᠢᠷᠤᠭᠤᠯᠤᠨ᠎ᠠ ᠤᠤ!"
+          );
+        } else {
+          toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
+        }
+      } else {
         toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
       }
     } catch (error) {
@@ -631,7 +678,7 @@ export default function EyeMobile() {
               )}
 
               {/* Cover Image Upload Field */}
-              <div className="flex gap-2 flex-col">
+              <div className="flex gap-2">
                 <p
                   className="text-xs"
                   style={{
@@ -641,24 +688,46 @@ export default function EyeMobile() {
                 >
                   ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ*
                 </p>
-                <div className="relative">
-                  <input
-                    type="text"
-                    value={coverImageName}
-                    readOnly
-                    placeholder=""
-                    className="cursor-pointer z-10 h-[42px] w-32 border-[1.2px] border-black px-3 text-black bg-white text-xs"
-                    onClick={handleCoverImageUpload}
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  />
-                  {!coverImage && (
+                {coverImage ? (
+                  <div className="relative">
+                    <img
+                      src={
+                        coverImage.startsWith("http")
+                          ? coverImage
+                          : `${process.env.NEXT_PUBLIC_USER_API_URL}/${coverImage}`
+                      }
+                      alt="Cover preview"
+                      className="max-w-[300px] max-h-[300px] w-auto h-auto object-cover rounded-lg border border-gray-300"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setCoverImage("");
+                        setCoverImageName("");
+                      }}
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-sm flex items-center justify-center hover:bg-red-600"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ) : (
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={coverImageName}
+                      readOnly
+                      placeholder=""
+                      className="cursor-pointer z-10 h-full w-16 border border-gray-300 text-center text-xs"
+                      onClick={handleCoverImageUpload}
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                      }}
+                    />
                     <button
                       type="button"
                       onClick={handleCoverImageUpload}
-                      className="z-0 absolute top-[26px] left-[8px] scale-50 flex items-center"
+                      className="z-10 absolute w-16 h-full flex flex-col justify-center items-center gap-1 top-0 left-0"
                     >
                       <img
                         src="/icons/upload.png"
@@ -666,7 +735,7 @@ export default function EyeMobile() {
                         className="w-4 h-4"
                       />
                       <span
-                        className="text-[16px] pl-3"
+                        className="text-xs"
                         style={{
                           writingMode: "vertical-lr",
                           textOrientation: "upright",
@@ -675,8 +744,8 @@ export default function EyeMobile() {
                         ᠵᠢᠷᠤᠭ ᠬᠤᠤᠯᠠᠬᠤ
                       </span>
                     </button>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
 
               {/* Human Rights Subject Selection */}
