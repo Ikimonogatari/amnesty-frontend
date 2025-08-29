@@ -25,14 +25,15 @@ export default function EventsDesktop() {
     "ᠠᠷᠪᠠᠨ ᠬᠣᠶᠠᠳᠤᠭᠠᠷ ᠰᠠᠷ᠎ᠠ",
   ];
 
+  // Reorder days to start with Monday
   const daysOfWeek = [
-    "ᠨᠠᠷᠠᠨ",
-    "ᠰᠠᠷᠠᠨ",
-    "ᠠᠩᠭᠠᠷᠠᠭ",
-    "ᠯᠬᠠᠭᠠᠨ",
-    "ᠫᠦᠷᠡᠪ",
-    "ᠪᠠᠰᠠᠩ",
-    "ᠪᠢᠮᠪᠠ",
+    "ᠰᠠᠷᠠᠨ", // Monday
+    "ᠠᠩᠭᠠᠷᠠᠭ", // Tuesday
+    "ᠯᠬᠠᠭᠠᠨ", // Wednesday
+    "ᠫᠦᠷᠡᠪ", // Thursday
+    "ᠪᠠᠰᠠᠩ", // Friday
+    "ᠪᠢᠮᠪᠠ", // Saturday
+    "ᠨᠠᠷᠠᠨ", // Sunday
   ];
 
   // Convert Arabic numerals to Mongolian Bichig numerals
@@ -71,9 +72,13 @@ export default function EventsDesktop() {
       const startDate = new Date(year, month, 1);
       const endDate = new Date(year, month + 1, 0);
 
-      // Format dates for API (YYYY-MM-DD)
-      const startDateStr = startDate.toISOString().split("T")[0];
-      const endDateStr = endDate.toISOString().split("T")[0];
+      // Format dates for API (YYYY-MM-DD) - using local date to avoid timezone issues
+      const startDateStr = `${startDate.getFullYear()}-${String(
+        startDate.getMonth() + 1
+      ).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`;
+      const endDateStr = `${endDate.getFullYear()}-${String(
+        endDate.getMonth() + 1
+      ).padStart(2, "0")}-${String(endDate.getDate()).padStart(2, "0")}`;
 
       console.log(
         `Fetching events for ${year}-${
@@ -143,7 +148,10 @@ export default function EventsDesktop() {
           return;
         }
 
-        const dateKey = startDate.toISOString().split("T")[0];
+        // Fix timezone issue: use local date parts instead of UTC conversion
+        const dateKey = `${startDate.getFullYear()}-${String(
+          startDate.getMonth() + 1
+        ).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`;
 
         // Use current date for comparison (removed 2025 specific logic)
         const currentDate = new Date();
@@ -188,7 +196,13 @@ export default function EventsDesktop() {
           currentDateIter.setDate(currentDateIter.getDate() + 1);
 
           while (currentDateIter <= endDate) {
-            const multiDayKey = currentDateIter.toISOString().split("T")[0];
+            // Fix timezone issue: use local date parts instead of UTC conversion
+            const multiDayKey = `${currentDateIter.getFullYear()}-${String(
+              currentDateIter.getMonth() + 1
+            ).padStart(2, "0")}-${String(currentDateIter.getDate()).padStart(
+              2,
+              "0"
+            )}`;
             if (!eventsMap[multiDayKey]) {
               eventsMap[multiDayKey] = {
                 ...eventObj,
@@ -227,7 +241,10 @@ export default function EventsDesktop() {
   };
 
   const getFirstDayOfMonth = (date) => {
-    return new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+    // Get the first day of the month (0=Sunday, 1=Monday, etc.)
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+    // Convert to Monday-first format (Monday=0, Tuesday=1, etc.)
+    return firstDay === 0 ? 6 : firstDay - 1;
   };
 
   const getPrevMonthDays = (date) => {
@@ -292,7 +309,7 @@ export default function EventsDesktop() {
               textOrientation: "upright",
             }}
           >
-            {daysOfWeek[(((firstDay - 1 - i) % 7) + 7) % 7]}
+            {daysOfWeek[(firstDay - 1 - i + 7) % 7]}
           </div>
           <div
             className="absolute top-2 right-2"
