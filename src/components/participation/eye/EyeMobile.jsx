@@ -543,6 +543,108 @@ export default function EyeMobile() {
             ))}
           </div>
         </div>
+        <div className="bg-[#FCFF29] rounded-lg p-4">
+          <div className="flex flex-row gap-4 max-h-[500px] overflow-x-auto">
+            {/* НИЙТЛЭГ ШААРДЛАГА */}
+            <div className="flex flex-row gap-2">
+              <h3
+                className="text-sm font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠨᠢᠶᠢᠲᠯᠡᠭ ᠰᠠᠷᠳᠯᠠᠭ᠎ᠠ:
+              </h3>
+              <p
+                className="text-xs leading-relaxed"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠣᠷᠣᠯᠴᠠᠭᠴᠢ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠵᠥᠷᠴᠢᠯᠦᠭ ᠢ ᠪᠠᠷᠢᠮᠲᠤᠵᠢᠤᠯᠠᠨ ᠮᠡᠳᠡᠭᠡᠯ
+                ᠢᠶᠠᠷ www.amnesty.mn ᠬᠠᠢᠠᠭᠠᠷ ᠥᠪᠡᠷᠲᠡᠭᠡᠨ ᠦ ᠪᠠᠢᠭ᠎ᠠ ᠠᠢᠮᠠᠭ᠂ ᠳᠦᠦᠷᠭᠡ ᠶᠢᠨ
+                ᠨᠡᠷᠡ ᠶᠢ ᠰᠣᠩᠭᠣᠨ ᠣᠷᠤᠵᠤ ᠴᠠᠬᠢᠮ ᠠᠩᠺᠧᠲ ᠦᠨ ᠳᠠᠭᠠᠤ ᠢᠯᠭᠡᠡᠨᠡ᠃ ᠣᠷᠣᠯᠴᠠᠭᠴᠢ ᠶᠢᠨ
+                ᠢᠯᠭᠡᠭᠰᠡᠨ ᠪᠦᠲᠦᠭᠡᠯ ᠵᠥᠪᠬᠡᠨ ᠥᠪᠡᠷᠲᠡᠭᠡᠨ ᠦ ᠪᠦᠲᠦᠭᠡᠯ ᠪᠠᠢᠬᠤ ᠪᠠ ᠵᠣᠬᠢᠶᠠᠭᠴᠢ
+                ᠶᠢᠨ ᠡᠷᠬᠡ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠠᠳ ᠬᠤᠤᠯᠢ ᠲᠣᠭᠲᠠᠭᠠᠮᠵᠢ ᠶᠢᠨ ᠵᠥᠷᠴᠢᠯᠦᠭᠡᠢ ᠪᠠᠢᠬᠤ᠃
+              </p>
+            </div>
+
+            {/* ХЭН МЭДЭЭЛЭЛ ИЛГЭЭХ ВЭ */}
+            <div className="flex flex-row gap-2">
+              <h3
+                className="text-sm font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠬᠡᠨ ᠮᠡᠳᠡᠭᠡᠯ ᠢᠯᠭᠡᠬᠦ ᠪᠡ?
+              </h3>
+              <p
+                className="text-xs leading-relaxed"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠑᠖ ᠳᠡᠭᠡᠰᠢ ᠨᠠᠰᠤᠨ ᠤ ᠪᠦᠬᠦ ᠬᠦᠮᠦᠨ ᠳᠦ ᠨᠡᠭᠡᠭᠡᠯᠲᠡᠢ ᠪᠥᠭᠡᠳ ᠪᠠᠭᠠᠷ ᠪᠣᠯᠤᠨ
+                ᠭᠠᠨᠴᠠᠷᠴᠢᠯᠠᠨ ᠣᠷᠣᠯᠴᠤᠵᠤ ᠪᠣᠯᠨᠣ᠃ ᠦᠨᠳᠦᠰᠦᠨ ᠦ ᠮᠡᠳᠡᠭᠡᠯ ᠦᠨ ᠮᠠᠷᠠᠹᠣᠨ ᠨᠢ
+                ᠮᠡᠳᠡᠭᠡᠯ ᠢᠯᠭᠡᠵᠦ ᠪᠤᠢ ᠢᠷᠭᠡᠨ ᠦ ᠨᠡᠷᠡ ᠶᠢ ᠨᠢᠭᠤᠴᠠᠯᠠᠬᠤ ᠪᠥᠭᠡᠳ ᠮᠡᠳᠡᠭᠡᠯ
+                ᠢᠯᠭᠡᠭᠰᠡᠨ ᠭᠠᠵᠠᠷᠳᠤ ᠯᠠᠮ ᠦᠨ ᠳᠥᠯ ᠨᠡᠮᠡᠭᠳᠡᠨᠡ᠃
+              </p>
+            </div>
+
+            {/* МЭДЭЭЛЭЛ */}
+            <div className="flex flex-row gap-2">
+              <h3
+                className="text-sm font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠮᠡᠳᠡᠭᠡᠯ:
+              </h3>
+              <p
+                className="text-xs leading-relaxed"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠦᠢᠯᠡᠳᠦᠯ ᠳᠦ ᠳᠤᠤᠳᠰᠠᠨ ᠪᠣᠳᠢᠲᠤ᠂ ᠰᠢᠤᠷᠬᠠᠢ ᠮᠡᠳᠡᠭᠡᠯ
+              </p>
+            </div>
+
+            {/* ШАЛГАРУУЛАЛТ */}
+            <div className="flex flex-row gap-2">
+              <h3
+                className="text-sm font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠰᠠᠯᠭᠠᠷᠠᠤᠯᠠᠯᠲ:
+              </h3>
+              <p
+                className="text-xs leading-relaxed"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠒᠐᠒᠔ ᠣᠨ ᠦ ᠑᠒ ᠷ ᠰᠠᠷᠠ ᠶᠢᠨ ᠑᠐ ᠦ ᠦᠳᠦᠷ ᠪᠤᠶᠤ "ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠦᠨ ᠬᠦᠮᠦᠨ ᠦ
+                ᠡᠷᠬᠡ" ᠶᠢᠨ ᠦᠳᠦᠷ ᠦᠨ ᠳᠤᠤᠷ ᠰᠠᠯᠭᠠᠷᠠᠤᠯᠵᠤ ᠦᠢᠯᠡᠳᠦᠯ ᠳᠦ ᠳᠤᠤᠳᠰᠠᠨ ᠰᠢᠤᠷᠬᠠᠢ
+                ᠮᠡᠳᠡᠭᠡᠯ ᠦᠨ ᠮᠠᠷᠠᠹᠣᠨ ᠳᠤ ᠬᠠᠮᠤᠭ ᠣᠯᠠᠨ ᠮᠡᠳᠡᠭᠡᠯ ᠢᠯᠭᠡᠭᠰᠡᠨ ᠮᠡᠳᠡᠭᠡᠯᠡᠭᠴᠢ ᠵᠢ
+                "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠢᠳᠦᠨ" ᠦᠷᠭᠦᠮᠵᠢᠯᠡᠯ ᠦᠨᠡ ᠪᠦᠬᠦᠢ ᠵᠦᠢᠯ ᠦᠨ ᠠᠷ ᠲᠤᠰ ᠲᠤᠰ
+                ᠰᠠᠭᠨᠠᠨ᠎ᠠ᠃
+              </p>
+            </div>
+          </div>
+        </div>
 
         <div className="flex gap-7 mt-4 w-full">
           <h2
