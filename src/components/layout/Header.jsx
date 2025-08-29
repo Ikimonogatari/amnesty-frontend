@@ -4,9 +4,11 @@ import { Icon } from "@iconify/react";
 import Button from "@/components/common/Button";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import SearchModal from "@/components/common/SearchModal";
 
 export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter();
   const handleMouseEnter = (index) => {
     setActiveDropdown(index);
@@ -192,7 +194,10 @@ export default function Header() {
           MNG
         </button>
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#432C2C] to-transparent via-50%" />
-        <button className="p-4 hover:bg-gray-100 rounded-md transition-colors">
+        <button
+          className="p-4 hover:bg-gray-100 rounded-md transition-colors"
+          onClick={() => setIsSearchOpen(true)}
+        >
           <Icon icon={"lucide:search"} fontSize={25} />
         </button>
         <Button
@@ -203,6 +208,12 @@ export default function Header() {
           type="primary"
         />
       </div>
+
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+      />
     </div>
   );
 }

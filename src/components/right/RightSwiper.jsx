@@ -142,6 +142,43 @@ export default function RightSwiper({
     router.push(route);
   };
 
+  // Navigate to category page (for "See All" buttons)
+  const navigateToCategoryPage = () => {
+    let route = "";
+
+    // Determine the category page route based on section title
+    if (
+      sectionTitle.includes("ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
+      sectionTitle.toLowerCase().includes("online lesson")
+    ) {
+      route = "/online-lessons";
+    } else if (
+      sectionTitle.includes("ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
+      sectionTitle.toLowerCase().includes("lesson")
+    ) {
+      route = "/lessons";
+    } else if (
+      sectionTitle.includes("ᠸᠢᠳᠧᠤ") ||
+      sectionTitle.toLowerCase().includes("video")
+    ) {
+      route = "/videos";
+    } else if (
+      sectionTitle.includes("ᠨᠣᠮ ᠲᠣᠪᠴᠢᠮᠠᠯ") ||
+      sectionTitle.toLowerCase().includes("librar")
+    ) {
+      route = "/library";
+    } else if (
+      sectionTitle.includes("ᠫᠣᠳᠺᠠᠰᠲ") ||
+      sectionTitle.toLowerCase().includes("podcast")
+    ) {
+      route = "/podcasts";
+    } else {
+      return;
+    }
+
+    router.push(route);
+  };
+
   // Don't render if no data
   if (!slides.length) {
     return (
@@ -171,7 +208,11 @@ export default function RightSwiper({
               {description}
             </p>
           </div>
-          <Button text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"} type="secondary" />
+          <Button
+            text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"}
+            type="secondary"
+            onClick={navigateToCategoryPage}
+          />
           <SectionTitle
             title={sectionTitle}
             containerClassName="hidden sm:block"
@@ -216,7 +257,11 @@ export default function RightSwiper({
             {description}
           </p>
         </div>
-        <Button text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"} type="secondary" />
+        <Button
+          text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"}
+          type="secondary"
+          onClick={navigateToCategoryPage}
+        />
         <SectionTitle
           title={sectionTitle}
           containerClassName="hidden sm:block"
@@ -292,11 +337,12 @@ export default function RightSwiper({
                   <Button text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢈᠦᠢ"} type="details" />
                 </div>
                 <p
-                  className="text-[9px] sm:text-sm flex justify-end"
+                  className="text-[9px] sm:text-sm flex justify-end cursor-pointer hover:text-blue-600 transition-colors"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",
                   }}
+                  onClick={() => navigateToDetail({ id: slide.id })}
                 >
                   ᠤᠩᠰᠢᠬᠤ
                 </p>

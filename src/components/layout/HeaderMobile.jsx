@@ -3,11 +3,13 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import SearchModal from "../common/SearchModal";
 
 export default function HeaderMobile() {
   const [showMenu, setShowMenu] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [menuTransitioning, setMenuTransitioning] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter();
 
   const toggleMenu = () => {
@@ -130,7 +132,10 @@ export default function HeaderMobile() {
         />
       </div>
       <div className={`h-full flex items-center gap-[10px] mr-[10px]`}>
-        <button className="w-10 h-10 rounded-md transition-colors">
+        <button
+          className="w-10 h-10 rounded-md transition-colors hover:bg-gray-100"
+          onClick={() => setIsSearchOpen(true)}
+        >
           <Icon icon={"lucide:search"} fontSize={25} />
         </button>
         <button
@@ -278,6 +283,12 @@ export default function HeaderMobile() {
           onClick={toggleMenu}
         />
       )}
+
+      {/* Search Modal */}
+      <SearchModal
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+      />
     </div>
   );
 }

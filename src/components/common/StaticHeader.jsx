@@ -56,7 +56,7 @@ export default function StaticHeader({
             </div>
 
             {/* Mobile Title Overlay */}
-            <div className="md:hidden w-full p-4 text-white z-30 h-full">
+            <div className="md:hidden w-full p-4 text-white z-0 h-full">
               <div className="flex items-center justify-center w-full h-full">
                 <h1
                   className="text-base font-bold font-mongolian text-center px-4 py-3 bg-black/60 rounded-lg backdrop-blur-md shadow-lg overflow-y-auto break-words max-h-[200px] max-w-[200px] leading-tight"
