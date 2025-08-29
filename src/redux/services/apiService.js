@@ -115,8 +115,18 @@ export const apiService = createApi({
         // Use the posts/list endpoint which is working
         let url = `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.POSTS_LIST}`;
 
-        // Add category filter if provided
+        // Add query parameters
         const queryParams = [];
+
+        // Add pagination parameters
+        if (params["pagination[page]"]) {
+          queryParams.push(`page=${params["pagination[page]"]}`);
+        }
+        if (params["pagination[pageSize]"]) {
+          queryParams.push(`pageSize=${params["pagination[pageSize]"]}`);
+        }
+
+        // Add category filter if provided
         if (params.post_category) {
           queryParams.push(
             `post_category=${encodeURIComponent(params.post_category)}`
@@ -131,16 +141,23 @@ export const apiService = createApi({
       },
       transformResponse: (response, meta, arg) => {
         // The /posts/list endpoint returns data in flattened format, not nested attributes
+        // Use actual pagination data from response if available, otherwise calculate from current data
+        const actualPagination = response.meta?.pagination;
+        const pageSize = arg["pagination[pageSize]"] || 9;
+        const currentPage = arg["pagination[page]"] || 1;
+
         return {
           data: response.data || [],
           meta: {
-            pagination: {
-              pageCount: Math.ceil(
-                (response.data?.length || 0) /
-                  (arg["pagination[pageSize]"] || 9)
+            pagination: actualPagination || {
+              // Fallback calculation - assume there might be more pages
+              // This is a temporary fix until the API returns proper pagination
+              pageCount: Math.max(
+                Math.ceil((response.data?.length || 0) / pageSize),
+                currentPage + (response.data?.length === pageSize ? 1 : 0)
               ),
-              pageSize: arg["pagination[pageSize]"] || 9,
-              page: arg["pagination[page]"] || 1,
+              pageSize: pageSize,
+              page: currentPage,
               total: response.data?.length || 0,
             },
           },

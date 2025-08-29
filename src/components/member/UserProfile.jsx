@@ -120,9 +120,19 @@ export default function UserProfile({ userData, userGroups }) {
   };
 
   const logout = () => {
-    userApiService.auth.logout();
-    toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠭᠠᠷᠯᠠᠭ!");
-    router.push("/member");
+    try {
+      // Clear authentication data
+      userApiService.auth.logout();
+
+      // Show success toast
+      toast.success("ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠭᠠᠷᠯᠠᠭ!");
+
+      // Force a page reload to /member to ensure clean state
+      window.location.href = "/member";
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("ᠭᠠᠷᠠᠬᠤ ᠳᠤ᠋ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠭᠠᠷᠯᠠᠭ!");
+    }
   };
 
   const onChildTabPress = (tab, index) => {

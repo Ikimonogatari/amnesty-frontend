@@ -1,137 +1,78 @@
 import Image from "next/image";
 import Button from "@/components/common/Button";
-import BannerSlider from "@/components/common/BannerSlider";
-import { bannerImages } from "@/constants/bannerImages";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/router";
-import apiService from "@/services/apiService";
+import { useGetPostsQuery } from "@/redux/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 import StaticHeader from "../common/StaticHeader";
 
 export default function NewsMobile() {
   const router = useRouter();
+  const { type } = router.query;
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeCategory, setActiveCategory] = useState("news");
+  const [activeCategory, setActiveCategory] = useState(type || "news");
   const itemsPerPage = 6; // Fewer items per page on mobile
 
-  // State for API data
-  const [postsData, setPostsData] = useState([]);
-  const [statementsData, setStatementsData] = useState([]);
-  const [goodNewsData, setGoodNewsData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  // Fetch data based on active category
+  // Update active category when URL parameter changes
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
+    setActiveCategory(type || "news");
+    setCurrentPage(1); // Reset to first page when category changes
+  }, [type]);
 
-      try {
-        switch (activeCategory) {
-          case "news":
-            // Regular news posts
-            const posts = await apiService.posts.getPostsList({
-              page: currentPage,
-              pageSize: itemsPerPage,
-            });
-            setPostsData(posts.data || []);
-            break;
-
-          case "statements":
-            // Statements/position papers
-            const statements = await apiService.statements.getStatements({
-              page: currentPage,
-              pageSize: itemsPerPage,
-            });
-            setStatementsData(statements.data || []);
-            break;
-
-          case "good_news":
-            // Good news/special posts - using posts API with category filter
-            const goodNews = await apiService.posts.getPostsList({
-              page: currentPage,
-              pageSize: itemsPerPage,
-              post_category: "good_news",
-            });
-            setGoodNewsData(goodNews.data || []);
-            break;
-        }
-      } catch (err) {
-        setError(err);
-      } finally {
-        setIsLoading(false);
-      }
+  // Build RTK Query parameters based on active category (SAME AS DESKTOP)
+  const queryParams = useMemo(() => {
+    const params = {
+      "pagination[pageSize]": itemsPerPage,
+      "pagination[page]": currentPage,
     };
 
-    fetchData();
-  }, [activeCategory, currentPage]);
-
-  // Determine current data based on active category
-  let currentData = [];
-
-  switch (activeCategory) {
-    case "news":
-      currentData = postsData;
-      break;
-    case "statements":
-      currentData = statementsData;
-      break;
-    case "good_news":
-      currentData = goodNewsData;
-      break;
-    default:
-      currentData = [];
-  }
-
-  // Convert data to unified format
-  const newsItems = currentData.map((item, index) => {
-    let title, image, description;
-
-    switch (activeCategory) {
-      case "news":
-      case "good_news":
-        title =
-          item.attributes?.short_description ||
-          item.short_description ||
-          item.attributes?.title ||
-          item.title ||
-          `ᠭᠠᠷᠴᠢᠭ ${index + 1}`;
-        image =
-          getImageUrl(item.attributes?.cover || item.cover) ||
-          "/images/news1.png";
-        description =
-          item.attributes?.short_description || item.short_description || "";
-        break;
-      case "statements":
-        // Handle both flattened (formatStrapiResponse) and nested (raw) formats
-        title = item.title || item.attributes?.title || `ᠮᠡᠳᠡᠭᠳᠡᠯ ${index + 1}`;
-
-        // For statements, the data is already flattened by formatStrapiResponse
-        // So item.cover should be the cover data directly
-        const coverData = item.cover || item.attributes?.cover;
-        image = getImageUrl(coverData) || "/images/news1.png";
-        description = item.description || item.attributes?.description || "";
-        break;
-      default:
-        title = `ᠭᠠᠷᠴᠢᠭ ${index + 1}`;
-        image = "/images/news1.png";
-        description = "";
+    // Add category filter if not showing all news
+    if (activeCategory === "statements") {
+      params.post_category = "statements";
+    } else if (activeCategory === "good_news") {
+      params.post_category = "good_news";
     }
+    // For "news", show all posts without category filter
 
-    return {
-      id: item.id,
-      title,
-      image,
-      description,
-      category: activeCategory,
-    };
+    return params;
+  }, [currentPage, itemsPerPage, activeCategory]);
+
+  // Use RTK Query hook (SAME AS DESKTOP)
+  const {
+    data: postsData,
+    error,
+    isLoading,
+    isFetching,
+  } = useGetPostsQuery(queryParams, {
+    skip: !router.isReady, // Skip query until router is ready
   });
 
-  // Calculate pagination - for now we'll use the current page size
-  // In a real implementation, you'd get total count from the API response
-  const totalPages = Math.max(1, Math.ceil(currentData.length / itemsPerPage));
+  // Process the RTK Query data (SAME AS DESKTOP)
+  const newsItems = useMemo(() => {
+    if (!postsData?.data) return [];
+
+    return postsData.data.map((item) => ({
+      id: item.id,
+      title: item.title,
+      short_description: item.short_description,
+      image:
+        item.cover?.formats?.medium?.url ||
+        item.cover?.formats?.large?.url ||
+        "/images/news1.png",
+      publishedAt: item.publishedAt,
+      post_categories: item.post_categories || [],
+    }));
+  }, [postsData]);
+
+  const totalPages = useMemo(() => {
+    if (!postsData?.meta?.pagination?.pageCount) return 1;
+    return postsData.meta.pagination.pageCount;
+  }, [postsData]);
+
+  console.log(
+    `📱 Mobile RTK Query - currentPage: ${currentPage}, totalPages: ${totalPages}, items: ${newsItems.length}`
+  );
 
   // Convert Arabic numerals to Mongolian Bichig numerals
   const toMongolianNumeral = (num) => {
@@ -153,7 +94,11 @@ export default function NewsMobile() {
 
   const handleCategoryChange = (category) => {
     setActiveCategory(category);
-    setCurrentPage(1); // Reset to first page when changing category
+    setCurrentPage(1);
+
+    // Update URL to reflect category change
+    const url = category === "news" ? "/news" : `/news?type=${category}`;
+    router.push(url, undefined, { shallow: true });
   };
 
   const handleNewsClick = (newsId) => {
@@ -164,8 +109,31 @@ export default function NewsMobile() {
     }
   };
 
+  // Get static header image and title based on active category
+  const getHeaderData = () => {
+    switch (activeCategory) {
+      case "statements":
+        return {
+          image: "/images/news/header-img-statements.jpg",
+          title: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠢᠷ ᠰᠤᠤᠷᠢ",
+        };
+      case "good_news":
+        return {
+          image: "/images/news/header-img-good-news.jpg",
+          title: "ᠣᠨᠴᠠᠯᠠᠬᠤ ᠮᠡᠳᠡᠭᠡ",
+        };
+      default:
+        return {
+          image: "/images/news/image-news-header.jpg",
+          title: "ᠮᠡᠳᠡᠭᠡ",
+        };
+    }
+  };
+
+  const headerData = getHeaderData();
+
   // Loading state
-  if (isLoading && currentData.length === 0) {
+  if (isLoading && newsItems.length === 0) {
     return (
       <div className="block sm:hidden h-full overflow-y-auto flex items-center justify-center min-h-screen">
         <div className="text-center">
@@ -196,29 +164,6 @@ export default function NewsMobile() {
       </div>
     );
   }
-
-  // Get static header image and title based on active category (matching old web exactly)
-  const getHeaderData = () => {
-    switch (activeCategory) {
-      case "statements":
-        return {
-          image: "/images/news/header-img-statements.jpg",
-          title: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠢᠷ ᠰᠤᠤᠷᠢ",
-        };
-      case "good_news":
-        return {
-          image: "/images/news/header-img-good-news.jpg",
-          title: "ᠣᠨᠴᠠᠯᠠᠬᠤ ᠮᠡᠳᠡᠭᠡ",
-        };
-      default:
-        return {
-          image: "/images/news/image-news-header.jpg",
-          title: "ᠮᠡᠳᠡᠭᠡ",
-        };
-    }
-  };
-
-  const headerData = getHeaderData();
 
   return (
     <div className="block sm:hidden h-full overflow-y-auto overflow-x-hidden">
@@ -269,8 +214,8 @@ export default function NewsMobile() {
         {/* News Grid */}
         <div className="flex-1">
           <div className="grid grid-cols-1 gap-4">
-            {isLoading ? (
-              // Loading placeholders to maintain layout
+            {isLoading || isFetching ? (
+              // Loading placeholders
               Array.from({ length: 6 }).map((_, index) => (
                 <div key={`loading-${index}`} className="flex gap-4">
                   <div className="relative w-24 h-24 flex-shrink-0 bg-gray-200 animate-pulse rounded"></div>
@@ -281,7 +226,7 @@ export default function NewsMobile() {
                 </div>
               ))
             ) : newsItems.length > 0 ? (
-              newsItems.slice(0, 6).map((item) => (
+              newsItems.map((item) => (
                 <div key={item.id} className="flex gap-4 max-h-[150px]">
                   <h3
                     className="text-sm font-medium line-clamp-3 mb-2"
@@ -290,14 +235,14 @@ export default function NewsMobile() {
                       textOrientation: "upright",
                     }}
                   >
-                    {item.title.length > 40
+                    {item.title?.length > 40
                       ? `${item.title.substring(0, 40)}...`
-                      : item.title}
+                      : item.title || "ᠮᠡᠳᠡᢉᠡ"}
                   </h3>
                   <div className="relative aspect-square w-[150px] h-[150px] flex-shrink-0">
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={item.title || "News image"}
                       fill
                       className="object-cover rounded"
                       onError={(e) => {
@@ -323,7 +268,7 @@ export default function NewsMobile() {
                 </div>
               ))
             ) : (
-              // No data available - show message
+              // No data available
               <div className="flex items-center justify-center h-[200px]">
                 <div className="text-center">
                   <p
@@ -345,23 +290,26 @@ export default function NewsMobile() {
           </div>
 
           {/* Pagination Controls */}
-          <div className="flex justify-center items-center gap-4 mt-6">
-            <Button
-              text={<ChevronLeft />}
-              type="chevron"
-              onClick={handlePrevPage}
-              disabled={currentPage === 1}
-            />
-            <p className="text-sm">
-              {toMongolianNumeral(currentPage)}/{toMongolianNumeral(totalPages)}
-            </p>
-            <Button
-              text={<ChevronRight />}
-              type="chevron"
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            />
-          </div>
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-4 mt-6">
+              <Button
+                text={<ChevronLeft />}
+                type="chevron"
+                onClick={handlePrevPage}
+                disabled={currentPage === 1 || isLoading || isFetching}
+              />
+              <p className="text-sm">
+                {toMongolianNumeral(currentPage)}/
+                {toMongolianNumeral(totalPages)}
+              </p>
+              <Button
+                text={<ChevronRight />}
+                type="chevron"
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages || isLoading || isFetching}
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>
