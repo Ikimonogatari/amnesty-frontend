@@ -9,14 +9,14 @@ export default function StructureMobile() {
     <div className="w-full block sm:hidden">
       <div className="relative w-full h-[40hv]">
         <StaticHeader
-          image="/images/aboutSub1/header-img.png"
+          image="/images/aboutSub1/organization_cover.jpg"
           alt="Structure Page Header"
           width="100%"
           title="ᠪᠠᠶᠢᠭᠤᠯᠤᠯ ᠤᠨ ᠪᠦᠲᠦᠴᠡ"
         />
       </div>
       <div className="flex flex-col gap-12 p-4 h-full">
-        <div className="flex gap-2 max-h-[200px]">
+        <div className="flex gap-2 max-h-[200px] overflow-y-auto">
           <h2
             className="text-[10px] font-bold"
             style={{
