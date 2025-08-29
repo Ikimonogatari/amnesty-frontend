@@ -50,6 +50,27 @@ export default function SearchModal({ isOpen, onClose }) {
   const [hasSearched, setHasSearched] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
+  // Function to highlight search terms in text
+  const highlightText = (text, searchTerm) => {
+    if (!text || !searchTerm || typeof text !== "string") return text;
+
+    const regex = new RegExp(
+      `(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+      "gi"
+    );
+    const parts = text.split(regex);
+
+    return parts.map((part, index) =>
+      regex.test(part) ? (
+        <mark key={index} className="bg-yellow-200 text-black px-1 rounded">
+          {part}
+        </mark>
+      ) : (
+        part
+      )
+    );
+  };
+
   // Close modal on escape key
   useEffect(() => {
     const handleEscape = (e) => {
@@ -86,12 +107,14 @@ export default function SearchModal({ isOpen, onClose }) {
   }, [isDropdownOpen]);
 
   const performSearch = async (term, type) => {
-    if (!term || term.length < 2) {
+    if (!term || term.trim().length < 2) {
       setResults([]);
       setHasSearched(false);
       return;
     }
 
+    // Clean and normalize search term
+    const cleanTerm = term.trim();
     setIsLoading(true);
     setHasSearched(true);
 
@@ -99,69 +122,272 @@ export default function SearchModal({ isOpen, onClose }) {
       const searchOption = searchOptions.find((opt) => opt.id === type);
       let searchResults = [];
 
+      console.log(`Searching for "${cleanTerm}" in ${type}...`);
+
       if (searchOption) {
         switch (searchOption.service) {
           case "posts":
-            // Use posts list with search query (if available)
-            const postsResponse = await postsService.getPostsList({
-              pageSize: 10,
-              filters: {
-                "filters[title][$contains]": term,
-              },
-            });
-            searchResults = postsResponse?.data || [];
+            try {
+              // Use posts list with search query - posts service has different structure
+              const postsResponse = await postsService.getPostsList({
+                pageSize: 10,
+                filters: {
+                  "filters[title][$contains]": cleanTerm,
+                },
+              });
+              searchResults = postsResponse?.data || [];
+              console.log(
+                `Posts API returned ${searchResults.length} results for title search`
+              );
+
+              // Debug first result's image structure
+              if (searchResults.length > 0) {
+                console.log(
+                  "First post result cover structure:",
+                  JSON.stringify(searchResults[0]?.cover, null, 2)
+                );
+              }
+
+              // Also try searching in short_description if no results or few results
+              if (!searchResults || searchResults.length < 3) {
+                const bodySearchResponse = await postsService.getPostsList({
+                  pageSize: 10,
+                  filters: {
+                    "filters[$or][0][title][$contains]": cleanTerm,
+                    "filters[$or][1][short_description][$contains]": cleanTerm,
+                  },
+                });
+                const bodyResults = bodySearchResponse?.data || [];
+                console.log(
+                  `Posts API returned ${bodyResults.length} additional results for description search`
+                );
+
+                // Combine and deduplicate results
+                const combinedResults = [...searchResults];
+                bodyResults.forEach((newResult) => {
+                  if (
+                    !combinedResults.find(
+                      (existing) => existing.id === newResult.id
+                    )
+                  ) {
+                    combinedResults.push(newResult);
+                  }
+                });
+                searchResults = combinedResults.slice(0, 10); // Limit to 10 results
+              }
+            } catch (error) {
+              console.error("Posts search error:", error);
+              searchResults = [];
+            }
+            console.log(`Posts search results:`, searchResults);
             break;
 
           case "lessons":
-            const lessonsResponse = await lessonsService.getLessons({
-              pageSize: 10,
-              filters: {
-                "filters[$or][0][title][$contains]": term,
-                "filters[$or][1][description][$contains]": term,
-              },
-            });
-            searchResults = lessonsResponse?.data || [];
+            try {
+              // Try OR filter first
+              const lessonsResponse = await lessonsService.getLessons({
+                pageSize: 10,
+                filters: {
+                  "filters[$or][0][title][$contains]": cleanTerm,
+                  "filters[$or][1][description][$contains]": cleanTerm,
+                },
+              });
+              searchResults = Array.isArray(lessonsResponse?.data)
+                ? lessonsResponse.data
+                : lessonsResponse || [];
+              console.log(
+                `Lessons API returned ${searchResults.length} results for OR filter search`
+              );
+
+              // If no results, try simple title search
+              if (!searchResults || searchResults.length === 0) {
+                const fallbackResponse = await lessonsService.getLessons({
+                  pageSize: 10,
+                  filters: {
+                    "filters[title][$contains]": cleanTerm,
+                  },
+                });
+                searchResults = Array.isArray(fallbackResponse?.data)
+                  ? fallbackResponse.data
+                  : fallbackResponse || [];
+                console.log(
+                  `Lessons fallback API returned ${searchResults.length} results for title search`
+                );
+              }
+            } catch (error) {
+              console.error("Lessons search error:", error);
+              // Try simple search as fallback - only if we really have no results
+              try {
+                const fallbackResponse = await lessonsService.getLessons({
+                  pageSize: 50, // Get more for client-side filtering
+                });
+                const allLessons = Array.isArray(fallbackResponse?.data)
+                  ? fallbackResponse.data
+                  : fallbackResponse || [];
+
+                // Filter client-side with stricter matching
+                searchResults = allLessons
+                  .filter((item) => {
+                    const title = (item?.title || "").toLowerCase();
+                    const description = (item?.description || "").toLowerCase();
+                    const searchLower = cleanTerm.toLowerCase();
+
+                    return (
+                      title.includes(searchLower) ||
+                      description.includes(searchLower)
+                    );
+                  })
+                  .slice(0, 10); // Limit to 10 results
+
+                console.log(
+                  `Lessons client-side filter: ${searchResults.length} results from ${allLessons.length} total`
+                );
+              } catch (fallbackError) {
+                console.error("Lessons fallback search error:", fallbackError);
+                searchResults = [];
+              }
+            }
+            console.log(`Lessons search results:`, searchResults);
             break;
 
           case "onlineLessons":
-            const onlineLessonsResponse =
-              await onlineLessonsService.getOnlineLessons({
-                pageSize: 10,
-                filters: {
-                  "filters[$or][0][title][$contains]": term,
-                  "filters[$or][1][description][$contains]": term,
-                },
-              });
-            searchResults = onlineLessonsResponse?.data || [];
+            try {
+              const onlineLessonsResponse =
+                await onlineLessonsService.getOnlineLessons({
+                  pageSize: 10,
+                  filters: {
+                    "filters[$or][0][title][$contains]": cleanTerm,
+                    "filters[$or][1][description][$contains]": cleanTerm,
+                  },
+                });
+              searchResults = Array.isArray(onlineLessonsResponse?.data)
+                ? onlineLessonsResponse.data
+                : onlineLessonsResponse || [];
+              console.log(
+                `Online Lessons API returned ${searchResults.length} results for OR filter search`
+              );
+
+              // Fallback to simple title search
+              if (!searchResults || searchResults.length === 0) {
+                const fallbackResponse =
+                  await onlineLessonsService.getOnlineLessons({
+                    pageSize: 10,
+                    filters: {
+                      "filters[title][$contains]": cleanTerm,
+                    },
+                  });
+                searchResults = Array.isArray(fallbackResponse?.data)
+                  ? fallbackResponse.data
+                  : fallbackResponse || [];
+              }
+            } catch (error) {
+              console.error("Online lessons search error:", error);
+              searchResults = [];
+            }
+            console.log(`Online lessons search results:`, searchResults);
             break;
 
           case "libraries":
-            const librariesResponse = await librariesService.getLibraries({
-              pageSize: 10,
-              filters: {
-                "filters[$or][0][title][$contains]": term,
-                "filters[$or][1][description][$contains]": term,
-              },
-            });
-            searchResults = librariesResponse?.data || [];
+            try {
+              const librariesResponse = await librariesService.getLibraries({
+                pageSize: 10,
+                filters: {
+                  "filters[$or][0][title][$contains]": cleanTerm,
+                  "filters[$or][1][description][$contains]": cleanTerm,
+                },
+              });
+              searchResults = Array.isArray(librariesResponse?.data)
+                ? librariesResponse.data
+                : librariesResponse || [];
+              console.log(
+                `Libraries API returned ${searchResults.length} results for OR filter search`
+              );
+
+              // Fallback to simple title search
+              if (!searchResults || searchResults.length === 0) {
+                const fallbackResponse = await librariesService.getLibraries({
+                  pageSize: 10,
+                  filters: {
+                    "filters[title][$contains]": cleanTerm,
+                  },
+                });
+                searchResults = Array.isArray(fallbackResponse?.data)
+                  ? fallbackResponse.data
+                  : fallbackResponse || [];
+              }
+            } catch (error) {
+              console.error("Libraries search error:", error);
+              searchResults = [];
+            }
+            console.log(`Libraries search results:`, searchResults);
             break;
 
           case "events":
-            const eventsResponse = await eventsService.getEvents({
-              pageSize: 10,
-              filters: {
-                "filters[$or][0][title][$contains]": term,
-                "filters[$or][1][body][$contains]": term,
-              },
-            });
-            searchResults = eventsResponse?.data || [];
+            try {
+              const eventsResponse = await eventsService.getEvents({
+                pageSize: 10,
+                filters: {
+                  "filters[$or][0][title][$contains]": cleanTerm,
+                  "filters[$or][1][body][$contains]": cleanTerm,
+                },
+              });
+              searchResults = Array.isArray(eventsResponse?.data)
+                ? eventsResponse.data
+                : eventsResponse || [];
+              console.log(
+                `Events API returned ${searchResults.length} results for OR filter search`
+              );
+
+              // Fallback to simple title search
+              if (!searchResults || searchResults.length === 0) {
+                const fallbackResponse = await eventsService.getEvents({
+                  pageSize: 10,
+                  filters: {
+                    "filters[title][$contains]": cleanTerm,
+                  },
+                });
+                searchResults = Array.isArray(fallbackResponse?.data)
+                  ? fallbackResponse.data
+                  : fallbackResponse || [];
+              }
+            } catch (error) {
+              console.error("Events search error:", error);
+              searchResults = [];
+            }
+            console.log(`Events search results:`, searchResults);
             break;
         }
       }
 
-      setResults(searchResults);
+      // Final client-side filtering to ensure only matching results
+      const finalResults = searchResults.filter((item) => {
+        const title = (item?.title || "").toLowerCase();
+        const description = (
+          item?.description ||
+          item?.short_description ||
+          item?.body ||
+          item?.content ||
+          ""
+        ).toLowerCase();
+        const searchLower = cleanTerm.toLowerCase();
+
+        const hasMatch =
+          title.includes(searchLower) || description.includes(searchLower);
+
+        if (!hasMatch) {
+          console.log(`Filtering out non-matching result:`, item?.title);
+        }
+
+        return hasMatch;
+      });
+
+      console.log(
+        `Final search results for ${type} (${finalResults.length}/${searchResults.length}):`,
+        finalResults
+      );
+      setResults(finalResults);
     } catch (error) {
-      console.error("Search error:", error);
+      console.error(`Search error for ${type}:`, error);
       setResults([]);
     } finally {
       setIsLoading(false);
@@ -176,12 +402,13 @@ export default function SearchModal({ isOpen, onClose }) {
   const handleInputChange = (value) => {
     setSearchTerm(value);
     // Debounced search
-    if (value.length >= 2) {
+    const cleanValue = value.trim();
+    if (cleanValue.length >= 2) {
       const timeoutId = setTimeout(() => {
-        performSearch(value, searchType);
+        performSearch(cleanValue, searchType);
       }, 500);
       return () => clearTimeout(timeoutId);
-    } else if (value.length === 0) {
+    } else if (cleanValue.length === 0) {
       setResults([]);
       setHasSearched(false);
     }
@@ -205,12 +432,57 @@ export default function SearchModal({ isOpen, onClose }) {
   };
 
   const getResultImage = (result) => {
-    if (result?.cover?.data?.attributes?.url) {
-      return getImageUrl(result.cover);
+    console.log(`Getting image for result:`, result);
+
+    // Try to use the cover field with getImageUrl utility (handles all formats)
+    if (result?.cover) {
+      const imageUrl = getImageUrl(result.cover);
+      if (imageUrl) {
+        console.log("Using getImageUrl for cover:", imageUrl);
+        return imageUrl;
+      }
     }
-    if (result?.images?.data?.[0]?.attributes?.url) {
-      return getImageUrl(result.images.data[0]);
+
+    // Try images array with getImageUrl utility
+    if (result?.images?.data?.[0]) {
+      const imageUrl = getImageUrl(result.images.data[0]);
+      if (imageUrl) {
+        console.log("Using getImageUrl for images[0]:", imageUrl);
+        return imageUrl;
+      }
     }
+
+    // Try direct images array
+    if (result?.images?.[0]) {
+      const imageUrl = getImageUrl(result.images[0]);
+      if (imageUrl) {
+        console.log("Using getImageUrl for direct images[0]:", imageUrl);
+        return imageUrl;
+      }
+    }
+
+    // Try image field (single)
+    if (result?.image) {
+      const imageUrl = getImageUrl(result.image);
+      if (imageUrl) {
+        console.log("Using getImageUrl for image:", imageUrl);
+        return imageUrl;
+      }
+    }
+
+    // Try thumbnail field
+    if (result?.thumbnail) {
+      const imageUrl = getImageUrl(result.thumbnail);
+      if (imageUrl) {
+        console.log("Using getImageUrl for thumbnail:", imageUrl);
+        return imageUrl;
+      }
+    }
+
+    console.log(
+      "No image found, using fallback. Result structure:",
+      JSON.stringify(result, null, 2)
+    );
     return "/images/news1.png";
   };
 
@@ -331,12 +603,27 @@ export default function SearchModal({ isOpen, onClose }) {
                   value={searchTerm}
                   onChange={(e) => handleInputChange(e.target.value)}
                   placeholder="ᠬᠠᠢᠯᠲᠠ..."
-                  className="w-full max-h-[200px] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className={`w-full max-h-[200px] p-3 border rounded-md focus:outline-none focus:ring-2 focus:border-transparent ${
+                    searchTerm.length > 0 && searchTerm.length < 2
+                      ? "border-yellow-300 focus:ring-yellow-500"
+                      : "border-gray-300 focus:ring-blue-500"
+                  }`}
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "mixed",
                   }}
                 />
+                {searchTerm.length > 0 && searchTerm.length < 2 && (
+                  <p
+                    className="text-xs text-yellow-600 mt-1"
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    ᠪᠠᠭ᠎ᠠ ᠪᠠᠷᠠᠭᠤᠨ ᠳᠤ ᠬᠣᠶᠠᠷ ᠦᠰᠦᠭ
+                  </p>
+                )}
               </div>
 
               {/* Search Button - Vertical */}
@@ -372,14 +659,30 @@ export default function SearchModal({ isOpen, onClose }) {
 
             {!isLoading && hasSearched && results.length === 0 && (
               <div className="text-center py-8">
+                <div className="mb-4">
+                  <Icon
+                    icon="lucide:search-x"
+                    className="text-4xl text-gray-300 mx-auto mb-2"
+                  />
+                </div>
                 <p
-                  className="text-gray-500"
+                  className="text-gray-500 mb-2"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",
                   }}
                 >
                   ᠬᠠᠢᠯᠲᠠ ᠶᠢᠨ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠣᠯᠣᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃
+                </p>
+                <p
+                  className="text-sm text-gray-400"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  "{searchTerm}" -{" "}
+                  {searchOptions.find((opt) => opt.id === searchType)?.label}
                 </p>
               </div>
             )}
@@ -402,7 +705,7 @@ export default function SearchModal({ isOpen, onClose }) {
                           textOrientation: "upright",
                         }}
                       >
-                        {result.title}
+                        {highlightText(result.title, searchTerm)}
                       </h3>
 
                       {/* Image */}
@@ -422,7 +725,8 @@ export default function SearchModal({ isOpen, onClose }) {
                       {/* Description */}
                       {(result.short_description ||
                         result.description ||
-                        result.body) && (
+                        result.body ||
+                        result.content) && (
                         <p
                           className="flex-1 text-xs text-gray-600 line-clamp-10 overflow-x-auto"
                           style={{
@@ -430,9 +734,13 @@ export default function SearchModal({ isOpen, onClose }) {
                             textOrientation: "upright",
                           }}
                         >
-                          {result.short_description ||
-                            result.description ||
-                            result.body}
+                          {highlightText(
+                            result.short_description ||
+                              result.description ||
+                              result.body ||
+                              result.content,
+                            searchTerm
+                          )}
                         </p>
                       )}
                     </div>
