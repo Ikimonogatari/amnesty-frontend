@@ -205,7 +205,7 @@ export default function ReportSwiper({
                   </p>
                 </div>
                 <Image
-                  src={getImageUrl(slide?.cover?.data?.attributes?.url)}
+                  src={slide.image}
                   alt={""}
                   width={200}
                   height={112.5}
