@@ -164,107 +164,103 @@ export default function UserProfile({ userData, userGroups }) {
   const avatar = user?.avatar || "/images/default-man.jpg";
 
   return (
-    <div className="container mx-auto">
-      <div className="m-4 w-full">
-        {/* Parent Navigation Tabs */}
-        <div className="flex justify-end mb-5">
-          {parentTabs.map((tab, index) => (
-            <button
-              key={tab.key}
-              onClick={() => onParentTabPress(tab)}
-              className={`ml-2 px-3 py-2 text-md font-[Oswald] ${
-                index === 0
-                  ? "bg-[#2D2D2D] text-white"
-                  : "bg-[#eee] text-black hover:bg-gray-300"
-              }`}
-              style={{
-                writingMode: "vertical-lr",
-                textOrientation: "upright",
-              }}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Main Content Layout */}
-        <div className="flex flex-col lg:flex-row font-[Oswald]">
-          {/* Left Sidebar - User Info */}
-          <div>
-            <div className="w-full lg:w-[280px] border mr-5 p-5">
-              <div
-                className="mb-10 text-xl text-center"
+    <div className="w-full h-screen overflow-y-hidden">
+      {/* Main Content Layout */}
+      <div className="flex flex-row gap-5 font-[Oswald] flex-1 p-4">
+        <div className="flex flex-col md:flex-row gap-5 h-full max-h-screen overflow-y-auto">
+          {/* Parent Navigation Tabs */}
+          <div className="flex flex-col gap-5 flex-shrink-0 p-3 sm:p-0">
+            {parentTabs.map((tab, index) => (
+              <button
+                key={tab.key}
+                onClick={() => onParentTabPress(tab)}
+                className={`px-3 py-2 text-md font-[Oswald] ${
+                  index === 0
+                    ? "bg-[#FFFF00] text-black"
+                    : "bg-[#eee] text-black hover:bg-gray-300"
+                }`}
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
                 }}
               >
-                {userFullName}
-              </div>
-              <div className="flex flex-col justify-center items-center">
-                <div
-                  className="relative w-[128px] h-[128px] bg-[#eee] rounded-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${avatar})` }}
-                >
-                  <div className="absolute top-0 right-[-15px] cursor-pointer">
-                    <button onClick={changeAvatar}>
-                      <Edit2 size={20} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-5 text-sm">
-                <div className="flex">
-                  <div
-                    className="font-bold"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    ID:
-                  </div>
-                  <div
-                    className="flex-1 text-right"
-                    style={{
-                      writingMode: "vertical-lr",
-                      textOrientation: "upright",
-                    }}
-                  >
-                    {user?.id}
-                  </div>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          {/* Child Tabs */}
+          <div className="border p-3 sm:p-5 flex-shrink-0 flex flex-col gap-5">
+            {childTabs.map((tab, index) => (
+              <button
+                key={tab.key}
+                onClick={() => onChildTabPress(tab, index)}
+                className={`px-3 py-2 text-md font-[Oswald] ${
+                  index === childTabIndex
+                    ? "bg-[#FFFF00] text-black"
+                    : "bg-[#eee] text-black hover:bg-gray-300"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Left Sidebar - User Info */}
+        <div className="flex-shrink-0 flex flex-col items-center gap-5">
+          <div className="w-full lg:w-[280px] border p-5 h-fit flex flex-row justify-between items-center">
+            <div className="flex flex-col justify-center items-center">
+              <div
+                className="relative w-[128px] h-[128px] bg-[#eee] rounded-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${avatar})` }}
+              >
+                <div className="absolute top-0 right-[-15px] cursor-pointer">
+                  <button onClick={changeAvatar}>
+                    <Edit2 size={20} />
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Right Content Area */}
-          <div className="flex-1">
-            {/* Child Tabs */}
-            <div className="flex-1 border p-5">
-              {childTabs.map((tab, index) => (
-                <button
-                  key={tab.key}
-                  onClick={() => onChildTabPress(tab, index)}
-                  className={`mr-2 px-3 py-2 text-md font-[Oswald] ${
-                    index === childTabIndex
-                      ? "bg-[#2D2D2D] text-white"
-                      : "bg-[#eee] text-black hover:bg-gray-300"
-                  }`}
+            <div className="text-sm">
+              <div className="flex flex-col">
+                <div
+                  className="font-bold"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",
                   }}
                 >
-                  {tab.label}
-                </button>
-              ))}
+                  ID:
+                </div>
+                <div
+                  className="flex-1 text-right"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {user?.id}
+                </div>
+              </div>
             </div>
-
-            <div className="h-5" />
-
+            <div
+              className="mb-10 text-xl text-center"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userFullName}
+            </div>
+          </div>
+          {/* Right Content Area */}
+          <div className="flex-1 flex flex-col min-h-0">
             {/* Content Area */}
-            <div className="flex-1 border p-5">
+            <div className="flex-1 border p-5 overflow-y-auto">
               {childTabIndex === 0 && <MyInfo userData={user} />}
               {childTabIndex === 1 && (
                 <MyEvents events={userEvents} loading={loading} />
@@ -308,9 +304,9 @@ function MyInfo({ userData }) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-row gap-5">
       {/* Membership Status Section */}
-      <div className="border-b pb-4">
+      <div className="flex flex-row gap-5">
         <h3
           className="text-lg font-bold mb-3"
           style={{
@@ -320,8 +316,8 @@ function MyInfo({ userData }) {
         >
           ᠭᠢᠰᠦᠦᠨ ᠴᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠢᠳᠠᠯ
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
+        <div className="flex flex-row gap-4">
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -341,7 +337,7 @@ function MyInfo({ userData }) {
               {getMembershipStatus()}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -365,7 +361,7 @@ function MyInfo({ userData }) {
       </div>
 
       {/* Contact Information Section */}
-      <div className="border-b pb-4">
+      <div className="flex flex-row gap-5">
         <h3
           className="text-lg font-bold mb-3"
           style={{
@@ -375,7 +371,7 @@ function MyInfo({ userData }) {
         >
           ᠬᠣᠯᠪᠣᠭᠠ ᠪᠠᠷᠢᠬᠤ ᠮᠡᠳᠡᠭᠡ
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="flex flex-row gap-4">
           <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
@@ -396,7 +392,7 @@ function MyInfo({ userData }) {
               {userData?.phone || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -420,7 +416,7 @@ function MyInfo({ userData }) {
       </div>
 
       {/* Personal Information Section */}
-      <div className="border-b pb-4">
+      <div className="flex flex-row gap-5">
         <h3
           className="text-lg font-bold mb-3"
           style={{
@@ -430,8 +426,8 @@ function MyInfo({ userData }) {
         >
           ᠬᠤᠪᠢ ᠶᠢᠨ ᠮᠡᠳᠡᠭᠡ
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
+        <div className="flex flex-row gap-4">
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -451,7 +447,7 @@ function MyInfo({ userData }) {
               {userData?.firstName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -471,7 +467,7 @@ function MyInfo({ userData }) {
               {userData?.lastName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -495,7 +491,7 @@ function MyInfo({ userData }) {
                 : "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -515,7 +511,7 @@ function MyInfo({ userData }) {
               {formatDate(userData?.birthday)}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -535,7 +531,7 @@ function MyInfo({ userData }) {
               {userData?.country || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -555,7 +551,7 @@ function MyInfo({ userData }) {
               {userData?.city || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -575,7 +571,7 @@ function MyInfo({ userData }) {
               {userData?.address || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -599,7 +595,7 @@ function MyInfo({ userData }) {
       </div>
 
       {/* Statistics Section */}
-      <div>
+      <div className="flex flex-row gap-5">
         <h3
           className="text-lg font-bold mb-3"
           style={{
@@ -609,8 +605,8 @@ function MyInfo({ userData }) {
         >
           ᠰᠲᠠᠲᠢᠰᠲᠢᠺ
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
+        <div className="flex flex-row gap-4">
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -630,7 +626,7 @@ function MyInfo({ userData }) {
               {userData?.points || 0}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -650,7 +646,7 @@ function MyInfo({ userData }) {
               {userData?.eventHours || 0}
             </p>
           </div>
-          <div>
+          <div className="flex flex-col gap-2">
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -712,7 +708,7 @@ function MyEvents({ events, loading }) {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-row gap-5">
       <h2
         className="text-lg font-bold mb-4"
         style={{
@@ -722,7 +718,7 @@ function MyEvents({ events, loading }) {
       >
         ᠮᠢᠨᠦ ᠣᠷᠣᠯᠴᠠᠰᠠᠨ ᠡᠸᠡᠨᠲᠦᠦᠳ
       </h2>
-      <div className="space-y-3">
+      <div className="flex flex-row gap-3">
         {eventsArray.map((event, index) => (
           <div key={event.id || index} className="border rounded-lg p-4">
             <h3
@@ -754,7 +750,7 @@ function MySubscriptions({ payments = [], loading = false }) {
   // Handle loading state
   if (loading) {
     return (
-      <div className="space-y-4">
+      <div className="flex flex-row gap-5">
         <h2
           className="text-lg font-bold mb-4"
           style={{
@@ -780,7 +776,7 @@ function MySubscriptions({ payments = [], loading = false }) {
   // Handle empty payments
   if (!payments || payments.length === 0) {
     return (
-      <div className="space-y-4">
+      <div className="flex flex-row gap-5">
         <h2
           className="text-lg font-bold mb-4"
           style={{
@@ -806,7 +802,7 @@ function MySubscriptions({ payments = [], loading = false }) {
   const paymentsArray = Array.isArray(payments) ? payments : [];
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-row gap-5">
       <h2
         className="text-lg font-bold mb-4"
         style={{
@@ -816,7 +812,7 @@ function MySubscriptions({ payments = [], loading = false }) {
       >
         ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ
       </h2>
-      <div className="space-y-3">
+      <div className="flex flex-row gap-3">
         {paymentsArray.map((payment, index) => (
           <div key={payment.id || index} className="border rounded-lg p-4">
             <div className="flex justify-between items-start mb-2">
@@ -873,7 +869,7 @@ function MySubscriptions({ payments = [], loading = false }) {
 // Component for Change Password tab
 function ChangePassword() {
   return (
-    <div className="space-y-4">
+    <div className="flex flex-row gap-5">
       <h2
         className="text-lg font-bold mb-4"
         style={{
@@ -898,7 +894,7 @@ function ChangePassword() {
 // Component for Become Member tab
 function BecomeMember({ userData, userGroups }) {
   return (
-    <div className="space-y-4">
+    <div className="flex flex-row gap-5">
       <h2
         className="text-lg font-bold mb-4"
         style={{
