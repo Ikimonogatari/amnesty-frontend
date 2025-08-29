@@ -3,10 +3,11 @@ import Image from "next/image";
 import { Icon } from "@iconify/react";
 import Button from "@/components/common/Button";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState(null);
-
+  const router = useRouter();
   const handleMouseEnter = (index) => {
     setActiveDropdown(index);
   };
@@ -194,7 +195,13 @@ export default function Header() {
         <button className="p-4 hover:bg-gray-100 rounded-md transition-colors">
           <Icon icon={"lucide:search"} fontSize={25} />
         </button>
-        <Button text={"ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠳᠡᠯᢉᠡᢉᠦᠷ"} type="primary" />
+        <Button
+          text={"ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠳᠡᠯᢉᠡᢉᠦᠷ"}
+          onClick={() => {
+            router.push("/shop");
+          }}
+          type="primary"
+        />
       </div>
     </div>
   );

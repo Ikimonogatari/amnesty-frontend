@@ -58,9 +58,12 @@ export default function GridLayout({
   }
 
   const handleItemClick = (item) => {
-    // Don't navigate for merchandise items - they have external shop links
+    // Handle merchandise items differently - open their shop link
     if (itemType === "merchandise") {
-      return; // Do nothing - let the shop link in renderAdditionalContent handle the click
+      if (item.shop_link) {
+        window.open(item.shop_link, "_blank", "noopener,noreferrer");
+      }
+      return;
     }
     router.push(`${basePath}/${item.id}`);
   };
@@ -92,21 +95,13 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className={`min-w-12 max-h-[400px] line-clamp-3 h-full text-xs transition-colors ${
-                      itemType === "merchandise"
-                        ? ""
-                        : "cursor-pointer hover:text-blue-600"
-                    }`}
+                    className="min-w-12 max-h-[400px] line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
                     }}
                     title={getTitle ? getTitle(item) : item.title}
-                    onClick={
-                      itemType === "merchandise"
-                        ? undefined
-                        : () => handleItemClick(item)
-                    }
+                    onClick={() => handleItemClick(item)}
                   >
                     {(() => {
                       const title = getTitle ? getTitle(item) : item.title;
@@ -117,7 +112,10 @@ export default function GridLayout({
                   </h3>
 
                   {/* Main Image with proper aspect ratio */}
-                  <div className="relative h-[400px] w-[400px]">
+                  <div
+                    className="relative h-[400px] w-[400px] cursor-pointer"
+                    onClick={() => handleItemClick(item)}
+                  >
                     <Image
                       src={
                         getImageUrl ? getImageUrl(item) : "/images/news1.png"
@@ -127,7 +125,7 @@ export default function GridLayout({
                       }
                       height={400}
                       width={400}
-                      className="object-cover shadow-md rounded-xl aspect-square w-[400px] h-[400px]"
+                      className="object-cover shadow-md rounded-xl aspect-square w-[400px] h-[400px] hover:opacity-80 transition-opacity"
                       onError={(e) => {
                         e.target.src = "/images/news1.png"; // fallback image
                       }}
@@ -153,16 +151,8 @@ export default function GridLayout({
                       <Button
                         text={categoryButtonText}
                         type="primary"
-                        className={`absolute top-0 right-0 text-black transition-opacity ${
-                          itemType === "merchandise"
-                            ? ""
-                            : "cursor-pointer hover:opacity-80"
-                        }`}
-                        onClick={
-                          itemType === "merchandise"
-                            ? undefined
-                            : () => handleItemClick(item)
-                        }
+                        className="absolute top-0 right-0 text-black transition-opacity cursor-pointer hover:opacity-80"
+                        onClick={() => handleItemClick(item)}
                       />
                     )}
                   </div>
@@ -253,19 +243,11 @@ export default function GridLayout({
             items.map((item, index) => (
               <div
                 key={item.id || index}
-                className={`flex gap-4 p-2 rounded transition-colors max-h-[200px] ${
-                  itemType === "merchandise"
-                    ? ""
-                    : "cursor-pointer hover:bg-gray-50"
-                }`}
-                onClick={
-                  itemType === "merchandise"
-                    ? undefined
-                    : () => handleItemClick(item)
-                }
+                className="flex gap-4 p-2 rounded transition-colors max-h-[200px] cursor-pointer hover:bg-gray-50"
+                onClick={() => handleItemClick(item)}
               >
                 <h3
-                  className="text-sm font-medium line-clamp-2 max-h-[200px] overflow-x-auto"
+                  className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",

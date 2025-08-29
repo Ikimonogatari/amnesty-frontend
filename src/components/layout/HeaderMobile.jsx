@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function HeaderMobile() {
   const [showMenu, setShowMenu] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [menuTransitioning, setMenuTransitioning] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setMenuTransitioning(true);
@@ -131,7 +133,12 @@ export default function HeaderMobile() {
         <button className="w-10 h-10 rounded-md transition-colors">
           <Icon icon={"lucide:search"} fontSize={25} />
         </button>
-        <button className="w-10 h-10 bg-[#FFFF00] rounded-md flex items-center justify-center">
+        <button
+          className="w-10 h-10 bg-[#FFFF00] rounded-md flex items-center justify-center"
+          onClick={() => {
+            router.push("/shop");
+          }}
+        >
           <Image src="/icons/bag.svg" alt="bag" width={25} height={25} />
         </button>
       </div>
@@ -141,13 +148,22 @@ export default function HeaderMobile() {
           showMenu ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <Image
-          src="/images/logo.png"
-          alt="logo"
-          width={60}
-          height={60}
-          className="w-full p-2"
-        />
+        <div className="w-full flex justify-between items-center p-2">
+          <Image
+            src="/images/logo.png"
+            alt="logo"
+            width={40}
+            height={40}
+            className="object-contain"
+          />
+          <button
+            onClick={toggleMenu}
+            className="p-1 hover:bg-gray-100 rounded transition-colors"
+            aria-label="Close menu"
+          >
+            <Icon icon="mdi:close" fontSize={20} className="text-gray-600" />
+          </button>
+        </div>
 
         <div className="mt-4 px-4">
           {/* 2x3 Grid Layout for Mobile - spans top to bottom, then continues in col 2 */}
@@ -259,7 +275,6 @@ export default function HeaderMobile() {
           className={`fixed inset-0 bg-black z-10 transition-opacity duration-300 ${
             showMenu ? "opacity-50" : "opacity-0"
           }`}
-          style={{ top: "50px" }}
           onClick={toggleMenu}
         />
       )}
