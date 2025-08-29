@@ -9,13 +9,20 @@ import { useSubmitHumanRightsReportMutation } from "@/redux/services/apiService"
 import userApiService from "@/services/userApiService";
 import toast from "react-hot-toast";
 
-// Sample data for top 5 provinces - this should come from API in real implementation
-const top5Provinces = [
-  { provinceName: "ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ", count: 25, percent: 25.0 },
-  { provinceName: "ᠲᠦᠪ", count: 18, percent: 18.0 },
-  { provinceName: "ᠣᠷᠬᠣᠨ", count: 16, percent: 16.0 },
-  { provinceName: "ᠳᠠᠷᠬᠠᠨ ᠤᠤᠯ", count: 14, percent: 14.0 },
-];
+// findTop5 function exactly like old web
+const findTop5 = (data) => {
+  if (!data || data.length === 0) {
+    // Return default top provinces with 0 counts when no data (like old web)
+    return [
+      { provinceName: "ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ", count: 0, percent: 0 },
+      { provinceName: "ᠲᠦᠪ", count: 0, percent: 0 },
+      { provinceName: "ᠠᠷᠬᠠᠨᠭᠠᠢ", count: 0, percent: 0 },
+      { provinceName: "ᠳᠠᠷᠬᠠᠨ ᠤᠤᠯ", count: 0, percent: 0 },
+      { provinceName: "ᠪᠠᠶᠠᠨ ᠬᠣᠩᠭᠣᠷ", count: 0, percent: 0 },
+    ];
+  }
+  return data.sort((a, b) => b.count - a.count).slice(0, 5);
+};
 
 // Arch visualization data - all yellow dots (mobile version with fewer graduses)
 const archGraduses = [
@@ -42,6 +49,11 @@ export default function EyeMobile() {
   const [coverImageName, setCoverImageName] = useState("");
   const [humanRightsSubjects, setHumanRightsSubjects] = useState([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Dynamic data states (like old web)
+  const [provinceStats, setProvinceStats] = useState([]);
+  const [subjects, setSubjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [submitHumanRightsReport, { isLoading: isSubmitting }] =
     useSubmitHumanRightsReportMutation();
@@ -70,29 +82,34 @@ export default function EyeMobile() {
 
   const phoneValue = watch("phone");
 
-  // Load human rights subjects on component mount
+  // Load data from APIs (exactly like old web)
   useEffect(() => {
-    const loadSubjects = async () => {
+    const loadData = async () => {
       try {
-        const response = await fetch("/api/human-right-reports/subjects");
-        const data = await response.json();
-        if (response.ok && data.payload && data.payload.length > 0) {
-          setHumanRightsSubjects(data.payload);
+        setLoading(true);
+
+        // Load both subjects and stats in parallel
+        const [subjectsResponse, statsResponse] = await Promise.all([
+          fetch("/api/human-right-reports/subjects"),
+          fetch("/api/human-right-reports/stats"),
+        ]);
+
+        const subjectsData = await subjectsResponse.json();
+        const statsData = await statsResponse.json();
+
+        if (subjectsResponse.ok && subjectsData.payload) {
+          setHumanRightsSubjects(subjectsData.payload);
+          setSubjects(subjectsData.payload);
+        }
+
+        if (statsResponse.ok && statsData.payload?.provinceData) {
+          setProvinceStats(statsData.payload.provinceData);
         } else {
-          // Fallback to common human rights subjects if API fails
-          setHumanRightsSubjects([
-            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
-            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ" },
-            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ" },
-            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ" },
-            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ" },
-            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ" },
-            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
-            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
-          ]);
+          // Show empty array but let findTop5 work with it
+          setProvinceStats([]);
         }
       } catch (error) {
-        console.error("Failed to load human rights subjects:", error);
+        console.error("Failed to load data:", error);
         // Fallback to common human rights subjects if API fails
         setHumanRightsSubjects([
           { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
@@ -104,9 +121,11 @@ export default function EyeMobile() {
           { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
           { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
         ]);
+      } finally {
+        setLoading(false);
       }
     };
-    loadSubjects();
+    loadData();
   }, []);
 
   // Close dropdown when clicking outside
@@ -340,7 +359,10 @@ export default function EyeMobile() {
       toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
     }
   };
-  const totalNews = 0; // This should come from API
+  // Calculate totalNews dynamically like old web
+  const totalNews = subjects.reduce((a, b) => a + (b.reportCounts || 0), 0);
+  const top5Provinces = findTop5(provinceStats);
+
   const archInfo = {
     count: totalNews,
     percent: "᠑᠐᠐",
@@ -525,7 +547,7 @@ export default function EyeMobile() {
                       textOrientation: "upright",
                     }}
                   >
-                    {item.count}
+                    {toMongolianNumbers(item.count)}
                   </span>
                 </div>
                 <div className="flex-1 flex items-center justify-center">
@@ -545,7 +567,7 @@ export default function EyeMobile() {
         </div>
         <div className="bg-[#FCFF29] rounded-lg p-4">
           <div className="flex flex-row gap-4 max-h-[500px] overflow-x-auto">
-            {/* НИЙТЛЭГ ШААРДЛАГА */}
+            {/* General Requirements */}
             <div className="flex flex-row gap-2">
               <h3
                 className="text-sm font-bold"
@@ -571,7 +593,7 @@ export default function EyeMobile() {
               </p>
             </div>
 
-            {/* ХЭН МЭДЭЭЛЭЛ ИЛГЭЭХ ВЭ */}
+            {/* Who Can Send Information */}
             <div className="flex flex-row gap-2">
               <h3
                 className="text-sm font-bold"
@@ -596,7 +618,7 @@ export default function EyeMobile() {
               </p>
             </div>
 
-            {/* МЭДЭЭЛЭЛ */}
+            {/* Information */}
             <div className="flex flex-row gap-2">
               <h3
                 className="text-sm font-bold"
@@ -618,7 +640,7 @@ export default function EyeMobile() {
               </p>
             </div>
 
-            {/* ШАЛГАРУУЛАЛТ */}
+            {/* Selection Process */}
             <div className="flex flex-row gap-2">
               <h3
                 className="text-sm font-bold"
