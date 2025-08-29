@@ -8,7 +8,7 @@ export default function StructureDiagramMobile() {
       <div className="z-10 flex gap-[51px] absolute top-[68px] w-full h-full">
         <div className="flex flex-col gap-[106px] ml-[78px]">
           <Link
-            href="/about/1/managers"
+            href="/about/1/control-managers"
             className="border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
           >
             <p
@@ -22,7 +22,7 @@ export default function StructureDiagramMobile() {
             </p>
           </Link>
           <Link
-            href="/about/1/control-managers"
+            href="/about/1/managers"
             className="border border-solid border-[#E3E3E3] bg-white rounded-[3px] max-h-12 whitespace-nowrap py-2 flex items-center justify-center hover:brightness-105 transition-all"
           >
             <p
@@ -123,7 +123,7 @@ export default function StructureDiagramMobile() {
           </p>
         </div>
         <p
-          className="text-black ml-[56px] mt-[75px]"
+          className="text-black ml-[58px] mt-[75px]"
           style={{
             writingMode: "vertical-lr",
           }}
@@ -131,14 +131,14 @@ export default function StructureDiagramMobile() {
           ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
         </p>
         <p
-          className="text-black ml-[54px] mt-[75px]"
+          className="text-black ml-[55px] mt-[75px]"
           style={{
             writingMode: "vertical-lr",
           }}
         >
           ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
         </p>
-        <div className="flex flex-col ml-[56px]">
+        <div className="flex flex-col ml-[58px]">
           <p
             className="text-black"
             style={{
