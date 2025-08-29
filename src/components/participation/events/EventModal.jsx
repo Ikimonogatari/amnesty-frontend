@@ -15,7 +15,7 @@ export default function EventModal({
       onClick={closeModal}
     >
       <div
-        className="relative bg-white rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden shadow-2xl"
+        className="relative bg-white rounded-lg max-w-6xl w-full mx-4 max-h-[90vh] overflow-x-auto shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -82,7 +82,7 @@ export default function EventModal({
                 {selectedEvent.endTime}
               </p>
             </div>
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-row gap-2 max-h-[500px] overflow-x-auto">
               <p
                 className="text-sm lg:text-base font-bold text-gray-600"
                 style={{
@@ -116,7 +116,7 @@ export default function EventModal({
                 className={`w-4 h-4 rounded-full ${selectedEvent.color}`}
               ></div>
             </div>
-            <div className="flex flex-col items-center gap-2">
+            <div className="flex flex-row gap-2 max-h-[500px] overflow-x-auto">
               <h4
                 className="text-sm lg:text-base font-bold text-gray-600"
                 style={{
@@ -149,7 +149,7 @@ export default function EventModal({
               )}
             </div>
           </div>
-          <div className="p-4 h-64 lg:h-full w-full bg-gray-200 rounded-lg shadow-inner">
+          <div className="p-4 md:min-w-[500px] md:min-h-[500px] bg-gray-200 rounded-lg shadow-inner">
             <LeafletMap
               coordinates={selectedEvent.coordinates}
               className="h-full w-full rounded-lg"
