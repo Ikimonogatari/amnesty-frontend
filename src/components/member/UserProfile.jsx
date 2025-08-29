@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import userApiService from "@/services/userApiService";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
-import { Edit2 } from "lucide-react";
+import { Edit2, Menu, X } from "lucide-react";
 
 export default function UserProfile({ userData, userGroups }) {
   const router = useRouter();
@@ -13,6 +13,7 @@ export default function UserProfile({ userData, userGroups }) {
   const [paymentHistory, setPaymentHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [paymentLoading, setPaymentLoading] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   // Tab definitions with Mongolian script
   const parentTabs = [
@@ -165,8 +166,163 @@ export default function UserProfile({ userData, userGroups }) {
 
   return (
     <div className="w-full h-screen overflow-y-hidden">
-      {/* Main Content Layout */}
-      <div className="flex flex-row gap-5 font-[Oswald] flex-1 p-4">
+      {/* Mobile Header with Hamburger Menu and User Profile */}
+      <div className="md:hidden">
+        {/* Navigation Header */}
+        <div className="flex items-center justify-between p-4 bg-white border-b">
+          <button
+            onClick={() => setIsMobileSidebarOpen(true)}
+            className="p-2 hover:bg-gray-100 rounded-lg"
+          >
+            <Menu size={24} />
+          </button>
+          <div
+            className="text-lg font-bold"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            ᠮᠧᠨᠦ
+          </div>
+          <div className="w-8" /> {/* Spacer */}
+        </div>
+
+        {/* Mobile User Profile Section - Always Visible */}
+        <div className="p-4 bg-white border-b">
+          <div className="w-full border p-5 h-fit flex flex-row justify-between items-center">
+            <div className="flex flex-col justify-center items-center">
+              <div
+                className="relative w-[128px] h-[128px] bg-[#eee] rounded-full bg-cover bg-center"
+                style={{ backgroundImage: `url(${avatar})` }}
+              >
+                <div className="absolute top-0 right-[-15px] cursor-pointer">
+                  <button onClick={changeAvatar}>
+                    <Edit2 size={20} />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="text-sm">
+              <div className="flex flex-col">
+                <div
+                  className="font-bold"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ID:
+                </div>
+                <div
+                  className="flex-1 text-right"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {user?.id}
+                </div>
+              </div>
+            </div>
+            <div
+              className="mb-10 text-xl text-center"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              {userFullName}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Sidebar */}
+      {isMobileSidebarOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black bg-opacity-50"
+            onClick={() => setIsMobileSidebarOpen(false)}
+          />
+
+          {/* Sidebar Content */}
+          <div className="absolute left-0 top-0 h-full w-80 bg-white shadow-xl">
+            <div className="p-4 border-b flex items-center justify-between">
+              <div
+                className="text-lg font-bold"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠨᠠᠸᠢᠭᠠᠴᠢ
+              </div>
+              <button
+                onClick={() => setIsMobileSidebarOpen(false)}
+                className="p-2 hover:bg-gray-100 rounded-lg"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="p-4 space-y-6 overflow-y-auto h-full">
+              {/* Child Tabs */}
+              <div className="flex flex-row gap-2 flex-wrap border-b pb-4">
+                {childTabs.map((tab, index) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => {
+                      onChildTabPress(tab, index);
+                      setIsMobileSidebarOpen(false);
+                    }}
+                    className={`px-3 py-2 rounded-lg ${
+                      index === childTabIndex
+                        ? "bg-[#FFFF00] text-black"
+                        : "bg-[#eee] text-black hover:bg-gray-300"
+                    }`}
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Parent Navigation Tabs */}
+
+              <div className="flex flex-row gap-2 flex-wrap">
+                {parentTabs.map((tab, index) => (
+                  <button
+                    key={tab.key}
+                    onClick={() => {
+                      onParentTabPress(tab);
+                      setIsMobileSidebarOpen(false);
+                    }}
+                    className={`px-3 py-2 rounded-lg ${
+                      index === 0
+                        ? "bg-[#FFFF00] text-black"
+                        : "bg-[#eee] text-black hover:bg-gray-300"
+                    }`}
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Desktop Layout */}
+      <div className="hidden md:flex flex-row gap-5 font-[Oswald] flex-1 p-4">
         <div className="flex flex-col md:flex-row gap-5 h-full max-h-screen overflow-y-auto">
           {/* Parent Navigation Tabs */}
           <div className="flex flex-col gap-5 flex-shrink-0 p-3 sm:p-0">
@@ -278,6 +434,21 @@ export default function UserProfile({ userData, userGroups }) {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Mobile Content Area */}
+      <div className="md:hidden flex-1 p-4 overflow-y-auto">
+        {childTabIndex === 0 && <MyInfo userData={user} />}
+        {childTabIndex === 1 && (
+          <MyEvents events={userEvents} loading={loading} />
+        )}
+        {childTabIndex === 2 && (
+          <MySubscriptions payments={paymentHistory} loading={paymentLoading} />
+        )}
+        {childTabIndex === 3 && <ChangePassword />}
+        {childTabIndex === 4 && !user?.isMember && (
+          <BecomeMember userData={user} userGroups={userGroups} />
+        )}
       </div>
     </div>
   );
@@ -427,7 +598,7 @@ function MyInfo({ userData }) {
           ᠬᠤᠪᠢ ᠶᠢᠨ ᠮᠡᠳᠡᠭᠡ
         </h3>
         <div className="flex flex-row gap-4">
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -447,7 +618,7 @@ function MyInfo({ userData }) {
               {userData?.firstName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -467,7 +638,7 @@ function MyInfo({ userData }) {
               {userData?.lastName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -491,7 +662,7 @@ function MyInfo({ userData }) {
                 : "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -511,7 +682,7 @@ function MyInfo({ userData }) {
               {formatDate(userData?.birthday)}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -531,7 +702,7 @@ function MyInfo({ userData }) {
               {userData?.country || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -551,7 +722,7 @@ function MyInfo({ userData }) {
               {userData?.city || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -571,7 +742,7 @@ function MyInfo({ userData }) {
               {userData?.address || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -606,7 +777,7 @@ function MyInfo({ userData }) {
           ᠰᠲᠠᠲᠢᠰᠲᠢᠺ
         </h3>
         <div className="flex flex-row gap-4">
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -626,7 +797,7 @@ function MyInfo({ userData }) {
               {userData?.points || 0}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -646,7 +817,7 @@ function MyInfo({ userData }) {
               {userData?.eventHours || 0}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div>
             <label
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
@@ -708,7 +879,7 @@ function MyEvents({ events, loading }) {
   }
 
   return (
-    <div className="flex flex-row gap-5">
+    <div className="flex flex-row gap-3">
       <h2
         className="text-lg font-bold mb-4"
         style={{
@@ -750,7 +921,7 @@ function MySubscriptions({ payments = [], loading = false }) {
   // Handle loading state
   if (loading) {
     return (
-      <div className="flex flex-row gap-5">
+      <div className="flex flex-row gap-3">
         <h2
           className="text-lg font-bold mb-4"
           style={{
@@ -776,7 +947,7 @@ function MySubscriptions({ payments = [], loading = false }) {
   // Handle empty payments
   if (!payments || payments.length === 0) {
     return (
-      <div className="flex flex-row gap-5">
+      <div className="flex flex-row gap-3">
         <h2
           className="text-lg font-bold mb-4"
           style={{
@@ -802,7 +973,7 @@ function MySubscriptions({ payments = [], loading = false }) {
   const paymentsArray = Array.isArray(payments) ? payments : [];
 
   return (
-    <div className="flex flex-row gap-5">
+    <div className="flex flex-row gap-3">
       <h2
         className="text-lg font-bold mb-4"
         style={{
@@ -869,7 +1040,7 @@ function MySubscriptions({ payments = [], loading = false }) {
 // Component for Change Password tab
 function ChangePassword() {
   return (
-    <div className="flex flex-row gap-5">
+    <div className="flex flex-row gap-3">
       <h2
         className="text-lg font-bold mb-4"
         style={{
@@ -894,7 +1065,7 @@ function ChangePassword() {
 // Component for Become Member tab
 function BecomeMember({ userData, userGroups }) {
   return (
-    <div className="flex flex-row gap-5">
+    <div className="flex flex-row gap-3">
       <h2
         className="text-lg font-bold mb-4"
         style={{
