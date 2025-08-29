@@ -775,6 +775,20 @@ export const contactService = {
       throw error;
     }
   },
+
+  // Upload cover image for human rights report
+  async uploadCoverImage(formData) {
+    try {
+      const response = await FetcherPost(
+        "/human-right-reports/cover",
+        formData,
+        USER_API_BASE_URL
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 // Event Services

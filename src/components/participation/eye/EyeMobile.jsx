@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import BannerSlider from "@/components/common/BannerSlider";
 import StaticHeader from "@/components/common/StaticHeader";
 import { bannerImages } from "@/constants/bannerImages";
@@ -38,6 +38,10 @@ export default function EyeMobile() {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [uploadedImages, setUploadedImages] = useState([]);
   const [timeLeft, setTimeLeft] = useState(0);
+  const [coverImage, setCoverImage] = useState("");
+  const [coverImageName, setCoverImageName] = useState("");
+  const [humanRightsSubjects, setHumanRightsSubjects] = useState([]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const [submitHumanRightsReport, { isLoading: isSubmitting }] =
     useSubmitHumanRightsReportMutation();
@@ -48,13 +52,14 @@ export default function EyeMobile() {
     handleSubmit,
     watch,
     reset,
+    control,
     formState: { errors },
   } = useForm({
     mode: "onSubmit",
     defaultValues: {
       phone: "",
       otp: "",
-      evidenceCode: "",
+      subjectId: "0",
       incident: "",
       outcome: "",
       authorities: "",
@@ -64,6 +69,58 @@ export default function EyeMobile() {
   });
 
   const phoneValue = watch("phone");
+
+  // Load human rights subjects on component mount
+  useEffect(() => {
+    const loadSubjects = async () => {
+      try {
+        const response = await userApiService.contact.getHumanRightsSubjects();
+        if (response.payload && response.payload.length > 0) {
+          setHumanRightsSubjects(response.payload);
+        } else {
+          // Fallback to common human rights subjects if API fails
+          setHumanRightsSubjects([
+            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ" },
+            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ" },
+            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ" },
+            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ" },
+            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
+            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
+          ]);
+        }
+      } catch (error) {
+        console.error("Failed to load human rights subjects:", error);
+        // Fallback to common human rights subjects if API fails
+        setHumanRightsSubjects([
+          { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+          { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ" },
+          { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ" },
+          { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ" },
+          { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ" },
+          { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+          { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
+          { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
+        ]);
+      }
+    };
+    loadSubjects();
+  }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isDropdownOpen && !event.target.closest(".dropdown-container")) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isDropdownOpen]);
 
   // Timer for OTP resend
   useEffect(() => {
@@ -116,6 +173,48 @@ export default function EyeMobile() {
     }
   };
 
+  // Handle cover image upload
+  const handleCoverImageUpload = async () => {
+    const fileInput = document.createElement("input");
+    fileInput.style.display = "none";
+    fileInput.type = "file";
+    fileInput.name = "cover";
+    fileInput.accept = "image/jpg,image/jpeg,image/png";
+
+    fileInput.onchange = async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("ᠵᠢᠷᠤᠭ ᠤᠨ ᢈᠡᢉᠦ 5MB ᠠᠰᠠ ᠪᠠᠢᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("cover", file);
+
+      try {
+        // Use the cover upload endpoint
+        const response = await fetch("/api/human-right-reports/cover", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+
+        if (data.payload?.cover) {
+          setCoverImage(data.payload.cover);
+          setCoverImageName(file.name);
+          toast.success("ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠠᠮᠵᠢᠯᠲᠲᠠᠢ ᠢᠯᠠᠭᠰᠠᠨ!");
+        }
+      } catch (error) {
+        console.error("Cover image upload error:", error);
+        toast.error("ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠢᠯᠠᠬᠤᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ!");
+      }
+    };
+
+    fileInput.click();
+  };
+
   // Handle image upload
   const handleImageUpload = (event) => {
     const files = Array.from(event.target.files);
@@ -157,9 +256,22 @@ export default function EyeMobile() {
       return;
     }
 
+    // Validate cover image
+    if (!coverImage) {
+      toast.error("ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!");
+      return;
+    }
+
+    // Validate subject selection
+    if (!data.subjectId || data.subjectId === "0") {
+      toast.error("ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠰᠣᠩᠭᠣᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!");
+      return;
+    }
+
     try {
       const formData = {
         ...data,
+        coverImage: coverImage,
         images: uploadedImages.map((img) => img.file),
       };
 
@@ -171,6 +283,8 @@ export default function EyeMobile() {
         reset();
         setUploadedImages([]);
         setIsOtpSent(false);
+        setCoverImage("");
+        setCoverImageName("");
       } else if (response.error) {
         toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
       }
@@ -516,7 +630,56 @@ export default function EyeMobile() {
                 </div>
               )}
 
-              {/* Evidence Code Field */}
+              {/* Cover Image Upload Field */}
+              <div className="flex gap-2 flex-col">
+                <p
+                  className="text-xs"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ*
+                </p>
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={coverImageName}
+                    readOnly
+                    placeholder=""
+                    className="cursor-pointer z-10 h-[42px] w-32 border-[1.2px] border-black px-3 text-black bg-white text-xs"
+                    onClick={handleCoverImageUpload}
+                    style={{
+                      writingMode: "vertical-lr",
+                      textOrientation: "upright",
+                    }}
+                  />
+                  {!coverImage && (
+                    <button
+                      type="button"
+                      onClick={handleCoverImageUpload}
+                      className="z-0 absolute top-[26px] left-[8px] scale-50 flex items-center"
+                    >
+                      <img
+                        src="/icons/upload.png"
+                        alt="upload"
+                        className="w-4 h-4"
+                      />
+                      <span
+                        className="text-[16px] pl-3"
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      >
+                        ᠵᠢᠷᠤᠭ ᠬᠤᠤᠯᠠᠬᠤ
+                      </span>
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Human Rights Subject Selection */}
               <div className="flex gap-2">
                 <p
                   className="text-xs"
@@ -525,22 +688,72 @@ export default function EyeMobile() {
                     textOrientation: "upright",
                   }}
                 >
-                  ᠪᠠᠲᠤᠯᠠᠭᠠᠵᠢᠭᠤᠯᠬᠤ ᠻᠣᠳ*
+                  ᠶᠠᠮᠠᠷ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠢᠶᠠᠷ*
                 </p>
-                <input
-                  type="text"
-                  {...register("evidenceCode", {
-                    required: "ᠪᠠᠲᠤᠯᠠᠭᠠᠵᠢᠭᠤᠯᠬᠤ ᠻᠣᠳ ᠬᠡᠷᠡᠭᠲᠡᠢ",
-                  })}
-                  className={`border rounded-md p-2 w-16 text-xs ${
-                    errors.evidenceCode ? "border-red-500" : "border-gray-300"
-                  }`}
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
+                <Controller
+                  name="subjectId"
+                  control={control}
+                  rules={{
+                    required: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠰᠣᠩᠭᠣᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ",
+                    validate: (value) =>
+                      value !== "0" ||
+                      "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠰᠣᠩᠭᠣᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ",
                   }}
+                  render={({ field }) => (
+                    <div className="relative dropdown-container">
+                      <button
+                        type="button"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className={`border ${
+                          errors.subjectId
+                            ? "border-red-500"
+                            : "border-gray-300"
+                        } rounded-md p-2 w-16 h-[400px] text-xs bg-white flex flex-col items-center justify-center gap-2`}
+                        style={{
+                          writingMode: "vertical-lr",
+                          textOrientation: "upright",
+                        }}
+                      >
+                        <div className="flex items-center justify-center">
+                          {humanRightsSubjects.find(
+                            (opt) => opt.id == field.value
+                          )?.title || "ᠰᠣᠩᠭᠣᠬᠤ"}
+                        </div>
+                        <div
+                          className="flex items-center justify-center"
+                          style={{ writingMode: "horizontal-tb" }}
+                        >
+                          {isDropdownOpen ? "◀" : "▶"}
+                        </div>
+                      </button>
+                      {isDropdownOpen && (
+                        <div className="absolute top-0 left-20 bg-white border border-gray-300 rounded-md shadow-lg z-10 flex h-[400px]">
+                          {[
+                            { id: "0", title: "ᠰᠣᠩᠭᠣᠬᠤ" },
+                            ...humanRightsSubjects,
+                          ].map((option) => (
+                            <button
+                              key={option.id}
+                              type="button"
+                              onClick={() => {
+                                field.onChange(option.id);
+                                setIsDropdownOpen(false);
+                              }}
+                              className="w-16 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 flex items-center justify-center"
+                              style={{
+                                writingMode: "vertical-lr",
+                                textOrientation: "upright",
+                              }}
+                            >
+                              {option.title}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 />
-                {errors.evidenceCode && (
+                {errors.subjectId && (
                   <div
                     className="text-red-500 text-[10px]"
                     style={{
@@ -549,7 +762,7 @@ export default function EyeMobile() {
                       width: "60px",
                     }}
                   >
-                    {errors.evidenceCode.message}
+                    {errors.subjectId.message}
                   </div>
                 )}
               </div>
