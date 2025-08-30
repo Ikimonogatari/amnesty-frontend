@@ -3,9 +3,12 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
+import toast from "react-hot-toast";
+import * as countryList from "country-list";
+import { actionsService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 
-export default function WriteForRightsActionMobile({ actionId }) {
+export default function WriteForRightsActionMobile({ actionId, action }) {
   const router = useRouter();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -16,6 +19,8 @@ export default function WriteForRightsActionMobile({ actionId }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [actionData, setActionData] = useState(null);
+  const [countryData, setCountryData] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Mock data for individual action - in real app this would come from API
   const mockActionData = {
@@ -57,17 +62,26 @@ export default function WriteForRightsActionMobile({ actionId }) {
   };
 
   useEffect(() => {
-    if (actionId) {
+    // Initialize country data
+    setCountryData(countryList.getData());
+
+    // Use action data from props if available, otherwise fallback to mock data
+    if (action) {
+      setActionData(action);
+    } else if (actionId) {
       setActionData(mockActionData[actionId] || mockActionData[1]);
     }
-  }, [actionId]);
+  }, [actionId, action]);
 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isSubmitting) return;
+
     const missingFields = [];
 
     if (!formData.lastName) missingFields.push("ᠣᠪᠤᠭ");
@@ -76,10 +90,30 @@ export default function WriteForRightsActionMobile({ actionId }) {
 
     if (missingFields.length > 0) {
       setErrorMessage(`${missingFields.join(", ")} ᠣᠷᠤᠤᠯᠬᠤ ᢈᠠᠷᠳᠯᠠᠭᠠᠲᠠᠢ᠃`);
-    } else {
-      setErrorMessage("");
-      // Here you would submit to API
+      return;
+    }
+
+    setErrorMessage("");
+    setIsSubmitting(true);
+
+    try {
+      // Submit the action form
+      await actionsService.submitAction({
+        actionId: parseInt(actionId),
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        country: formData.country,
+      });
+
       setFormSubmitted(true);
+      toast.success("ᢈᠠᠴᠢᠯᠠᠨ ᠠᠮᠵᠢᠯᠲᠤᠲᠠᠢ ᢈᠢᠯᠢᠭᠯᠡᢉᠡᢉᠡᠢ!"); // Successfully submitted!
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setErrorMessage("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ! ᠳᠠᢉᠢᠨ ᠣᠷᠣᠯᠳᠣᠨᠠ ᠤᠤ."); // Error occurred! Please try again.
+      toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ! ᠳᠠᢉᠢᠨ ᠣᠷᠣᠯᠳᠣᠨᠠ ᠤᠤ.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -233,16 +267,17 @@ export default function WriteForRightsActionMobile({ actionId }) {
                     onChange={(e) =>
                       handleInputChange("country", e.target.value)
                     }
-                    className="border rounded-md p-2 w-16 text-xs"
+                    className="border border-gray-300 rounded-md p-2 w-16 text-xs text-black text-right"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
                     }}
                   >
-                    <option value="MN">ᠮᠣᠩᠭᠣᠯ</option>
-                    <option value="CN">ᢈᠦᠩᠬᠦᠸᠠ</option>
-                    <option value="US">ᠠᠮᠧᠷᠢᠻ᠎ᠠ</option>
-                    <option value="JP">ᠶᠠᠫᠣᠨ</option>
+                    {countryData.map((country) => (
+                      <option key={country.code} value={country.code}>
+                        {country.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
 
@@ -265,10 +300,11 @@ export default function WriteForRightsActionMobile({ actionId }) {
                 {/* Submit Button */}
                 <div className="flex gap-2">
                   <Button
-                    text="ᠢᠯᠭᠡᢉᠦ"
+                    text={isSubmitting ? "ᠢᠯᠭᠡᢉᠦ ᠪᠠᠶᠢᠨ᠎ᠠ..." : "ᠢᠯᠭᠡᢉᠦ"}
                     type="primary"
                     className="py-2 px-3 text-sm"
                     onClick={handleSubmit}
+                    disabled={isSubmitting}
                   />
                 </div>
 

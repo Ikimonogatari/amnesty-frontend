@@ -87,7 +87,12 @@ export default function CampaignMobile() {
     return (
       <div className="h-full flex sm:hidden flex-col items-center justify-center p-4">
         <div className="text-center text-red-600">
-          <p className="text-sm">ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ</p>
+          <p
+            className="text-sm"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
+          </p>
         </div>
       </div>
     );

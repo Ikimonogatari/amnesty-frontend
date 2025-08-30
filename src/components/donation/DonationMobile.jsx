@@ -127,7 +127,7 @@ export default function DonationMobile({
             <select
               value={selectedCountryCode}
               onChange={(e) => setSelectedCountryCode(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-3 text-black"
+              className="w-full border border-gray-300 rounded-md p-3 text-black text-right"
             >
               {countryData.map((country) => (
                 <option key={country.code} value={country.code}>

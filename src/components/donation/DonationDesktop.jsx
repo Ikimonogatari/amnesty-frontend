@@ -259,7 +259,7 @@ export default function DonationDesktop({
               <select
                 value={selectedCountryCode}
                 onChange={(e) => setSelectedCountryCode(e.target.value)}
-                className="border border-gray-300 rounded-md p-2 w-20 text-black"
+                className="border border-gray-300 rounded-md p-2 w-20 text-black text-right"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",

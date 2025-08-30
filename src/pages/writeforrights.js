@@ -2,19 +2,15 @@ import Layout from "@/components/layout/Layout";
 import WriteForRightsDesktop from "@/components/campaign/writeforrights/WriteForRightsDesktop";
 import WriteForRightsMobile from "@/components/campaign/writeforrights/WriteForRightsMobile";
 import { actionsService } from "@/services/apiService";
-import moment from "moment";
 
 export async function getServerSideProps() {
   try {
-    // Fetch actions data with filters like the old web
+    // Fetch actions data - simplified to get all active actions like old web
     const queryParams = {
       populate: "*",
       sort: "createdAt:desc",
       locale: "mn",
-      filters: {
-        "$or[0][end_date][$notNull]": "",
-        "$or[1][end_date][$gte]": moment().format("YYYY-MM-DD"),
-      },
+      // Remove restrictive date filters that may be blocking actions
     };
 
     const actionsResponse = await actionsService.getActions(queryParams);

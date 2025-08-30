@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Button from "@/components/common/Button";
-
+import toast from "react-hot-toast";
+import * as countryList from "country-list";
+import { actionsService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 
 export default function WriteForRightsDesktop({ actions = [], error = null }) {
@@ -16,11 +18,21 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
   const [selectedItems, setSelectedItems] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [countryData, setCountryData] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
+    useEffect(() => {
+    // Initialize country data
+    const countries = countryList.getData();
+    console.log("🌍 Countries loaded:", countries.length);
+    setCountryData(countries);
+    
     // Select all items by default
     if (actions && actions.length > 0) {
+      console.log("📋 Actions loaded:", actions.length, actions.map(a => a.id));
       setSelectedItems(actions.map((action) => action.id));
+    } else {
+      console.log("❌ No actions loaded:", actions);
     }
   }, [actions]);
 
@@ -36,20 +48,52 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (isSubmitting) return;
+    
+    console.log("🚀 Form submission started");
+    console.log("📝 Form data:", formData);
+    console.log("✅ Selected items:", selectedItems);
+    console.log("🌍 Country data length:", countryData.length);
+    
     const missingFields = [];
 
     if (!formData.lastName) missingFields.push("ᠣᠪᠤᠭ");
     if (!formData.firstName) missingFields.push("ᠨᠡᠷᠡ");
     if (!formData.email) missingFields.push("ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ");
 
-    if (missingFields.length > 0) {
+        if (missingFields.length > 0) {
       setErrorMessage(`${missingFields.join(", ")} ᠣᠷᠤᠤᠯᠬᠤ ᢈᠠᠷᠳᠯᠠᠭᠠᠲᠠᠢ᠃`);
-    } else {
-      setErrorMessage("");
-      // Here you would submit to API
+      return;
+    }
+
+    setErrorMessage("");
+    setIsSubmitting(true);
+
+    try {
+      // Submit for each selected action, like the old web
+      const submitPromises = selectedItems.map((actionId) =>
+        actionsService.submitAction({
+          actionId: actionId,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          country: formData.country,
+        })
+      );
+
+      await Promise.all(submitPromises);
+
       setFormSubmitted(true);
+      toast.success("ᢈᠠᠴᠢᠯᠠᠨ ᠠᠮᠵᠢᠯᠲᠤᠲᠠᠢ ᢈᠢᠯᠢᠭᠯᠡᢉᠡᢉᠡᠢ!"); // Successfully submitted!
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setErrorMessage("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ! ᠳᠠᢉᠢᠨ ᠣᠷᠣᠯᠳᠣᠨᠠ ᠤᠤ."); // Error occurred! Please try again.
+      toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ! ᠳᠠᢉᠢᠨ ᠣᠷᠣᠯᠳᠣᠨᠠ ᠤᠤ.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -299,16 +343,17 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                 <select
                   value={formData.country}
                   onChange={(e) => handleInputChange("country", e.target.value)}
-                  className="border rounded-md p-2 w-20"
+                  className="border border-gray-300 rounded-md p-2 w-20 text-black text-right"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",
                   }}
                 >
-                  <option value="MN">ᠮᠣᠩᠭᠣᠯ</option>
-                  <option value="CN">ᢈᠦᠩᠬᠦᠸᠠ</option>
-                  <option value="US">ᠠᠮᠧᠷᠢᠻ᠎ᠠ</option>
-                  <option value="JP">ᠶᠠᠫᠣᠨ</option>
+                  {countryData.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -331,10 +376,11 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
               {/* Submit Button */}
               <div className="flex gap-2">
                 <Button
-                  text="ᠢᠯᠭᠡᢉᠦ"
+                  text={isSubmitting ? "ᠢᠯᠭᠡᢉᠦ ᠪᠠᠶᠢᠨ᠎ᠠ..." : "ᠢᠯᠭᠡᢉᠦ"}
                   type="primary"
                   className="py-3 px-4 text-lg"
                   onClick={handleSubmit}
+                  disabled={isSubmitting}
                 />
               </div>
 
