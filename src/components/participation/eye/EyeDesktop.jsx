@@ -488,7 +488,7 @@ export default function EyeDesktop() {
           {/* Top provinces with most reports section */}
           <div className="flex flex-col">
             <div
-              className="w-[507px] h-[100px] flex items-center justify-center border border-black text-xl font-bold p-4"
+              className="w-[507px] h-[100px] flex items-center justify-center border border-black text-lg font-bold p-4"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -496,7 +496,7 @@ export default function EyeDesktop() {
             >
               ᠬᠠᠮᠠᠭᠢᠨ ᠢ᠋ᠢᠬ ᠮᠡᠳᠡᠡᠡᠯ ᠢᠷᠰᠡᠨ ᠠ᠋ᠢᠮᠠᠭ᠂ ᠳ᠋ᠦᠦᠷᠡᠭ
             </div>
-            <div className="flex w-[507px] h-[80px] pl-[10px] my-[20px]">
+            <div className="flex w-[507px] h-[60px] pl-[10px] my-[10px] text-sm">
               <div className="flex-1 flex items-center justify-center">
                 <span
                   style={{
@@ -531,7 +531,7 @@ export default function EyeDesktop() {
             {top5Provinces.map((item, index) => (
               <div
                 key={index}
-                className="flex w-[507px] h-[80px] pl-[10px] mb-[20px] border-l-2 border-black"
+                className="flex w-[507px] h-[80px] pl-[10px] mb-3 border-l-2 border-black"
               >
                 <div
                   className={`flex-1 flex items-center justify-center border border-black ${
@@ -546,7 +546,7 @@ export default function EyeDesktop() {
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
                     }}
-                    className="max-h-[70px] overflow-x-auto"
+                    className="max-h-[70px] overflow-x-auto text-[10px] text-center"
                   >
                     {item.provinceName}
                   </span>
