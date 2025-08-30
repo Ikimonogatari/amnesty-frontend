@@ -35,14 +35,19 @@ export default function Layout({ children }) {
       {/* Desktop Layout - Horizontal scrolling for Mongolian script */}
       <div
         ref={scrollRef}
-        className="h-screen w-screen overflow-x-auto overflow-y-hidden items-center justify-start hidden md:flex"
+        className="h-screen w-screen overflow-x-auto overflow-y-hidden hidden md:block"
         style={{ scrollBehavior: "smooth" }}
       >
-        <Header />
-        <div className={`${isFlexPage ? "flex-1" : "h-full"} flex-shrink-0`}>
-          {children}
+        <div
+          className="flex items-center justify-start h-full"
+          style={{ minWidth: "100vw" }}
+        >
+          <Header />
+          <div className={`${isFlexPage ? "flex-1" : "h-full"} flex-shrink-0`}>
+            {children}
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
 
       {/* Mobile Layout - Keep vertical scrolling */}
