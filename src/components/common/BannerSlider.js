@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@/components/common/Button";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
+import FullScreenLoader from "./FullScreenLoader";
 
 export default function BannerSlider({
   images,
@@ -123,24 +124,7 @@ export default function BannerSlider({
 
   // Show loading state for dynamic content
   if (useDynamic && featuredNewsLoading) {
-    return (
-      <div className="p-4">
-        <div
-          className="relative overflow-hidden h-full flex items-center justify-center bg-gray-100"
-          style={{ width: width }}
-        >
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-900 mx-auto"></div>
-            <p
-              className="mt-4 text-gray-600 text-sm"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-            </p>
-          </div>
-        </div>
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   // Show error state for dynamic content

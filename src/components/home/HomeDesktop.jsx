@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 import Link from "next/link";
+import FullScreenLoader from "../common/FullScreenLoader";
 
 export default function HomeDesktop() {
   const router = useRouter();
@@ -90,19 +91,7 @@ export default function HomeDesktop() {
 
   // Loading state
   if (isLoading) {
-    return (
-      <div className="h-full gap-10 overflow-x-auto w-auto flex-shrink-0 hidden md:flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 mx-auto"></div>
-          <p
-            className="mt-4 text-gray-600"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-          </p>
-        </div>
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   // Error state

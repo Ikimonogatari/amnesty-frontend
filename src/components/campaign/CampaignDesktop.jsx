@@ -8,6 +8,7 @@ import {
   useGetCompanyWorkFeaturesQuery,
 } from "@/redux/services/apiService";
 import { getImageUrl } from "@/config/api";
+import FullScreenLoader from "../common/FullScreenLoader";
 
 export default function CampaignDesktop() {
   const router = useRouter();
@@ -76,19 +77,7 @@ export default function CampaignDesktop() {
 
   // Loading state
   if (companyWorksLoading || featuresLoading) {
-    return (
-      <div className="h-full hidden sm:flex gap-10 overflow-x-auto w-auto flex-shrink-0 items-center justify-center min-w-screen">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-900 mx-auto"></div>
-          <p
-            className="mt-4 text-gray-600 text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-          </p>
-        </div>
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   // Error state

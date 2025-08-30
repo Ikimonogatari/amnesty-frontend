@@ -10,6 +10,7 @@ import {
 } from "@/redux/services/apiService";
 import { getImageUrl } from "@/config/api";
 import StaticHeader from "../common/StaticHeader";
+import FullScreenLoader from "../common/FullScreenLoader";
 
 export default function CampaignMobile() {
   const router = useRouter();
@@ -78,16 +79,7 @@ export default function CampaignMobile() {
 
   // Loading state
   if (companyWorksLoading || featuresLoading) {
-    return (
-      <div className="h-full flex sm:hidden flex-col items-center justify-center p-4">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-gray-600 text-sm">
-            ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-          </p>
-        </div>
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   // Error state
