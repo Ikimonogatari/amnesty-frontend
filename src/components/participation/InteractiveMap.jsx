@@ -6,12 +6,35 @@ const InteractiveMap = () => {
   const [coordinatedProvinces, setCoordinatedProvinces] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Province data with coordinates and counts
+  // Helper function to convert numbers to Traditional Mongolian numerals
+  const toMongolianNumber = (num) => {
+    const mongolianNumerals = [
+      "᠐",
+      "᠑",
+      "᠒",
+      "᠓",
+      "᠔",
+      "᠕",
+      "᠖",
+      "᠗",
+      "᠘",
+      "᠙",
+    ];
+    return num
+      .toString()
+      .split("")
+      .map((digit) => mongolianNumerals[parseInt(digit)])
+      .join("");
+  };
+
+  // Province data with coordinates and counts - with Traditional Mongolian names
   const provinces = [
     {
       id: 1,
       title: "Архангай",
+      mongolTitle: "ᠠᠷᠬᠠᠩᠭᠠᠢ",
       count: 12,
+      mongolCount: toMongolianNumber(12),
       x: 371,
       y: 190,
       width: 10,
@@ -20,7 +43,9 @@ const InteractiveMap = () => {
     {
       id: 2,
       title: "Баян-Өлгий",
+      mongolTitle: "ᠪᠠᠶᠠᠨ ᠥᠯᠦᠭᠡᠢ",
       count: 8,
+      mongolCount: toMongolianNumber(8),
       x: 10,
       y: 148,
       width: 10,
@@ -29,7 +54,9 @@ const InteractiveMap = () => {
     {
       id: 3,
       title: "Баянхонгор",
+      mongolTitle: "ᠪᠠᠶᠠᠨᠬᠣᠩᠭᠣᠷ",
       count: 15,
+      mongolCount: toMongolianNumber(15),
       x: 331,
       y: 300,
       width: 10,
@@ -38,7 +65,9 @@ const InteractiveMap = () => {
     {
       id: 4,
       title: "Булган",
+      mongolTitle: "ᠪᠤᠯᠭᠠᠨ",
       count: 9,
+      mongolCount: toMongolianNumber(9),
       x: 455,
       y: 112,
       width: 10,
@@ -47,7 +76,9 @@ const InteractiveMap = () => {
     {
       id: 5,
       title: "Говь-Алтай",
+      mongolTitle: "ᠭᠣᠪᠢ ᠠᠯᠲᠠᠢ",
       count: 7,
+      mongolCount: toMongolianNumber(7),
       x: 214,
       y: 300,
       width: 10,
@@ -56,7 +87,9 @@ const InteractiveMap = () => {
     {
       id: 6,
       title: "Говьсүмбэр",
+      mongolTitle: "ᠭᠣᠪᠢᠰᠦᠮᠪᠡᠷ",
       count: 11,
+      mongolCount: toMongolianNumber(11),
       x: 632,
       y: 203,
       width: 10,
@@ -65,7 +98,9 @@ const InteractiveMap = () => {
     {
       id: 7,
       title: "Дархан-Уул",
+      mongolTitle: "ᠳᠠᠷᠬᠠᠨ ᠤᠤᠯ",
       count: 14,
+      mongolCount: toMongolianNumber(14),
       x: 569,
       y: 124,
       width: 10,
@@ -74,7 +109,9 @@ const InteractiveMap = () => {
     {
       id: 8,
       title: "Дорноговь",
+      mongolTitle: "ᠳᠣᠷᠣᠨᠣᠭᠣᠪᠢ",
       count: 6,
+      mongolCount: toMongolianNumber(6),
       x: 640,
       y: 348,
       width: 10,
@@ -83,7 +120,9 @@ const InteractiveMap = () => {
     {
       id: 9,
       title: "Дорнод",
+      mongolTitle: "ᠳᠣᠷᠣᠨᠠᠳ",
       count: 13,
+      mongolCount: toMongolianNumber(13),
       x: 780,
       y: 168,
       width: 10,
@@ -92,7 +131,9 @@ const InteractiveMap = () => {
     {
       id: 10,
       title: "Дундговь",
+      mongolTitle: "ᠳᠤᠨᠳᠤᠭᠣᠪᠢ",
       count: 10,
+      mongolCount: toMongolianNumber(10),
       x: 530,
       y: 288,
       width: 10,
@@ -101,7 +142,9 @@ const InteractiveMap = () => {
     {
       id: 11,
       title: "Завхан",
+      mongolTitle: "ᠵᠠᠪᠬᠠᠨ",
       count: 8,
+      mongolCount: toMongolianNumber(8),
       x: 214,
       y: 170,
       width: 10,
@@ -110,7 +153,9 @@ const InteractiveMap = () => {
     {
       id: 12,
       title: "Орхон",
+      mongolTitle: "ᠣᠷᠬᠣᠨ",
       count: 16,
+      mongolCount: toMongolianNumber(16),
       x: 476,
       y: 148,
       width: 10,
@@ -119,7 +164,9 @@ const InteractiveMap = () => {
     {
       id: 13,
       title: "Өвөрхангай",
+      mongolTitle: "ᠡᠪᠡᠷᠬᠠᠩᠭᠠᠢ",
       count: 12,
+      mongolCount: toMongolianNumber(12),
       x: 420,
       y: 288,
       width: 10,
@@ -128,7 +175,9 @@ const InteractiveMap = () => {
     {
       id: 14,
       title: "Өмнөговь",
+      mongolTitle: "ᠡᠮᠦᠨᠡᠭᠦᠭᠣᠪᠢ",
       count: 5,
+      mongolCount: toMongolianNumber(5),
       x: 480,
       y: 388,
       width: 10,
@@ -137,7 +186,9 @@ const InteractiveMap = () => {
     {
       id: 15,
       title: "Сүхбаатар",
+      mongolTitle: "ᠰᠦᠬᠪᠠᠲᠤᠷ",
       count: 9,
+      mongolCount: toMongolianNumber(9),
       x: 750,
       y: 258,
       width: 10,
@@ -146,7 +197,9 @@ const InteractiveMap = () => {
     {
       id: 16,
       title: "Сэлэнгэ",
+      mongolTitle: "ᠰᠡᠯᠡᠩᠭᠡ",
       count: 11,
+      mongolCount: toMongolianNumber(11),
       x: 525,
       y: 146,
       width: 10,
@@ -155,7 +208,9 @@ const InteractiveMap = () => {
     {
       id: 17,
       title: "Төв",
+      mongolTitle: "ᠲᠥᠪ",
       count: 18,
+      mongolCount: toMongolianNumber(18),
       x: 539,
       y: 224,
       width: 10,
@@ -164,7 +219,9 @@ const InteractiveMap = () => {
     {
       id: 18,
       title: "Улаанбаатар",
+      mongolTitle: "ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ",
       count: 25,
+      mongolCount: toMongolianNumber(25),
       x: 572,
       y: 180,
       width: 10,
@@ -173,7 +230,9 @@ const InteractiveMap = () => {
     {
       id: 19,
       title: "Увс",
+      mongolTitle: "ᠤᠪᠰᠤ",
       count: 7,
+      mongolCount: toMongolianNumber(7),
       x: 120,
       y: 107,
       width: 10,
@@ -182,7 +241,9 @@ const InteractiveMap = () => {
     {
       id: 20,
       title: "Ховд",
+      mongolTitle: "ᠬᠣᠪᠳᠤ",
       count: 6,
+      mongolCount: toMongolianNumber(6),
       x: 120,
       y: 227,
       width: 10,
@@ -191,7 +252,9 @@ const InteractiveMap = () => {
     {
       id: 21,
       title: "Хөвсгөл",
+      mongolTitle: "ᠬᠥᠪᠰᠦᠭᠦᠯ",
       count: 10,
+      mongolCount: toMongolianNumber(10),
       x: 341,
       y: 70,
       width: 10,
@@ -200,7 +263,9 @@ const InteractiveMap = () => {
     {
       id: 22,
       title: "Хэнтий",
+      mongolTitle: "ᠬᠡᠨᠲᠡᠢ",
       count: 8,
+      mongolCount: toMongolianNumber(8),
       x: 670,
       y: 168,
       width: 10,
@@ -325,9 +390,9 @@ const InteractiveMap = () => {
             d="M775.1 209.7l-2.2 0.4-1 0.6-0.5 0.2-1.6 0.1-9.5 3.7-1.8 1.2-0.6 0.7-0.6 0.6-0.7 1.3-0.4 1.4-0.2 1-0.2 2.3 0 1.4 0.2 2.1 0.6 2.7-3.7-0.2-4-0.8-1 0.1-1.4 0.6-1.3 0.9-1 0.9-3.1 3.6-1.1 1.9-0.5 1.1-0.3 1.3-1 8.6-0.9 3.1-2.2 4.3-2.8 5.1-0.8 1.6-0.5 1.7-0.1 3.6 0.1 1 0.3 1.4 1 3.4 0.2 1 0.1 0.9-0.2 0.9-0.3 0.7-1.9 2.9-0.5 1.3 0.2 1.4-5.9 5.5-2.1 1.5-1.8-0.1-2-0.8-6.5-3.9-2.7-2.7-1-1.7-0.9-2.7-0.6-1.3-0.6-0.9-5-5.3-1.8-2.7-0.9-1.7-0.8-0.9-0.8-0.5-1.8-0.1-1.3 0.2-0.3 0.5 0 1.4 0.8 4.1 0 0.9-0.1 0.8-1.2 4.1-1 2.3-0.2 0.4-4.8 4-1.5 1-1.4 0.4-7.7 0.9-3.1-0.4-4.6-3.2-0.8-0.9-0.7-1-1-2.5-0.8-1.4-2.9-2.9-1-2.1-0.3-1.1-0.1-1.3 0.3-1.6 0.3-0.9 2.3-4.3 0.5-1.5 0.2-1.2 0.1-0.9 0-1.2-0.2-1.3-0.3-1.2-0.5-0.7-0.5-0.1-0.6 0.2-0.5 0.6-1.1 1.6-0.5 0.3-0.4-0.7 0.1-3.2-0.2-1.6-0.6-1.8-3.7-1.7-2.1-1.6-1.1-1.1-1-1.3-0.4-0.8-0.5-1.8-1.3-3.6-0.3-0.7-1-1-0.3-0.6-0.9-3.4-2-2-0.2-0.3-0.4-1-0.6-2-0.2-0.4-1-0.7-0.1-0.5 0.2-0.8 0.4-0.6 0.4-0.8 0-1.1-0.1-0.5-0.4-0.7-0.1-0.6 0.1-0.4 0.9-0.8 1.1-2.2 0.2-0.8 0.1-1.5 0.2-0.7-0.5-0.7-0.2-0.5 0-1.4 0-0.6-0.4-1.9 0.2-0.5 0.5-0.9 0.1-0.7 2.1-0.4 1.5-0.5 0.7-0.3 1.9-1.1 1.4-1.3 1.8-1.9 1.6-1.2 1.1-0.6 0.7-0.7 0.4-1 0.5-2.3 0.7-1.8 0.7-1.2 0.9-0.9 0.6-1.1 0.5-1.5 0.1-1.1-0.1-1.2-0.6-2.7-0.8-2.3-0.4-1.9-0.8-2.8-1-5.4-0.5-1.6-0.7-1.5-0.2-0.7-0.4-2.4-0.2-0.8-1.2-2.2-1.3-3.2-1.1-2-1.2-1.4-1.9-1.8-0.6-0.7-0.7-0.6-0.6-0.7-0.8-0.7-0.9-1.2 0.4-4.9 1.1-4.7 1.2 0.1 4.4-0.8 3.3 0 2.3-0.4 3.1 1 0.8-0.1 3.2-0.8 3.9 0.4 0.8 0.3 0.7 0.4 2.4 1 1.2-0.2 0.3 0.3 0.4 1.5 1.3 0.6 6.6-0.5 1.8 0.7 1 1.2 0.4 0 2.5 0.6 8.4 2.5 1.3-0.2 1.4-0.5 1.2-0.9 1.1-1.2 0.8-1 0.4 0.1 1.6 1.8 0.5 0.3 1.8 0.5 3 1.9 1.2 0.4 1.4 0.1 1.3-0.2 3.4-1.1 3.9-2.2 5.4-4 4.1-1.5 0.6-0.3 0.9-1.2 0.6-0.5 0.7-0.1 0.7 0.3 1.4 0.7 0.8 0.2 0.7 0 0.8-0.2 3.5-1.9 1.4-0.5 11.4-0.7 3-1.4 2.3 3.5 0.2 0.6-0.4 0.7-0.7 0.9 0.1 2.2 1 6.4 1.1 3.5 0.2 1.2 0 1-1.1 3.4 0.5 1.6 1.2 2.9 6 11.3 1.9 4.7 0.6 1.9 0.4 2.6-0.1 2.8-0.7 2-0.5 3.1 0.8 8 1.6 3.1 0.4 0.7 1.3 2.7 1.3 5.8z"
             id="MNG3315"
             name="Hentiy"
-            onMouseOver={() => hoverIn("Өвөрхангай")}
+            onMouseOver={() => hoverIn("Хэнтий")}
             fill={
-              hoveredProvinceId === findProvinceByName("Өвөрхангай")
+              hoveredProvinceId === findProvinceByName("Хэнтий")
                 ? "#ffff00"
                 : "#fff"
             }
@@ -841,7 +906,7 @@ const InteractiveMap = () => {
                 : "row",
             }}
           >
-            <div className="flex">
+            <div className="flex items-center">
               <div
                 className="w-4 h-4 bg-yellow-400 rounded-full border border-black"
                 style={{
@@ -850,9 +915,23 @@ const InteractiveMap = () => {
                 }}
               />
               <div>
-                <div className="text-xs">{province.title}</div>
-                <div className="text-xs">
-                  <strong>{province.count}</strong> мэдээлэл
+                <div
+                  className="text-[8px]"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {province.mongolTitle}
+                </div>
+                <div
+                  className="text-[8px]"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  <strong>{province.mongolCount}</strong>
                 </div>
               </div>
             </div>
@@ -862,20 +941,36 @@ const InteractiveMap = () => {
                 <div className="absolute left-7 -top-3">
                   <button
                     onClick={() => navigateToDetails(province.title)}
-                    className="flex bg-yellow-300 h-9 items-center px-2 cursor-pointer mb-1"
+                    className="flex bg-yellow-300 items-center px-2 py-3 cursor-pointer mb-1"
+                    style={{ minHeight: "120px" }}
                   >
-                    <div className="w-6 h-6 bg-black rounded-full mr-1"></div>
-                    <div className="text-xs whitespace-nowrap">
-                      {province.count} мэдээлэл харах
+                    <div className="w-6 h-6 bg-black rounded-full mr-2"></div>
+                    <div
+                      className="text-xs flex-1"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                        lineHeight: "1.4",
+                      }}
+                    >
+                      {province.mongolCount} ᠮᠡᠳᠡᠭᠡ ᠦᠵᠡᠬᠦ
                     </div>
                   </button>
                   <button
                     onClick={() => fillInfo(province.id)}
-                    className="flex bg-black h-9 items-center px-2 cursor-pointer"
+                    className="flex bg-black items-center px-2 py-3 cursor-pointer"
+                    style={{ minHeight: "100px" }}
                   >
-                    <div className="w-6 h-6 bg-white rounded-full mr-1"></div>
-                    <div className="text-xs whitespace-nowrap text-white">
-                      мэдээлэл оруулах
+                    <div className="w-6 h-6 bg-white rounded-full mr-2"></div>
+                    <div
+                      className="text-xs text-white flex-1"
+                      style={{
+                        writingMode: "vertical-lr",
+                        textOrientation: "upright",
+                        lineHeight: "1.4",
+                      }}
+                    >
+                      ᠮᠡᠳᠡᠭᠡ ᠣᠷᠤᠭᠤᠯᠬᠤ
                     </div>
                   </button>
                 </div>

@@ -568,7 +568,7 @@ export default function EyeDesktop() {
                       textOrientation: "upright",
                     }}
                   >
-                    {item.percent}%
+                    {toMongolianNumbers(item.percent)}%
                   </span>
                 </div>
               </div>
