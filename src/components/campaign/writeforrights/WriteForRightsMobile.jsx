@@ -21,18 +21,14 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
   const [countryData, setCountryData] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
     // Initialize country data
     const countries = countryList.getData();
-    console.log("🌍 Countries loaded (mobile):", countries.length);
     setCountryData(countries);
-    
+
     // Select all items by default
     if (actions && actions.length > 0) {
-      console.log("📋 Actions loaded (mobile):", actions.length, actions.map(a => a.id));
       setSelectedItems(actions.map((action) => action.id));
-    } else {
-      console.log("❌ No actions loaded (mobile):", actions);
     }
   }, [actions]);
 
@@ -59,7 +55,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
     if (!formData.firstName) missingFields.push("ᠨᠡᠷᠡ");
     if (!formData.email) missingFields.push("ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ");
 
-        if (missingFields.length > 0) {
+    if (missingFields.length > 0) {
       setErrorMessage(`${missingFields.join(", ")} ᠣᠷᠤᠤᠯᠬᠤ ᢈᠠᠷᠳᠯᠠᠭᠠᠲᠠᠢ᠃`);
       return;
     }

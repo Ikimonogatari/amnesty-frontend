@@ -21,18 +21,14 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
   const [countryData, setCountryData] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-    useEffect(() => {
+  useEffect(() => {
     // Initialize country data
     const countries = countryList.getData();
-    console.log("🌍 Countries loaded:", countries.length);
     setCountryData(countries);
-    
+
     // Select all items by default
     if (actions && actions.length > 0) {
-      console.log("📋 Actions loaded:", actions.length, actions.map(a => a.id));
       setSelectedItems(actions.map((action) => action.id));
-    } else {
-      console.log("❌ No actions loaded:", actions);
     }
   }, [actions]);
 
@@ -48,23 +44,18 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
     setFormData({ ...formData, [field]: value });
   };
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (isSubmitting) return;
-    
-    console.log("🚀 Form submission started");
-    console.log("📝 Form data:", formData);
-    console.log("✅ Selected items:", selectedItems);
-    console.log("🌍 Country data length:", countryData.length);
-    
+
     const missingFields = [];
 
     if (!formData.lastName) missingFields.push("ᠣᠪᠤᠭ");
     if (!formData.firstName) missingFields.push("ᠨᠡᠷᠡ");
     if (!formData.email) missingFields.push("ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ");
 
-        if (missingFields.length > 0) {
+    if (missingFields.length > 0) {
       setErrorMessage(`${missingFields.join(", ")} ᠣᠷᠤᠤᠯᠬᠤ ᢈᠠᠷᠳᠯᠠᠭᠠᠲᠠᠢ᠃`);
       return;
     }
