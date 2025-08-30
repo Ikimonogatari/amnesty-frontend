@@ -5,6 +5,7 @@ import { getImageUrl } from "@/config/api";
 import Image from "next/image";
 import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
+import FullScreenLoader from "@/components/common/FullScreenLoader";
 
 export default function FaqDesktop() {
   const [expandedItem, setExpandedItem] = useState(null);
@@ -35,19 +36,7 @@ export default function FaqDesktop() {
 
   // Loading state
   if (faqsLoading) {
-    return (
-      <div className="w-full min-h-screen bg-white hidden md:flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 mx-auto"></div>
-          <p
-            className="mt-4 text-gray-600"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-          </p>
-        </div>
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   // Error state

@@ -4,6 +4,7 @@ import { useGetFaqsQuery } from "@/redux/services/apiService";
 import { getImageUrl } from "@/config/api";
 import BannerSlider from "@/components/common/BannerSlider";
 import StaticHeader from "@/components/common/StaticHeader";
+import FullScreenLoader from "@/components/common/FullScreenLoader";
 
 export default function FaqMobile() {
   const [expandedItem, setExpandedItem] = useState(null);
@@ -33,19 +34,7 @@ export default function FaqMobile() {
 
   // Loading state
   if (faqsLoading) {
-    return (
-      <div className="w-full min-h-screen bg-white md:hidden flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 mx-auto"></div>
-          <p
-            className="mt-4 text-gray-600"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-          </p>
-        </div>
-      </div>
-    );
+    return <FullScreenLoader />;
   }
 
   // Error state

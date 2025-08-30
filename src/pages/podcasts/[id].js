@@ -6,6 +6,7 @@ import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
 import { podcastsService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
+import FullScreenLoader from "@/components/common/FullScreenLoader";
 
 export default function PodcastDetail() {
   const router = useRouter();
@@ -49,17 +50,7 @@ export default function PodcastDetail() {
   if (isLoading) {
     return (
       <Layout>
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-gray-900 mx-auto"></div>
-            <p
-              className="mt-4 text-gray-600"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-            </p>
-          </div>
-        </div>
+        <FullScreenLoader />
       </Layout>
     );
   }
