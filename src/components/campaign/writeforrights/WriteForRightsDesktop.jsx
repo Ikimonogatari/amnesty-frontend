@@ -121,9 +121,9 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
   }
 
   return (
-    <div className="h-full hidden sm:flex overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
+    <div className="bg-[#43a6ac] h-full hidden sm:flex overflow-x-auto w-screen max-h-screen justify-start">
       {/* Actions List Section */}
-      <div className="bg-[#43a6ac] p-6 flex flex-row gap-4 flex-shrink-0">
+      <div className="w-full p-6 flex flex-row gap-4">
         <div className="flex flex-row gap-2">
           <h2
             className="bg-black text-white p-2 text-xl inline-block font-bold"
@@ -233,7 +233,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
       </div>
 
       {/* Form Section */}
-      <div className="bg-[#1b4244] p-4">
+      <div className="bg-[#1b4244] rounded-lg m-4 p-4">
         {!formSubmitted ? (
           <div className="flex gap-7 w-full">
             <h2
@@ -246,7 +246,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
               ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠨᠢᢉᠡᠳᠡᠨᠡ ᠦᠦ
             </h2>
 
-            <form onSubmit={handleSubmit} className="flex gap-4">
+            <form onSubmit={handleSubmit} className="flex gap-4 max-h-[90vh]">
               {/* Last Name Field */}
               <div className="flex gap-2">
                 <p
