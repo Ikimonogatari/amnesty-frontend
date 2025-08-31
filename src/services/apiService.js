@@ -253,6 +253,10 @@ export const actionsService = {
   // Submit action form - Routes to Next.js API proxy
   async submitAction(formData) {
     try {
+      console.log('=== ACTION SERVICE SUBMIT ===');
+      console.log('Form data being submitted:', formData);
+      console.log('Making request to: /api/actions/submit');
+      
       const response = await fetch('/api/actions/submit', {
         method: 'POST',
         headers: {
@@ -261,14 +265,23 @@ export const actionsService = {
         body: JSON.stringify(formData),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+      
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
+        console.log('Error response data:', errorData);
         throw new Error(errorData.message || `HTTP ${response.status}`);
       }
 
-      return await response.json();
+      const result = await response.json();
+      console.log('Success response data:', result);
+      return result;
     } catch (error) {
-      console.error('Action submission failed:', error);
+      console.error('=== ACTION SUBMISSION FAILED ===');
+      console.error('Error:', error);
+      console.error('Error message:', error.message);
+      console.error('Error stack:', error.stack);
       throw error;
     }
   },

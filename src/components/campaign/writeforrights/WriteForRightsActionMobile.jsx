@@ -100,6 +100,13 @@ export default function WriteForRightsActionMobile({ actionId, action }) {
       return;
     }
 
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (formData.email && !emailRegex.test(formData.email)) {
+      setErrorMessage("ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ ᠢᠨ ᠴᠣᠷᠮᠠᠲ ᠢ ᠨᠢ ᠶᠠᠯᠠᠱ ᠤᠯ᠌");
+      return;
+    }
+
     setErrorMessage("");
     setIsSubmitting(true);
 

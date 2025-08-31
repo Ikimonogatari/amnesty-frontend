@@ -9,6 +9,12 @@ export default async function handler(req, res) {
       process.env.NEXT_PUBLIC_USER_API_URL || "https://api.amnesty.mn/users";
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
+    console.log("=== ACTION SUBMIT API PROXY ===");
+    console.log("Request body:", JSON.stringify(req.body, null, 2));
+    console.log("User API URL:", userApiUrl);
+    console.log("API Key exists:", !!apiKey);
+    console.log("API Key length:", apiKey ? apiKey.length : 0);
+
     // Get authorization header from the request
     const authHeader = req.headers.authorization;
 
@@ -54,13 +60,19 @@ export default async function handler(req, res) {
     const responseData = await response.json();
     console.log("=== ACTION SUBMIT PROXY SUCCESS ===");
     console.log("Response status:", response.status);
+    console.log("Response data:", JSON.stringify(responseData, null, 2));
     return res.status(response.status).json(responseData);
   } catch (error) {
-    console.error("Action submit proxy error:", error);
+    console.error("=== ACTION SUBMIT PROXY ERROR ===");
+    console.error("Error details:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+    });
     return res.status(500).json({
       message: "Internal server error",
       error: error.message,
+      details: error.toString(),
     });
   }
 }
-

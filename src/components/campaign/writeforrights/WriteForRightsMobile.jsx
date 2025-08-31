@@ -67,22 +67,42 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
       return;
     }
 
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (formData.email && !emailRegex.test(formData.email)) {
+      setErrorMessage("ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ ᠢᠨ ᠴᠣᠷᠮᠠᠲ ᠢ ᠨᠢ ᠶᠠᠯᠠᠱ ᠤᠯ᠌");
+      return;
+    }
+
+    // Check if any actions are selected
+    if (selectedItems.length === 0) {
+      setErrorMessage("ᠠᠵᠢᠯ ᠤᠯᠠᠭᠠ ᠰᠣᠩᠭᠣᠨᠠ ᠤᠤ᠃"); // Please select at least one action
+      return;
+    }
+
     setErrorMessage("");
     setIsSubmitting(true);
 
     try {
+      console.log('=== WRITEFORRIGHT MOBILE FORM SUBMISSION ===');
+      console.log('Selected items:', selectedItems);
+      console.log('Form data:', formData);
+
       // Submit for each selected action, like the old web
-      const submitPromises = selectedItems.map((actionId) =>
-        actionsService.submitAction({
+      const submitPromises = selectedItems.map((actionId) => {
+        console.log(`Submitting for action ID: ${actionId}`);
+        return actionsService.submitAction({
           actionId: actionId,
           firstName: formData.firstName,
           lastName: formData.lastName,
           email: formData.email,
           country: formData.country,
-        })
-      );
+        });
+      });
 
-      await Promise.all(submitPromises);
+      console.log('Waiting for all promises to resolve...');
+      const results = await Promise.all(submitPromises);
+      console.log('All submissions completed:', results);
 
       setFormSubmitted(true);
       toast.success("ᢈᠠᠴᠢᠯᠠᠨ ᠠᠮᠵᠢᠯᠲᠤᠲᠠᠢ ᢈᠢᠯᠢᠭᠯᠡᢉᠡᢉᠡᠢ!"); // Successfully submitted!
