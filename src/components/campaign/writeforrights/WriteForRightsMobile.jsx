@@ -84,9 +84,9 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
     setIsSubmitting(true);
 
     try {
-      console.log('=== WRITEFORRIGHT MOBILE FORM SUBMISSION ===');
-      console.log('Selected items:', selectedItems);
-      console.log('Form data:', formData);
+      console.log("=== WRITEFORRIGHT MOBILE FORM SUBMISSION ===");
+      console.log("Selected items:", selectedItems);
+      console.log("Form data:", formData);
 
       // Submit for each selected action, like the old web
       const submitPromises = selectedItems.map((actionId) => {
@@ -100,9 +100,9 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
         });
       });
 
-      console.log('Waiting for all promises to resolve...');
+      console.log("Waiting for all promises to resolve...");
       const results = await Promise.all(submitPromises);
-      console.log('All submissions completed:', results);
+      console.log("All submissions completed:", results);
 
       setFormSubmitted(true);
       toast.success("ᢈᠠᠴᠢᠯᠠᠨ ᠠᠮᠵᠢᠯᠲᠤᠲᠠᠢ ᢈᠢᠯᠢᠭᠯᠡᢉᠡᢉᠡᠢ!"); // Successfully submitted!
@@ -116,7 +116,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
   };
 
   const handleActionClick = (actionId) => {
-    router.push(`/campaign/writeforrights/${actionId}`);
+    router.push(`/writeforrights/${actionId}`);
   };
 
   // Show error state if there's an API error
@@ -180,7 +180,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
             actions.map((action) => (
               <div
                 key={action.id}
-                className="flex flex-col items-center justify-between gap-2 p-3 w-[100px] bg-white rounded-lg"
+                className="flex flex-col items-center justify-between gap-2 p-3 w-[120px] bg-white rounded-lg"
               >
                 <div className="w-[80px] h-[80px] flex-shrink-0">
                   <Image
@@ -190,7 +190,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="flex-1 p-3">
+                <div className="flex-1 p-3 w-full flex flex-row overflow-x-auto max-h-[300px]">
                   <h3
                     className="font-bold mb-1 text-xs line-clamp-2"
                     style={{

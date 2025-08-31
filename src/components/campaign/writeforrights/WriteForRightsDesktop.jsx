@@ -84,9 +84,9 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
     setIsSubmitting(true);
 
     try {
-      console.log('=== WRITEFORRIGHT FORM SUBMISSION ===');
-      console.log('Selected items:', selectedItems);
-      console.log('Form data:', formData);
+      console.log("=== WRITEFORRIGHT FORM SUBMISSION ===");
+      console.log("Selected items:", selectedItems);
+      console.log("Form data:", formData);
 
       // Submit for each selected action, like the old web
       const submitPromises = selectedItems.map((actionId) => {
@@ -100,9 +100,9 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
         });
       });
 
-      console.log('Waiting for all promises to resolve...');
+      console.log("Waiting for all promises to resolve...");
       const results = await Promise.all(submitPromises);
-      console.log('All submissions completed:', results);
+      console.log("All submissions completed:", results);
 
       setFormSubmitted(true);
       toast.success("ᢈᠠᠴᠢᠯᠠᠨ ᠠᠮᠵᠢᠯᠲᠤᠲᠠᠢ ᢈᠢᠯᠢᠭᠯᠡᢉᠡᢉᠡᠢ!"); // Successfully submitted!
@@ -116,7 +116,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
   };
 
   const handleActionClick = (actionId) => {
-    router.push(`/campaign/writeforrights/${actionId}`);
+    router.push(`/writeforrights/${actionId}`);
   };
 
   // Show error state if there's an API error
@@ -148,7 +148,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
   }
 
   return (
-    <div className="bg-[#43a6ac] z-50 h-full hidden sm:flex overflow-x-auto w-screen max-h-screen justify-start">
+    <div className="bg-[#43a6ac] z-50 h-full hidden sm:flex max-h-screen">
       {/* Actions List Section */}
       <div className="w-full p-6 flex flex-row gap-4">
         <div className="flex flex-row gap-2">
@@ -179,7 +179,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
             actions.map((action) => (
               <div
                 key={action.id}
-                className="flex flex-col items-center justify-between h-full gap-2 bg-white p-4"
+                className="flex flex-col items-center justify-between h-full gap-2 bg-white p-4 min-w-[200px] max-w-[250px]"
               >
                 <div className="flex flex-col items-center gap-4">
                   <div className="w-[150px] h-[120px] flex-shrink-0">
@@ -204,13 +204,14 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                       />
                     )}
                   </div>
-                  <div className="flex flex-row gap-2">
+                  <div className="flex flex-row gap-2 flex-1 overflow-x-auto w-full h-[50vh]">
                     <h3
                       className="font-bold mb-2 text-sm"
                       style={{
                         writingMode: "vertical-lr",
                         textOrientation: "upright",
                       }}
+                      title={action.title}
                     >
                       {action.title}
                     </h3>
@@ -220,6 +221,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                         writingMode: "vertical-lr",
                         textOrientation: "upright",
                       }}
+                      title={action.description}
                     >
                       {action.description}
                     </p>
@@ -258,8 +260,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
           )}
         </div>
       </div>
-
-      {/* Form Section */}
+      {/* Form Section - Always Show */}
       <div className="bg-[#1b4244] rounded-lg m-4 p-4">
         {!formSubmitted ? (
           <div className="flex gap-7 w-full">
