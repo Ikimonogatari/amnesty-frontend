@@ -5,6 +5,7 @@ export default function StaticHeader({
   alt = "Header Image",
   width = "90rem",
   title = null,
+  className = null,
 }) {
   // Handle responsive width
   const getResponsiveStyle = () => {
@@ -25,7 +26,7 @@ export default function StaticHeader({
 
   return (
     <div
-      className="relative md:p-4 h-full w-full min-h-[250px] md:min-h-[300px]"
+      className={`relative md:p-4 h-full w-full min-h-[250px] md:min-h-[300px] ${className}`}
       style={getResponsiveStyle()}
     >
       <div className="h-full relative flex justify-center items-center w-full">

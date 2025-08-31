@@ -29,45 +29,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
 
-  // Mock data for individual action - in real app this would come from API
-  const mockActionData = {
-    1: {
-      id: 1,
-      title: "ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ ᠠᠶᠠᠨ 1",
-      description:
-        "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ ᠠᠶᠠᠨ ᠤ᠋ ᠨᠢᢉᠡ ᢈᠡᠰᠡᢉ ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ",
-      cover: "/images/campaign/writeforrights1.jpg",
-      problem: "ᠠᠰᠠᠭᠤᠳᠠᠯ",
-      action: "ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ",
-      problemDescription:
-        "ᠳᠡᠯᠡᢈᠡᠢ ᠳᠠᠶᠠᠷ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠴᠥᠯᠦᠦ ᠳ᠋ᠤ ᢈᠠᠯᠳᠠᠰᠠᠷ ᠪᠠᠶᠢᠨ᠎ᠠ᠃ ᠦᠭᠡ ᢈᠡᠯᠵᠦ᠂ ᠦᠵᠡᠯ ᠪᠣᠳᠯᠠᠭ᠎ᠠ ᠢᠯᠡᠷᢈᠢᠶᠯᠡᠰᠨᠢᢉ ᠨᠤ ᠲᠥᠯᠦᢉᠡ ᢈᠣᠷᠢᠵᠤ᠂ ᠡᠷᠦᠦᠳᠡᠨ ᢈᠦᠦᠵᠦ᠂ ᢈᠢᠯᠰ ᢈᠡᠷᠭᠡᠡᠷ ᠶᠠᠯᠯᠠᠵᠤ᠂ ᠳᠦᠷᠪᠡᠭᠰᠡᠳ ᠠᠶᠤᠤᠯᠲᠠᠢ ᠣᠷᠴᠢᠨ ᠳ᠋ᠤ ᠭᠠᠳᠤᠤᠷᢈᠠᠭᠳᠠᠨ ᠣᠷᢈᠢᠭᠳᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      actionDescription:
-        "ᠲᠠᠨ ᠤ᠋ ᠦᠭᠡ᠂ ᠵᠠᢈᠢᠳᠠᠯ᠂ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᢈᠢᠶᠳᠪᠦᠷ ᠭᠠᠷᠭᠠᠭᠴᠢ ᠨᠠᠷ ᠳ᠋ᠤ ᠨᠥᠯᠦᠦᠯᠵᠦ᠂ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷᠤᠤᠳ ᠡᠷᠦᠦᠳᠡᠨ ᢈᠦᠦᠭᠴᠢᠳ ᠲᠡᠢ ᢈᠠᠷᠢᠤᠴᠯᠠᠭ᠎ᠠ ᠲᠣᠣᠴᠣᠵᠤ᠂ ᠦᠵᠡᠯ ᠰᠠᠨᠠᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᢈᠣᠷᠢᠭᠳᠯᠤᠤᠳ ᠢ ᠰᠤᠯᠯᠠᠵᠤ᠂ ᠢᠯᠦᠦ ᠣᠯᠠᠨ ᢈᠦᠮᠦᠨ ᠳ᠋ᠤ ᠡᠷᢈᠡ ᠴᠥᠯᠦᠦ ᠥᠪᠡᠷ ᠠᠪᢈᠤ ᠠᠪᠠᢈᠤ ᠳ᠋ᠤ ᠨᠤ ᠲᠤᠰᠯᠠᢈᠤ ᢈᠦᢉᠲᠡᠢ᠃",
-    },
-    2: {
-      id: 2,
-      title: "ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ ᠠᠶᠠᠨ 2",
-      description:
-        "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ ᠠᠶᠠᠨ ᠤ᠋ ᢈᠣᠶᠢᠳᠤᠭᠠᠷ ᢈᠡᠰᠡᢉ",
-      cover: "/images/campaign/writeforrights2.jpg",
-      problem: "ᠠᠰᠠᠭᠤᠳᠠᠯ 2",
-      action: "ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ 2",
-      problemDescription: "ᢈᠣᠶᠢᠳᠤᠭᠠᠷ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠤ᠋ ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ",
-      actionDescription: "ᢈᠣᠶᠢᠳᠤᠭᠠᠷ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ",
-    },
-    3: {
-      id: 3,
-      title: "ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ ᠠᠶᠠᠨ 3",
-      description:
-        "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ ᠠᠶᠠᠨ ᠤ᠋ ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᢈᠡᠰᠡᢉ",
-      cover: "/images/campaign/writeforrights3.jpg",
-      problem: "ᠠᠰᠠᠭᠤᠳᠠᠯ 3",
-      action: "ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ 3",
-      problemDescription: "ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠤ᠋ ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ",
-      actionDescription: "ᠭᠤᠷᠪᠠᠳᠤᠭᠠᠷ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ",
-    },
-  };
-
   useEffect(() => {
     // Initialize country data
     setCountryData(countryList.getData());
@@ -75,8 +36,11 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
     // Use action data from props if available, otherwise fallback to mock data
     if (action) {
       setActionData(action);
-    } else if (actionId) {
-      setActionData(mockActionData[actionId] || mockActionData[1]);
+      console.log("Using real action data:", {
+        id: action.id,
+        title: action.title,
+        cover: action.cover,
+      });
     }
   }, [actionId, action]);
 
@@ -143,9 +107,9 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
     <div className="h-full hidden sm:flex overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
       {/* Header Section */}
       <StaticHeader
-        imageSrc={actionData.cover}
+        image={getImageUrl(actionData.cover) || "/images/no-image.png"}
         alt={actionData.title}
-        title={actionData.title}
+        className="h-screen"
       />
 
       {/* Actions List Section - Show single action */}
@@ -173,7 +137,7 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
       </div>
 
       {/* Form Section */}
-      <div className="bg-[#363636] p-4">
+      <div className="bg-[#363636] rounded-lg m-4 p-4">
         {!formSubmitted ? (
           <div className="flex gap-7 w-full">
             <h2
@@ -186,7 +150,7 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
               ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠨᠢᢉᠡᠳᠡᠨᠡ ᠦᠦ
             </h2>
 
-            <form onSubmit={handleSubmit} className="flex gap-4">
+            <form onSubmit={handleSubmit} className="flex gap-4 max-h-[90vh]">
               {/* Last Name Field */}
               <div className="flex gap-2">
                 <p
