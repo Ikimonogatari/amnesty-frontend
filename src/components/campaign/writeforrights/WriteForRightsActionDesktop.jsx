@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useForm, Controller } from "react-hook-form";
 import Image from "next/image";
 import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
@@ -10,6 +11,11 @@ import { getImageUrl } from "@/utils/fetcher";
 
 export default function WriteForRightsActionDesktop({ actionId, action }) {
   const router = useRouter();
+  const { control } = useForm({
+    defaultValues: {
+      country: "MN",
+    },
+  });
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,6 +27,7 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
   const [actionData, setActionData] = useState(null);
   const [countryData, setCountryData] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
 
   // Mock data for individual action - in real app this would come from API
   const mockActionData = {
@@ -257,21 +264,59 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                 >
                   ᠤᠯᠤᠰ*
                 </p>
-                <select
-                  value={formData.country}
-                  onChange={(e) => handleInputChange("country", e.target.value)}
-                  className="border border-gray-300 rounded-md p-2 w-20 text-black text-right"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  {countryData.map((country) => (
-                    <option key={country.code} value={country.code}>
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
+                <Controller
+                  name="country"
+                  control={control}
+                  render={({ field }) => (
+                    <div className="relative dropdown-container">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setIsCountryDropdownOpen(!isCountryDropdownOpen)
+                        }
+                        className="border border-gray-300 rounded-md p-2 w-20 text-xs bg-white flex flex-col items-center justify-center h-full gap-2 text-black"
+                        style={{
+                          writingMode: "vertical-lr",
+                        }}
+                      >
+                        <div
+                          style={{
+                            writingMode: "vertical-lr",
+                          }}
+                          className="flex items-center justify-center"
+                        >
+                          {countryData.find(
+                            (country) => country.code === field.value
+                          )?.name || "Mongolia"}
+                        </div>
+                        <div
+                          className="flex items-center justify-center"
+                          style={{ writingMode: "horizontal-tb" }}
+                        >
+                          {isCountryDropdownOpen ? "◀" : "▶"}
+                        </div>
+                      </button>
+                      {isCountryDropdownOpen && (
+                        <div className="absolute top-0 left-24 bg-white border border-gray-300 rounded-md shadow-lg z-[9999] flex flex-col max-w-96 overflow-y-auto max-h-96">
+                          {countryData.map((country) => (
+                            <button
+                              key={country.code}
+                              type="button"
+                              onClick={() => {
+                                field.onChange(country.code);
+                                handleInputChange("country", country.code);
+                                setIsCountryDropdownOpen(false);
+                              }}
+                              className="w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 h-full flex items-center justify-center text-black"
+                            >
+                              {country.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                />
               </div>
 
               {/* Error Message */}
