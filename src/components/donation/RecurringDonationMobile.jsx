@@ -38,229 +38,440 @@ export default function RecurringDonationMobile({
 }) {
   return (
     <div className="w-full min-h-screen bg-white md:hidden">
-      <div className="p-4">
-        <div
-          className="bg-[#48483D] text-white rounded-lg p-6 mb-6"
-          style={{
-            opacity: isLoading ? 0.3 : 1,
-            pointerEvents: isLoading ? "none" : "auto",
-          }}
-        >
-          <h2 className="text-xl font-bold mb-4 text-center">
+      {/* Registration Form */}
+      <div
+        className="bg-[#48483D] text-white rounded-lg p-6 m-4"
+        style={{
+          opacity: isLoading ? 0.3 : 1,
+          pointerEvents: isLoading ? "none" : "auto",
+        }}
+      >
+        {/* Traditional Mongolian Header */}
+        <div className="flex justify-center mb-6">
+          <h2
+            className="text-2xl font-bold text-center"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              minHeight: "120px",
+            }}
+          >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
           </h2>
+        </div>
 
-          {/* Description */}
-          <p className="text-sm mb-6 text-center">
-            ᠲᠠᠨ ᠳᠣᠤᠷᠠᠬᠢ ᠮᠡᠳᠡᢉᠡ ᠶᠢ ᠬᠠᠷᠲ ᠤᠨ ᠮᠡᠳᠡᢉᠡᠲᠡᠢ ᠠᠳᠠᠯᠢ ᠪᠢᢈᠢᠨᠡ ᠦᠦ
-          </p>
+        {/* Back Button */}
+        <div className="flex justify-center mb-6">
+          <Button
+            text="← ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ ᠬᠠᠨᠳᠢᠪ"
+            onClick={handleBackToOnceTime}
+            className="text-black text-sm"
+          />
+        </div>
 
-          {/* Back to Once-time Button */}
-          <div className="mb-4">
-            <Button
-              text="← ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ ᠬᠠᠨᠳᠢᠪ"
-              onClick={handleBackToOnceTime}
-              className="w-full text-black text-sm"
-            />
-          </div>
+        {/* Form Fields - Contact Form Style */}
+        <div className="flex gap-7 mt-4 w-full">
+          <h2
+            className="text-xs font-bold"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            ᠪᠦᠷᠳᠦᢉᠦᢉᠦ
+          </h2>
 
-          {/* Last Name (first in old web order) */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠣᠪᠤᠭ *</label>
-            <input
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-              className={`w-full border rounded-md p-3 text-black ${
-                fullField && !lastName ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-          </div>
-
-          {/* First Name (second in old web order) */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠨᠡᠷᠡ *</label>
-            <input
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              className={`w-full border rounded-md p-3 text-black ${
-                fullField && !firstName ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-          </div>
-
-          {/* Phone Number (third in old web order) */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠤᠲᠠᠰᠤᠨ *</label>
-            <input
-              type="tel"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              maxLength={8}
-              className={`w-full border rounded-md p-3 text-black ${
-                fullField && !phoneNumber ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-          </div>
-
-          {/* Card Number (fourth in old web order) */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              ᠬᠠᠷᠲ ᠤᠨ 16 ᠣᠷᠣᠨᠲᠠᠢ ᠳᠤᠭᠠᠷ *
-            </label>
-            <input
-              type="text"
-              value={pan}
-              onChange={(e) =>
-                setPan(e.target.value.replace(/\D/g, "").slice(0, 16))
-              }
-              maxLength={16}
-              placeholder="16 ᠣᠷᠣᠨ ᠨᠦᠮᠡᠷ"
-              className={`w-full border rounded-md p-3 text-black ${
-                fullField && !pan ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-          </div>
-
-          {/* Email and Verification (fifth in old web order) */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠢᠮᠡᠶᠢᠯ *</label>
+          <div className="flex gap-2 overflow-x-auto w-full">
+            {/* Last Name */}
             <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠣᠪᠤᠭ*
+              </p>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className={`border rounded-md p-2 w-16 text-xs ${
+                  fullField && !lastName ? "border-red-500" : "border-gray-300"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              />
+            </div>
+
+            {/* First Name */}
+            <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠨᠡᠷᠡ*
+              </p>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className={`border rounded-md p-2 w-16 text-xs ${
+                  fullField && !firstName ? "border-red-500" : "border-gray-300"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              />
+            </div>
+
+            {/* Phone Number */}
+            <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠤᠲᠠᠰᠤᠨ*
+              </p>
+              <input
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                maxLength={8}
+                className={`border rounded-md p-2 w-16 text-xs ${
+                  fullField && !phoneNumber
+                    ? "border-red-500"
+                    : "border-gray-300"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              />
+            </div>
+
+            {/* Card Number */}
+            <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠬᠠᠷᠲ ᠤᠨ 16 ᠣᠷᠣᠨ*
+              </p>
+              <input
+                type="text"
+                value={pan}
+                onChange={(e) =>
+                  setPan(e.target.value.replace(/\D/g, "").slice(0, 16))
+                }
+                maxLength={16}
+                className={`border rounded-md p-2 w-16 text-xs ${
+                  fullField && !pan ? "border-red-500" : "border-gray-300"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              />
+            </div>
+
+            {/* Email */}
+            <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠢᠮᠡᠶᠢᠯ*
+              </p>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={`flex-1 border rounded-md p-3 text-black lowercase ${
+                className={`border rounded-md p-2 w-16 text-xs lowercase ${
                   fullField && !email ? "border-red-500" : "border-gray-300"
                 }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
               />
-              <Button
-                text={timeLeft > 0 ? `${timeLeft}ᠰ` : isLoading ? "..." : "ᠬᠣᠳ"}
+            </div>
+
+            {/* Email Verification Button */}
+            <div className="flex gap-2">
+              <button
+                type="button"
                 onClick={sendEmailVerification}
                 disabled={isLoading || timeLeft > 0 || !email}
-                className={`text-black text-sm ${
+                className={`bg-[#FFFF00] rounded-[8px] px-2 py-3 text-xs font-bold text-black ${
                   isLoading || timeLeft > 0 || !email
                     ? "opacity-50 cursor-not-allowed"
-                    : ""
+                    : "hover:brightness-105"
                 }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {timeLeft > 0
+                  ? `${timeLeft}ᠰ`
+                  : isLoading
+                  ? "..."
+                  : "ᠬᠣᠳ ᠢᠯᠭᠡᢉᠦ"}
+              </button>
+            </div>
+
+            {/* Verification Code */}
+            <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠪᠠᠲᠠᠯᠭᠠᠠᠵᠤᠭᠤᠯᠬᠤ ᠬᠣᠳ*
+              </p>
+              <input
+                type="text"
+                value={verifyCode}
+                onChange={(e) => setVerifyCode(e.target.value)}
+                maxLength={6}
+                placeholder="6"
+                className={`border rounded-md p-2 w-16 text-xs ${
+                  fullField && !verifyCode
+                    ? "border-red-500"
+                    : "border-gray-300"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
               />
             </div>
-          </div>
 
-          {/* Verification Code (sixth in old web order) */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              ᠪᠠᠲᠠᠯᠭᠠᠠᠵᠤᠭᠤᠯᠬᠤ ᠬᠣᠳ *
-            </label>
-            <input
-              type="text"
-              value={verifyCode}
-              onChange={(e) => setVerifyCode(e.target.value)}
-              maxLength={6}
-              placeholder="6 ᠣᠷᠣᠨ ᠨᠦᠮᠡᠷ"
-              className={`w-full border rounded-md p-3 text-black ${
-                fullField && !verifyCode ? "border-red-500" : "border-gray-300"
-              }`}
-            />
+            {/* Submit Button */}
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={handleRecurringDonation}
+                disabled={
+                  isLoading ||
+                  !firstName ||
+                  !lastName ||
+                  !email ||
+                  !phoneNumber ||
+                  pan.length !== 16 ||
+                  verifyCode.length !== 6
+                }
+                className={`bg-[#FFFF00] rounded-[8px] px-2 py-3 text-xs font-bold text-black ${
+                  isLoading ||
+                  !firstName ||
+                  !lastName ||
+                  !email ||
+                  !phoneNumber ||
+                  pan.length !== 16 ||
+                  verifyCode.length !== 6
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:brightness-105"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {isLoading ? "ᠤᠨᠰᠢᠵᠤ ᠪᠠᠢᠨ᠎ᠠ..." : "ᠪᠦᠷᠳᠦᢉᠦᢉᠦ"}
+              </button>
+            </div>
           </div>
+        </div>
+      </div>
 
-          {/* Submit Button */}
-          <Button
-            text={isLoading ? "ᠤᠨᠰᠢᠵᠤ ᠪᠠᠢᠨ᠎ᠠ..." : "ᠪᠦᠷᠳᠦᢉᠦᢉᠦ"}
-            onClick={handleRecurringDonation}
-            disabled={
-              isLoading ||
-              !firstName ||
-              !lastName ||
-              !email ||
-              !phoneNumber ||
-              pan.length !== 16 ||
-              verifyCode.length !== 6
-            }
-            className={`w-full mb-4 ${
-              isLoading ||
-              !firstName ||
-              !lastName ||
-              !email ||
-              !phoneNumber ||
-              pan.length !== 16 ||
-              verifyCode.length !== 6
-                ? "opacity-50 cursor-not-allowed"
-                : ""
-            }`}
-          />
+      {/* Login Form */}
+      <div className="bg-[#48483D] text-white rounded-lg p-6 m-4">
+        {/* Traditional Mongolian Header */}
+        <div className="flex justify-center mb-6">
+          <h2
+            className="text-xl font-bold text-center"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              minHeight: "100px",
+            }}
+          >
+            ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠪᠠᠢᢈᠠᠨ ᠤᠤ
+          </h2>
         </div>
 
-        {/* Login Form - Stacked on mobile like old web */}
-        <div className="bg-[#48483D] text-white rounded-lg p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4 text-center">
-            ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠪᠠᠢᢈᠠᠨ ᠤᠤ?
-          </h2>
-
-          <p className="text-sm mb-6 text-center">
+        <div className="flex justify-center mb-6">
+          <p
+            className="text-sm text-center"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              minHeight: "80px",
+            }}
+          >
             ᠬᠠᠳᠠᠭᠠᠯᠠᢉᠠᢉᠠᠢ ᠢᠮᠡᠶᠢᠯ ᠪᠠᠷ ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
           </p>
-
-          {/* Email and Verification */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠢᠮᠡᠶᠢᠯ *</label>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                className="flex-1 border rounded-md p-3 text-black lowercase"
-                value={loginEmail}
-                onChange={(e) => setLoginEmail(e.target.value)}
-              />
-              <Button
-                text={loginTimeLeft > 0 ? `${loginTimeLeft}s` : "ᠬᠣᠳ"}
-                className={`text-black text-sm ${
-                  !loginEmail || loginTimeLeft > 0 || loginIsLoading
-                    ? "opacity-50 cursor-not-allowed"
-                    : ""
-                }`}
-                onClick={sendLoginEmailCode}
-                disabled={!loginEmail || loginTimeLeft > 0 || loginIsLoading}
-              />
-            </div>
-          </div>
-
-          {/* Verification Code */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">
-              ᠪᠠᠲᠠᠯᠭᠠᠠᠵᠤᠭᠤᠯᠬᠤ ᠬᠣᠳ *
-            </label>
-            <input
-              type="text"
-              maxLength={6}
-              placeholder="6 ᠣᠷᠣᠨ ᠨᠦᠮᠡᠷ"
-              className="w-full border rounded-md p-3 text-black"
-              value={loginVerifyCode}
-              onChange={(e) => setLoginVerifyCode(e.target.value)}
-            />
-          </div>
-
-          {/* Login Button */}
-          <Button
-            text="ᠨᠡᠪᠲᠡᠷᠡᢉᠦ"
-            className={`w-full ${
-              !loginEmail || !loginVerifyCode || loginIsLoading
-                ? "opacity-50 cursor-not-allowed"
-                : ""
-            }`}
-            onClick={handleLogin}
-            disabled={!loginEmail || !loginVerifyCode || loginIsLoading}
-          />
         </div>
 
-        {/* Information Section */}
-        <div className="bg-gray-100 p-6 rounded-lg">
-          <h3 className="text-lg font-bold mb-4">ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ</h3>
-          <p className="text-sm text-gray-700 mb-4">
+        {/* Login Form Fields - Contact Form Style */}
+        <div className="flex gap-7 mt-4 w-full">
+          <h2
+            className="text-xs font-bold"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
+            ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
+          </h2>
+
+          <div className="flex gap-2 overflow-x-auto w-full">
+            {/* Email */}
+            <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠢᠮᠡᠶᠢᠯ*
+              </p>
+              <input
+                type="email"
+                className="border rounded-md p-2 w-16 text-xs lowercase border-gray-300"
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              />
+            </div>
+
+            {/* Email Verification Button */}
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={sendLoginEmailCode}
+                disabled={!loginEmail || loginTimeLeft > 0 || loginIsLoading}
+                className={`bg-[#FFFF00] rounded-[8px] px-2 py-3 text-xs font-bold text-black ${
+                  !loginEmail || loginTimeLeft > 0 || loginIsLoading
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:brightness-105"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                {loginTimeLeft > 0 ? `${loginTimeLeft}s` : "ᠬᠣᠳ ᠢᠯᠭᠡᢉᠦ"}
+              </button>
+            </div>
+
+            {/* Verification Code */}
+            <div className="flex gap-2">
+              <p
+                className="text-xs"
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠪᠠᠲᠠᠯᠭᠠᠠᠵᠤᠭᠤᠯᠬᠤ ᠬᠣᠳ*
+              </p>
+              <input
+                type="text"
+                maxLength={6}
+                placeholder="6"
+                className="border rounded-md p-2 w-16 text-xs border-gray-300"
+                value={loginVerifyCode}
+                onChange={(e) => setLoginVerifyCode(e.target.value)}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              />
+            </div>
+
+            {/* Login Button */}
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={handleLogin}
+                disabled={!loginEmail || !loginVerifyCode || loginIsLoading}
+                className={`bg-[#FFFF00] rounded-[8px] px-2 py-3 text-xs font-bold text-black ${
+                  !loginEmail || !loginVerifyCode || loginIsLoading
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:brightness-105"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Information Section */}
+      <div className="bg-gray-100 p-6 m-4 rounded-lg">
+        <div className="flex justify-center mb-4">
+          <h3
+            className="text-lg font-bold"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              minHeight: "80px",
+            }}
+          >
+            ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
+          </h3>
+        </div>
+        <div className="flex justify-center mb-4">
+          <p
+            className="text-sm text-gray-700 text-center max-w-xs"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              minHeight: "120px",
+            }}
+          >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠶᠢᠨ ᠠᠷᠭᠠ ᠵᠠᠮ ᠢ ᠲᠠᠨ ᠳ᠋ᠤ ᠮᠡᠳᠡᠭᠦᠯᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ᠃
             ᠲᠠᠨ ᠤ᠋ ᠬᠠᠷᠲ ᠢ ᠪᠦᠷᠳᠦᠯᠦᠨ᠎ᠡ ᠠᠦᠲᠣᠮᠠᠲ ᠬᠠᠨᠳᠢᠪ ᠢᠯᠡᢉᠡᠨ᠎ᠡ᠃
           </p>
-          <p className="text-xs text-gray-600">
+        </div>
+        <div className="flex justify-center">
+          <p
+            className="text-xs text-gray-600 text-center max-w-xs"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+              minHeight: "60px",
+            }}
+          >
             ᠬᠣᠯᠪᠤᠭ᠎ᠠ: ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ ᠬᠣᠲᠠ᠂ ᠰᠦᢈᠡᠪᠠᠭᠠᠲᠤᠷ ᠳᠡᢉᠦᠷᢉᠡ᠂ ᠖-ᠷ ᠬᠣᠷᠢᠶ᠎ᠠ᠂ AB
             Center᠂ ᠗ ᠳᠠᠪᠬᠤᠷ
           </p>

@@ -99,80 +99,174 @@ export default function DonationMobile({
             />
           </div>
 
-          {/* Personal Information */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">ᠨᠡᠷ᠎ᠡ *</label>
-              <input
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                className={`w-full border rounded-md p-3 text-black ${
-                  fullField && !firstName ? "border-red-500" : "border-gray-300"
-                }`}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">ᠣᠪᠤᠭ *</label>
-              <input
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                className={`w-full border rounded-md p-3 text-black ${
-                  fullField && !lastName ? "border-red-500" : "border-gray-300"
-                }`}
-              />
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠢᠮᠡᠶᠢᠯ *</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={`w-full border rounded-md p-3 text-black ${
-                fullField && !email ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠤᠲᠠᠰᠤᠨ *</label>
-            <input
-              type="tel"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className={`w-full border rounded-md p-3 text-black ${
-                fullField && !phoneNumber ? "border-red-500" : "border-gray-300"
-              }`}
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠤᠯᠤᠰ</label>
-            <select
-              value={selectedCountryCode}
-              onChange={(e) => setSelectedCountryCode(e.target.value)}
-              className="w-full border border-gray-300 rounded-md p-3 text-black text-right"
+          {/* Personal Information - Contact Form Style */}
+          <div className="flex gap-7 mt-4 w-full">
+            <h2
+              className="text-xs font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
             >
-              {countryData.map((country) => (
-                <option key={country.code} value={country.code}>
-                  {country.name}
-                </option>
-              ))}
-            </select>
-          </div>
+              ᠪᠦᠷᠳᠦᢉᠦᢉᠦ
+            </h2>
 
-          {/* Submit Button */}
-          <Button
-            text={isLoading ? "ᠢᠯᠭᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ..." : "ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ"}
-            onClick={handleDonate}
-            disabled={isLoading}
-            className={`w-full mb-4 ${
-              isLoading ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          />
+            <div className="flex gap-2 overflow-x-auto w-full">
+              {/* First Name */}
+              <div className="flex gap-2">
+                <p
+                  className="text-xs"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠨᠡᠷ᠎ᠡ*
+                </p>
+                <input
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className={`border rounded-md p-2 w-16 text-xs ${
+                    fullField && !firstName
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                />
+              </div>
+
+              {/* Last Name */}
+              <div className="flex gap-2">
+                <p
+                  className="text-xs"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠣᠪᠤᠭ*
+                </p>
+                <input
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className={`border rounded-md p-2 w-16 text-xs ${
+                    fullField && !lastName
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                />
+              </div>
+
+              {/* Email */}
+              <div className="flex gap-2">
+                <p
+                  className="text-xs"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠢᠮᠡᠶᠢᠯ*
+                </p>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`border rounded-md p-2 w-16 text-xs lowercase ${
+                    fullField && !email ? "border-red-500" : "border-gray-300"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="flex gap-2">
+                <p
+                  className="text-xs"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠤᠲᠠᠰᠤᠨ*
+                </p>
+                <input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                  className={`border rounded-md p-2 w-16 text-xs ${
+                    fullField && !phoneNumber
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                />
+              </div>
+
+              {/* Country */}
+              <div className="flex gap-2">
+                <p
+                  className="text-xs"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  ᠤᠯᠤᠰ
+                </p>
+                <select
+                  value={selectedCountryCode}
+                  onChange={(e) => setSelectedCountryCode(e.target.value)}
+                  className="border border-gray-300 rounded-md p-2 w-20 text-xs text-black"
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {countryData.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={handleDonate}
+                  disabled={isLoading}
+                  className={`bg-[#FFFF00] rounded-[8px] px-2 py-3 text-xs font-bold text-black ${
+                    isLoading
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:brightness-105"
+                  }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
+                >
+                  {isLoading ? "ᠢᠯᠭᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ..." : "ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ"}
+                </button>
+              </div>
+            </div>
+          </div>
 
           {/* Payment Status */}
           {invoiceData && !paid && (

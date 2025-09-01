@@ -1,0 +1,28 @@
+{
+  "name": "ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ",
+  "short_name": "ᠡᠮᠨᠧᠰᠲ᠋ᠢ",
+  "description": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ - ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ",
+  "icons": [
+    {
+      "src": "/favicon/favicon-16x16.webp",
+      "sizes": "16x16",
+      "type": "image/webp"
+    },
+    {
+      "src": "/favicon/favicon-32x32.webp",
+      "sizes": "32x32",
+      "type": "image/webp"
+    },
+    {
+      "src": "/favicon/apple-touch-icon.webp",
+      "sizes": "180x180",
+      "type": "image/webp"
+    }
+  ],
+  "theme_color": "#FFFF00",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "start_url": "/",
+  "lang": "mn"
+}
+

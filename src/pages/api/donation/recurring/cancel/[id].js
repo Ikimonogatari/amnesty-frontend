@@ -13,9 +13,9 @@ export default async function handler(req, res) {
   // Check for authorization header
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ 
-      success: false, 
-      message: "Authorization token required" 
+    return res.status(401).json({
+      success: false,
+      message: "Authorization token required",
     });
   }
 
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
       {},
       {
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       }

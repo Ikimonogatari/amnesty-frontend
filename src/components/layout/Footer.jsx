@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <div
@@ -5,76 +7,136 @@ export default function Footer() {
       style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
     >
       <div className="flex flex-col-reverse items-start gap-5 font-bold">
-        <h4 className="text-white text-lg mb-2">ᠪᠢᠳᠡᠨ ᠦ᠋ ᠲᠤᠬᠠᠢ</h4>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        <h4 className="text-white text-lg mb-2">ᠪᠢᠳᠨᠢ ᠲᠤᠬᠠᠢ</h4>
+        <Link
+          href="/about"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠨᠢᠭᠤᠴᠠᠯᠠᠯ ᠤ᠋ᠨ ᠪᠣᠳᠤᠯᠭ᠎ᠠ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/about"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠦᠶᠢᠯᠡᠴᠢᠯᠡᢉᠡᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/contact"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/faq"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠲᠦᢉᠡᠮᠡᠯ ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/about"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠲᠡᢉᠰᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠳᠠᠯ ᠤ᠋ᠨ ᠡᠰᠡᠷᢉᠦ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/about"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠲᠠᠶᠢᠯᠤᠨ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/about"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠮᠡᠢ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/about"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠪᠦᠲᠦᠴᠡ
-        </p>
+        </Link>
       </div>
 
       <div className="flex flex-col-reverse items-start gap-5 font-bold">
-        <h4 className="text-white text-lg mb-2">ᠲᠠᠨ ᠤ᠋ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ</h4>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        <h4 className="text-white text-lg mb-2">ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ᠎ᠠ</h4>
+        <Link
+          href="/right"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠨᠢᠳᠦ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/campaign"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠰᠠᠶᠢᠨ ᠳᠤᠷ᠎ᠠ ᠶ᠋ᠢᠨ ᠪᠣᠯᠤᠨ ᠳᠠᠳᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠠᠵᠢᠯ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/right"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/campaign"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ
-        </p>
+        </Link>
       </div>
 
       <div className="flex flex-col-reverse items-start gap-5 font-bold">
         <h4 className="text-white text-lg mb-2">ᠡᠷᢈᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶ᠎</h4>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        <Link
+          href="/news"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠰᠠᠶᠢᠨ ᠮᠡᠳᠡᢉᠡ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/news?type=statements"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠮᠡᠳᠡᢉᠳᠡᠯ ᠪᠠᠶᠢᠷᠢ ᠰᠠᠭᠤᠷᠢ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/news?type=good_news"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠮᠡᠳᠡᢉᠡ
-        </p>
+        </Link>
         <h4 className="text-white text-lg mb-2">ᠲᠠᠨ ᠤ᠋ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ</h4>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        <Link
+          href="/podcasts"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠫᠣᠳ᠋ᠻᠠᠰᠲ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/videos"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠸᠢᠳᠧᠣ᠋
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/campaign"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠴᠠᢈᠢᠮ ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠩ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/campaign"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠴᠠᢈᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ
-        </p>
-        <p className="hover:text-white transition-colors cursor-pointer">
+        </Link>
+        <Link
+          href="/participation"
+          className="hover:text-white transition-colors cursor-pointer"
+        >
           ᠰᠤᠷᠭᠠᠯᠲᠠ
-        </p>
+        </Link>
       </div>
 
       <div className="flex flex-col-reverse items-start gap-5 font-bold">

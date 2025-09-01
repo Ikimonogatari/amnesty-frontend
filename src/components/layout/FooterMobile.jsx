@@ -7,41 +7,84 @@ export default function FooterMobile() {
       <div className="flex items-start gap-x-3">
         <div className="flex items-start gap-x-2">
           <Link
-            href="#"
+            href="/about"
             className="text-white text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
+            ᠪᠢᠳᠨᠢ ᠲᠤᠬᠠᠢ
           </Link>
-          {new Array(8).fill(0).map((_, index) => (
-            <Link
-              key={index}
-              href="#"
-              className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
-            </Link>
-          ))}
+          <Link
+            href="/about"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠨᠢᠭᠤᠴᠠᠯᠠᠯ ᠤ᠋ᠨ ᠪᠣᠳᠤᠯᠭ᠎ᠠ
+          </Link>
+          <Link
+            href="/contact"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ
+          </Link>
+          <Link
+            href="/faq"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠲᠦᢉᠡᠮᠡᠯ ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ
+          </Link>
+          <Link
+            href="/about"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠲᠡᢉᠰᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠳᠠᠯ ᠤ᠋ᠨ ᠡᠰᠡᠷᢉᠦ
+          </Link>
+          <Link
+            href="/about"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠲᠠᠶᠢᠯᠤᠨ
+          </Link>
+          <Link
+            href="/about"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠮᠡᠢ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ
+          </Link>
+          <Link
+            href="/about"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠪᠦᠲᠦᠴᠡ
+          </Link>
         </div>
         <div className="flex items-start gap-x-2">
           <Link
-            href="#"
+            href="/right"
             className="text-white text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
+            ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ᠎ᠠ
           </Link>
-          {new Array(2).fill(0).map((_, index) => (
-            <Link
-              key={index}
-              href="#"
-              className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
-            </Link>
-          ))}
+          <Link
+            href="/right"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠨᠢᠳᠦ
+          </Link>
+          <Link
+            href="/campaign"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ
+          </Link>
         </div>
       </div>
       <div className="flex items-start gap-x-3">

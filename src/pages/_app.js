@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 import "leaflet/dist/leaflet.css";
+import Head from "next/head";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import { Toaster } from "react-hot-toast";
@@ -7,6 +8,9 @@ import { Toaster } from "react-hot-toast";
 export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
+      <Head>
+        <title>ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ</title>
+      </Head>
       <Component {...pageProps} />
       <Toaster
         position="top-right"
