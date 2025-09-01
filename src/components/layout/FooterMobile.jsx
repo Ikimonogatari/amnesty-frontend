@@ -1,185 +1,245 @@
 import Link from "next/link";
-import Image from "next/image";
 
 export default function FooterMobile() {
   return (
     <div className="w-full bg-[#2D2D2D] text-white py-8 px-4 overflow-hidden flex flex-col items-start gap-y-6 mt-auto">
+      {/* First row - About & Participation */}
       <div className="flex items-start gap-x-3">
+        {/* Бидний тухай - About */}
         <div className="flex items-start gap-x-2">
           <Link
             href="/about"
             className="text-white text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠪᠢᠳᠨᠢ ᠲᠤᠬᠠᠢ
+            ᠪᠢᠳᠡᠨ ᠦ ᠲᠤᠬᠠᠢ
           </Link>
           <Link
-            href="/about"
+            href="/about/1"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠨᠢᠭᠤᠴᠠᠯᠠᠯ ᠤ᠋ᠨ ᠪᠣᠳᠤᠯᠭ᠎ᠠ
+            ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭᠠ ᠶᠢᠨ ᠪᠦᠲᠦᠴᠡ
           </Link>
           <Link
-            href="/contact"
+            href="/about/2"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ
+            ᠮᠡᠢ ᠲᠦᠦᠬᠡᠨ ᠲᠣᠪᠴᠢᠶᠠ
+          </Link>
+          <Link
+            href="/about/3"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠲᠠᠢᠯᠠᠨ
+          </Link>
+          <Link
+            href="/about/4"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠲᠡᠭᠰᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠳᠠᠯ ᠦᠨ ᠡᠰᠡᠷᠭᠦ
           </Link>
           <Link
             href="/faq"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠲᠦᢉᠡᠮᠡᠯ ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ
+            ᠲᠦᠭᠡᠮᠡᠯ ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ
           </Link>
           <Link
-            href="/about"
+            href="/contact"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠲᠡᢉᠰᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠳᠠᠯ ᠤ᠋ᠨ ᠡᠰᠡᠷᢉᠦ
+            ᠬᠣᠯᠪᠤᠭᠠ ᠪᠠᠷᠢᠬᠤ
           </Link>
           <Link
-            href="/about"
+            href="/terms"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠲᠠᠶᠢᠯᠤᠨ
+            ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ
           </Link>
           <Link
-            href="/about"
+            href="/privacy"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠮᠡᠢ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ
-          </Link>
-          <Link
-            href="/about"
-            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠪᠦᠲᠦᠴᠡ
+            ᠨᠢᠭᠤᠴᠠ ᠶᠢᠨ ᠪᠣᠳᠣᠯᠭᠠ
           </Link>
         </div>
+
+        {/* Таны оролцоо - Your participation */}
         <div className="flex items-start gap-x-2">
           <Link
-            href="/right"
+            href="/participation"
             className="text-white text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ᠎ᠠ
+            ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭᠠ
           </Link>
           <Link
-            href="/right"
+            href="/participation/events"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠨᠢᠳᠦ
+            ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶᠢᠨ ᠠᠷᠭᠠ ᠬᠡᠮᠵᠢᠶᠡ
           </Link>
           <Link
-            href="/campaign"
+            href="/participation/youthhumanrights"
             className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ
+            ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠥᠯᠦᠭᠡ ᠵᠠᠯᠠᠭᠴᠤᠳ
+          </Link>
+          <Link
+            href="/participation/volunteer"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠰᠠᠢᠢᠨ ᠳᠤᠷᠠ ᠪᠣᠯᠣᠨ ᠳᠠᠳᠠᠯᠭᠠ ᠶᠢᠨ ᠠᠵᠢᠯ
+          </Link>
+          <Link
+            href="/participation/humanrighteye"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠢᠳᠦ
           </Link>
         </div>
       </div>
+
+      {/* Second row - News & Know Your Rights */}
       <div className="flex items-start gap-x-3">
+        {/* Мэдээ мэдээлэл - News & Information */}
         <div className="flex items-start gap-x-2">
           <Link
-            href="#"
+            href="/news"
             className="text-white text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
+            ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ
           </Link>
-          {new Array(8).fill(0).map((_, index) => (
-            <Link
-              key={index}
-              href="#"
-              className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
-            </Link>
-          ))}
+          <Link
+            href="/news"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠮᠡᠳᠡᠭᠡ
+          </Link>
+          <Link
+            href="/news?type=statements"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠶᠢᠷᠢ ᠰᠠᠭᠤᠷᠢ
+          </Link>
+          <Link
+            href="/news?type=good_news"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠰᠠᠢᠢᠨ ᠮᠡᠳᠡᠭᠡ
+          </Link>
         </div>
+
+        {/* эрхээ мэдье - Know Your Rights */}
         <div className="flex items-start gap-x-2">
           <Link
-            href="#"
+            href="/lessons"
             className="text-white text-[10px] transition-colors font-bold"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
           >
-            ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
+            ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ
           </Link>
-          {new Array(2).fill(0).map((_, index) => (
-            <Link
-              key={index}
-              href="#"
-              className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-            >
-              ᠬᠣᠯᠪᠣᠭᠳᠠᠬᠤ ᠤᠲᠠᠰᠤ
-            </Link>
-          ))}
+          <Link
+            href="/lessons"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠰᠤᠷᠭᠠᠯᠲᠠ
+          </Link>
+          <Link
+            href="/online-lessons"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ
+          </Link>
+          <Link
+            href="/library"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ
+          </Link>
+          <Link
+            href="/videos"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠸᠢᠳ᠋ᠧᠣ
+          </Link>
+          <Link
+            href="/podcasts"
+            className="text-[#9B9B9B] text-[10px] transition-colors font-bold"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠫᠣᠳᠻᠠᠰᠲ
+          </Link>
+        </div>
+      </div>
+
+      {/* Third row - Donation text */}
+      <div className="flex items-start gap-x-3">
+        <div className="flex items-start gap-x-1">
+          <p
+            className="text-white text-[9px] opacity-80 font-light"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠬᠠᠨᠳᠢᠪ
+          </p>
+          <p
+            className="text-[#9B9B9B] text-[9px] opacity-80 font-light"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠲᠠᠨ ᠤ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠡᠰᠢᠨᠯ ᠳ᠋ᠤ
+          </p>
+          <p
+            className="text-[#9B9B9B] text-[9px] opacity-80 font-light"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠦᠵᠡᠳᠦᠯᠵᠦ ᠪᠤᠢ ᠳᠡᠮᠵᠢᠯᠭᠡ ᠨᠢ ᠪᠢᠳᠡᠨ
+          </p>
+          <p
+            className="text-[#9B9B9B] text-[9px] opacity-80 font-light"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠦ ᠰᠤᠳᠤᠯᠭᠠ᠂ ᠢᠳᠡᠪᠬᠢᠵᠢᠯ᠂ ᠡᠪ
+          </p>
+          <p
+            className="text-[#9B9B9B] text-[9px] opacity-80 font-light"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠰᠠᠨᠠᠭᠠᠨ ᠤ ᠨᠢᠪᠦᠳᠦᠯ ᠢ ᠥᠨᠦ ᠦᠶ᠎ᠡ
+          </p>
+          <p
+            className="text-[#9B9B9B] text-[9px] opacity-80 font-light"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠶᠢᠨ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠡᠮᠡᠴᠡᠯ ᠳᠦ
+          </p>
+          <p
+            className="text-[#9B9B9B] text-[9px] opacity-80 font-light"
+            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          >
+            ᠳᠡᠯᠬᠢ ᠳᠤ ᠮᠠᠰᠢ ᠴᠢᠬᠤᠯᠠ ᠶᠤᠮ
+          </p>
         </div>
       </div>
     </div>
   );
 }
-
-const footerSections = [
-  {
-    id: "about",
-    title: "ᠪᠢᠳᠡᠨ ᠦ᠋ ᠲᠤᠬᠠᠢ",
-    links: [
-      { text: "ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠪᠦᠲᠦᠴᠡ", href: "#" },
-      { text: "ᠮᠡᠢ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ", href: "#" },
-      { text: "ᠲᠠᠶᠢᠯᠤᠨ", href: "#" },
-      { text: "ᠲᠡᢉᠰᠢ ᠪᠢᠰᠢ ᠪᠠᠶᠢᠳᠠᠯ ᠤ᠋ᠨ ᠡᠰᠡᠷᢉᠦ", href: "#" },
-      { text: "ᠲᠦᢉᠡᠮᠡᠯ ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ", href: "#" },
-      { text: "ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ", href: "#" },
-      { text: "ᠦᠶᠢᠯᠡᠴᠢᠯᠡᢉᠡᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ", href: "#" },
-      { text: "ᠨᠢᠭᠤᠴᠠᠯᠠᠯ ᠤ᠋ᠨ ᠪᠣᠳᠤᠯᠭ᠎ᠠ", href: "#" },
-    ],
-  },
-  {
-    id: "participation",
-    title: "ᠲᠠᠨ ᠤ᠋ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ",
-    links: [
-      { text: "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠨᠢᠳᠦ", href: "#" },
-      { text: "ᠰᠠᠶᠢᠨ ᠳᠤᠷ᠎ᠠ ᠶ᠋ᠢᠨ ᠪᠣᠯᠤᠨ ᠳᠠᠳᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠠᠵᠢᠯ", href: "#" },
-      { text: "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ", href: "#" },
-      { text: "ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ", href: "#" },
-    ],
-  },
-  {
-    id: "rights",
-    title: "ᠡᠷᢈᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶ᠎",
-    links: [
-      { text: "ᠰᠠᠶᠢᠨ ᠮᠡᠳᠡᢉᠡ", href: "#" },
-      { text: "ᠮᠡᠳᠡᢉᠳᠡᠯ ᠪᠠᠶᠢᠷᠢ ᠰᠠᠭᠤᠷᠢ", href: "#" },
-      { text: "ᠮᠡᠳᠡᢉᠡ", href: "#" },
-      { text: "ᠫᠣᠳ᠋ᠻᠠᠰᠲ", href: "#" },
-      { text: "ᠸᠢᠳᠧᠣ᠋", href: "#" },
-      { text: "ᠴᠠᢈᠢᠮ ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠩ", href: "#" },
-      { text: "ᠴᠠᢈᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ", href: "#" },
-      { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", href: "#" },
-    ],
-  },
-  {
-    id: "donate",
-    title: "ᠬᠠᠨᠳᠢᠪ",
-    links: [
-      { text: "ᠲᠠᠨ ᠤ᠋ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ-ᠳ", href: "#" },
-      { text: "ᠦᠵᠡᢉᠦᠯᠵᠦ ᠪᠤᠢ ᠳᠡᠮᠵᠢᠯᢉᠡ ᠨᠢ ᠪᠢᠳᠡᠨ", href: "#" },
-      { text: "ᠦ᠋ ᠰᠤᠳᠤᠯᠭ᠎ᠠ᠂ ᠢᠳᠡᠪᢈᠢᠵᠢᠯ᠂ ᠡᠪ", href: "#" },
-      { text: "ᠰᠠᠨᠠᠭᠠᠨ ᠤ᠋ ᠨᠢᢉᠡᠳᠦᠯ ᠢ᠋ ᠥᠨᠦ ᠦᠶ᠎ᠡ", href: "#" },
-      { text: "ᠶ᠋ᠢᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠡᠮᠡᠴᠡᠯ ᠳ᠋ᠦ", href: "#" },
-      { text: "ᢈᠦᠷᢈᠡᢈᠦ ᠳ᠋ᠦ ᠮᠠᠰᠢ ᠴᠢᠬᠤᠯᠠ ᠶᠤᠮ᠃", href: "#" },
-    ],
-  },
-];
