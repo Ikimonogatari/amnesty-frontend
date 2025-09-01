@@ -22,6 +22,10 @@ export default function DonationDesktop({
   selectedCountryCode,
   setSelectedCountryCode,
 
+  // Donation type
+  donationType,
+  setDonationType,
+
   // Payment states
   isLoading,
   invoiceData,
@@ -31,13 +35,12 @@ export default function DonationDesktop({
 
   // Error handling
   fullField,
-  errorMessage,
 
   // Functions
   chooseDonation,
   handleDonate,
   handleQPay,
-  navToRecurringDonation,
+  handleDonationTypeChange,
 }) {
   // Amount options for donation
   const amountOptions = [20000, 50000, 100000];
@@ -100,6 +103,38 @@ export default function DonationDesktop({
               ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ
             </h2>
 
+            {/* Once/Monthly Toggle */}
+            <div className="flex gap-2 mb-6">
+              <button
+                onClick={() => handleDonationTypeChange("once")}
+                className={`px-4 py-3 text-sm font-medium rounded-md ${
+                  donationType === "once"
+                    ? "bg-yellow-500 text-black"
+                    : "bg-white text-black border border-gray-300 hover:bg-gray-100"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ
+              </button>
+              <button
+                onClick={() => handleDonationTypeChange("monthly")}
+                className={`px-4 py-3 text-sm font-medium rounded-md ${
+                  donationType === "monthly"
+                    ? "bg-yellow-500 text-black"
+                    : "bg-white text-black border border-gray-300 hover:bg-gray-100"
+                }`}
+                style={{
+                  writingMode: "vertical-lr",
+                  textOrientation: "upright",
+                }}
+              >
+                ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ
+              </button>
+            </div>
+
             {/* Amount Selection */}
             <div className="flex gap-2">
               <p
@@ -118,7 +153,7 @@ export default function DonationDesktop({
                     onClick={() => chooseDonation(amountOption)}
                     className={`border rounded-md p-2 w-20 text-sm ${
                       amount === amountOption.toString()
-                        ? "bg-blue-500 text-white border-blue-500"
+                        ? "bg-[#FFFF00] text-black"
                         : "border-gray-300 text-black bg-white hover:bg-gray-100"
                     }`}
                     style={{
@@ -259,7 +294,7 @@ export default function DonationDesktop({
               <select
                 value={selectedCountryCode}
                 onChange={(e) => setSelectedCountryCode(e.target.value)}
-                className="border border-gray-300 rounded-md p-2 w-20 text-black text-right"
+                className="border border-gray-300 rounded-md p-2 w-20 text-black text-start"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
@@ -285,21 +320,6 @@ export default function DonationDesktop({
               />
             </div>
 
-            {/* Error Message */}
-            {errorMessage && (
-              <div className="flex gap-2">
-                <p
-                  className="text-sm text-red-400"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  {errorMessage}
-                </p>
-              </div>
-            )}
-
             {/* Payment Status */}
             {invoiceData && !paid && (
               <div className="flex gap-2">
@@ -313,10 +333,10 @@ export default function DonationDesktop({
                   ᠲᠥᠯᠪᠦᠷᠢ ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ...
                 </p>
                 <Button
-                  text="QPay ᠢ᠋ ᠬᠡᠷᠡᠭᠯᠡ"
+                  text="QPay"
                   onClick={handleQPay}
                   disabled={isLoading}
-                  className="text-sm"
+                  className="text-sm text-black"
                 />
               </div>
             )}
@@ -335,26 +355,11 @@ export default function DonationDesktop({
                 </p>
                 <div className="bg-white p-2 rounded">
                   <img
-                    src={`data:image/png;base64,${qpayData.qrImage}`}
+                    src={qpayData.invoice?.qr_image || qpayData.qrImage}
                     alt="QPay QR Code"
                     className="w-32 h-32"
                   />
                 </div>
-              </div>
-            )}
-
-            {/* Success Message */}
-            {paid && (
-              <div className="flex gap-2">
-                <p
-                  className="text-sm text-green-400"
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  ᠬᠠᠨᠳᠢᠪ ᠠᠮᠵᠢᠯᠲᠠᠢ ᠪᠣᠯᠣᠪᠠ!
-                </p>
               </div>
             )}
           </div>

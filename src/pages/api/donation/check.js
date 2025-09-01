@@ -1,5 +1,9 @@
 // Donation Status Check API - Next.js API Route
-// Mock implementation for testing donation functionality
+// Proxy to User API like the old web
+
+import axios from "axios";
+
+const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
 
 export default async function handler(req, res) {
   // Only allow POST requests
@@ -11,6 +15,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log("🔍 Donation API - check called with:", {
+      body: req.body,
+      userApiUrl: USER_API_BASE_URL,
+    });
+
     // Extract data from request body
     const { invoiceCode } = req.body;
 
@@ -22,32 +31,49 @@ export default async function handler(req, res) {
       });
     }
 
-    // Mock payment status response
-    // Simulate payment completion after 30 seconds for testing
-    const invoiceCreatedTime =
-      parseInt(invoiceCode.split("-")[1]) || Date.now();
-    const currentTime = Date.now();
-    const timeDiff = currentTime - invoiceCreatedTime;
+    console.log("📤 Sending to User API /donation/check:", { invoiceCode });
 
-    const mockStatusData = {
-      code: invoiceCode,
-      status: timeDiff > 30000 ? "paid" : "pending", // Mark as paid after 30 seconds for demo
-      amount: 50000,
-      createdAt: new Date(invoiceCreatedTime).toISOString(),
-      updatedAt: new Date().toISOString(),
+    // Call the actual User API like old web
+    const response = await axios.post(
+      `${USER_API_BASE_URL}/donation/check`,
+      { invoiceCode },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        timeout: 10000, // 10 second timeout
+      }
+    );
+
+    console.log("📥 User API response:", {
+      status: response.status,
+      data: response.data,
+    });
+
+    // Normalize response format to include success field
+    const normalizedResponse = {
+      success: true,
+      payload: response.data.payload,
+      message: response.data.message,
     };
 
-    // Return success response
-    res.status(200).json({
-      success: true,
-      message: "Status retrieved successfully",
-      payload: mockStatusData,
-    });
-  } catch (error) {
+    console.log("✅ Sending normalized response:", normalizedResponse);
 
-    res.status(500).json({
+    // Return normalized response
+    res.status(200).json(normalizedResponse);
+  } catch (error) {
+    console.error("❌ Donation check API error:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
+
+    res.status(error.response?.status || 500).json({
       success: false,
-      message: "Internal server error",
+      message:
+        error.response?.data?.message ||
+        error.message ||
+        "Internal server error",
       error:
         process.env.NODE_ENV === "development"
           ? error.message

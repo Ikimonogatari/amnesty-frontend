@@ -19,6 +19,10 @@ export default function DonationMobile({
   selectedCountryCode,
   setSelectedCountryCode,
 
+  // Donation type
+  donationType,
+  setDonationType,
+
   // Payment states
   isLoading,
   invoiceData,
@@ -28,13 +32,12 @@ export default function DonationMobile({
 
   // Error handling
   fullField,
-  errorMessage,
 
   // Functions
   chooseDonation,
   handleDonate,
   handleQPay,
-  navToRecurringDonation,
+  handleDonationTypeChange,
 }) {
   // Amount options for donation
   const amountOptions = [20000, 50000, 100000];
@@ -44,6 +47,30 @@ export default function DonationMobile({
       <div className="p-4">
         <div className="bg-[#48483D] text-white rounded-lg p-6 mb-6">
           <h2 className="text-xl font-bold mb-4 text-center">ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ</h2>
+
+          {/* Once/Monthly Toggle */}
+          <div className="flex gap-3 mb-6">
+            <button
+              onClick={() => handleDonationTypeChange("once")}
+              className={`flex-1 px-4 py-3 text-center text-sm font-medium rounded-md ${
+                donationType === "once"
+                  ? "bg-yellow-500 text-black"
+                  : "bg-white text-black border border-gray-300"
+              }`}
+            >
+              ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ
+            </button>
+            <button
+              onClick={() => handleDonationTypeChange("monthly")}
+              className={`flex-1 px-4 py-3 text-center text-sm font-medium rounded-md ${
+                donationType === "monthly"
+                  ? "bg-yellow-500 text-black"
+                  : "bg-white text-black border border-gray-300"
+              }`}
+            >
+              ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ
+            </button>
+          </div>
 
           {/* Amount Selection */}
           <div className="mb-4">
@@ -137,13 +164,6 @@ export default function DonationMobile({
             </select>
           </div>
 
-          {/* Error Message */}
-          {errorMessage && (
-            <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
-              {errorMessage}
-            </div>
-          )}
-
           {/* Submit Button */}
           <Button
             text={isLoading ? "ᠢᠯᠭᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ..." : "ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ"}
@@ -159,10 +179,10 @@ export default function DonationMobile({
             <div className="mb-4 p-3 bg-yellow-100 border border-yellow-400 text-yellow-700 rounded">
               <p className="mb-2">ᠲᠥᠯᠪᠦᠷᠢ ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ...</p>
               <Button
-                text="QPay ᠢ᠋ ᠬᠡᠷᠡᠭᠯᠡ"
+                text="QPay"
                 onClick={handleQPay}
                 disabled={isLoading}
-                className="w-full"
+                className="w-full text-black"
               />
             </div>
           )}
@@ -173,19 +193,11 @@ export default function DonationMobile({
               <p className="mb-2">QR ᠬᠣᠳ ᠢ᠋ ᠰᠬᠠᠨ ᠬᠢᠵᠦ ᠲᠥᠯᠪᠦᠷᠢ ᠬᠢᠭᠠᠷᠠᠢ</p>
               <div className="inline-block bg-white p-4 rounded">
                 <img
-                  src={`data:image/png;base64,${qpayData.qrImage}`}
+                  src={qpayData.invoice?.qr_image || qpayData.qrImage}
                   alt="QPay QR Code"
                   className="w-48 h-48"
                 />
               </div>
-            </div>
-          )}
-
-          {/* Success Message */}
-          {paid && (
-            <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded text-center">
-              <p className="font-bold">ᠬᠠᠨᠳᠢᠪ ᠠᠮᠵᠢᠯᠲᠠᠢ ᠪᠣᠯᠣᠪᠠ!</p>
-              <p>ᠲᠠᠨ ᠳ᠋ᠤ ᠪᠠᠶᠠᠷᠯᠠᠯ᠎ᠠ ᠪᠢᠳᠡ ᠦᠷᠢᠳᠦᠨ ᠢᠯᠡᠷᠡᠭᠦᠯᠦᠨ᠎ᠡ</p>
             </div>
           )}
         </div>

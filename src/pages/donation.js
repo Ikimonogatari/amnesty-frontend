@@ -15,6 +15,9 @@ export default function Donation() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedCountryCode, setSelectedCountryCode] = useState("MN");
 
+  // Donation type (once or monthly)
+  const [donationType, setDonationType] = useState("once"); // "once" or "monthly"
+
   // Payment states
   const [isLoading, setIsLoading] = useState(false);
   const [invoiceData, setInvoiceData] = useState(null);
@@ -24,13 +27,11 @@ export default function Donation() {
 
   // Error handling
   const [fullField, setFullField] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
   // Choose donation amount
   const chooseDonation = (selectedAmount) => {
     setAmount(selectedAmount.toString());
     setFullField(false);
-    setErrorMessage("");
   };
 
   // Handle donation submission
@@ -42,25 +43,19 @@ export default function Donation() {
 
     // Enhanced validation like old project
     if (!firstName || firstName.trim() === "") {
-      const errorMessage = "ᠨᠡᠷ᠎ᠡ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
-      setErrorMessage(errorMessage);
-      toast.error(errorMessage);
+      toast.error("ᠨᠡᠷ᠎ᠡ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
       setFullField("incomplete");
       return;
     }
 
     if (!lastName || lastName.trim() === "") {
-      const errorMessage = "ᠣᠪᠣᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
-      setErrorMessage(errorMessage);
-      toast.error(errorMessage);
+      toast.error("ᠣᠪᠣᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
       setFullField("incomplete");
       return;
     }
 
     if (!email || email.trim() === "") {
-      const errorMessage = "ᠢ᠋ᠮᠧᠢᠯ ᠬᠠᠶᠠᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
-      setErrorMessage(errorMessage);
-      toast.error(errorMessage);
+      toast.error("ᠢ᠋ᠮᠧᠢᠯ ᠬᠠᠶᠠᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
       setFullField("incomplete");
       return;
     }
@@ -68,40 +63,31 @@ export default function Donation() {
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      const errorMessage = "ᠢ᠋ᠮᠧᠢᠯ ᠬᠠᠶᠠᠭ ᠤᠨ ᠹᠣᠷᠮᠠᠲ ᠪᠤᠷᠤᠤ ᠪᠠᠢᠨ᠎ᠠ!";
-      setErrorMessage(errorMessage);
-      toast.error(errorMessage);
+      toast.error("ᠢ᠋ᠮᠧᠢᠯ ᠬᠠᠶᠠᠭ ᠤᠨ ᠹᠣᠷᠮᠠᠲ ᠪᠤᠷᠤᠤ ᠪᠠᠢᠨ᠎ᠠ!");
       setFullField("incomplete");
       return;
     }
 
     if (!phoneNumber || phoneNumber.trim() === "") {
-      const errorMessage = "ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
-      setErrorMessage(errorMessage);
-      toast.error(errorMessage);
+      toast.error("ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
       setFullField("incomplete");
       return;
     }
 
     // Phone number validation (8 digits for Mongolia)
     if (selectedCountryCode === "MN" && phoneNumber.length !== 8) {
-      const errorMessage = "ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷ 8 ᠣᠷᠣᠨ ᠪᠠᠢᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!";
-      setErrorMessage(errorMessage);
-      toast.error(errorMessage);
+      toast.error("ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷ 8 ᠣᠷᠣᠨ ᠪᠠᠢᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ!");
       setFullField("incomplete");
       return;
     }
 
     if (donationAmount <= 0) {
-      const errorMessage = "ᠬᠠᠨᠳᠢᠪ ᠤᠨ ᠳᠦᠨ ᠢ᠋ᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!";
-      setErrorMessage(errorMessage);
-      toast.error(errorMessage);
+      toast.error("ᠬᠠᠨᠳᠢᠪ ᠤᠨ ᠳᠦᠨ ᠢ᠋ᠭ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ!");
       return;
     }
 
     // Clear previous errors
     setFullField(false);
-    setErrorMessage("");
 
     setIsLoading(true);
     try {
@@ -124,13 +110,12 @@ export default function Donation() {
         );
 
         if (response2.success && response2.payload) {
-          setCheckPaid("true");
+          setCheckPaid(true);
           setInvoiceData(response2.payload);
         }
       } else {
         const errorMessage =
           response1.message || "ᠬᠠᠨᠳᠢᠪ ᠦᠦᠰᠦᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ";
-        setErrorMessage(errorMessage);
         toast.error(errorMessage);
       }
     } catch (error) {
@@ -138,7 +123,6 @@ export default function Donation() {
         error.response?.data?.message ||
         error.message ||
         "ᠬᠠᠨᠳᠢᠪ ᠦᠦᠰᠦᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ";
-      setErrorMessage(errorMessage);
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -153,7 +137,6 @@ export default function Donation() {
     try {
       const qpayResponse = await donationService.createBankQPayDonation({
         invoiceCode: invoiceData.code,
-        amount: parseInt(amount),
       });
 
       if (qpayResponse.success && qpayResponse.payload) {
@@ -162,7 +145,6 @@ export default function Donation() {
       } else {
         const errorMessage =
           qpayResponse.message || "QPay ᠦᠦᠰᠦᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ";
-        setErrorMessage(errorMessage);
         toast.error(errorMessage);
       }
     } catch (error) {
@@ -170,17 +152,19 @@ export default function Donation() {
         error.response?.data?.message ||
         error.message ||
         "QPay ᠦᠦᠰᠦᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ";
-      setErrorMessage(errorMessage);
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Navigate to recurring donation
-  const navToRecurringDonation = () => {
-    // Navigate to recurring donation page
-    window.location.href = "/recurring-donation";
+  // Handle donation type selection
+  const handleDonationTypeChange = (type) => {
+    setDonationType(type);
+    if (type === "monthly") {
+      // Navigate to recurring donation page
+      window.location.href = "/recurring-donation";
+    }
   };
 
   // Check payment status periodically
@@ -226,6 +210,10 @@ export default function Donation() {
     selectedCountryCode,
     setSelectedCountryCode,
 
+    // Donation type
+    donationType,
+    setDonationType,
+
     // Payment states
     isLoading,
     invoiceData,
@@ -235,13 +223,12 @@ export default function Donation() {
 
     // Error handling
     fullField,
-    errorMessage,
 
     // Functions
     chooseDonation,
     handleDonate,
     handleQPay,
-    navToRecurringDonation,
+    handleDonationTypeChange,
   };
 
   return (

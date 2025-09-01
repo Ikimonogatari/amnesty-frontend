@@ -1,5 +1,9 @@
 // Anonymous Donation API - Next.js API Route
-// Mock implementation for testing donation functionality
+// Proxy to User API like the old web
+
+import axios from "axios";
+
+const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
 
 export default async function handler(req, res) {
   // Only allow POST requests
@@ -11,6 +15,11 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log("🎯 Donation API - anonymous called with:", {
+      body: req.body,
+      userApiUrl: USER_API_BASE_URL,
+    });
+
     // Extract data from request body
     const {
       amount,
@@ -34,29 +43,59 @@ export default async function handler(req, res) {
       });
     }
 
-    // Mock successful response with sample invoice data
-    const mockInvoiceData = {
-      code: `INV-${Date.now()}`,
+    // Prepare data for User API (match old web format)
+    const donationData = {
       amount: parseInt(amount),
-      status: "pending",
-      firstName,
-      lastName,
-      email,
+      email: String(email),
+      firstName: firstName,
+      lastName: lastName,
       phone: phoneField,
       country: countryCode || country || "MN",
-      createdAt: new Date().toISOString(),
     };
 
-    // Return success response
-    res.status(200).json({
-      success: true,
-      message: "Donation created successfully",
-      payload: mockInvoiceData,
+    console.log("📤 Sending to User API /donation/anonymous:", donationData);
+
+    // Call the actual User API like old web
+    const response = await axios.post(
+      `${USER_API_BASE_URL}/donation/anonymous`,
+      donationData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        timeout: 30000, // 30 second timeout
+      }
+    );
+
+    console.log("📥 User API response:", {
+      status: response.status,
+      data: response.data,
     });
+
+    // Normalize response format to include success field
+    const normalizedResponse = {
+      success: true,
+      payload: response.data.payload,
+      message: response.data.message,
+    };
+
+    console.log("✅ Sending normalized response:", normalizedResponse);
+
+    // Return normalized response
+    res.status(200).json(normalizedResponse);
   } catch (error) {
-    res.status(500).json({
+    console.error("❌ Donation API error:", {
+      message: error.message,
+      response: error.response?.data,
+      status: error.response?.status,
+    });
+
+    res.status(error.response?.status || 500).json({
       success: false,
-      message: "Internal server error",
+      message:
+        error.response?.data?.message ||
+        error.message ||
+        "Internal server error",
       error:
         process.env.NODE_ENV === "development"
           ? error.message

@@ -589,40 +589,61 @@ export const donationService = {
     // Register for recurring donation
     async register(userData) {
       try {
-        const response = await FetcherPost(
-          "/donation/recurring/register",
-          userData,
-          USER_API_BASE_URL
-        );
-        return response;
+        const response = await fetch("/api/donation/recurring/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        });
+        return await response.json();
       } catch (error) {
-        throw error;
+        return {
+          success: false,
+          message: error.message,
+        };
       }
     },
 
     // Login to recurring donation
     async login(credentials) {
       try {
-        const response = await FetcherPost(
-          "/donation/recurring/login",
-          credentials,
-          USER_API_BASE_URL
-        );
-        return response;
+        const response = await fetch("/api/donation/recurring/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(credentials),
+        });
+        return await response.json();
       } catch (error) {
-        throw error;
+        return {
+          success: false,
+          message: error.message,
+        };
       }
     },
 
     // Verify email for recurring donation
     async verifyEmail(email) {
       try {
-        const response = await FetcherPost(
-          "/donation/recurring/verify-email",
-          { email },
-          USER_API_BASE_URL
-        );
-        return response;
+        const response = await fetch("/api/donation/recurring/verify-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: email }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          const error = new Error(data.message || "Email verification failed");
+          error.response = { data };
+          throw error;
+        }
+
+        return data;
       } catch (error) {
         throw error;
       }
