@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import RecurringDonationDesktop from "@/components/donation/RecurringDonationDesktop";
 import RecurringDonationMobile from "@/components/donation/RecurringDonationMobile";
+import MySubscriptions from "@/components/donation/MySubscriptions";
+import MySubscriptionsMobile from "@/components/donation/MySubscriptionsMobile";
 import { donationService } from "@/services/userApiService";
 import { getCountryByCode } from "@/utils/countryList";
 import toast from "react-hot-toast";
@@ -25,6 +27,11 @@ export default function RecurringDonation() {
   const [loginVerifyCode, setLoginVerifyCode] = useState("");
   const [loginIsLoading, setLoginIsLoading] = useState(false);
   const [loginTimeLeft, setLoginTimeLeft] = useState(0);
+  
+  // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [authToken, setAuthToken] = useState(null);
+  const [userSubscriptions, setUserSubscriptions] = useState([]);
 
   // Send email verification code
   const sendEmailVerification = async () => {
@@ -146,6 +153,54 @@ export default function RecurringDonation() {
     window.location.href = "/donation";
   };
 
+  // Fetch user subscriptions
+  const fetchUserSubscriptions = async (token) => {
+    try {
+      const response = await fetch("/api/donation/recurring/subscriptions", {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      
+      const data = await response.json();
+      if (data.success) {
+        setUserSubscriptions(data.payload || []);
+      }
+    } catch (error) {
+      console.error("Failed to fetch subscriptions:", error);
+    }
+  };
+
+  // Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("recurringDonationToken");
+    localStorage.removeItem("recurringDonationExpires");
+    setAuthToken(null);
+    setIsAuthenticated(false);
+    setUserSubscriptions([]);
+    toast.success("ᠠᠮᠵᠢᠯᠲᠠᠢ ᠭᠠᠷᠯᠠ!");
+  };
+
+  // Check for existing authentication on page load
+  useEffect(() => {
+    const token = localStorage.getItem("recurringDonationToken");
+    const expires = localStorage.getItem("recurringDonationExpires");
+    
+    if (token && expires) {
+      const now = Math.floor(Date.now() / 1000);
+      if (parseInt(expires) > now) {
+        setAuthToken(token);
+        setIsAuthenticated(true);
+        fetchUserSubscriptions(token);
+      } else {
+        // Token expired, clear it
+        localStorage.removeItem("recurringDonationToken");
+        localStorage.removeItem("recurringDonationExpires");
+      }
+    }
+  }, []);
+
   // Login form functions
   const sendLoginEmailCode = async () => {
     if (!loginEmail) {
@@ -207,8 +262,17 @@ export default function RecurringDonation() {
 
       if (response.success) {
         toast.success("ᠠᠮᠵᠢᠯᠲᠠᠢ ᠨᠡᠪᠲᠡᠷᠡᢉᠡᢉᠡᠢ!");
-        // Redirect to manage subscriptions or reload page
-        window.location.reload();
+        
+        // Store authentication token in localStorage
+        if (response.payload?.token?.bearer) {
+          localStorage.setItem("recurringDonationToken", response.payload.token.bearer);
+          localStorage.setItem("recurringDonationExpires", response.payload.token.expires);
+          setAuthToken(response.payload.token.bearer);
+          setIsAuthenticated(true);
+          
+          // Fetch user's subscription data
+          await fetchUserSubscriptions(response.payload.token.bearer);
+        }
       } else {
         toast.error(response.message || "ᠨᠡᠪᠲᠡᠷᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ");
       }
@@ -282,10 +346,69 @@ export default function RecurringDonation() {
     handleLogin,
   };
 
+  // Subscription management callbacks
+  const handleUpdateSubscription = (subscriptionId) => {
+    // TODO: Implement subscription update modal
+    toast.info("ᠵᠠᠰᠠᠬᠤ ᠬᠡᠷᠡᠭᠯᠡᠯ ᠤᠨ ᠬᠢᠨᠠᠨ ᠪᠠᠢᠭᠤᠯᠤᠯᠲᠠ");
+  };
+
+  const handleCancelSubscription = async (subscriptionId) => {
+    if (confirm("ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠢ ᠴᠠᠷ᠎ᠠ ᠬᠢᠬᠦ ᠦᠦ?")) {
+      try {
+        const response = await fetch(`/api/donation/recurring/cancel/${subscriptionId}`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${authToken}`,
+            'Content-Type': 'application/json',
+          },
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+          toast.success("ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠢ ᠴᠠᠷᠠᠯᠠᠪᠠ!");
+          await fetchUserSubscriptions(authToken);
+        } else {
+          toast.error(data.message || "ᠴᠠᠷᠠᠯᠬᠤᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ");
+        }
+      } catch (error) {
+        toast.error("ᠴᠠᠷᠠᠯᠬᠤᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ");
+      }
+    }
+  };
+
+  const handleRefreshSubscriptions = () => {
+    if (authToken) {
+      fetchUserSubscriptions(authToken);
+    }
+  };
+
   return (
     <Layout>
-      <RecurringDonationDesktop {...recurringDonationProps} />
-      <RecurringDonationMobile {...recurringDonationProps} />
+      {isAuthenticated ? (
+        // Show subscription management if logged in
+        <>
+          <MySubscriptions 
+            userSubscriptions={userSubscriptions}
+            handleLogout={handleLogout}
+            onUpdateSubscription={handleUpdateSubscription}
+            onCancelSubscription={handleCancelSubscription}
+            onRefreshSubscriptions={handleRefreshSubscriptions}
+          />
+          <MySubscriptionsMobile 
+            userSubscriptions={userSubscriptions}
+            handleLogout={handleLogout}
+            onUpdateSubscription={handleUpdateSubscription}
+            onCancelSubscription={handleCancelSubscription}
+            onRefreshSubscriptions={handleRefreshSubscriptions}
+          />
+        </>
+      ) : (
+        // Show registration/login forms if not logged in
+        <>
+          <RecurringDonationDesktop {...recurringDonationProps} />
+          <RecurringDonationMobile {...recurringDonationProps} />
+        </>
+      )}
     </Layout>
   );
 }
