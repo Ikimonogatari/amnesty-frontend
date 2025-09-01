@@ -91,11 +91,11 @@ export default function GridLayout({
               items.map((item, index) => (
                 <div
                   key={item.id || index}
-                  className="w-full h-full flex items-end gap-4 max-h-[400px]"
+                  className="w-full h-full flex items-end gap-4"
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="min-w-12 max-h-[400px] line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600"
+                    className="min-w-12 line-clamp-3 max-w-[300px] h-full text-xs transition-colors cursor-pointer hover:text-blue-600"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
@@ -113,7 +113,7 @@ export default function GridLayout({
 
                   {/* Main Image with proper aspect ratio */}
                   <div
-                    className="relative h-[400px] w-[400px] cursor-pointer"
+                    className="relative cursor-pointer"
                     onClick={() => handleItemClick(item)}
                   >
                     <Image
@@ -123,9 +123,9 @@ export default function GridLayout({
                       alt={
                         getTitle ? getTitle(item) : item.title || "Item image"
                       }
-                      height={400}
-                      width={400}
-                      className="object-cover shadow-md rounded-xl aspect-square w-[400px] h-[400px] hover:opacity-80 transition-opacity"
+                      height={300}
+                      width={300}
+                      className="object-cover shadow-md rounded-xl aspect-square hover:opacity-80 transition-opacity"
                       onError={(e) => {
                         e.target.src = "/images/news1.png"; // fallback image
                       }}
@@ -180,7 +180,7 @@ export default function GridLayout({
               ))
             ) : (
               // No data available
-              <div className="col-span-full flex items-center justify-center h-[400px]">
+              <div className="col-span-full flex items-center justify-center">
                 <div className="text-center">
                   <p
                     className="text-gray-500 text-lg"
