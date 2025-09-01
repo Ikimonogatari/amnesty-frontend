@@ -12,6 +12,11 @@ import {
   DEFAULT_QUERY_PARAMS,
 } from "@/config/apiEndpoints";
 
+// Get default locale from environment variable
+const getDefaultLocale = () => {
+  return process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN";
+};
+
 // Posts and News Services - Using both custom routes and standard routes
 export const postsService = {
   // Get posts using standard /posts endpoint (what user requested)
@@ -20,7 +25,7 @@ export const postsService = {
       const queryParams = {
         populate: "*",
         sort: "publishedAt:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -46,7 +51,7 @@ export const postsService = {
       const queryParams = {
         populate: "*",
         sort: "publishedAt:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
       };
 
       // If pageSize is provided and no page, use simple 'limit' format (like old web)
@@ -116,7 +121,9 @@ export const postsService = {
   // Get single post by ID using custom route
   async getPostById(id) {
     try {
-      const endpoint = `${API_ENDPOINTS.POSTS_GET}/${id}?populate=*&locale=mn`;
+      const endpoint = `${
+        API_ENDPOINTS.POSTS_GET
+      }/${id}?populate=*&locale=${getDefaultLocale()}`;
       const response = await Fetcher(endpoint);
       return response;
     } catch (error) {
@@ -129,7 +136,7 @@ export const postsService = {
     try {
       const queryParams = {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
         ...params,
       };
       const endpoint = buildEndpointUrl(
@@ -149,7 +156,7 @@ export const postsService = {
       const queryParams = {
         populate: "*",
         sort: "id:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -169,7 +176,7 @@ export const eventsService = {
       const queryParams = {
         populate: "*",
         sort: params.sort || "start_date:asc",
-        locale: params.locale || "mn",
+        locale: params.locale || "mn-MN",
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 100, // Increase default to get more events
         ...params, // Include all other params directly (for date filters)
@@ -194,7 +201,7 @@ export const eventsService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.EVENTS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -210,7 +217,7 @@ export const actionsService = {
     try {
       const queryParams = {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -241,7 +248,7 @@ export const actionsService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.ACTIONS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -253,35 +260,35 @@ export const actionsService = {
   // Submit action form - Routes to Next.js API proxy
   async submitAction(formData) {
     try {
-      console.log('=== ACTION SERVICE SUBMIT ===');
-      console.log('Form data being submitted:', formData);
-      console.log('Making request to: /api/actions/submit');
-      
-      const response = await fetch('/api/actions/submit', {
-        method: 'POST',
+      console.log("=== ACTION SERVICE SUBMIT ===");
+      console.log("Form data being submitted:", formData);
+      console.log("Making request to: /api/actions/submit");
+
+      const response = await fetch("/api/actions/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
 
-      console.log('Response status:', response.status);
-      console.log('Response ok:', response.ok);
-      
+      console.log("Response status:", response.status);
+      console.log("Response ok:", response.ok);
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        console.log('Error response data:', errorData);
+        console.log("Error response data:", errorData);
         throw new Error(errorData.message || `HTTP ${response.status}`);
       }
 
       const result = await response.json();
-      console.log('Success response data:', result);
+      console.log("Success response data:", result);
       return result;
     } catch (error) {
-      console.error('=== ACTION SUBMISSION FAILED ===');
-      console.error('Error:', error);
-      console.error('Error message:', error.message);
-      console.error('Error stack:', error.stack);
+      console.error("=== ACTION SUBMISSION FAILED ===");
+      console.error("Error:", error);
+      console.error("Error message:", error.message);
+      console.error("Error stack:", error.stack);
       throw error;
     }
   },
@@ -294,7 +301,7 @@ export const videosService = {
       const queryParams = {
         populate: "*",
         sort: "publishedAt:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -311,7 +318,7 @@ export const videosService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.VIDEOS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -327,7 +334,7 @@ export const librariesService = {
     try {
       const queryParams = {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -344,7 +351,7 @@ export const librariesService = {
     try {
       const endpoint = buildEndpointUrl(API_ENDPOINTS.LIBRARY_GROUPS, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -357,7 +364,7 @@ export const librariesService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.LIBRARIES}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -374,7 +381,7 @@ export const storiesService = {
       const queryParams = {
         populate: "*",
         sort: "publishedAt:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -391,7 +398,7 @@ export const storiesService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.STORIES}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -407,7 +414,7 @@ export const faqsService = {
     try {
       const queryParams = {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -424,7 +431,7 @@ export const faqsService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.FAQS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -440,7 +447,7 @@ export const slideshowsService = {
     try {
       const queryParams = {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
         sort: "publishedAt:desc",
@@ -458,7 +465,7 @@ export const slideshowsService = {
     try {
       const queryParams = {
         populate: "deep",
-        locale: "mn",
+        locale: getDefaultLocale(),
         ...params,
       };
 
@@ -493,7 +500,7 @@ export const reportsService = {
       const queryParams = {
         populate: "*",
         sort: "id:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -509,7 +516,7 @@ export const reportsService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.REPORTS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -525,7 +532,7 @@ export const campaignsService = {
     try {
       const queryParams = {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -546,7 +553,7 @@ export const campaignsService = {
       const endpoint = buildEndpointUrl(API_ENDPOINTS.COMPANY_WORKS, {
         "filters[static_id][$eq]": id,
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -560,7 +567,7 @@ export const campaignsService = {
       const endpoint = buildEndpointUrl(API_ENDPOINTS.COMPANY_WORK_FEATURES, {
         "filters[company_work][static_id][$eq]": staticId,
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -574,7 +581,9 @@ export const campaignsService = {
 export const settingsService = {
   async getContactInfo() {
     try {
-      const response = await Fetcher(`${API_ENDPOINTS.CONTACT_INFO}?locale=mn`);
+      const response = await Fetcher(
+        `${API_ENDPOINTS.CONTACT_INFO}?locale=${getDefaultLocale()}`
+      );
       return response?.data?.attributes || null;
     } catch (error) {
       throw error;
@@ -584,7 +593,7 @@ export const settingsService = {
   async getWebsiteSettings() {
     try {
       const response = await Fetcher(
-        `${API_ENDPOINTS.WEBSITE_SETTINGS}?locale=mn`
+        `${API_ENDPOINTS.WEBSITE_SETTINGS}?locale=${getDefaultLocale()}`
       );
       return formatStrapiResponse(response);
     } catch (error) {
@@ -599,7 +608,7 @@ export const merchService = {
     try {
       const queryParams = {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -622,7 +631,7 @@ export const lessonsService = {
       const queryParams = {
         populate: "*",
         sort: "id:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -638,7 +647,7 @@ export const lessonsService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.LESSONS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -655,7 +664,7 @@ export const onlineLessonsService = {
       const queryParams = {
         populate: "*",
         sort: "id:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -676,7 +685,7 @@ export const onlineLessonsService = {
         `${API_ENDPOINTS.ONLINE_LESSONS}/${id}`,
         {
           populate: "*",
-          locale: "mn",
+          locale: getDefaultLocale(),
         }
       );
       const response = await Fetcher(endpoint);
@@ -694,7 +703,7 @@ export const podcastsService = {
       const queryParams = {
         populate: "*",
         sort: "id:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -710,7 +719,7 @@ export const podcastsService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.PODCASTS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -727,7 +736,7 @@ export const statementsService = {
       const queryParams = {
         populate: "*",
         sort: "id:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
       };
@@ -748,7 +757,7 @@ export const statementsService = {
     try {
       const endpoint = buildEndpointUrl(`${API_ENDPOINTS.STATEMENTS}/${id}`, {
         populate: "*",
-        locale: "mn",
+        locale: getDefaultLocale(),
       });
       const response = await Fetcher(endpoint);
       return formatStrapiResponse(response);
@@ -765,7 +774,7 @@ export const companyWorksService = {
       const queryParams = {
         populate: "*",
         sort: "publishedAt:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
         ...params,
@@ -789,7 +798,7 @@ export const companyWorksService = {
         `${API_ENDPOINTS.COMPANY_WORKS}/${id}`,
         {
           populate: "*",
-          locale: "mn",
+          locale: getDefaultLocale(),
         }
       );
       const response = await Fetcher(endpoint);
@@ -808,7 +817,7 @@ export const companyWorkFeaturesService = {
       const queryParams = {
         populate: "*",
         sort: "publishedAt:desc",
-        locale: "mn",
+        locale: getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 10,
         ...params,
@@ -832,7 +841,7 @@ export const companyWorkFeaturesService = {
         `${API_ENDPOINTS.COMPANY_WORK_FEATURES}/${id}`,
         {
           populate: "*",
-          locale: "mn",
+          locale: getDefaultLocale(),
         }
       );
       const response = await Fetcher(endpoint);

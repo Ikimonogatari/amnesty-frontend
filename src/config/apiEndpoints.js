@@ -59,13 +59,18 @@ export const API_ENDPOINTS = {
   PODCAST_SETTINGS: "/podcast-setting",
 };
 
+// Get default locale from environment variable
+const getDefaultLocale = () => {
+  return process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN";
+};
+
 // Default query parameters - using correct Strapi v4 format
 export const DEFAULT_QUERY_PARAMS = {
   POPULATE_DEEP: "populate=*", // Use * instead of deep for Strapi v4
   SORT_DESC: "sort=id:desc",
   SORT_PUBLISHED_DESC: "sort=publishedAt:desc",
   SORT_DATE_ASC: "sort=start_date:asc",
-  LOCALE_MN: "locale=mn",
+  LOCALE_MN: `locale=${getDefaultLocale()}`,
 };
 
 // Helper function to build query string

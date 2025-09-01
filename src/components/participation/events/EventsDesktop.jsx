@@ -93,7 +93,7 @@ export default function EventsDesktop() {
         "filters[end_date][$gte]": startDateStr,
         sort: "start_date:asc",
         populate: "*",
-        locale: "mn",
+        locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
         "pagination[pageSize]": 100, // Get more events
       };
 
