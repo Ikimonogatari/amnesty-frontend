@@ -94,73 +94,78 @@ export default function Terms() {
           width="100%"
           title="ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ"
         />
-        <div className="max-h-[200px] h-full p-2 flex gap-2">
-          <h2
-            className="text-[9px] font-bold"
-            style={{
-              writingMode: "vertical-lr",
-            }}
-          >
-            ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ
-          </h2>
-          <p
-            className="text-[9px] text-[#848382]"
-            style={{
-              writingMode: "vertical-lr",
-            }}
-          >
-            ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢᠨ ᠤᠷᠠᠯᠭᠠ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ
-            ᠢᠨᠲᠧᠷᠨᠡᠰᠢᠨᠯ ᠤᠨ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠪᠠ ᠠᠰᠢᠭᠯᠠᠬᠤ ᠶᠢᠨ
-            ᠨᠥᠬᠥᠴᠦᠯ ᠢ ᠲᠣᠭᠲᠠᠪᠤᠷᠢᠯᠠᠨᠠ᠃
-          </p>
+        <div className="px-3 py-2">
+          <div className="flex gap-2 max-h-[120px] overflow-x-auto">
+            <h2
+              className="text-[9px] font-bold min-w-[40px]"
+              style={{ writingMode: "vertical-lr" }}
+            >
+              ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ
+            </h2>
+            <p
+              className="text-[8px] text-[#848382] flex-1 min-w-[120px]"
+              style={{ writingMode: "vertical-lr" }}
+            >
+              ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢᠨ ᠤᠷᠠᠯᠭᠠ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ
+              ᠢᠨᠲᠧᠷᠨᠡᠰᠢᠨᠯ ᠤᠨ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠪᠠ ᠠᠰᠢᠭᠯᠠᠬᠤ ᠶᠢᠨ
+              ᠨᠥᠬᠥᠴᠦᠯ ᠢ ᠲᠣᠭᠲᠠᠪᠤᠷᠢᠯᠠᠨᠠ᠃
+            </p>
+          </div>
         </div>
-        <div className="max-h-[150px] p-2 bg-[#F1F1F1] flex gap-2">
-          <p
-            className="text-black font-bold text-[9px]"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢᠨ ᠠᠰᠢᠭᠯᠠᠯᠲᠠ
-          </p>
-          <p
-            className="text-[9px] text-[#848382]"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠡᠰᠢᠨᠯ ᠤᠨ
-            ᠠᠯᠪᠠᠨ ᠢᠯᠭᠠᠯ ᠪᠣᠰ ᠰᠠᠢᠢᠨ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠭᠡ᠂ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ᠂
-            ᠬᠠᠭᠠᠷᠠᠭᠰᠠᠨ ᠰᠦᠷᠪᠦᠯᠵᠢ ᠪᠣᠯᠣᠨ ᠪᠤᠰᠤᠳ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢ ᠵᠣ᠋ᠣᠯᠡᠬᠦ ᠪᠣᠯᠣᠮᠵᠢᠲᠠᠢ᠃
-          </p>
+        <div className="px-3 py-2 bg-[#F1F1F1]">
+          <div className="flex gap-2 max-h-[100px] overflow-x-auto">
+            <p
+              className="text-black font-bold text-[9px] min-w-[50px]"
+              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            >
+              ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢᠨ ᠠᠰᠢᠭᠯᠠᠯᠲᠠ
+            </p>
+            <p
+              className="text-[8px] text-[#848382] flex-1 min-w-[140px]"
+              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            >
+              ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠡᠰᠢᠨᠯ
+              ᠤᠨ ᠠᠯᠪᠠᠨ ᠢᠯᠭᠠᠯ ᠪᠣᠰ ᠰᠠᠢᠢᠨ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠭᠡ᠂ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ᠂
+              ᠬᠠᠭᠠᠷᠠᠭᠰᠠᠨ ᠰᠦᠷᠪᠦᠯᠵᠢ ᠪᠣᠯᠣᠨ ᠪᠤᠰᠤᠳ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢ ᠵᠣ᠋ᠣᠯᠡᠬᠦ
+              ᠪᠣᠯᠣᠮᠵᠢᠲᠠᠢ᠃
+            </p>
+          </div>
         </div>
-        <div className="max-h-[150px] p-2 flex gap-2">
-          <p
-            className="text-[9px] font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠡᠷᠬᠡ
-          </p>
-          <p
-            className="text-[9px] text-[#848382]"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠲᠠ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠠᠰᠢᠭᠯᠠᠬᠤ ᠡᠷᠬᠡ ᠲᠠᠢ᠃ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ
-            ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠳᠤ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ᠂ ᠤᠷᠤᠨ ᠰᠠᠢᠢᠨ ᠮᠡᠳᠡᠭᠡ
-            ᠮᠡᠳᠡᠯᠭᠡ ᠪᠠ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢ ᠬᠠᠷᠠᠬᠤ ᠡᠷᠬᠡ ᠣᠭᠳᠤᠨ ᠠ᠃
-          </p>
+        <div className="px-3 py-2">
+          <div className="flex gap-2 max-h-[110px] overflow-x-auto">
+            <p
+              className="text-[9px] font-bold min-w-[40px]"
+              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            >
+              ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠡᠷᠬᠡ
+            </p>
+            <p
+              className="text-[8px] text-[#848382] flex-1 min-w-[130px]"
+              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            >
+              ᠲᠠ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠠᠰᠢᠭᠯᠠᠬᠤ ᠡᠷᠬᠡ ᠲᠠᠢ᠃ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ
+              ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠳᠤ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ᠂ ᠤᠷᠤᠨ ᠰᠠᠢᠢᠨ
+              ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠭᠡ ᠪᠠ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢ ᠬᠠᠷᠠᠬᠤ ᠡᠷᠬᠡ ᠣᠭᠳᠤᠨ ᠠ᠃
+            </p>
+          </div>
         </div>
-        <div className="max-h-[150px] flex h-full gap-4 py-4 bg-[#F1F1F1]">
-          <h2
-            className="text-[10px] font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠬᠣᠯᠪᠤᠭᠰᠠᠨ ᠬᠤᠪᠢ
-          </h2>
-          <p
-            className="text-[9px] font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
-          >
-            ᠬᠡᠷᠡᠭ ᠲᠠᠨᠳ ᠡᠨᠡ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ ᠢ ᠲᠠᠯᠠ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠪᠠᠢ᠌ᠴᠤ ᠪᠢᠳᠡ
-            ᠳ᠋ᠦ ᠬᠣᠯᠪᠤᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ. ᠪᠢᠳᠡ ᠦᠨ ᠢᠮᠡᠶᠢᠯ ᠬᠠᠶᠠᠭ: contact@amnesty.mn ᠪᠣᠯᠣᠨ
-            ᠤᠲᠠᠰᠤᠨ ᠬᠠᠶᠠᠭ: +976 11 123456
-          </p>
+        <div className="px-3 py-2 bg-[#F1F1F1]">
+          <div className="flex gap-2 max-h-[90px] overflow-x-auto">
+            <h2
+              className="text-[9px] font-bold min-w-[40px]"
+              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            >
+              ᠬᠣᠯᠪᠤᠭᠰᠠᠨ ᠬᠤᠪᠢ
+            </h2>
+            <p
+              className="text-[8px] font-bold flex-1 min-w-[120px]"
+              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            >
+              ᠬᠡᠷᠡᠭ ᠲᠠᠨᠳ ᠡᠨᠡ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ ᠢ ᠲᠠᠯᠠ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠪᠠᠢ᠌ᠴᠤ ᠪᠢᠳᠡ
+              ᠳ᠋ᠦ ᠬᠣᠯᠪᠤᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ. ᠪᠢᠳᠡ ᠦᠨ ᠢᠮᠡᠶᠢᠯ ᠬᠠᠶᠠᠭ: contact@amnesty.mn
+              ᠪᠣᠯᠣᠨ ᠤᠲᠠᠰᠤᠨ ᠬᠠᠶᠠᠭ: +976 11 123456
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
