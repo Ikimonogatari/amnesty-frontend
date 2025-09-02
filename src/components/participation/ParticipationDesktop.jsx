@@ -73,7 +73,7 @@ export default function ParticipationDesktop() {
               <Button
                 type="primary"
                 text={item.buttonText}
-                className="text-sm cursor-pointer w-[60px] max-h-[320px] overflow-hidden"
+                className="text-sm cursor-pointer min-w-[60px] max-h-[320px] overflow-hidden"
                 onClick={() => handleItemClick(item.link)}
               />
             </div>
