@@ -306,7 +306,7 @@ export default function RecurringDonationDesktop({
         </div>
 
         {/* Login Form - Side by side like old web */}
-        <div className="flex gap-16 p-8 m-4 h-full bg-[#48483D] text-white rounded-lg">
+        <div className="flex gap-16 p-8 max-w-min m-4 h-full bg-[#48483D] text-white rounded-lg">
           <div className="flex gap-7">
             <h2
               className="text-2xl font-bold"

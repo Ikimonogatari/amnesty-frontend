@@ -3,6 +3,7 @@ import { bannerImages } from "@/constants/bannerImages";
 import Button from "@/components/common/Button";
 import { countryData } from "@/utils/countryList";
 import StaticHeader from "../common/StaticHeader";
+import { toMongolianNumbers } from "@/utils/fetcher";
 
 export default function DonationMobile({
   // Form data
@@ -46,36 +47,60 @@ export default function DonationMobile({
     <div className="w-full min-h-screen bg-white md:hidden">
       <div className="p-4">
         <div className="bg-[#48483D] text-white rounded-lg p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4 text-center">ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ</h2>
-
           {/* Once/Monthly Toggle */}
           <div className="flex gap-3 mb-6">
+            <h2
+              className="text-xl font-bold mb-4 text-center"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ
+            </h2>
+
             <button
               onClick={() => handleDonationTypeChange("once")}
-              className={`flex-1 px-4 py-3 text-center text-sm font-medium rounded-md ${
+              className={`pl-2 pr-1 py-2 text-center text-sm font-medium rounded-md ${
                 donationType === "once"
                   ? "bg-yellow-500 text-black"
                   : "bg-white text-black border border-gray-300"
               }`}
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
             >
               ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ
             </button>
             <button
               onClick={() => handleDonationTypeChange("monthly")}
-              className={`flex-1 px-4 py-3 text-center text-sm font-medium rounded-md ${
+              className={`pl-2 pr-1 py-2 text-center text-sm font-medium rounded-md ${
                 donationType === "monthly"
                   ? "bg-yellow-500 text-black"
                   : "bg-white text-black border border-gray-300"
               }`}
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
             >
               ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ
             </button>
           </div>
 
           {/* Amount Selection */}
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-2">ᠳᠦᠨ *</label>
-            <div className="grid grid-cols-2 gap-2 mb-2">
+          <div className="mb-4 flex flex-row gap-2 max-h-[250px]">
+            <label
+              className="block text-sm font-medium mb-2"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
+            >
+              ᠳᠦᠨ *
+            </label>
+            <div className="flex flex-row gap-2 mb-2">
               {amountOptions.map((amountOption) => (
                 <button
                   key={amountOption}
@@ -85,8 +110,12 @@ export default function DonationMobile({
                       ? "bg-blue-500 text-white border-blue-500"
                       : "border-gray-300 text-black bg-white hover:bg-gray-100"
                   }`}
+                  style={{
+                    writingMode: "vertical-lr",
+                    textOrientation: "upright",
+                  }}
                 >
-                  {amountOption.toLocaleString()}₮
+                  {toMongolianNumbers(amountOption)}₮
                 </button>
               ))}
             </div>
@@ -95,7 +124,11 @@ export default function DonationMobile({
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="ᠪᠤᠰᠤᠳ ᠳᠦᠨ"
-              className="w-full border border-gray-300 rounded-md p-3 text-black"
+              className="border border-gray-300 p-3 text-sm max-w-min rounded-md text-black"
+              style={{
+                writingMode: "vertical-lr",
+                textOrientation: "upright",
+              }}
             />
           </div>
 
@@ -297,15 +330,33 @@ export default function DonationMobile({
         </div>
 
         {/* Information Section */}
-        <div className="bg-gray-100 p-6 rounded-lg">
-          <h3 className="text-lg font-bold mb-4">
+        <div className="bg-gray-100 p-6 rounded-lg flex flex-row gap-2 max-h-[300px]">
+          <h3
+            className="text-lg font-bold mb-4"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
             ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨ ᠳ᠋ᠤᠷ
           </h3>
-          <p className="text-sm text-gray-700 mb-4">
+          <p
+            className="text-sm text-gray-700 mb-4"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
             ᠢᠷᢉᠡᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠦᠢᠯᠡᠰ ᠲᠦ ᠦᠨ᠎ᠡ ᠲᠡᠢ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠢ ᠪᠡᠨ
             ᠣᠷᠤᠭᠤᠯᠵᠤ᠂ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦᢉᠰᠡᠨ ᠲᠠᠨ ᠳ᠋ᠤ ᠪᠠᠶᠠᠷᠯᠠᠯ᠎ᠠ᠃
           </p>
-          <p className="text-xs text-gray-600">
+          <p
+            className="text-xs text-gray-600"
+            style={{
+              writingMode: "vertical-lr",
+              textOrientation: "upright",
+            }}
+          >
             ᠬᠣᠯᠪᠤᠭ᠎ᠠ: ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ ᠬᠣᠲᠠ᠂ ᠰᠦᢈᠡᠪᠠᠭᠠᠲᠤᠷ ᠳᠡᢉᠦᠷᢉᠡ᠂ ᠖-ᠷ ᠬᠣᠷᠢᠶ᠎ᠠ᠂ AB
             Center᠂ ᠗ ᠳᠠᠪᠬᠤᠷ
           </p>

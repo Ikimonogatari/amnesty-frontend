@@ -46,31 +46,28 @@ export default function RecurringDonationMobile({
           pointerEvents: isLoading ? "none" : "auto",
         }}
       >
-        {/* Traditional Mongolian Header */}
-        <div className="flex justify-center mb-6">
+        <div className="flex flex-row gap-2">
+          {/* Traditional Mongolian Header */}
           <h2
-            className="text-2xl font-bold text-center"
+            className="text-sm font-bold"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
-              minHeight: "120px",
             }}
           >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
           </h2>
-        </div>
 
-        {/* Back Button */}
-        <div className="flex justify-center mb-6">
+          {/* Back Button */}
           <Button
-            text="← ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ ᠬᠠᠨᠳᠢᠪ"
+            text="ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ ᠬᠠᠨᠳᠢᠪ"
             onClick={handleBackToOnceTime}
-            className="text-black text-sm"
+            className="text-black text-sm max-h-max"
           />
         </div>
 
         {/* Form Fields - Contact Form Style */}
-        <div className="flex gap-7 mt-4 w-full">
+        <div className="flex gap-4 w-full mt-4">
           <h2
             className="text-xs font-bold"
             style={{
@@ -306,22 +303,20 @@ export default function RecurringDonationMobile({
       {/* Login Form */}
       <div className="bg-[#48483D] text-white rounded-lg p-6 m-4">
         {/* Traditional Mongolian Header */}
-        <div className="flex justify-center mb-6">
+
+        <div className="flex flex-row gap-2">
           <h2
-            className="text-xl font-bold text-center"
+            className="text-sm font-bold"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
-              minHeight: "100px",
             }}
           >
             ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠪᠠᠢᢈᠠᠨ ᠤᠤ
           </h2>
-        </div>
 
-        <div className="flex justify-center mb-6">
           <p
-            className="text-sm text-center"
+            className="text-xs"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
@@ -333,7 +328,7 @@ export default function RecurringDonationMobile({
         </div>
 
         {/* Login Form Fields - Contact Form Style */}
-        <div className="flex gap-7 mt-4 w-full">
+        <div className="flex gap-4 w-full mt-4">
           <h2
             className="text-xs font-bold"
             style={{
@@ -402,7 +397,7 @@ export default function RecurringDonationMobile({
               <input
                 type="text"
                 maxLength={6}
-                placeholder="6"
+                placeholder=""
                 className="border rounded-md p-2 w-16 text-xs border-gray-300"
                 value={loginVerifyCode}
                 onChange={(e) => setLoginVerifyCode(e.target.value)}
@@ -438,38 +433,31 @@ export default function RecurringDonationMobile({
 
       {/* Information Section */}
       <div className="bg-gray-100 p-6 m-4 rounded-lg">
-        <div className="flex justify-center mb-4">
+        <div className="flex flex-row gap-2 max-h-[300px]">
           <h3
             className="text-lg font-bold"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
-              minHeight: "80px",
             }}
           >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
           </h3>
-        </div>
-        <div className="flex justify-center mb-4">
           <p
-            className="text-sm text-gray-700 text-center max-w-xs"
+            className="text-sm text-gray-700 max-w-xs"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
-              minHeight: "120px",
             }}
           >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠶᠢᠨ ᠠᠷᠭᠠ ᠵᠠᠮ ᠢ ᠲᠠᠨ ᠳ᠋ᠤ ᠮᠡᠳᠡᠭᠦᠯᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ᠃
             ᠲᠠᠨ ᠤ᠋ ᠬᠠᠷᠲ ᠢ ᠪᠦᠷᠳᠦᠯᠦᠨ᠎ᠡ ᠠᠦᠲᠣᠮᠠᠲ ᠬᠠᠨᠳᠢᠪ ᠢᠯᠡᢉᠡᠨ᠎ᠡ᠃
           </p>
-        </div>
-        <div className="flex justify-center">
           <p
-            className="text-xs text-gray-600 text-center max-w-xs"
+            className="text-xs text-gray-600 max-w-xs"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
-              minHeight: "60px",
             }}
           >
             ᠬᠣᠯᠪᠤᠭ᠎ᠠ: ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ ᠬᠣᠲᠠ᠂ ᠰᠦᢈᠡᠪᠠᠭᠠᠲᠤᠷ ᠳᠡᢉᠦᠷᢉᠡ᠂ ᠖-ᠷ ᠬᠣᠷᠢᠶ᠎ᠠ᠂ AB

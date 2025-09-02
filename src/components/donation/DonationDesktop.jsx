@@ -4,6 +4,7 @@ import StaticHeader from "@/components/common/StaticHeader";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
 import { countryData } from "@/utils/countryList";
+import { toMongolianNumbers } from "@/utils/fetcher";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -161,7 +162,7 @@ export default function DonationDesktop({
                       textOrientation: "upright",
                     }}
                   >
-                    {amountOption.toLocaleString()}₮
+                    {toMongolianNumbers(amountOption)}₮
                   </button>
                 ))}
                 <input
