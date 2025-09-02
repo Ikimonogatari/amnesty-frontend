@@ -57,7 +57,7 @@ export default function Header() {
         },
         {
           text: "ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠢᠴᠢᠴᠡᠭᠡᠶ᠎ᠡ",
-          link: "/campaign/writeforrights",
+          link: "/writeforrights",
         },
       ],
     },

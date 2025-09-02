@@ -162,7 +162,7 @@ const secondRowItems = [
     description:
       "ᠡᠯᠡᠻᠲᠷᠣᠨ ᠰᠢᠤᠳᠠᠩᠭᠠᠷ ᠵᠠᢈᠢᠳᠠᠯ ᠢᠯᠭᠡᢉᠦ᠂ ᠤᠷᠢᠶᠠᠯᠭ᠎ᠠ ᠳ᠋ᠤ ᠨᠢᢉᠡᠳᢈᠦ᠂ ᠨᠢᠶᠢᠭᠡᠮ ᠤ᠋ᠨ ᠰᠦᠯᠵᠢᠶᠡ ᠳ᠋ᠤ ᠠᠻᠴᠠᠳ ᠨᠢᢉᠡᠳᢈᠦ ᠵᠡᠷᠡᠭ ᠡᠩᠭᠢᠨ ᠦᠢᠯᠡᠳᠦᠯ ᢈᠡᠨ ᠨᠡᠭᠡᠨ ᠢ᠋ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠳ᠋ᠤ ᠪᠣᠳᠢᠲᠣᠢ ᠥᠪᠡᠷᢉᠢᠯᢉᠡ ᢈᠢᠶᠡᠵᠤ ᠴᠢᠳᠠᠨ᠎ᠠ᠃",
     buttonText: "ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᠵᠦ ᠥᠪᠡᠷᢉᠢᠯᢉᠡ ᢈᠢᠶᠡ",
-    link: "/campaign/writeforrights",
+    link: "/writeforrights",
     image: "/images/participation/2a_thumbnail.jpg.png",
   },
   {
