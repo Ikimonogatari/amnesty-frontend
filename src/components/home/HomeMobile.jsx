@@ -175,11 +175,6 @@ export default function HomeMobile() {
                     className="absolute top-0 right-0 text-black"
                   />
                 </div>
-                <Button
-                  text={"ᠤᠩᠰᠢᠬᠤ"}
-                  type="secondary"
-                  className="text-black clear-start "
-                />
               </div>
             ))}
             {/* Show message if no posts available */}

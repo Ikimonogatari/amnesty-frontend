@@ -129,11 +129,11 @@ export default function HomeDesktop() {
             {newsItems.slice(0, 6).map((item) => (
               <div
                 key={item.id}
-                className="col-span-1 flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
+                className="col-span-1 relative flex items-end space-x-4 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => handleNewsClick(item.id)}
               >
                 <h3
-                  className="w-16 h-full text-sm"
+                  className="min-w-16 max-w-16 h-full text-sm"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",
@@ -144,33 +144,26 @@ export default function HomeDesktop() {
                     ? `${item.title.substring(0, 50)}...`
                     : item.title}
                 </h3>
-                <div className="relative h-full aspect-square">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={330}
-                    height={330}
-                    className="aspect-square object-cover rounded-xl"
-                    onError={(e) => {
-                      e.target.src = "/images/news1.png"; // fallback image
-                    }}
-                  />
-                  <Button
-                    text={"ᠮᠡᠳᠡᢉᠡ"}
-                    type="primary"
-                    className="absolute top-0 right-0 text-black"
-                  />
-                </div>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={400}
+                  height={400}
+                  className="aspect-square h-full object-cover rounded-xl"
+                  onError={(e) => {
+                    e.target.src = "/images/news1.png"; // fallback image
+                  }}
+                />
                 <Button
-                  text={"ᠤᠩᠰᠢᠬᠤ"}
-                  type="secondary"
-                  className="text-black h-48"
+                  text={"ᠮᠡᠳᠡᢉᠡ"}
+                  type="primary"
+                  className="absolute top-2 right-2 text-black"
                 />
               </div>
             ))}
             {/* Show message if no posts available */}
             {newsItems.length === 0 && (
-              <div className="col-span-2 row-span-3 flex items-center justify-center border border-gray-200 rounded-xl">
+              <div className="col-span-2 row-span-3 gap-10 flex items-center justify-center border border-gray-200 rounded-xl">
                 <p
                   className="text-gray-400"
                   style={{

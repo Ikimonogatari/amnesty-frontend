@@ -37,7 +37,8 @@ export default function RelatedItems({
         {items.slice(0, maxItems).map((item, index) => (
           <div
             key={item.id || index}
-            className="flex space-x-4 max-h-[400px] h-full"
+            onClick={() => handleItemClick(item.id)}
+            className="flex space-x-4 max-h-[400px] h-full cursor-pointer hover:opacity-80 transition-opacity"
           >
             <h3
               className="max-w-16 line-clamp-3 h-full text-sm"
@@ -69,12 +70,6 @@ export default function RelatedItems({
                 onClick={() => handleItemClick(item.id)}
               />
             </div>
-            <Button
-              text="ᠤᠩᠰᠢᠬᠤ"
-              type="secondary"
-              className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity"
-              onClick={() => handleItemClick(item.id)}
-            />
           </div>
         ))}
       </div>

@@ -73,7 +73,7 @@ export default function GridLayout({
       {/* Desktop Layout - EXACT NEWS STRUCTURE */}
       <div className="hidden sm:block h-full">
         <div className="h-full flex gap-4">
-          <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-4">
+          <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-4 sm:gap-6">
             {isLoading || !items ? (
               // Loading placeholders to maintain layout - consistent between server and client
               Array.from({ length: 9 }).map((_, index) => (
@@ -95,7 +95,7 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="min-w-12 line-clamp-3 max-w-[300px] h-full text-xs transition-colors cursor-pointer hover:text-blue-600"
+                    className="min-w-12 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
@@ -167,14 +167,6 @@ export default function GridLayout({
                     {renderAdditionalContent && renderAdditionalContent(item)}
 
                     {/* Right Action Button - conditionally rendered */}
-                    {!hideCategoryButton && (
-                      <Button
-                        text={"ᠤᠩᠰᠢᠬᠤ"}
-                        type="secondary"
-                        className="text-black h-48 cursor-pointer hover:opacity-80 transition-opacity flex-shrink-0"
-                        onClick={() => handleItemClick(item)}
-                      />
-                    )}
                   </div>
                 </div>
               ))
