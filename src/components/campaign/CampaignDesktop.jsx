@@ -99,7 +99,7 @@ export default function CampaignDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0 min-w-screen">
       <StaticHeader
-        image="/images/campaign/header-img.png"
+        image="/images/image-campaign-header.jpg"
         alt="Campaign Page Header"
         width="90rem"
         title="ᠪᠢᠳᠡ ᠶᠠᠭᠤᠮ ᠬᠢᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ?"

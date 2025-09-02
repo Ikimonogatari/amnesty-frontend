@@ -19,10 +19,10 @@ export default function ParticipationMobile() {
   return (
     <div className="h-full w-full block sm:hidden">
       <StaticHeader
-        image="/images/participation/header-img.png"
+        image="/images/participation/image-participation-header.jpg"
         alt="Participation Page Header"
         width="100%"
-        title="ᠲᠠᠨ ᠤ ᠣᠷᠣᠯᠴᠠᠭᠠᠨ"
+        title="ᠲᠠᠨ ᠤ᠋ ᠣᠷᠣᠯᠴᠠᠭ᠎ᠠ"
       />
 
       <div className="h-full p-4 flex flex-col gap-7">

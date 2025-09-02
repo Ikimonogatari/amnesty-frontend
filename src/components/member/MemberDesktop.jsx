@@ -271,10 +271,10 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/members/header-img.jpg"
+        image="/images/members/members-cover.png"
         alt="Member Page Header"
         width="90rem"
-        title="ᠭᠢᠰᠦᠦᠨᠴᠢᠯᠡᠯ"
+        title="ᢉᠢᠰᠡᢉᠦᠨᠴᠢᠯᠡᠯ"
       />
       <div className="flex gap-16 p-4 h-full">
         <div className="flex gap-2">

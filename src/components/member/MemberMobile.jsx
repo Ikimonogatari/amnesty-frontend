@@ -1,4 +1,5 @@
 import BannerSlider from "@/components/common/BannerSlider";
+import StaticHeader from "@/components/common/StaticHeader";
 import { bannerImages } from "@/constants/bannerImages";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
@@ -497,7 +498,12 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
 
   return (
     <div className="h-full flex flex-col sm:hidden gap-4">
-      <BannerSlider images={bannerImages} width="90rem" />
+      <StaticHeader
+        image="/images/members/members-cover.png"
+        alt="Member Page Header"
+        width="100%"
+        title="ᢉᠢᠰᠡᢉᠦᠨᠴᠢᠯᠡᠯ"
+      />
       <div className="h-full flex flex-col gap-4 p-4">
         {/* Title */}
         <div className="flex gap-2 max-h-[150px] overflow-x-auto">

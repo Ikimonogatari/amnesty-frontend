@@ -91,10 +91,10 @@ export default function RightMobile() {
   return (
     <div className="h-full flex flex-col sm:hidden gap-7">
       <StaticHeader
-        image="/images/news1.png"
+        image="/images/div.png"
         alt="Rights Page Header"
         width="100%"
-        title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠮᠡᠳᠡᠬᠦ"
+        title="ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ"
       />
       <div className="h-full p-4">
         <div className="h-full flex flex-col gap-7">
