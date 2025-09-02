@@ -12,8 +12,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-mongolian: "Mongolian Baiti", "Microsoft Mongolian Baiti",
-    "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", serif;
+  --font-mongolian: "MongolianScript", "Mongolian Baiti",
+    "Microsoft Mongolian Baiti", "Menksoft Qagan", "TraditionalMongolian",
+    "Mongolian White", serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,13 +27,15 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "MongolianScript", "Mongolian Baiti", "Microsoft Mongolian Baiti",
+    "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", Arial,
+    Helvetica, serif;
 }
 
 /* Mongolian font utility class */
 .font-mongolian {
-  font-family: "Mongolian Baiti", "Microsoft Mongolian Baiti", "Menksoft Qagan",
-    "TraditionalMongolian", "Mongolian White", serif;
+  font-family: "MongolianScript", "Mongolian Baiti", "Microsoft Mongolian Baiti",
+    "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", serif;
 }
 
 /* Donation button - exact copy from original Svelte version */
@@ -178,15 +181,11 @@ body {
   }
 }
 
-/* @font-face for custom Mongolian script font (uncomment and update path when font file is added) */
-/*
+/* @font-face for custom Mongolian script font */
 @font-face {
-  font-family: 'TraditionalMongolian';
-  src: url('/fonts/traditional-mongolian.woff2') format('woff2'),
-       url('/fonts/traditional-mongolian.woff') format('woff'),
-       url('/fonts/traditional-mongolian.ttf') format('truetype');
+  font-family: "MongolianScript";
+  src: url("/fonts/MongolianScript-2.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
-*/

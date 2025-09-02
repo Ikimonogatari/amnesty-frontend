@@ -35,7 +35,7 @@ export default function Layout({ children }) {
       {/* Desktop Layout - Horizontal scrolling for Mongolian script */}
       <div
         ref={scrollRef}
-        className="h-screen w-screen overflow-x-auto overflow-y-hidden hidden md:block"
+        className="h-screen w-screen overflow-x-auto overflow-y-hidden hidden md:block font-mongolian"
         style={{ scrollBehavior: "smooth" }}
       >
         <div
