@@ -226,13 +226,18 @@ export default function ReportSwiper({
           onClick={handlePrevSlide}
           disabled={currentSlide === 1}
         />
-        <div className="text-center">
+        <div className="text-center space-y-2">
           <p className="text-sm font-bold">
             {toMongolianNumeral(currentSlide)}/
             {toMongolianNumeral(slides.length)}
           </p>
           {slides.length > 5 && (
-            <p className="text-xs text-gray-500">ᠦᠷᠭᠦᠯᠵᠢᠯᠡᢉᠦ</p>
+            <p
+              className="text-xs text-gray-500"
+              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            >
+              ᠦᠷᠭᠦᠯᠵᠢᠯᠡᢉᠦ
+            </p>
           )}
         </div>
         <Button

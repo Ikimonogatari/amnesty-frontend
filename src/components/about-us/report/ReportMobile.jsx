@@ -59,7 +59,7 @@ export default function ReportMobile() {
   return (
     <div className="block sm:hidden">
       <StaticHeader
-        image="/images/aboutSub4/header-img.png"
+        image="/images/header-img.png"
         alt="Report Page Header"
         width="100%"
         title="ᠲᠠᠶᠢᠯᠠᠨ"

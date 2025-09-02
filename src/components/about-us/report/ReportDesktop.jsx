@@ -24,7 +24,7 @@ export default function ReportDesktop() {
     return (
       <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
         <StaticHeader
-          image="/images/aboutSub4/header-img.png"
+          image="/images/header-img.png"
           alt="Report Page Header"
           width="90rem"
           title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠶᠢᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ"
@@ -45,7 +45,7 @@ export default function ReportDesktop() {
     return (
       <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
         <StaticHeader
-          image="/images/aboutSub4/header-img.png"
+          image="/images/header-img.png"
           alt="Report Page Header"
           width="90rem"
           title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠬᠡᠮᠵᠢᠶ᠎ᠡ ᠶᠢᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ"
@@ -67,7 +67,7 @@ export default function ReportDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/aboutSub4/header-img.png"
+        image="/images/header-img.png"
         alt="Report Page Header"
         width="90rem"
         title="ᠲᠠᠶᠢᠯᠠᠨ"

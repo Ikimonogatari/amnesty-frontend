@@ -136,7 +136,7 @@ export default function ReportDetail() {
       <div className="sm:hidden flex flex-col w-full">
         {/* Mobile StaticHeader */}
         <StaticHeader
-          image={coverImage}
+          image="/images/header-img.png"
           alt={title || "ᠲᠠᠶᠢᠯᠤᠨ"}
           title={title}
           width="100%"
@@ -305,7 +305,7 @@ export default function ReportDetail() {
       <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
         {/* Report Title Header */}
         <StaticHeader
-          image={coverImage}
+          image="/images/header-img.png"
           alt="Report Page Header"
           width="90rem"
           title={title}
