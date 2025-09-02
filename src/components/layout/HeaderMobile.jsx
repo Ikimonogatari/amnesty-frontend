@@ -76,7 +76,7 @@ export default function HeaderMobile() {
     },
     {
       text: "ᠡᠷᠬᠡᠭᠡ ᠮᠡᠳᠢᠶᠡ",
-      link: "/right",
+      link: "/knowrights",
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/lessons" },
