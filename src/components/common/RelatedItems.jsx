@@ -21,10 +21,10 @@ export default function RelatedItems({
   };
 
   return (
-    <div className="h-full flex gap-10 w-auto flex-shrink-0">
-      <div className="h-full flex flex-col items-center gap-4">
+    <div className="h-full flex gap-4 w-auto">
+      <div className="h-full flex flex-col items-center">
         <div
-          className="w-full h-full flex justify-center items-center text-center text-2xl font-bold rounded-xl p-8 text-black bg-white border border-[#E3E3E3]"
+          className="w-full h-full flex justify-center items-center text-center text-xl font-bold rounded-xl p-4 text-black bg-white border border-[#E3E3E3] min-h-0"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",
@@ -33,40 +33,45 @@ export default function RelatedItems({
           {sectionTitle}
         </div>
       </div>
-      <div className="flex flex-col gap-4 justify-between">
+      <div className="flex flex-col gap-2 justify-start h-full overflow-hidden">
         {items.slice(0, maxItems).map((item, index) => (
           <div
             key={item.id || index}
             onClick={() => handleItemClick(item.id)}
-            className="flex space-x-4 max-h-[400px] h-full cursor-pointer hover:opacity-80 transition-opacity"
+            className="flex space-x-3 cursor-pointer hover:opacity-80 transition-opacity flex-1 min-h-0"
+            style={{
+              height: `calc(100% / ${Math.min(
+                items.length,
+                maxItems
+              )} - 0.5rem)`,
+            }}
           >
             <h3
-              className="max-w-16 line-clamp-3 h-full text-sm"
+              className="max-w-12 text-xs flex-shrink-0"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
               }}
               title={item.title || item.name}
             >
-              {(item.title || item.name)?.length > 50
-                ? `${(item.title || item.name).substring(0, 50)}...`
+              {(item.title || item.name)?.length > 30
+                ? `${(item.title || item.name).substring(0, 30)}...`
                 : item.title || item.name}
             </h3>
-            <div className="relative">
+            <div className="relative w-80 min-h-0" style={{ aspectRatio: "1" }}>
               <Image
                 src={
                   getImageUrl(item.thumbnail || item.cover || item.image) ||
                   "/images/news1.png"
                 }
                 alt={item.title || item.name || "Related item image"}
-                width={400}
-                height={400}
-                className="object-cover rounded-xl shadow-md w-[400px] h-[400px]"
+                fill
+                className="object-contain rounded-lg shadow-md"
               />
               <Button
                 text={primaryButtonText}
                 type="primary"
-                className="absolute top-0 right-0 text-black cursor-pointer hover:opacity-80 transition-opacity"
+                className="absolute top-1 right-1 text-black cursor-pointer hover:opacity-80 transition-opacity text-xs px-2 py-1"
                 onClick={() => handleItemClick(item.id)}
               />
             </div>

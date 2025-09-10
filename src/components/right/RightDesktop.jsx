@@ -120,7 +120,7 @@ export default function RightDesktop() {
   };
 
   return (
-    <div className="h-full hidden sm:flex gap-10 flex-shrink-0 p-4">
+    <div className="h-full hidden sm:flex gap-10 flex-shrink-0">
       <StaticHeader
         image="/images/div.png"
         alt="Rights Page Header"

@@ -114,17 +114,27 @@ export default function LibraryDetail() {
         />
 
         {/* Mobile Content */}
-        <div className="flex flex-col gap-6 p-4">
+        <div className="flex flex-col gap-4 p-4 max-h-screen overflow-y-auto">
           {/* Mobile PDF Viewer */}
           {pdfUrl && (
             <div>
-              <h2 className="text-xl font-bold mb-4">PDF ᠨᠣᠮ</h2>
+              <h2 className="text-xl font-bold mb-4">PDF</h2>
               <object
                 data={pdfUrl}
                 type="application/pdf"
-                className="w-full h-[400px] border rounded"
+                className="w-full border rounded"
+                style={{
+                  height: "50vh",
+                  minHeight: "40vh",
+                }}
               >
-                <div className="w-full h-[400px] bg-gray-100 border rounded flex items-center justify-center">
+                <div
+                  className="w-full bg-gray-100 border rounded flex items-center justify-center"
+                  style={{
+                    height: "50vh",
+                    minHeight: "40vh",
+                  }}
+                >
                   <Button
                     onClick={() => window.open(pdfUrl, "_blank")}
                     text="PDF ᠲᠠᠲᠠᠬᠤ"
@@ -243,7 +253,7 @@ export default function LibraryDetail() {
       </div>
 
       {/* Desktop Layout - Same as Podcast */}
-      <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
+      <div className="h-screen p-4 hidden sm:flex gap-7 overflow-x-auto w-full overflow-y-hidden">
         {/* Library Title Header */}
         <StaticHeader
           image={coverImage}
@@ -262,15 +272,25 @@ export default function LibraryDetail() {
                 textOrientation: "upright",
               }}
             >
-              PDF ᠨᠣᠮ
+              PDF
             </h2>
             <div className="flex items-center">
               <object
                 data={pdfUrl}
                 type="application/pdf"
-                className="w-[800px] h-[600px] shadow-lg rounded-lg"
+                className="shadow-lg rounded-lg h-full w-auto"
+                style={{
+                  maxWidth: "70vw",
+                  aspectRatio: "3/4",
+                }}
               >
-                <div className="w-[800px] h-[600px] bg-gray-100 shadow-lg rounded-lg flex items-center justify-center">
+                <div
+                  className="bg-gray-100 shadow-lg rounded-lg flex items-center justify-center h-full w-auto"
+                  style={{
+                    maxWidth: "70vw",
+                    aspectRatio: "3/4",
+                  }}
+                >
                   <div className="text-center">
                     <div className="w-16 h-16 mx-auto mb-4 text-gray-400">
                       <svg fill="currentColor" viewBox="0 0 24 24">

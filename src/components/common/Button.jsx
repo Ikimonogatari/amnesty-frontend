@@ -35,7 +35,7 @@ export default function Button({
       >
         <p
           className={`${
-            type !== "chevron" && "pl-1 sm:pl-2"
+            type !== "chevron" && "pl-1"
           } font-bold text-[10px] sm:text-base`}
         >
           {text}
@@ -52,7 +52,7 @@ export default function Button({
     >
       <p
         className={`${
-          type !== "chevron" && "pl-1 sm:pl-2"
+          type !== "chevron" && ""
         } font-bold text-[10px] sm:text-base`}
       >
         {text}
