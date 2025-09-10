@@ -4,6 +4,7 @@ import RightSwiper from "./RightSwiper";
 import { useState, useEffect } from "react";
 import Fetcher from "@/utils/fetcher";
 import StaticHeader from "../common/StaticHeader";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 export default function RightMobile() {
   const [swiperData, setSwiperData] = useState([]);
@@ -169,9 +170,7 @@ export default function RightMobile() {
           </div>
           <div className="flex flex-col gap-7 overflow-x-auto">
             {loading ? (
-              <div className="flex items-center justify-center">
-                <p className="text-xs text-gray-500">Loading content...</p>
-              </div>
+              <LoadingSpinner size="sm" />
             ) : (
               swiperData.map((item) => (
                 <RightSwiper

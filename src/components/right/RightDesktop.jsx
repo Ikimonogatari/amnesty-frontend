@@ -2,6 +2,7 @@ import StaticHeader from "@/components/common/StaticHeader";
 import RightSwiper from "./RightSwiper";
 import { useState, useEffect } from "react";
 import Fetcher from "@/utils/fetcher";
+import LoadingSpinner from "@/components/common/LoadingSpinner";
 
 export default function RightDesktop() {
   const [swiperData, setSwiperData] = useState([]);
@@ -166,9 +167,7 @@ export default function RightDesktop() {
             </p>
           </div>
           {loading ? (
-            <div className="flex items-center justify-center">
-              <p className="text-sm text-gray-500">Loading content...</p>
-            </div>
+            <LoadingSpinner size="sm" />
           ) : (
             swiperData.map((item) => (
               <RightSwiper
