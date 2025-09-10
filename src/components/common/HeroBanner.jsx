@@ -28,9 +28,8 @@ export default function HeroBanner({
       >
         <div className="text-center px-4">
           <h1
-            className="text-white font-bold text-4xl md:text-5xl lg:text-6xl uppercase"
+            className="text-white font-bold text-4xl md:text-5xl lg:text-6xl uppercase font-mongolian"
             style={{
-              fontFamily: "'Oswald', sans-serif",
               textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
               lineHeight: "1.2",
               letterSpacing: "0.05em",
@@ -41,9 +40,8 @@ export default function HeroBanner({
 
           {description && (
             <p
-              className="text-white text-lg md:text-xl mt-4"
+              className="text-white text-lg md:text-xl mt-4 font-mongolian"
               style={{
-                fontFamily: "'Oswald', sans-serif",
                 textShadow: "1px 1px 2px rgba(0, 0, 0, 0.8)",
                 lineHeight: "1.4",
               }}
@@ -56,8 +54,7 @@ export default function HeroBanner({
             <div className="mt-6">
               <a
                 href={buttonHref}
-                className="inline-block px-6 py-3 bg-yellow-400 text-black font-bold uppercase hover:bg-yellow-300 transition-colors"
-                style={{ fontFamily: "'Oswald', sans-serif" }}
+                className="inline-block px-6 py-3 bg-yellow-400 text-black font-bold uppercase hover:bg-yellow-300 transition-colors font-mongolian"
               >
                 {buttonText}
               </a>
