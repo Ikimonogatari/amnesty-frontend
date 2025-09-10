@@ -2,13 +2,7 @@ import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
 import RightSwiper from "./RightSwiper";
 import { useState, useEffect } from "react";
-import {
-  videosService,
-  librariesService,
-  lessonsService,
-  onlineLessonsService,
-  podcastsService,
-} from "@/services/apiService";
+import Fetcher from "@/utils/fetcher";
 import StaticHeader from "../common/StaticHeader";
 
 export default function RightMobile() {
@@ -23,17 +17,39 @@ export default function RightMobile() {
     try {
       setLoading(true);
 
-      // Fetch all content types in parallel (matching old knowrights page)
-      const [lessons, onlineLessons, libraries, videos, podcasts] =
-        await Promise.all([
-          lessonsService.getLessons({ pageSize: 6 }),
-          onlineLessonsService.getOnlineLessons({ pageSize: 6 }),
-          librariesService.getLibraries({ pageSize: 6 }),
-          videosService.getVideos({ pageSize: 6 }),
-          podcastsService.getPodcasts({ pageSize: 6 }),
-        ]);
+      // Use direct Fetcher calls like the working individual pages
+      const fetchRequests = [
+        Fetcher("/lessons?populate=deep&sort[publishedAt]=desc").catch(() => ({
+          data: [],
+        })),
+        Fetcher("/online-lessons?populate=deep&sort[publishedAt]=desc").catch(
+          () => ({ data: [] })
+        ),
+        Fetcher("/libraries?populate=deep&sort[publishedAt]=desc").catch(
+          () => ({ data: [] })
+        ),
+        Fetcher("/videos?populate=deep&sort[publishedAt]=desc").catch(() => ({
+          data: [],
+        })),
+        Fetcher("/podcasts?populate=deep&sort[publishedAt]=desc").catch(() => ({
+          data: [],
+        })),
+      ];
 
-      // Data fetched successfully
+      const [
+        lessonsResponse,
+        onlineLessonsResponse,
+        librariesResponse,
+        videosResponse,
+        podcastsResponse,
+      ] = await Promise.all(fetchRequests);
+
+      // Extract data arrays (take first 6 items each)
+      const lessons = (lessonsResponse?.data || []).slice(0, 6);
+      const onlineLessons = (onlineLessonsResponse?.data || []).slice(0, 6);
+      const libraries = (librariesResponse?.data || []).slice(0, 6);
+      const videos = (videosResponse?.data || []).slice(0, 6);
+      const podcasts = (podcastsResponse?.data || []).slice(0, 6);
 
       // Create swiper data structure (matching old knowrights page structure)
       const dynamicSwiperData = [
@@ -43,7 +59,7 @@ export default function RightMobile() {
           description:
             "ᠪᠢᠳ ᠪᠦᠬᠦ ᠨᠠᠰᠤᠨ ᠤ ᠬᠦᠮᠦᠨ ᠦ ᠵᠣᠷᠢᠯᠠᠭᠰᠠᠨ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠤᠨ ᠮᠠᠲ᠋ᠧᠷᠢᠶᠠᠯ ᠪᠡᠯᠲᠡᠭᠡᠵᠦ᠂ ᠨᠢᠶᠭᠡᠮ ᠳᠦ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠲᠡᠮᠡᠴᠡᠯ ᠦᠳ ᠳᠦ ᠲᠤᠰᠠᠯᠠᠬᠤ ᠵᠣᠷᠢᠯᠭᠠ ᠂ ᠤᠭ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠵᠢᠨ ᠭᠠᠷᠢᠨ ᠠᠪᠤᠯᠭᠠ᠂ ᠸᠢᠳᠧᠣ ᠪᠢᠴᠢᠯᠡᠭ ᠨᠢ ᠪᠡᠯᠲᠡᠭᠡᠳᠡᠭ᠃",
           sectionTitle: "ᠣᠨᠴᠣᠯᠠᠬᠤ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠨᠤᠭᠤᠳ",
-          data: lessons || [],
+          data: lessons,
         },
         {
           id: 2,
@@ -51,7 +67,7 @@ export default function RightMobile() {
           description:
             "ᠮᠣᠨᠭᠣᠯ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᠒᠐ ᠭᠠᠷᠤᠢ ᠣᠷᠤᠨ ᠤ ᠬᠡᠯᠡ ᠳᠡᠭᠡᠷᠡ ᠰᠤᠳᠤᠯᠬᠤ ᠪᠣᠯᠣᠮᠵᠢᠲᠠᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠨᠤᠭᠤᠳ ᠢ ᠰᠠᠨᠠᠯ ᠪᠣᠯᠭᠠᠵᠤ ᠪᠠᠢᠨᠠ᠃ ᠤᠭ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠨᠤᠭᠤᠳ ᠨᠢ ᠦᠨᠡ ᠲᠥᠯᠦᠪᠦᠷᠢ ᠦᠭᠡᠢ ᠪᠥᠭᠡᠳ ᠲᠠ ᠢᠨᠲᠧᠷᠨᠧᠲ ᠲᠦ ᠬᠣᠯᠪᠤᠭᠠᠳ ᠪᠠᠢᠬᠤ ᠳᠤ ᠯᠠ ᠬᠠᠩᠭᠠᠯᠲᠠᠢ᠃",
           sectionTitle: "ᠣᠨᠴᠣᠯᠠᠬᠤ ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠨᠤᠭᠤᠳ",
-          data: onlineLessons || [],
+          data: onlineLessons,
         },
         {
           id: 3,
@@ -59,7 +75,7 @@ export default function RightMobile() {
           description:
             "ᠲᠠ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠠᠰᠢᠶᠠᠨᠠᠯ ᠡᠴᠡ ᠡᠷᠬᠢᠯᠡᠨ ᠭᠠᠷᠭᠠᠭᠰᠠᠨ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠣᠯᠠᠨ ᠨᠣᠮ ᠲᠣᠪᠴᠢᠮᠠᠯ᠂ ᠰᠤᠳᠤᠯᠭᠠ᠂ ᠭᠠᠷᠢᠨ ᠠᠪᠤᠯᠭᠠ᠂ ᠲᠠᠢᠯᠠᠩ ᠠᠴᠠ ᠬᠦᠰᠡᠭᠰᠡᠨ ᠢᠶᠠᠷ ᠢᠶᠠᠨ ᠦᠵᠡᠵᠦ ᠰᠤᠳᠤᠯᠵᠤ ᠥᠪᠡᠷ ᠢ ᠪᠡᠨ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᠢ ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠳᠡᠭ᠂ ᠡᠷᠬᠡ ᠪᠡᠨ ᠱᠠᠭᠠᠷᠳᠠᠳᠠᠭ᠂ ᠡᠷᠬᠡ ᠪᠡᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠳᠠᠭ ᠬᠦᠮᠦᠨ ᠪᠣᠯᠬᠤ ᠳᠤ ᠲᠤᠰᠠᠯᠠᠷᠠᠢ᠃",
           sectionTitle: "ᠣᠨᠴᠣᠯᠠᠬᠤ ᠨᠣᠮ ᠲᠣᠪᠴᠢᠮᠠᠯ ᠤᠳ",
-          data: libraries || [],
+          data: libraries,
         },
         {
           id: 4,
@@ -67,7 +83,7 @@ export default function RightMobile() {
           description:
             "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠮᠡᠳᠡᠯᠡᠯ ᠣᠯᠭᠣᠬᠤ ᠪᠢᠴᠢᠯ ᠸᠢᠳᠧᠣ᠂ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠬᠢᠴᠢᠶᠡᠯ ᠦᠳ᠂ ᠮᠣᠨᠭᠣᠯ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠠᠰᠢᠶᠠᠨᠠᠯ ᠤᠨ ᠵᠣᠬᠢᠶᠠᠨ ᠪᠠᠢᠭᠤᠯᠠᠭᠰᠠᠨ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ ᠤ ᠲᠣᠢᠢᠮ ᠮᠡᠳᠡᠡᠯᠡᠯ ᠵᠡᠷᠭᠡ ᠶᠢ ᠳᠠᠷᠠᠭᠠᠬᠢ ᠴᠠᠬᠢᠮ ᠸᠢᠳᠧᠣ ᠰᠠᠩ ᠠᠴᠠ ᠬᠦᠯᠢᠶᠡᠨ ᠠᠪᠴᠤ ᠦᠵᠡᠨᠡ ᠦᠦ᠃",
           sectionTitle: "ᠣᠨᠴᠣᠯᠠᠬᠤ ᠸᠢᠳᠧᠤ ᠨᠤᠭᠤᠳ",
-          data: videos || [],
+          data: videos,
         },
         {
           id: 5,
@@ -75,14 +91,30 @@ export default function RightMobile() {
           description:
             "ᠮᠣᠨᠭᠣᠯ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠠᠰᠢᠶᠠᠨᠠᠯ ᠤᠨ ᠢᠳᠡᠪᠬᠢᠲᠡᠨ ᠦᠳ ᠬᠦᠲᠡᠯᠡᠨ ᠶᠠᠪᠤᠭᠤᠯᠳᠠᠭ᠂ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠤᠬᠠᠢ ᠰᠢᠨ᠎ᠡ ᠮᠡᠳᠡᠡ᠂ ᠮᠡᠳᠡᠡᠯᠡᠯ᠂ ᠰᠣᠨᠢᠷᠬᠣᠯᠲᠠᠢ ᠵᠣᠴᠢᠳᠲᠠᠢ ᠶᠠᠷᠢᠯᠴᠠᠵᠤ᠂ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠣᠯᠭᠣᠬᠤ ᠫᠣᠳᠺᠠᠰᠲ ᠤᠳ",
           sectionTitle: "ᠣᠨᠴᠣᠯᠠᠬᠤ ᠫᠣᠳᠺᠠᠰᠲ ᠤᠳ",
-          data: podcasts || [],
+          data: podcasts,
         },
       ];
 
       setSwiperData(dynamicSwiperData);
     } catch (error) {
-      // Set empty array if API fails
-      setSwiperData([]);
+      console.log("API failed, using empty data:", error);
+      // Set empty data structure if all APIs fail
+      setSwiperData([
+        {
+          id: 1,
+          title: "ᠰᠤᠷᠭᠠᠯᠲᠠ:",
+          description: "ᠰᠤᠷᠭᠠᠯᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃",
+          sectionTitle: "ᠣᠨᠴᠣᠯᠠᠬᠤ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠨᠤᠭᠤᠳ",
+          data: [],
+        },
+        {
+          id: 5,
+          title: "ᠫᠣᠳᠺᠠᠰᠲ:",
+          description: "ᠫᠣᠳᠺᠠᠰᠲ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃",
+          sectionTitle: "ᠣᠨᠴᠣᠯᠠᠬᠤ ᠫᠣᠳᠺᠠᠰᠲ ᠤᠳ",
+          data: [],
+        },
+      ]);
     } finally {
       setLoading(false);
     }
