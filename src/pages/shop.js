@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import ShopDesktop from "@/components/shop/ShopDesktop";
 import ShopMobile from "@/components/shop/ShopMobile";
-import { merchService } from "@/services/apiService";
+import { staticMerchandise } from "@/constants/staticMerchandise";
 
 export default function Shop() {
   const [merchandise, setMerchandise] = useState([]);
@@ -10,21 +10,9 @@ export default function Shop() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchMerchandise = async () => {
-      try {
-        setLoading(true);
-        const response = await merchService.getMerchandises({
-          pageSize: 50, // Get more items for the shop
-        });
-        setMerchandise(response || []);
-      } catch (err) {
-        setError(err.message || "Failed to fetch merchandise");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMerchandise();
+    // Skip API entirely - just use static data like old website
+    setMerchandise(staticMerchandise);
+    setLoading(false);
   }, []);
 
   if (loading) {

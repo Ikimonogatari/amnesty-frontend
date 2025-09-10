@@ -25,8 +25,12 @@ const renderMerchPrice = (merch) => {
   let price = merch?.price;
 
   if (price == null) {
-    price = 0;
+    price = "᠐";
+  } else if (typeof price === "string") {
+    // Price is already formatted (traditional Mongolian numerals)
+    price = price;
   } else {
+    // Price is a number, format it with commas
     price = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 

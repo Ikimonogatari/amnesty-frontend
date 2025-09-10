@@ -11,7 +11,9 @@ export default function MerchItem({ merchItem }) {
     const directUrl = merchItem.images.data.attributes.url;
     imageUrl = directUrl.startsWith("http")
       ? directUrl
-      : `${process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337'}${directUrl}`;
+      : `${
+          process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
+        }${directUrl}`;
   } else {
     imageUrl = "/images/no-image-icon.png";
   }
@@ -19,8 +21,12 @@ export default function MerchItem({ merchItem }) {
   let price = merchItem?.price;
 
   if (price == null) {
-    price = 0;
+    price = "᠐";
+  } else if (typeof price === "string") {
+    // Price is already formatted (traditional Mongolian numerals)
+    price = price;
   } else {
+    // Price is a number, format it with commas
     price = String(price).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
