@@ -46,7 +46,7 @@ const renderMerchPrice = (merch) => {
       </div>
       <div className="flex items-center justify-center">
         <a
-          className="border border-gray-300 py-1 px-2 text-[10px] font-[Oswald] rounded-md hover:bg-gray-100 transition-colors"
+          className="border border-gray-300 py-1 px-2 text-[10px] font-mongolian rounded-md hover:bg-gray-100 transition-colors"
           href={merch?.shop_link || "#"}
           target="_blank"
           rel="noopener noreferrer"

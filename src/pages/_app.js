@@ -26,6 +26,8 @@ export default function App({ Component, pageProps }) {
             padding: "16px 12px",
             fontSize: "14px",
             lineHeight: "1.4",
+            fontFamily:
+              "MongolianScript, Mongolian Baiti, Microsoft Mongolian Baiti, Menksoft Qagan, TraditionalMongolian, Mongolian White, serif",
           },
           success: {
             duration: 3000,
@@ -39,6 +41,8 @@ export default function App({ Component, pageProps }) {
               padding: "16px 12px",
               fontSize: "14px",
               lineHeight: "1.4",
+              fontFamily:
+                "MongolianScript, Mongolian Baiti, Microsoft Mongolian Baiti, Menksoft Qagan, TraditionalMongolian, Mongolian White, serif",
             },
           },
           error: {
@@ -53,6 +57,8 @@ export default function App({ Component, pageProps }) {
               padding: "16px 12px",
               fontSize: "14px",
               lineHeight: "1.4",
+              fontFamily:
+                "MongolianScript, Mongolian Baiti, Microsoft Mongolian Baiti, Menksoft Qagan, TraditionalMongolian, Mongolian White, serif",
             },
           },
         }}

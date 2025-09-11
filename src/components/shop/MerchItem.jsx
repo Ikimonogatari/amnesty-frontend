@@ -65,7 +65,7 @@ export default function MerchItem({ merchItem }) {
       />
       <div className="mt-2 flex items-center justify-center">
         <a
-          className="border border-gray-300 py-3 px-2 text-sm font-[Oswald] rounded-md hover:bg-gray-100 transition-colors"
+          className="border border-gray-300 py-3 px-2 text-sm font-mongolian rounded-md hover:bg-gray-100 transition-colors"
           href={shopLink}
           target="_blank"
           rel="noopener noreferrer"

@@ -188,7 +188,7 @@ export default function UserProfile({ userData, userGroups }) {
             <Menu size={24} />
           </button>
           <div
-            className="text-lg font-bold"
+            className="text-lg font-bold font-mongolian"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
@@ -217,7 +217,7 @@ export default function UserProfile({ userData, userGroups }) {
             <div className="text-sm">
               <div className="flex flex-col">
                 <div
-                  className="font-bold"
+                  className="font-bold font-mongolian"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",
@@ -262,7 +262,7 @@ export default function UserProfile({ userData, userGroups }) {
           <div className="absolute left-0 top-0 h-full w-80 bg-white shadow-xl">
             <div className="p-4 border-b flex items-center justify-between">
               <div
-                className="text-lg font-bold"
+                className="text-lg font-bold font-mongolian"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
@@ -333,7 +333,7 @@ export default function UserProfile({ userData, userGroups }) {
       )}
 
       {/* Desktop Layout */}
-      <div className="hidden md:flex flex-row gap-5 font-[Oswald] flex-1 p-4">
+      <div className="hidden md:flex flex-row gap-5 font-mongolian flex-1 p-4">
         <div className="flex flex-col md:flex-row gap-5 h-full max-h-screen overflow-y-auto">
           {/* Parent Navigation Tabs */}
           <div className="flex flex-col gap-5 flex-shrink-0 p-3 sm:p-0">
@@ -341,7 +341,7 @@ export default function UserProfile({ userData, userGroups }) {
               <button
                 key={tab.key}
                 onClick={() => onParentTabPress(tab)}
-                className={`px-3 py-2 text-md font-[Oswald] ${
+                className={`px-3 py-2 text-md font-mongolian ${
                   index === 0
                     ? "bg-[#FFFF00] text-black"
                     : "bg-[#eee] text-black hover:bg-gray-300"
@@ -361,7 +361,7 @@ export default function UserProfile({ userData, userGroups }) {
               <button
                 key={tab.key}
                 onClick={() => onChildTabPress(tab, index)}
-                className={`px-3 py-2 text-md font-[Oswald] ${
+                className={`px-3 py-2 text-md font-mongolian ${
                   index === childTabIndex
                     ? "bg-[#FFFF00] text-black"
                     : "bg-[#eee] text-black hover:bg-gray-300"
@@ -395,7 +395,7 @@ export default function UserProfile({ userData, userGroups }) {
             <div className="text-sm">
               <div className="flex flex-col">
                 <div
-                  className="font-bold"
+                  className="font-bold font-mongolian"
                   style={{
                     writingMode: "vertical-lr",
                     textOrientation: "upright",
@@ -490,7 +490,7 @@ function MyInfo({ userData }) {
       {/* Membership Status Section */}
       <div className="flex flex-row gap-5">
         <h3
-          className="text-lg font-bold mb-3"
+          className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",
@@ -545,7 +545,7 @@ function MyInfo({ userData }) {
       {/* Contact Information Section */}
       <div className="flex flex-row gap-5">
         <h3
-          className="text-lg font-bold mb-3"
+          className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",
@@ -600,7 +600,7 @@ function MyInfo({ userData }) {
       {/* Personal Information Section */}
       <div className="flex flex-row gap-5">
         <h3
-          className="text-lg font-bold mb-3"
+          className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",
@@ -779,7 +779,7 @@ function MyInfo({ userData }) {
       {/* Statistics Section */}
       <div className="flex flex-row gap-5">
         <h3
-          className="text-lg font-bold mb-3"
+          className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",
@@ -892,7 +892,7 @@ function MyEvents({ events, loading }) {
   return (
     <div className="flex flex-row gap-3">
       <h2
-        className="text-lg font-bold mb-4"
+        className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
           textOrientation: "upright",
@@ -904,7 +904,7 @@ function MyEvents({ events, loading }) {
         {eventsArray.map((event, index) => (
           <div key={event.id || index} className="border rounded-lg p-4">
             <h3
-              className="font-medium mb-2"
+              className="font-medium mb-2 font-mongolian"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -934,7 +934,7 @@ function MySubscriptions({ payments = [], loading = false }) {
     return (
       <div className="flex flex-row gap-3">
         <h2
-          className="text-lg font-bold mb-4"
+          className="text-lg font-bold mb-4 font-mongolian"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",
@@ -960,7 +960,7 @@ function MySubscriptions({ payments = [], loading = false }) {
     return (
       <div className="flex flex-row gap-3">
         <h2
-          className="text-lg font-bold mb-4"
+          className="text-lg font-bold mb-4 font-mongolian"
           style={{
             writingMode: "vertical-lr",
             textOrientation: "upright",
@@ -986,7 +986,7 @@ function MySubscriptions({ payments = [], loading = false }) {
   return (
     <div className="flex flex-row gap-3">
       <h2
-        className="text-lg font-bold mb-4"
+        className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
           textOrientation: "upright",
@@ -999,7 +999,7 @@ function MySubscriptions({ payments = [], loading = false }) {
           <div key={payment.id || index} className="border rounded-lg p-4">
             <div className="flex justify-between items-start mb-2">
               <h3
-                className="font-medium"
+                className="font-medium font-mongolian"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",
@@ -1053,7 +1053,7 @@ function ChangePassword() {
   return (
     <div className="flex flex-row gap-3">
       <h2
-        className="text-lg font-bold mb-4"
+        className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
           textOrientation: "upright",
@@ -1078,7 +1078,7 @@ function BecomeMember({ userData, userGroups }) {
   return (
     <div className="flex flex-row gap-3">
       <h2
-        className="text-lg font-bold mb-4"
+        className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
           textOrientation: "upright",
