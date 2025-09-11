@@ -5,7 +5,6 @@ import {
   buildPostApiUrl,
   formatStrapiResponse,
   formatPostResponse,
-  MOCK_DATA,
 } from "@/config/api";
 
 export const apiService = createApi({
@@ -20,6 +19,12 @@ export const apiService = createApi({
       if (apiKey) {
         headers.set("Authorization", `Bearer ${apiKey}`);
       }
+
+      // Add Accept-Language header for locale support (required by custom posts/list endpoint)
+      const locale = API_CONFIG.LOCALE || "mn-MN";
+      // Convert mn-MN to mn for the backend's getLocale function
+      const backendLocale = locale.split("-")[0];
+      headers.set("Accept-Language", backendLocale);
 
       return headers;
     },
@@ -361,17 +366,34 @@ export const apiService = createApi({
         // Extract pageSize from params to avoid duplication
         const { pageSize, page, sort, ...otherParams } = params;
 
-        const url = buildApiUrl(API_CONFIG.ENDPOINTS.REPORTS, {
-          "pagination[pageSize]":
-            pageSize || API_CONFIG.PAGINATION.DEFAULT_PAGE_SIZE,
+        // Build URL manually without locale parameter since reports endpoint doesn't support it
+        const queryParams = new URLSearchParams({
+          "populate": "*",
+          "pagination[pageSize]": pageSize || API_CONFIG.PAGINATION.DEFAULT_PAGE_SIZE,
           "pagination[page]": page || 1,
-          sort: sort || "id:desc", // Match old web sorting by ID descending
+          "sort": sort || "id:desc", // Match old web sorting by ID descending
           ...otherParams,
         });
-        return url.replace(API_CONFIG.BASE_URL, "");
+        
+        return `${API_CONFIG.ENDPOINTS.REPORTS}?${queryParams.toString()}`;
       },
       transformResponse: (response) => {
-        return formatStrapiResponse(response);
+        // Reports API returns standard Strapi format with nested attributes
+        // Transform to flattened format that components expect
+        if (response?.data && Array.isArray(response.data)) {
+          return response.data.map((item) => ({
+            id: item.id,
+            title: item.attributes?.title,
+            description: item.attributes?.description,
+            cover: item.attributes?.cover,
+            pdf_file: item.attributes?.pdf_file,
+            createdAt: item.attributes?.createdAt,
+            updatedAt: item.attributes?.updatedAt,
+            publishedAt: item.attributes?.publishedAt,
+            locale: item.attributes?.locale,
+          }));
+        }
+        return response?.data || [];
       },
       providesTags: ["Report"],
     }),

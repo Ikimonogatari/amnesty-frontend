@@ -190,15 +190,16 @@ export default function ReportSwiper({
           {slides.map((slide, index) => (
             <SwiperSlide key={`${slide.id}-${index}`}>
               <div
-                className={`w-full h-full flex gap-4 cursor-pointer hover:opacity-80 transition-opacity duration-300`}
+                className={`w-full h-full flex gap-7 cursor-pointer hover:opacity-80 transition-opacity duration-300`}
                 onClick={() => handleSlideClick(slide)}
               >
-                <div className="flex flex-col items-center gap-4 justify-between">
+                <div className="flex flex-col items-center gap-4">
                   <p
-                    className="text-sm font-bold"
+                    className="text-sm font-bold line-clamp-3 overflow-y-auto"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
+                      maxHeight: "",
                     }}
                   >
                     {slide.title}
