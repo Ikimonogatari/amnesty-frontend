@@ -1,35 +1,41 @@
 import Button from "@/components/common/Button";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { formatCurrency, formatDate as formatDateUtil } from "@/utils/locale";
 
-export default function MySubscriptions({ 
-  userSubscriptions, 
+export default function MySubscriptions({
+  userSubscriptions,
   handleLogout,
   onUpdateSubscription,
   onCancelSubscription,
-  onRefreshSubscriptions 
+  onRefreshSubscriptions,
 }) {
   const [isLoading, setIsLoading] = useState(false);
 
   const formatAmount = (amount) => {
-    return new Intl.NumberFormat('mn-MN').format(amount) + '₮';
+    return formatCurrency(amount);
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('mn-MN');
+    return formatDateUtil(dateString);
   };
 
   const handlePauseSubscription = async (subscriptionId) => {
     setIsLoading(true);
     try {
-      const response = await fetch(`/api/donation/recurring/pause/${subscriptionId}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('recurringDonationToken')}`,
-          'Content-Type': 'application/json',
-        },
-      });
-      
+      const response = await fetch(
+        `/api/donation/recurring/pause/${subscriptionId}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(
+              "recurringDonationToken"
+            )}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       const data = await response.json();
       if (data.success) {
         toast.success("ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠢ ᠵᠣᠭᠰᠣᠬᠤᠯᠠᠪᠠ!");
@@ -81,7 +87,7 @@ export default function MySubscriptions({
               >
                 ᠲᠠᠨ ᠤ ᠬᠠᠨᠳᠢᠪ
               </h2>
-              
+
               {userSubscriptions.map((subscription, index) => (
                 <div key={index} className="flex gap-2">
                   <div className="bg-[#FFFF00] text-black p-4 rounded-lg">
@@ -119,10 +125,15 @@ export default function MySubscriptions({
                         textOrientation: "upright",
                       }}
                     >
-                      ᠲᠦᠯᠦᠪ: {subscription.status === 'active' ? 'ᠢᠳᠡᠪᠬᠢᠲᠡᠢ' : subscription.status === 'paused' ? 'ᠵᠣᠭᠰᠣᠭᠠᠳ' : 'ᠴᠠᠷ᠎ᠠ'}
+                      ᠲᠦᠯᠦᠪ:{" "}
+                      {subscription.status === "active"
+                        ? "ᠢᠳᠡᠪᠬᠢᠲᠡᠢ"
+                        : subscription.status === "paused"
+                        ? "ᠵᠣᠭᠰᠣᠭᠠᠳ"
+                        : "ᠴᠠᠷ᠎ᠠ"}
                     </p>
                   </div>
-                  
+
                   <div className="flex flex-col gap-2">
                     <Button
                       text="ᠵᠠᠰᠠᠬᠤ"
@@ -130,8 +141,8 @@ export default function MySubscriptions({
                       onClick={() => onUpdateSubscription(subscription.id)}
                       disabled={isLoading}
                     />
-                    
-                    {subscription.status === 'active' && (
+
+                    {subscription.status === "active" && (
                       <Button
                         text="ᠵᠣᠭᠰᠣᠬᠤᠯᠬᠤ"
                         className="text-black text-xs"
@@ -139,7 +150,7 @@ export default function MySubscriptions({
                         disabled={isLoading}
                       />
                     )}
-                    
+
                     <Button
                       text="ᠴᠠᠷ᠎ᠠ"
                       className="text-black text-xs bg-red-500"
@@ -175,20 +186,24 @@ export default function MySubscriptions({
             >
               ᠦᠵᠡᠯ
             </h2>
-            
+
             <div className="flex flex-col gap-2">
               <Button
                 text="ᠲᠦᠦᠬᠡ ᠬᠠᠷᠠᠬᠤ"
                 className="text-black text-xs"
-                onClick={() => {/* TODO: Show history */}}
+                onClick={() => {
+                  /* TODO: Show history */
+                }}
               />
-              
+
               <Button
                 text="ᠰᠢᠨ᠎ᠡ ᠴᠠᠷᠳ ᠨᠡᠮᠡᠬᠦ"
                 className="text-black text-xs"
-                onClick={() => {/* TODO: Add card */}}
+                onClick={() => {
+                  /* TODO: Add card */
+                }}
               />
-              
+
               <Button
                 text="ᠭᠠᠷᠬᠤ"
                 className="text-black text-xs bg-red-200"

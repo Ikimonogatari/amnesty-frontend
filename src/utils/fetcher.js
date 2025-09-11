@@ -5,6 +5,28 @@ const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://152.42.244.47:1337/api";
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY || process.env.STRAPI_API_KEY;
 
+// Helper function to build URLs with locale parameters
+export const buildFetcherUrl = (endpoint, params = {}) => {
+  const url = new URL(
+    endpoint.startsWith("/") ? endpoint : `/${endpoint}`,
+    API_BASE_URL
+  );
+
+  // Always add locale parameter
+  const locale = process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN";
+  url.searchParams.set("locale", locale);
+
+  // Add other parameters
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined && value !== null) {
+      url.searchParams.set(key, value);
+    }
+  });
+
+  // Return relative URL for Fetcher
+  return url.pathname + url.search;
+};
+
 // Mongolian Bichig number mapping
 const mongolianNumbers = {
   0: "᠐",

@@ -6,6 +6,7 @@
 import { useMemo } from "react";
 import { createSuspenseApiFetcher } from "@/utils/suspenseFetcher";
 import { getImageUrl } from "@/utils/fetcher";
+import { formatDate } from "@/utils/locale";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -36,9 +37,7 @@ function NewsListContent({ category = null }) {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => {
         const coverImage = getImageUrl(post.cover) || "/images/news1.png";
-        const formattedDate = new Date(post.publishedAt).toLocaleDateString(
-          "mn-MN"
-        );
+        const formattedDate = formatDate(post.publishedAt);
 
         return (
           <Link

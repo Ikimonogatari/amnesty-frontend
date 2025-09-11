@@ -7,6 +7,7 @@ import Button from "@/components/common/Button";
 import RelatedItems from "@/components/common/RelatedItems";
 import { videosService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
+import { formatDate } from "@/utils/locale";
 import FullScreenLoader from "@/components/common/FullScreenLoader";
 
 export default function VideoDetail() {
@@ -195,9 +196,7 @@ export default function VideoDetail() {
                   textOrientation: "upright",
                 }}
               >
-                {new Date(
-                  video.createdAt || video.publishedAt
-                ).toLocaleDateString("mn-MN")}
+                {formatDate(video.createdAt || video.publishedAt)}
               </p>
             </div>
           )}
@@ -389,9 +388,7 @@ export default function VideoDetail() {
                 textOrientation: "upright",
               }}
             >
-              {new Date(
-                video.createdAt || video.publishedAt
-              ).toLocaleDateString("mn-MN")}
+              {formatDate(video.createdAt || video.publishedAt)}
             </div>
           </div>
         )}

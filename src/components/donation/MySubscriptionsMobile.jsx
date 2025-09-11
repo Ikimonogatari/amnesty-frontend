@@ -1,6 +1,7 @@
 import Button from "@/components/common/Button";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { formatCurrency, formatDate as formatDateUtil } from "@/utils/locale";
 
 export default function MySubscriptionsMobile({
   userSubscriptions,
@@ -12,11 +13,11 @@ export default function MySubscriptionsMobile({
   const [isLoading, setIsLoading] = useState(false);
 
   const formatAmount = (amount) => {
-    return new Intl.NumberFormat("mn-MN").format(amount) + "₮";
+    return formatCurrency(amount);
   };
 
   const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString("mn-MN");
+    return formatDateUtil(dateString);
   };
 
   const handlePauseSubscription = async (subscriptionId) => {

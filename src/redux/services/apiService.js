@@ -42,6 +42,8 @@ export const apiService = createApi({
     "CompanyWorkFeature",
     "Contact",
     "Report",
+    "OnlineLesson",
+    "Podcast",
   ],
   endpoints: (builder) => ({
     // Contact form submission
@@ -137,6 +139,10 @@ export const apiService = createApi({
             `post_category=${encodeURIComponent(params.post_category)}`
           );
         }
+
+        // Always add locale parameter for proper content filtering
+        const locale = API_CONFIG.LOCALE || "mn-MN";
+        queryParams.push(`locale=${encodeURIComponent(locale)}`);
 
         if (queryParams.length > 0) {
           url += `?${queryParams.join("&")}`;
@@ -366,15 +372,17 @@ export const apiService = createApi({
         // Extract pageSize from params to avoid duplication
         const { pageSize, page, sort, ...otherParams } = params;
 
-        // Build URL manually without locale parameter since reports endpoint doesn't support it
+        // Build URL with locale parameter for proper content filtering
         const queryParams = new URLSearchParams({
-          "populate": "*",
-          "pagination[pageSize]": pageSize || API_CONFIG.PAGINATION.DEFAULT_PAGE_SIZE,
+          populate: "*",
+          "pagination[pageSize]":
+            pageSize || API_CONFIG.PAGINATION.DEFAULT_PAGE_SIZE,
           "pagination[page]": page || 1,
-          "sort": sort || "id:desc", // Match old web sorting by ID descending
+          sort: sort || "id:desc", // Match old web sorting by ID descending
+          locale: API_CONFIG.LOCALE || "mn-MN",
           ...otherParams,
         });
-        
+
         return `${API_CONFIG.ENDPOINTS.REPORTS}?${queryParams.toString()}`;
       },
       transformResponse: (response) => {
@@ -400,7 +408,11 @@ export const apiService = createApi({
 
     getReportById: builder.query({
       query: (id) => {
-        return `/reports/${id}`;
+        const queryParams = new URLSearchParams({
+          populate: "*",
+          locale: API_CONFIG.LOCALE || "mn-MN",
+        });
+        return `/reports/${id}?${queryParams.toString()}`;
       },
       transformResponse: (response) => {
         return formatStrapiResponse(response);
@@ -495,6 +507,62 @@ export const apiService = createApi({
       providesTags: (result, error, id) => [{ type: "CompanyWorkFeature", id }],
     }),
 
+    // Online Lessons endpoints - using standard Strapi API
+    getOnlineLessons: builder.query({
+      query: (params = {}) => {
+        const url = buildApiUrl("/online-lessons", {
+          "pagination[pageSize]": params.pageSize || 10,
+          "pagination[page]": params.page || 1,
+          sort: params.sort || "id:desc",
+          ...params,
+        });
+        return url.replace(API_CONFIG.BASE_URL, "");
+      },
+      transformResponse: (response) => {
+        return formatStrapiResponse(response);
+      },
+      providesTags: ["OnlineLesson"],
+    }),
+
+    getOnlineLessonById: builder.query({
+      query: (id) => {
+        const url = buildApiUrl(`/online-lessons/${id}`);
+        return url.replace(API_CONFIG.BASE_URL, "");
+      },
+      transformResponse: (response) => {
+        return formatStrapiResponse(response);
+      },
+      providesTags: (result, error, id) => [{ type: "OnlineLesson", id }],
+    }),
+
+    // Podcasts endpoints - using standard Strapi API
+    getPodcasts: builder.query({
+      query: (params = {}) => {
+        const url = buildApiUrl("/podcasts", {
+          "pagination[pageSize]": params.pageSize || 10,
+          "pagination[page]": params.page || 1,
+          sort: params.sort || "id:desc",
+          ...params,
+        });
+        return url.replace(API_CONFIG.BASE_URL, "");
+      },
+      transformResponse: (response) => {
+        return formatStrapiResponse(response);
+      },
+      providesTags: ["Podcast"],
+    }),
+
+    getPodcastById: builder.query({
+      query: (id) => {
+        const url = buildApiUrl(`/podcasts/${id}`);
+        return url.replace(API_CONFIG.BASE_URL, "");
+      },
+      transformResponse: (response) => {
+        return formatStrapiResponse(response);
+      },
+      providesTags: (result, error, id) => [{ type: "Podcast", id }],
+    }),
+
     // Homepage content (combination of multiple content types)
     getHomepageContent: builder.query({
       query: () => {
@@ -534,6 +602,10 @@ export const {
   useGetCompanyWorkByIdQuery,
   useGetCompanyWorkFeaturesQuery,
   useGetCompanyWorkFeatureByIdQuery,
+  useGetOnlineLessonsQuery,
+  useGetOnlineLessonByIdQuery,
+  useGetPodcastsQuery,
+  useGetPodcastByIdQuery,
   useGetHomepageContentQuery,
   useSubmitContactFormMutation,
   useSubmitHumanRightsReportMutation,

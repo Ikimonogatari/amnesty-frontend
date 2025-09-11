@@ -4,7 +4,7 @@ import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
 import PageIntroduction from "@/components/common/PageIntroduction";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
-import Fetcher, { getImageUrl } from "@/utils/fetcher";
+import Fetcher, { getImageUrl, buildFetcherUrl } from "@/utils/fetcher";
 import Layout from "@/components/layout/Layout";
 
 export default function LessonsIndex() {
@@ -27,7 +27,10 @@ export default function LessonsIndex() {
 
     try {
       const response = await Fetcher(
-        "/lessons?populate=deep&sort[publishedAt]=desc"
+        buildFetcherUrl("/lessons", {
+          populate: "deep",
+          "sort[publishedAt]": "desc",
+        })
       );
 
       if (response?.data && Array.isArray(response.data)) {

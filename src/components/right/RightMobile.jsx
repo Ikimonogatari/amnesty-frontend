@@ -2,7 +2,7 @@ import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
 import RightSwiper from "./RightSwiper";
 import { useState, useEffect } from "react";
-import Fetcher from "@/utils/fetcher";
+import Fetcher, { buildFetcherUrl } from "@/utils/fetcher";
 import StaticHeader from "../common/StaticHeader";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 
@@ -18,21 +18,42 @@ export default function RightMobile() {
     try {
       setLoading(true);
 
-      // Use direct Fetcher calls like the working individual pages
+      // Use buildFetcherUrl to include locale parameters
       const fetchRequests = [
-        Fetcher("/lessons?populate=deep&sort[publishedAt]=desc").catch(() => ({
+        Fetcher(
+          buildFetcherUrl("/lessons", {
+            populate: "deep",
+            "sort[publishedAt]": "desc",
+          })
+        ).catch(() => ({
           data: [],
         })),
-        Fetcher("/online-lessons?populate=deep&sort[publishedAt]=desc").catch(
-          () => ({ data: [] })
-        ),
-        Fetcher("/libraries?populate=deep&sort[publishedAt]=desc").catch(
-          () => ({ data: [] })
-        ),
-        Fetcher("/videos?populate=deep&sort[publishedAt]=desc").catch(() => ({
+        Fetcher(
+          buildFetcherUrl("/online-lessons", {
+            populate: "deep",
+            "sort[publishedAt]": "desc",
+          })
+        ).catch(() => ({ data: [] })),
+        Fetcher(
+          buildFetcherUrl("/libraries", {
+            populate: "deep",
+            "sort[publishedAt]": "desc",
+          })
+        ).catch(() => ({ data: [] })),
+        Fetcher(
+          buildFetcherUrl("/videos", {
+            populate: "deep",
+            "sort[publishedAt]": "desc",
+          })
+        ).catch(() => ({
           data: [],
         })),
-        Fetcher("/podcasts?populate=deep&sort[publishedAt]=desc").catch(() => ({
+        Fetcher(
+          buildFetcherUrl("/podcasts", {
+            populate: "deep",
+            "sort[publishedAt]": "desc",
+          })
+        ).catch(() => ({
           data: [],
         })),
       ];

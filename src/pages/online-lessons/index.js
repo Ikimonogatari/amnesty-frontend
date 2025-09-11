@@ -5,7 +5,7 @@ import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
-import Fetcher, { getImageUrl } from "@/utils/fetcher";
+import Fetcher, { getImageUrl, buildFetcherUrl } from "@/utils/fetcher";
 import Layout from "@/components/layout/Layout";
 
 export default function OnlineLessonsIndex() {
@@ -27,7 +27,9 @@ export default function OnlineLessonsIndex() {
     setError(null);
 
     try {
-      const response = await Fetcher("/online-lessons?populate=deep");
+      const response = await Fetcher(
+        buildFetcherUrl("/online-lessons", { populate: "deep" })
+      );
 
       if (response?.data && Array.isArray(response.data)) {
         // Client-side pagination to match old web behavior

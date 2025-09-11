@@ -1,16 +1,18 @@
 // API Configuration for Amnesty CMS
 export const API_CONFIG = {
   // Base URL for the Strapi CMS API
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://152.42.244.47:1337/api',
+  BASE_URL: process.env.NEXT_PUBLIC_API_URL || "http://152.42.244.47:1337/api",
 
   // Media URL for images and files
-  MEDIA_URL: process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337',
+  MEDIA_URL: process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337",
 
   // Users API URL for contact form and other user-related features
-  USERS_API_URL: process.env.NEXT_PUBLIC_PROD_API_USERS_URL || 'https://api.amnesty.mn/users',
+  USERS_API_URL:
+    process.env.NEXT_PUBLIC_PROD_API_USERS_URL ||
+    "https://api.amnesty.mn/users",
 
   // Locale for content - using Cyrillic as primary with Mongol Bichig as additional field
-  LOCALE: process.env.NEXT_PUBLIC_CMS_LOCALE || 'mn-MN',
+  LOCALE: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
 
   // Demo mode - set to false to use real CMS data
   DEMO_MODE: process.env.NEXT_PUBLIC_DEMO_MODE === "true",
@@ -37,13 +39,13 @@ export const API_CONFIG = {
 
   // Default query parameters for standard endpoints
   DEFAULT_PARAMS: {
-    locale: process.env.NEXT_PUBLIC_CMS_LOCALE || 'mn-MN',
+    locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
     populate: "*",
   },
 
   // Default query parameters for posts
   POST_PARAMS: {
-    locale: process.env.NEXT_PUBLIC_CMS_LOCALE || 'mn-MN',
+    locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
     limit: 10,
     page: 1,
   },
@@ -65,7 +67,7 @@ export const MOCK_DATA = {
         "ᠡᠨᠡ ᠮᠡᠳᠡᢉᠡ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ ᠶᠤᠮ",
       body: "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠲᠠᠯᠠᠭᠠᠷᢈᠢ ᠨᠢ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠨᠢᠭᠡ ᠬᠡᠰᠡᠭ ᠶᠤᠮ᠃ ᠡᠨᠡ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
       cover: "/images/news1.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-15T10:00:00.000Z",
       createdAt: "2024-01-15T10:00:00.000Z",
     },
@@ -75,7 +77,7 @@ export const MOCK_DATA = {
       short_description: "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠦᠨ ᠠᠵᠢᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠨᠢ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃ ᠪᠢᠳᠡ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
       cover: "/images/news2.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-14T15:30:00.000Z",
       createdAt: "2024-01-14T15:30:00.000Z",
     },
@@ -85,7 +87,7 @@ export const MOCK_DATA = {
       short_description: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
       cover: "/images/news3.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-13T09:15:00.000Z",
       createdAt: "2024-01-13T09:15:00.000Z",
     },
@@ -95,7 +97,7 @@ export const MOCK_DATA = {
       short_description: "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
       cover: "/images/news4.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-12T14:45:00.000Z",
       createdAt: "2024-01-12T14:45:00.000Z",
     },
@@ -105,7 +107,7 @@ export const MOCK_DATA = {
       short_description: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
       cover: "/images/news5.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-11T11:20:00.000Z",
       createdAt: "2024-01-11T11:20:00.000Z",
     },
@@ -115,7 +117,7 @@ export const MOCK_DATA = {
       short_description: "ᠰᠢᠪᠢᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠰᠢᠪᠢᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
       cover: "/images/news6.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-10T16:10:00.000Z",
       createdAt: "2024-01-10T16:10:00.000Z",
     },
@@ -127,7 +129,7 @@ export const MOCK_DATA = {
       answer:
         "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠦᠭᠡ ᠦᠰᠦᠭ ᠦᠨ ᠪᠢᠴᠢᠭ ᠪᠣᠯᠤᠨ᠂ ᠰᠠᠶᠢᠨ ᠦᠶᠡ ᠶᠢᠨ ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠭᠠᠵᠢ ᠶᠤᠮ᠃",
       image: "/images/about1.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-15T10:00:00.000Z",
     },
     {
@@ -136,7 +138,7 @@ export const MOCK_DATA = {
       answer:
         "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
       image: "/images/about2.png",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-14T15:30:00.000Z",
     },
     {
@@ -145,7 +147,7 @@ export const MOCK_DATA = {
       answer:
         "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠠᠮᠢᠳᠤᠷᠠᠯ᠂ ᠡᠷᠬᠡ ᠴᠢᠯᠦᠭᠡ᠂ ᠪᠣᠳᠠᠯᠭ᠎ᠠ ᠶᠢᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
       image: "/images/about3.jpg",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-13T09:15:00.000Z",
     },
     {
@@ -154,7 +156,7 @@ export const MOCK_DATA = {
       answer:
         "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠪᠣᠳᠠᠯᠭ᠎ᠠ᠂ ᠰᠠᠶᠢᠨ ᠦᠶᠡ᠂ ᠠᠷᠠᠳ ᠦᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
       image: "/images/about4.jpg",
-      locale: "mn-MN",
+      locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-12T14:45:00.000Z",
     },
   ],
@@ -212,7 +214,7 @@ export const buildPostApiUrl = (endpoint, params = {}) => {
 // Helper function to get image URL from Strapi media
 export const getImageUrl = (
   imageData,
-  baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || 'http://152.42.244.47:1337'
+  baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
 ) => {
   if (!imageData) return null;
 

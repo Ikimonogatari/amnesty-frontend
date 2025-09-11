@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { eventsService } from "@/services/apiService";
+import { API_CONFIG } from "@/config/api";
 import EventModal from "./EventModal";
 
 export default function EventsMobile() {
@@ -94,7 +95,7 @@ export default function EventsMobile() {
         "filters[end_date][$gte]": startDateStr,
         sort: "start_date:asc",
         populate: "*",
-        locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
+        locale: API_CONFIG.LOCALE,
         "pagination[pageSize]": 100, // Get more events
       };
 

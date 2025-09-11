@@ -4,6 +4,7 @@ import userApiService from "@/services/userApiService";
 import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { Edit2, Menu, X } from "lucide-react";
+import { getLocale } from "@/utils/locale";
 
 export default function UserProfile({ userData, userGroups }) {
   const router = useRouter();
@@ -470,7 +471,7 @@ function MyInfo({ userData }) {
     if (!dateString) return "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ";
     const date = new Date(dateString);
     return date
-      .toLocaleDateString("mn-MN", {
+      .toLocaleDateString(getLocale(), {
         year: "numeric",
         month: "2-digit",
         day: "2-digit",

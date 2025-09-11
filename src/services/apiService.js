@@ -176,7 +176,7 @@ export const eventsService = {
       const queryParams = {
         populate: "*",
         sort: params.sort || "start_date:asc",
-        locale: params.locale || "mn-MN",
+        locale: params.locale || getDefaultLocale(),
         "pagination[page]": params.page || 1,
         "pagination[pageSize]": params.pageSize || 100, // Increase default to get more events
         ...params, // Include all other params directly (for date filters)

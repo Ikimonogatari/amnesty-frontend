@@ -4,7 +4,7 @@ import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
 import PageIntroduction from "@/components/common/PageIntroduction";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
-import Fetcher, { getImageUrl } from "@/utils/fetcher";
+import Fetcher, { getImageUrl, buildFetcherUrl } from "@/utils/fetcher";
 import Layout from "@/components/layout/Layout";
 
 export default function LibraryIndex() {
@@ -26,7 +26,9 @@ export default function LibraryIndex() {
     setError(null);
 
     try {
-      const response = await Fetcher("/libraries?populate=deep&sort[id]=desc");
+      const response = await Fetcher(
+        buildFetcherUrl("/libraries", { populate: "deep", "sort[id]": "desc" })
+      );
 
       if (response?.data && Array.isArray(response.data)) {
         // Client-side pagination to match old web behavior
