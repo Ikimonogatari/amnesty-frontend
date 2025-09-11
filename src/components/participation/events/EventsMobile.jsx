@@ -483,7 +483,7 @@ export default function EventsMobile() {
           <div className="flex flex-col items-center gap-2">
             <div className="bg-[#D9D9D9] w-4 h-4 aspect-square"></div>
             <p
-              className="text-[10px] pl-2"
+              className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -496,7 +496,7 @@ export default function EventsMobile() {
             <div className="bg-[#FB00FF] w-4 h-4 aspect-square"></div>
 
             <p
-              className="text-[10px] pl-2"
+              className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",
@@ -509,7 +509,7 @@ export default function EventsMobile() {
             <div className="bg-[#FFFF00] w-4 h-4 aspect-square"></div>
 
             <p
-              className="text-[10px] pl-2"
+              className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",

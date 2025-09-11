@@ -437,7 +437,7 @@ export default function EyeMobile() {
               {archInfo.title}
             </div>
             <div
-              className="text-xl leading-none pl-2"
+              className="text-xl leading-none"
               style={{
                 writingMode: "vertical-lr",
                 textOrientation: "upright",

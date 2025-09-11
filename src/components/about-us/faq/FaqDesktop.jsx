@@ -68,7 +68,7 @@ export default function FaqDesktop() {
               className="flex justify-center items-center w-12 h-full py-6 rounded-lg transition-colors duration-200 bg-[#FFFF00]"
             >
               <h3
-                className="text-lg font-bold text-black pl-2"
+                className="text-lg font-bold text-black"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",

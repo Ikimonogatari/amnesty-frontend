@@ -19,7 +19,7 @@ export default function VolunteerMobile() {
           >
             {item.title && (
               <p
-                className="text-[10px] font-bold bg-[#FFFF00] py-3 flex justify-center items-center text-center pl-2 h-full w-12"
+                className="text-[10px] font-bold bg-[#FFFF00] py-3 flex justify-center items-center text-center h-full min-w-12"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",

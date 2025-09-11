@@ -61,7 +61,7 @@ export default function DonationMobile({
 
             <button
               onClick={() => handleDonationTypeChange("once")}
-              className={`pl-2 pr-1 py-2 text-center text-sm font-medium rounded-md ${
+              className={`p-2 text-center text-sm font-medium rounded-md ${
                 donationType === "once"
                   ? "bg-yellow-500 text-black"
                   : "bg-white text-black border border-gray-300"
@@ -75,7 +75,7 @@ export default function DonationMobile({
             </button>
             <button
               onClick={() => handleDonationTypeChange("monthly")}
-              className={`pl-2 pr-1 py-2 text-center text-sm font-medium rounded-md ${
+              className={`p-2 text-center text-sm font-medium rounded-md ${
                 donationType === "monthly"
                   ? "bg-yellow-500 text-black"
                   : "bg-white text-black border border-gray-300"

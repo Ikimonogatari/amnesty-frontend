@@ -108,7 +108,7 @@ export default function YouthDesktop() {
                 style={{
                   writingMode: "vertical-lr",
                 }}
-                className="pl-2 text-black font-bold"
+                className="text-black font-bold"
               >
                 ᠠᠩᢉᠯᠢ
               </p>
@@ -123,7 +123,7 @@ export default function YouthDesktop() {
                 style={{
                   writingMode: "vertical-lr",
                 }}
-                className="pl-2"
+                className=""
               >
                 ᠲᠠᠲᠠᠬᠤ
               </p>

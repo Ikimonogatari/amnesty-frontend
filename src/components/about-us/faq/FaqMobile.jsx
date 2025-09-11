@@ -66,7 +66,7 @@ export default function FaqMobile() {
               className="flex justify-center items-center max-h-[150px] px-3 rounded-lg bg-[#FFFF00]"
             >
               <h3
-                className="text-[10px] font-bold text-black pl-2 py-3"
+                className="text-[10px] font-bold text-black py-3"
                 style={{
                   writingMode: "vertical-lr",
                   textOrientation: "upright",

@@ -149,7 +149,7 @@ export default function AboutUsDesktop() {
                         textOrientation: "upright",
                       }}
                     >
-                      <p className="pl-1 sm:pl-2 font-bold text-[10px] sm:text-base">
+                      <p className="font-bold text-[10px] sm:text-base">
                         ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ
                       </p>
                     </a>
@@ -163,7 +163,7 @@ export default function AboutUsDesktop() {
                         textOrientation: "upright",
                       }}
                     >
-                      <p className="pl-1 sm:pl-2 font-bold text-[10px] sm:text-base">
+                      <p className="font-bold text-[10px] sm:text-base">
                         ᠳᠡᠯᠭᠡᠷᠡᠩᠭᠦᠢ
                       </p>
                     </a>
