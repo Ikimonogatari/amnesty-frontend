@@ -12,8 +12,8 @@ export default function ReportDesktop() {
         width="90rem"
         title="ᠶᠡᠷᠦᠩᠬᠡᠢ ᠴᠤᠤᠯᠭᠠᠨ"
       />
-      <div className="flex gap-16 p-4 h-full">
-        <div className="flex gap-6 max-h-screen">
+      <div className="flex gap-16 p-4 h-full relative">
+        <div className="flex gap-6 h-[calc(100vh-2rem)] max-h-[calc(100vh-2rem)]">
           <p
             className="text-sm"
             style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
@@ -63,9 +63,12 @@ export default function ReportDesktop() {
             ᠴᠠᠭ ᠦᠶ᠎ᠡ ᠳ᠋ᠦ ᠳᠡᠯᠡᢈᠡᠢ ᠳᠠᢈᠢᠨ ᠪᠣᠯᠤᠭᠠᠳ ᠦᠨᠳᠦᠰᠦᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ ᠪᠠᠶᠢᠳᠠᠯ ᠳ᠋ᠤ
             ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠮᠥᠷ ᠦ᠋ᠨ ᢈᠦᠲᠦᠯᠪᠦᠷᠢ ᠶ᠋ᠢᠨ
           </p>
-          <img
+          <Image
             src="/images/assembly-image1.png"
-            className="w-[247px] h-[350px]"
+            width={847}
+            height={1200}
+            className="h-full w-auto object-contain relative z-0"
+            style={{ aspectRatio: '847/1200' }}
           />
         </div>
         <AssemblySwiper />

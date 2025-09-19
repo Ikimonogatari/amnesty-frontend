@@ -111,7 +111,7 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
   };
 
   return (
-    <div className="h-full flex flex-col sm:flex-row gap-7 p-4">
+    <div className="h-full flex flex-col sm:flex-row gap-7 p-4 relative z-10">
       <div className="flex gap-2 sm:gap-8 max-h-[150px] sm:max-h-max">
         <h1
           className="text-[10px] sm:text-2xl font-bold"
@@ -157,16 +157,16 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
             return (
               <SwiperSlide key={slide.id}>
                 <div className={`w-full h-full flex gap-4`}>
-                  <div
-                    className={`relative z-0 ${
-                      isMobile ? "max-w-[300px]" : "min-w-[270px] aspect-square"
-                    }`}
-                  >
+                    <div
+                      className={`relative z-20 ${
+                        isMobile ? "max-w-[300px]" : "min-w-[270px] aspect-square"
+                      }`}
+                    >
                     {videoId ? (
                       <iframe
                         src={`https://www.youtube.com/embed/${videoId}`}
                         title={`Video ${slide.id}`}
-                        className={`rounded-lg shadow-lg relative z-0 ${
+                        className={`rounded-lg shadow-lg relative z-30 ${
                           isMobile
                             ? "w-full"
                             : "aspect-square min-h-[270px] h-full"
@@ -181,7 +181,7 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
                           isMobile
                             ? "w-full aspect-[16/9]"
                             : "aspect-square min-h-[270px]"
-                        } relative z-0 bg-gray-200 flex items-center justify-center`}
+                        } relative z-30 bg-gray-200 flex items-center justify-center`}
                       >
                         <p>Invalid video URL</p>
                       </div>
