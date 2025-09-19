@@ -72,8 +72,8 @@ export default function GridLayout({
     <>
       {/* Desktop Layout - EXACT NEWS STRUCTURE */}
       <div className="hidden sm:block h-full">
-        <div className="h-full flex gap-4">
-          <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-4 sm:gap-6">
+        <div className="h-full flex gap-4 overflow-hidden">
+          <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-4 sm:gap-6 min-w-0">
             {isLoading || !items ? (
               // Loading placeholders to maintain layout - consistent between server and client
               Array.from({ length: 9 }).map((_, index) => (
@@ -82,7 +82,7 @@ export default function GridLayout({
                   className="w-full h-full flex items-end space-x-4"
                   suppressHydrationWarning={false}
                 >
-                  <div className="max-w-16 h-full bg-gray-200 animate-pulse rounded"></div>
+                  <div className="w-16 max-w-16 h-full bg-gray-200 animate-pulse rounded"></div>
                   <div className="relative h-[300px] w-[300px] aspect-square shadow-md bg-gray-200 animate-pulse rounded-xl"></div>
                   <div className="w-12 h-48 bg-gray-200 animate-pulse rounded"></div>
                 </div>
@@ -95,18 +95,20 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="min-w-12 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600"
+                    className="w-16 max-w-16 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-ellipsis break-words"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
+                      wordBreak: "break-all",
+                      overflowWrap: "break-word",
                     }}
                     title={getTitle ? getTitle(item) : item.title}
                     onClick={() => handleItemClick(item)}
                   >
                     {(() => {
                       const title = getTitle ? getTitle(item) : item.title;
-                      return title && title.length > 50
-                        ? `${title.substring(0, 50)}...`
+                      return title && title.length > 40
+                        ? `${title.substring(0, 40)}...`
                         : title;
                     })()}
                   </h3>
