@@ -1,4 +1,9 @@
-import { X } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 import LeafletMap from "../../common/LeafletMap";
 
 export default function EventModal({
@@ -7,7 +12,20 @@ export default function EventModal({
   closeModal,
   formatDateToMongolian,
 }) {
+  const [currentEventIndex, setCurrentEventIndex] = useState(0);
+  
+  // Reset to first event when modal opens
+  useEffect(() => {
+    if (showModal) {
+      setCurrentEventIndex(0);
+    }
+  }, [showModal]);
+  
   if (!showModal || !selectedEvent) return null;
+
+  // Handle both old format (single event) and new format (multiple events)
+  const events = selectedEvent.events || [selectedEvent];
+  const currentEvent = events[currentEventIndex] || events[0];
 
   return (
     <div
@@ -28,13 +46,33 @@ export default function EventModal({
         {/* Modal Content */}
         <div className="w-full p-8 flex flex-col md:flex-row justify-between h-[70hv] gap-4 overflow-x-auto">
           <div className="flex flex-row gap-4">
+            {/* Event Counter and Navigation for multiple events */}
+            {events.length > 1 && (
+              <div className="flex flex-col items-center gap-2">
+                <button
+                  onClick={() => setCurrentEventIndex(Math.max(0, currentEventIndex - 1))}
+                  disabled={currentEventIndex === 0}
+                  className="p-1 hover:bg-gray-100 rounded disabled:opacity-50"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="text-sm">{currentEventIndex + 1}/{events.length}</span>
+                <button
+                  onClick={() => setCurrentEventIndex(Math.min(events.length - 1, currentEventIndex + 1))}
+                  disabled={currentEventIndex === events.length - 1}
+                  className="p-1 hover:bg-gray-100 rounded disabled:opacity-50"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            )}
             <h3
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
               }}
             >
-              {selectedEvent.title}
+              {currentEvent.title}
             </h3>
             <div className="flex flex-col items-center gap-2">
               <p
@@ -54,9 +92,9 @@ export default function EventModal({
                 }}
               >
                 {formatDateToMongolian(
-                  new Date(selectedEvent.startDate).toISOString().split("T")[0]
+                  new Date(currentEvent.startDate).toISOString().split("T")[0]
                 )}{" "}
-                {selectedEvent.startTime}
+                {currentEvent.startTime}
               </p>
             </div>
             <div className="flex flex-col items-center gap-2">
@@ -77,9 +115,9 @@ export default function EventModal({
                 }}
               >
                 {formatDateToMongolian(
-                  new Date(selectedEvent.endDate).toISOString().split("T")[0]
+                  new Date(currentEvent.endDate).toISOString().split("T")[0]
                 )}{" "}
-                {selectedEvent.endTime}
+                {currentEvent.endTime}
               </p>
             </div>
             <div className="flex flex-row gap-2 max-h-[500px] overflow-x-auto">
@@ -99,7 +137,7 @@ export default function EventModal({
                   textOrientation: "upright",
                 }}
               >
-                {selectedEvent.location || "ᠲᠣᠭᠲᠠᠭᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ"}
+                {currentEvent.location || "ᠲᠣᠭᠲᠠᠭᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ"}
               </p>
             </div>
             <div className="flex flex-col items-center gap-2">
@@ -110,10 +148,10 @@ export default function EventModal({
                   textOrientation: "upright",
                 }}
               >
-                {selectedEvent.type}
+                {currentEvent.type}
               </span>
               <div
-                className={`w-4 h-4 rounded-full ${selectedEvent.color}`}
+                className={`w-4 h-4 rounded-full ${currentEvent.color}`}
               ></div>
             </div>
             <div className="flex flex-row gap-2 max-h-[500px] overflow-x-auto">
@@ -126,7 +164,7 @@ export default function EventModal({
               >
                 ᠲᠠᠨᠢᠯᠴᠤᠤᠯᠭ᠎ᠠ:
               </h4>
-              {selectedEvent.description ? (
+              {currentEvent.description ? (
                 <p
                   className="text-xs lg:text-sm text-gray-600"
                   style={{
@@ -134,7 +172,7 @@ export default function EventModal({
                     textOrientation: "upright",
                   }}
                 >
-                  {selectedEvent.description}
+                  {currentEvent.description}
                 </p>
               ) : (
                 <p
@@ -151,7 +189,7 @@ export default function EventModal({
           </div>
           <div className="p-4 md:min-w-[500px] md:min-h-[500px] bg-gray-200 rounded-lg shadow-inner">
             <LeafletMap
-              coordinates={selectedEvent.coordinates}
+              coordinates={currentEvent.coordinates}
               className="h-full w-full rounded-lg"
             />
           </div>

@@ -361,23 +361,29 @@ export default function EventsDesktop() {
             {toMongolianNumerals(day)}
           </div>
           {event && (
-            <div className="group relative">
-              <div
-                className={`absolute right-0 bottom-4 ${event.color} w-5 h-5 rounded cursor-pointer`}
-              ></div>
-              {/* Tooltip */}
-              <div className="absolute -right-3 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 whitespace-nowrap">
-                <div
-                  style={{
-                    writingMode: "vertical-lr",
-                    textOrientation: "upright",
-                  }}
-                >
-                  {event.title}
-                </div>
-                <div className="absolute top-full right-2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
-              </div>
-            </div>
+            <>
+               <div
+                 className={`absolute bottom-2 left-2 ${event.color} px-1 py-0.5 rounded text-white text-[8px] font-medium cursor-pointer min-w-[20px] text-center group`}
+                 style={{
+                   writingMode: "vertical-lr",
+                   textOrientation: "upright",
+                 }}
+               >
+                 {event.title.split(' ')[0] || event.title.substring(0, 3)}
+                 {/* Tooltip */}
+                 <div className="absolute left-full bottom-0 ml-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 whitespace-nowrap">
+                   <div
+                     style={{
+                       writingMode: "vertical-lr",
+                       textOrientation: "upright",
+                     }}
+                   >
+                     {event.title}
+                   </div>
+                   <div className="absolute top-full left-2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                 </div>
+               </div>
+            </>
           )}
         </div>
       );

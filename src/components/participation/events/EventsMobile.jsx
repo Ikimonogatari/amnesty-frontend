@@ -184,13 +184,16 @@ export default function EventsMobile() {
           endDate: eventAttrs.end_date,
         };
 
-        // Handle multiple events on the same date
-        if (eventsMap[dateKey]) {
-          // For now, keep the first event (could be enhanced to show multiple)
-          console.log(`Multiple events on ${dateKey}, keeping first one`);
-        } else {
-          eventsMap[dateKey] = eventObj;
-        }
+         // Handle multiple events on the same date
+         if (eventsMap[dateKey]) {
+           // Convert to array if not already
+           if (!Array.isArray(eventsMap[dateKey])) {
+             eventsMap[dateKey] = [eventsMap[dateKey]];
+           }
+           eventsMap[dateKey].push(eventObj);
+         } else {
+           eventsMap[dateKey] = eventObj; // Single event stays as object for backward compatibility
+         }
 
         // Also add events for multi-day events (if end date is different)
         if (startDate.toDateString() !== endDate.toDateString()) {
@@ -267,9 +270,11 @@ export default function EventsMobile() {
   };
 
   const handleDayClick = (dateString) => {
-    const event = events[dateString];
-    if (event) {
-      setSelectedEvent({ ...event, date: dateString });
+    const eventOrEvents = events[dateString];
+    if (eventOrEvents) {
+      // Handle both single event (object) and multiple events (array)
+      const eventsArray = Array.isArray(eventOrEvents) ? eventOrEvents : [eventOrEvents];
+      setSelectedEvent({ events: eventsArray, date: dateString });
       setShowModal(true);
     }
   };
@@ -329,9 +334,27 @@ export default function EventsMobile() {
           </span>
           {event && (
             <div className="group relative">
-              <div
-                className={`relative top-4 left-6 ${event.color} w-3 h-3 rounded cursor-pointer`}
-              ></div>
+              {Array.isArray(event) ? (
+                // Multiple events - show multiple squares
+                <div className="flex flex-wrap gap-0.5 absolute bottom-1 right-1">
+                  {event.slice(0, 4).map((evt, index) => (
+                    <div
+                      key={index}
+                      className={`${evt.color} w-2 h-2 rounded cursor-pointer`}
+                    ></div>
+                  ))}
+                  {event.length > 4 && (
+                    <div className="bg-gray-600 w-2 h-2 rounded cursor-pointer text-[6px] text-white flex items-center justify-center">
+                      +
+                    </div>
+                  )}
+                </div>
+              ) : (
+                // Single event - show single square
+                <div
+                  className={`relative top-4 left-6 ${event.color} w-3 h-3 rounded cursor-pointer`}
+                ></div>
+              )}
               {/* Tooltip */}
               <div className="absolute bottom-full right-0 mb-1 px-2 py-1 bg-black text-white text-[8px] rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 whitespace-nowrap max-w-[120px]">
                 <div
@@ -340,7 +363,10 @@ export default function EventsMobile() {
                     textOrientation: "upright",
                   }}
                 >
-                  {event.title}
+                  {Array.isArray(event) 
+                    ? `${event.length} ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ`
+                    : event.title
+                  }
                 </div>
                 <div className="absolute top-full right-1 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-black"></div>
               </div>
