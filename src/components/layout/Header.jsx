@@ -87,15 +87,15 @@ export default function Header() {
   ];
 
   return (
-    <div className="h-full min-w-[100px] inline-flex flex-col justify-between bg-white border-r border-[#E3E3E3] z-20">
+    <div className="h-full min-w-[150px] inline-flex flex-col justify-between bg-white border-r border-[#E3E3E3] z-20">
       <div className="flex flex-col items-center">
         <Link href="/" className="py-4 px-2">
           <Image
-            src="/images/logo.png"
+            src="/images/amnesty-wide-logo.png"
             alt="logo"
-            width={80}
-            height={80}
-            className="object-contain"
+            width={150}
+            height={60}
+            className="object-contain w-[150px] h-[60px]"
           />
         </Link>
         <div className="mt-4 px-2">

@@ -110,18 +110,18 @@ export default function HeaderMobile() {
   }, [showMenu]);
 
   return (
-    <div className="relative h-[50px] w-full bg-white flex items-start justify-between z-10">
+    <div className="relative h-[60px] w-full bg-white flex items-start p-2 justify-between z-10">
       <div
         className={`flex items-center gap-[10px] ${
           showMenu ? "opacity-50" : ""
         } transition-opacity duration-300`}
       >
         <Image
-          src="/images/logo.png"
+          src="/images/amnesty-wide-logo.png"
           alt="logo"
-          width={50}
-          height={50}
-          className="object-contain border border-[#E3E3E3]"
+          width={100}
+          height={40}
+          className=""
         />
         <Icon
           onClick={toggleMenu}
@@ -155,19 +155,13 @@ export default function HeaderMobile() {
       >
         <div className="w-full flex justify-between items-center p-2">
           <Image
-            src="/images/logo.png"
+            src="/images/amnesty-wide-logo.png"
             alt="logo"
-            width={40}
+            width={100}
             height={40}
-            className="object-contain"
+            className=""
           />
-          <button
-            onClick={toggleMenu}
-            className="p-1 hover:bg-gray-100 rounded transition-colors"
-            aria-label="Close menu"
-          >
-            <Icon icon="mdi:close" fontSize={20} className="text-gray-600" />
-          </button>
+      
         </div>
 
         <div className="mt-4 px-4">

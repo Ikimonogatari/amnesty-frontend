@@ -7,9 +7,9 @@ export default function FullScreenLoader() {
       <div className="hidden md:flex fixed inset-0 bg-white z-50 items-center justify-center">
         <div className="flex flex-col items-center space-y-8">
           {/* Amnesty Logo */}
-          <div className="relative w-32 h-32">
+          <div className="relative w-[152px] h-[60px]">
             <Image
-              src="/images/logo.png"
+              src="/images/amnesty-wide-logo.png"
               alt="Amnesty International Mongolia"
               fill
               className="object-contain"
@@ -40,9 +40,9 @@ export default function FullScreenLoader() {
       <div className="flex md:hidden fixed inset-0 bg-white z-50 items-center justify-center">
         <div className="flex flex-col items-center space-y-6">
           {/* Amnesty Logo */}
-          <div className="relative w-24 h-24">
+          <div className="relative w-[152px] h-[60px]">
             <Image
-              src="/images/logo.png"
+              src="/images/amnesty-wide-logo.png"
               alt="Amnesty International Mongolia"
               fill
               className="object-contain"
