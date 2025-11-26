@@ -5,6 +5,7 @@ export default function StaticHeader({
   alt = "Header Image",
   width = "90rem",
   title = null,
+  desc = null,
   className = null,
 }) {
   // Handle responsive width
@@ -53,6 +54,15 @@ export default function StaticHeader({
                 }}
               >
                 {title}
+              </h1>
+              <h1
+                className="text-xl font-bold font-mongolian max-h-full overflow-y-auto break-words"
+                style={{
+                  writingMode: "vertical-rl",
+                  textOrientation: "upright",
+                }}
+              >
+                {desc}
               </h1>
             </div>
 
