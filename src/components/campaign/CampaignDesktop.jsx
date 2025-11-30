@@ -35,12 +35,19 @@ export default function CampaignDesktop() {
 
   // Convert company works data to campaign items format
   const campaignItems = companyWorksData
-    ? companyWorksData.map((companyWork) => ({
-        id: companyWork.static_id || companyWork.id, // Use static_id for routing
-        title: companyWork.title || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ",
-        image: getImageUrl(companyWork.icon) || "/images/about1.png",
-        description: companyWork.description || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ",
-      }))
+    ? companyWorksData
+        .map((companyWork) => ({
+          id: companyWork.static_id || companyWork.id, // Use static_id for routing
+          title: companyWork.title || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ",
+          image: getImageUrl(companyWork.icon) || "/images/about1.png",
+          description: companyWork.description || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ",
+        }))
+        .sort((a, b) => {
+          // Sort by id (convert to number for proper numeric sorting)
+          const idA = Number(a.id) || a.id;
+          const idB = Number(b.id) || b.id;
+          return idA - idB;
+        })
     : [];
 
   // Static image paths for the first 3 feature items (from old web)
