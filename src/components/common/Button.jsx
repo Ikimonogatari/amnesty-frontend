@@ -31,7 +31,7 @@ export default function Button({
         target={target}
         rel={rel}
         className={buttonClasses}
-        style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+        style={{ writingMode: "vertical-lr" }}
       >
         <p
           className={`${
@@ -48,7 +48,7 @@ export default function Button({
     <button
       onClick={onClick}
       className={buttonClasses}
-      style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+      style={{ writingMode: "vertical-lr" }}
     >
       <p
         className={`${

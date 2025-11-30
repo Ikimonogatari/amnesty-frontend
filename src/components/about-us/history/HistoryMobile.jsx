@@ -43,7 +43,6 @@ export default function HistoryMobile() {
                         <span
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           ᠥᠨᠦᠳᠦᠷ

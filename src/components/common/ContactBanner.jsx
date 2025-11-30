@@ -11,20 +11,20 @@ export default function ContactBanner({ isMobile = false }) {
         {/* Phone Contact */}
         <div className="flex flex-col items-center gap-2">
           <p
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
             className="text-black font-bold text-base sm:text-lg"
           >
             ᠤᠳᠠᠭᠠ:
           </p>
           <p
             className="text-black text-sm sm:text-base mt-1"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             {toMongolianNumbers("7000-5708")}
           </p>
           <p
             className="text-black text-sm sm:text-base"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             {toMongolianNumbers("7000-5705")}
           </p>
@@ -33,13 +33,13 @@ export default function ContactBanner({ isMobile = false }) {
         {/* Office Address */}
         <div className="flex flex-col items-center gap-2 max-h-[350px] md:max-h-max">
           <p
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
             className="text-black font-bold text-lg"
           >
             ᠬᠠᠶᠢᠷ:
           </p>
           <p
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
             className="text-black text-sm sm:text-base"
           >
             ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ ᠬᠣᠲᠠ ᠪᠠᠶᠠᠩᠵᠦᠷᠬ ᠳᠦᠦᠷᠭᠡ ᠰᠦᠮ ᠡ ᠬᠡᠰᠡᠭ ᠨᠡᠷᠡᠨ ᠡ ᠪᠠᠢᠭᠤᠯᠠᠯ ᠲᠠᠢ
@@ -50,14 +50,14 @@ export default function ContactBanner({ isMobile = false }) {
         {/* Email & Office Hours */}
         <div className="flex flex-col items-center gap-2 max-h-[350px] md:max-h-max">
           <p
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
             className="text-black font-bold text-lg"
           >
             ᠴᠠᠬᠢᠮ ᠱᠤᠳᠠᠨ:
           </p>
 
           <p
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
             className="text-black text-sm sm:text-base"
           >
             ᠳᠠᠪᠤᠯᠭᠠ ᠨᠠᠢᠢᠮᠠᠨ ᠨᠠᠢᠢᠮᠠᠨ ᠶᠢᠰᠦᠨ ᠴᠠᠭ 9:00-18:00
@@ -67,13 +67,13 @@ export default function ContactBanner({ isMobile = false }) {
         {/* Emergency Contact */}
         <div className="flex flex-col items-center gap-2 max-h-[350px] md:max-h-max">
           <p
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
             className="text-black font-bold text-base sm:text-lg"
           >
             ᠨᠢᠵᠢ ᠠᠮ:
           </p>
           <p
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
             className="text-black text-sm sm:text-base"
           >
             ᠬᠦᠮᠦᠨ ᠤ ᠡᠷᠭᠡ ᠶᠢᠨ ᠵᠥᠪᠯᠡᠯ

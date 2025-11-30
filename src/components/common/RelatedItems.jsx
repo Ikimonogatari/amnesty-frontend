@@ -27,7 +27,6 @@ export default function RelatedItems({
           className="w-full h-full flex justify-center items-center text-center text-xl font-bold rounded-xl p-4 text-black bg-white border border-[#E3E3E3] min-h-0"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           {sectionTitle}
@@ -50,7 +49,6 @@ export default function RelatedItems({
               className="max-w-12 text-xs flex-shrink-0"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               title={item.title || item.name}
             >

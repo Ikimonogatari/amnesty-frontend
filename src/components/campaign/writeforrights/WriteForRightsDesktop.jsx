@@ -128,7 +128,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
             className="text-2xl font-bold text-red-600 mb-4"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
@@ -137,7 +136,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
             className="text-gray-600 mb-4"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠠᠵᠢᠯ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
@@ -156,7 +154,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
             className="bg-black text-white p-2 text-xl inline-block font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             "ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ" ᠠᠶᠠᠨ ᠳ᠋ᠤ ᠨᠢᢉᠡᠳᠡᠨᠡ ᠦᠦ
@@ -165,7 +162,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
             className="text-lg mb-6"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠪᠢᠳ ᠬᠠᠮᠲᠤᠳᠠᠭᠠ ᠲᠡᠮᠴᠪᠡᠯ ᠢᠯᠦᠦ ᢈᠦᢉᠲᠡᠢ᠃ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ
@@ -209,7 +205,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                       className="font-bold mb-2 text-sm overflow-hidden flex-shrink-0 max-w-[60px]"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         wordBreak: "keep-all",
                         overflowWrap: "break-word",
                       }}
@@ -221,7 +216,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                       className="text-xs overflow-y-auto flex-1 max-w-[150px] pr-1"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         wordBreak: "keep-all",
                         overflowWrap: "break-word",
                         lineHeight: "1.5",
@@ -256,7 +250,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                 className="text-white text-lg"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠠᠵᠢᠯ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
@@ -273,7 +266,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
               className="text-white text-xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠨᠢᢉᠡᠳᠡᠨᠡ ᠦᠦ
@@ -286,7 +278,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠣᠪᠤᠭ*
@@ -300,7 +291,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="border rounded-md w-20 h-auto"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -311,7 +301,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠨᠡᠷᠡ*
@@ -325,7 +314,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="border rounded-md p-2 w-20"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -336,7 +324,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ*
@@ -348,7 +335,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="border rounded-md p-2 w-20"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -359,7 +345,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠤᠯᠤᠰ*
@@ -426,7 +411,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                     className="text-red-400 text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       width: "80px",
                     }}
                   >
@@ -452,7 +436,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                   className="text-white text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠲᠠᠨ ᠤ᠋ ᠥᠭᠦᠰᠦᠨ ᢈᠤᠪᠢᠶᠠᠨ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ ᠢ ᠪᠢᠳ ᠵᠥᠪᢈᠥᠨ ᠡᠨᠡ ᠻᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ
@@ -467,7 +450,6 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
               className="text-white text-2xl font-bold text-center mt-10 mb-10"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠨ ᠳ᠋ᠤ ᠪᠠᠶᠠᠷᠯᠠᠯᠠᠭ᠎ᠠ

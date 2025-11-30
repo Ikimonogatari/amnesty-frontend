@@ -236,7 +236,6 @@ export default function SingleNews() {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠣᠭᠲᠠᠷᠭᠤᠯ
@@ -245,7 +244,6 @@ export default function SingleNews() {
             className="text-xl text-gray-600"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             {publishedAt}
@@ -258,7 +256,6 @@ export default function SingleNews() {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
@@ -315,7 +312,6 @@ export default function SingleNews() {
             className="text-2xl font-bold flex-shrink-0"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠠᠭᠤᠯᠭ᠎ᠠ
@@ -324,7 +320,6 @@ export default function SingleNews() {
             className="prose prose-lg text-base break-words max-w-8xl overflow-x-auto"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
             dangerouslySetInnerHTML={{ __html: post.body }}
           />

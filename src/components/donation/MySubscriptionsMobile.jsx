@@ -60,7 +60,6 @@ export default function MySubscriptionsMobile({
             className="text-2xl font-bold text-center"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               minHeight: "120px",
             }}
           >
@@ -74,7 +73,6 @@ export default function MySubscriptionsMobile({
             className="text-sm text-center"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               minHeight: "80px",
             }}
           >
@@ -97,7 +95,6 @@ export default function MySubscriptionsMobile({
                       className="text-sm font-medium mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "40px",
                       }}
                     >
@@ -107,7 +104,6 @@ export default function MySubscriptionsMobile({
                       className="text-lg font-bold"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "60px",
                       }}
                     >
@@ -121,7 +117,6 @@ export default function MySubscriptionsMobile({
                       className="text-sm font-medium mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "40px",
                       }}
                     >
@@ -131,7 +126,6 @@ export default function MySubscriptionsMobile({
                       className="text-sm"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "60px",
                       }}
                     >
@@ -145,7 +139,6 @@ export default function MySubscriptionsMobile({
                       className="text-sm font-medium mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "40px",
                       }}
                     >
@@ -155,7 +148,6 @@ export default function MySubscriptionsMobile({
                       className="text-sm"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "60px",
                       }}
                     >
@@ -169,7 +161,6 @@ export default function MySubscriptionsMobile({
                       className="text-sm font-medium mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "40px",
                       }}
                     >
@@ -179,7 +170,6 @@ export default function MySubscriptionsMobile({
                       className="text-sm"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         minHeight: "60px",
                       }}
                     >
@@ -227,7 +217,6 @@ export default function MySubscriptionsMobile({
                 className="text-lg mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                   minHeight: "80px",
                 }}
               >
@@ -270,7 +259,6 @@ export default function MySubscriptionsMobile({
             className="text-lg font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               minHeight: "80px",
             }}
           >
@@ -282,7 +270,6 @@ export default function MySubscriptionsMobile({
             className="text-sm text-gray-700 text-center max-w-xs"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               minHeight: "120px",
             }}
           >
@@ -295,7 +282,6 @@ export default function MySubscriptionsMobile({
             className="text-xs text-gray-600 text-center max-w-xs"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               minHeight: "60px",
             }}
           >

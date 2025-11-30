@@ -43,7 +43,6 @@ export default function LoadingSpinner({
             style={{
               writingMode: "vertical-lr",
               maxWidth: "120px",
-              textOrientation: "upright",
               overflowWrap: "break-word",
             }}
           >

@@ -53,7 +53,6 @@ export default function DonationMobile({
               className="text-xl font-bold mb-4 text-center"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ
@@ -68,7 +67,6 @@ export default function DonationMobile({
               }`}
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ
@@ -82,7 +80,6 @@ export default function DonationMobile({
               }`}
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ
@@ -95,7 +92,6 @@ export default function DonationMobile({
               className="block text-sm font-medium mb-2"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠳᠦᠨ *
@@ -112,7 +108,6 @@ export default function DonationMobile({
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {toMongolianNumbers(amountOption)}₮
@@ -127,7 +122,6 @@ export default function DonationMobile({
               className="border border-gray-300 p-3 text-sm max-w-min rounded-md text-black"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             />
           </div>
@@ -138,7 +132,6 @@ export default function DonationMobile({
               className="text-xs font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠪᠦᠷᠳᠦᢉᠦᢉᠦ
@@ -151,7 +144,6 @@ export default function DonationMobile({
                   className="text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠨᠡᠷ᠎ᠡ*
@@ -167,7 +159,6 @@ export default function DonationMobile({
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -178,7 +169,6 @@ export default function DonationMobile({
                   className="text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠣᠪᠤᠭ*
@@ -194,7 +184,6 @@ export default function DonationMobile({
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -205,7 +194,6 @@ export default function DonationMobile({
                   className="text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠢᠮᠡᠶᠢᠯ*
@@ -219,7 +207,6 @@ export default function DonationMobile({
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -230,7 +217,6 @@ export default function DonationMobile({
                   className="text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠤᠲᠠᠰᠤᠨ*
@@ -246,7 +232,6 @@ export default function DonationMobile({
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -257,7 +242,6 @@ export default function DonationMobile({
                   className="text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠤᠯᠤᠰ
@@ -268,7 +252,6 @@ export default function DonationMobile({
                   className="border border-gray-300 rounded-md p-2 w-20 text-xs text-black"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {countryData.map((country) => (
@@ -292,7 +275,6 @@ export default function DonationMobile({
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {isLoading ? "ᠢᠯᠭᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ..." : "ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ"}
@@ -335,7 +317,6 @@ export default function DonationMobile({
             className="text-lg font-bold mb-4"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨ ᠳ᠋ᠤᠷ
@@ -344,7 +325,6 @@ export default function DonationMobile({
             className="text-sm text-gray-700 mb-4"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠢᠷᢉᠡᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠦᠢᠯᠡᠰ ᠲᠦ ᠦᠨ᠎ᠡ ᠲᠡᠢ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠢ ᠪᠡᠨ
@@ -354,7 +334,6 @@ export default function DonationMobile({
             className="text-xs text-gray-600"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠬᠣᠯᠪᠤᠭ᠎ᠠ: ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ ᠬᠣᠲᠠ᠂ ᠰᠦᢈᠡᠪᠠᠭᠠᠲᠤᠷ ᠳᠡᢉᠦᠷᢉᠡ᠂ ᠖-ᠷ ᠬᠣᠷᠢᠶ᠎ᠠ᠂ AB

@@ -32,7 +32,7 @@ export default function ReportDesktop() {
         <div className="flex items-center justify-center h-full w-full">
           <p
             className="text-lg font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠠᠴᠢᠶᠠᠯᠠᠨ ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
           </p>
@@ -53,7 +53,7 @@ export default function ReportDesktop() {
         <div className="flex items-center justify-center h-full w-full">
           <p
             className="text-lg font-bold text-red-600"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠠᠯᠳᠠᠭᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠳᠤᠷᠠᠳᠬᠤ ᠪᠣᠯᠤᠮᠵᠢᠲᠠᠢ᠃
           </p>
@@ -87,7 +87,7 @@ export default function ReportDesktop() {
           <div className="h-1/2 flex items-center justify-center w-full rounded-t-xl bg-[#FFFF00] p-8">
             <h2
               className={`text-lg font-bold max-h-[400px]`}
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠳᠡᢉᠡᠳᠦᠯᠡᠳᠡᢉ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ
             </h2>
@@ -95,13 +95,13 @@ export default function ReportDesktop() {
           <div className="h-1/2 flex items-start justify-center w-full rounded-b-xl bg-black p-8">
             <h2
               className={`text-lg font-bold text-[#FFFF00]`}
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ ᠦ᠋ᠨ
             </h2>
             <h2
               className={`text-lg font-bold text-white max-h-[400px]`}
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠨᠡᠩ ᠲᠡᠷᠢᢉᠦᠨ ᠳ᠋ᠦ ᠠᠩᠬᠠᠷᠴᠤ ᠠᠵᠢᠯᠯᠠᠬᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠰᠲ᠋ᠷᠠᠲ᠋ᠧᢉᠢ
               ᠵᠣᠷᠢᠯᠲᠠ
@@ -118,7 +118,6 @@ export default function ReportDesktop() {
                 className="text-2xl font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {a.title}
@@ -127,7 +126,6 @@ export default function ReportDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {a.description}
@@ -139,13 +137,13 @@ export default function ReportDesktop() {
           <div className="flex gap-7">
             <h2
               className="text-2xl font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠰᠠᠩᢈᠦᠵᠢᠯᠲᠡ
             </h2>
             <p
               className="text-sm"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠱᠢᠨ᠋ᠯ ᠨᠢ ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠠᠷᠴᠢᠮ
               ᠤ᠋ᠳ ᠢ᠋ ᠪᠠᠷᠢᠮᠲᠠᠯᠠᠳᠠᠭ ᠪᠥᢉᠡᠳ ᠡᠨᠡ ᠨᠢ ᠪᠢᠳᠡ ᠠᠯᠢ ᠨᠢᢉᠡ ᠦᠵᠡᠯ ᠰᠤᠷᠲᠠᠯ᠂ ᠤᠯᠤᠰ
@@ -171,7 +169,7 @@ export default function ReportDesktop() {
           <div className="flex gap-7">
             <h2
               className="text-2xl font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠪᠢᠳᠡᠨ ᠦ᠋ ᢈᠥᠳᠡᠯᢉᠡᢉᠡᠨ ᠳ᠋ᠦ ᠨᠢᢉᠡᠳᠦ᠋ᢉᠡᠷᠡᠢ
             </h2>

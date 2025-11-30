@@ -131,7 +131,6 @@ export default function StructureManagersDesktop() {
                     className="font-bold text-xl mb-2 text-center"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {manager.name}
@@ -140,7 +139,6 @@ export default function StructureManagersDesktop() {
                     className="text-xs text-gray-600 text-center"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {manager.position}
@@ -154,7 +152,6 @@ export default function StructureManagersDesktop() {
                   className="font-semibold text-sm leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {manager.description}

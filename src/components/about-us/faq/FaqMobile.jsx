@@ -42,7 +42,7 @@ export default function FaqMobile() {
     return (
       <div className="w-full min-h-screen bg-white md:hidden flex items-center justify-center">
         <div className="text-center text-red-600">
-          <p style={{ writingMode: "vertical-lr", textOrientation: "upright" }}>
+          <p style={{ writingMode: "vertical-lr" }}>
             ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
         </div>
@@ -69,7 +69,6 @@ export default function FaqMobile() {
                 className="text-[10px] font-bold text-black py-3"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.title}
@@ -80,7 +79,6 @@ export default function FaqMobile() {
               className="text-[10px] max-h-[150px] w-full overflow-x-auto"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {item.description}

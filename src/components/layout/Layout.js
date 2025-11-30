@@ -36,7 +36,7 @@ export default function Layout({ children }) {
       <div
         ref={scrollRef}
         className="h-screen w-screen overflow-x-auto overflow-y-hidden hidden md:block font-mongolian"
-        style={{ scrollBehavior: "smooth" }}
+        style={{ scrollBehavior: "auto" }}
       >
         <div
           className="flex items-center justify-start h-full"

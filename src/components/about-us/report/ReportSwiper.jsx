@@ -150,7 +150,7 @@ export default function ReportSwiper({
         {title && (
           <h1
             className="text-[10px] sm:text-2xl font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             {title}
           </h1>
@@ -158,7 +158,7 @@ export default function ReportSwiper({
         {description && (
           <p
             className="text-[10px] sm:text-sm font-bold text-[#848382] sm:text-black"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             {description}
           </p>
@@ -169,7 +169,7 @@ export default function ReportSwiper({
         {sectionTitle && (
           <p
             className="text-[10px] font-bold block sm:hidden"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             {sectionTitle}
           </p>
@@ -198,7 +198,6 @@ export default function ReportSwiper({
                     className="text-sm font-bold line-clamp-3 overflow-y-auto"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       maxHeight: "",
                     }}
                   >
@@ -235,7 +234,7 @@ export default function ReportSwiper({
           {slides.length > 5 && (
             <p
               className="text-xs text-gray-500"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠦᠷᠭᠦᠯᠵᠢᠯᠡᢉᠦ
             </p>

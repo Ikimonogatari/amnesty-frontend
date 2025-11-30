@@ -139,7 +139,7 @@ export default function BannerSlider({
           >
             <p
               className="text-red-600 text-sm"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </p>
@@ -159,7 +159,7 @@ export default function BannerSlider({
         >
           <p
             className="text-gray-500 text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠵᠢᠷᠤᠭ ᠦᠭᠡᠢ
           </p>
@@ -215,7 +215,6 @@ export default function BannerSlider({
                       className="text-2xl font-bold mb-3"
                       style={{
                         writingMode: "vertical-rl",
-                        textOrientation: "upright",
                       }}
                     >
                       {image.caption.title}
@@ -224,7 +223,6 @@ export default function BannerSlider({
                       className="text-gray-200"
                       style={{
                         writingMode: "vertical-rl",
-                        textOrientation: "upright",
                       }}
                     >
                       {image.caption.description}
@@ -254,7 +252,6 @@ export default function BannerSlider({
                           className="text-lg font-bold mb-2 line-clamp-2"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                             maxHeight: "60px",
                             overflow: "hidden",
                           }}
@@ -265,7 +262,6 @@ export default function BannerSlider({
                           className="text-sm text-gray-200 line-clamp-2"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                             maxHeight: "40px",
                             overflow: "hidden",
                           }}

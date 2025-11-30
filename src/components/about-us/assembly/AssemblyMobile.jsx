@@ -24,7 +24,7 @@ export default function AssemblyMobile() {
             />
             <p
               className="text-[10px] overflow-x-auto"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠣᠩᠭᠤᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ (ᠮᠡᠶᠢ)-ᠡᠶᠢᠨ “ᠪᠢᠳᠡᠨ ᠦ᠋ ᠡᠷᢈᠡ᠂ ᠪᠢᠳᠡᠨ
               ᠦ᠋ ᠳᠡᠯᠡᢈᠡᠢ᠂ ᠪᠢᠳᠡᠨ ᠦ᠋ ᠢᠷᠡᢉᠡᠳᠦᠢ” XXII ᠶᠡᠷᠦᠩᢈᠡᠢ ᠴᠢᠭᠤᠯᠭᠠᠨ ᠒᠐᠒᠓ ᠣᠨ ᠤ᠋
@@ -81,7 +81,7 @@ export default function AssemblyMobile() {
         <div className="flex flex-col gap-4 p-4">
           <p
             className="text-[10px] max-h-[150px] overflow-x-auto"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠮᠣᠩᠭᠤᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ (ᠮᠡᠶᠢ)-ᠡᠶᠢᠨ “ᠪᠢᠳᠡᠨ ᠦ᠋ ᠡᠷᢈᠡ᠂ ᠪᠢᠳᠡᠨ
             ᠦ᠋ ᠳᠡᠯᠡᢈᠡᠢ᠂ ᠪᠢᠳᠡᠨ ᠦ᠋ ᠢᠷᠡᢉᠡᠳᠦᠢ” XXII ᠶᠡᠷᠦᠩᢈᠡᠢ ᠴᠢᠭᠤᠯᠭᠠᠨ ᠒᠐᠒᠓ ᠣᠨ ᠤ᠋ ᠐᠙
@@ -114,7 +114,7 @@ export default function AssemblyMobile() {
 
           <p
             className="text-[10px] max-h-[150px] overflow-x-auto"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠦ᠋ᠳ᠂ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ᠂ ᠪᠦᠰᠡ ᠶ᠋ᠢᠨ ᠲᠥᠪ ᠦ᠋ᠨ ᠲᠥᠯᠦᢉᠡᠯᠡᠯ ᠵᠡᠷᢉᠡ ᠣᠯᠠᠨ ᠲᠠᠯᠠᠲᠤ
             ᠲᠥᠯᠦᢉᠡᠯᠡᠯ ᠣᠷᠤᠯᠴᠠᠯ᠎ᠠ᠃ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠠᠷᠤᠭ᠎ᠠ

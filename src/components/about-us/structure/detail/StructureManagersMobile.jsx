@@ -130,7 +130,6 @@ export default function StructureManagersMobile() {
                     className="font-bold text-sm"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {manager.name}
@@ -139,7 +138,6 @@ export default function StructureManagersMobile() {
                     className="text-xs text-gray-600"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {manager.position}
@@ -151,7 +149,6 @@ export default function StructureManagersMobile() {
                   className="text-xs leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {manager.description}

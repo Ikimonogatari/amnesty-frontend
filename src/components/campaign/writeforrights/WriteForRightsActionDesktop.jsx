@@ -119,7 +119,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
             className="text-xl inline-block font-bold overflow-hidden flex-shrink-0 max-w-[100px]"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               wordBreak: "keep-all",
               overflowWrap: "break-word",
             }}
@@ -131,7 +130,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
             className="text-lg overflow-y-auto flex-1 max-w-[400px] pr-2"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               wordBreak: "keep-all",
               overflowWrap: "break-word",
               lineHeight: "1.6",
@@ -151,7 +149,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
               className="text-white text-xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠨᠢᢉᠡᠳᠡᠨᠡ ᠦᠦ
@@ -164,7 +161,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠣᠪᠤᠭ*
@@ -178,7 +174,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="border rounded-md p-2 w-20"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -189,7 +184,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠨᠡᠷᠡ*
@@ -203,7 +197,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="border rounded-md p-2 w-20"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -214,7 +207,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ*
@@ -226,7 +218,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="border rounded-md p-2 w-20"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -237,7 +228,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="text-white text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠤᠯᠤᠰ*
@@ -304,7 +294,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                     className="text-red-400 text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       width: "80px",
                     }}
                   >
@@ -330,7 +319,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
                   className="text-white text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠲᠠᠨ ᠤ᠋ ᠥᠭᠦᠰᠦᠨ ᢈᠤᠪᠢᠶᠠᠨ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ ᠢ ᠪᠢᠳ ᠵᠥᠪᢈᠥᠨ ᠡᠨᠡ ᠻᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ
@@ -345,7 +333,6 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
               className="text-white text-2xl font-bold text-center mt-10 mb-10"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠨ ᠳ᠋ᠤ ᠪᠠᠶᠠᠷᠯᠠᠯᠠᠭ᠎ᠠ

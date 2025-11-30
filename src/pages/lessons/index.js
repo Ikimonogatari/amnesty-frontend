@@ -72,7 +72,7 @@ export default function LessonsIndex() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center text-red-600">
-          <p style={{ writingMode: "vertical-lr", textOrientation: "upright" }}>
+          <p style={{ writingMode: "vertical-lr" }}>
             ᠰᠤᠷᠭᠠᠯᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
         </div>

@@ -89,7 +89,7 @@ export default function CampaignMobile() {
         <div className="text-center text-red-600">
           <p
             className="text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
@@ -111,7 +111,7 @@ export default function CampaignMobile() {
         <div className="h-full flex gap-7 max-h-[150px]">
           <h2
             className="text-xs font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠪᠢᠳᠡ ᢈᠡᠷᢈᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠶ᠋ᠢ ᢈᠢᠳᠡᢉ ᠪᠤᠢ?
           </h2>
@@ -140,7 +140,6 @@ export default function CampaignMobile() {
                     className="text-[10px] font-bold"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {item.title.length > 15
@@ -154,7 +153,6 @@ export default function CampaignMobile() {
                     className="text-[10px]"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {item.description.length > 80
@@ -169,7 +167,7 @@ export default function CampaignMobile() {
         <div className="h-full flex gap-7">
           <h2
             className="text-xs font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠳ
           </h2>
@@ -194,7 +192,6 @@ export default function CampaignMobile() {
                   className="text-[10px] pl-[2px] font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   title={item.title}
                 >
@@ -216,7 +213,6 @@ export default function CampaignMobile() {
                     className="text-[10px] pl-1 font-bold text-gray-400"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠦᠭᠡᠢ

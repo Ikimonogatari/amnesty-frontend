@@ -64,13 +64,13 @@ export default function LibraryDetail() {
           <div className="text-center">
             <h1
               className="text-2xl font-bold text-red-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </h1>
             <p
               className="text-gray-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
@@ -79,7 +79,6 @@ export default function LibraryDetail() {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠨ ᠤᠨ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
@@ -152,7 +151,6 @@ export default function LibraryDetail() {
                 className="text-xl font-bold mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -161,7 +159,6 @@ export default function LibraryDetail() {
                 className="text-base text-gray-800"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 dangerouslySetInnerHTML={{
                   __html:
@@ -180,7 +177,6 @@ export default function LibraryDetail() {
                 className="text-lg font-semibold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠵᠣᠬᠢᠶᠠᠭᠴᠢ
@@ -189,7 +185,6 @@ export default function LibraryDetail() {
                 className="text-base text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {library.author}
@@ -204,7 +199,6 @@ export default function LibraryDetail() {
                 className="text-xl font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠨᠣᠮ
@@ -220,7 +214,6 @@ export default function LibraryDetail() {
                       className="text-sm font-medium line-clamp-3 mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {(item.title || item.name)?.length > 40
@@ -269,7 +262,6 @@ export default function LibraryDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               PDF
@@ -319,7 +311,6 @@ export default function LibraryDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -328,7 +319,6 @@ export default function LibraryDetail() {
               className="text-lg text-gray-800 max-w-[600px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               dangerouslySetInnerHTML={{
                 __html:
@@ -347,7 +337,6 @@ export default function LibraryDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠵᠣᠬᠢᠶᠠᠭᠴᠢ
@@ -356,7 +345,6 @@ export default function LibraryDetail() {
               className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {library.author}
@@ -371,7 +359,6 @@ export default function LibraryDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠳᠤᠭᠠᠷ ᠨᠣᠮᠸᠷ
@@ -380,7 +367,6 @@ export default function LibraryDetail() {
               className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {convertTextNumbers(library.index)}

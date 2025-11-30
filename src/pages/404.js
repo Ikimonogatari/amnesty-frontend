@@ -26,7 +26,7 @@ export default function Custom404() {
             {/* Main Error Message */}
             <h1
               className="text-2xl font-bold text-gray-800"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠬᠤᠪᠢ ᠤᠯᠤᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </h1>
@@ -34,7 +34,7 @@ export default function Custom404() {
             {/* Description */}
             <p
               className="text-base text-gray-600"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠬᠤᠪᠢ ᠤᠯᠤᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
@@ -53,7 +53,7 @@ export default function Custom404() {
             <button
               onClick={() => router.back()}
               className="text-gray-500 hover:text-gray-700 transition-colors px-4 py-2"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠪᠤᠴᠠᠬᠤ
             </button>
@@ -74,7 +74,6 @@ export default function Custom404() {
               className="text-xl font-bold text-gray-800"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠤᠪᠢ ᠤᠯᠤᠭᠰᠠᠨ ᠦᠭᠡᠢ
@@ -85,7 +84,6 @@ export default function Custom404() {
               className="text-base text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠬᠤᠪᠢ ᠦᠭᠡᠢ
@@ -104,7 +102,7 @@ export default function Custom404() {
             <button
               onClick={() => router.back()}
               className="text-gray-500 hover:text-gray-700 transition-colors px-4 py-2 border border-gray-300 rounded"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠪᠤᠴᠠᠬᠤ
             </button>

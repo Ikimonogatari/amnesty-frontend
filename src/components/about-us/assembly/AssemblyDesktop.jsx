@@ -16,7 +16,7 @@ export default function ReportDesktop() {
         <div className="flex gap-6 h-[calc(100vh-2rem)] max-h-[calc(100vh-2rem)]">
           <p
             className="text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠮᠣᠩᠭᠤᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ (ᠮᠡᠶᠢ)-ᠡᠶᠢᠨ “ᠪᠢᠳᠡᠨ ᠦ᠋ ᠡᠷᢈᠡ᠂ ᠪᠢᠳᠡᠨ
             ᠦ᠋ ᠳᠡᠯᠡᢈᠡᠢ᠂ ᠪᠢᠳᠡᠨ ᠦ᠋ ᠢᠷᠡᢉᠡᠳᠦᠢ” XXII ᠶᠡᠷᠦᠩᢈᠡᠢ ᠴᠢᠭᠤᠯᠭᠠᠨ ᠒᠐᠒᠓ ᠣᠨ ᠤ᠋ ᠐᠙
@@ -75,7 +75,7 @@ export default function ReportDesktop() {
         <div className="flex flex-col gap-8 h-full max-h-screen">
           <p
             className="text-base"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠮᠣᠩᠭᠤᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ (ᠮᠡᠶᠢ)-ᠡᠶᠢᠨ “ᠪᠢᠳᠡᠨ ᠦ᠋ ᠡᠷᢈᠡ᠂ ᠪᠢᠳᠡᠨ
             ᠦ᠋ ᠳᠡᠯᠡᢈᠡᠢ᠂ ᠪᠢᠳᠡᠨ ᠦ᠋ ᠢᠷᠡᢉᠡᠳᠦᠢ” XXII ᠶᠡᠷᠦᠩᢈᠡᠢ ᠴᠢᠭᠤᠯᠭᠠᠨ ᠒᠐᠒᠓ ᠣᠨ ᠤ᠋ ᠐᠙
@@ -106,7 +106,7 @@ export default function ReportDesktop() {
           />
           <p
             className="text-base"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠦ᠋ᠳ᠂ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ᠂ ᠪᠦᠰᠡ ᠶ᠋ᠢᠨ ᠲᠥᠪ ᠦ᠋ᠨ ᠲᠥᠯᠦᢉᠡᠯᠡᠯ ᠵᠡᠷᢉᠡ ᠣᠯᠠᠨ ᠲᠠᠯᠠᠲᠤ
             ᠲᠥᠯᠦᢉᠡᠯᠡᠯ ᠣᠷᠤᠯᠴᠠᠯ᠎ᠠ᠃ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠠᠷᠤᠭ᠎ᠠ

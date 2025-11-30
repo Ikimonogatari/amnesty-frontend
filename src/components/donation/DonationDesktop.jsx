@@ -56,7 +56,6 @@ export default function DonationDesktop({
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠨᠳᠢᠪ ᠡᠷᢉᠦᢈᠦ
@@ -64,7 +63,6 @@ export default function DonationDesktop({
             <p
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               className="text-sm"
             >
@@ -77,7 +75,6 @@ export default function DonationDesktop({
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠡᠰᠢᠩᠯᠡ ᠶ᠋ᠢᠨ ᠣᠹᠹᠢᠰ
@@ -85,7 +82,6 @@ export default function DonationDesktop({
             <p
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               className="text-sm"
             >
@@ -98,7 +94,6 @@ export default function DonationDesktop({
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ
@@ -115,7 +110,6 @@ export default function DonationDesktop({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ
@@ -129,7 +123,6 @@ export default function DonationDesktop({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ
@@ -142,7 +135,6 @@ export default function DonationDesktop({
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠳᠦᠨ*
@@ -159,7 +151,6 @@ export default function DonationDesktop({
                     }`}
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {toMongolianNumbers(amountOption)}₮
@@ -173,7 +164,6 @@ export default function DonationDesktop({
                   className="border border-gray-300 rounded-md p-2 w-20 text-black"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 />
               </div>
@@ -185,7 +175,6 @@ export default function DonationDesktop({
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠨᠡᠷ᠎ᠡ*
@@ -199,7 +188,6 @@ export default function DonationDesktop({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -210,7 +198,6 @@ export default function DonationDesktop({
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠣᠪᠤᠭ*
@@ -224,7 +211,6 @@ export default function DonationDesktop({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -235,7 +221,6 @@ export default function DonationDesktop({
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠢᠮᠡᠶᠢᠯ*
@@ -249,7 +234,6 @@ export default function DonationDesktop({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -260,7 +244,6 @@ export default function DonationDesktop({
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠲᠠᠰᠤᠨ*
@@ -276,7 +259,6 @@ export default function DonationDesktop({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -287,7 +269,6 @@ export default function DonationDesktop({
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠯᠤᠰ
@@ -298,7 +279,6 @@ export default function DonationDesktop({
                 className="border border-gray-300 rounded-md p-2 w-20 text-black text-start"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {countryData.map((country) => (
@@ -328,7 +308,6 @@ export default function DonationDesktop({
                   className="text-sm text-yellow-400"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠲᠥᠯᠪᠦᠷᠢ ᠬᠦᠯᠢᠶᠡᠵᠦ ᠪᠠᠢᠨ᠎ᠠ...
@@ -349,7 +328,6 @@ export default function DonationDesktop({
                   className="text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   QR ᠬᠣᠳ

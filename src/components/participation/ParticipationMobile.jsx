@@ -31,7 +31,6 @@ export default function ParticipationMobile() {
             className="text-xs overflow-x-auto"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠵᠠᢈᠢᠳᠠᠯ ᠳ᠋ᠤ ᠭᠠᠷ ᠤ᠋ᠨ ᠦᠰᠦᢉ ᠵᠢᠷᠤᠵᠤ᠂ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠰᠠᠶᠢᠨ
@@ -50,7 +49,6 @@ export default function ParticipationMobile() {
                 className="text-xs font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.title}
@@ -64,7 +62,6 @@ export default function ParticipationMobile() {
                 className="text-[10px]"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.description}

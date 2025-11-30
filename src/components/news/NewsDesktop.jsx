@@ -203,7 +203,7 @@ export default function NewsDesktop() {
                   ? "text-white bg-[#2D2D2D] border border-[#2D2D2D]"
                   : "text-black bg-white border border-[#E3E3E3] hover:bg-gray-50"
               }`}
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᢉᠡ
             </button>
@@ -214,7 +214,7 @@ export default function NewsDesktop() {
                   ? "text-white bg-[#2D2D2D] border border-[#2D2D2D]"
                   : "text-black bg-white border border-[#E3E3E3] hover:bg-gray-50"
               }`}
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠶᠢᠷ ᠰᠤᠤᠷᠢ
             </button>
@@ -225,7 +225,7 @@ export default function NewsDesktop() {
                   ? "text-white bg-[#2D2D2D] border border-[#2D2D2D]"
                   : "text-black bg-white border border-[#E3E3E3] hover:bg-gray-50"
               }`}
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠣᠨᠴᠤᠯᠠᠬᠤ ᠮᠡᠳᠡᢉᠡ
             </button>
@@ -240,7 +240,6 @@ export default function NewsDesktop() {
                   className="text-red-600 mb-4"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠠᠯᠳᠠᠭᠠ:{" "}

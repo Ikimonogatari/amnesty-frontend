@@ -83,7 +83,6 @@ export default function StructureChapterMembersMobile() {
                   className="text-xs p-4 h-full border-l text-center"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {group.name}
@@ -93,7 +92,6 @@ export default function StructureChapterMembersMobile() {
                   className="text-xs p-4 h-full border-l text-center"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {group.name}
@@ -142,7 +140,6 @@ export default function StructureChapterMembersMobile() {
                 className="text-sm font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠳᠡᠮᠵᠢᢉᠴᠢ
@@ -152,7 +149,6 @@ export default function StructureChapterMembersMobile() {
                   className="text-[10px] leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠳᠡᠮᠵᠢᢉᠴᠢ ᠨᠢ ᠰᠠᠩᢈᠦᠦ ᠶ᠋ᠢᠨ ᠬᠤᠪᠢ ᠳ᠋ᠤ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠢ ᠪᠡᠨ ᠣᠷᠤᠭᠤᠯᠵᠤ
@@ -177,7 +173,6 @@ export default function StructureChapterMembersMobile() {
                     className="text-sm font-bold"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᢉᠡᠰᠢᢉᠦᠨ
@@ -189,7 +184,6 @@ export default function StructureChapterMembersMobile() {
                   className="text-[10px] leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᢉᠡᠰᠢᢉᠦᠨ ᠵᠠᠰᠠᠭᠯᠠᠯ ᠲᠠᠢ ᠬᠣᠯᠪᠤᠭᠠᠲᠠᠢ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ ᠳ᠋ᠤ ᠪᠦᠷᠢᠨ

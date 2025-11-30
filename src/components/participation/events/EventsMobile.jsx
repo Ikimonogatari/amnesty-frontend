@@ -401,7 +401,6 @@ export default function EventsMobile() {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠪᠢᠳᠡ ᠰᠢᠳᠤᠷᠭᠤ ᠶᠣᠰᠤ᠂ ᠡᠷᢈᠡ ᠴᠢᠯᠦᢉᠡ᠂ ᠦᠨᠡᠨ᠂ ᠪᠣᠯᠤᠨ ᠨᠡᠷ᠎ᠡ ᠲᠥᠷᠦ ᠨᠢ
@@ -413,7 +412,6 @@ export default function EventsMobile() {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠪᠣᠯ ᢈᠦᠮᠦᠰ ᠦ᠋ᠨ ᠨᠢᢉᠡᠳᠦᠯ᠃ ᠣᠯᠠᠨ ᢈᠦᠮᠦᠰ ᠰᠢᠳᠤᠷᠭᠤ ᠶᠣᠰᠤᠨ ᠤ᠋ ᠲᠥᠯᠦᢉᠡ
@@ -424,7 +422,6 @@ export default function EventsMobile() {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠲᠠᠨ ᠤ᠋ ᠣᠷᠤᠯᠴᠠᠬᠤ ᠪᠣᠯᠤᠮᠵᠢᠲᠠᠢ ᠤᠯᠠᠮᠵᠢᠯᠠᠯᠲᠤ᠂ ᠵᠢᠯ ᠪᠣᠯᠭᠠᠨ ᠵᠣᢈᠢᠶᠠᠨ
@@ -489,7 +486,6 @@ export default function EventsMobile() {
                 key={day}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 className={`p-2 flex items-center justify-center text-[10px] font-medium text-gray-700 border-r border-gray-200 ${
                   index === 6 ? "border-r-0" : ""
@@ -512,7 +508,6 @@ export default function EventsMobile() {
               className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠵᠣᢈᠢᠶᠠᠭᠳᠠᠭᠰᠠᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ
@@ -525,7 +520,6 @@ export default function EventsMobile() {
               className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠪᠠᠭ᠂ ᠪᠦᠯᠦᢉ᠂ ᠪᠦᢈᠦ ᢉᠡᠰᠢᢉᠦᠳ ᠦ᠋ᠨ ᠠᠭᠤᠯᠵᠠᠯᠲᠠ
@@ -538,7 +532,6 @@ export default function EventsMobile() {
               className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ

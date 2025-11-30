@@ -18,13 +18,13 @@ export default function PageIntroduction({
       <div className="flex-shrink-0 bg-gray-50 p-8 overflow-y-auto">
         <h2
           className="text-2xl font-bold mb-6"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           {title}
         </h2>
         <p
           className="text-gray-700 leading-relaxed"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           {description}
         </p>
@@ -38,13 +38,13 @@ export default function PageIntroduction({
     <div className="mb-6 bg-gray-50 p-4 rounded-lg flex flex-row gap-2 max-h-[200px] overflow-x-auto">
       <h2
         className="text-lg font-bold mb-3"
-        style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+        style={{ writingMode: "vertical-lr" }}
       >
         {title}
       </h2>
       <p
         className="text-gray-700 text-sm"
-        style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+        style={{ writingMode: "vertical-lr" }}
       >
         {description}
       </p>

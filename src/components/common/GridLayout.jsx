@@ -98,7 +98,6 @@ export default function GridLayout({
                     className="w-16 max-w-16 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-ellipsis break-words"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       wordBreak: "break-all",
                       overflowWrap: "break-word",
                     }}
@@ -180,7 +179,6 @@ export default function GridLayout({
                     className="text-gray-500 text-lg"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {emptyStateText}
@@ -244,7 +242,6 @@ export default function GridLayout({
                   className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {getTitle ? getTitle(item) : item.title}
@@ -285,7 +282,6 @@ export default function GridLayout({
                 className="text-gray-500 text-center"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {emptyStateText}

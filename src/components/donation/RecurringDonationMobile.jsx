@@ -52,7 +52,6 @@ export default function RecurringDonationMobile({
             className="text-sm font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
@@ -72,7 +71,6 @@ export default function RecurringDonationMobile({
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠪᠦᠷᠳᠦᢉᠦᢉᠦ
@@ -85,7 +83,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠣᠪᠤᠭ*
@@ -99,7 +96,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -110,7 +106,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠨᠡᠷᠡ*
@@ -124,7 +119,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -135,7 +129,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠲᠠᠰᠤᠨ*
@@ -152,7 +145,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -163,7 +155,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠠᠷᠲ ᠤᠨ 16 ᠣᠷᠣᠨ*
@@ -180,7 +171,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -191,7 +181,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠢᠮᠡᠶᠢᠯ*
@@ -205,7 +194,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -223,7 +211,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {timeLeft > 0
@@ -240,7 +227,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠪᠠᠲᠠᠯᠭᠠᠠᠵᠤᠭᠤᠯᠬᠤ ᠬᠣᠳ*
@@ -258,7 +244,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -290,7 +275,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {isLoading ? "ᠤᠨᠰᠢᠵᠤ ᠪᠠᠢᠨ᠎ᠠ..." : "ᠪᠦᠷᠳᠦᢉᠦᢉᠦ"}
@@ -309,7 +293,6 @@ export default function RecurringDonationMobile({
             className="text-sm font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠪᠠᠢᢈᠠᠨ ᠤᠤ
@@ -319,7 +302,6 @@ export default function RecurringDonationMobile({
             className="text-xs"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               minHeight: "80px",
             }}
           >
@@ -333,7 +315,6 @@ export default function RecurringDonationMobile({
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
@@ -346,7 +327,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠢᠮᠡᠶᠢᠯ*
@@ -358,7 +338,6 @@ export default function RecurringDonationMobile({
                 onChange={(e) => setLoginEmail(e.target.value)}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -376,7 +355,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {loginTimeLeft > 0 ? `${loginTimeLeft}s` : "ᠬᠣᠳ ᠢᠯᠭᠡᢉᠦ"}
@@ -389,7 +367,6 @@ export default function RecurringDonationMobile({
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠪᠠᠲᠠᠯᠭᠠᠠᠵᠤᠭᠤᠯᠬᠤ ᠬᠣᠳ*
@@ -403,7 +380,6 @@ export default function RecurringDonationMobile({
                 onChange={(e) => setLoginVerifyCode(e.target.value)}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -421,7 +397,6 @@ export default function RecurringDonationMobile({
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
@@ -438,7 +413,6 @@ export default function RecurringDonationMobile({
             className="text-lg font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
@@ -447,7 +421,6 @@ export default function RecurringDonationMobile({
             className="text-sm text-gray-700 max-w-xs"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠶᠢᠨ ᠠᠷᠭᠠ ᠵᠠᠮ ᠢ ᠲᠠᠨ ᠳ᠋ᠤ ᠮᠡᠳᠡᠭᠦᠯᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ᠃
@@ -457,7 +430,6 @@ export default function RecurringDonationMobile({
             className="text-xs text-gray-600 max-w-xs"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠬᠣᠯᠪᠤᠭ᠎ᠠ: ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ ᠬᠣᠲᠠ᠂ ᠰᠦᢈᠡᠪᠠᠭᠠᠲᠤᠷ ᠳᠡᢉᠦᠷᢉᠡ᠂ ᠖-ᠷ ᠬᠣᠷᠢᠶ᠎ᠠ᠂ AB

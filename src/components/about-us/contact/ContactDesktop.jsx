@@ -107,7 +107,6 @@ export default function ContactDesktop() {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠤᠲᠠᠰᠤ: ᠗᠐᠐᠐-᠔᠗᠐᠘
@@ -115,7 +114,6 @@ export default function ContactDesktop() {
           <p
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
             className="text-sm"
           >
@@ -129,7 +127,6 @@ export default function ContactDesktop() {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠡᠰᠢᠩᠯᠡ ᠶ᠋ᠢᠨ ᠣᠹᠹᠢᠰ
@@ -137,7 +134,6 @@ export default function ContactDesktop() {
           <p
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
             className="text-sm"
           >
@@ -150,7 +146,6 @@ export default function ContactDesktop() {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ
@@ -163,7 +158,6 @@ export default function ContactDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠨᠡᠷ᠎ᠡ*
@@ -181,7 +175,6 @@ export default function ContactDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.name && (
@@ -189,7 +182,6 @@ export default function ContactDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -204,7 +196,6 @@ export default function ContactDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠢᠮᠡᠶᠢᠯ ᠬᠠᠶᠢᠭ*
@@ -223,7 +214,6 @@ export default function ContactDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.email && (
@@ -231,7 +221,6 @@ export default function ContactDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -246,7 +235,6 @@ export default function ContactDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠭᠠᠷᠴᠠᠭ
@@ -256,7 +244,6 @@ export default function ContactDesktop() {
                 className="border border-gray-300 rounded-md p-2 w-20"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -267,7 +254,6 @@ export default function ContactDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳ᠋ᠤᠭᠠᠷ (ᠵᠠᠪᠠᠯ ᠪᠢᠰᠢ)
@@ -278,7 +264,6 @@ export default function ContactDesktop() {
                 className="border border-gray-300 rounded-md p-2 w-20"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -289,7 +274,6 @@ export default function ContactDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠶᠠᠮᠠᠷ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠢ᠋ᠶᠠᠷ?
@@ -305,13 +289,11 @@ export default function ContactDesktop() {
                       className="border border-gray-300 rounded-md p-2 w-20 text-xs bg-white flex flex-col items-center justify-center h-full gap-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       <div
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         className="flex items-center justify-center"
                       >
@@ -341,7 +323,6 @@ export default function ContactDesktop() {
                             className="w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 h-full flex items-center justify-center"
                             style={{
                               writingMode: "vertical-lr",
-                              textOrientation: "upright",
                             }}
                           >
                             {option.label}
@@ -360,7 +341,6 @@ export default function ContactDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠮᠧᠰᠰᠧᠵᠢ*
@@ -379,7 +359,6 @@ export default function ContactDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.message && (
@@ -387,7 +366,6 @@ export default function ContactDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -423,7 +401,6 @@ export default function ContactDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                   width: "60px",
                 }}
               >

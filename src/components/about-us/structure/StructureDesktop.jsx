@@ -107,7 +107,6 @@ export default function StructureDesktop() {
                   className="text-gray-600 mb-4"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   PDF ᠬᠠᠷᠠᠭᠤᠯᠠᠬᠤ ᠵᠢᠨ ᠠᠷᠭ᠎ᠠ ᠦᠭᠡᠢ

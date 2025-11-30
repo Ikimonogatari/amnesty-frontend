@@ -33,7 +33,6 @@ export default function VolunteerDesktop() {
                 className="text-sm font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.description}

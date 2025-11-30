@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <div
       className="inline-flex ml-auto justify-between h-full py-5 px-10 text-white/70 bg-[#2D2D2D] shadow-[-4px_0_10px_rgba(0,0,0,0.2)] z-10"
-      style={{ writingMode: "vertical-rl", textOrientation: "upright" }}
+      style={{ writingMode: "vertical-rl" }}
     >
       {/* Бидний тухай - About */}
       <div className="flex flex-col-reverse items-start gap-5 font-bold">

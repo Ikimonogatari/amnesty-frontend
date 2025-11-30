@@ -109,13 +109,13 @@ export default function CampaignDetail() {
           <div className="text-center">
             <h1
               className="text-2xl font-bold text-red-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </h1>
             <p
               className="text-gray-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
@@ -363,7 +363,6 @@ export default function CampaignDetail() {
               className="p-4 text-white text-lg font-bold text-center"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {campaignContent.title}
@@ -381,7 +380,6 @@ export default function CampaignDetail() {
                   className="text-xl font-bold mb-4 min-w-max"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {section.title}
@@ -391,7 +389,6 @@ export default function CampaignDetail() {
                 className="text-base text-gray-800 flex-1"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {section.content}
@@ -406,7 +403,6 @@ export default function CampaignDetail() {
                 className="text-xl font-bold mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠪᠢᠳᠢᠶᠣ
@@ -431,7 +427,6 @@ export default function CampaignDetail() {
                 className="text-xl font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠠᠮᠠᠭ᠎ᠠᠷᠠᠯᠲᠠᠢ ᠮᠡᠳᠡᢉᠡ
@@ -447,7 +442,6 @@ export default function CampaignDetail() {
                       className="text-sm font-medium line-clamp-3 mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {post.title?.length > 40
@@ -475,7 +469,6 @@ export default function CampaignDetail() {
                 className="text-xl font-bold mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᢈᠢᠨᠠᠷ
@@ -503,7 +496,6 @@ export default function CampaignDetail() {
                       className="text-sm font-semibold"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {feature.title}
@@ -513,7 +505,6 @@ export default function CampaignDetail() {
                         className="text-xs text-gray-600 text-center"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         dangerouslySetInnerHTML={{
                           __html: feature.description,
@@ -546,7 +537,6 @@ export default function CampaignDetail() {
                 className="text-2xl font-bold min-w-max"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {section.title}
@@ -556,7 +546,6 @@ export default function CampaignDetail() {
               className="text-lg text-gray-800 max-w-[600px] flex-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {section.content}
@@ -571,7 +560,6 @@ export default function CampaignDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠪᠢᠳᠢᠶᠣ
@@ -596,7 +584,6 @@ export default function CampaignDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠶ᠋ᠢᠨ ᢈᠢᠨᠠᠷ
@@ -626,7 +613,6 @@ export default function CampaignDetail() {
                         className="text-xl font-bold mb-4"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         {feature.title}
@@ -636,7 +622,6 @@ export default function CampaignDetail() {
                           className="text-base text-gray-700"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                           dangerouslySetInnerHTML={{
                             __html: feature.description,
@@ -658,7 +643,6 @@ export default function CampaignDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠮᠠᠭ᠎ᠠᠷᠠᠯᠲᠠᠢ ᠮᠡᠳᠡᢉᠡ
@@ -684,7 +668,6 @@ export default function CampaignDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠮᠡᠳᠡᢉᠡ

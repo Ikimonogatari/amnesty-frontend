@@ -109,7 +109,6 @@ export default function ContactMobile() {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠤᠲᠠᠰᠤ: ᠗᠐᠐᠐-᠔᠗᠐᠘
@@ -117,7 +116,6 @@ export default function ContactMobile() {
           <p
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
             className="text-[10px]"
           >
@@ -131,7 +129,6 @@ export default function ContactMobile() {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠡᠰᠢᠩᠯᠡ ᠶ᠋ᠢᠨ ᠣᠹᠹᠢᠰ
@@ -139,7 +136,6 @@ export default function ContactMobile() {
           <p
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
             className="text-[10px]"
           >
@@ -154,7 +150,6 @@ export default function ContactMobile() {
           className="text-xs font-bold"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠬᠣᠯᠪᠤᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ
@@ -168,7 +163,6 @@ export default function ContactMobile() {
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠨᠡᠷ᠎ᠡ*
@@ -186,7 +180,6 @@ export default function ContactMobile() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.name && (
@@ -194,7 +187,6 @@ export default function ContactMobile() {
                   className="text-red-500 text-[10px]"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "60px",
                   }}
                 >
@@ -209,7 +201,6 @@ export default function ContactMobile() {
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠢᠮᠡᠶᠢᠯ ᠬᠠᠶᠢᠭ*
@@ -228,7 +219,6 @@ export default function ContactMobile() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.email && (
@@ -236,7 +226,6 @@ export default function ContactMobile() {
                   className="text-red-500 text-[10px]"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "60px",
                   }}
                 >
@@ -251,7 +240,6 @@ export default function ContactMobile() {
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠭᠠᠷᠴᠠᠭ
@@ -261,7 +249,6 @@ export default function ContactMobile() {
                 className="border border-gray-300 rounded-md p-2 w-16 text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -272,7 +259,6 @@ export default function ContactMobile() {
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳ᠋ᠤᠭᠠᠷ (ᠵᠠᠪᠠᠯ ᠪᠢᠰᠢ)
@@ -283,7 +269,6 @@ export default function ContactMobile() {
                 className="border border-gray-300 rounded-md p-2 w-16 text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>
@@ -294,7 +279,6 @@ export default function ContactMobile() {
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠶᠠᠮᠠᠷ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠢ᠋ᠶᠠᠷ?
@@ -310,7 +294,6 @@ export default function ContactMobile() {
                       className="border border-gray-300 rounded-md p-2 w-16 h-[400px] text-xs bg-white flex flex-col items-center justify-center gap-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       <div className="flex items-center justify-center">
@@ -340,7 +323,6 @@ export default function ContactMobile() {
                             className="w-16 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 flex items-center justify-center"
                             style={{
                               writingMode: "vertical-lr",
-                              textOrientation: "upright",
                             }}
                           >
                             {option.label}
@@ -359,7 +341,6 @@ export default function ContactMobile() {
                 className="text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠮᠧᠰᠰᠧᠵᠢ*
@@ -378,7 +359,6 @@ export default function ContactMobile() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.message && (
@@ -386,7 +366,6 @@ export default function ContactMobile() {
                   className="text-red-500 text-[10px]"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "60px",
                   }}
                 >
@@ -421,7 +400,6 @@ export default function ContactMobile() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                   width: "48px",
                 }}
               >

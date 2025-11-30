@@ -39,7 +39,6 @@ const renderMerchPrice = (merch) => {
         className="text-xs font-bold text-center"
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         {price} ₮

@@ -29,7 +29,6 @@ export default function ParticipationDesktop() {
             className="text-lg"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠵᠠᢈᠢᠳᠠᠯ ᠳ᠋ᠤ ᠭᠠᠷ ᠤ᠋ᠨ ᠦᠰᠦᢉ ᠵᠢᠷᠤᠵᠤ᠂ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠰᠠᠶᠢᠨ
@@ -49,7 +48,6 @@ export default function ParticipationDesktop() {
                 className="text-lg font-bold w-[100px] max-h-[320px] overflow-hidden"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.title}
@@ -65,7 +63,6 @@ export default function ParticipationDesktop() {
                 className="text-sm w-[150px] max-h-[320px] overflow-hidden"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.description}
@@ -90,7 +87,6 @@ export default function ParticipationDesktop() {
                 className="text-lg font-bold w-[100px] max-h-[320px] overflow-hidden"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.title}
@@ -106,7 +102,6 @@ export default function ParticipationDesktop() {
                 className="text-sm w-[150px] max-h-[320px] overflow-hidden"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.description}

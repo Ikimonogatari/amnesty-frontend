@@ -57,7 +57,6 @@ export default function LayoutLoader({
               className="text-gray-700 text-lg font-medium text-center max-w-xs"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 maxWidth: "150px",
                 overflowWrap: "break-word"
               }}

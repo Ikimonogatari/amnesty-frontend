@@ -58,7 +58,6 @@ function NewsListContent({ category = null }) {
                 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {post.title}
@@ -67,7 +66,6 @@ function NewsListContent({ category = null }) {
                 className="text-sm text-gray-600 mb-3 line-clamp-3"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {post.short_description || post.body?.substring(0, 100) + "..."}
@@ -76,7 +74,6 @@ function NewsListContent({ category = null }) {
                 className="text-xs text-gray-500"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {formattedDate}
@@ -97,7 +94,6 @@ export default function SuspenseNewsList({ category = null }) {
         className="text-2xl font-bold text-gray-900 mb-8 text-center"
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         ᠰᠣᠨᠢᠨ ᠮᠡᠳᠡᠭᠡᠯ{category ? ` - ${category}` : ""}

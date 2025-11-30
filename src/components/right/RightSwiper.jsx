@@ -236,7 +236,6 @@ export default function RightSwiper({
             className="text-xs sm:text-2xl font-bold max-h-[300px] overflow-y-auto font-mongolian"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               wordBreak: "keep-all",
               lineHeight: "1.2",
             }}
@@ -247,7 +246,6 @@ export default function RightSwiper({
             className="text-[8px] sm:text-sm font-bold max-h-[400px] overflow-y-auto font-mongolian"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               wordBreak: "keep-all",
               lineHeight: "1.2",
             }}
@@ -270,7 +268,6 @@ export default function RightSwiper({
           className="text-[10px] font-bold block sm:hidden border-r pr-2 max-h-[250px] overflow-y-auto font-mongolian"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
             wordBreak: "keep-all",
           }}
         >
@@ -351,7 +348,7 @@ export default function RightSwiper({
         <Button text={<ChevronUp />} type="chevron" onClick={handlePrevSlide} />
         <p
           className="text-[10px] sm:text-sm"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           {toMongolianNumeral(currentSlide)}/{toMongolianNumeral(slides.length)}
         </p>

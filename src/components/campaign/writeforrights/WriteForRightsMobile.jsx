@@ -128,7 +128,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
             className="text-xl font-bold text-red-600 mb-4"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
@@ -137,7 +136,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
             className="text-white mb-4"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠠᠵᠢᠯ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
@@ -157,7 +155,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
             className="bg-black text-white p-2 text-lg font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             "ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ" ᠠᠶᠠᠨ ᠳ᠋ᠤ ᠨᠢᢉᠡᠳᠡᠨᠡ ᠦᠦ
@@ -166,7 +163,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
             className="text-base mb-6"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠪᠢᠳ ᠬᠠᠮᠲᠤᠳᠠᠭᠠ ᠲᠡᠮᠴᠪᠡᠯ ᠢᠯᠦᠦ ᢈᠦᢉᠲᠡᠢ᠃ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᢈᠦ
@@ -195,7 +191,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="font-bold mb-1 text-xs overflow-hidden flex-shrink-0 max-w-[40px]"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       wordBreak: "keep-all",
                       overflowWrap: "break-word",
                     }}
@@ -207,7 +202,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="text-xs mb-2 overflow-y-auto flex-1 max-w-[80px] pr-1"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       wordBreak: "keep-all",
                       overflowWrap: "break-word",
                       lineHeight: "1.4",
@@ -241,7 +235,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                 className="text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠠᠵᠢᠯ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
@@ -257,7 +250,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
               className="text-white text-lg font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠨᠢᢉᠡᠳᠡᠨᠡ ᠦᠦ
@@ -274,7 +266,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="text-white text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠣᠪᠤᠭ*
@@ -288,7 +279,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="border rounded-md p-2 w-16 text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   />
                 </div>
@@ -299,7 +289,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="text-white text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠨᠡᠷᠡ*
@@ -313,7 +302,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="border rounded-md p-2 w-16 text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   />
                 </div>
@@ -324,7 +312,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="text-white text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠮᠠᠢᠯ ᢈᠠᠶᠠᠭ*
@@ -336,7 +323,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="border rounded-md p-2 w-16 text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   />
                 </div>
@@ -347,7 +333,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="text-white text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠤᠯᠤᠰ*
@@ -365,13 +350,11 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                           className="border border-gray-300 rounded-md p-2 w-16 text-xs bg-white flex flex-col items-center justify-center h-full gap-1 text-black"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           <div
                             style={{
                               writingMode: "vertical-lr",
-                              textOrientation: "upright",
                             }}
                             className="flex items-center justify-center text-xs"
                           >
@@ -416,7 +399,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                       className="text-red-400 text-[10px]"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         width: "60px",
                       }}
                     >
@@ -442,7 +424,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="text-white text-[10px]"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       width: "120px",
                     }}
                   >
@@ -457,7 +438,6 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                   className="text-white text-xl font-bold mb-8"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠲᠠᠨ ᠳ᠋ᠤ ᠪᠠᠶᠠᠷᠯᠠᠯᠠᠭ᠎ᠠ

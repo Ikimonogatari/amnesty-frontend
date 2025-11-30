@@ -497,7 +497,6 @@ export default function SearchModal({ isOpen, onClose }) {
             className="text-lg font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠬᠠᠢᠯᠲᠠ
@@ -524,7 +523,6 @@ export default function SearchModal({ isOpen, onClose }) {
                   className="text-sm font-medium md:text-center"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠠᠩᠭᠢ
@@ -536,13 +534,11 @@ export default function SearchModal({ isOpen, onClose }) {
                     className="border border-gray-300 rounded-md p-2 w-12 text-xs bg-white flex flex-col items-center justify-center gap-1 hover:bg-gray-50 transition-colors min-h-[80px]"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     <div
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       className="flex items-center justify-center flex-1"
                     >
@@ -569,7 +565,6 @@ export default function SearchModal({ isOpen, onClose }) {
                           className="w-20 p-2 max-h-[300px] text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 h-full flex items-center justify-center min-h-[80px]"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                           onClick={() => {
                             setSearchType(option.id);
@@ -593,7 +588,6 @@ export default function SearchModal({ isOpen, onClose }) {
                   className="text-sm font-medium md:text-center"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠬᠠᠢᠯᠲᠠ ᠶᠢᠨ ᠦᠭᠡ
@@ -618,7 +612,6 @@ export default function SearchModal({ isOpen, onClose }) {
                     className="text-xs text-yellow-600 mt-1"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠪᠠᠭ᠎ᠠ ᠪᠠᠷᠠᠭᠤᠨ ᠳᠤ ᠬᠣᠶᠠᠷ ᠦᠰᠦᠭ
@@ -649,7 +642,6 @@ export default function SearchModal({ isOpen, onClose }) {
                   className="ml-2 text-gray-600"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠬᠠᠢᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
@@ -669,7 +661,6 @@ export default function SearchModal({ isOpen, onClose }) {
                   className="text-gray-500 mb-2"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠬᠠᠢᠯᠲᠠ ᠶᠢᠨ ᠦᠷ᠎ᠡ ᠳᠦᠩ ᠣᠯᠣᠭᠰᠠᠨ ᠦᠭᠡᠢ᠃
@@ -678,7 +669,6 @@ export default function SearchModal({ isOpen, onClose }) {
                   className="text-sm text-gray-400"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   "{searchTerm}" -{" "}
@@ -702,7 +692,6 @@ export default function SearchModal({ isOpen, onClose }) {
                         className="text-sm font-medium line-clamp-3 min-w-12 flex-shrink-0"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         {highlightText(result.title, searchTerm)}
@@ -731,7 +720,6 @@ export default function SearchModal({ isOpen, onClose }) {
                           className="flex-1 text-xs text-gray-600 line-clamp-10 overflow-x-auto"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           {highlightText(
@@ -759,7 +747,6 @@ export default function SearchModal({ isOpen, onClose }) {
                   className="text-gray-500"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠬᠠᠢᠯᠲᠠ ᠶᠢᠨ ᠦᠭᠡ ᠪᠢᠴᠢᠭᠡᠷᠡᠢ᠃

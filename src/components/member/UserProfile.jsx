@@ -191,7 +191,6 @@ export default function UserProfile({ userData, userGroups }) {
             className="text-lg font-bold font-mongolian"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠮᠧᠨᠦ
@@ -220,7 +219,6 @@ export default function UserProfile({ userData, userGroups }) {
                   className="font-bold font-mongolian"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ID:
@@ -229,7 +227,6 @@ export default function UserProfile({ userData, userGroups }) {
                   className="flex-1 text-right"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {user?.id}
@@ -240,7 +237,6 @@ export default function UserProfile({ userData, userGroups }) {
               className="mb-10 text-xl text-center"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userFullName}
@@ -265,7 +261,6 @@ export default function UserProfile({ userData, userGroups }) {
                 className="text-lg font-bold font-mongolian"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠨᠠᠸᠢᠭᠠᠴᠢ
@@ -295,7 +290,6 @@ export default function UserProfile({ userData, userGroups }) {
                     }`}
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {tab.label}
@@ -320,7 +314,6 @@ export default function UserProfile({ userData, userGroups }) {
                     }`}
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {tab.label}
@@ -348,7 +341,6 @@ export default function UserProfile({ userData, userGroups }) {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {tab.label}
@@ -368,7 +360,6 @@ export default function UserProfile({ userData, userGroups }) {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {tab.label}
@@ -398,7 +389,6 @@ export default function UserProfile({ userData, userGroups }) {
                   className="font-bold font-mongolian"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ID:
@@ -407,7 +397,6 @@ export default function UserProfile({ userData, userGroups }) {
                   className="flex-1 text-right"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {user?.id}
@@ -418,7 +407,6 @@ export default function UserProfile({ userData, userGroups }) {
               className="mb-10 text-xl text-center"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userFullName}
@@ -493,7 +481,6 @@ function MyInfo({ userData }) {
           className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠭᠢᠰᠦᠦᠨ ᠴᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠢᠳᠠᠯ
@@ -504,7 +491,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠭᠢᠰᠦᠦᠨ ᠴᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠢᠳᠠᠯ:
@@ -513,7 +499,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {getMembershipStatus()}
@@ -524,7 +509,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠡᠯᠡᠰᠦᠭᠰᠡᠨ ᠡᠳᠦᠷ:
@@ -533,7 +517,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {formatDate(userData?.dateCreated)}
@@ -548,7 +531,6 @@ function MyInfo({ userData }) {
           className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠬᠣᠯᠪᠣᠭᠠ ᠪᠠᠷᠢᠬᠤ ᠮᠡᠳᠡᠭᠡ
@@ -559,7 +541,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷ:
@@ -568,7 +549,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.phone || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -579,7 +559,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠢ᠋ᠮᠡᠢᠯ:
@@ -588,7 +567,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.email || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -603,7 +581,6 @@ function MyInfo({ userData }) {
           className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠬᠤᠪᠢ ᠶᠢᠨ ᠮᠡᠳᠡᠭᠡ
@@ -614,7 +591,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠨᠡᠷᠡ:
@@ -623,7 +599,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.firstName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -634,7 +609,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠣᠪᠣᠭ:
@@ -643,7 +617,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.lastName || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -654,7 +627,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠦᠢᠲᠡᠨ:
@@ -663,7 +635,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.gender === "male"
@@ -678,7 +649,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠥᠷᠥᠭᠰᠡᠨ ᠡᠳᠦᠷ:
@@ -687,7 +657,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {formatDate(userData?.birthday)}
@@ -698,7 +667,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠤᠯᠤᠰ:
@@ -707,7 +675,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.country || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -718,7 +685,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠣᠲᠠ:
@@ -727,7 +693,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.city || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -738,7 +703,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠶᠢᠭ:
@@ -747,7 +711,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.address || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -758,7 +721,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠠᠵᠢᠯ ᠤᠨ ᠭᠠᠵᠠᠷ:
@@ -767,7 +729,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.occupation || "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
@@ -782,7 +743,6 @@ function MyInfo({ userData }) {
           className="text-lg font-bold mb-3 font-mongolian"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠰᠲᠠᠲᠢᠰᠲᠢᠺ
@@ -793,7 +753,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠣᠨᠣᠭ:
@@ -802,7 +761,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.points || 0}
@@ -813,7 +771,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠡᠸᠡᠨᠲ ᠦᠨ ᠴᠠᠭ:
@@ -822,7 +779,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.eventHours || 0}
@@ -833,7 +789,6 @@ function MyInfo({ userData }) {
               className="block text-sm font-medium text-gray-700 mb-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠣᠷᠣᠯᠴᠠᠭᠰᠠᠨ ᠡᠸᠡᠨᠲ:
@@ -842,7 +797,6 @@ function MyInfo({ userData }) {
               className="text-sm text-gray-900"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {userData?.countEvents || 0}
@@ -862,7 +816,6 @@ function MyEvents({ events, loading }) {
         <p
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠠᠴᠠᠭᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
@@ -880,7 +833,6 @@ function MyEvents({ events, loading }) {
         <p
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠲᠠ ᠠᠯᠢ ᠡᠸᠡᠨᠲ ᠳ᠋ᠤ ᠣᠷᠣᠯᠴᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ ᠪᠠᠢᠨ᠎ᠠ
@@ -895,7 +847,6 @@ function MyEvents({ events, loading }) {
         className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         ᠮᠢᠨᠦ ᠣᠷᠣᠯᠴᠠᠰᠠᠨ ᠡᠸᠡᠨᠲᠦᠦᠳ
@@ -907,7 +858,6 @@ function MyEvents({ events, loading }) {
               className="font-medium mb-2 font-mongolian"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {event.title || "ᠨᠡᠷᠡᠢᠳᠦᠯ ᠦᠭᠡᠢ"}
@@ -937,7 +887,6 @@ function MySubscriptions({ payments = [], loading = false }) {
           className="text-lg font-bold mb-4 font-mongolian"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ
@@ -946,7 +895,6 @@ function MySubscriptions({ payments = [], loading = false }) {
           className="text-gray-500"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠠᠴᠠᠭᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
@@ -963,7 +911,6 @@ function MySubscriptions({ payments = [], loading = false }) {
           className="text-lg font-bold mb-4 font-mongolian"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ
@@ -971,7 +918,6 @@ function MySubscriptions({ payments = [], loading = false }) {
         <p
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠲᠥᠯᠦᠭᠰᠡᠨ ᠬᠠᠨᠳᠢᠸ ᠦᠭᠡᠢ ᠪᠠᠢᠨ᠎ᠠ
@@ -989,7 +935,6 @@ function MySubscriptions({ payments = [], loading = false }) {
         className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         ᠲᠠᠲᠸᠠᠷ ᠲᠥᠯᠥᠯᠲᠦᠨ ᠦ ᠲᠦᠦᠬᠡ
@@ -1002,7 +947,6 @@ function MySubscriptions({ payments = [], loading = false }) {
                 className="font-medium font-mongolian"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {payment.description || payment.type || "ᠬᠠᠨᠳᠢᠸ"}
@@ -1015,7 +959,6 @@ function MySubscriptions({ payments = [], loading = false }) {
               <span
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {payment.created_at || payment.date
@@ -1028,7 +971,6 @@ function MySubscriptions({ payments = [], loading = false }) {
                 className="px-2 py-1 bg-green-100 text-green-800 rounded text-xs"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {payment.status === "paid"
@@ -1056,7 +998,6 @@ function ChangePassword() {
         className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠣᠯᠢᠬᠤ
@@ -1064,7 +1005,6 @@ function ChangePassword() {
       <p
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ ᠰᠣᠯᠢᠬᠤ ᠬᠡᠰᠡᠭ ᠢᠯᠡᠷᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ
@@ -1081,7 +1021,6 @@ function BecomeMember({ userData, userGroups }) {
         className="text-lg font-bold mb-4 font-mongolian"
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         ᠭᠢᠰᠦᠦᠨ ᠪᠣᠯᠬᠤ
@@ -1089,7 +1028,6 @@ function BecomeMember({ userData, userGroups }) {
       <p
         style={{
           writingMode: "vertical-lr",
-          textOrientation: "upright",
         }}
       >
         ᠡᠮᠨᠧᠰᠲᠢ ᠶᠢᠨ ᠭᠢᠰᠦᠦᠨ ᠪᠣᠯᠬᠤ ᠬᠡᠰᠡᠭ ᠢᠯᠡᠷᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ

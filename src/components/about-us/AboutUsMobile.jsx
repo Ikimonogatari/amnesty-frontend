@@ -48,7 +48,7 @@ export default function AboutUsMobile() {
       <div className="max-h-[150px] p-2 bg-[#F1F1F1] flex gap-2">
         <p
           className="text-black font-bold text-[9px]"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠪᠣᠯ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠠᠯᠠᠭᠠᠷᢈᠢ ᠳᠠᠭᠤ ᠬᠣᠭᠤᠯᠠᠢ
           ᠶᠤᠮ᠃ ᠪᠢᠳᠡ ᠖᠐ ᠭᠠᠷᠤᠢ ᠵᠢᠯ ᠦ᠋ᠨ ᠲᠤᠷᠰᠢ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ᠂ ᠣᠯᠠᠨ ᠤᠯᠤᠰ
@@ -58,7 +58,7 @@ export default function AboutUsMobile() {
         </p>
         <p
           className="text-[9px] text-[#848382]"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠨᠢ ᠠᠯᠢᠪᠠ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ᠂ ᠤᠯᠤᠰ ᠲᠥᠷᠦ ᠶ᠋ᠢᠨ ᠦᠵᠡᠯ
           ᠰᠤᠷᠲᠠᠯ᠂ ᠡᠳ᠋ ᠦ᠋ᠨ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠠᠰᠢᠭ ᠰᠣᠨᠢᠷᠬᠠᠯ᠂ ᠱᠠᠰᠢᠨ ᠰᠢᠲᠦᠯᢉᠡ ᠡᠴᠡ ᠦᠯᠦ
@@ -72,7 +72,7 @@ export default function AboutUsMobile() {
       <div className="min-h-[400px] flex gap-2 p-2 h-full">
         <p
           className="text-[9px] font-bold"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           ᠪᠢᠳᠡ ᢈᠡᠷᢈᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᢈᠢᠳᠡᢉ ᠪᠤᠢ?
         </p>
@@ -131,7 +131,6 @@ export default function AboutUsMobile() {
                         <span
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           ᠥᠨᠦᠳᠦᠷ
@@ -158,7 +157,6 @@ export default function AboutUsMobile() {
                         className="mt-2 border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all mx-auto"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         <p className="font-bold text-[10px] sm:text-base">
@@ -172,7 +170,6 @@ export default function AboutUsMobile() {
                         className="mt-2 border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all mx-auto"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         <p className="font-bold text-[10px] sm:text-base">

@@ -99,7 +99,7 @@ export default function HomeDesktop() {
     return (
       <div className="h-full gap-10 overflow-x-auto w-auto flex-shrink-0 hidden md:flex items-center justify-center">
         <div className="text-center text-red-600">
-          <p style={{ writingMode: "vertical-lr", textOrientation: "upright" }}>
+          <p style={{ writingMode: "vertical-lr" }}>
             ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
         </div>
@@ -179,7 +179,7 @@ export default function HomeDesktop() {
       <div className="h-screen w-[20rem] bg-[#F1F1F1] flex items-center justify-center gap-10">
         <p
           className="text-black font-bold"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠨᠢ ᢈᠦᠮᠦᠨ ᠪᠦᠷᠢ ᠳ᠋ᠦ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠨᠢ ᠡᠳ᠋ᠯᠡᢉᠦᠯᢈᠦ ᠶ᠋ᠢᠨ
           ᠲᠥᠯᠦᢉᠡ ᢈᠦᠮᠦᠰ ᠦ᠋ᠨ ᢈᠦᠮᠦᠨᠯᠢᢉ ᠰᠡᠳᢈᠢᠯ ᠳ᠋ᠦ ᠲᠤᠯᠭᠠᠭᠤᠷᠢᠯᠠᠨ ᠻᠠᠮᠫᠠᠨᠢᠲᠤ <br />
@@ -188,7 +188,7 @@ export default function HomeDesktop() {
         </p>
         <p
           className="text-[#848382] font-bold"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           ᠡᠷᢈᠡ ᠪᠠᠷᠢᠭᠴᠢᠳ ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠡᠷᢈᠡ ᠵᠦᠢ᠂ ᢈᠡᠮ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠶ᠋ᠢ ᢈᠦᠨᠳᠦᠳᢈᠡᠳᠡᢉ᠂
           ᠬᠠᠷᠢᠭᠤᠴᠠᠯᠭ᠎ᠠ ᠪᠠᠨ ᢈᠦᠯᠢᠶᠡᠳᠡᢉ᠂ ᠠᠮᠠᠯᠠᠯᠲᠠ ᠳ᠋ᠤ ᠪᠠᠨ ᢈᠦᠷᠳᠡᢉ <br />

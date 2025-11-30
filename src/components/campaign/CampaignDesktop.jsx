@@ -87,7 +87,7 @@ export default function CampaignDesktop() {
         <div className="text-center text-red-600">
           <p
             className="text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
@@ -131,7 +131,6 @@ export default function CampaignDesktop() {
                     className="text-2xl font-bold"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {item.title}
@@ -143,7 +142,6 @@ export default function CampaignDesktop() {
                     className="text-sm font-bold"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {item.description.length > 200
@@ -177,7 +175,6 @@ export default function CampaignDesktop() {
                   className="text-base font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   title={item.title}
                 >
@@ -199,7 +196,6 @@ export default function CampaignDesktop() {
                     className="text-gray-400 font-bold text-center"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠦᠭᠡᠢ

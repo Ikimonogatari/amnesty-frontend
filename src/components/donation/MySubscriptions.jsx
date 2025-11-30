@@ -60,7 +60,6 @@ export default function MySubscriptions({
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠤᠨ ᠮᠡᠳᠡᠭᠦᠯᠡᠯ
@@ -68,7 +67,6 @@ export default function MySubscriptions({
             <p
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               className="text-sm"
             >
@@ -82,7 +80,6 @@ export default function MySubscriptions({
                 className="text-xl font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠲᠠᠨ ᠤ ᠬᠠᠨᠳᠢᠪ
@@ -95,7 +92,6 @@ export default function MySubscriptions({
                       className="font-bold text-sm mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ: {formatAmount(subscription.amount)}
@@ -104,7 +100,6 @@ export default function MySubscriptions({
                       className="text-xs mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠴᠠᠷᠳ: ****{subscription.cardNumber?.slice(-4)}
@@ -113,7 +108,6 @@ export default function MySubscriptions({
                       className="text-xs mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠡᠬᠢᠯᠡᠯ: {formatDate(subscription.createdAt)}
@@ -122,7 +116,6 @@ export default function MySubscriptions({
                       className="text-xs"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠲᠦᠯᠦᠪ:{" "}
@@ -167,7 +160,6 @@ export default function MySubscriptions({
                 className="text-lg"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠦᠭᠡᠢ ᠪᠠᠢᠨ᠎ᠠ
@@ -181,7 +173,6 @@ export default function MySubscriptions({
               className="text-xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠦᠵᠡᠯ

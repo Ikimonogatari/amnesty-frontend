@@ -44,7 +44,7 @@ export default function FaqDesktop() {
     return (
       <div className="w-full min-h-screen bg-white hidden md:flex items-center justify-center">
         <div className="text-center text-red-600">
-          <p style={{ writingMode: "vertical-lr", textOrientation: "upright" }}>
+          <p style={{ writingMode: "vertical-lr" }}>
             ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
         </div>
@@ -71,7 +71,6 @@ export default function FaqDesktop() {
                 className="text-lg font-bold text-black"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {item.title}
@@ -81,7 +80,6 @@ export default function FaqDesktop() {
               <div
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 className="max-w-xs h-full max-h-screen overflow-hidden transition-all duration-500 ease-in-out ml-2 px-4 py-6 bg-white bg-opacity-90 rounded-lg"
               >
@@ -89,7 +87,6 @@ export default function FaqDesktop() {
                   className="text-black leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {item.description}

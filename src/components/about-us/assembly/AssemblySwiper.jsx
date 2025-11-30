@@ -115,13 +115,13 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
       <div className="flex gap-2 sm:gap-8 max-h-[150px] sm:max-h-max">
         <h1
           className="text-[10px] sm:text-2xl font-bold"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           {title}
         </h1>
         <p
           className="text-[10px] sm:text-sm font-bold text-[#848382] sm:text-black"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           {description}
         </p>
@@ -135,7 +135,7 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
       <div className="flex flex-row gap-2">
         <p
           className="text-[10px] font-bold block sm:hidden"
-          style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+          style={{ writingMode: "vertical-lr" }}
         >
           {sectionTitle}
         </p>

@@ -79,7 +79,6 @@ export default function EventModal({
                 className="text-sm lg:text-base font-bold text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠪᠤᠷᠲᠠᠯ ᠡᠬᠯᠠᠬᠤ:
@@ -88,7 +87,6 @@ export default function EventModal({
                 className="text-xs lg:text-sm text-gray-900"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {formatDateToMongolian(
@@ -102,7 +100,6 @@ export default function EventModal({
                 className="text-sm lg:text-base font-bold text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠪᠤᠷᠲᠠᠯ ᠳᠤᠤᠰᠠᠬᠤ:
@@ -111,7 +108,6 @@ export default function EventModal({
                 className="text-xs lg:text-sm text-gray-900"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {formatDateToMongolian(
@@ -125,7 +121,6 @@ export default function EventModal({
                 className="text-sm lg:text-base font-bold text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠠᠭᠠᠢ:
@@ -134,7 +129,6 @@ export default function EventModal({
                 className="text-xs lg:text-sm text-gray-900"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {currentEvent.location || "ᠲᠣᠭᠲᠠᠭᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ"}
@@ -145,7 +139,6 @@ export default function EventModal({
                 className="text-sm lg:text-base font-bold text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {currentEvent.type}
@@ -159,7 +152,6 @@ export default function EventModal({
                 className="text-sm lg:text-base font-bold text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠲᠠᠨᠢᠯᠴᠤᠤᠯᠭ᠎ᠠ:
@@ -169,7 +161,6 @@ export default function EventModal({
                   className="text-xs lg:text-sm text-gray-600"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {currentEvent.description}
@@ -179,7 +170,6 @@ export default function EventModal({
                   className="text-sm lg:text-base text-gray-600"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠲᠠᠨᠢᠯᠴᠤᠤᠯᠭ᠎ᠠ ᠦᠭᠡᠢ

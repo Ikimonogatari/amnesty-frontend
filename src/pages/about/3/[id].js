@@ -87,7 +87,7 @@ export default function ReportDetail() {
         <div className="min-h-screen flex items-center justify-center">
           <p
             className="text-lg font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠠᠴᠢᠶᠠᠯᠠᠨ ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
           </p>
@@ -102,7 +102,7 @@ export default function ReportDetail() {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center text-red-600">
             <p
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᠭᠳᠡᠯ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </p>
@@ -172,7 +172,6 @@ export default function ReportDetail() {
               className="text-xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {title}
@@ -186,7 +185,6 @@ export default function ReportDetail() {
                 className="text-lg font-semibold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠡᠨ ᠳᠤᠭᠠᠷ
@@ -195,7 +193,6 @@ export default function ReportDetail() {
                 className="text-base text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {publishedAt}
@@ -210,7 +207,6 @@ export default function ReportDetail() {
                 className="text-xl font-bold mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -219,7 +215,6 @@ export default function ReportDetail() {
                 className="text-base text-gray-800"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 dangerouslySetInnerHTML={{
                   __html: description,
@@ -252,7 +247,6 @@ export default function ReportDetail() {
                     className="text-xl font-bold"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠲᠠᠶᠢᠯᠤᠨ
@@ -268,7 +262,6 @@ export default function ReportDetail() {
                           className="text-sm font-medium line-clamp-3 mb-2"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           {item?.title?.length > 40
@@ -318,7 +311,6 @@ export default function ReportDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               PDF ᠲᠠᠶᠢᠯᠤᠨ
@@ -360,7 +352,6 @@ export default function ReportDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠡᠨ ᠳᠤᠭᠠᠷ
@@ -369,7 +360,6 @@ export default function ReportDetail() {
               className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {publishedAt}
@@ -384,7 +374,6 @@ export default function ReportDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -393,7 +382,6 @@ export default function ReportDetail() {
               className="text-lg text-gray-800 max-w-[600px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               dangerouslySetInnerHTML={{
                 __html: description,

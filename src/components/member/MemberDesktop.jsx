@@ -69,7 +69,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
           className="text-2xl font-bold"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠲᠠ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠪᠣᠯᠤᠭᠰᠠᠨ ᠢ᠋ᠶᠠᠷ:
@@ -78,7 +77,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
           className="text-sm"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠴᠢᠳᠠᠪᠤᠷᠢ ᠶ᠋ᠢ ᠨᠡᠮᠡᢉᠳᠡᢉᠦᠯᢈᠦ ᠰᠤᠷᠭᠠᠯᠲᠠ᠂ ᢈᠡᠯᠡᠯᠴᠡᢉᠦᠯᢉᠡ ᠳ᠋ᠦ ᠬᠠᠮᠤᠷᠤᠭᠳᠠᠬᠤ᠃{" "}
@@ -108,7 +106,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
           className="text-2xl font-bold"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠬᠤᠪᠢ ᠶ᠋ᠢᠨ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠢ᠋ᠶᠡᠨ ᠤᠰᠠᠳᠬᠠᠬᠤ:
@@ -117,7 +114,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
           className="text-sm"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           ᠲᠠ ᠸᠧᠪᠰᠠᠶᠢᠲ ᠢ᠋ᠶᠠᠷ ᠡᠰᠡᠪᠡᠯ ᠵᠣᠷᠢᠭᠲᠠᠨ ᠠᠫᠫᠯᠢᠻᠧᠶᠢᠱᠢᠨ᠋ ᠢ᠋ᠶᠡᠷ ᠨᠡᠪᠲᠡᠷᠡᠵᠦ ᠥᠪᠡᠷ
@@ -156,7 +152,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             className="text-sm"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳ᠋ᠤᠭᠠᠷ:
@@ -169,7 +164,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             maxLength="8"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           />
         </div>
@@ -180,7 +174,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             className="text-sm"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠨᠢᠭᠤᠴᠠ ᠦᢉᠡ:
@@ -192,7 +185,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             placeholder="ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           />
         </div>
@@ -203,7 +195,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             className="text-sm"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠨᠢᠭᠤᠴᠠ ᠦᢉᠡ ᠰᠠᠨᠠᠭᠤᠯᠬᠤ
@@ -227,7 +218,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             }`}
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               width: "60px",
             }}
           >
@@ -242,7 +232,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             className="p-2 text-sm font-bold cursor-pointer text-center flex items-center justify-center"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               width: "60px",
             }}
           >
@@ -257,7 +246,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             className="p-2 rounded-md text-sm font-bold bg-[#FFFF00] text-black flex items-center justify-center hover:brightness-105 transition-all"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               width: "60px",
             }}
           >
@@ -282,7 +270,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠶᠠᠭᠠᢈᠢᠭᠠᠳ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠴᠢᠬᠤᠯᠠ ᠪᠤᠢ?
@@ -290,7 +277,6 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
           <p
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
             className="text-sm"
           >

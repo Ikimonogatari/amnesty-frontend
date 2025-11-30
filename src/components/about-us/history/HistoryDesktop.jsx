@@ -48,7 +48,6 @@ export default function HistoryDesktop() {
                     <span
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠥᠨᠦᠳᠦᠷ

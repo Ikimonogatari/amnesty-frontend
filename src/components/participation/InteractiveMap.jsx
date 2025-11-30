@@ -919,7 +919,6 @@ const InteractiveMap = () => {
                   className="text-[8px]"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {province.mongolTitle}
@@ -928,7 +927,6 @@ const InteractiveMap = () => {
                   className="text-[8px]"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   <strong>{province.mongolCount}</strong>
@@ -949,7 +947,6 @@ const InteractiveMap = () => {
                       className="text-xs flex-1"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         lineHeight: "1.4",
                       }}
                     >
@@ -966,7 +963,6 @@ const InteractiveMap = () => {
                       className="text-xs text-white flex-1"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         lineHeight: "1.4",
                       }}
                     >

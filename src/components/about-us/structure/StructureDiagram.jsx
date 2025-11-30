@@ -14,14 +14,14 @@ export default function StructureDiagram() {
             <Link
               href="/about/1/control-managers"
               className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               <p className="font-bold text-[10px] sm:text-base">ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ</p>
             </Link>
             <Link
               href="/about/1/managers"
               className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               <p className="font-bold text-[10px] sm:text-base">ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ</p>
             </Link>
@@ -29,14 +29,14 @@ export default function StructureDiagram() {
           <Link
             href="/about/1/chapter-members"
             className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100 mt-[245px]"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             <p className="font-bold text-[10px] sm:text-base">ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ</p>
           </Link>
           <Link
             href="/about/1/chapter-members"
             className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100 mt-[255px]"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             <p className="font-bold text-[10px] sm:text-base">ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ</p>
           </Link>
@@ -44,14 +44,14 @@ export default function StructureDiagram() {
             <Link
               href="/about/1/chapter-members"
               className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               <p className="font-bold text-[10px] sm:text-base">ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ</p>
             </Link>
             <Link
               href="/about/1/chapter-members"
               className="border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               <p className="font-bold text-[10px] sm:text-base">ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ</p>
             </Link>

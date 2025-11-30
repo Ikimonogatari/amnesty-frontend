@@ -15,7 +15,6 @@ export default function StructureDiagramMobile() {
               className="text-black text-[5px] pl-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ
@@ -29,7 +28,6 @@ export default function StructureDiagramMobile() {
               className="text-black text-[5px] pl-1"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ
@@ -44,7 +42,6 @@ export default function StructureDiagramMobile() {
             className="text-black text-[5px] pl-[2px]"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ
@@ -58,7 +55,6 @@ export default function StructureDiagramMobile() {
             className="text-black text-[5px] pl-[2px]"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ
@@ -73,7 +69,6 @@ export default function StructureDiagramMobile() {
               className="text-black text-[5px] pl-[2px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ
@@ -87,7 +82,6 @@ export default function StructureDiagramMobile() {
               className="text-black text-[5px] pl-[2px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ

@@ -32,7 +32,6 @@ export default function VolunteerMobile() {
               className="text-[10px] font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {item.description}

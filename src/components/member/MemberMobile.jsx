@@ -72,7 +72,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠲᠠ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠪᠣᠯᠤᠭᠰᠠᠨ ᠢ᠋ᠶᠠᠷ:
@@ -81,7 +80,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             className="text-[10px]"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠪᠣᠯᠤᠨ ᠳᠣᠲᠤᠭᠠᠳᠤ ᠶ᠋ᠢᠨ
@@ -114,7 +112,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠬᠤᠪᠢ ᠶ᠋ᠢᠨ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠢ᠋ᠶᠡᠨ ᠤᠰᠠᠳᠬᠠᠬᠤ:
@@ -123,7 +120,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             className="text-[10px]"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠲᠠ ᠸᠧᠪᠰᠠᠶᠢᠲ ᠢ᠋ᠶᠠᠷ ᠡᠰᠡᠪᠡᠯ ᠵᠣᠷᠢᠭᠲᠠᠨ ᠠᠫᠫᠯᠢᠻᠧᠶᠢᠱᠢᠨ᠋ ᠢ᠋ᠶᠡᠷ ᠨᠡᠪᠲᠡᠷᠡᠵᠦ ᠥᠪᠡᠷ
@@ -163,7 +159,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳ᠋ᠤᠭᠠᠷ:
@@ -176,7 +171,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               maxLength="8"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             />
           </div>
@@ -187,7 +181,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠨᠢᠭᠤᠴᠠ ᠦᢉᠡ:
@@ -199,7 +192,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               placeholder="ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡ"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             />
           </div>
@@ -210,7 +202,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-[10px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠨᠢᠭᠤᠴᠠ ᠦᢉᠡ ᠰᠠᠨᠠᠭᠤᠯᠬᠤ
@@ -234,7 +225,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               }`}
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "50px",
               }}
             >
@@ -249,7 +239,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 text-[10px] font-bold cursor-pointer text-center flex items-center justify-center"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "50px",
               }}
             >
@@ -265,7 +254,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 rounded-md text-[10px] font-bold bg-[#FFFF00] text-black flex items-center justify-center hover:brightness-105 transition-all"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "50px",
               }}
             >
@@ -286,7 +274,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
           className="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600 font-bold"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
             width: "50px",
             height: "80px",
           }}
@@ -304,7 +291,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-sm font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠪᠠᠲᠠᠢ ᠮᠣᠷᠢᠯᠨᠠ ᠤᠤ, {user?.name || user?.phone}!
@@ -313,7 +299,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-xs"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠤᠪᠢᠶᠠᠨ ᠮᠡᠳᠡᠡᠯᠡᠯ ᠢ ᠵᠠᠰᠠᠬᠤ᠂ ᠭᠢᠰᠢᠦᠨ ᠴᠢᠯᠡᠯ ᠢ ᠪᠠᠢᠭᠤᠯᠬᠤ᠂ ᠬᠠᠨᠳᠢᠪ ᠥᠭᠬᠦ
@@ -327,7 +312,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-sm font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠤᠪᠢᠶᠠᠨ ᠮᠡᠳᠡᠡᠯᠡᠯ
@@ -336,7 +320,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               <p
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠲᠠᠰᠤ: {user?.phone} | ᠢᠮᠡᠶᠢᠯ: {user?.email || "ᠲᠣᠳᠣᠷᠬᠠᠢᠭᠦᠢ"} |
@@ -348,7 +331,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 rounded-md text-xs font-bold bg-blue-500 text-white hover:bg-blue-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "40px",
               }}
             >
@@ -362,7 +344,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-sm font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠭᠢᠰᠢᠦᠨ ᠴᠢᠯᠡᠯ
@@ -371,7 +352,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               <p
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠲᠥᠯᠦᠪ: {user?.membershipStatus || "ᠭᠢᠰᠢᠦᠨ ᠪᠢᠰᠢ"} | ᠪᠦᠯᠦᠭ:{" "}
@@ -383,7 +363,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 rounded-md text-xs font-bold bg-green-500 text-white hover:bg-green-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "40px",
               }}
             >
@@ -397,7 +376,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-sm font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠮᠢᠨᠦ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠ
@@ -406,7 +384,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-xs"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠨ ᠤ ᠪᠦᠷᠲᠡᠭᠦᠯᠦᠭᠰᠡᠨ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠ ᠶᠢᠨ ᠵᠠᠭᠰᠠᠭᠠᠯᠲᠠ
@@ -416,7 +393,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 rounded-md text-xs font-bold bg-purple-500 text-white hover:bg-purple-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "40px",
               }}
             >
@@ -430,7 +406,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-sm font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠮᠢᠨᠦ ᠬᠠᠨᠳᠢᠪ
@@ -439,7 +414,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-xs"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠨᠳᠢᠪ ᠤᠨ ᠲᠦᠦᠬᠡ ᠪᠣᠯᠤᠨ ᠲᠣᠭᠲᠠᠮᠠᠯ ᠬᠠᠨᠳᠢᠪ
@@ -449,7 +423,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 rounded-md text-xs font-bold bg-yellow-500 text-white hover:bg-yellow-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "40px",
               }}
             >
@@ -463,7 +436,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="text-sm font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠱᠤᠤᠷᠬᠠᠢ ᠦᠢᠯᠡᠳᠦᠯ
@@ -473,7 +445,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 rounded-md text-xs font-bold bg-red-500 text-white hover:bg-red-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "40px",
               }}
             >
@@ -484,7 +455,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               className="p-2 rounded-md text-xs font-bold bg-blue-500 text-white hover:bg-blue-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 width: "40px",
               }}
             >
@@ -511,7 +481,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             className="text-xs font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠶᠠᠭᠠᢈᠢᠭᠠᠳ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠴᠢᠬᠤᠯᠠ ᠪᠤᠢ?
@@ -520,7 +489,6 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             className="text-[10px]"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠵᠥᠷᠢᠴᠡᢉᠦᠯᠦᠨ ᠠᠮᠢᠳᠤᠷᠠᠵᠤ ᠪᠠᠶᠢᠭ᠎ᠠ ᠪᠠᠨ ᠪᠢᠳᠡ ᠠᠩᠵᠠᠭᠠᠷᠠᠳᠠᠭ ᠦᢉᠡᠢ᠃ ᠬᠠᠷᠢᠨ ᢈᠦᠮᠦᠨ
