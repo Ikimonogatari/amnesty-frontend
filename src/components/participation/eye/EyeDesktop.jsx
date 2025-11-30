@@ -396,7 +396,6 @@ export default function EyeDesktop() {
             className="text-sm"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠠᠩᠬᠠᠷᠤᠯ ᠲᠠᠲᠠᠭᠰᠠᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠤ᠋ᠳ ᠢ᠋ ᠡᠷᠢᠯᢈᠢᠯᠡᢈᠦ᠂
@@ -408,7 +407,6 @@ export default function EyeDesktop() {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠶᠠᠭᠠᢈᠢᠭᠰᠠᠨ ᠬᠠᠷᠠᠩᠬᠤᠢ ᠶᠤᠮ ᠪᠤᠢ ᢉᠡᠵᠦ ᠬᠠᠰᢈᠢᠷᠤᠭᠰᠠᠨ ᠠ᠋ᠴᠠ ᠶᠠᠳᠠᠵᠤ ᠨᠢᢉᠡ ᠴᠤ
@@ -420,7 +418,6 @@ export default function EyeDesktop() {
             className="text-2xl font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠤ᠋ᠨ ᠵᠢᠷᠤᠭ
@@ -437,7 +434,6 @@ export default function EyeDesktop() {
               className="text-3xl flex flex-col items-center pb-2 pl-3 border-b-[2px] border-black"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {toMongolianNumbers(archInfo.percent)}
@@ -446,7 +442,6 @@ export default function EyeDesktop() {
               className="text-[10px] h-[50px] text-center"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {archInfo.title}
@@ -455,7 +450,6 @@ export default function EyeDesktop() {
               className="text-3xl leading-none pl-3"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {toMongolianNumbers(archInfo.count)}
@@ -491,7 +485,6 @@ export default function EyeDesktop() {
               className="w-[507px] h-[100px] flex items-center justify-center border border-black text-lg font-bold p-4"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠬᠠᠮᠠᠭᠢᠨ ᠢ᠋ᠢᠬ ᠮᠡᠳᠡᠡᠡᠯ ᠢᠷᠰᠡᠨ ᠠ᠋ᠢᠮᠠᠭ᠂ ᠳ᠋ᠦᠦᠷᠡᠭ
@@ -501,7 +494,6 @@ export default function EyeDesktop() {
                 <span
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠠ᠋ᠢᠮᠠᠭ
@@ -511,7 +503,6 @@ export default function EyeDesktop() {
                 <span
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠨᠢᠢᠢᠲ
@@ -521,7 +512,6 @@ export default function EyeDesktop() {
                 <span
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   %
@@ -544,7 +534,6 @@ export default function EyeDesktop() {
                   <span
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     className="max-h-[70px] overflow-x-auto text-[10px] text-center"
                   >
@@ -555,7 +544,6 @@ export default function EyeDesktop() {
                   <span
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {toMongolianNumbers(item.count)}
@@ -565,7 +553,6 @@ export default function EyeDesktop() {
                   <span
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {toMongolianNumbers(item.percent)}%
@@ -586,7 +573,6 @@ export default function EyeDesktop() {
                   className="text-lg font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠨᠢᠶᠢᠲᠯᠡᠭ ᠰᠠᠷᠳᠯᠠᠭ᠎ᠠ:
@@ -595,7 +581,6 @@ export default function EyeDesktop() {
                   className="text-sm leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠣᠷᠣᠯᠴᠠᠭᠴᠢ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠵᠥᠷᠴᠢᠯᠦᠭ ᠢ ᠪᠠᠷᠢᠮᠲᠤᠵᠢᠤᠯᠠᠨ ᠮᠡᠳᠡᠭᠡᠯ
@@ -613,7 +598,6 @@ export default function EyeDesktop() {
                   className="text-lg font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠬᠡᠨ ᠮᠡᠳᠡᠭᠡᠯ ᠢᠯᠭᠡᠬᠦ ᠪᠡ?
@@ -622,7 +606,6 @@ export default function EyeDesktop() {
                   className="text-sm leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠑᠖ ᠳᠡᠭᠡᠰᠢ ᠨᠠᠰᠤᠨ ᠤ ᠪᠦᠬᠦ ᠬᠦᠮᠦᠨ ᠳᠦ ᠨᠡᠭᠡᠭᠡᠯᠲᠡᠢ ᠪᠥᠭᠡᠳ ᠪᠠᠭᠠᠷ ᠪᠣᠯᠤᠨ
@@ -638,7 +621,6 @@ export default function EyeDesktop() {
                   className="text-lg font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠮᠡᠳᠡᠭᠡᠯ:
@@ -647,7 +629,6 @@ export default function EyeDesktop() {
                   className="text-sm leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠦᠢᠯᠡᠳᠦᠯ ᠳᠦ ᠳᠤᠤᠳᠰᠠᠨ ᠪᠣᠳᠢᠲᠤ᠂ ᠰᠢᠤᠷᠬᠠᠢ ᠮᠡᠳᠡᠭᠡᠯ
@@ -660,7 +641,6 @@ export default function EyeDesktop() {
                   className="text-lg font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠰᠠᠯᠭᠠᠷᠠᠤᠯᠠᠯᠲ:
@@ -669,7 +649,6 @@ export default function EyeDesktop() {
                   className="text-sm leading-relaxed"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠒᠐᠒᠔ ᠣᠨ ᠦ ᠑᠒ ᠷ ᠰᠠᠷᠠ ᠶᠢᠨ ᠑᠐ ᠦ ᠦᠳᠦᠷ ᠪᠤᠶᠤ "ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠦᠨ ᠬᠦᠮᠦᠨ ᠦ
@@ -691,7 +670,6 @@ export default function EyeDesktop() {
               className="text-sm font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠮᠡᠳᠡᠭᠡᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠤ᠋ᠨ ᠳᠠᠷᠤᠭᠠ
@@ -701,7 +679,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳ᠋ᠤᠭᠠᠷ*
@@ -720,7 +697,6 @@ export default function EyeDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 maxLength="8"
               />
@@ -729,7 +705,6 @@ export default function EyeDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -767,7 +742,6 @@ export default function EyeDesktop() {
                   className="text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠪᠠᠲᠠᠯᠭᠠᠵᠤᠭᠤᠯᠠᢈᠤ ᠻᠣᠳ*
@@ -786,7 +760,6 @@ export default function EyeDesktop() {
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   maxLength="6"
                 />
@@ -795,7 +768,6 @@ export default function EyeDesktop() {
                     className="text-red-500 text-xs"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       width: "80px",
                     }}
                   >
@@ -811,7 +783,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ*
@@ -849,7 +820,6 @@ export default function EyeDesktop() {
                     onClick={handleCoverImageUpload}
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   />
                   <button
@@ -866,7 +836,6 @@ export default function EyeDesktop() {
                       className="text-sm pl-1"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠵᠢᠷᠤᠭ ᠬᠤᠤᠯᠠᠬᠤ
@@ -882,7 +851,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠶᠠᠮᠠᠷ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠢᠶᠠᠷ*
@@ -906,13 +874,11 @@ export default function EyeDesktop() {
                       } rounded-md p-2 w-20 text-xs bg-white flex flex-col items-center justify-center h-full gap-2`}
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       <div
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         className="flex items-center justify-center"
                       >
@@ -943,7 +909,6 @@ export default function EyeDesktop() {
                             className="w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0 h-full flex items-center justify-center"
                             style={{
                               writingMode: "vertical-lr",
-                              textOrientation: "upright",
                             }}
                           >
                             {option.title}
@@ -959,7 +924,6 @@ export default function EyeDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -974,7 +938,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠪᠠᠶᠢᠷᠢᠰᠢᠯ*
@@ -989,7 +952,6 @@ export default function EyeDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.incident && (
@@ -997,7 +959,6 @@ export default function EyeDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -1012,7 +973,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠭᠠᠷᠴᠠᠭ*
@@ -1027,7 +987,6 @@ export default function EyeDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.outcome && (
@@ -1035,7 +994,6 @@ export default function EyeDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -1050,7 +1008,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠻᠣᠸᠧᠷ ᠵᠢᠷᠤᠭ*
@@ -1065,7 +1022,6 @@ export default function EyeDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.authorities && (
@@ -1073,7 +1029,6 @@ export default function EyeDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -1088,7 +1043,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠠᠰᠠᠭᠤᠳᠠᠯ*
@@ -1103,7 +1057,6 @@ export default function EyeDesktop() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
               {errors.details && (
@@ -1111,7 +1064,6 @@ export default function EyeDesktop() {
                   className="text-red-500 text-xs"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     width: "80px",
                   }}
                 >
@@ -1126,7 +1078,6 @@ export default function EyeDesktop() {
                 className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠮᠧᠰᠰᠧᠵᠢ
@@ -1136,7 +1087,6 @@ export default function EyeDesktop() {
                 className="border border-gray-300 rounded-md p-2 w-48"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               />
             </div>

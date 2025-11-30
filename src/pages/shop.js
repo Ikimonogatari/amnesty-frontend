@@ -23,7 +23,6 @@ export default function Shop() {
             className="text-lg"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠠᠴᠢᠶᠠᠯᠠᠵᠤ ᠪᠠᠢᠨ᠎ᠠ...
@@ -41,7 +40,6 @@ export default function Shop() {
             className="text-lg text-red-500"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ: {error}

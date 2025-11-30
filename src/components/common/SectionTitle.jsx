@@ -10,7 +10,7 @@ export default function SectionTitle({
     >
       <h2
         className={`${className} font-bold`}
-        style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+        style={{ writingMode: "vertical-lr" }}
       >
         {title}
       </h2>

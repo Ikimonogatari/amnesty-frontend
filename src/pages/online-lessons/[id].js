@@ -69,13 +69,13 @@ export default function OnlineLessonDetail() {
           <div className="text-center">
             <h1
               className="text-2xl font-bold text-red-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </h1>
             <p
               className="text-gray-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
@@ -84,7 +84,6 @@ export default function OnlineLessonDetail() {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠡᠷᠬᠡ ᠮᠡᠳᠡᠬᠦ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
@@ -130,7 +129,6 @@ export default function OnlineLessonDetail() {
                 className="text-lg font-bold text-gray-900 max-h-[300px]"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {onlineLesson.title || "ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ"}
@@ -182,7 +180,6 @@ export default function OnlineLessonDetail() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 onClick={() => setActiveTab("introduction")}
               >
@@ -196,7 +193,6 @@ export default function OnlineLessonDetail() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 onClick={() => setActiveTab("content")}
               >
@@ -210,7 +206,6 @@ export default function OnlineLessonDetail() {
                 }`}
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 onClick={() => setActiveTab("additional")}
               >
@@ -228,7 +223,6 @@ export default function OnlineLessonDetail() {
                         className="text-sm text-gray-700 break-words h-[200px]"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         dangerouslySetInnerHTML={{
                           __html: onlineLesson.description,
@@ -254,7 +248,6 @@ export default function OnlineLessonDetail() {
                         className="whitespace-nowrap rounded min-h-max transition-colors text-xs px-2 py-1"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       />
                     </div>
@@ -269,7 +262,6 @@ export default function OnlineLessonDetail() {
                       className="text-sm text-gray-700 break-words"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       dangerouslySetInnerHTML={{
                         __html: onlineLesson.content,
@@ -280,7 +272,6 @@ export default function OnlineLessonDetail() {
                       className="text-sm text-gray-500"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠠᠭᠤᠯᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
@@ -296,7 +287,6 @@ export default function OnlineLessonDetail() {
                       className="text-sm text-gray-700 break-words"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       dangerouslySetInnerHTML={{
                         __html: onlineLesson.extra_details,
@@ -307,7 +297,6 @@ export default function OnlineLessonDetail() {
                       className="text-sm text-gray-500"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
@@ -326,7 +315,6 @@ export default function OnlineLessonDetail() {
                   className="text-lg font-bold text-gray-900"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ
@@ -355,7 +343,6 @@ export default function OnlineLessonDetail() {
                         className="text-sm font-medium text-gray-900 line-clamp-2"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         title={item.title}
                       >
@@ -368,7 +355,6 @@ export default function OnlineLessonDetail() {
                           className="text-xs text-gray-500 mt-1"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           {convertTextNumbers(item.lesson_length)}
@@ -420,7 +406,6 @@ export default function OnlineLessonDetail() {
                   className="text-lg font-bold text-gray-900"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {onlineLesson.title || "ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ"}
@@ -475,7 +460,6 @@ export default function OnlineLessonDetail() {
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   onClick={() => setActiveTab("introduction")}
                 >
@@ -489,7 +473,6 @@ export default function OnlineLessonDetail() {
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   onClick={() => setActiveTab("content")}
                 >
@@ -503,7 +486,6 @@ export default function OnlineLessonDetail() {
                   }`}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   onClick={() => setActiveTab("additional")}
                 >
@@ -520,7 +502,6 @@ export default function OnlineLessonDetail() {
                         className="text-sm text-gray-700 break-words"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         dangerouslySetInnerHTML={{
                           __html: onlineLesson.description,
@@ -544,7 +525,6 @@ export default function OnlineLessonDetail() {
                         className="whitespace-nowrap rounded min-h-max transition-colors"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       />
                     )}
@@ -558,7 +538,6 @@ export default function OnlineLessonDetail() {
                         className="text-sm text-gray-700 break-words"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         dangerouslySetInnerHTML={{
                           __html: onlineLesson.content,
@@ -569,7 +548,6 @@ export default function OnlineLessonDetail() {
                         className="text-sm text-gray-500"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         ᠠᠭᠤᠯᠭ᠎ᠠ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃
@@ -585,7 +563,6 @@ export default function OnlineLessonDetail() {
                         className="text-sm text-gray-700 break-words"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                         dangerouslySetInnerHTML={{
                           __html: onlineLesson.extra_details,
@@ -596,7 +573,6 @@ export default function OnlineLessonDetail() {
                         className="text-sm text-gray-500"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         ᠨᠡᠮᠡᠯᠲᠡ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠡᠯ ᠪᠠᠶᠢᠬᠤᠭᠦᠢ ᠪᠠᠶᠢᠨ᠎ᠠ᠃

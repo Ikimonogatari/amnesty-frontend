@@ -153,20 +153,20 @@ export default function RightDesktop() {
           <div className="flex gap-7">
             <h1
               className="text-2xl font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ
             </h1>
             <p
               className="text-sm font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠥᠨ ᠪᠢᠳᠡ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠩᠯᠦ ᠶᠢᠨ ᠵᠠᠢ ᠶᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠨᠤᠭᠤᠳ ᠢ ᠲᠠ
               ᠪᠦᠬᠦᠨ ᠳᠦ ᠪᠡᠨ ᠬᠦᠷᠭᠡᠵᠦ ᠪᠠᠢᠨᠠ᠃
             </p>
             <p
               className="text-sm font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠ "ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ" ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ᠂ ᠮᠡᠳᠡᠯᠡᠯ ᠶᠢᠨ
               ᠴᠠᠬᠢᠮ ᠲᠠᠯᠠᠪᠤᠷ ᠠᠴᠠ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢ ᠡᠷᠬᠢᠯᠡᠨ ᠭᠠᠷᠭᠠᠭᠰᠠᠨ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ
@@ -178,7 +178,7 @@ export default function RightDesktop() {
             </p>
             <p
               className="text-sm font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠢᠶᠠᠷ ᠳᠠᠮᠵᠢᠭᠤᠯᠤᠨ ᠲᠠ ᠲᠡᠭᠰᠢ ᠡᠷᠬᠡ᠂ ᠨᠡᠷᠡ
               ᠬᠦᠨᠳᠦ᠂ ᠬᠠᠷᠢᠯᠴᠠᠨ ᠬᠦᠨᠳᠦᠯᠡᠯ ᠢ ᠥᠪᠡᠷ ᠦᠨ ᠣᠷᠴᠢᠨ ᠲᠣᠭᠤᠷᠢᠨ ᠳᠤ᠂ ᠨᠢᠶᠭᠡᠮ ᠳᠦ᠂

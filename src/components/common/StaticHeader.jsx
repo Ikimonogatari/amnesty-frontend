@@ -50,7 +50,6 @@ export default function StaticHeader({
                 className="text-3xl font-bold font-mongolian text-center max-h-full overflow-y-auto break-words"
                 style={{
                   writingMode: "vertical-rl",
-                  textOrientation: "upright",
                 }}
               >
                 {title}
@@ -59,7 +58,6 @@ export default function StaticHeader({
                 className="text-xl font-bold font-mongolian max-h-full overflow-y-auto break-words"
                 style={{
                   writingMode: "vertical-rl",
-                  textOrientation: "upright",
                 }}
               >
                 {desc}
@@ -73,7 +71,6 @@ export default function StaticHeader({
                   className="text-base font-bold font-mongolian text-center px-4 py-3 bg-black/60 rounded-lg backdrop-blur-md shadow-lg overflow-y-auto break-words max-h-[200px] max-w-[200px] leading-tight"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                     wordBreak: "break-all",
                     overflowWrap: "break-word",
                   }}

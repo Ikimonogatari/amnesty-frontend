@@ -12,7 +12,7 @@ const getMerchImageUrl = (merch) => {
   return directUrl.startsWith("http")
     ? directUrl
     : `${
-        process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
+        process.env.NEXT_PUBLIC_MEDIA_URL || "cms.amnesty.mn"
       }${directUrl}`;
 };
 
@@ -55,7 +55,6 @@ const renderMerchPrice = (merch) => {
           <span
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠵᠠᠬᠢᠶᠠᠯᠠᠬᠤ
@@ -80,20 +79,20 @@ export default function ShopMobile({ merchandise = [] }) {
           <div className="flex gap-2 max-h-[200px] overflow-x-auto">
             <h1
               className="text-xs font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠡᠮᠨᠧᠰᠲᠢ ᠳᠡᠯᠭᠦᠦᠷ
             </h1>
             <p
               className="text-[10px] font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠ ᠡᠮᠨᠧᠰᠲᠢ ᠰᠣᠫᠢᠨ ᠪᠠᠷᠠᠭ᠎ᠠ ᠪᠦᠲᠡᠭᠡᠳᠬᠦᠦᠨ ᠡᠴᠡ ᠬᠤᠳᠠᠯᠳᠠᠨ ᠠᠪᠤᠵᠤ᠂ ᠬᠦᠮᠦᠨ ᠦ
               ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠥᠯᠥᠭᠡ ᠶᠢᠨ ᠦᠢᠯᠡᠳᠡᠳ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠡᠭᠡᠨ ᠣᠷᠣᠭᠤᠯᠠᠷᠠᠢ᠃
             </p>
             <p
               className="text-[10px] font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠᠨ ᠤ ᠬᠢᠶᠠᠭᠰᠠᠨ ᠬᠤᠳᠠᠯᠳᠠᠨ ᠠᠪᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠣᠷᠠᠯᠢᠭᠣ ᠨᠢ ᠡᠮᠨᠧᠰᠲᠢ
               ᠢᠨᠲᠧᠷᠨᠠᠰᠢᠣᠨᠠᠯ ᠤᠨ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠥᠯᠥᠭᠡ ᠶᠢᠨ ᠺᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ᠂ ᠬᠦᠮᠦᠨ
@@ -102,7 +101,7 @@ export default function ShopMobile({ merchandise = [] }) {
             </p>
             <div
               className="text-[10px] font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               {merchandise.length} ᠪᠦᠲᠡᠭᠡᠳᠬᠦᠦᠨ
             </div>

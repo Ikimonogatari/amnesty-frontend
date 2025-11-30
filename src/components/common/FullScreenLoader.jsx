@@ -27,7 +27,6 @@ export default function FullScreenLoader() {
             className="text-gray-600 text-lg font-medium"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               letterSpacing: "0.1em",
             }}
           >
@@ -60,7 +59,6 @@ export default function FullScreenLoader() {
             className="text-gray-600 text-base font-medium text-center"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               letterSpacing: "0.05em",
             }}
           >

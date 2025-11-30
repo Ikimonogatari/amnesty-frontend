@@ -12,7 +12,7 @@ export default function MerchItem({ merchItem }) {
     imageUrl = directUrl.startsWith("http")
       ? directUrl
       : `${
-          process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
+          process.env.NEXT_PUBLIC_MEDIA_URL || "cms.amnesty.mn"
         }${directUrl}`;
   } else {
     imageUrl = "/images/no-image-icon.png";
@@ -40,7 +40,6 @@ export default function MerchItem({ merchItem }) {
           className="text-sm font-medium flex-1"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
             minHeight: "80px",
           }}
         >
@@ -50,7 +49,6 @@ export default function MerchItem({ merchItem }) {
           className="text-sm font-bold"
           style={{
             writingMode: "vertical-lr",
-            textOrientation: "upright",
           }}
         >
           {price} ₮
@@ -74,7 +72,6 @@ export default function MerchItem({ merchItem }) {
             className="pl-1"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠵᠠᠬᠢᠶᠠᠯᠠᠬᠤ

@@ -130,7 +130,6 @@ export default function HomeMobile() {
                 className="rounded-lg bg-[#FFFF00] max-h-10 text-[8px] leading-tight p-1"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 onClick={() => {
                   router.push("/news");
@@ -151,7 +150,6 @@ export default function HomeMobile() {
                   className="text-[10px] max-h-[200px] py-2"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   title={item.title}
                 >
@@ -184,7 +182,6 @@ export default function HomeMobile() {
                   className="text-gray-400 text-[10px]"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠮᠡᠳᠡᢉᠡ ᠦᠭᠡᠢ
@@ -239,7 +236,6 @@ export default function HomeMobile() {
                     className="text-black font-bold text-[10px] sm:text-base max-h-24 overflow-hidden"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     title={item.title}
                   >
@@ -252,7 +248,6 @@ export default function HomeMobile() {
                   className="text-black font-bold text-[8px] sm:text-base max-h-32 overflow-hidden"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   title={item.body}
                 >
@@ -270,7 +265,6 @@ export default function HomeMobile() {
                 className="text-gray-400 text-[10px]"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠠᠷᠪᠢᠳᠠᠯ ᠦᠭᠡᠢ

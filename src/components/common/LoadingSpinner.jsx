@@ -42,8 +42,8 @@ export default function LoadingSpinner({
             className={`${textColor} text-center leading-tight`}
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
               maxWidth: "120px",
+              textOrientation: "upright",
               overflowWrap: "break-word",
             }}
           >

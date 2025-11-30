@@ -105,7 +105,7 @@ export default function SingleNews() {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center text-red-600">
             <p
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </p>
@@ -144,7 +144,6 @@ export default function SingleNews() {
               className="text-lg font-semibold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {publishedAt}
@@ -153,7 +152,6 @@ export default function SingleNews() {
               <button
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 onClick={() => handleShare("facebook")}
                 className="flex items-center gap-2 bg-[#385898] text-white px-2 py-2 text-xs font-semibold hover:bg-[#2d4373] transition-colors"
@@ -164,7 +162,6 @@ export default function SingleNews() {
               <button
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 onClick={() => handleShare("general")}
                 className="flex items-center gap-2 bg-gray-600 text-white px-2 py-2 text-xs font-semibold hover:bg-gray-700 transition-colors"
@@ -182,7 +179,6 @@ export default function SingleNews() {
                 className="text-xl font-bold mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {post.short_description}
@@ -192,7 +188,6 @@ export default function SingleNews() {
               className="text-base text-gray-800"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               dangerouslySetInnerHTML={{ __html: post.body }}
             />
@@ -272,7 +267,6 @@ export default function SingleNews() {
             <button
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               onClick={() => handleShare("facebook")}
               className="flex items-center gap-2 bg-[#385898] text-white px-4 py-3 text-sm font-semibold hover:bg-[#2d4373] transition-colors"
@@ -283,7 +277,6 @@ export default function SingleNews() {
             <button
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               onClick={() => handleShare("general")}
               className="flex items-center gap-2 bg-gray-600 text-white px-4 py-3 text-sm font-semibold hover:bg-gray-700 transition-colors"
@@ -301,7 +294,6 @@ export default function SingleNews() {
               className="text-2xl font-bold flex-shrink-0"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠣᠪᠴᠢᠶᠠᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -310,7 +302,6 @@ export default function SingleNews() {
               className="text-lg text-gray-800"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {post.short_description}
@@ -346,7 +337,6 @@ export default function SingleNews() {
               className="text-2xl font-bold flex-shrink-0"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠰᠡᠳᠡᠪ
@@ -357,7 +347,6 @@ export default function SingleNews() {
                   key={topic.id}
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer inline-block"
                   onClick={() => router.push(`/news?topic=${topic.slug}`)}

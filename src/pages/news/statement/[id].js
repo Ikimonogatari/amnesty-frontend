@@ -101,7 +101,7 @@ export default function SingleStatement() {
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center text-red-600">
             <p
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᠭᠳᠡᠯ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </p>
@@ -147,7 +147,6 @@ export default function SingleStatement() {
               className="p-4 text-white text-[10px] sm:text-lg md:text-xl lg:text-2xl font-bold text-start max-h-[150px] sm:max-h-[250px] w-full flex justify-center items-center overflow-x-auto"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {title}
@@ -166,7 +165,6 @@ export default function SingleStatement() {
                   <div
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     className="border border-gray-300 px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm"
                   >
@@ -175,7 +173,6 @@ export default function SingleStatement() {
                   <button
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     onClick={() => handleShare("facebook")}
                     className="flex items-center gap-2 bg-[#385898] text-white px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-semibold hover:bg-[#2d4373] transition-colors"
@@ -186,7 +183,6 @@ export default function SingleStatement() {
                   <button
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     onClick={() => handleShare("general")}
                     className="flex items-center gap-2 bg-gray-600 text-white px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-semibold hover:bg-gray-700 transition-colors"
@@ -198,7 +194,6 @@ export default function SingleStatement() {
                     <button
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       onClick={handleDownload}
                       className="flex items-center gap-2 bg-green-600 text-white px-2 sm:px-4 py-2 sm:py-3 text-[10px] sm:text-sm font-semibold hover:bg-green-700 transition-colors"
@@ -213,7 +208,6 @@ export default function SingleStatement() {
                     className="text-xs sm:text-lg font-semibold"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     {publishedAt}
@@ -223,7 +217,6 @@ export default function SingleStatement() {
                       className="text-xs sm:text-sm text-gray-600"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {author}
@@ -238,7 +231,6 @@ export default function SingleStatement() {
                   className="prose prose-lg max-w-none text-xs sm:text-base"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   dangerouslySetInnerHTML={{ __html: description }}
                 />
@@ -254,7 +246,6 @@ export default function SingleStatement() {
                   className="text-xs sm:text-xl font-semibold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠰᠠᠨᠠᠭᠤᠯᠬᠤ ᠮᠡᠳᠡᠭᠳᠡᠯ
@@ -270,7 +261,6 @@ export default function SingleStatement() {
                         className="text-[10px] sm:text-sm font-medium"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         {(item.title || item.attributes?.title)?.length > 60

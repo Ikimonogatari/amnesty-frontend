@@ -13,7 +13,7 @@ const getMerchImageUrl = (merch) => {
   return directUrl.startsWith("http")
     ? directUrl
     : `${
-        process.env.NEXT_PUBLIC_MEDIA_URL || "http://152.42.244.47:1337"
+        process.env.NEXT_PUBLIC_MEDIA_URL || "cms.amnesty.mn"
       }${directUrl}`;
 };
 
@@ -56,7 +56,6 @@ const renderMerchPrice = (merch) => {
           <span
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠵᠠᠬᠢᠶᠠᠯᠠᠬᠤ
@@ -81,7 +80,7 @@ export default function ShopDesktop({ merchandise = [] }) {
           <div className="flex gap-7">
             <h2
               className="text-sm font-bold"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠣᠷᠤᠭᠤᠯᠤᠭᠠᠷᠠᠢ᠃ ᠲᠠ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠱᠣᠫ ᠤ᠋ᠨ ᠪᠠᠷᠠᠭ᠎ᠠ ᠪᠦᠲᠦᢉᠡᢉᠳᠡᢈᠦᠨ ᠡᠴᠡ
               ᠬᠤᠳᠠᠯᠳᠤᠨ ᠠᠪᠴᠤ᠂ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡᢈᠦ ᠦᠢᠯᠡᠰ ᠲᠦ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠢ
@@ -89,7 +88,7 @@ export default function ShopDesktop({ merchandise = [] }) {
             </h2>
             <p
               className="text-sm text-[#848382]"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠶ᠋ᠢᠨ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠣᠯᠭᠤᠬᠤ ᠲᠥᠰᠦᠯ ᢈᠥᠲᠦᠯᠪᠦᠷᠢ ᠨᠦ᠋ᢉᠦᠳ ᠢ᠋ ᢈᠡᠷᠡᢉᠵᠢᢉᠦᠯᢈᠦ ᠳ᠋ᠦ
               ᠵᠠᠷᠤᠴᠠᠭᠤᠯᠤᠭᠳᠠᠳᠠᠭ᠃ ᠲᠠᠨ ᠤ᠋ ᢈᠢᢉᠰᠡᠨ ᠬᠤᠳᠠᠯᠳᠤᠨ ᠠᠪᠤᠯᠲᠠ ᠶ᠋ᠢᠨ ᠣᠷᠤᠯᠭ᠎ᠠ ᠨᠢ

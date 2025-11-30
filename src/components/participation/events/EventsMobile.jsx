@@ -360,7 +360,6 @@ export default function EventsMobile() {
                 <div
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {Array.isArray(event) 

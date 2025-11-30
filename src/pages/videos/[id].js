@@ -67,13 +67,13 @@ export default function VideoDetail() {
           <div className="text-center">
             <h1
               className="text-2xl font-bold text-red-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠪᠢᠳᠢᠶᠣ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </h1>
             <p
               className="text-gray-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠪᠢᠳᠢᠶᠣ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
@@ -82,7 +82,6 @@ export default function VideoDetail() {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠪᠢᠳᠢᠶᠣ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
@@ -159,7 +158,6 @@ export default function VideoDetail() {
                 className="text-xl font-bold mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -168,7 +166,6 @@ export default function VideoDetail() {
                 className="text-base text-gray-800"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 dangerouslySetInnerHTML={{
                   __html: video.description,
@@ -184,7 +181,6 @@ export default function VideoDetail() {
                 className="text-lg font-semibold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠣᠭᠨᠣᠭ᠎ᠠ
@@ -193,7 +189,6 @@ export default function VideoDetail() {
                 className="text-base text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {formatDate(video.createdAt || video.publishedAt)}
@@ -208,7 +203,6 @@ export default function VideoDetail() {
                 className="text-lg font-semibold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠷᠲᠤ
@@ -217,7 +211,6 @@ export default function VideoDetail() {
                 className="text-base text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {video.duration}
@@ -232,7 +225,6 @@ export default function VideoDetail() {
                 className="text-xl font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠪᠢᠳᠢᠶᠣ
@@ -248,7 +240,6 @@ export default function VideoDetail() {
                       className="text-sm font-medium line-clamp-3 mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {item.title?.length > 40
@@ -288,7 +279,6 @@ export default function VideoDetail() {
               className="text-3xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               title={video.title}
             >
@@ -298,7 +288,6 @@ export default function VideoDetail() {
               className="text-xl font-medium text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠪᠢᠳᠢᠶᠣ
@@ -351,7 +340,6 @@ export default function VideoDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -360,7 +348,6 @@ export default function VideoDetail() {
               className="text-lg text-gray-800 max-w-[600px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               dangerouslySetInnerHTML={{
                 __html: video.description,
@@ -376,7 +363,6 @@ export default function VideoDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠣᠭᠨᠣᠭ᠎ᠠ
@@ -385,7 +371,6 @@ export default function VideoDetail() {
               className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {formatDate(video.createdAt || video.publishedAt)}
@@ -400,7 +385,6 @@ export default function VideoDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠤᠷᠲᠤ
@@ -409,7 +393,6 @@ export default function VideoDetail() {
               className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {video.duration}

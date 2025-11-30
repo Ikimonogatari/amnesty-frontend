@@ -70,7 +70,7 @@ export default function OnlineLessonsIndex() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center text-red-600">
-          <p style={{ writingMode: "vertical-lr", textOrientation: "upright" }}>
+          <p style={{ writingMode: "vertical-lr" }}>
             ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
         </div>
@@ -93,13 +93,13 @@ export default function OnlineLessonsIndex() {
           <div className="flex-shrink-0 bg-gray-50 p-8">
             <h2
               className="text-2xl font-bold mb-6"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ
             </h2>
             <p
               className="text-gray-700 leading-relaxed"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ
             </p>
@@ -137,7 +137,6 @@ export default function OnlineLessonsIndex() {
                 className="text-lg font-bold mb-3"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ
@@ -146,7 +145,6 @@ export default function OnlineLessonsIndex() {
                 className="text-gray-700 text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ

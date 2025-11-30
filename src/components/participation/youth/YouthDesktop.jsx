@@ -68,7 +68,6 @@ export default function YouthDesktop() {
               className="font-bold text-xl"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               «ᠪᠢᠳᠡ ᠬᠠᠮᠲᠤ ᠳ᠋ᠤ ᠪᠠᠨ ᠤᠳᠬ᠎ᠠ ᠤᠴᠢᠷᠲᠠᠢ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ ᠶ᠋ᠢ <br /> ᠪᠦᠲᠦᢉᠡᠵᠦ
@@ -78,7 +77,6 @@ export default function YouthDesktop() {
               className="font-bold text-xl"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠸᠢᠪᠾᠠ ᠸᠧᠨᠻᠠᠲ᠋ᠧᠱᠢ᠂ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᠬᠠᠮᠲᠤ ᠶ᠋ᠢᠨ <br />
@@ -151,7 +149,6 @@ export default function YouthDesktop() {
                 className="text-white text-2xl font-bold z-10"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᠨᠢᢉᠡᠳᠦᠯ
@@ -179,7 +176,6 @@ export default function YouthDesktop() {
                   className="text-2xl font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {item.title}
@@ -188,7 +184,6 @@ export default function YouthDesktop() {
                   className="text-sm font-bold"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {item.description}

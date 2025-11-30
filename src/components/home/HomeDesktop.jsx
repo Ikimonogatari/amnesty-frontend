@@ -136,7 +136,6 @@ export default function HomeDesktop() {
                   className="min-w-16 max-w-16 h-full text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   title={item.title}
                 >
@@ -168,7 +167,6 @@ export default function HomeDesktop() {
                   className="text-gray-400"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠮᠡᠳᠡᢉᠡ ᠦᠭᠡᠢ
@@ -219,7 +217,6 @@ export default function HomeDesktop() {
                   className="text-black font-bold text-sm max-h-32 overflow-hidden"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   title={item.title}
                 >
@@ -232,7 +229,6 @@ export default function HomeDesktop() {
                 className="min-w-28 text-black font-bold text-sm max-h-96 overflow-hidden"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 title={item.body}
               >
@@ -252,7 +248,6 @@ export default function HomeDesktop() {
                 className="text-gray-400"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠠᠷᠪᠢᠳᠠᠯ ᠦᠭᠡᠢ

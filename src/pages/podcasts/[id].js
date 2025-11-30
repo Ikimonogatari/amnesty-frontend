@@ -63,13 +63,13 @@ export default function PodcastDetail() {
           <div className="text-center">
             <h1
               className="text-2xl font-bold text-red-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠫᠣᠳᠻᠠᠰᠲ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
             </h1>
             <p
               className="text-gray-600 mb-4"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠᠯᠪᠢᠭᠰᠠᠨ ᠫᠣᠳᠻᠠᠰᠲ ᠤ᠋ᠯᠠᠭ᠎ᠠ ᠦᠵᠡᠭᠳᠡᠵᠤ ᠴᠢᠳᠠᠭᠰᠠᠨ ᠦᠭᠡᠢ
             </p>
@@ -78,7 +78,6 @@ export default function PodcastDetail() {
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠫᠣᠳᠺᠠᠰᠲ ᠨᠢᠭᠤᠷ ᠳ᠋ᠤ ᠪᠤᠴᠠᠬᠤ
@@ -125,7 +124,6 @@ export default function PodcastDetail() {
                 className="text-xl font-bold mb-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -134,7 +132,6 @@ export default function PodcastDetail() {
                 className="text-base text-gray-800"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
                 dangerouslySetInnerHTML={{
                   __html: podcast.description,
@@ -150,7 +147,6 @@ export default function PodcastDetail() {
                 className="text-lg font-semibold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠤᠷᠲᠤ
@@ -159,7 +155,6 @@ export default function PodcastDetail() {
                 className="text-base text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {podcast.duration}
@@ -174,7 +169,6 @@ export default function PodcastDetail() {
                 className="text-lg font-semibold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠴᠠᠬᠢᠮ ᠳᠤ ᠰᠣᠨᠣᠰᠬᠤ
@@ -221,7 +215,6 @@ export default function PodcastDetail() {
                 className="text-lg font-semibold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠠᠴᠢᠶᠠᠯᠠᠭᠴᠢ
@@ -230,7 +223,6 @@ export default function PodcastDetail() {
                 className="text-base text-gray-600"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 {podcast.host}
@@ -245,7 +237,6 @@ export default function PodcastDetail() {
                 className="text-xl font-bold"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠫᠣᠳᠻᠠᠰᠲ
@@ -261,7 +252,6 @@ export default function PodcastDetail() {
                       className="text-sm font-medium line-clamp-3 mb-2"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {item.title?.length > 40
@@ -309,7 +299,6 @@ export default function PodcastDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠠᠦᠳᠢᠶᠣ
@@ -330,7 +319,6 @@ export default function PodcastDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠲᠠᠢᠯᠪᠤᠷᠢ
@@ -339,7 +327,6 @@ export default function PodcastDetail() {
               className="text-lg text-gray-800 max-w-[600px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
               dangerouslySetInnerHTML={{
                 __html: podcast.description,
@@ -355,7 +342,6 @@ export default function PodcastDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠤᠷᠲᠤ
@@ -364,7 +350,6 @@ export default function PodcastDetail() {
               className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {podcast.duration}
@@ -379,7 +364,6 @@ export default function PodcastDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠠᠴᠢᠶᠠᠯᠠᠭᠴᠢ
@@ -388,7 +372,6 @@ export default function PodcastDetail() {
               className="text-xl text-gray-600"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {podcast.host}
@@ -403,7 +386,6 @@ export default function PodcastDetail() {
               className="text-2xl font-bold"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠴᠠᠬᠢᠮ ᠳᠤ ᠰᠣᠨᠣᠰᠬᠤ
