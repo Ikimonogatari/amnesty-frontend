@@ -116,22 +116,29 @@ export default function WriteForRightsActionMobile({ actionId, action }) {
       {/* Main Content */}
       <div className="flex-1 space-y-4 p-4">
         {/* Introduction */}
-        <div className="flex flex-row max-h-[200px] overflow-x-auto gap-2">
+        <div className="flex flex-row max-h-[200px] overflow-hidden gap-2">
           <h2
-            className="text-sm font-bold"
+            className="text-sm font-bold overflow-hidden flex-shrink-0 max-w-[60px]"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
+              wordBreak: "keep-all",
+              overflowWrap: "break-word",
             }}
+            title={actionData.title}
           >
             {actionData.title}
           </h2>
           <p
-            className="text-[10px]"
+            className="text-[10px] overflow-y-auto flex-1 max-w-[120px] pr-1"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
+              wordBreak: "keep-all",
+              overflowWrap: "break-word",
+              lineHeight: "1.4",
             }}
+            title={actionData.description}
           >
             {actionData.description}
           </p>

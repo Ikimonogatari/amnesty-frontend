@@ -113,23 +113,30 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
       />
 
       {/* Actions List Section - Show single action */}
-      <div className="bg-white p-6 flex flex-row gap-4 flex-shrink-0">
-        <div className="flex flex-row gap-2">
+      <div className="bg-white p-6 flex flex-row gap-4 flex-shrink-0 max-h-screen overflow-hidden">
+        <div className="flex flex-row gap-2 overflow-hidden w-full">
           <h2
-            className=" text-xl inline-block font-bold"
+            className="text-xl inline-block font-bold overflow-hidden flex-shrink-0 max-w-[100px]"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
+              wordBreak: "keep-all",
+              overflowWrap: "break-word",
             }}
+            title={actionData.title}
           >
             {actionData.title}
           </h2>
           <p
-            className="text-lg"
+            className="text-lg overflow-y-auto flex-1 max-w-[400px] pr-2"
             style={{
               writingMode: "vertical-lr",
               textOrientation: "upright",
+              wordBreak: "keep-all",
+              overflowWrap: "break-word",
+              lineHeight: "1.6",
             }}
+            title={actionData.description}
           >
             {actionData.description}
           </p>

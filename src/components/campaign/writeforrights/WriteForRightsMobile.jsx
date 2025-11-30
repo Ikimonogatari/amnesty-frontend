@@ -190,22 +190,29 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="flex-1 p-3 w-full flex flex-row overflow-x-auto max-h-[300px]">
+                <div className="flex-1 p-3 w-full flex flex-row overflow-hidden max-h-[300px]">
                   <h3
-                    className="font-bold mb-1 text-xs line-clamp-2"
+                    className="font-bold mb-1 text-xs overflow-hidden flex-shrink-0 max-w-[40px]"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
+                      wordBreak: "keep-all",
+                      overflowWrap: "break-word",
                     }}
+                    title={action.title}
                   >
                     {action.title}
                   </h3>
                   <p
-                    className="text-xs mb-2 line-clamp-2"
+                    className="text-xs mb-2 overflow-y-auto flex-1 max-w-[80px] pr-1"
                     style={{
                       writingMode: "vertical-lr",
                       textOrientation: "upright",
+                      wordBreak: "keep-all",
+                      overflowWrap: "break-word",
+                      lineHeight: "1.4",
                     }}
+                    title={action.description}
                   >
                     {action.description}
                   </p>

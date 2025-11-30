@@ -204,22 +204,27 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                       />
                     )}
                   </div>
-                  <div className="flex flex-row gap-2 flex-1 overflow-x-auto w-full h-[50vh]">
+                  <div className="flex flex-row gap-2 flex-1 w-full max-h-[50vh] overflow-hidden">
                     <h3
-                      className="font-bold mb-2 text-sm"
+                      className="font-bold mb-2 text-sm overflow-hidden flex-shrink-0 max-w-[60px]"
                       style={{
                         writingMode: "vertical-lr",
                         textOrientation: "upright",
+                        wordBreak: "keep-all",
+                        overflowWrap: "break-word",
                       }}
                       title={action.title}
                     >
                       {action.title}
                     </h3>
                     <p
-                      className="text-xs"
+                      className="text-xs overflow-y-auto flex-1 max-w-[150px] pr-1"
                       style={{
                         writingMode: "vertical-lr",
                         textOrientation: "upright",
+                        wordBreak: "keep-all",
+                        overflowWrap: "break-word",
+                        lineHeight: "1.5",
                       }}
                       title={action.description}
                     >
