@@ -143,10 +143,7 @@ export default function NewsMobile() {
     return (
       <div className="block sm:hidden h-full overflow-y-auto flex items-center justify-center min-h-screen">
         <div className="text-center text-red-600">
-          <p
-            className="text-sm"
-            style={{ writingMode: "vertical-lr" }}
-          >
+          <p className="text-sm" style={{ writingMode: "vertical-lr" }}>
             ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
           </p>
         </div>
@@ -285,10 +282,11 @@ export default function NewsMobile() {
                 onClick={handlePrevPage}
                 disabled={currentPage === 1 || isLoading || isFetching}
               />
-              <p className="text-sm">
-                {toMongolianNumeral(currentPage)}/
-                {toMongolianNumeral(totalPages)}
-              </p>
+              <div className="text-sm flex flex-row items-center justify-center gap-0">
+                <span>{toMongolianNumeral(currentPage)}</span>
+                <span className="text-xs">/</span>
+                <span>{toMongolianNumeral(totalPages)}</span>
+              </div>
               <Button
                 text={<ChevronRight />}
                 type="chevron"

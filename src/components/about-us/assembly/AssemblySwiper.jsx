@@ -157,11 +157,11 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
             return (
               <SwiperSlide key={slide.id}>
                 <div className={`w-full h-full flex gap-4`}>
-                    <div
-                      className={`relative z-20 ${
-                        isMobile ? "max-w-[300px]" : "min-w-[270px] aspect-square"
-                      }`}
-                    >
+                  <div
+                    className={`relative z-20 ${
+                      isMobile ? "max-w-[300px]" : "min-w-[270px] aspect-square"
+                    }`}
+                  >
                     {videoId ? (
                       <iframe
                         src={`https://www.youtube.com/embed/${videoId}`}
@@ -199,9 +199,11 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
           type="chevron"
           onClick={handlePrevSlide}
         />
-        <p className="text-sm">
-          {toMongolianNumeral(currentSlide)}/{toMongolianNumeral(slides.length)}
-        </p>
+        <div className="text-sm flex flex-row sm:flex-col items-center justify-center gap-0">
+          <span>{toMongolianNumeral(currentSlide)}</span>
+          <span className="text-xs">/</span>
+          <span>{toMongolianNumeral(slides.length)}</span>
+        </div>
         <Button
           text={isMobile ? <ChevronRight /> : <ChevronDown />}
           type="chevron"
