@@ -415,13 +415,14 @@ export default function EyeMobile() {
         {/* Yellow Arch Visualization */}
         <div className="flex flex-col items-center gap-4">
           <div className="w-[280px] h-[160px] flex items-center justify-end flex-col gap-2">
-            <div
-              className="text-xl flex flex-col items-center pb-2 pl-2 border-b border-black"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              {toMongolianNumbers(archInfo.percent)}
+            <div className="text-xl flex flex-col items-center justify-center gap-0 pb-2 pl-2 border-b border-black">
+              {String(archInfo.percent)
+                .split("")
+                .map((digit, idx) => (
+                  <span key={idx}>
+                    {toMongolianNumbers(digit)}
+                  </span>
+                ))}
             </div>
             <div
               className="text-[8px] h-[30px] text-center"
@@ -431,13 +432,14 @@ export default function EyeMobile() {
             >
               {archInfo.title}
             </div>
-            <div
-              className="text-xl leading-none"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              {toMongolianNumbers(archInfo.count)}
+            <div className="text-xl leading-none flex flex-col items-center justify-center gap-0">
+              {String(archInfo.count)
+                .split("")
+                .map((digit, idx) => (
+                  <span key={idx}>
+                    {toMongolianNumbers(digit)}
+                  </span>
+                ))}
             </div>
             <div className="w-0 h-0 relative">
               {archGraduses.map((item, index) => (
@@ -529,24 +531,27 @@ export default function EyeMobile() {
                   </span>
                 </div>
                 <div className="flex-1 flex items-center justify-center">
-                  <span
-                    className="text-[10px]"
-                    style={{
-                      writingMode: "vertical-lr",
-                    }}
-                  >
-                    {toMongolianNumbers(item.count)}
-                  </span>
+                  <div className="flex flex-col items-center justify-center gap-0">
+                    {String(item.count)
+                      .split("")
+                      .map((digit, idx) => (
+                        <span key={idx} className="text-[10px]">
+                          {toMongolianNumbers(digit)}
+                        </span>
+                      ))}
+                  </div>
                 </div>
                 <div className="flex-1 flex items-center justify-center">
-                  <span
-                    className="text-[10px]"
-                    style={{
-                      writingMode: "vertical-lr",
-                    }}
-                  >
-                    {item.percent}%
-                  </span>
+                  <div className="flex flex-col items-center justify-center gap-0">
+                    {String(item.percent)
+                      .split("")
+                      .map((digit, idx) => (
+                        <span key={idx} className="text-[10px]">
+                          {toMongolianNumbers(digit)}
+                        </span>
+                      ))}
+                    <span className="text-[10px]">%</span>
+                  </div>
                 </div>
               </div>
             ))}

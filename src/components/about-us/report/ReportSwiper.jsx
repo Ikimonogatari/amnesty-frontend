@@ -227,10 +227,11 @@ export default function ReportSwiper({
           disabled={currentSlide === 1}
         />
         <div className="text-center space-y-2">
-          <p className="text-sm font-bold">
-            {toMongolianNumeral(currentSlide)}/
-            {toMongolianNumeral(slides.length)}
-          </p>
+          <div className="text-sm font-bold flex flex-row sm:flex-col items-center justify-center gap-0">
+            <span>{toMongolianNumeral(currentSlide)}</span>
+            <span className="text-xs">/</span>
+            <span>{toMongolianNumeral(slides.length)}</span>
+          </div>
           {slides.length > 5 && (
             <p
               className="text-xs text-gray-500"

@@ -346,12 +346,11 @@ export default function RightSwiper({
 
       <div className="hidden sm:flex flex-col justify-start items-center gap-2">
         <Button text={<ChevronUp />} type="chevron" onClick={handlePrevSlide} />
-        <p
-          className="text-[10px] sm:text-sm"
-          style={{ writingMode: "vertical-lr" }}
-        >
-          {toMongolianNumeral(currentSlide)}/{toMongolianNumeral(slides.length)}
-        </p>
+        <div className="text-[10px] sm:text-sm flex flex-col items-center justify-center gap-0">
+          <span>{toMongolianNumeral(currentSlide)}</span>
+          <span className="text-xs">/</span>
+          <span>{toMongolianNumeral(slides.length)}</span>
+        </div>
         <Button
           text={<ChevronDown />}
           type="chevron"

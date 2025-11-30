@@ -197,10 +197,11 @@ export default function GridLayout({
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1 || isLoading}
               />
-              <p className="text-sm">
-                {toMongolianNumbers(currentPage)}/
-                {toMongolianNumbers(totalPages)}
-              </p>
+              <div className="text-sm flex flex-row sm:flex-col items-center justify-center gap-0">
+                <span>{toMongolianNumbers(currentPage)}</span>
+                <span className="text-xs">/</span>
+                <span>{toMongolianNumbers(totalPages)}</span>
+              </div>
               <Button
                 text={<ChevronDown />}
                 type="chevron"
@@ -299,9 +300,11 @@ export default function GridLayout({
               onClick={() => onPageChange(currentPage - 1)}
               disabled={currentPage === 1 || isLoading}
             />
-            <p className="text-sm">
-              {toMongolianNumbers(currentPage)}/{toMongolianNumbers(totalPages)}
-            </p>
+            <div className="text-sm flex flex-row items-center justify-center gap-0">
+              <span>{toMongolianNumbers(currentPage)}</span>
+              <span className="text-xs">/</span>
+              <span>{toMongolianNumbers(totalPages)}</span>
+            </div>
             <Button
               text={<ChevronRight />}
               type="chevron"
