@@ -50,6 +50,23 @@ export default function CampaignDesktop() {
     "/images/campaign/211464.png",
   ];
 
+  // Dynamic campaign images array
+  const campaignImages = [
+    "/images/campaign/cam1.png",
+    "/images/campaign/cam2.png",
+    "/images/campaign/childrights.png",
+    "/images/campaign/cam4.png",
+    "/images/campaign/cam5.png",
+    "/images/campaign/cam6.png",
+    "/images/campaign/cam7.png",
+    "/images/campaign/cam8.png",
+    "/images/campaign/durvegch.png",
+    "/images/campaign/cam10.png",
+    "/images/campaign/cam11.webp",
+    "/images/campaign/eruuden.png",
+    "/images/campaign/cam13.webp",
+  ];
+
   // Convert features data to changeitems format, with fallback to static data
   const changeitems = [
     {
@@ -156,7 +173,7 @@ export default function CampaignDesktop() {
         <div className="h-full flex gap-10">
           <SectionTitle title={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠳ"} />
           <div className="h-full grid grid-rows-3 grid-flow-col gap-[10px]">
-            {campaignItems.slice(0, 15).map((item) => (
+            {campaignItems.slice(0, 13).map((item) => (
               <div
                 key={item.id}
                 className="flex flex-col items-center justify-center w-36 gap-5 border-2 border-black p-5 cursor-pointer hover:bg-gray-100 transition-colors"
@@ -168,7 +185,9 @@ export default function CampaignDesktop() {
                   width={60}
                   height={60}
                   onError={(e) => {
-                    e.target.src = "/images/about1.png"; // fallback image
+                    // Use campaign images as fallback, cycling through them
+                    const fallbackIndex = item.id % campaignImages.length;
+                    e.target.src = campaignImages[fallbackIndex] || campaignImages[0];
                   }}
                 />
                 <p
@@ -184,24 +203,40 @@ export default function CampaignDesktop() {
                 </p>
               </div>
             ))}
-            {/* Fill empty slots if we have less than 15 campaigns */}
-            {Array.from({ length: Math.max(0, 15 - campaignItems.length) }).map(
-              (_, index) => (
-                <div
-                  key={`empty-${index}`}
-                  className="flex flex-col items-center justify-center w-36 gap-5 border border-gray-200 p-5"
-                >
-                  <div className="w-[60px] h-[60px] bg-gray-200 rounded"></div>
-                  <p
-                    className="text-gray-400 font-bold text-center"
-                    style={{
-                      writingMode: "vertical-lr",
-                    }}
+            {/* Fill empty slots if we have less than 13 campaigns */}
+            {Array.from({ length: Math.max(0, 13 - campaignItems.length) }).map(
+              (_, index) => {
+                // Use campaign images in rotation, starting from where we left off
+                const imageIndex = (campaignItems.length + index) % campaignImages.length;
+                const fallbackImage = campaignImages[0]; // Use first image as fallback
+                
+                return (
+                  <div
+                    key={`empty-${index}`}
+                    className="flex flex-col items-center justify-center w-36 gap-5 border-2 border-black p-5 cursor-pointer hover:bg-gray-100 transition-colors"
+                    onClick={() => router.push(`/campaign/${campaignItems.length + index + 1}`)}
                   >
-                    ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠦᠭᠡᠢ
-                  </p>
-                </div>
-              )
+                    <Image
+                      src={campaignImages[imageIndex]}
+                      alt={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
+                      width={60}
+                      height={60}
+                      onError={(e) => {
+                        e.target.src = fallbackImage; // fallback to first campaign image
+                      }}
+                    />
+                    <p
+                      className="text-base font-bold"
+                      style={{
+                        writingMode: "vertical-lr",
+                      }}
+                      title={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
+                    >
+                      {"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
+                    </p>
+                  </div>
+                );
+              }
             )}
           </div>
         </div>
