@@ -189,7 +189,6 @@ export default function RightSwiper({
               className="text-xs sm:text-2xl font-bold max-h-[300px] overflow-y-auto"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 wordBreak: "keep-all",
                 lineHeight: "1.2",
               }}
@@ -200,7 +199,6 @@ export default function RightSwiper({
               className="text-[8px] sm:text-sm font-bold max-h-[400px] overflow-y-auto font-mongolian"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
                 wordBreak: "keep-all",
                 lineHeight: "1.2",
               }}
@@ -221,7 +219,7 @@ export default function RightSwiper({
         <div className="flex items-center justify-center p-8">
           <p
             className="text-sm text-gray-500 font-mongolian"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠦᠭᠡᠢ ᠪᠠᠶᠢᠨ᠎ᠠ
           </p>
@@ -303,7 +301,6 @@ export default function RightSwiper({
                     className="text-[10px] sm:text-base font-medium text-center overflow-visible max-h-[140px] sm:max-h-[200px] flex-shrink-0"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       lineHeight: "1.3",
                       wordBreak: "keep-all",
                       whiteSpace: "nowrap",
@@ -321,7 +318,6 @@ export default function RightSwiper({
                     className="text-[9px] sm:text-sm font-medium flex-shrink-0"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       lineHeight: "1.2",
                     }}
                   >
@@ -340,7 +336,6 @@ export default function RightSwiper({
                   className="text-[9px] sm:text-sm flex justify-end cursor-pointer hover:text-blue-600 transition-colors"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                   onClick={() => navigateToDetail({ id: slide.id })}
                 >

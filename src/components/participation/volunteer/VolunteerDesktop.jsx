@@ -23,7 +23,6 @@ export default function VolunteerDesktop() {
                   className="text-sm font-bold bg-[#FFFF00] py-6 flex justify-center items-center h-full min-w-12"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   {item.title}

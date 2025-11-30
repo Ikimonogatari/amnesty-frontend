@@ -267,7 +267,6 @@ export default function Register() {
                 className="text-3xl font-bold text-gray-800"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                   margin: "0 auto",
                 }}
               >
@@ -287,7 +286,6 @@ export default function Register() {
                     className="text-lg font-medium text-gray-700 md:block"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -303,7 +301,6 @@ export default function Register() {
                       className="border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12 bg-white text-sm"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         height: "auto",
                         minHeight: "2.5rem",
                         display: "flex",
@@ -337,7 +334,6 @@ export default function Register() {
                             className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0"
                             style={{
                               writingMode: "vertical-lr",
-                              textOrientation: "upright",
                             }}
                           >
                             {group.title}
@@ -353,7 +349,6 @@ export default function Register() {
                     className="text-lg font-medium text-gray-700"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -373,7 +368,6 @@ export default function Register() {
                       }`}
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         height: "auto",
                         minHeight: "2.5rem",
                         display: "flex",
@@ -404,7 +398,6 @@ export default function Register() {
                           className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ
@@ -427,7 +420,6 @@ export default function Register() {
                             className="block w-20 p-2 text-xs hover:bg-gray-100 border-r border-gray-200 last:border-r-0"
                             style={{
                               writingMode: "vertical-lr",
-                              textOrientation: "upright",
                             }}
                           >
                             {subGroup.title}
@@ -443,7 +435,6 @@ export default function Register() {
                     className="text-lg font-medium text-gray-700"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -458,7 +449,6 @@ export default function Register() {
                     className="border-2 border-gray-300 text-center rounded-lg flex-1 md:w-12"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     placeholder="xxxxxxxx"
                     maxLength="8"
@@ -470,7 +460,6 @@ export default function Register() {
                     className="text-lg font-medium text-gray-700"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -485,7 +474,6 @@ export default function Register() {
                     className="border-2 border-gray-300 p-3 rounded-lg text-center flex-1 md:w-12"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     placeholder="xxxxxx"
                     maxLength="6"
@@ -510,7 +498,6 @@ export default function Register() {
                     className="text-lg font-medium text-gray-700"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -525,7 +512,6 @@ export default function Register() {
                     className="border-2 border-gray-300 p-3 rounded-lg text-center flex-1 md:w-12"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     placeholder="ᠬᠠᠮᠤᠭᠢᠢᠨ ᠪᠠᠭᠠᠳᠠᠭ᠎ᠠ 6 ᠲᠡᠮᠳᠡᠭᠲᠦ"
                   />
@@ -536,7 +522,6 @@ export default function Register() {
                     className="text-lg font-medium text-gray-700"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       display: "flex",
                       alignItems: "center",
                     }}
@@ -551,7 +536,6 @@ export default function Register() {
                     className="border-2 border-gray-300 p-3 rounded-lg text-center flex-1 md:w-12"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                     placeholder="ᠨᠢᠭᠤᠴᠠ ᠦᠭᠡᠭ᠎ᠡ ᠳᠠᠬᠢᠨ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ"
                   />
@@ -571,7 +555,6 @@ export default function Register() {
                     className="text-blue-600 hover:text-blue-800 py-3 px-4"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                       height: "auto",
                       display: "inline-flex",
                       alignItems: "center",

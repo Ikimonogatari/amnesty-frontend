@@ -178,7 +178,6 @@ export default function HeaderMobile() {
                             className="text-black font-bold text-xs"
                             style={{
                               writingMode: "vertical-lr",
-                              textOrientation: "upright",
                             }}
                           >
                             {item.text}
@@ -222,7 +221,6 @@ export default function HeaderMobile() {
                                       className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
                                       style={{
                                         writingMode: "vertical-lr",
-                                        textOrientation: "upright",
                                       }}
                                     >
                                       {dropdownItem.text}
@@ -243,7 +241,6 @@ export default function HeaderMobile() {
                         className="text-black font-bold text-xs"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         {item.text}
@@ -256,7 +253,6 @@ export default function HeaderMobile() {
                       className="text-black font-bold text-xs"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {item.text}

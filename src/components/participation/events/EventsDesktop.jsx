@@ -307,7 +307,6 @@ export default function EventsDesktop() {
             className="absolute top-2 left-2 text-xs opacity-50"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             {daysOfWeek[(firstDay - 1 - i + 7) % 7]}
@@ -316,7 +315,6 @@ export default function EventsDesktop() {
             className="absolute top-2 right-2"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             {toMongolianNumerals(day)}
@@ -346,7 +344,6 @@ export default function EventsDesktop() {
             className="absolute top-2 left-2 text-xs opacity-50"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             {daysOfWeek[dayIndex % 7]}
@@ -355,7 +352,6 @@ export default function EventsDesktop() {
             className="absolute top-2 right-0 font-medium"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             {toMongolianNumerals(day)}
@@ -366,7 +362,6 @@ export default function EventsDesktop() {
                  className={`absolute bottom-2 left-2 ${event.color} px-1 py-0.5 rounded text-white text-[8px] font-medium cursor-pointer min-w-[20px] text-center group`}
                  style={{
                    writingMode: "vertical-lr",
-                   textOrientation: "upright",
                  }}
                >
                  {event.title.split(' ')[0] || event.title.substring(0, 3)}
@@ -375,7 +370,6 @@ export default function EventsDesktop() {
                    <div
                      style={{
                        writingMode: "vertical-lr",
-                       textOrientation: "upright",
                      }}
                    >
                      {event.title}
@@ -405,7 +399,6 @@ export default function EventsDesktop() {
             className="absolute top-2 left-2 text-xs opacity-50"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             {daysOfWeek[dayIndex % 7]}
@@ -414,7 +407,6 @@ export default function EventsDesktop() {
             className="absolute top-2 right-0"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             {toMongolianNumerals(day)}
@@ -435,7 +427,6 @@ export default function EventsDesktop() {
             className="text-base font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠪᠢᠳᠡ ᠰᠢᠳᠤᠷᠭᠤ ᠶᠣᠰᠤ᠂ ᠡᠷᢈᠡ ᠴᠢᠯᠦᢉᠡ᠂ ᠦᠨᠡᠨ᠂ ᠪᠣᠯᠤᠨ ᠨᠡᠷ᠎ᠡ ᠲᠥᠷᠦ ᠨᠢ
@@ -447,7 +438,6 @@ export default function EventsDesktop() {
             className="text-base font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠪᠣᠯ ᢈᠦᠮᠦᠰ ᠦ᠋ᠨ ᠨᠢᢉᠡᠳᠦᠯ᠃ ᠣᠯᠠᠨ ᢈᠦᠮᠦᠰ ᠰᠢᠳᠤᠷᠭᠤ ᠶᠣᠰᠤᠨ ᠤ᠋ ᠲᠥᠯᠦᢉᠡ
@@ -458,7 +448,6 @@ export default function EventsDesktop() {
             className="text-base font-bold"
             style={{
               writingMode: "vertical-lr",
-              textOrientation: "upright",
             }}
           >
             ᠲᠠᠨ ᠤ᠋ ᠣᠷᠤᠯᠴᠠᠬᠤ ᠪᠣᠯᠤᠮᠵᠢᠲᠠᠢ ᠤᠯᠠᠮᠵᠢᠯᠠᠯᠲᠤ᠂ ᠵᠢᠯ ᠪᠣᠯᠭᠠᠨ ᠵᠣᢈᠢᠶᠠᠨ
@@ -470,7 +459,6 @@ export default function EventsDesktop() {
               className="text-xs"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠵᠣᢈᠢᠶᠠᠭᠳᠠᠭᠰᠠᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ
@@ -483,7 +471,6 @@ export default function EventsDesktop() {
               className="text-xs"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠪᠠᠭ᠂ ᠪᠦᠯᠦᢉ᠂ ᠪᠦᢈᠦ ᢉᠡᠰᠢᢉᠦᠳ ᠦ᠋ᠨ ᠠᠭᠤᠯᠵᠠᠯᠲᠠ
@@ -496,7 +483,6 @@ export default function EventsDesktop() {
               className="text-xs"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ
@@ -556,7 +542,6 @@ export default function EventsDesktop() {
               <p
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠥᠨᠥᠳᠦᠷ
@@ -568,7 +553,6 @@ export default function EventsDesktop() {
               className="text-xl font-semibold max-h-[180px]"
               style={{
                 writingMode: "vertical-lr",
-                textOrientation: "upright",
               }}
             >
               {monthNames[currentDate.getMonth()]}{" "}
@@ -581,7 +565,6 @@ export default function EventsDesktop() {
                   className="text-sm"
                   style={{
                     writingMode: "vertical-lr",
-                    textOrientation: "upright",
                   }}
                 >
                   ᠠᠴᠢᠯᠠᠭᠤᠯᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
@@ -593,7 +576,6 @@ export default function EventsDesktop() {
                 className="text-red-500 text-sm"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                 }}
               >
                 ᠠᠯᠳᠠᠭ᠎ᠠ: {error}

@@ -36,13 +36,13 @@ export default function Terms() {
         <div className="min-w-[20rem] py-4 px-14 bg-[#F1F1F1] flex gap-7">
           <p
             className="text-black font-bold text-2xl"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢᠨ ᠠᠰᠢᠭᠯᠠᠯᠲᠠ
           </p>
           <p
             className="font-bold text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠡᠰᠢᠨᠯ ᠤᠨ
             ᠠᠯᠪᠠᠨ ᠢᠯᠭᠠᠯ ᠪᠣᠰ ᠰᠠᠢᠢᠨ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠭᠡ᠂ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ᠂
@@ -54,13 +54,13 @@ export default function Terms() {
         <div className="flex gap-12 p-4 h-full">
           <p
             className="text-2xl font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠡᠷᠬᠡ
           </p>
           <p
             className="text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠲᠠ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠠᠰᠢᠭᠯᠠᠬᠤ ᠡᠷᠬᠡ ᠲᠠᠢ᠃ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ
             ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠳᠤ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ᠂ ᠤᠷᠤᠨ ᠰᠠᠢᠢᠨ ᠮᠡᠳᠡᠭᠡ
@@ -71,13 +71,13 @@ export default function Terms() {
         <div className="flex h-full gap-7 px-14 py-4 bg-[#F1F1F1]">
           <h2
             className="text-2xl font-bold"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠬᠣᠯᠪᠤᠭᠰᠠᠨ ᠬᠤᠪᠢ
           </h2>
           <p
             className="text-sm"
-            style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+            style={{ writingMode: "vertical-lr" }}
           >
             ᠬᠡᠷᠡᠭ ᠲᠠᠨᠳ ᠡᠨᠡ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ ᠢ ᠲᠠᠯᠠ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠪᠠᠢ᠌ᠴᠤ ᠪᠢᠳᠡ
             ᠳ᠋ᠦ ᠬᠣᠯᠪᠤᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ. ᠪᠢᠳᠡ ᠦᠨ ᠢᠮᠡᠶᠢᠯ ᠬᠠᠶᠠᠭ: contact@amnesty.mn ᠪᠣᠯᠣᠨ
@@ -116,13 +116,13 @@ export default function Terms() {
           <div className="flex gap-2 max-h-[100px] overflow-x-auto">
             <p
               className="text-black font-bold text-[9px] min-w-[50px]"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢᠨ ᠠᠰᠢᠭᠯᠠᠯᠲᠠ
             </p>
             <p
               className="text-[8px] text-[#848382] flex-1 min-w-[140px]"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠡᠰᠢᠨᠯ
               ᠤᠨ ᠠᠯᠪᠠᠨ ᠢᠯᠭᠠᠯ ᠪᠣᠰ ᠰᠠᠢᠢᠨ ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠯᠭᠡ᠂ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ᠂
@@ -135,13 +135,13 @@ export default function Terms() {
           <div className="flex gap-2 max-h-[110px] overflow-x-auto">
             <p
               className="text-[9px] font-bold min-w-[40px]"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠬᠡᠷᠡᠭᠯᠡᠬᠦ ᠡᠷᠬᠡ
             </p>
             <p
               className="text-[8px] text-[#848382] flex-1 min-w-[130px]"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠲᠠ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠠᠰᠢᠭᠯᠠᠬᠤ ᠡᠷᠬᠡ ᠲᠠᠢ᠃ ᠡᠨᠡ ᠤᠷᠠᠯᠭᠠ
               ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠳᠤ ᠤᠷᠠᠯᠭᠠ ᠬᠠᠮᠤᠭ ᠠᠵᠢᠯᠯᠠᠭᠴᠢ ᠶᠢ ᠬᠡᠷᠡᠭᠯᠡᠬᠦ᠂ ᠤᠷᠤᠨ ᠰᠠᠢᠢᠨ
@@ -153,13 +153,13 @@ export default function Terms() {
           <div className="flex gap-2 max-h-[90px] overflow-x-auto">
             <h2
               className="text-[9px] font-bold min-w-[40px]"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠬᠣᠯᠪᠤᠭᠰᠠᠨ ᠬᠤᠪᠢ
             </h2>
             <p
               className="text-[8px] font-bold flex-1 min-w-[120px]"
-              style={{ writingMode: "vertical-lr", textOrientation: "upright" }}
+              style={{ writingMode: "vertical-lr" }}
             >
               ᠬᠡᠷᠡᠭ ᠲᠠᠨᠳ ᠡᠨᠡ ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ ᠢ ᠲᠠᠯᠠ ᠠᠰᠠᠭᠤᠳᠠᠯ ᠪᠠᠢ᠌ᠴᠤ ᠪᠢᠳᠡ
               ᠳ᠋ᠦ ᠬᠣᠯᠪᠤᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ. ᠪᠢᠳᠡ ᠦᠨ ᠢᠮᠡᠶᠢᠯ ᠬᠠᠶᠠᠭ: contact@amnesty.mn

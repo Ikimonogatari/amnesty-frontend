@@ -185,7 +185,6 @@ export default function ResetPassword() {
                 className="text-3xl font-bold text-gray-800"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                   margin: "0 auto",
                 }}
               >
@@ -217,7 +216,6 @@ export default function ResetPassword() {
                       className="border-2 border-gray-300 text-center rounded-lg flex-1 max-w-12 min-w-12"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       placeholder="99123456"
                       maxLength="8"
@@ -229,7 +227,6 @@ export default function ResetPassword() {
                     className="text-sm text-gray-500 text-center"
                     style={{
                       writingMode: "vertical-lr",
-                      textOrientation: "upright",
                     }}
                   >
                     ᠪᠦᠷᠲᠦᠭᠡᠯᠲᠡᠢ ᠤᠲᠠᠰᠤᠨ ᠤ᠋ ᠳᠤᠭᠠᠷᠠᠭ᠎ᠠ ᠣᠷᠣᠭᠤᠯᠨ᠎ᠠ ᠤᠤ
@@ -264,7 +261,6 @@ export default function ResetPassword() {
                       className="text-lg font-medium text-gray-700"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         display: "flex",
                         alignItems: "center",
                       }}
@@ -279,7 +275,6 @@ export default function ResetPassword() {
                       className="border-2 border-gray-300 p-3 rounded-lg text-center flex-1 md:w-12"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       placeholder="6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ"
                       maxLength="6"
@@ -292,7 +287,6 @@ export default function ResetPassword() {
                       className="text-lg font-medium text-gray-700"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         display: "flex",
                         alignItems: "center",
                       }}
@@ -307,7 +301,6 @@ export default function ResetPassword() {
                       className="border-2 border-gray-300 p-3 rounded-lg text-center flex-1 md:w-12"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       required
                     />
@@ -318,7 +311,6 @@ export default function ResetPassword() {
                       className="text-lg font-medium text-gray-700"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                         display: "flex",
                         alignItems: "center",
                       }}
@@ -333,7 +325,6 @@ export default function ResetPassword() {
                       className="border-2 border-gray-300 p-3 rounded-lg text-center flex-1 md:w-12"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                       required
                     />
@@ -346,7 +337,6 @@ export default function ResetPassword() {
                         className="text-red-500 text-sm text-center col-span-2 md:col-span-1"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                           height: "100px",
                           display: "flex",
                           alignItems: "center",
@@ -387,7 +377,6 @@ export default function ResetPassword() {
                 className="text-blue-600 hover:text-blue-800 py-3 px-4"
                 style={{
                   writingMode: "vertical-lr",
-                  textOrientation: "upright",
                   height: "auto",
                   display: "inline-flex",
                   alignItems: "center",

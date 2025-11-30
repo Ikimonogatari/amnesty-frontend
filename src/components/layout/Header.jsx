@@ -114,7 +114,6 @@ export default function Header() {
                           className="text-black font-bold text-sm"
                           style={{
                             writingMode: "vertical-lr",
-                            textOrientation: "upright",
                           }}
                         >
                           {item.text}
@@ -143,7 +142,6 @@ export default function Header() {
                                       className="text-black font-bold group-hover:text-[#444] transition-colors text-sm"
                                       style={{
                                         writingMode: "vertical-lr",
-                                        textOrientation: "upright",
                                       }}
                                     >
                                       {dropdownItem.text}
@@ -164,7 +162,6 @@ export default function Header() {
                         className="text-black font-bold text-sm"
                         style={{
                           writingMode: "vertical-lr",
-                          textOrientation: "upright",
                         }}
                       >
                         {item.text}
@@ -177,7 +174,6 @@ export default function Header() {
                       className="text-black font-bold text-sm"
                       style={{
                         writingMode: "vertical-lr",
-                        textOrientation: "upright",
                       }}
                     >
                       {item.text}
