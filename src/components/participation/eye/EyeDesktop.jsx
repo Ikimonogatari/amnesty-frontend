@@ -430,27 +430,29 @@ export default function EyeDesktop() {
         {/* Yellow Arch Visualization */}
         <div className="flex flex-col items-center">
           <div className="w-[546px] h-[311px] flex items-center justify-end flex-col gap-2">
-            <div className="text-3xl flex flex-col items-center justify-center gap-0 pb-2 pl-3 border-b-[2px] border-black">
-              {String(archInfo.percent)
-                .split("")
-                .map((digit, idx) => (
-                  <span key={idx}>{toMongolianNumbers(digit)}</span>
-                ))}
-            </div>
-            <div
-              className="text-[10px] h-[50px] text-center"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              {archInfo.title}
-            </div>
-            <div className="text-3xl leading-none pl-3 flex flex-col items-center justify-center gap-0">
-              {String(archInfo.count)
-                .split("")
-                .map((digit, idx) => (
-                  <span key={idx}>{toMongolianNumbers(digit)}</span>
-                ))}
+            <div className="flex items-center gap-4">
+              <div className="text-3xl flex flex-col items-center justify-center gap-0 pr-2 pl-3 border-r-[2px] border-black">
+                {String(archInfo.percent)
+                  .split("")
+                  .map((digit, idx) => (
+                    <span key={idx}>{toMongolianNumbers(digit)}</span>
+                  ))}
+              </div>
+              <div
+                className="text-[10px] h-[50px] text-center"
+                style={{
+                  writingMode: "vertical-lr",
+                }}
+              >
+                {archInfo.title}
+              </div>
+              <div className="text-3xl leading-none flex flex-col items-center justify-center gap-0">
+                {String(archInfo.count)
+                  .split("")
+                  .map((digit, idx) => (
+                    <span key={idx}>{toMongolianNumbers(digit)}</span>
+                  ))}
+              </div>
             </div>
             <div className="w-0 h-0 relative">
               {archGraduses.map((item, index) => (
