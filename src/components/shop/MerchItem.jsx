@@ -12,7 +12,7 @@ export default function MerchItem({ merchItem }) {
     imageUrl = directUrl.startsWith("http")
       ? directUrl
       : `${
-          process.env.NEXT_PUBLIC_MEDIA_URL || "cms.amnesty.mn"
+          process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
         }${directUrl}`;
   } else {
     imageUrl = "/images/no-image-icon.png";

@@ -13,7 +13,7 @@ const getMerchImageUrl = (merch) => {
   return directUrl.startsWith("http")
     ? directUrl
     : `${
-        process.env.NEXT_PUBLIC_MEDIA_URL || "cms.amnesty.mn"
+        process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
       }${directUrl}`;
 };
 

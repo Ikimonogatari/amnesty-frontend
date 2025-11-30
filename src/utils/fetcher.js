@@ -2,7 +2,7 @@
 // Based on the mn version's Fetcher.ts structure
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || "cms.amnesty.mn/api";
+  process.env.NEXT_PUBLIC_API_URL || "https://cms.amnesty.mn/api";
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY || process.env.STRAPI_API_KEY;
 
 // Helper function to build URLs with locale parameters
@@ -206,7 +206,7 @@ export async function FetcherPost(url, body, baseUrl = API_BASE_URL) {
 // Helper function to get image URL from Strapi media
 export const getImageUrl = (
   imageData,
-  baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || "cms.amnesty.mn"
+  baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
 ) => {
   if (!imageData) return null;
 

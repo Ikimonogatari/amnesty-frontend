@@ -88,7 +88,7 @@ export default function ReportSwiper({
           // Add base URL if the image URL is a relative path from the API
           const fullImageUrl = imageUrl.startsWith("/uploads/")
             ? `${
-                process.env.NEXT_PUBLIC_MEDIA_URL || "cms.amnesty.mn"
+                process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
               }${imageUrl}`
             : imageUrl;
 
