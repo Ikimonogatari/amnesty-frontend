@@ -15,7 +15,7 @@ export const apiService = createApi({
       headers.set("Content-Type", "application/json");
 
       // Add Strapi API key for authentication
-      const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+      const apiKey = process.env.NEXT_PUBLIC_API_KEY || "70412827041a1cada9c8c234bb111c64704ef4aaf148136f19ffc25e6403f944d8ad25a2f70004eaa8a3c9167f6234676b990608bcfdfbd2d9d7da835a0327fa0b9ad93d64f9331bdfe1a362ce7f546bd3a2ff160f5e3232afc4a5a1ec6533ee07a5bfafda0aaf1126c3f476e0434e623ad50c7842cda7145df959378a4a584e";
       if (apiKey) {
         headers.set("Authorization", `Bearer ${apiKey}`);
       }
@@ -357,8 +357,11 @@ export const apiService = createApi({
     // FAQs endpoints - using standard Strapi API
     getFaqs: builder.query({
       query: (params = {}) => {
-        // Simple endpoint without complex pagination
-        return "/faqs";
+        // Build URL with locale parameter
+        const queryParams = new URLSearchParams({
+          locale: API_CONFIG.LOCALE || "mn-MN",
+        });
+        return `/faqs?${queryParams.toString()}`;
       },
       transformResponse: (response) => {
         return formatStrapiResponse(response);

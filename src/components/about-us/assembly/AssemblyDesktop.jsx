@@ -12,7 +12,7 @@ export default function ReportDesktop() {
         width="90rem"
         title="ᠶᠡᠷᠦᠩᠬᠡᠢ ᠴᠤᠤᠯᠭᠠᠨ"
       />
-      <div className="flex gap-16 p-4 h-full relative">
+      <div className="flex gap-16 p-4 h-full relative w-full">
         <div className="flex gap-6 h-[calc(100vh-2rem)] max-h-[calc(100vh-2rem)]">
           <p
             className="text-sm"
