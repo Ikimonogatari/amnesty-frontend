@@ -184,7 +184,7 @@ body {
 /* @font-face for custom Mongolian script font */
 @font-face {
   font-family: "MongolianScript";
-  src: url("/fonts/MongolianScript-2.ttf") format("truetype");
+  src: url("/fonts/cmdashitseden.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
