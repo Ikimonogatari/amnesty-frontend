@@ -72,7 +72,7 @@ export default function Header() {
       ],
     },
     {
-      text: "ᠡᠷᠬᠡᠭᠡ ᠮᠡᠳᠢᠶᠡ",
+      text: "ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ",
       link: "/knowrights",
       hasDropdown: true,
       dropdownItems: [

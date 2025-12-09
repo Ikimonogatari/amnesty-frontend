@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
+  basePath: "/mng",
   images: {
     unoptimized: true, // Remove this in production and use proper image optimization
   },

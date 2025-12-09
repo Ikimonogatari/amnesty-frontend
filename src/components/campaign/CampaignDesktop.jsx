@@ -37,11 +37,11 @@ export default function CampaignDesktop() {
   const campaignItems = companyWorksData
     ? companyWorksData
         .map((companyWork) => ({
-          id: companyWork.static_id || companyWork.id, // Use static_id for routing
-          title: companyWork.title || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ",
-          image: getImageUrl(companyWork.icon) || "/images/about1.png",
-          description: companyWork.description || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ",
-        }))
+        id: companyWork.static_id || companyWork.id, // Use static_id for routing
+        title: companyWork.title || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ",
+        image: getImageUrl(companyWork.icon) || "/images/about1.png",
+        description: companyWork.description || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ",
+      }))
         .sort((a, b) => {
           // Sort by id (convert to number for proper numeric sorting)
           const idA = Number(a.id) || a.id;
@@ -218,30 +218,30 @@ export default function CampaignDesktop() {
                 const fallbackImage = campaignImages[0]; // Use first image as fallback
                 
                 return (
-                  <div
+                <div
                     key={`empty-${index}`}
-                    className="flex flex-col items-center justify-center w-36 gap-5 border-2 border-black p-5 cursor-pointer hover:bg-gray-100 transition-colors"
+                  className="flex flex-col items-center justify-center w-36 gap-5 border-2 border-black p-5 cursor-pointer hover:bg-gray-100 transition-colors"
                     onClick={() => router.push(`/campaign/${campaignItems.length + index + 1}`)}
-                  >
-                    <Image
+                >
+                  <Image
                       src={campaignImages[imageIndex]}
-                      alt={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
-                      width={60}
-                      height={60}
-                      onError={(e) => {
+                    alt={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
+                    width={60}
+                    height={60}
+                    onError={(e) => {
                         e.target.src = fallbackImage; // fallback to first campaign image
-                      }}
-                    />
-                    <p
-                      className="text-base font-bold"
-                      style={{
-                        writingMode: "vertical-lr",
-                      }}
-                      title={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
-                    >
-                      {"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
-                    </p>
-                  </div>
+                    }}
+                  />
+                  <p
+                    className="text-base font-bold"
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                    title={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
+                  >
+                    {"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ"}
+                  </p>
+                </div>
                 );
               }
             )}

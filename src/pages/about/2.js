@@ -14,10 +14,10 @@ export default function History() {
           font-display: swap;
         }
       `}</style>
-      <Layout>
-        <HistoryDesktop />
-        <HistoryMobile />
-      </Layout>
+    <Layout>
+      <HistoryDesktop />
+      <HistoryMobile />
+    </Layout>
     </>
   );
 }

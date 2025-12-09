@@ -75,7 +75,7 @@ export default function HeaderMobile() {
       ],
     },
     {
-      text: "ᠡᠷᠬᠡᠭᠡ ᠮᠡᠳᠢᠶᠡ",
+      text: "ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ",
       link: "/knowrights",
       hasDropdown: true,
       dropdownItems: [
