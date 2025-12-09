@@ -49,7 +49,7 @@ export default function DonationDesktop({
   return (
     <div className="hidden sm:block">
       {/* Content Section */}
-      <div className="h-full flex gap-20 w-auto flex-shrink-0 mt-10">
+      <div className="h-full flex gap-20 w-auto flex-shrink-0">
         <div className="flex gap-16 p-8 m-4 h-full bg-[#48483D] text-white rounded-lg">
           <div className="flex gap-7">
             <h2
