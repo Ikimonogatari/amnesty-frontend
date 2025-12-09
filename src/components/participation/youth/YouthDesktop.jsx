@@ -65,7 +65,7 @@ export default function YouthDesktop() {
           />
           <div className="flex gap-12">
             <p
-              className="font-bold text-xl"
+              className="font-bold text-lg"
               style={{
                 writingMode: "vertical-lr",
               }}
@@ -74,7 +74,7 @@ export default function YouthDesktop() {
               ᠴᠢᠳᠠᠨ᠎ᠠ᠃
             </p>
             <p
-              className="font-bold text-xl"
+              className="font-bold text-lg"
               style={{
                 writingMode: "vertical-lr",
               }}
