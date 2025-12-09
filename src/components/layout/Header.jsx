@@ -123,7 +123,7 @@ export default function Header() {
                     {activeDropdown === index && (
                       <div className="absolute left-[38px] top-[-30px] bg-white rounded-xl p-6 z-30 border border-[#E3E3E3] shadow-lg">
                         <div className="flex justify-between items-center">
-                          <div className="grid grid-cols-3 grid-rows-2 grid-flow-col gap-8">
+                          <div className="grid grid-cols-3 grid-rows-2 gap-10">
                             {item.dropdownItems.map(
                               (dropdownItem, dropdownIndex) => (
                                 <Link
@@ -131,7 +131,7 @@ export default function Header() {
                                   href={dropdownItem.link}
                                 >
                                   <div
-                                    className={`flex flex-col items-center cursor-pointer group py-3 px-2 rounded-md hover:bg-gray-50 transition-all duration-200 ${
+                                    className={`flex flex-col items-center cursor-pointer group rounded-md hover:bg-gray-50 transition-all duration-200 ${
                                       dropdownIndex <
                                       item.dropdownItems.length - 1
                                         ? "border-b border-gray-200"
