@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "@/components/common/Button";
 import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
@@ -17,11 +18,14 @@ export default function AssemblyMobile() {
         <div className="flex flex-col gap-4 p-4">
           {/* First text section with image */}
           <div className="flex gap-2 max-h-[212px]">
-            <img
-              src="/images/assembly-image1.png"
-              className="w-[150px] h-[212px]"
-              alt="Assembly Image 1"
-            />
+            <div className="relative w-[150px] h-[212px]">
+              <Image
+                src="/images/assembly-image1.png"
+                alt="Assembly Image 1"
+                fill
+                className="object-contain"
+              />
+            </div>
             <p
               className="text-[10px] overflow-x-auto"
               style={{ writingMode: "vertical-lr" }}
@@ -106,11 +110,14 @@ export default function AssemblyMobile() {
             ᠠᠵᠢᠯᠯᠠᠭᠰᠠᠨ᠃ ᠡᢉᠦᠨ ᠳ᠋ᠦ ᠮᠡᠢ ᠴᠤ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠢ ᠪᠡᠨ ᠣᠷᠤᠭᠤᠯᠤᠭᠰᠠᠨ᠃ ᠢᠷᠡᢈᠦ ᠵᠢᠯ
             ᠦ᠋ᠳ ᠲᠦ ᠬᠠᠮᠲᠤ ᠳ᠋ᠠᠭᠠᠨ ᠢᠯᠡᢉᠦᠦ ᠶᠡᢈᠡ
           </p>
-          <img
-            src="/images/assembly-image2.png"
-            className="w-full h-auto max-h-[150px] object-cover"
-            alt="Assembly Image 2"
-          />
+          <div className="relative w-full h-[150px]">
+            <Image
+              src="/images/assembly-image2.png"
+              alt="Assembly Image 2"
+              fill
+              className="object-cover"
+            />
+          </div>
 
           <p
             className="text-[10px] max-h-[150px] overflow-x-auto"

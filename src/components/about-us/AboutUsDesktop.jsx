@@ -136,7 +136,14 @@ export default function AboutUsDesktop() {
                       h.date
                     )}
                   </h2>
-                  <img src={h.image} className="max-w-[230px]" />
+                  <div className="relative max-w-[230px] w-[230px] h-[300px]">
+                    <Image
+                      src={h.image}
+                      alt={`History item ${i + 1}`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                   {i < 3 && (
                     <a
                       href="https://www.amnesty.org/en/"

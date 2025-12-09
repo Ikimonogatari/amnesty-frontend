@@ -1,3 +1,4 @@
+import Image from "next/image";
 import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
 import Button from "@/components/common/Button";
@@ -301,11 +302,14 @@ export default function DonationMobile({
             <div className="mb-4 text-center">
               <p className="mb-2">QR ᠬᠣᠳ ᠢ᠋ ᠰᠬᠠᠨ ᠬᠢᠵᠦ ᠲᠥᠯᠪᠦᠷᠢ ᠬᠢᠭᠠᠷᠠᠢ</p>
               <div className="inline-block bg-white p-4 rounded">
-                <img
-                  src={qpayData.invoice?.qr_image || qpayData.qrImage}
-                  alt="QPay QR Code"
-                  className="w-48 h-48"
-                />
+                <div className="relative w-48 h-48">
+                  <Image
+                    src={qpayData.invoice?.qr_image || qpayData.qrImage}
+                    alt="QPay QR Code"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
           )}

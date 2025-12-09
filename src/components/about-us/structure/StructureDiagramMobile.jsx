@@ -1,10 +1,18 @@
+import Image from "next/image";
 import Button from "@/components/common/Button";
 import Link from "next/link";
 
 export default function StructureDiagramMobile() {
   return (
     <div className="relative">
-      <img src="/images/structure-diagram.png" alt="" className="h-full z-0" />
+      <div className="relative w-full h-full">
+        <Image
+          src="/images/structure-diagram.png"
+          alt="Structure diagram"
+          fill
+          className="object-contain z-0"
+        />
+      </div>
       <div className="z-10 flex gap-[51px] absolute top-[68px] w-full h-full">
         <div className="flex flex-col gap-[106px] ml-[78px]">
           <Link

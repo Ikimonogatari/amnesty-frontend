@@ -100,10 +100,14 @@ export default function ReportDesktop() {
             ᠠᠵᠢᠯᠯᠠᠭᠰᠠᠨ᠃ ᠡᢉᠦᠨ ᠳ᠋ᠦ ᠮᠡᠢ ᠴᠤ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠢ ᠪᠡᠨ ᠣᠷᠤᠭᠤᠯᠤᠭᠰᠠᠨ᠃ ᠢᠷᠡᢈᠦ ᠵᠢᠯ
             ᠦ᠋ᠳ ᠲᠦ ᠬᠠᠮᠲᠤ ᠳ᠋ᠠᠭᠠᠨ ᠢᠯᠡᢉᠦᠦ ᠶᠡᢈᠡ
           </p>
-          <img
-            src="/images/assembly-image2.png"
-            className="w-[508px] h-[286px]"
-          />
+          <div className="relative w-[508px] h-[286px]">
+            <Image
+              src="/images/assembly-image2.png"
+              alt="Assembly image 2"
+              fill
+              className="object-contain"
+            />
+          </div>
           <p
             className="text-base"
             style={{ writingMode: "vertical-lr" }}

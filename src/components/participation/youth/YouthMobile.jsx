@@ -17,11 +17,14 @@ export default function YouthDesktop() {
       />
       <div className="h-full flex flex-col gap-7">
         <div className="flex flex-row gap-2 max-h-[212px] p-4">
-          <img
-            src="/images/youthpoweraction.png"
-            alt=""
-            className="min-w-[150px] min-h-[212px] max-w-[150px] max-h-[212px]"
-          />
+          <div className="relative min-w-[150px] min-h-[212px] max-w-[150px] max-h-[212px]">
+            <Image
+              src="/images/youthpoweraction.png"
+              alt="Youth power action"
+              fill
+              className="object-contain"
+            />
+          </div>
           <p
             className="text-[10px] overflow-x-auto h-full"
             style={{
@@ -142,11 +145,14 @@ export default function YouthDesktop() {
             ᠪᠢᠳᠡ ᢈᠡᠷᢈᠢᠨ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ ᠪᠤᠢ?
           </h2>
           <div className="relative z-0 max-h-[200px] w-full flex justify-center items-center">
-            <img
-              src="/images/participation/youthhumanrights/youthcollective_new.jpg"
-              alt=""
-              className="w-full z-0 rounded-lg max-h-[200px]"
-            />
+            <div className="relative w-full h-[200px] z-0 rounded-lg">
+              <Image
+                src="/images/participation/youthhumanrights/youthcollective_new.jpg"
+                alt="Youth collective"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
             <div className="max-h-[150px] w-full h-full flex justify-center items-center gap-2 absolute bg-black/20 backdrop-blur-sm">
               <h2
                 className="text-white text-xs font-bold z-10"

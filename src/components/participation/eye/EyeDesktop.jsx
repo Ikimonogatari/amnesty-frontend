@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+import Image from "next/image";
 import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
 import InteractiveMap from "@/components/participation/InteractiveMap";
@@ -789,15 +790,16 @@ export default function EyeDesktop() {
                 ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ*
               </p>
               {coverImage ? (
-                <div className="relative">
-                  <img
+                <div className="relative max-w-[400px] max-h-[400px] aspect-square">
+                  <Image
                     src={
                       coverImage.startsWith("http")
                         ? coverImage
                         : `${process.env.NEXT_PUBLIC_USER_API_URL}/${coverImage}`
                     }
                     alt="Cover preview"
-                    className="max-w-[400px] max-h-[400px] h-full w-full aspect-square object-cover rounded-lg border border-gray-300"
+                    fill
+                    className="object-cover rounded-lg border border-gray-300"
                   />
                   <button
                     type="button"
@@ -828,10 +830,11 @@ export default function EyeDesktop() {
                     onClick={handleCoverImageUpload}
                     className="z-10 absolute w-20 h-full flex flex-col justify-center items-center gap-2 top-0 left-0"
                   >
-                    <img
+                    <Image
                       src="/icons/upload.png"
                       alt="upload"
-                      className="w-6 h-6"
+                      width={24}
+                      height={24}
                     />
                     <span
                       className="text-sm pl-1"

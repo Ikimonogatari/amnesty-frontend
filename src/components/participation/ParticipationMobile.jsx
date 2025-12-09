@@ -53,11 +53,14 @@ export default function ParticipationMobile() {
               >
                 {item.title}
               </h3>
-              <img
-                src={item.image}
-                alt={item.title}
-                className="aspect-square w-full max-h-[150px] max-w-[150px] min-h-[150px] min-w-[150px] rounded-lg"
-              />
+              <div className="relative aspect-square w-full max-h-[150px] max-w-[150px] min-h-[150px] min-w-[150px] rounded-lg">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  fill
+                  className="object-cover rounded-lg"
+                />
+              </div>
               <p
                 className="text-[10px]"
                 style={{

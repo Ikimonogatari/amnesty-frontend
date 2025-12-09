@@ -332,11 +332,12 @@ export default function DonationDesktop({
                 >
                   QR ᠬᠣᠳ
                 </p>
-                <div className="bg-white p-2 rounded">
-                  <img
+                <div className="bg-white p-2 rounded relative w-32 h-32">
+                  <Image
                     src={qpayData.invoice?.qr_image || qpayData.qrImage}
                     alt="QPay QR Code"
-                    className="w-32 h-32"
+                    fill
+                    className="object-contain"
                   />
                 </div>
               </div>

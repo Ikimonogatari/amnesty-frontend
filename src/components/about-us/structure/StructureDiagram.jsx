@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function StructureDiagram() {
@@ -15,11 +16,11 @@ export default function StructureDiagram() {
           fontSize: "clamp(10px, 1.2vw, 16px)", // Base font size that scales with viewport
         }}
       >
-        <img
+        <Image
           src="/images/structure-diagram.png"
-          alt=""
-          className="w-full h-full z-0 relative"
-          style={{ objectFit: "contain" }}
+          alt="Structure diagram"
+          fill
+          className="object-contain z-0"
         />
         {/* Links container - all values converted to percentages */}
         <div 

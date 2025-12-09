@@ -148,7 +148,14 @@ export default function AboutUsMobile() {
                       {h.desc}
                     </p>
                     {/* Image under the text */}
-                    <img src={h.image} className="h-auto" />
+                    <div className="relative w-full h-[200px]">
+                      <Image
+                        src={h.image}
+                        alt={`History item ${i + 1}`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
                     {i < 3 && (
                       <a
                         href="https://www.amnesty.org/en/"

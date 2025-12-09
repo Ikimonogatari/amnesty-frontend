@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+import Image from "next/image";
 import BannerSlider from "@/components/common/BannerSlider";
 import StaticHeader from "@/components/common/StaticHeader";
 import { bannerImages } from "@/constants/bannerImages";
@@ -409,7 +410,14 @@ export default function EyeMobile() {
           >
             ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠤ᠋ᠨ ᠵᠢᠷᠤᠭ
           </p>
-          <img src="/images/mgl-map.png" alt="" className="max-h-[150px]" />
+          <div className="relative w-full max-w-[300px] h-[150px]">
+            <Image
+              src="/images/mgl-map.png"
+              alt="Mongolia map"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
 
         {/* Yellow Arch Visualization */}
@@ -789,15 +797,16 @@ export default function EyeMobile() {
                   ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ*
                 </p>
                 {coverImage ? (
-                  <div className="relative">
-                    <img
+                  <div className="relative min-w-[200px] min-h-[200px] aspect-square">
+                    <Image
                       src={
                         coverImage.startsWith("http")
                           ? coverImage
                           : `${process.env.NEXT_PUBLIC_USER_API_URL}/${coverImage}`
                       }
                       alt="Cover preview"
-                      className="min-w-[200px] min-h-[200px] aspect-square object-cover rounded-lg border border-gray-300"
+                      fill
+                      className="object-cover rounded-lg border border-gray-300"
                     />
                     <button
                       type="button"
@@ -828,10 +837,11 @@ export default function EyeMobile() {
                       onClick={handleCoverImageUpload}
                       className="z-10 absolute w-16 h-full flex flex-col justify-center items-center gap-1 top-0 left-0"
                     >
-                      <img
+                      <Image
                         src="/icons/upload.png"
                         alt="upload"
-                        className="w-4 h-4"
+                        width={16}
+                        height={16}
                       />
                       <span
                         className="text-xs"

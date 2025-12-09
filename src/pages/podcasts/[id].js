@@ -181,9 +181,10 @@ export default function PodcastDetail() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-3 py-2 text-[#1ed760] hover:opacity-80 transition-opacity"
                   >
-                    <img
+                    <Image
                       src="/icons/spotify.png"
-                      className="w-[20px]"
+                      width={20}
+                      height={20}
                       alt="Spotify"
                     />
                     <span className="text-[16px]">Spotify</span>
@@ -196,9 +197,10 @@ export default function PodcastDetail() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-3 py-2 hover:opacity-80 transition-opacity"
                   >
-                    <img
+                    <Image
                       src="/icons/applePodcasts.png"
-                      className="w-[20px]"
+                      width={20}
+                      height={20}
                       alt="Apple Podcasts"
                     />
                     <span className="text-[16px] text-white">Apple</span>
@@ -398,9 +400,10 @@ export default function PodcastDetail() {
                   rel="noopener noreferrer"
                   className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-4 py-3 text-[#1ed760] hover:opacity-80 transition-opacity"
                 >
-                  <img
+                  <Image
                     src="/icons/spotify.png"
-                    className="w-[24px]"
+                    width={24}
+                    height={24}
                     alt="Spotify"
                   />
                   <span className="text-[18px] font-medium">Spotify</span>
@@ -413,9 +416,10 @@ export default function PodcastDetail() {
                   rel="noopener noreferrer"
                   className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-4 py-3 hover:opacity-80 transition-opacity"
                 >
-                  <img
+                  <Image
                     src="/icons/applePodcasts.png"
-                    className="w-[24px]"
+                    width={24}
+                    height={24}
                     alt="Apple Podcasts"
                   />
                   <span className="text-[18px] font-medium text-white">

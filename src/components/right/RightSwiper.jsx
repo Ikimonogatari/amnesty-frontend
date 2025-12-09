@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -321,11 +322,12 @@ export default function RightSwiper({
                     {slide.duration}
                   </p>
                 </div>
-                <div className="relative z-0 aspect-square">
-                  <img
+                <div className="relative z-0 aspect-square min-h-[200px] min-w-[200px] sm:min-h-[270px] sm:min-w-[270px]">
+                  <Image
                     src={slide.image}
                     alt={slide.title}
-                    className="rounded-lg relative z-0 aspect-square w-full h-full min-h-[200px] min-w-[200px] sm:min-h-[270px] sm:min-w-[270px] object-cover"
+                    fill
+                    className="rounded-lg object-cover"
                   />
                   <Button text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢈᠦᠢ"} type="details" />
                 </div>

@@ -195,18 +195,20 @@ export default function BannerSlider({
                 }}
               />
               {/* Fallback image element to handle loading errors */}
-              <img
-                src={image.src}
-                alt=""
-                style={{ display: "none" }}
-                onError={(e) => {
-                  // If image fails to load, update the parent div's background
-                  const parentDiv = e.target.parentElement;
-                  if (parentDiv) {
-                    parentDiv.style.backgroundImage = "url(/images/news1.png)";
-                  }
-                }}
-              />
+              <div className="hidden relative w-0 h-0">
+                <Image
+                  src={image.src || "/images/news1.png"}
+                  alt=""
+                  fill
+                  onError={(e) => {
+                    // If image fails to load, update the parent div's background
+                    const parentDiv = e.target.closest('.relative')?.parentElement;
+                    if (parentDiv) {
+                      parentDiv.style.backgroundImage = "url(/images/news1.png)";
+                    }
+                  }}
+                />
+              </div>
               {image.caption && (
                 <>
                   {/* Desktop Caption */}

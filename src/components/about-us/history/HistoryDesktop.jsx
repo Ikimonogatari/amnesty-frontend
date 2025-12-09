@@ -60,7 +60,14 @@ export default function HistoryDesktop() {
                     h.date
                   )}
                 </p>
-                <img src={h.image} className="max-w-[230px]" />
+                <div className="relative max-w-[230px] w-[230px] h-[300px]">
+                  <Image
+                    src={h.image}
+                    alt={`History item ${i + 1}`}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
             </div>
           ))}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import StaticHeader from "@/components/common/StaticHeader";
 
 export default function HistoryMobile() {
@@ -65,7 +66,14 @@ export default function HistoryMobile() {
                       {h.desc}
                     </p>
                     {/* Image under the text */}
-                    <img src={h.image} className="h-auto" />
+                    <div className="relative w-full h-[200px]">
+                      <Image
+                        src={h.image}
+                        alt={`History item ${i + 1}`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
