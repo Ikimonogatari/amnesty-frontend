@@ -26,9 +26,10 @@ export default function HistoryDesktop() {
                 } ${i % 2 === 1 ? "order-last" : ""}`}
               >
                 <p
-                  className="text-sm text-center max-h-[380px] font-mongolian"
+                  className="text-sm text-center max-h-[380px]"
                   style={{
                     writingMode: "vertical-lr",
+                    fontFamily: "MongolianScript2",
                   }}
                 >
                   {h.desc}
@@ -43,7 +44,10 @@ export default function HistoryDesktop() {
                   i % 2 === 0 ? "justify-start" : "justify-end"
                 } ${i % 2 === 1 ? "order-first" : ""}`}
               >
-                <p className="text-2xl font-bold font-mongolian">
+                <p
+                  className="text-2xl font-bold"
+                  style={{ fontFamily: "MongolianScript2" }}
+                >
                   {i === 9 ? (
                     <span
                       style={{
