@@ -664,7 +664,7 @@ export default function EyeDesktop() {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex gap-2 overflow-x-auto"
+            className="flex gap-2 overflow-x-auto overflow-y-hidden"
           >
             {/* Phone Number Field */}
             <h2
