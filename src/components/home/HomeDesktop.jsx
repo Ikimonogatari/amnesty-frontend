@@ -176,9 +176,9 @@ export default function HomeDesktop() {
           </div>
         </div>
       </div>
-      <div className="h-screen w-[20rem] bg-[#F1F1F1] flex items-center justify-center gap-10">
+      <div className="h-screen p-10 bg-[#F1F1F1] flex items-center justify-center gap-10">
         <p
-          className="text-black font-bold"
+          className="text-black font-bold py-10"
           style={{ writingMode: "vertical-lr" }}
         >
           ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠨᠢ ᢈᠦᠮᠦᠨ ᠪᠦᠷᠢ ᠳ᠋ᠦ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠨᠢ ᠡᠳ᠋ᠯᠡᢉᠦᠯᢈᠦ ᠶ᠋ᠢᠨ
@@ -187,7 +187,7 @@ export default function HomeDesktop() {
           ᠳᠠᠶᠠᠭᠠᠷᢈᠢ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠬᠠᠮᠠᠭᠠᠯᠠᠭᠴᠢᠳ ᠤ᠋ᠨ ᢈᠥᠳᠡᠯᢉᠡᢉᠡᠨ ᠶᠤᠮ᠃
         </p>
         <p
-          className="text-[#848382] font-bold"
+          className="text-[#848382] font-bold py-10"
           style={{ writingMode: "vertical-lr" }}
         >
           ᠡᠷᢈᠡ ᠪᠠᠷᠢᠭᠴᠢᠳ ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠡᠷᢈᠡ ᠵᠦᠢ᠂ ᢈᠡᠮ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠶ᠋ᠢ ᢈᠦᠨᠳᠦᠳᢈᠡᠳᠡᢉ᠂
