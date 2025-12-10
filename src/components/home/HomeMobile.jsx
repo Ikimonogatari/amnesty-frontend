@@ -165,7 +165,7 @@ export default function HomeMobile() {
                     fill
                     className="min-w-[200px] min-h-[200px] max-w-[200px] max-h-[200px] object-cover rounded-xl"
                     onError={(e) => {
-                      e.target.src = "/images/news1.png"; // fallback image
+                      e.target.src = getImagePath("/images/news1.png"); // fallback image
                     }}
                   />
                   <Button

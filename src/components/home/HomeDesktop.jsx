@@ -151,7 +151,7 @@ export default function HomeDesktop() {
                   height={400}
                   className="aspect-square h-full object-cover rounded-xl"
                   onError={(e) => {
-                    e.target.src = "/images/news1.png"; // fallback image
+                    e.target.src = getImagePath("/images/news1.png"); // fallback image
                   }}
                 />
                 <Button

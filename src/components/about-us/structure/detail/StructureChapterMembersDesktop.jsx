@@ -112,7 +112,7 @@ export default function StructureChapterMembersDesktop() {
             ᠣᠷᠤᠨ ᠨᠤᠲᠤᠭ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ
           </h3>
           <Image
-            src="/images/aboutSub1/chapter/gazriinremovebg-preview.png"
+            src={getImagePath("/images/aboutSub1/chapter/gazriinremovebg-preview.png")}
             alt="Монгол улсын газрын зураг"
             width={640}
             height={314}

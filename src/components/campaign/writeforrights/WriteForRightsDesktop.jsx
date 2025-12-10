@@ -188,7 +188,7 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                         height={120}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          e.target.src = "/images/no-image.png";
+                          e.target.src = getImagePath("/images/no-image.png");
                         }}
                       />
                     ) : (

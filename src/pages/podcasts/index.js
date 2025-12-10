@@ -7,6 +7,7 @@ import PageIntroduction from "@/components/common/PageIntroduction";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import Fetcher, { getImageUrl, buildFetcherUrl } from "@/utils/fetcher";
 import Layout from "@/components/layout/Layout";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function PodcastsIndex() {
   const router = useRouter();
@@ -181,7 +182,7 @@ const renderPodcastLinks = (podcast) => {
           onClick={(e) => e.stopPropagation()}
         >
           <Image
-            src="/icons/spotify.png"
+            src={getImagePath("/icons/spotify.png")}
             alt="Spotify"
             width={20}
             height={20}
@@ -200,7 +201,7 @@ const renderPodcastLinks = (podcast) => {
           onClick={(e) => e.stopPropagation()}
         >
           <Image
-            src="/icons/applePodcasts.png"
+            src={getImagePath("/icons/applePodcasts.png")}
             alt="Apple Podcasts"
             width={20}
             height={20}

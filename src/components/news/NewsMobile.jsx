@@ -7,6 +7,7 @@ import { useGetPostsQuery } from "@/redux/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 import StaticHeader from "../common/StaticHeader";
 import FullScreenLoader from "../common/FullScreenLoader";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function NewsMobile() {
   const router = useRouter();
@@ -230,9 +231,9 @@ export default function NewsMobile() {
                       alt={item.title || "News image"}
                       fill
                       className="object-cover rounded"
-                      onError={(e) => {
-                        e.target.src = "/images/news1.png"; // fallback image
-                      }}
+                        onError={(e) => {
+                          e.target.src = getImagePath("/images/news1.png"); // fallback image
+                        }}
                     />
                     <Button
                       text={

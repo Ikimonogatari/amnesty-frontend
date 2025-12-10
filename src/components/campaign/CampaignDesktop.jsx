@@ -146,7 +146,7 @@ export default function CampaignDesktop() {
                     height={120}
                     className="object-cover rounded-lg"
                     onError={(e) => {
-                      e.target.src = "/images/campaign/211568.png"; // fallback image
+                      e.target.src = getImagePath("/images/campaign/211568.png"); // fallback image
                     }}
                   />
                 </div>

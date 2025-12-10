@@ -707,7 +707,7 @@ export default function SearchModal({ isOpen, onClose }) {
                           height={64}
                           className="w-full h-full object-cover rounded-lg"
                           onError={(e) => {
-                            e.target.src = "/images/news1.png";
+                            e.target.src = getImagePath("/images/news1.png");
                           }}
                         />
                       </div>

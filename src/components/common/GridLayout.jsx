@@ -256,7 +256,7 @@ export default function GridLayout({
                     width={200}
                     className="object-cover rounded-lg w-full h-full shadow-md"
                     onError={(e) => {
-                      e.target.src = "/images/news1.png";
+                      e.target.src = getImagePath("/images/news1.png");
                     }}
                   />
 

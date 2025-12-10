@@ -13,6 +13,7 @@ import {
 import { useRef, useState, useEffect } from "react";
 import SectionTitle from "@/components/common/SectionTitle";
 import Image from "next/image";
+import { getImagePath } from "@/utils/imagePath";
 import { useRouter } from "next/router";
 import { getImageUrl } from "@/config/api";
 
@@ -210,9 +211,9 @@ export default function ReportSwiper({
                   width={200}
                   height={112.5}
                   className={`rounded-lg shadow-lg relative z-0 w-full max-w-[130px] sm:min-w-[200px] sm:max-w-[200px] aspect-[290/204]`}
-                  onError={(e) => {
-                    e.target.src = "/images/dummy-image.png";
-                  }}
+                    onError={(e) => {
+                      e.target.src = getImagePath("/images/dummy-image.png");
+                    }}
                 />
               </div>
             </SwiperSlide>

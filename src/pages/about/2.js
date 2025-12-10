@@ -8,7 +8,7 @@ export default function History() {
       <style jsx global>{`
         @font-face {
           font-family: "MongolianScript2";
-          src: url("/fonts/MongolianScript-2.ttf") format("truetype");
+          src: url("/mng/fonts/MongolianScript-2.ttf") format("truetype");
           font-weight: normal;
           font-style: normal;
           font-display: swap;

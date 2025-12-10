@@ -145,7 +145,7 @@ export default function HeaderMobile() {
             router.push("/shop");
           }}
         >
-          <Image src="/icons/bag.svg" alt="bag" width={25} height={25} />
+          <Image src={getImagePath("/icons/bag.svg")} alt="bag" width={25} height={25} />
         </button>
       </div>
 

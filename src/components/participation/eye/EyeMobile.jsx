@@ -839,7 +839,7 @@ export default function EyeMobile() {
                       className="z-10 absolute w-16 h-full flex flex-col justify-center items-center gap-1 top-0 left-0"
                     >
                       <Image
-                        src="/icons/upload.png"
+                        src={getImagePath("/icons/upload.png")}
                         alt="upload"
                         width={16}
                         height={16}
