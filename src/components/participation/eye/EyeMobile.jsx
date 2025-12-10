@@ -9,6 +9,7 @@ import { toMongolianNumbers } from "@/utils/fetcher";
 import { useSubmitHumanRightsReportMutation } from "@/redux/services/apiService";
 import userApiService from "@/services/userApiService";
 import toast from "react-hot-toast";
+import { getImagePath } from "@/utils/imagePath";
 
 // findTop5 function exactly like old web
 const findTop5 = (data) => {
