@@ -8,6 +8,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { authService } from "@/services/userApiService";
 import { useState } from "react";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function MemberMobile({ user, onLogout, onLogin }) {
   const router = useRouter();
@@ -131,7 +132,7 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               href="https://www.play.google.com/store/apps/details?id=com.amnest.amnest"
             >
               <Image
-                src="/images/google-play.png"
+                src={getImagePath("/images/google-play.png")}
                 alt="Google Play"
                 width={80}
                 height={30}
@@ -142,7 +143,7 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               href="https://apps.apple.com/app/id15800000000000000"
             >
               <Image
-                src="/images/app-store.png"
+                src={getImagePath("/images/app-store.png")}
                 alt="App Store"
                 width={80}
                 height={30}

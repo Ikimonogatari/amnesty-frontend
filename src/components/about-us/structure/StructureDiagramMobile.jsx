@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Button from "@/components/common/Button";
 import Link from "next/link";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function StructureDiagramMobile() {
   return (
     <div className="relative">
       <div className="relative w-full h-full">
         <Image
-          src="/images/structure-diagram.png"
+          src={getImagePath("/images/structure-diagram.png")}
           alt="Structure diagram"
           fill
           className="object-contain z-0"

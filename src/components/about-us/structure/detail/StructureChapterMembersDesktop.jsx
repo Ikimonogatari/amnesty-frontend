@@ -3,6 +3,7 @@ import Link from "next/link";
 import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
 import { useRouter } from "next/router";
+import { getImagePath } from "@/utils/imagePath";
 export default function StructureChapterMembersDesktop() {
   const router = useRouter();
   return (
@@ -46,7 +47,7 @@ export default function StructureChapterMembersDesktop() {
         <div className="flex flex-col gap-4 justify-center">
           <div className="flex flex-row rounded-lg border border-solid border-[#CCCCCC]">
             <Image
-              src="/images/aboutSub1/chapter/ZaluuchuudBulegFront.png"
+              src={getImagePath("/images/aboutSub1/chapter/ZaluuchuudBulegFront.png")}
               alt="Залуучуудын бүлэг"
               width={330}
               height={271}
@@ -65,7 +66,7 @@ export default function StructureChapterMembersDesktop() {
 
           <div className="flex flex-row rounded-lg border border-solid border-[#CCCCCC]">
             <Image
-              src="/images/aboutSub1/chapter/mergejilten.png"
+              src={getImagePath("/images/aboutSub1/chapter/mergejilten.png")}
               alt="Мэргэжилтнүүдийн бүлэг"
               width={330}
               height={271}
@@ -83,7 +84,7 @@ export default function StructureChapterMembersDesktop() {
 
           <div className="flex flex-row rounded-lg border border-solid border-[#CCCCCC]">
             <Image
-              src="/images/aboutSub1/chapter/gazriinremovebg-preview.png"
+              src={getImagePath("/images/aboutSub1/chapter/gazriinremovebg-preview.png")}
               alt="Орон нутгийн бүлэг"
               width={330}
               height={271}

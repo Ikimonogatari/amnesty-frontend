@@ -3,6 +3,7 @@ import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import SectionTitle from "@/components/common/SectionTitle";
 import { Download } from "lucide-react";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function YouthDesktop() {
   return (
@@ -60,7 +61,7 @@ export default function YouthDesktop() {
         <div className="h-full flex flex-col gap-4">
           <div className="relative min-w-[283px] min-h-[400px] max-w-[283px] max-h-[400px]">
             <Image
-              src="/images/youthpoweraction.png"
+              src={getImagePath("/images/youthpoweraction.png")}
               alt="Youth power action"
               fill
               className="object-contain"
@@ -142,7 +143,7 @@ export default function YouthDesktop() {
           </h2>
           <div className="relative z-0 w-full h-full">
             <Image
-              src="/images/participation/youthhumanrights/youthcollective_new.jpg"
+              src={getImagePath("/images/participation/youthhumanrights/youthcollective_new.jpg")}
               alt="Youth collective"
               fill
               className="object-contain z-0"

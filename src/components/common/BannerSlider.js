@@ -3,6 +3,7 @@ import Image from "next/image";
 import Button from "@/components/common/Button";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
+import { getImagePath } from "@/utils/imagePath";
 import FullScreenLoader from "./FullScreenLoader";
 
 export default function BannerSlider({
@@ -190,21 +191,21 @@ export default function BannerSlider({
                 className="w-full h-full bg-cover bg-center bg-no-repeat md:rounded-xl"
                 style={{
                   backgroundImage: image.src
-                    ? `url(${image.src})`
-                    : "url(/images/news1.png)",
+                    ? `url(${getImagePath(image.src)})`
+                    : `url(${getImagePath("/images/news1.png")})`,
                 }}
               />
               {/* Fallback image element to handle loading errors */}
               <div className="hidden relative w-0 h-0">
                 <Image
-                  src={image.src || "/images/news1.png"}
+                  src={image.src || getImagePath("/images/news1.png")}
                   alt=""
                   fill
                   onError={(e) => {
                     // If image fails to load, update the parent div's background
                     const parentDiv = e.target.closest('.relative')?.parentElement;
                     if (parentDiv) {
-                      parentDiv.style.backgroundImage = "url(/images/news1.png)";
+                      parentDiv.style.backgroundImage = `url(${getImagePath("/images/news1.png")})`;
                     }
                   }}
                 />

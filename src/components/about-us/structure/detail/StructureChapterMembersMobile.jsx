@@ -5,6 +5,7 @@ import { bannerImages } from "@/constants/bannerImages";
 import Button from "@/components/common/Button";
 import { useRouter } from "next/router";
 import StaticHeader from "@/components/common/StaticHeader";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function StructureChapterMembersMobile() {
   const router = useRouter();
@@ -13,18 +14,18 @@ export default function StructureChapterMembersMobile() {
     {
       id: 1,
       name: "ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
-      image: "/images/aboutSub1/chapter/ZaluuchuudBulegFront.png",
+      image: getImagePath("/images/aboutSub1/chapter/ZaluuchuudBulegFront.png"),
       link: "/participation/youth",
     },
     {
       id: 2,
       name: "ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ",
-      image: "/images/aboutSub1/chapter/mergejilten.png",
+      image: getImagePath("/images/aboutSub1/chapter/mergejilten.png"),
     },
     {
       id: 3,
       name: "ᠣᠷᠤᠨ ᠨᠤᠲᠤᠭ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
-      image: "/images/aboutSub1/chapter/gazriinremovebg-preview.png",
+      image: getImagePath("/images/aboutSub1/chapter/gazriinremovebg-preview.png"),
       link: "#oronnutag",
     },
   ];
@@ -113,7 +114,7 @@ export default function StructureChapterMembersMobile() {
           </h3>
           <div className="relative w-full">
             <Image
-              src="/images/aboutSub1/chapter/gazriinremovebg-preview.png"
+              src={getImagePath("/images/aboutSub1/chapter/gazriinremovebg-preview.png")}
               alt="ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠤ᠋ᠨ ᠵᠢᠷᠤᠭ"
               width={640}
               height={314}

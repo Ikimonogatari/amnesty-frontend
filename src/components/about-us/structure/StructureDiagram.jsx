@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function StructureDiagram() {
   // Max height: 85vh, Aspect ratio: 1.39:1, Max width: flexible (calculated from height)
@@ -17,7 +18,7 @@ export default function StructureDiagram() {
         }}
       >
         <Image
-          src="/images/structure-diagram.png"
+          src={getImagePath("/images/structure-diagram.png")}
           alt="Structure diagram"
           fill
           className="object-contain z-0"

@@ -9,6 +9,7 @@ import LoadingSpinner from "@/components/common/LoadingSpinner";
 import GridLayout from "@/components/common/GridLayout";
 import apiService from "@/services/apiService";
 import { getImageUrl, formatMongolianDate } from "@/utils/fetcher";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function CampaignDetail() {
   const router = useRouter();
@@ -133,26 +134,26 @@ export default function CampaignDetail() {
   const getCampaignHeaderImage = (campaignId, campaignData) => {
     // Map campaign IDs to specific static header images like old web
     const campaignHeaders = {
-      1: "/images/campaign/climate/zorigton_cover.png", // ЗОРИГТОН КАМПАНИТ АЖИЛ
-      2: "/images/campaign/covers/tech.jpg", // ТЕХНОЛОГИ БА ХҮНИЙ ЭРХ
-      3: "/images/campaign/covers/ersdeld_bui_000.png", // ЭРСДЭЛД БУЙ ХҮМҮҮС
-      4: "/images/campaign/covers/uuramisgal.jpg", // УУР АМЬСГАЛЫН ӨӨРЧЛӨЛТ БА ХҮНИЙ ЭРХ
-      5: "/images/campaign/covers/huniierhiinbolovsrol.jpg", // ХҮНИЙ ЭРХИЙН БОЛОВСРОЛ
-      6: "/images/campaign/covers/tsaaziinyal.jpg", // Цаазаар авах ялын эсрэг
-      7: "/images/campaign/covers/huniighundel.jpeg", // ХҮНИЙГ ХҮНДЭЛ
-      8: "/images/campaign/covers/oronbairtaibaih.jpg", // ОРОН БАЙРТАЙ БАЙХ ЭРХ
-      9: "/images/campaign/refugee/header-img.png", // Дүрвэгсэд ба цагаачдын эрх
-      10: "/images/campaign/header-img.png", // ҮЗЭЛ БОДЛОО ЧӨЛӨӨТЭЙ ИЛЭРХИЙЛЭХ ЭРХ
-      11: "/images/campaign/my-right/header-img.png", // МИНИЙ БИЕ МИНИЙ ЭРХ
-      12: "/images/campaign/covers/eruudenshuuh.jpg", // ЭРҮҮДЭН ШҮҮХИЙГ ЗОГСООЁ
-      13: "/images/campaign/covers/ednse-header.jpg", // ЭДИЙН ЗАСАГ, НИЙГЭМ, СОЁЛЫН ЭРХИЙН ТӨЛӨӨ
-      14: "/images/campaign/my-right/header-img.png", // Хүнийг Хүндэл
+      1: getImagePath("/images/campaign/climate/zorigton_cover.png"), // ЗОРИГТОН КАМПАНИТ АЖИЛ
+      2: getImagePath("/images/campaign/covers/tech.jpg"), // ТЕХНОЛОГИ БА ХҮНИЙ ЭРХ
+      3: getImagePath("/images/campaign/covers/ersdeld_bui_000.png"), // ЭРСДЭЛД БУЙ ХҮМҮҮС
+      4: getImagePath("/images/campaign/covers/uuramisgal.jpg"), // УУР АМЬСГАЛЫН ӨӨРЧЛӨЛТ БА ХҮНИЙ ЭРХ
+      5: getImagePath("/images/campaign/covers/huniierhiinbolovsrol.jpg"), // ХҮНИЙ ЭРХИЙН БОЛОВСРОЛ
+      6: getImagePath("/images/campaign/covers/tsaaziinyal.jpg"), // Цаазаар авах ялын эсрэг
+      7: getImagePath("/images/campaign/covers/huniighundel.jpeg"), // ХҮНИЙГ ХҮНДЭЛ
+      8: getImagePath("/images/campaign/covers/oronbairtaibaih.jpg"), // ОРОН БАЙРТАЙ БАЙХ ЭРХ
+      9: getImagePath("/images/campaign/refugee/header-img.png"), // Дүрвэгсэд ба цагаачдын эрх
+      10: getImagePath("/images/campaign/header-img.png"), // ҮЗЭЛ БОДЛОО ЧӨЛӨӨТЭЙ ИЛЭРХИЙЛЭХ ЭРХ
+      11: getImagePath("/images/campaign/my-right/header-img.png"), // МИНИЙ БИЕ МИНИЙ ЭРХ
+      12: getImagePath("/images/campaign/covers/eruudenshuuh.jpg"), // ЭРҮҮДЭН ШҮҮХИЙГ ЗОГСООЁ
+      13: getImagePath("/images/campaign/covers/ednse-header.jpg"), // ЭДИЙН ЗАСАГ, НИЙГЭМ, СОЁЛЫН ЭРХИЙН ТӨЛӨӨ
+      14: getImagePath("/images/campaign/my-right/header-img.png"), // Хүнийг Хүндэл
     };
 
     return (
       campaignHeaders[campaignId] ||
       campaignHeaders[campaignData?.static_id] ||
-      "/images/campaign/header-img.png"
+      getImagePath("/images/campaign/header-img.png")
     );
   };
 
@@ -450,7 +451,7 @@ export default function CampaignDetail() {
                     </h3>
                     <div className="relative aspect-square w-[150px] h-[150px] flex-shrink-0">
                       <Image
-                        src={getImageUrl(post.cover) || "/images/news1.png"}
+                        src={getImageUrl(post.cover) || getImagePath("/images/news1.png")}
                         alt={post.title || "Post image"}
                         fill
                         className="object-cover rounded"
@@ -484,7 +485,7 @@ export default function CampaignDetail() {
                         <Image
                           src={
                             getImageUrl(feature.image) ||
-                            "/images/campaign/feature.png"
+                            getImagePath("/images/campaign/feature.png")
                           }
                           alt={feature.title || "Feature image"}
                           fill
@@ -600,7 +601,7 @@ export default function CampaignDetail() {
                         <Image
                           src={
                             getImageUrl(feature.image) ||
-                            "/images/campaign/feature.png"
+                            getImagePath("/images/campaign/feature.png")
                           }
                           alt={feature.title || "Feature image"}
                           fill
@@ -653,7 +654,7 @@ export default function CampaignDetail() {
               categoryButtonText="ᠮᠡᠳᠡᢉᠡ"
               emptyStateText="ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠮᠡᠳᠡᢉᠡ ᠦᠭᠡᠢ"
               getImageUrl={(item) =>
-                getImageUrl(item.cover) || "/images/news1.png"
+                getImageUrl(item.cover) || getImagePath("/images/news1.png")
               }
               getTitle={(item) => item.title}
               itemType="news"
@@ -678,7 +679,7 @@ export default function CampaignDetail() {
               categoryButtonText="ᠮᠡᠳᠡᢉᠡ"
               emptyStateText="ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠮᠡᠳᠡᢉᠡ ᠦᠭᠡᠢ"
               getImageUrl={(item) =>
-                getImageUrl(item.cover) || "/images/news1.png"
+                getImageUrl(item.cover) || getImagePath("/images/news1.png")
               }
               getTitle={(item) => item.title}
               itemType="news"

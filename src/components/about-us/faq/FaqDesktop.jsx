@@ -50,7 +50,7 @@ export default function FaqDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/faq/header-img.jpg"
+        image="/mng/images/faq/header-img.jpg"
         alt="FAQ Page Header"
         width="90rem"
         title="ᠲᠦᠭᠡᠮᠡᠯ ᠠᠰᠤᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ"

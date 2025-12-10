@@ -1,3 +1,5 @@
+import { getImagePath } from "@/utils/imagePath";
+
 // API Configuration for Amnesty CMS
 export const API_CONFIG = {
   // Base URL for the Strapi CMS API
@@ -128,7 +130,7 @@ export const MOCK_DATA = {
       question: "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠶᠠᠭᠤ ᠬᠡᠷᠡᠭᠯᠡᠭᠳᠡᠭ ᠪᠤᠢ?",
       answer:
         "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠦᠭᠡ ᠦᠰᠦᠭ ᠦᠨ ᠪᠢᠴᠢᠭ ᠪᠣᠯᠤᠨ᠂ ᠰᠠᠶᠢᠨ ᠦᠶᠡ ᠶᠢᠨ ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠭᠠᠵᠢ ᠶᠤᠮ᠃",
-      image: "/images/about1.png",
+      image: getImagePath("/images/about1.png"),
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-15T10:00:00.000Z",
     },
@@ -137,7 +139,7 @@ export const MOCK_DATA = {
       question: "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠶᠠᠭᠤ ᠪᠠᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠪᠤᠢ?",
       answer:
         "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
-      image: "/images/about2.png",
+      image: getImagePath("/images/about2.png"),
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-14T15:30:00.000Z",
     },
@@ -146,7 +148,7 @@ export const MOCK_DATA = {
       question: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠠᠭᠤ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠡᠷᢈᠡ ᠪᠤᠢ?",
       answer:
         "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠠᠮᠢᠳᠤᠷᠠᠯ᠂ ᠡᠷᠬᠡ ᠴᠢᠯᠦᠭᠡ᠂ ᠪᠣᠳᠠᠯᠭ᠎ᠠ ᠶᠢᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
-      image: "/images/about3.jpg",
+      image: getImagePath("/images/about3.jpg"),
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-13T09:15:00.000Z",
     },
@@ -155,7 +157,7 @@ export const MOCK_DATA = {
       question: "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠠᠭᠤ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠡᠷᢈᠡ ᠪᠤᠢ?",
       answer:
         "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠪᠣᠳᠠᠯᠭ᠎ᠠ᠂ ᠰᠠᠶᠢᠨ ᠦᠶᠡ᠂ ᠠᠷᠠᠳ ᠦᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
-      image: "/images/about4.jpg",
+      image: getImagePath("/images/about4.jpg"),
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-12T14:45:00.000Z",
     },

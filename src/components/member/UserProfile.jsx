@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Cookies from "js-cookie";
 import { Edit2, Menu, X } from "lucide-react";
 import { getLocale } from "@/utils/locale";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function UserProfile({ userData, userGroups }) {
   const router = useRouter();
@@ -173,7 +174,9 @@ export default function UserProfile({ userData, userGroups }) {
   const user = userData?.payload;
   const userFullName =
     [user?.firstName, user?.lastName].filter(Boolean).join(" ") || user?.phone;
-  const avatar = user?.avatar || "/images/default-man.jpg";
+  const avatar = user?.avatar 
+    ? (user.avatar.startsWith("http") ? user.avatar : getImagePath(user.avatar))
+    : getImagePath("/images/default-man.jpg");
 
   return (
     <div className="w-full h-screen overflow-y-hidden">

@@ -2,12 +2,13 @@ import Image from "next/image";
 import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import AssemblySwiper from "./AssemblySwiper";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function ReportDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/generalassembly/general1.png"
+        image="/mng/images/generalassembly/general1.png"
         alt="Assembly Page Header"
         width="90rem"
         title="ᠶᠡᠷᠦᠩᠬᠡᠢ ᠴᠤᠤᠯᠭᠠᠨ"
@@ -64,7 +65,7 @@ export default function ReportDesktop() {
             ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠮᠥᠷ ᠦ᠋ᠨ ᢈᠦᠲᠦᠯᠪᠦᠷᠢ ᠶ᠋ᠢᠨ
           </p>
           <Image
-            src="/images/assembly-image1.png"
+            src={getImagePath("/images/assembly-image1.png")}
             width={847}
             height={1200}
             className="h-full w-auto object-contain relative z-0"
@@ -102,7 +103,7 @@ export default function ReportDesktop() {
           </p>
           <div className="relative w-[508px] h-[286px]">
             <Image
-              src="/images/assembly-image2.png"
+              src={getImagePath("/images/assembly-image2.png")}
               alt="Assembly image 2"
               fill
               className="object-contain"

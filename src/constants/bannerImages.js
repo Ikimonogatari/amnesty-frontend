@@ -1,6 +1,8 @@
+import { getImagePath } from "@/utils/imagePath";
+
 export const bannerImages = [
   {
-    src: "/images/news1.png",
+    src: getImagePath("/images/news1.png"),
     alt: "Amnesty International Banner 1",
     caption: {
       title: "ᢉᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᢈᠠᠮᠠᠭᠠᠯᠠᢉᠴᠢᠳ",
@@ -8,7 +10,7 @@ export const bannerImages = [
     }
   },
   {
-    src: "/images/news1.png",
+    src: getImagePath("/images/news1.png"),
     alt: "Amnesty International Banner 2",
     caption: {
       title: "ᠰᠠᠶᠢᠨ ᠳᠤᠷ᠎ᠠ ᠶ᠋ᠢᠨ ᠪᠣᠯᠤᠨ ᠳᠠᠳᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠠᠵᠢᠯ",
@@ -16,7 +18,7 @@ export const bannerImages = [
     }
   },
   {
-    src: "/images/news1.png",
+    src: getImagePath("/images/news1.png"),
     alt: "Amnesty International Banner 3",
     caption: {
       title: "ᢉᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ",
@@ -24,7 +26,7 @@ export const bannerImages = [
     }
   },
   {
-    src: "/images/news1.png",
+    src: getImagePath("/images/news1.png"),
     alt: "Amnesty International Banner 4",
     caption: {
       title: "ᠣᠯᠠᠨ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ",
@@ -32,7 +34,7 @@ export const bannerImages = [
     }
   },
   {
-    src: "/images/news1.png",
+    src: getImagePath("/images/news1.png"),
     alt: "Amnesty International Banner 5",
     caption: {
       title: "ᠬᠠᠨᠳᠢᠪᠯᠠᢉᠴᠢᠳ ᠤ᠋ᠨ ᠲᠥᠯᠦᢉᠡ",

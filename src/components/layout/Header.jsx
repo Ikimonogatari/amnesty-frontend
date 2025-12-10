@@ -5,6 +5,7 @@ import Button from "@/components/common/Button";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import SearchModal from "@/components/common/SearchModal";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -91,7 +92,7 @@ export default function Header() {
       <div className="flex flex-col items-center">
         <Link href="/" className="py-4 px-2">
           <Image
-            src="/images/amnesty-wide-logo.png"
+            src={getImagePath("/images/amnesty-wide-logo.png")}
             alt="logo"
             width={150}
             height={60}

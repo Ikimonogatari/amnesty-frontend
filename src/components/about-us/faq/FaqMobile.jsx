@@ -51,7 +51,7 @@ export default function FaqMobile() {
   return (
     <div className="h-full w-full block sm:hidden">
       <StaticHeader
-        image="/images/faq/header-img.jpg"
+        image="/mng/images/faq/header-img.jpg"
         alt="FAQ Page Header"
         width="100%"
         title="ᠲᠦᠭᠡᠮᠡᠯ ᠠᠰᠤᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ"

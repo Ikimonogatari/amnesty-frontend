@@ -8,6 +8,7 @@ import {
   useGetCompanyWorkFeaturesQuery,
 } from "@/redux/services/apiService";
 import { getImageUrl } from "@/config/api";
+import { getImagePath } from "@/utils/imagePath";
 import FullScreenLoader from "../common/FullScreenLoader";
 
 export default function CampaignDesktop() {
@@ -39,7 +40,7 @@ export default function CampaignDesktop() {
         .map((companyWork) => ({
         id: companyWork.static_id || companyWork.id, // Use static_id for routing
         title: companyWork.title || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ",
-        image: getImageUrl(companyWork.icon) || "/images/about1.png",
+        image: getImageUrl(companyWork.icon) || getImagePath("/images/about1.png"),
         description: companyWork.description || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ",
       }))
         .sort((a, b) => {
@@ -81,21 +82,21 @@ export default function CampaignDesktop() {
       title: "ᠰᠤᠳᠤᠯᠭ᠎ᠠ",
       description:
         "ᠭᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᠭᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠡᠴᠠ ᠡᠭᠢᠯᠡᠳᠡᠭ᠃ ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᠭᠡᠢ ᠶ᠋ᠢᠨ ᠭᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᠬᠦᠮᠦᠰ ᠦ᠋ᠨ ᠬᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᠭᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᠭᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᠭᠢᠳᠡᠭ᠃",
-      image: "/images/campaign/211568.png",
+      image: getImagePath("/images/campaign/211568.png"),
     },
     {
       id: 2,
       title: "ᠨᠥᠯᠦᢉᠡᠯᠡᠯ ᠦ᠋ᠨ ᠠᠵᠢᠯ",
       description:
         "ᠪᠢᠳᠡ ᠳ᠋ᠦᠩ ᠰᠢᠨᠵᠢᠯᠡᢉᠡ ᠪᠡᠨ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ᠂ ᠻᠣᠮᠫᠠᠨᠢ ᠨᠤᠭᠤᠳ ᠪᠣᠯᠤᠨ ᠰᠢᠢᠳᠪᠦᠷᠢ ᠭᠠᠷᠭᠠᠭᠴᠢᠳ ᠲᠤ ᠵᠥᠪ ᠵᠦᠢᠯ ᠭᠢᢈᠦ ᠳ᠋ᠦ ᠨᠥᠯᠦᢉᠡᠯᠡᠭᠦ᠂ ᠰᠢᠬᠠᠬᠤ ᠵᠣᠷᠢᠯᠭ᠎ᠠ ᠪᠠᠷ ᠠᠰᠢᠭᠯᠠᠳᠠᠭ᠃",
-      image: "/images/campaign/211450.png",
+      image: getImagePath("/images/campaign/211450.png"),
     },
     {
       id: 3,
       title: "ᠦᠶᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ᠂ ᠠᠻᠼ",
       description:
         "ᠡᠷᢉᠦᠳᠡᠯ᠂ ᠵᠠᢈᠢᠳᠠᠯ᠂ ᠡᠰᠡᠷᢉᠦᠴᠡᠯ ᠢ᠋ᠢᠡᠷ ᠳᠠᠮᠵᠢᠭᠤᠯᠤᠨ ᠳᠡᠯᠡᠭᠡᠢ ᠳᠠᠶᠠᠭᠠᠷᢈᠬ ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯᠴᠢᠳ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠭᠢᠵᠦ ᠴᠢᠳᠠᠬᠤ ᠭᠦᠮᠦᠰ᠂ ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠨᠤᠭᠤᠳ ᠡᠴᠠ ᠠᠷᠭ᠎ᠠ ᠭᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠪᠬᠤ ᠶ᠋ᠢ ᠰᠢᠬᠠᠳᠠᠭ᠃",
-      image: "/images/campaign/211464.png",
+      image: getImagePath("/images/campaign/211464.png"),
     },
   ];
 

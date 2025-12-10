@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getImagePath } from "@/utils/imagePath";
 
 export default function StaticHeader({
   image = "/images/news1.png",
@@ -8,6 +9,9 @@ export default function StaticHeader({
   desc = null,
   className = null,
 }) {
+  // Ensure image path includes basePath
+  const imageSrc = image.startsWith("http") ? image : getImagePath(image);
+  const fallbackImage = getImagePath("/images/news1.png");
   // Handle responsive width
   const getResponsiveStyle = () => {
     // If width is a percentage or specific mobile value, use it as is
@@ -32,14 +36,14 @@ export default function StaticHeader({
     >
       <div className="h-full relative flex justify-center items-center w-full">
         <Image
-          src={image}
+          src={imageSrc}
           alt={alt}
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
           className="md:rounded-xl h-full min-h-[250px] md:min-h-[300px] z-0 absolute"
           priority
           onError={(e) => {
-            e.target.src = "/images/news1.png"; // fallback image
+            e.target.src = fallbackImage; // fallback image
           }}
         />
         {title && (

@@ -93,7 +93,7 @@ export default function ContactDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/aboutContact/header-img.png"
+        image="/mng/images/aboutContact/header-img.png"
         alt="Contact Page Header"
         width="90rem"
         title="ᠬᠣᠯᠪᠠᠭᠠᠨ ᠪᠠᠷᠢᠬᠤ"

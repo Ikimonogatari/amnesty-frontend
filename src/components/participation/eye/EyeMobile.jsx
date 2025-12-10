@@ -412,7 +412,7 @@ export default function EyeMobile() {
           </p>
           <div className="relative w-full max-w-[300px] h-[150px]">
             <Image
-              src="/images/mgl-map.png"
+              src={getImagePath("/images/mgl-map.png")}
               alt="Mongolia map"
               fill
               className="object-contain"
