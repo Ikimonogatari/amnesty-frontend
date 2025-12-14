@@ -127,7 +127,11 @@ export default function AboutUsMobile() {
                   }`}
                 >
                   <div className={`w-1/2 flex flex-col gap-2`}>
-                    <p className="text-lg">
+                  <div className="flex flex-row items-start gap-2 w-full">
+                    <p className="text-lg"
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}>
                       {i === 5 ? (
                         <span
                           style={{
@@ -141,13 +145,13 @@ export default function AboutUsMobile() {
                       )}
                     </p>
                     <p
-                      className="text-[6px] flex-1 h-full w-full min-h-[150px] overflow-x-auto"
+                      className="text-[6px] flex-1 h-full w-full max-h-[150px] overflow-x-auto"
                       style={{
                         writingMode: "vertical-lr",
                       }}
                     >
                       {h.desc}
-                    </p>
+                    </p></div>
                     {/* Image under the text */}
                     <div className="relative w-full h-[200px]">
                       <Image

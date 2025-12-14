@@ -103,18 +103,14 @@ export default function AboutUsDesktop() {
             {historyItems.map((h, i) => (
               <div key={i} className="flex flex-col">
                 <div
-                  className={`h-1/2 flex px-16 justify-center ${
+                  className={`h-1/2 flex px-16 text-sm justify-center ${
                     i % 2 === 0 ? "items-end" : "items-start"
                   } ${i % 2 === 1 ? "order-last" : ""}`}
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
                 >
-                  <p
-                    className="text-sm text-center h-full"
-                    style={{
-                      writingMode: "vertical-lr",
-                    }}
-                  >
                     {h.desc}
-                  </p>
                 </div>
                 <div className="relative my-5">
                   <div className="w-full h-[1px] bg-black"></div>
