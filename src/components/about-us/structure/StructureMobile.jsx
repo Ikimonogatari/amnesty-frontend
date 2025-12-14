@@ -1,8 +1,8 @@
-import BannerSlider from "@/components/common/BannerSlider";
-import { bannerImages } from "@/constants/bannerImages";
 import SectionTitle from "@/components/common/SectionTitle";
 import StructureDiagramMobile from "./StructureDiagramMobile";
 import StaticHeader from "@/components/common/StaticHeader";
+import Button from "@/components/common/Button";
+
 
 export default function StructureMobile() {
   return (
@@ -57,7 +57,7 @@ export default function StructureMobile() {
           />
           <StructureDiagramMobile />
         </div>
-        <div className="flex gap-2 max-h-[200px]">
+        <div className="flex gap-2">
           <p
             className="text-[10px] font-bold"
             style={{ writingMode: "vertical-lr" }}
@@ -65,14 +65,34 @@ export default function StructureMobile() {
             ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠱᠢᠨᠯ ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶ᠋ᠢᠨ ᠳᠦᠷᠢᠮ
           </p>
 
-          {/* PDF Viewer */}
-          <iframe
-            src="/documents/dummy.pdf"
-            width="100%"
-            height="200"
-            style={{ border: "none" }}
-            title="Amnesty International Structure Document"
-          ></iframe>
+          <div className="w-full h-full flex items-center justify-center border border-gray-300 rounded-lg overflow-hidden shadow-lg">
+            <object
+              data="https://amnesty-cdn.sgp1.cdn.digitaloceanspaces.com/static/73425868-1dc8-4656-87b4-cf7775db28e0.pdf"
+              type="application/pdf"
+              width="100%"
+              height="400px"
+              className="border-none object-contain"
+              title="Mongolia's Amnesty International Organization Bylaws"
+            >
+              <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                <p
+                  className="text-gray-600 mb-4"
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
+                >
+                  PDF ᠬᠠᠷᠠᠭᠤᠯᠠᠬᠤ ᠵᠢᠨ ᠠᠷᠭ᠎ᠠ ᠦᠭᠡᠢ
+                </p>
+                <Button
+                  href="https://amnesty-cdn.sgp1.cdn.digitaloceanspaces.com/static/73425868-1dc8-4656-87b4-cf7775db28e0.pdf"
+                  target="_blank"
+                  className="bg-yellow-400 hover:bg-yellow-500 text-black px-6 py-3 rounded"
+                >
+                  ᠳᠠᠤᠨᠯᠣᠭᠳ ᠢᠯᠠᠭᠠᠬᠤ
+                </Button>
+              </div>
+            </object>
+          </div>
         </div>
       </div>
     </div>
