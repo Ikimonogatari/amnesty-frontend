@@ -18,7 +18,6 @@ export default function HistoryMobile() {
           className="text-[10px] font-bold absolute top-0 mt-3 max-h-[150px]"
           style={{
             writingMode: "vertical-lr",
-            fontFamily: "MongolianScript2",
           }}
         >
           ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ: ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ
@@ -40,31 +39,29 @@ export default function HistoryMobile() {
                   }`}
                 >
                   <div className={`w-1/2 flex flex-col gap-2`}>
+                    <div className="flex flex-row items-start gap-2">
                     <p
                       className="text-lg"
-                      style={{ fontFamily: "MongolianScript2" }}
+                      style={{
+                        writingMode: "vertical-lr",
+                      }}
                     >
                       {i === 9 ? (
-                        <span
-                          style={{
-                            writingMode: "vertical-lr",
-                          }}
-                        >
+                        <>
                           ᠥᠨᠦᠳᠦᠷ
-                        </span>
+                        </>
                       ) : (
                         h.date
                       )}
                     </p>
                     <p
-                      className="text-[6px] flex-1 h-full w-full min-h-[150px] overflow-x-auto"
+                      className="text-[6px] flex-1 h-full w-full max-h-[150px] overflow-x-auto"
                       style={{
                         writingMode: "vertical-lr",
-                        fontFamily: "MongolianScript2",
                       }}
                     >
                       {h.desc}
-                    </p>
+                    </p></div>
                     {/* Image under the text */}
                     <div className="relative w-full h-[200px]">
                       <Image

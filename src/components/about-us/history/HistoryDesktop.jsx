@@ -19,43 +19,36 @@ export default function HistoryDesktop() {
         />
         <div className="flex h-full">
           {historyItems.map((h, i) => (
-            <div key={i} className="flex flex-col gap-2">
+            <div key={i} className="flex flex-col">
               <div
-                className={`h-1/2 flex px-16 justify-center ${
+                className={`h-1/2 flex px-16 text-sm justify-center ${
                   i % 2 === 0 ? "items-end" : "items-start"
                 } ${i % 2 === 1 ? "order-last" : ""}`}
+                style={{
+                  writingMode: "vertical-lr",
+                }}
               >
-                <p
-                  className="text-sm text-center h-full"
-                  style={{
-                    writingMode: "vertical-lr",
-                    fontFamily: "MongolianScript2",
-                  }}
-                >
                   {h.desc}
-                </p>
               </div>
               <div className="relative my-5">
                 <div className="w-full h-[1px] bg-black"></div>
                 <div className="h-4 w-4 bg-black rounded-full absolute -top-2 left-1/2 -translate-x-1/2"></div>
               </div>
               <div
-                className={`h-1/2 flex flex-col gap-2 px-16 items-center ${
+                className={`h-1/2 flex flex-row justify-center gap-2 px-16 items-center ${
                   i % 2 === 0 ? "justify-start" : "justify-end"
                 } ${i % 2 === 1 ? "order-first" : ""}`}
               >
                 <p
                   className="text-2xl font-bold"
-                  style={{ fontFamily: "MongolianScript2" }}
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
                 >
                   {i === 9 ? (
-                    <span
-                      style={{
-                        writingMode: "vertical-lr",
-                      }}
-                    >
+                    <>
                       ᠥᠨᠦᠳᠦᠷ
-                    </span>
+                      </>
                   ) : (
                     h.date
                   )}
