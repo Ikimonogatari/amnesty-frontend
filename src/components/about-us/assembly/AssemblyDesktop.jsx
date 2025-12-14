@@ -73,9 +73,9 @@ export default function ReportDesktop() {
           />
         </div>
         <AssemblySwiper />
-        <div className="flex flex-col gap-8 h-full max-h-screen">
+        <div className="flex flex-col gap-4 h-full max-h-screen">
           <p
-            className="text-base"
+            className="text-sm overflow-x-auto"
             style={{ writingMode: "vertical-lr" }}
           >
             ᠮᠣᠩᠭᠤᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ (ᠮᠡᠶᠢ)-ᠡᠶᠢᠨ “ᠪᠢᠳᠡᠨ ᠦ᠋ ᠡᠷᢈᠡ᠂ ᠪᠢᠳᠡᠨ
@@ -101,16 +101,14 @@ export default function ReportDesktop() {
             ᠠᠵᠢᠯᠯᠠᠭᠰᠠᠨ᠃ ᠡᢉᠦᠨ ᠳ᠋ᠦ ᠮᠡᠢ ᠴᠤ ᠬᠤᠪᠢ ᠨᠡᠮᠡᠷᠢ ᠪᠡᠨ ᠣᠷᠤᠭᠤᠯᠤᠭᠰᠠᠨ᠃ ᠢᠷᠡᢈᠦ ᠵᠢᠯ
             ᠦ᠋ᠳ ᠲᠦ ᠬᠠᠮᠲᠤ ᠳ᠋ᠠᠭᠠᠨ ᠢᠯᠡᢉᠦᠦ ᠶᠡᢈᠡ
           </p>
-          <div className="relative w-[508px] h-[286px]">
             <Image
               src={getImagePath("/images/assembly-image2.png")}
               alt="Assembly image 2"
-              fill
-              className="object-contain"
+              width={508}
+              height={208}
             />
-          </div>
           <p
-            className="text-base"
+            className="text-sm overflow-x-auto"
             style={{ writingMode: "vertical-lr" }}
           >
             ᠦ᠋ᠳ᠂ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ᠂ ᠪᠦᠰᠡ ᠶ᠋ᠢᠨ ᠲᠥᠪ ᠦ᠋ᠨ ᠲᠥᠯᠦᢉᠡᠯᠡᠯ ᠵᠡᠷᢉᠡ ᠣᠯᠠᠨ ᠲᠠᠯᠠᠲᠤ

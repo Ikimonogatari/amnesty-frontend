@@ -11,7 +11,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
-import SectionTitle from "@/components/common/SectionTitle";
 
 // Custom hook for Mongolian numeral conversion
 const useMongolianNumeral = () => {
@@ -45,7 +44,7 @@ const getYouTubeVideoId = (url) => {
   return match && match[2].length === 11 ? match[2] : null;
 };
 
-export default function AssemblySwiper({ title, description, sectionTitle }) {
+export default function AssemblySwiper() {
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
@@ -111,38 +110,12 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
   };
 
   return (
-    <div className="h-full flex flex-col sm:flex-row gap-7 p-4 relative z-10">
-      <div className="flex gap-2 sm:gap-8 max-h-[150px] sm:max-h-max">
-        <h1
-          className="text-[10px] sm:text-2xl font-bold"
-          style={{ writingMode: "vertical-lr" }}
-        >
-          {title}
-        </h1>
-        <p
-          className="text-[10px] sm:text-sm font-bold text-[#848382] sm:text-black"
-          style={{ writingMode: "vertical-lr" }}
-        >
-          {description}
-        </p>
-      </div>
-      {sectionTitle && (
-        <SectionTitle
-          title={sectionTitle}
-          containerClassName="hidden sm:block"
-        />
-      )}
+    <div className="h-full flex flex-col sm:flex-row gap-7 p-4 sm:p-0 relative z-10">
       <div className="flex flex-row gap-2">
-        <p
-          className="text-[10px] font-bold block sm:hidden"
-          style={{ writingMode: "vertical-lr" }}
-        >
-          {sectionTitle}
-        </p>
         <Swiper
           direction={isMobile ? "horizontal" : "vertical"}
           slidesPerView={isMobile ? 1.3 : 3}
-          spaceBetween={isMobile ? 20 : 40}
+          spaceBetween={20}
           navigation={false}
           pagination={false}
           modules={[Navigation, Pagination]}
@@ -159,7 +132,7 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
                 <div className={`w-full h-full flex gap-4`}>
                   <div
                     className={`relative z-20 ${
-                      isMobile ? "max-w-[300px]" : "min-w-[270px] aspect-square"
+                      isMobile ? "max-w-[300px]" : "aspect-square"
                     }`}
                   >
                     {videoId ? (
@@ -169,7 +142,7 @@ export default function AssemblySwiper({ title, description, sectionTitle }) {
                         className={`rounded-lg shadow-lg relative z-30 ${
                           isMobile
                             ? "w-full"
-                            : "aspect-square min-h-[270px] h-full"
+                            : "aspect-square h-full"
                         }`}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

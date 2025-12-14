@@ -19,14 +19,12 @@ export default function AssemblyMobile() {
         <div className="flex flex-col gap-4 p-4">
           {/* First text section with image */}
           <div className="flex gap-2 max-h-[212px]">
-            <div className="relative w-[150px] h-[212px]">
               <Image
                 src={getImagePath("/images/assembly-image1.png")}
                 alt="Assembly Image 1"
-                fill
-                className="object-contain"
+                width={150}
+                height={212}
               />
-            </div>
             <p
               className="text-[10px] overflow-x-auto"
               style={{ writingMode: "vertical-lr" }}
