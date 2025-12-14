@@ -62,10 +62,10 @@ export default function FaqDesktop() {
             <div key={index} className="flex items-start">
               <button
                 onClick={() => toggleExpanded(index)}
-                className="flex justify-center items-center w-12 h-full py-6 rounded-lg bg-[#FFFF00]"
+                className="flex justify-center items-center min-w-12 h-full rounded-lg bg-[#FFFF00]"
               >
                 <h3
-                  className="text-lg font-bold text-black"
+                  className="text-lg font-bold text-black p-6"
                   style={{
                     writingMode: "vertical-lr",
                   }}

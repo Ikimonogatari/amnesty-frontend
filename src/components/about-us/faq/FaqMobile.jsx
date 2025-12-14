@@ -5,7 +5,6 @@ import StaticHeader from "@/components/common/StaticHeader";
 import FullScreenLoader from "@/components/common/FullScreenLoader";
 
 export default function FaqMobile() {
-  const [expandedItem, setExpandedItem] = useState(null);
 
   // Fetch FAQs from API
   const {
@@ -25,10 +24,6 @@ export default function FaqMobile() {
         description: faq.answer || "ᠬᠠᠷᠢᠭᠤᠯᠲᠠ ᠦᠭᠡᠢ",
       }))
     : [];
-
-  const toggleExpanded = (index) => {
-    setExpandedItem(expandedItem === index ? null : index);
-  };
 
   // Loading state
   if (faqsLoading) {
@@ -58,11 +53,9 @@ export default function FaqMobile() {
       />
       <div className="flex flex-col gap-4 p-4">
         {faqItems.map((item, index) => {
-          const isExpanded = expandedItem === index;
           return (
             <div key={index} className="flex items-center gap-2">
-              <button
-                onClick={() => toggleExpanded(index)}
+              <div
                 className="flex justify-center items-center max-h-[150px] px-3 rounded-lg bg-[#FFFF00]"
               >
                 <h3
@@ -73,14 +66,10 @@ export default function FaqMobile() {
                 >
                   {item.title}
                 </h3>
-              </button>
+              </div>
 
               <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  isExpanded
-                    ? "max-w-full opacity-100 translate-x-0"
-                    : "max-w-0 opacity-0 -translate-x-4"
-                }`}
+                className={`overflow-hidden transition-all duration-500 ease-in-out max-w-full opacity-100 translate-x-0`}
               >
                 <p
                   className="text-[10px] max-h-[150px] w-full overflow-x-auto"
