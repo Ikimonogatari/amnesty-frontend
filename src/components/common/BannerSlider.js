@@ -213,7 +213,7 @@ export default function BannerSlider({
               {image.caption && (
                 <>
                   {/* Desktop Caption */}
-                  <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white max-w-xs rounded-xl gap-8 p-16">
+                  <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-xs overflow-x-auto rounded-xl gap-8 p-10">
                     <h3
                       className="text-2xl font-bold mb-3"
                       style={{
