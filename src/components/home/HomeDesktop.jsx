@@ -227,18 +227,21 @@ export default function HomeDesktop() {
                 </h4>
               </div>
               <div
-                className="min-w-28 text-black font-bold text-sm max-h-96 overflow-hidden"
-                style={{
-                  writingMode: "vertical-lr",
-                }}
+                className="min-w-28 text-black font-bold text-sm"
                 title={item.body}
               >
+                <p style={{
+                  writingMode: "vertical-lr",
+                }}
+                className="h-full"
+                >
                 {item.body.length > 100
                   ? `${item.body.substring(0, 100)}...`
                   : item.body}
+                  </p>
               </div>
               <div className="flex items-end">
-                <Button type="secondary" text={"ᠪᠢᠳᠡᠨ ᠦ᠋ ᠲᠡᠦᢈᠡ ᠶ᠋ᠢ ᠤᠩᠰᠢᠬᠤ"} />
+                <button style={{ writingMode: "vertical-lr" }} className="border border-solid text-xs font-bold border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all">ᠪᠢᠳᠡᠨ ᠦ᠋ ᠲᠡᠦᢈᠡ ᠶ᠋ᠢ ᠤᠩᠰᠢᠬᠤ</button>
               </div>
             </Link>
           ))}
