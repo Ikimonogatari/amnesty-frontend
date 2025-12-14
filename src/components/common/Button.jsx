@@ -45,7 +45,7 @@ export default function Button({
   }
 
   return (
-    <button
+      <button
       onClick={onClick}
       className={buttonClasses}
       style={{ writingMode: "vertical-lr" }}
@@ -53,7 +53,7 @@ export default function Button({
       <p
         className={`${
           type !== "chevron" && ""
-        } font-bold text-[10px] sm:text-base`}
+        } font-bold text-[10px] sm:text-base whitespace-normal break-words`}
       >
         {text}
       </p>

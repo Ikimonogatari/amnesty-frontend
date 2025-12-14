@@ -88,9 +88,8 @@ export default function Header() {
   ];
 
   return (
-    <div className="h-full min-w-[150px] inline-flex flex-col justify-between bg-white border-r border-[#E3E3E3] z-20">
-      <div className="flex flex-col items-center">
-        <Link href="/" className="py-4 px-2">
+    <div className="h-full py-4 px-2 max-h-screen min-w-[150px] inline-flex flex-col items-center justify-between gap-4 bg-white border-r border-[#E3E3E3] z-20">
+        <Link href="/" className="">
           <Image
             src={getImagePath("/images/amnesty-wide-logo.png")}
             alt="logo"
@@ -99,7 +98,7 @@ export default function Header() {
             className="object-contain w-[150px] h-[60px]"
           />
         </Link>
-        <div className="mt-4 px-2">
+        <div className="">
           {/* 2x3 Grid Layout - spans top to bottom, then continues in col 2 */}
           <div className="grid grid-cols-2 gap-2">
             {menuItems.map((item, index) => (
@@ -112,7 +111,7 @@ export default function Header() {
                     <Link href={item.link || "#"}>
                       <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
                         <p
-                          className="text-black font-bold text-sm"
+                          className="text-black font-bold text-xs"
                           style={{
                             writingMode: "vertical-lr",
                           }}
@@ -140,7 +139,7 @@ export default function Header() {
                                     }`}
                                   >
                                     <p
-                                      className="text-black font-bold group-hover:text-[#444] transition-colors text-sm"
+                                      className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
                                       style={{
                                         writingMode: "vertical-lr",
                                       }}
@@ -160,7 +159,7 @@ export default function Header() {
                   <Link href={item.link}>
                     <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
                       <p
-                        className="text-black font-bold text-sm"
+                        className="text-black font-bold text-xs"
                         style={{
                           writingMode: "vertical-lr",
                         }}
@@ -172,7 +171,7 @@ export default function Header() {
                 ) : (
                   <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
                     <p
-                      className="text-black font-bold text-sm"
+                      className="text-black font-bold text-xs"
                       style={{
                         writingMode: "vertical-lr",
                       }}
@@ -185,26 +184,23 @@ export default function Header() {
             ))}
           </div>
         </div>
-      </div>
-      <div className="flex flex-col items-center mb-5 gap-5">
         <button className="text-base text-black px-3 py-2 rounded border border-[#E3E3E3] hover:bg-gray-50 transition-colors">
           MNG
         </button>
         <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#432C2C] to-transparent via-50%" />
         <button
-          className="p-4 hover:bg-gray-100 rounded-md transition-colors"
+          className="hover:bg-gray-100 rounded-md transition-colors"
           onClick={() => setIsSearchOpen(true)}
         >
           <Icon icon={"lucide:search"} fontSize={25} />
         </button>
         <Button
-          text={"ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠳᠡᠯᢉᠡᢉᠦᠷ"}
+          text={<span>ᠡᠮᠨᠧᠰᠲ᠋ᠢ <br /> ᠳᠡᠯᢉᠡᢉᠦᠷ</span>}
           onClick={() => {
             router.push("/shop");
           }}
           type="primary"
         />
-      </div>
 
       {/* Search Modal */}
       <SearchModal
