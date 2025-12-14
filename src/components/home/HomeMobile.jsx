@@ -9,7 +9,6 @@ import { getImageUrl } from "@/utils/fetcher";
 import { getImagePath } from "@/utils/imagePath";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import StaticHeader from "../common/StaticHeader";
 import FullScreenLoader from "../common/FullScreenLoader";
 
 export default function HomeMobile() {
@@ -98,14 +97,16 @@ export default function HomeMobile() {
   // Error state
   if (error) {
     return (
-      <div className="w-full min-h-screen bg-white block md:hidden flex items-center justify-center">
-        <div className="text-center text-red-600">
-          <p
-            className="text-sm"
-            style={{ writingMode: "vertical-lr" }}
-          >
-            ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
-          </p>
+      <div className="w-full min-h-screen bg-white block md:hidden">
+        <div className="flex items-center justify-center h-full">
+          <div className="text-center text-red-600">
+            <p
+              className="text-sm"
+              style={{ writingMode: "vertical-lr" }}
+            >
+              ᠮᠡᠳᠡᢉᠡ ᠠᠴᠢᠶᠠᠯᠠᠬᠤ ᠳ᠋ᠤ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -114,12 +115,7 @@ export default function HomeMobile() {
   return (
     <div className="w-full min-h-screen bg-white block md:hidden">
       <div className="relative w-full h-[40vh]">
-        <StaticHeader
-          image="/images/news1.png"
-          alt="Home Page Header"
-          width="100%"
-          title="ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠨᠢ ᢈᠦᠮᠦᠨ ᠪᠦᠷᠢ ᠳ᠋ᠦ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠨᠢ ᠡᠳ᠋ᠯᠡᢉᠦᠯᢈᠦ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᢈᠦᠮᠦᠰ ᠦ᠋ᠨ ᢈᠦᠮᠦᠨᠯᠢᢉ ᠰᠡᠳᢈᠢᠯ ᠳ᠋ᠦ ᠲᠤᠯᠭᠠᠭᠤᠷᠢᠯᠠᠨ ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠥᠷᠨᠢᢉᠦᠯᠳᠡᢉ ᠑᠐ ᠰᠠᠶ᠋ᠢ ᢈᠦᠮᠦᠨ ᠢ᠋ ᠡᠩᠨᠡᢉᠡᠨ ᠳ᠋ᠦ ᠪᠡᠨ ᠨᠢᢉᠡᠳᢈᠡᢉᠰᠡᠨ ᠳᠡᠯᠡᢈᠡᠢ ᠳᠠᠶᠠᠭᠠᠷᢈᠢ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠬᠠᠮᠠᠭᠠᠯᠠᠭᠴᠢᠳ ᠤ᠋ᠨ ᢈᠥᠳᠡᠯᢉᠡᢉᠡᠨ ᠶᠤᠮ᠃"
-        />
+        <BannerSlider width="100%" useDynamic={true} className="h-full" />
       </div>
       <div className="h-full p-1">
         <div className="max-h-[200px] h-full flex gap-3">

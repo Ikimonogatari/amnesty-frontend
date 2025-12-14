@@ -10,7 +10,7 @@ export default function Button({
   let buttonClasses;
 
   if (type === "primary") {
-    buttonClasses = `${className} bg-[#FFFF00] rounded-[8px] sm:rounded-[10px] sm:w-[50px] py-3 sm:py-6 px-1 sm:px-0 max-h-10 sm:max-h-max flex flex-col gap-2 items-center justify-center hover:brightness-105 transition-all text-xs sm:text-base`;
+    buttonClasses = `${className} bg-[#FFFF00] rounded-[8px] sm:rounded-[10px] sm:w-[50px] py-3 sm:py-6 px-1 sm:px-0 max-h-max flex flex-col gap-2 items-center justify-center hover:brightness-105 transition-all text-xs sm:text-base`;
   } else if (type === "secondary") {
     buttonClasses = `${className} border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all`;
   } else if (type === "details") {
@@ -45,7 +45,7 @@ export default function Button({
   }
 
   return (
-      <button
+    <button
       onClick={onClick}
       className={buttonClasses}
       style={{ writingMode: "vertical-lr" }}

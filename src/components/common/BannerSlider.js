@@ -10,6 +10,7 @@ export default function BannerSlider({
   images,
   width = "100%",
   useDynamic = false,
+  className = "",
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -133,7 +134,7 @@ export default function BannerSlider({
     // Fall back to static images if provided
     if (!images || images.length === 0) {
       return (
-        <div className="p-4">
+        <div className={`sm:p-4 ${className}`}>
           <div
             className="relative overflow-hidden h-full flex items-center justify-center bg-gray-100"
             style={{ width: width }}
@@ -153,7 +154,7 @@ export default function BannerSlider({
   // If no images to display, show placeholder
   if (!displayImages || displayImages.length === 0) {
     return (
-      <div className="p-4">
+      <div className={`sm:p-4 ${className}`}>
         <div
           className="relative overflow-hidden h-full flex items-center justify-center bg-gray-100"
           style={{ width: width }}
@@ -170,7 +171,7 @@ export default function BannerSlider({
   }
 
   return (
-    <div className="p-4">
+    <div className={`sm:p-4 ${className}`}>
       <div className="relative overflow-hidden h-full" style={{ width: width }}>
         {/* Banner Images */}
         <div
@@ -247,41 +248,39 @@ export default function BannerSlider({
                     )}
                   </div>
 
-                  {/* Mobile Caption */}
-                  <div className="md:hidden absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent text-white p-4">
-                    <div className="flex items-end justify-between gap-4">
-                      <div className="flex-1">
-                        <h3
-                          className="text-lg font-bold mb-2 line-clamp-2"
-                          style={{
-                            writingMode: "vertical-lr",
-                            maxHeight: "60px",
-                            overflow: "hidden",
-                          }}
-                        >
-                          {image.caption.title}
-                        </h3>
-                        <p
-                          className="text-sm text-gray-200 line-clamp-2"
-                          style={{
-                            writingMode: "vertical-lr",
-                            maxHeight: "40px",
-                            overflow: "hidden",
-                          }}
-                        >
-                          {image.caption.description}
-                        </p>
-                      </div>
-                      {image.link && (
-                        <a href={image.link} className="flex-shrink-0">
-                          <Button
-                            text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
-                            type="primary"
-                            className="text-black text-sm px-3 py-2 h-auto"
-                          />
-                        </a>
-                      )}
-                    </div>
+                  {/* Mobile Caption - Same layout as desktop but sized for mobile */}
+                  <div className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] overflow-x-auto gap-3 p-4 flex">
+                    <h3
+                      className="text-base font-bold mb-2 flex-shrink-0 line-clamp-2"
+                      style={{
+                        writingMode: "vertical-rl",
+                      }}
+                    >
+                      {image.caption.title}
+                    </h3>
+                    <p
+                      className="text-xs text-gray-200 flex-shrink-0 line-clamp-3"
+                      style={{
+                        writingMode: "vertical-rl",
+                      }}
+                    >
+                      {image.caption.description}
+                    </p>
+                    {image.link ? (
+                      <a href={image.link} className="flex-shrink-0">
+                        <Button
+                          text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
+                          type="primary"
+                          className="text-black h-32 text-xs"
+                        />
+                      </a>
+                    ) : (
+                      <Button
+                        text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
+                        type="primary"
+                        className="text-black h-32 text-xs"
+                      />
+                    )}
                   </div>
                 </>
               )}
