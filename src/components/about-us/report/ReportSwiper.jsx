@@ -177,7 +177,7 @@ export default function ReportSwiper({
         )}
         <Swiper
           direction={isMobile ? "horizontal" : "vertical"}
-          slidesPerView={isMobile ? (slides.length === 1 ? 1 : 1.8) : 4}
+          slidesPerView={isMobile ? (slides.length === 1 ? 1 : 1.8) : 3}
           spaceBetween={isMobile ? 20 : 30}
           navigation={false}
           pagination={false}
@@ -196,7 +196,7 @@ export default function ReportSwiper({
               >
                 <div className="flex flex-col items-center gap-4">
                   <p
-                    className="text-sm font-bold line-clamp-3 overflow-y-auto"
+                    className="text-sm font-bold overflow-x-auto"
                     style={{
                       writingMode: "vertical-lr",
                       maxHeight: "",
@@ -210,7 +210,7 @@ export default function ReportSwiper({
                   alt={""}
                   width={200}
                   height={112.5}
-                  className={`rounded-lg shadow-lg relative z-0 w-full max-w-[130px] sm:min-w-[200px] sm:max-w-[200px] aspect-[290/204]`}
+                  className={`rounded-lg shadow-lg relative z-0 w-full aspect-[204/290]`}
                     onError={(e) => {
                       e.target.src = getImagePath("/images/dummy-image.png");
                     }}

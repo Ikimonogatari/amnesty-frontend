@@ -72,7 +72,7 @@ export default function ReportDesktop() {
         width="90rem"
         title="ᠲᠠᠶᠢᠯᠠᠨ"
       />
-      <div className="flex gap-16 h-full">
+      <div className="flex gap-16 h-full max-h-screen">
         <ReportSwiper
           title={"ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ ᠦ᠋ᠨ ᠦᠶᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ"}
           description={
@@ -82,28 +82,23 @@ export default function ReportDesktop() {
           reports={reportItems}
         />
         <div
-          className={`flex flex-col items-center justify-center border border-[#E3E3E3] rounded-xl`}
+          className={`flex flex-col items-center justify-center border border-[#E3E3E3] rounded-xl my-4`}
         >
-          <div className="h-1/2 flex items-center justify-center w-full rounded-t-xl bg-[#FFFF00] p-8">
-            <h2
-              className={`text-lg font-bold max-h-[400px]`}
-              style={{ writingMode: "vertical-lr" }}
-            >
+          <div
+          style={{ writingMode: "vertical-lr" }}
+          className="h-1/2 text-lg font-bold flex items-center justify-center w-full rounded-t-xl bg-[#FFFF00] p-8">
+
               ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠳᠡᢉᠡᠳᠦᠯᠡᠳᠡᢉ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ
-            </h2>
           </div>
-          <div className="h-1/2 flex items-start justify-center w-full rounded-b-xl bg-black p-8">
-            <h2
-              className={`text-lg font-bold text-[#FFFF00]`}
-              style={{ writingMode: "vertical-lr" }}
-            >
+          <div className="text-lg font-bold h-1/2 flex flex-row items-start justify-center w-full rounded-b-xl bg-black p-8">
+
+            <h2 className="text-[#FFFF00]" style={{ writingMode: "vertical-lr" }}>
               ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ ᠦ᠋ᠨ
             </h2>
             <h2
-              className={`text-lg font-bold text-white max-h-[400px]`}
-              style={{ writingMode: "vertical-lr" }}
+              className={`text-white`} style={{ writingMode: "vertical-lr" }}
             >
-              ᠨᠡᠩ ᠲᠡᠷᠢᢉᠦᠨ ᠳ᠋ᠦ ᠠᠩᠬᠠᠷᠴᠤ ᠠᠵᠢᠯᠯᠠᠬᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠰᠲ᠋ᠷᠠᠲ᠋ᠧᢉᠢ
+              ᠨᠡᠩ ᠲᠡᠷᠢᢉᠦᠨ ᠳ᠋ᠦ ᠠᠩᠬᠠᠷᠴᠤ <br/> ᠠᠵᠢᠯᠯᠠᠬᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ <br/> ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠰᠲ᠋ᠷᠠᠲ᠋ᠧᢉᠢ
               ᠵᠣᠷᠢᠯᠲᠠ
             </h2>
           </div>
