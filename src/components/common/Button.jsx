@@ -12,7 +12,7 @@ export default function Button({
   if (type === "primary") {
     buttonClasses = `${className} bg-[#FFFF00] rounded-[8px] sm:rounded-[10px] sm:w-[50px] py-3 sm:py-6 px-1 sm:px-0 max-h-max flex flex-col gap-2 items-center justify-center hover:brightness-105 transition-all text-xs sm:text-base`;
   } else if (type === "secondary") {
-    buttonClasses = `${className} border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] max-h-min whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all`;
+    buttonClasses = `${className} border border-solid border-[#E3E3E3] rounded-[8px] sm:rounded-[10px] w-6 sm:w-[50px] whitespace-nowrap py-3 flex items-center justify-center hover:brightness-105 transition-all`;
   } else if (type === "details") {
     buttonClasses = `${className} text-sm flex justify-end absolute bottom-0 right-0 z-10 bg-[#FFFFFF99] px-2 py-4 rounded-lg backdrop-blur-sm`;
   } else if (type === "chevron") {

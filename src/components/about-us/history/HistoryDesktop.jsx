@@ -13,7 +13,7 @@ export default function HistoryDesktop() {
         title="ᠮᠡᠢ ᠲᠦᠦᠬᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ"
       />
 
-      <div className="flex gap-12 p-4 h-full">
+      <div className="flex gap-12 p-4 h-screen">
         <SectionTitle
           title={"ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ ᠦ᠋ᠨ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ"}
         />
@@ -26,7 +26,7 @@ export default function HistoryDesktop() {
                 } ${i % 2 === 1 ? "order-last" : ""}`}
               >
                 <p
-                  className="text-sm text-center max-h-[380px]"
+                  className="text-sm text-center h-full"
                   style={{
                     writingMode: "vertical-lr",
                     fontFamily: "MongolianScript2",

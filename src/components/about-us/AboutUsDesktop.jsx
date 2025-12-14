@@ -69,14 +69,14 @@ export default function AboutUsDesktop() {
           ᠪᠣᠯᠭᠠᠬᠤ ᠶᠤᠮ᠃
         </p>
       </div>
-      <div className="flex gap-12 p-4 h-full">
+      <div className="flex gap-12 p-4 h-full max-h-screen">
         <SectionTitle title={"ᠪᠢᠳᠡ ᢈᠡᠷᢈᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᢈᠢᠳᠡᢉ ᠪᠤᠢ?"} />
         <div className="h-full grid grid-cols-2 grid-rows-2 gap-12 mr-20">
           {aboutItems.map((item) => (
             <div key={item.id} className="flex items-start p-5 gap-4">
               <Image src={item.image} alt={item.title} width={80} height={80} />
               <h2
-                className="font-bold text-xl max-h-[400px] overflow-hidden"
+                className="font-bold text-xl h-full overflow-hidden"
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -84,30 +84,31 @@ export default function AboutUsDesktop() {
                 {item.title}
               </h2>
               <p
-                className="text-black font-bold text-sm max-h-[400px] overflow-hidden"
+                className="text-black font-bold text-sm h-full overflow-hidden"
                 style={{
                   writingMode: "vertical-lr",
                 }}
               >
-                {item.body}
+                {/* {item.body} */}
+                ᢈᠦᠮᠦᠰ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠵᠥᠷᠢᠴᠡᢉᠳᠡᠵᠦ ᠪᠠᠶᠢᠭ᠎ᠠ ᠦᠶ᠎ᠡ ᠳ᠋ᠦ ᠡᠮᠨᠧᠰᠲ ᠢ᠋ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠲᠡᠳᠡᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ ᠪᠠᠶᠢᠳᠠᠯ ᠢ᠋ ᠳᠡᠯᠡᢈᠡᠢ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠩᠬᠠᠷᠤᠯ ᠤ᠋ᠨ ᠲᠥᠪ ᠲᠦ ᠣᠷᠤᠭᠤᠯᠳᠠᠭ᠃ ᠮᠠᠨ ᠤ᠋ ᠳᠡᠮᠵᠢᢉᠴᠢᠳ ᠲᠡᠳᠡᠨ ᠢ᠋ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠤᠯᠠᠳᠠ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠪᠴᠤ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃
               </p>
             </div>
           ))}
         </div>
-        <div className="flex gap-12 p-4 h-full">
+        <div className="flex gap-12">
           <SectionTitle
             title={"ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ: ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠲᠡᠦᢈᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ"}
           />
           <div className="flex h-full">
             {historyItems.map((h, i) => (
-              <div key={i} className="flex flex-col gap-2">
+              <div key={i} className="flex flex-col">
                 <div
                   className={`h-1/2 flex px-16 justify-center ${
                     i % 2 === 0 ? "items-end" : "items-start"
                   } ${i % 2 === 1 ? "order-last" : ""}`}
                 >
                   <p
-                    className="text-sm text-center max-h-[380px]"
+                    className="text-sm text-center h-full"
                     style={{
                       writingMode: "vertical-lr",
                     }}
@@ -120,17 +121,17 @@ export default function AboutUsDesktop() {
                   <div className="h-4 w-4 bg-black rounded-full absolute -top-2 left-1/2 -translate-x-1/2"></div>
                 </div>
                 <div
-                  className={`h-1/2 flex flex-col gap-3 px-16 items-center ${
+                  className={`h-1/2 flex flex-row justify-center gap-3 px-16 items-center ${
                     i % 2 === 0 ? "justify-start" : "justify-end"
                   } ${i % 2 === 1 ? "order-first" : ""}`}
                 >
-                  <h2 className="text-2xl text-start font-bold">
+                  <h2 className="text-2xl text-start font-bold"
+                      style={{
+                        writingMode: "vertical-lr",
+                      }}  
+                  >
                     {i === 5 ? (
-                      <span
-                        style={{
-                          writingMode: "vertical-lr",
-                        }}
-                      >
+                      <span>
                         ᠥᠨᠦᠳᠦᠷ
                       </span>
                     ) : (
