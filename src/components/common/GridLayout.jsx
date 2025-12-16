@@ -119,7 +119,7 @@ export default function GridLayout({
                   >
                     <Image
                       src={
-                        getImageUrl ? getImageUrl(item) : getImagePath("/images/news1.png")
+                        getImageUrl ? getImageUrl(item) : "/mng/images/news1.png"
                       }
                       alt={
                         getTitle ? getTitle(item) : item.title || "Item image"
@@ -128,7 +128,7 @@ export default function GridLayout({
                       width={300}
                       className="object-cover shadow-md rounded-xl aspect-square hover:opacity-80 transition-opacity"
                       onError={(e) => {
-                        e.target.src = getImagePath("/images/news1.png"); // fallback image
+                        e.target.src = "/mng/images/news1.png"; // fallback image
                       }}
                     />
 
@@ -250,13 +250,13 @@ export default function GridLayout({
 
                 <div className="relative w-[200px] h-[200px] flex-shrink-0">
                   <Image
-                    src={getImageUrl ? getImageUrl(item) : getImagePath("/images/news1.png")}
+                    src={getImageUrl ? getImageUrl(item) : "/mng/images/news1.png"}
                     alt={getTitle ? getTitle(item) : item.title || "Item image"}
                     height={200}
                     width={200}
                     className="object-cover rounded-lg w-full h-full shadow-md"
                     onError={(e) => {
-                      e.target.src = getImagePath("/images/news1.png");
+                      e.target.src = "/mng/images/news1.png";
                     }}
                   />
 

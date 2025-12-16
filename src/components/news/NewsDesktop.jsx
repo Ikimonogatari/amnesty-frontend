@@ -166,17 +166,17 @@ export default function NewsDesktop() {
     switch (activeCategory) {
       case "statements":
         return {
-          image: "/images/news/header-img-statements.jpg",
+          image: "/mng/images/news/header-img-statements.jpg",
           title: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠢᠷ ᠰᠤᠤᠷᠢ",
         };
       case "good_news":
         return {
-          image: "/images/news/header-img-good-news.jpg",
+          image: "/mng/images/news/header-img-good-news.jpg",
           title: "ᠣᠨᠴᠠᠯᠠᠬᠤ ᠮᠡᠳᠡᠭᠡ",
         };
       default:
         return {
-          image: "/images/news/image-news-header.jpg",
+          image: "/mng/images/news/image-news-header.jpg",
           title: "ᠮᠡᠳᠡᠭᠡ",
         };
     }

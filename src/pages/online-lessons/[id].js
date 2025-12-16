@@ -97,7 +97,7 @@ export default function OnlineLessonDetail() {
   const coverImage =
     getImageUrl(
       onlineLesson.thumbnail || onlineLesson.cover || onlineLesson.image
-    ) || "/images/news1.png";
+    ) || "/mng/images/news1.png";
 
   return (
     <Layout>
@@ -331,7 +331,7 @@ export default function OnlineLessonDetail() {
                       <Image
                         src={
                           getImageUrl(item.thumbnail || item.cover) ||
-                          "/images/news1.png"
+                          "/mng/images/news1.png"
                         }
                         alt={item.title || "Online lesson image"}
                         fill

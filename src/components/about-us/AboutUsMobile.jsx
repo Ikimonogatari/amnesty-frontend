@@ -4,7 +4,7 @@ import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
 import { useRouter } from "next/router";
 import StaticHeader from "../common/StaticHeader";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function AboutUsMobile() {
   const router = useRouter();
@@ -231,28 +231,28 @@ const aboutItems = [
     title:
       "ᠪᠢᠳᠡ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠢ᠋ ᠲᠠᠰᠤᠯᠤᠨ ᠵᠣᠭᠰᠤᠭᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ",
     body: "ᢈᠦᠮᠦᠰ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠵᠥᠷᠢᠴᠡᢉᠳᠡᠵᠦ ᠪᠠᠶᠢᠭ᠎ᠠ ᠦᠶ᠎ᠡ ᠳ᠋ᠦ ᠡᠮᠨᠧᠰᠲ ᠢ᠋ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠲᠡᠳᠡᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ ᠪᠠᠶᠢᠳᠠᠯ ᠢ᠋ ᠳᠡᠯᠡᢈᠡᠢ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠩᠬᠠᠷᠤᠯ ᠤ᠋ᠨ ᠲᠥᠪ ᠲᠦ ᠣᠷᠤᠭᠤᠯᠳᠠᠭ᠃ ᠮᠠᠨ ᠤ᠋ ᠳᠡᠮᠵᠢᢉᠴᠢᠳ ᠲᠡᠳᠡᠨ ᠢ᠋ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠤᠯᠠᠳᠠ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠪᠴᠤ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
-    image: getImagePath("/images/aboutus1.png"),
+    image: "/mng/images/aboutus1.png",
   },
   {
     id: 2,
     title:
       "ᠪᠢᠳᠡ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠢ᠋ ᠲᠠᠰᠤᠯᠤᠨ ᠵᠣᠭᠰᠤᠭᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ",
     body: "ᢈᠦᠮᠦᠰ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠵᠥᠷᠢᠴᠡᢉᠳᠡᠵᠦ ᠪᠠᠶᠢᠭ᠎ᠠ ᠦᠶ᠎ᠡ ᠳ᠋ᠦ ᠡᠮᠨᠧᠰᠲ ᠢ᠋ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠲᠡᠳᠡᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ ᠪᠠᠶᠢᠳᠠᠯ ᠢ᠋ ᠳᠡᠯᠡᢈᠡᠢ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠩᠬᠠᠷᠤᠯ ᠤ᠋ᠨ ᠲᠥᠪ ᠲᠦ ᠣᠷᠤᠭᠤᠯᠳᠠᠭ᠃ ᠮᠠᠨ ᠤ᠋ ᠳᠡᠮᠵᠢᢉᠴᠢᠳ ᠲᠡᠳᠡᠨ ᠢ᠋ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠤᠯᠠᠳᠠ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠪᠴᠤ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
-    image: getImagePath("/images/aboutus2.png"),
+    image: "/mng/images/aboutus2.png",
   },
   {
     id: 3,
     title:
       "ᠪᠢᠳᠡ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠢ᠋ ᠲᠠᠰᠤᠯᠤᠨ ᠵᠣᠭᠰᠤᠭᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ",
     body: "ᢈᠦᠮᠦᠰ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠵᠥᠷᠢᠴᠡᢉᠳᠡᠵᠦ ᠪᠠᠶᠢᠭ᠎ᠠ ᠦᠶ᠎ᠡ ᠳ᠋ᠦ ᠡᠮᠨᠧᠰᠲ ᠢ᠋ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠲᠡᠳᠡᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ ᠪᠠᠶᠢᠳᠠᠯ ᠢ᠋ ᠳᠡᠯᠡᢈᠡᠢ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠩᠬᠠᠷᠤᠯ ᠤ᠋ᠨ ᠲᠥᠪ ᠲᠦ ᠣᠷᠤᠭᠤᠯᠳᠠᠭ᠃ ᠮᠠᠨ ᠤ᠋ ᠳᠡᠮᠵᠢᢉᠴᠢᠳ ᠲᠡᠳᠡᠨ ᠢ᠋ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠤᠯᠠᠳᠠ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠪᠴᠤ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
-    image: getImagePath("/images/aboutus3.png"),
+    image: "/mng/images/aboutus3.png",
   },
   {
     id: 4,
     title:
       "ᠪᠢᠳᠡ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠢ᠋ ᠲᠠᠰᠤᠯᠤᠨ ᠵᠣᠭᠰᠤᠭᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ",
     body: "ᢈᠦᠮᠦᠰ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠵᠥᠷᠢᠴᠡᢉᠳᠡᠵᠦ ᠪᠠᠶᠢᠭ᠎ᠠ ᠦᠶ᠎ᠡ ᠳ᠋ᠦ ᠡᠮᠨᠧᠰᠲ ᠢ᠋ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠲᠡᠳᠡᠨ ᠦ᠋ ᠨᠥᢈᠦᠴᠡᠯ ᠪᠠᠶᠢᠳᠠᠯ ᠢ᠋ ᠳᠡᠯᠡᢈᠡᠢ ᠨᠡᠶᠢᠲᠡ ᠶ᠋ᠢᠨ ᠠᠩᠬᠠᠷᠤᠯ ᠤ᠋ᠨ ᠲᠥᠪ ᠲᠦ ᠣᠷᠤᠭᠤᠯᠳᠠᠭ᠃ ᠮᠠᠨ ᠤ᠋ ᠳᠡᠮᠵᠢᢉᠴᠢᠳ ᠲᠡᠳᠡᠨ ᠢ᠋ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶ᠋ᠢᠨ ᠲᠤᠯᠠᠳᠠ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠪᠴᠤ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
-    image: getImagePath("/images/aboutus4.png"),
+    image: "/mng/images/aboutus4.png",
   },
 ];
 

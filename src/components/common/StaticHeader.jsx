@@ -1,17 +1,16 @@
 import Image from "next/image";
-import { getImagePath } from "@/utils/imagePath";
 
 export default function StaticHeader({
-  image = "/images/news1.png",
+  image = "/mng/images/news1.png",
   alt = "Header Image",
   width = "90rem",
   title = null,
   desc = null,
   className = null,
 }) {
-  // Ensure image path includes basePath
-  const imageSrc = image.startsWith("http") ? image : getImagePath(image);
-  const fallbackImage = getImagePath("/images/news1.png");
+  // Next.js Image component auto-applies basePath when optimized
+  const imageSrc = image;
+  const fallbackImage = "/mng/images/news1.png";
   // Handle responsive width
   const getResponsiveStyle = () => {
     // If width is a percentage or specific mobile value, use it as is

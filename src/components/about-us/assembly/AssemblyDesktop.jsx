@@ -2,7 +2,7 @@ import Image from "next/image";
 import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import AssemblySwiper from "./AssemblySwiper";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function ReportDesktop() {
   return (
@@ -65,7 +65,7 @@ export default function ReportDesktop() {
             ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠮᠥᠷ ᠦ᠋ᠨ ᢈᠦᠲᠦᠯᠪᠦᠷᠢ ᠶ᠋ᠢᠨ
           </p>
           <Image
-            src={getImagePath("/images/assembly-image1.png")}
+            src={"/mng/images/assembly-image1.png"}
             width={847}
             height={1200}
             className="h-full w-auto object-contain relative z-0"
@@ -102,7 +102,7 @@ export default function ReportDesktop() {
             ᠦ᠋ᠳ ᠲᠦ ᠬᠠᠮᠲᠤ ᠳ᠋ᠠᠭᠠᠨ ᠢᠯᠡᢉᠦᠦ ᠶᠡᢈᠡ
           </p>
             <Image
-              src={getImagePath("/images/assembly-image2.png")}
+              src={"/mng/images/assembly-image2.png"}
               alt="Assembly image 2"
               width={508}
               height={208}

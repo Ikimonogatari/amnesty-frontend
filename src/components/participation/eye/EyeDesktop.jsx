@@ -10,7 +10,7 @@ import { toMongolianNumbers } from "@/utils/fetcher";
 import { useSubmitHumanRightsReportMutation } from "@/redux/services/apiService";
 import userApiService from "@/services/userApiService";
 import toast from "react-hot-toast";
-import { getImagePath } from "@/utils/imagePath";
+
 
 // findTop5 function exactly like old web
 const findTop5 = (data) => {
@@ -387,7 +387,7 @@ export default function EyeDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/participation/humanrighteye/header-img.png"
+        image="/mng/images/participation/humanrighteye/header-img.png"
         alt="Youth Page Header"
         width="90rem"
         title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠦᠳᠦ"
@@ -832,7 +832,7 @@ export default function EyeDesktop() {
                     className="z-10 absolute w-20 h-full flex flex-col justify-center items-center gap-2 top-0 left-0"
                   >
                     <Image
-                      src={getImagePath("/icons/upload.png")}
+                      src={"/mng/icons/upload.png"}
                       alt="upload"
                       width={24}
                       height={24}

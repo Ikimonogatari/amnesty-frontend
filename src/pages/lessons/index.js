@@ -87,7 +87,7 @@ export default function LessonsIndex() {
         <div className="hidden sm:flex h-screen overflow-hidden">
           <StaticHeader
             title="ᠰᠤᠷᠭᠠᠯᠲᠤ"
-            image="/images/lessons/header-img-lessons.jpg"
+            image="/mng/images/lessons/header-img-lessons.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -120,7 +120,7 @@ export default function LessonsIndex() {
           <StaticHeader
             title="ᠰᠤᠷᠭᠠᠯᠲᠤ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠳᠠᠪᠲᠠᠨ"
-            image="/images/lessons/header-img-lessons.jpg"
+            image="/mng/images/lessons/header-img-lessons.jpg"
           />
 
           <div className="p-4">
@@ -156,7 +156,7 @@ export default function LessonsIndex() {
 const getLessonImageUrl = (lesson) => {
   return (
     getImageUrl(lesson.attributes?.thumbnail || lesson.attributes?.cover) ||
-    "/images/news1.png"
+    "/mng/images/news1.png"
   );
 };
 

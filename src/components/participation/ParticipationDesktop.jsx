@@ -17,7 +17,7 @@ export default function ParticipationDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0 min-w-screen">
       <StaticHeader
-        image="/images/participation/image-participation-header.jpg"
+        image="/mng/images/participation/image-participation-header.jpg"
         alt="Participation Page Header"
         width="90rem"
         title="ᠲᠠᠨ ᠤ᠋ ᠣᠷᠣᠯᠴᠠᠭ᠎ᠠ"
@@ -128,7 +128,7 @@ const participationItems = [
       "ᠥᠪᠡᠷᠲᠡ ᠬᠠᠮᠤᠭ ᠤ᠋ᠨ ᠣᠶᠢᠷ᠎ᠠ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠨᠢᢉᠡᠳᠵᠦ᠂ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠬᠠᠮᠠᠭᠠᠯᠠᠭᠴᠢᠳ ᠲᠠᠢ ᠤᠤᠯᠵᠠᠭᠠᠷᠠᠢ᠃ ᢈᠡᠷᠪᠡ ᠲᠠ ᠥᠪᠡᠷ ᠢ᠋ᠶᠡᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠭᠴᠢ ᠪᠥᢉᠡᠳ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ ᠥᠷᠨᠢᢉᠦᠯᢈᠦ ᠪᠣᠯ ᠡᠨᠳᠡ ᠨᠡᠶᠢᠲᠡᠯᠡᢉᠡᠷᠡᠢ᠃",
     buttonText: "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠣᠷᠤᠯᠴᠠᠬᠤ",
     link: "/participation/events",
-    image: "/images/participation/2h_thumbnail.jpg.png",
+    image: "/mng/images/participation/2h_thumbnail.jpg.png",
   },
   {
     id: 2,
@@ -137,7 +137,7 @@ const participationItems = [
       "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ᠂ ᠲᠦᠭᠡᠡᠨ ᠳᠡᠯᠭᠡᠷᠦᠦᠯᢈᠦ ᢈᠦᠰᠦᠯ ᠡᠷᠮᠡᠯᠵᠡᠯᠡᠡᠷ ᠳᠦᠦᠷᠡᠨ ᠭᠦᠢᠴᠡᠲᠭᠡᢈᠦ ᠲᠣᠪᠴᠢᠶ᠎ᠠ ᠶ᠋ᠢᠨ ᠠᠵᠢᠯᠲᠠᠨ᠂ ᠰᠠᠶᠢᠨ ᠳᠤᠷᠤᠨ ᠤ᠋ ᠠᠵᠢᠯᠲᠠᠨ᠂ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠮᠠᠨᠯᠠᠢᠯᠠᠭᠴᠢᠳ ᠤ᠋ᠨ ᠬᠠᠮᠲᠤᠭᠠᠷ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠲᠦᠭᠡᠡᠨ ᠳᠡᠯᠭᠡᠷᠦᠦᠯᢈᠦ ᠬᠠᠮᠠᠭᠠᠯᠠᢈᠤ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
     buttonText: "ᠰᠠᠶᠢᠨ ᠳᠤᠷᠤᠨ ᠤ᠋ ᠠᠵᠢᠯᠲᠠᠨ ᠪᠣᠯᠬᠤ",
     link: "https://forms.office.com/Pages/ResponsePage.aspx?id=Kfjbwo03wUS0ehwEOSTd82OOUTGBqCBLh99jR3DTwohURU0zSEU4WDRCSjNRNDJWVDVIUUEwVUZHRi4u",
-    image: "/images/participation/2b_thumbnail.jpg.png",
+    image: "/mng/images/participation/2b_thumbnail.jpg.png",
   },
   {
     id: 3,
@@ -146,7 +146,7 @@ const participationItems = [
       'ᠳᠡᠯᠡᢈᠡᠢ ᠳᠠᢈᠢᠨ ᠤ᠋ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠭᠴᠢᠳ ᠤ᠋ᠨ ᠬᠠᠮᠤᠭ ᠤ᠋ᠨ ᠶᠡᠬᠡ ᢈᠥᠳᠡᠯᢉᠡᢉᠡᠨ "ᠡᠮᠨᠡᠰᠲᠢ ᠢᠨᠲᠡᠷᠨᠠᠰᠢᠣᠨᠠᠯ"-ᠳ᠋ᠤ ᠨᠢᢉᠡᠳᢈᠦ ᢈᠦᠰᠦᠪᠡᠯ ᠪᠢᠳᠡᠨᠲᠡᠢ ᠨᠢᢉᠡᠳᠡᠡᠷᠡᠢ᠃',
     buttonText: "ᢉᠢᠰᠦᠨ ᠪᠣᠯᠬᠤ",
     link: "https://forms.office.com/e/rBFq73J5Hi",
-    image: "/images/participation/2c_thumbnail.jpg.png",
+    image: "/mng/images/participation/2c_thumbnail.jpg.png",
   },
 ];
 
@@ -158,7 +158,7 @@ const secondRowItems = [
       "ᠡᠯᠡᠻᠲᠷᠣᠨ ᠰᠢᠤᠳᠠᠩᠭᠠᠷ ᠵᠠᢈᠢᠳᠠᠯ ᠢᠯᠭᠡᢉᠦ᠂ ᠤᠷᠢᠶᠠᠯᠭ᠎ᠠ ᠳ᠋ᠤ ᠨᠢᢉᠡᠳᢈᠦ᠂ ᠨᠢᠶᠢᠭᠡᠮ ᠤ᠋ᠨ ᠰᠦᠯᠵᠢᠶᠡ ᠳ᠋ᠤ ᠠᠻᠴᠠᠳ ᠨᠢᢉᠡᠳᢈᠦ ᠵᠡᠷᠡᠭ ᠡᠩᠭᠢᠨ ᠦᠢᠯᠡᠳᠦᠯ ᢈᠡᠨ ᠨᠡᠭᠡᠨ ᠢ᠋ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠳ᠋ᠤ ᠪᠣᠳᠢᠲᠣᠢ ᠥᠪᠡᠷᢉᠢᠯᢉᠡ ᢈᠢᠶᠡᠵᠤ ᠴᠢᠳᠠᠨ᠎ᠠ᠃",
     buttonText: "ᠵᠠᢈᠢᠳᠠᠯ ᠪᠢᢈᠢᠵᠦ ᠥᠪᠡᠷᢉᠢᠯᢉᠡ ᢈᠢᠶᠡ",
     link: "/writeforrights",
-    image: "/images/participation/2a_thumbnail.jpg.png",
+    image: "/mng/images/participation/2a_thumbnail.jpg.png",
   },
   {
     id: 5,
@@ -167,7 +167,7 @@ const secondRowItems = [
       "ᠵᠣᠷᠢᠭᠲᠣᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠬᠠᠮᠠᠭᠠᠯᠠᠭᠴᠢ ᠭᠠᠷ ᠤᠲᠠᠰᠤ ᠶ᠋ᠢᠨ ᠫᠷᠣᠭᠷᠠᠮ ᠢ ᠲᠠ ᠭᠠᠷ ᠤᠲᠠᠰᠠᠨ ᠳ᠋ᠤ ᠰᠤᠤᠯᠭᠠᠰᠨᠠᠷ ᠲᠠ ᠠᠯᠭᠠᠨ ᠳᠡᠭᠡᠷᠡᠡᠰᠡ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᢈᠤ ᠳ᠋ᠤ ᢈᠤᠪ ᠨᠡᠮᠡᠷᠡ ᠣᠷᠤᠤᠯᠵᠤ ᠴᠢᠳᠠᠨ᠎ᠠ᠃ ᠮᠥᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠲᠡᠢ ᢈᠣᠯᠪᠣᠭᠠᠲᠠᠢ ᠮᠡᠳᠡᢉᠡ᠂ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ᠂ ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶᠡ ᠶ᠋ᠢᠨ ᠲᠠᠯ᠎ᠠ ᠴᠠᠭ ᠠᠯᠳᠠᠯᠭᠦᠢ ᠮᠡᠳᠡᢉᠡᠯᠦᠯ ᠠᠪᠨ᠎ᠠ᠃",
     buttonText: "ᠵᠣᠷᠢᠭᠲᠣᠨ ᠭᠠᠷ ᠤᠲᠠᠰᠤ ᠶ᠋ᠢᠨ ᠠᠫᠫᠯᠢᠻᠠᠰᠢ ᠲᠠᠲᠠᢈᠤ",
     link: "https://play.google.com/store/apps/details?id=mn.amnesty.zorigton",
-    image: "/images/participation/2e_thumbnail.jpg.png",
+    image: "/mng/images/participation/2e_thumbnail.jpg.png",
   },
   {
     id: 6,
@@ -176,6 +176,6 @@ const secondRowItems = [
       "ᠥᠳᠦᠷ ᠪᠦᠷ ᠥᠮᠰᠦᠰᠦᠨ ᢈᠤᠪᠴᠠᠰᠠᠷᠠᠶᠠᠨ ᠳᠠᠮᠵᠢᠤᠯᠵᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠮᠡᠰᠰᠡᠵ ᠲᠦᠭᠡᢉᠦ ᠵᠠᠭᠪᠠᠷᠯᠠᠭ ᠪᠣᠭᠢᠨᠣ ᢈᠠᠨᠴᠤᠢᠲ ᠴᠠᠮᠴ᠂ ᠹᠯᠡᠰ ᠳᠢᠰᠻ᠂ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ ᠤ᠋ᠨ ᠳᠡᠪᠲᠡᠷ᠂ ᠡᠩᠭᠡᠷ ᠤ᠋ᠨ ᠲᠡᠮᠳᠡᠭ ᠵᠡᠷᠡᠭ ᠣᠯᠠᠨ ᠪᠦᠲᠡᠭᠡᠳᢈᠦᠨ ᠡᠴᠡ ᠲᠠ ᠥᠪᠡᠷᠲᠡ ᠪᠣᠯᠣᠭᠠᠳ ᢈᠠᠢᠷᠠᠲᠠᠢ ᢈᠦᠮᠦᠨ ᠲᠡᠢ ᠠᠪᠴᠤ ᠪᠡᠯᠡᠭᠯᠡᠡᠷᠡᠢ᠃",
     buttonText: "ᢈᠠᠨᠳᠢᠪ ᠥᠷᢈᠦ",
     link: "/donation",
-    image: "/images/participation/2f_thumbnail.jpg.png",
+    image: "/mng/images/participation/2f_thumbnail.jpg.png",
   },
 ];

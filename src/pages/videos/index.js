@@ -88,7 +88,7 @@ export default function VideosIndex() {
           <StaticHeader
             title="ᠸᠢᠳᠧᠣ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
-            image="/images/videos/header-img-video.jpg"
+            image="/mng/images/videos/header-img-video.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -121,7 +121,7 @@ export default function VideosIndex() {
           <StaticHeader
             title="ᠸᠢᠳᠧᠣ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
-            image="/images/videos/header-img-video.jpg"
+            image="/mng/images/videos/header-img-video.jpg"
           />
 
           <div className="p-4">
@@ -157,7 +157,7 @@ export default function VideosIndex() {
 const getVideoImageUrl = (video) => {
   return (
     getImageUrl(video.attributes?.thumbnail || video.attributes?.cover) ||
-    "/images/news1.png"
+    "/mng/images/news1.png"
   );
 };
 

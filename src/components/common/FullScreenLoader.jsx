@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function FullScreenLoader() {
   return (
@@ -10,7 +10,7 @@ export default function FullScreenLoader() {
           {/* Amnesty Logo */}
           <div className="relative w-[152px] h-[60px]">
             <Image
-              src={getImagePath("/images/amnesty-wide-logo.png")}
+              src={"/mng/images/amnesty-wide-logo.png"}
               alt="Amnesty International Mongolia"
               fill
               className="object-contain"
@@ -42,7 +42,7 @@ export default function FullScreenLoader() {
           {/* Amnesty Logo */}
           <div className="relative w-[152px] h-[60px]">
             <Image
-              src={getImagePath("/images/amnesty-wide-logo.png")}
+              src={"/mng/images/amnesty-wide-logo.png"}
               alt="Amnesty International Mongolia"
               fill
               className="object-contain"

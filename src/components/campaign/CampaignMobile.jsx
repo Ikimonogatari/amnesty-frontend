@@ -9,7 +9,7 @@ import {
   useGetCompanyWorkFeaturesQuery,
 } from "@/redux/services/apiService";
 import { getImageUrl } from "@/config/api";
-import { getImagePath } from "@/utils/imagePath";
+
 import StaticHeader from "../common/StaticHeader";
 import FullScreenLoader from "../common/FullScreenLoader";
 
@@ -41,16 +41,16 @@ export default function CampaignMobile() {
     ? companyWorksData.map((companyWork) => ({
         id: companyWork.static_id || companyWork.id, // Use static_id for routing
         title: companyWork.title || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ",
-        image: getImageUrl(companyWork.icon) || getImagePath("/images/about1.png"),
+        image: getImageUrl(companyWork.icon) || "/mng/images/about1.png",
         description: companyWork.description || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ",
       }))
     : [];
 
   // Static image paths for the first 3 feature items (from old web)
   const staticFeatureImages = [
-    "/images/campaign/211568.png",
-    "/images/campaign/211450.png",
-    "/images/campaign/211464.png",
+    "/mng/images/campaign/211568.png",
+    "/mng/images/campaign/211450.png",
+    "/mng/images/campaign/211464.png",
   ];
 
   // Convert features data to changeitems format, with fallback to static data
@@ -60,21 +60,21 @@ export default function CampaignMobile() {
       title: "ᠰᠤᠳᠤᠯᠭ᠎ᠠ",
       description:
         "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
-      image: getImagePath("/images/campaign/211568.png"),
+      image: "/mng/images/campaign/211568.png",
     },
     {
       id: 2,
       title: "ᠨᠥᠯᠦᢉᠡᠯᠡᠯ ᠦ᠋ᠨ ᠠᠵᠢᠯ",
       description:
         "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
-      image: getImagePath("/images/campaign/211450.png"),
+      image: "/mng/images/campaign/211450.png",
     },
     {
       id: 3,
       title: "ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ᠂ ᠠᠻᠼ",
       description:
         "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠠ᠋ᠴᠠ ᠡᢈᠢᠯᠡᠳᠡᢉ᠃  ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᢈᠦᠮᠦᠰ ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᢈᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᢈᠢᠳᠡᢉ᠃",
-      image: getImagePath("/images/campaign/211464.png"),
+      image: "/mng/images/campaign/211464.png",
     },
   ];
 
@@ -102,7 +102,7 @@ export default function CampaignMobile() {
   return (
     <div className="h-full w-full block sm:hidden">
       <StaticHeader
-        image="/images/image-campaign-header.jpg"
+        image="/mng/images/image-campaign-header.jpg"
         alt="Campaign Page Header"
         width="100%"
         title="ᠪᠢᠳᠡ ᠶᠠᠭᠤᠮ ᠬᠢᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ?"
@@ -131,7 +131,7 @@ export default function CampaignMobile() {
                     height={60}
                     className="object-cover rounded"
                     onError={(e) => {
-                      e.target.src = getImagePath("/images/campaign/211568.png"); // fallback image
+                      e.target.src = "/mng/images/campaign/211568.png"; // fallback image
                     }}
                   />
                 </div>
@@ -186,7 +186,7 @@ export default function CampaignMobile() {
                   height={20}
                   className="min-w-5 min-h-5"
                   onError={(e) => {
-                    e.target.src = getImagePath("/images/about1.png"); // fallback image
+                    e.target.src = "/mng/images/about1.png"; // fallback image
                   }}
                 />
                 <p

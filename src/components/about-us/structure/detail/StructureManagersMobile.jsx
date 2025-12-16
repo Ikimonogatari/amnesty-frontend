@@ -2,7 +2,7 @@ import Image from "next/image";
 import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
 import StaticHeader from "@/components/common/StaticHeader";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function StructureManagersMobile() {
   const managers = [
@@ -12,7 +12,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠣᠳᠬᠠᠨᠲᠩᠷᠢ ᠶᠡᢈᠡ ᠰᠤᠷᠭᠠᠭᠤᠯᠢ ᠶ᠋ᠢᠨ ᠬᠠᠤᠯᠢ ᠵᠦᠢ ᠶ᠋ᠢᠨ ᠰᠤᠷᠭᠠᠭᠤᠯᠢ ᠳ᠋ᠤ ᠪᠠᠭᠰᠢᠯᠠᠳᠠᠭ᠃  ᠬᠠᠤᠯᠢᠴᠢ᠂ ᠥᠮᠦᢉᠡᠯᠡᢉᠴᠢ ᠪᠡᠷ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃  ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠶ᠋ᠢᠨ ᠦᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ ᠳ᠋ᠤ ᠰᠡᢉᠦᠯ ᠦ᠋ᠨ ᠑᠐ ᠭᠠᠷᠤᠢ ᠵᠢᠯ ᠦ᠋ᠨ ᠬᠤᠭᠤᠴᠠᠭᠠᠨ ᠳ᠋ᠤ ᠢᠳᠡᠪᢈᠢ ᠲᠡᠢ ᠣᠷᠤᠯᠴᠠᠵᠤ᠂ ᠬᠠᠤᠯᠢᠴᠢᠳ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᠠᠬᠠᠯᠠᠭᠴᠢ᠂ ᠒᠐᠑᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ᠂ ᠒᠐᠒᠓ ᠣᠨ ᠤ᠋ ᠙ ᠳ᠋ᠦᢉᠡᠷ ᠰᠠᠷ᠎ᠠ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠰᠣᠩᠭᠤᠭᠳᠠᠨ ᠳᠠᠷᠤᠭ᠎ᠠ ᠪᠠᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/ochirbal.png"),
+      image: "/mng/images/managers/ochirbal.png",
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠪᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/boldsuren.png"),
+      image: "/mng/images/managers/boldsuren.png",
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠮᠣᠩᠭᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/munkhjavhlan.png"),
+      image: "/mng/images/managers/munkhjavhlan.png",
     },
     {
       id: 4,
@@ -36,7 +36,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠪᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/baylagmaa.png")   ,
+      image: "/mng/images/managers/baylagmaa.png"   ,
     },
     {
       id: 5,
@@ -44,7 +44,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠪᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/oyunnomin.png")   ,
+      image: "/mng/images/managers/oyunnomin.png"   ,
     },
     {
       id: 6,
@@ -52,7 +52,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠪᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/badral.png")   ,
+      image: "/mng/images/managers/badral.png"   ,
     },
     {
       id: 7,
@@ -60,7 +60,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠪᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/khuslen.png")   ,
+      image: "/mng/images/managers/khuslen.png"   ,
     },
     {
       id: 8,
@@ -68,7 +68,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠪᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/nandintsetseg.png")   ,
+      image: "/mng/images/managers/nandintsetseg.png"   ,
     },
     {
       id: 9,
@@ -76,7 +76,7 @@ export default function StructureManagersMobile() {
       position: "ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᠳᠡᠳ᠋ ᠳᠠᠷᠤᠭ᠎ᠠ",
       description:
         "ᠪ‍᠂ ᠪᠣᠯᠤᠳᠰᠦ᠋ᠷᠦᠩ ᠨᠢ ᠒᠐᠐᠙ ᠣᠨ ᠠ᠋ᠴᠠ ᠮᠡᠶᠢ-ᠡᠶᠢᠨ ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ᠂ ᠒᠐᠒᠐ ᠣᠨ ᠠ᠋ᠴᠠ ᠤᠳᠤᠷᠢᠳᠬᠤ ᠵᠥᠪᠯᠡᠯ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠢ᠋ᠶᠡᠷ ᠠᠵᠢᠯᠯᠠᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/managers/iderjav.png")
+      image: "/mng/images/managers/iderjav.png"
     },
   ];
 
@@ -120,7 +120,7 @@ export default function StructureManagersMobile() {
             >
               <div className="flex-shrink-0">
                 <Image
-                  src={manager.image || getImagePath("/images/no-image-icon.png")}
+                  src={manager.image || "/mng/images/no-image-icon.png"}
                   alt={manager.name}
                   width={150}
                   height={150}

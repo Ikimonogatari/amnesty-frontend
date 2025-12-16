@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "./Button";
 import { getImageUrl } from "@/utils/fetcher";
-import { getImagePath } from "@/utils/imagePath";
+
 import {
   postsService,
   lessonsService,
@@ -484,7 +484,7 @@ export default function SearchModal({ isOpen, onClose }) {
       "No image found, using fallback. Result structure:",
       JSON.stringify(result, null, 2)
     );
-    return getImagePath("/images/news1.png");
+    return "/mng/images/news1.png";
   };
 
   if (!isOpen) return null;
@@ -707,7 +707,7 @@ export default function SearchModal({ isOpen, onClose }) {
                           height={64}
                           className="w-full h-full object-cover rounded-lg"
                           onError={(e) => {
-                            e.target.src = getImagePath("/images/news1.png");
+                            e.target.src = "/mng/images/news1.png";
                           }}
                         />
                       </div>

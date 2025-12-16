@@ -7,7 +7,7 @@ import { useGetPostsQuery } from "@/redux/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 import StaticHeader from "../common/StaticHeader";
 import FullScreenLoader from "../common/FullScreenLoader";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function NewsMobile() {
   const router = useRouter();
@@ -61,7 +61,7 @@ export default function NewsMobile() {
       image:
         item.cover?.formats?.medium?.url ||
         item.cover?.formats?.large?.url ||
-        "/images/news1.png",
+        "/mng/images/news1.png",
       publishedAt: item.publishedAt,
       post_categories: item.post_categories || [],
     }));
@@ -116,17 +116,17 @@ export default function NewsMobile() {
     switch (activeCategory) {
       case "statements":
         return {
-          image: "/images/news/header-img-statements.jpg",
+          image: "/mng/images/news/header-img-statements.jpg",
           title: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠢᠷ ᠰᠤᠤᠷᠢ",
         };
       case "good_news":
         return {
-          image: "/images/news/header-img-good-news.jpg",
+          image: "/mng/images/news/header-img-good-news.jpg",
           title: "ᠣᠨᠴᠠᠯᠠᠬᠤ ᠮᠡᠳᠡᠭᠡ",
         };
       default:
         return {
-          image: "/images/news/image-news-header.jpg",
+          image: "/mng/images/news/image-news-header.jpg",
           title: "ᠮᠡᠳᠡᠭᠡ",
         };
     }
@@ -232,7 +232,7 @@ export default function NewsMobile() {
                       fill
                       className="object-cover rounded"
                         onError={(e) => {
-                          e.target.src = getImagePath("/images/news1.png"); // fallback image
+                          e.target.src = "/mng/images/news1.png"; // fallback image
                         }}
                     />
                     <Button

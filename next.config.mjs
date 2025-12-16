@@ -3,9 +3,18 @@ const nextConfig = {
   reactStrictMode: true,
   output: "standalone",
   basePath: "/mng",
-  assetPrefix: "/mng",
   images: {
-    unoptimized: true, // Remove this in production and use proper image optimization
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cms.amnesty.mn",
+      },
+      {
+        protocol: "https",
+        hostname: "amnesty-cdn2.sgp1.digitaloceanspaces.com",
+      },
+    ],
+    unoptimized: true,
   },
   async rewrites() {
     // Only in development to avoid CORS issues

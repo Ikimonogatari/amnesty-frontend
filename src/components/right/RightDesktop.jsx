@@ -143,7 +143,7 @@ export default function RightDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 flex-shrink-0">
       <StaticHeader
-        image="/images/div.png"
+        image="/mng/images/div.png"
         alt="Rights Page Header"
         width="100rem"
         title="ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ"

@@ -1,4 +1,4 @@
-import { getImagePath } from "@/utils/imagePath";
+
 
 // API Configuration for Amnesty CMS
 export const API_CONFIG = {
@@ -68,7 +68,7 @@ export const MOCK_DATA = {
       short_description:
         "ᠡᠨᠡ ᠮᠡᠳᠡᢉᠡ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ ᠶᠤᠮ",
       body: "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠲᠠᠯᠠᠭᠠᠷᢈᠢ ᠨᠢ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠨᠢᠭᠡ ᠬᠡᠰᠡᠭ ᠶᠤᠮ᠃ ᠡᠨᠡ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
-      cover: "/images/news1.png",
+      cover: "/mng/images/news1.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-15T10:00:00.000Z",
       createdAt: "2024-01-15T10:00:00.000Z",
@@ -78,7 +78,7 @@ export const MOCK_DATA = {
       title: "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠦᠨ ᠠᠵᠢᠯ",
       short_description: "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠦᠨ ᠠᠵᠢᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠨᠢ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃ ᠪᠢᠳᠡ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
-      cover: "/images/news2.png",
+      cover: "/mng/images/news2.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-14T15:30:00.000Z",
       createdAt: "2024-01-14T15:30:00.000Z",
@@ -88,7 +88,7 @@ export const MOCK_DATA = {
       title: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ",
       short_description: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
-      cover: "/images/news3.png",
+      cover: "/mng/images/news3.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-13T09:15:00.000Z",
       createdAt: "2024-01-13T09:15:00.000Z",
@@ -98,7 +98,7 @@ export const MOCK_DATA = {
       title: "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ",
       short_description: "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
-      cover: "/images/news4.png",
+      cover: "/mng/images/news4.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-12T14:45:00.000Z",
       createdAt: "2024-01-12T14:45:00.000Z",
@@ -108,7 +108,7 @@ export const MOCK_DATA = {
       title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ",
       short_description: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
-      cover: "/images/news5.png",
+      cover: "/mng/images/news5.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-11T11:20:00.000Z",
       createdAt: "2024-01-11T11:20:00.000Z",
@@ -118,7 +118,7 @@ export const MOCK_DATA = {
       title: "ᠰᠢᠪᠢᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ",
       short_description: "ᠰᠢᠪᠢᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠦᠨ ᠲᠤᠬᠠᠢ ᠮᠡᠳᠡᢉᠡ",
       body: "ᠰᠢᠪᠢᠯ ᠦᠨ ᠡᠷᢈᠡ ᠶᠢᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ ᠨᠢ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠢᠨ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠲᠦᠯᠦᠭᠡ ᠪᠠᠨ ᠠᠵᠢᠯ ᠶᠤᠮ᠃",
-      cover: "/images/news6.png",
+      cover: "/mng/images/news6.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-10T16:10:00.000Z",
       createdAt: "2024-01-10T16:10:00.000Z",
@@ -130,7 +130,7 @@ export const MOCK_DATA = {
       question: "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠶᠠᠭᠤ ᠬᠡᠷᠡᠭᠯᠡᠭᠳᠡᠭ ᠪᠤᠢ?",
       answer:
         "ᠮᠣᠩᠭᠣᠯ ᠪᠢᠴᠢᠭ ᠨᠢ ᠮᠣᠩᠭᠣᠯ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠦᠭᠡ ᠦᠰᠦᠭ ᠦᠨ ᠪᠢᠴᠢᠭ ᠪᠣᠯᠤᠨ᠂ ᠰᠠᠶᠢᠨ ᠦᠶᠡ ᠶᠢᠨ ᠦᠷᠭᠦᠯᠵᠢᠯᠡᠯ ᠦᠨ ᠪᠠᠭᠠᠵᠢ ᠶᠤᠮ᠃",
-      image: getImagePath("/images/about1.png"),
+      image: "/mng/images/about1.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-15T10:00:00.000Z",
     },
@@ -139,7 +139,7 @@ export const MOCK_DATA = {
       question: "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠶᠠᠭᠤ ᠪᠠᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠪᠤᠢ?",
       answer:
         "ᠡᠮᠨᠧᠰᠲᠢ ᠢᠨᠲᠧᠷᠨᠧᠰᠢᠨᠠᠯ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠠᠵᠢᠯᠯᠠᠳᠠᠭ᠃",
-      image: getImagePath("/images/about2.png"),
+      image: "/mng/images/about2.png",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-14T15:30:00.000Z",
     },
@@ -148,7 +148,7 @@ export const MOCK_DATA = {
       question: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠶᠠᠭᠤ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠡᠷᢈᠡ ᠪᠤᠢ?",
       answer:
         "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᢈᠡ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠠᠮᠢᠳᠤᠷᠠᠯ᠂ ᠡᠷᠬᠡ ᠴᠢᠯᠦᠭᠡ᠂ ᠪᠣᠳᠠᠯᠭ᠎ᠠ ᠶᠢᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
-      image: getImagePath("/images/about3.jpg"),
+      image: "/mng/images/about3.jpg",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-13T09:15:00.000Z",
     },
@@ -157,7 +157,7 @@ export const MOCK_DATA = {
       question: "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶᠠᠭᠤ ᠦᠨᠳᠦᠰᠦᠲᠡᠨ ᠦ ᠡᠷᢈᠡ ᠪᠤᠢ?",
       answer:
         "ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠨᠢ ᠬᠦᠮᠦᠨ ᠦ ᠪᠣᠳᠠᠯᠭ᠎ᠠ᠂ ᠰᠠᠶᠢᠨ ᠦᠶᠡ᠂ ᠠᠷᠠᠳ ᠦᠨ ᠡᠷᢈᠡ ᠶᠤᠮ᠃",
-      image: getImagePath("/images/about4.jpg"),
+      image: "/mng/images/about4.jpg",
       locale: process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN",
       publishedAt: "2024-01-12T14:45:00.000Z",
     },

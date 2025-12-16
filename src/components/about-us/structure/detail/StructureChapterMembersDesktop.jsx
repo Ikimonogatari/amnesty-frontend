@@ -3,13 +3,13 @@ import Link from "next/link";
 import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
 import { useRouter } from "next/router";
-import { getImagePath } from "@/utils/imagePath";
+
 export default function StructureChapterMembersDesktop() {
   const router = useRouter();
   return (
     <div className="h-full hidden sm:flex gap-20 overflow-x-auto w-auto flex-shrink-0 max-h-screen sm:overflow-y-hidden min-w-screen">
       <StaticHeader
-        image="/images/aboutSub1/chapter/header-img.png"
+        image="/mng/images/aboutSub1/chapter/header-img.png"
         alt="Chapter Members Page Header"
         width="90rem"
         title="ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠳ"
@@ -47,7 +47,7 @@ export default function StructureChapterMembersDesktop() {
         <div className="flex flex-col gap-4 justify-center">
           <div className="flex flex-row rounded-lg border border-solid border-[#CCCCCC]">
             <Image
-              src={getImagePath("/images/aboutSub1/chapter/ZaluuchuudBulegFront.png")}
+              src={"/mng/images/aboutSub1/chapter/ZaluuchuudBulegFront.png"}
               alt="Залуучуудын бүлэг"
               width={330}
               height={271}
@@ -66,7 +66,7 @@ export default function StructureChapterMembersDesktop() {
 
           <div className="flex flex-row rounded-lg border border-solid border-[#CCCCCC]">
             <Image
-              src={getImagePath("/images/aboutSub1/chapter/mergejilten.png")}
+              src={"/mng/images/aboutSub1/chapter/mergejilten.png"}
               alt="Мэргэжилтнүүдийн бүлэг"
               width={330}
               height={271}
@@ -84,7 +84,7 @@ export default function StructureChapterMembersDesktop() {
 
           <div className="flex flex-row rounded-lg border border-solid border-[#CCCCCC]">
             <Image
-              src={getImagePath("/images/aboutSub1/chapter/gazriinremovebg-preview.png")}
+              src={"/mng/images/aboutSub1/chapter/gazriinremovebg-preview.png"}
               alt="Орон нутгийн бүлэг"
               width={330}
               height={271}
@@ -112,7 +112,7 @@ export default function StructureChapterMembersDesktop() {
             ᠣᠷᠤᠨ ᠨᠤᠲᠤᠭ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ
           </h3>
           <Image
-            src={getImagePath("/images/aboutSub1/chapter/gazriinremovebg-preview.png")}
+            src={"/mng/images/aboutSub1/chapter/gazriinremovebg-preview.png"}
             alt="Монгол улсын газрын зураг"
             width={640}
             height={314}

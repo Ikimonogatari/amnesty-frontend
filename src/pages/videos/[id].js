@@ -95,7 +95,7 @@ export default function VideoDetail() {
   // Cover image for fallbacks if needed
   const coverImage =
     getImageUrl(video.thumbnail || video.cover || video.image) ||
-    "/images/news1.png";
+    "/mng/images/news1.png";
 
   return (
     <Layout>
@@ -250,7 +250,7 @@ export default function VideoDetail() {
                       <Image
                         src={
                           getImageUrl(item.thumbnail || item.cover) ||
-                          "/images/news1.png"
+                          "/mng/images/news1.png"
                         }
                         alt={item.title || "Video image"}
                         fill

@@ -122,7 +122,7 @@ export default function SingleStatement() {
   );
   const coverImage =
     getImageUrl(statement.cover || statement.attributes?.cover) ||
-    "/images/news1.png";
+    "/mng/images/news1.png";
   const title = statement.title || statement.attributes?.title || "";
   const description =
     statement.description || statement.attributes?.description || "";

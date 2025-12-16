@@ -7,7 +7,7 @@ import Button from "@/components/common/Button";
 import { podcastsService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
 import FullScreenLoader from "@/components/common/FullScreenLoader";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function PodcastDetail() {
   const router = useRouter();
@@ -91,7 +91,7 @@ export default function PodcastDetail() {
 
   const coverImage =
     getImageUrl(podcast.thumbnail || podcast.cover || podcast.image) ||
-    "/images/news1.png";
+    "/mng/images/news1.png";
 
   return (
     <Layout>
@@ -183,7 +183,7 @@ export default function PodcastDetail() {
                     className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-3 py-2 text-[#1ed760] hover:opacity-80 transition-opacity"
                   >
                     <Image
-                      src={getImagePath("/icons/spotify.png")}
+                      src={"/mng/icons/spotify.png"}
                       width={20}
                       height={20}
                       alt="Spotify"
@@ -199,7 +199,7 @@ export default function PodcastDetail() {
                     className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-3 py-2 hover:opacity-80 transition-opacity"
                   >
                     <Image
-                      src={getImagePath("/icons/applePodcasts.png")}
+                      src={"/mng/icons/applePodcasts.png"}
                       width={20}
                       height={20}
                       alt="Apple Podcasts"
@@ -265,7 +265,7 @@ export default function PodcastDetail() {
                       <Image
                         src={
                           getImageUrl(item.thumbnail || item.cover) ||
-                          "/images/news1.png"
+                          "/mng/images/news1.png"
                         }
                         alt={item.title || "Podcast image"}
                         fill
@@ -402,7 +402,7 @@ export default function PodcastDetail() {
                   className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-4 py-3 text-[#1ed760] hover:opacity-80 transition-opacity"
                 >
                   <Image
-                    src={getImagePath("/icons/spotify.png")}
+                    src={"/mng/icons/spotify.png"}
                     width={24}
                     height={24}
                     alt="Spotify"
@@ -418,7 +418,7 @@ export default function PodcastDetail() {
                   className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-4 py-3 hover:opacity-80 transition-opacity"
                 >
                   <Image
-                    src={getImagePath("/icons/applePodcasts.png")}
+                    src={"/mng/icons/applePodcasts.png"}
                     width={24}
                     height={24}
                     alt="Apple Podcasts"

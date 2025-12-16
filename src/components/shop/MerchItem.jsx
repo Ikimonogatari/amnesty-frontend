@@ -15,7 +15,7 @@ export default function MerchItem({ merchItem }) {
           process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
         }${directUrl}`;
   } else {
-    imageUrl = "/images/no-image-icon.png";
+    imageUrl = "/mng/images/no-image-icon.png";
   }
 
   let price = merchItem?.price;

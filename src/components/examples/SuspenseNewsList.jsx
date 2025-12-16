@@ -36,7 +36,7 @@ function NewsListContent({ category = null }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {posts.map((post) => {
-        const coverImage = getImageUrl(post.cover) || "/images/news1.png";
+        const coverImage = getImageUrl(post.cover) || "/mng/images/news1.png";
         const formattedDate = formatDate(post.publishedAt);
 
         return (

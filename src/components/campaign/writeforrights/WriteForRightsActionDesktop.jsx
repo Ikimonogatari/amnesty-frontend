@@ -107,7 +107,7 @@ export default function WriteForRightsActionDesktop({ actionId, action }) {
     <div className="h-full hidden sm:flex overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
       {/* Header Section */}
       <StaticHeader
-        image={getImageUrl(actionData.cover) || "/images/no-image.png"}
+        image={getImageUrl(actionData.cover) || "/mng/images/no-image.png"}
         alt={actionData.title}
         className="h-screen"
       />

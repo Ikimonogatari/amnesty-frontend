@@ -85,7 +85,7 @@ export default function LibraryIndex() {
           <StaticHeader
             title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-            image="/images/libraries/header-img-library.jpg"
+            image="/mng/images/libraries/header-img-library.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -117,7 +117,7 @@ export default function LibraryIndex() {
           <StaticHeader
             title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-            image="/images/libraries/header-img-library.jpg"
+            image="/mng/images/libraries/header-img-library.jpg"
           />
 
           <div className="p-4">
@@ -155,7 +155,7 @@ const getLibraryImageUrl = (library) => {
       library.attributes?.thumbnail ||
         library.attributes?.cover ||
         library.attributes?.image
-    ) || "/images/news1.png"
+    ) || "/mng/images/news1.png"
   );
 };
 

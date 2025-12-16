@@ -122,7 +122,7 @@ export default function SingleNews() {
   }
 
   const publishedAt = formatMongolianDate(post.publishedAt);
-  const coverImage = getImageUrl(post.cover) || "/images/news1.png";
+  const coverImage = getImageUrl(post.cover) || "/mng/images/news1.png";
 
   return (
     <Layout>

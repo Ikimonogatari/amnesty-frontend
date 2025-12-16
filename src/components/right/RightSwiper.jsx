@@ -75,7 +75,7 @@ export default function RightSwiper({
       getImageUrl(itemAttrs.cover) ||
       getImageUrl(itemAttrs.image) ||
       getImageUrl(itemAttrs.featured_image) ||
-      "/images/dummy-image.png";
+      "/mng/images/dummy-image.png";
 
     return {
       id: item.id || index + 1,

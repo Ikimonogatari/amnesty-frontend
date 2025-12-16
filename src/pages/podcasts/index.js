@@ -7,7 +7,7 @@ import PageIntroduction from "@/components/common/PageIntroduction";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
 import Fetcher, { getImageUrl, buildFetcherUrl } from "@/utils/fetcher";
 import Layout from "@/components/layout/Layout";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function PodcastsIndex() {
   const router = useRouter();
@@ -90,7 +90,7 @@ export default function PodcastsIndex() {
           <StaticHeader
             title="ᠫᠣᠳᠺᠠᠰᠲ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠫᠣᠳᠺᠠᠰᠲ ᠳᠠᠪᠲᠠᠨ"
-            image="/images/podcasts/header-img.jpg"
+            image="/mng/images/podcasts/header-img.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -124,7 +124,7 @@ export default function PodcastsIndex() {
           <StaticHeader
             title="ᠫᠣᠳᠺᠠᠰᠲ"
             description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠫᠣᠳᠺᠠᠰᠲ ᠳᠠᠪᠲᠠᠨ"
-            image="/images/podcasts/header-img.jpg"
+            image="/mng/images/podcasts/header-img.jpg"
           />
 
           <div className="p-4">
@@ -161,7 +161,7 @@ export default function PodcastsIndex() {
 const getPodcastImageUrl = (podcast) => {
   return (
     getImageUrl(podcast.attributes?.thumbnail || podcast.attributes?.cover) ||
-    "/images/news1.png"
+    "/mng/images/news1.png"
   );
 };
 
@@ -182,7 +182,7 @@ const renderPodcastLinks = (podcast) => {
           onClick={(e) => e.stopPropagation()}
         >
           <Image
-            src={getImagePath("/icons/spotify.png")}
+            src={"/mng/icons/spotify.png"}
             alt="Spotify"
             width={20}
             height={20}
@@ -201,7 +201,7 @@ const renderPodcastLinks = (podcast) => {
           onClick={(e) => e.stopPropagation()}
         >
           <Image
-            src={getImagePath("/icons/applePodcasts.png")}
+            src={"/mng/icons/applePodcasts.png"}
             alt="Apple Podcasts"
             width={20}
             height={20}

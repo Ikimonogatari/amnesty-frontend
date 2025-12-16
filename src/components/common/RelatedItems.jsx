@@ -60,7 +60,7 @@ export default function RelatedItems({
               <Image
                 src={
                   getImageUrl(item.thumbnail || item.cover || item.image) ||
-                  "/images/news1.png"
+                  "/mng/images/news1.png"
                 }
                 alt={item.title || item.name || "Related item image"}
                 fill

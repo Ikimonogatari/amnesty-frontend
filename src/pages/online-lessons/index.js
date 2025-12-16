@@ -86,7 +86,7 @@ export default function OnlineLessonsIndex() {
           <StaticHeader
             title="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ"
             description="ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠨ ᠳᠠᠪᠲᠠᠨ"
-            image="/images/online-lessons/header-img-online-lessons.jpg"
+            image="/mng/images/online-lessons/header-img-online-lessons.jpg"
           />
 
           {/* Desktop Introduction Section */}
@@ -127,7 +127,7 @@ export default function OnlineLessonsIndex() {
           <StaticHeader
             title="ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ"
             description="ᠤᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯᠲᠤ ᠦᠨ ᠳᠠᠪᠲᠠᠨ"
-            image="/images/online-lessons/header-img-online-lessons.jpg"
+            image="/mng/images/online-lessons/header-img-online-lessons.jpg"
           />
 
           <div className="p-4">
@@ -175,7 +175,7 @@ export default function OnlineLessonsIndex() {
 const getOnlineLessonImageUrl = (lesson) => {
   return (
     getImageUrl(lesson.attributes?.thumbnail || lesson.attributes?.cover) ||
-    "/images/news1.png"
+    "/mng/images/news1.png"
   );
 };
 

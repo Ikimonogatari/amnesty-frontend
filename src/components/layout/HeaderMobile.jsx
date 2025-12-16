@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import SearchModal from "../common/SearchModal";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function HeaderMobile() {
   const [showMenu, setShowMenu] = useState(false);
@@ -118,7 +118,7 @@ export default function HeaderMobile() {
         } transition-opacity duration-300`}
       >
         <Image
-          src={getImagePath("/images/amnesty-wide-logo.png")}
+          src={"/mng/images/amnesty-wide-logo.png"}
           alt="logo"
           width={100}
           height={40}
@@ -145,7 +145,7 @@ export default function HeaderMobile() {
             router.push("/shop");
           }}
         >
-          <Image src={getImagePath("/icons/bag.svg")} alt="bag" width={25} height={25} />
+          <Image src={"/mng/icons/bag.svg"} alt="bag" width={25} height={25} />
         </button>
       </div>
 
@@ -156,7 +156,7 @@ export default function HeaderMobile() {
       >
         <div className="w-full flex justify-between items-center p-2">
           <Image
-            src={getImagePath("/images/amnesty-wide-logo.png")}
+            src={"/mng/images/amnesty-wide-logo.png"}
             alt="logo"
             width={100}
             height={40}

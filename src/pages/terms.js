@@ -7,7 +7,7 @@ export default function Terms() {
       {/* Desktop Layout */}
       <div className="h-full hidden sm:flex gap-20 w-auto flex-shrink-0">
         <StaticHeader
-          image="/images/about/about-header-img.png"
+          image="/mng/images/about/about-header-img.png"
           alt="Terms of Service Page Header"
           width="90rem"
           title="ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ"
@@ -89,7 +89,7 @@ export default function Terms() {
       {/* Mobile Layout */}
       <div className="h-full flex flex-col gap-7 w-auto flex-shrink-0 sm:hidden">
         <StaticHeader
-          image="/images/about/about-header-img.png"
+          image="/mng/images/about/about-header-img.png"
           alt="Terms of Service Page Header"
           width="100%"
           title="ᠦᠢᠯᠡᠴᠢᠯᠡᠯᠳᠦ ᠶᠢᠨ ᠨᠥᠬᠥᠴᠦᠯ"

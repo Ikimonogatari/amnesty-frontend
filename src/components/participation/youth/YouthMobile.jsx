@@ -5,13 +5,13 @@ import { bannerImages } from "@/constants/bannerImages";
 import SectionTitle from "@/components/common/SectionTitle";
 import { Download } from "lucide-react";
 import StaticHeader from "@/components/common/StaticHeader";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function YouthDesktop() {
   return (
     <div className="h-full w-full block sm:hidden">
       <StaticHeader
-        image="/images/participation/youthhumanrights/zaluuchuudbulegfull1.png"
+        image="/mng/images/participation/youthhumanrights/zaluuchuudbulegfull1.png"
         alt="Youth Page Header"
         width="100%"
         title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠵᠠᠯᠤᠴᠢᠳ"
@@ -20,7 +20,7 @@ export default function YouthDesktop() {
         <div className="flex flex-row gap-2 max-h-[212px] p-4">
           <div className="relative min-w-[150px] min-h-[212px] max-w-[150px] max-h-[212px]">
             <Image
-              src={getImagePath("/images/youthpoweraction.png")}
+              src={"/mng/images/youthpoweraction.png"}
               alt="Youth power action"
               fill
               className="object-contain"
@@ -148,7 +148,7 @@ export default function YouthDesktop() {
           <div className="relative z-0 max-h-[200px] w-full flex justify-center items-center">
             <div className="relative w-full h-[200px] z-0 rounded-lg">
               <Image
-                src={getImagePath("/images/participation/youthhumanrights/youthcollective_new.jpg")}
+                src={"/mng/images/participation/youthhumanrights/youthcollective_new.jpg"}
                 alt="Youth collective"
                 fill
                 className="object-cover rounded-lg"

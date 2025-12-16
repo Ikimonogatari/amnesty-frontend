@@ -13,7 +13,7 @@ import {
 import { useRef, useState, useEffect } from "react";
 import SectionTitle from "@/components/common/SectionTitle";
 import Image from "next/image";
-import { getImagePath } from "@/utils/imagePath";
+
 import { useRouter } from "next/router";
 import { getImageUrl } from "@/config/api";
 
@@ -84,7 +84,7 @@ export default function ReportSwiper({
       ? validReports.map((report, index) => {
           // RTK Query flattens attributes, but cover is still nested
           const imageUrl =
-            report?.cover?.data?.attributes?.url || "/images/dummy-image.png";
+            report?.cover?.data?.attributes?.url || "/mng/images/dummy-image.png";
 
           // Add base URL if the image URL is a relative path from the API
           const fullImageUrl = imageUrl.startsWith("/uploads/")
@@ -117,7 +117,7 @@ export default function ReportSwiper({
           {
             id: 1,
             title: "ᠦᠶᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ ᠤ᠋ ᠲᠠᠶᠢᠯᠤᠨ ᠦᠭᠡᠢ",
-            image: "/images/dummy-image.png",
+            image: "/mng/images/dummy-image.png",
           },
         ];
 
@@ -212,7 +212,7 @@ export default function ReportSwiper({
                   height={112.5}
                   className={`rounded-lg shadow-lg relative z-0 w-full aspect-[204/290]`}
                     onError={(e) => {
-                      e.target.src = getImagePath("/images/dummy-image.png");
+                      e.target.src = "/mng/images/dummy-image.png";
                     }}
                 />
               </div>

@@ -4,7 +4,7 @@ import BannerSlider from "@/components/common/BannerSlider";
 import { bannerImages } from "@/constants/bannerImages";
 import AssemblySwiper from "./AssemblySwiper";
 import StaticHeader from "@/components/common/StaticHeader";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function AssemblyMobile() {
   return (
@@ -20,7 +20,7 @@ export default function AssemblyMobile() {
           {/* First text section with image */}
           <div className="flex gap-2 max-h-[212px]">
               <Image
-                src={getImagePath("/images/assembly-image1.png")}
+                src={"/mng/images/assembly-image1.png"}
                 alt="Assembly Image 1"
                 width={150}
                 height={212}
@@ -111,7 +111,7 @@ export default function AssemblyMobile() {
           </p>
           <div className="relative w-full h-[150px]">
             <Image
-              src={getImagePath("/images/assembly-image2.png")}
+              src={"/mng/images/assembly-image2.png"}
               alt="Assembly Image 2"
               fill
               className="object-cover"

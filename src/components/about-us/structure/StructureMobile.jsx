@@ -9,7 +9,7 @@ export default function StructureMobile() {
     <div className="w-full block sm:hidden">
       <div className="relative w-full h-[40hv]">
         <StaticHeader
-          image="/images/aboutSub1/organization_cover.jpg"
+          image="/mng/images/aboutSub1/organization_cover.jpg"
           alt="Structure Page Header"
           width="100%"
           title="ᠪᠠᠶᠢᠭᠤᠯᠤᠯ ᠤᠨ ᠪᠦᠲᠦᠴᠡ"

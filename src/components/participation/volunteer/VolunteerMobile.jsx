@@ -6,7 +6,7 @@ export default function VolunteerMobile() {
   return (
     <div className="h-full w-full block sm:hidden p-4">
       <StaticHeader
-        image="/images/participation/volunteer/header-img.png"
+        image="/mng/images/participation/volunteer/header-img.png"
         alt="Youth Page Header"
         width="100%"
         title="ᠳᠡᠯᠬᠡᠢ ᠶᠢᠷᠲᠡᠨ ᠦ ᠶᠡᠷ ᠳᠡ ᠶᠠᠪᠤ ᠣᠳᠣᠣ"

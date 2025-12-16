@@ -108,7 +108,7 @@ export default function WriteForRightsActionMobile({ actionId, action }) {
       {/* Header Section */}
       <div className="relative">
         <StaticHeader
-          image={getImageUrl(actionData.cover) || "/images/no-image.png"}
+          image={getImageUrl(actionData.cover) || "/mng/images/no-image.png"}
           alt={actionData.title}
         />
       </div>

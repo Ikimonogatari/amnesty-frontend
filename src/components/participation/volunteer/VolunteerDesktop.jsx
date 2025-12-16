@@ -5,7 +5,7 @@ export default function VolunteerDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/participation/volunteer/header-img.png"
+        image="/mng/images/participation/volunteer/header-img.png"
         alt="Youth Page Header"
         width="90rem"
         title="ᠳᠡᠯᠬᠡᠢ ᠶᠢᠷᠲᠡᠨ ᠦ ᠶᠡᠷ ᠳᠡ ᠶᠠᠪᠤ ᠣᠳᠣᠣ"

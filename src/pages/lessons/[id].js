@@ -96,7 +96,7 @@ export default function LessonDetail() {
 
   const coverImage =
     getImageUrl(lesson.thumbnail || lesson.cover || lesson.image) ||
-    "/images/news1.png";
+    "/mng/images/news1.png";
 
   return (
     <Layout>
@@ -330,7 +330,7 @@ export default function LessonDetail() {
                       <Image
                         src={
                           getImageUrl(item.thumbnail || item.cover) ||
-                          "/images/news1.png"
+                          "/mng/images/news1.png"
                         }
                         alt={item.title || "Lesson image"}
                         fill

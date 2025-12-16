@@ -3,13 +3,13 @@ import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
 import SectionTitle from "@/components/common/SectionTitle";
 import { Download } from "lucide-react";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function YouthDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 overflow-x-auto w-auto flex-shrink-0">
       <StaticHeader
-        image="/images/participation/youthhumanrights/zaluuchuudbulegfull1.png"
+        image="/mng/images/participation/youthhumanrights/zaluuchuudbulegfull1.png"
         alt="Youth Page Header"
         width="90rem"
         title="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠵᠠᠯᠤᠴᠢᠳ"
@@ -61,7 +61,7 @@ export default function YouthDesktop() {
         <div className="h-full flex flex-col gap-4">
           <div className="relative min-w-[283px] min-h-[400px] max-w-[283px] max-h-[400px]">
             <Image
-              src={getImagePath("/images/youthpoweraction.png")}
+              src={"/mng/images/youthpoweraction.png"}
               alt="Youth power action"
               fill
               className="object-contain"
@@ -143,7 +143,7 @@ export default function YouthDesktop() {
           </h2>
           <div className="relative z-0 w-full h-full">
             <Image
-              src={getImagePath("/images/participation/youthhumanrights/youthcollective_new.jpg")}
+              src={"/mng/images/participation/youthhumanrights/youthcollective_new.jpg"}
               alt="Youth collective"
               fill
               className="object-contain z-0"

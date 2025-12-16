@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import * as countryList from "country-list";
 import { actionsService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
-import { getImagePath } from "@/utils/imagePath";
+
 
 export default function WriteForRightsDesktop({ actions = [], error = null }) {
   const router = useRouter();
@@ -188,12 +188,12 @@ export default function WriteForRightsDesktop({ actions = [], error = null }) {
                         height={120}
                         className="w-full h-full object-cover"
                         onError={(e) => {
-                          e.target.src = getImagePath("/images/no-image.png");
+                          e.target.src = "/mng/images/no-image.png";
                         }}
                       />
                     ) : (
                       <Image
-                        src={getImagePath("/images/no-image.png")}
+                        src={"/mng/images/no-image.png"}
                         alt="No image"
                         width={150}
                         height={120}

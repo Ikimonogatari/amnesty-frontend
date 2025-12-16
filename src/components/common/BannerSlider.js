@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "@/components/common/Button";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
-import { getImagePath } from "@/utils/imagePath";
+
 import FullScreenLoader from "./FullScreenLoader";
 
 export default function BannerSlider({
@@ -69,7 +69,7 @@ export default function BannerSlider({
 
         return {
           id: post.id,
-          src: getImageUrl(post.cover) || "/images/news1.png",
+          src: getImageUrl(post.cover) || "/mng/images/news1.png",
           alt: post.title || `News ${post.id}`,
           caption: {
             title: post.short_description || post.title || "ᠮᠡᠳᠡᢉᠡ",
@@ -188,25 +188,28 @@ export default function BannerSlider({
               style={{ width: "100%" }}
             >
               {/* Use background-image approach like old web for better compatibility */}
+              {/* For CSS backgroundImage, we need to manually add basePath since Next.js doesn't auto-apply it */}
               <div
                 className="w-full h-full bg-cover bg-center bg-no-repeat md:rounded-xl"
                 style={{
                   backgroundImage: image.src
-                    ? `url(${getImagePath(image.src)})`
-                    : `url(${getImagePath("/images/news1.png")})`,
+                    ? image.src.startsWith('http') || image.src.startsWith('/mng')
+                      ? `url(${image.src})`
+                      : `url(/mng${image.src.startsWith('/') ? '' : '/'}${image.src})`
+                    : `url(/mng/images/news1.png)`,
                 }}
               />
               {/* Fallback image element to handle loading errors */}
               <div className="hidden relative w-0 h-0">
                 <Image
-                  src={image.src || getImagePath("/images/news1.png")}
+                  src={image.src || "/mng/images/news1.png"}
                   alt=""
                   fill
                   onError={(e) => {
                     // If image fails to load, update the parent div's background
                     const parentDiv = e.target.closest('.relative')?.parentElement;
                     if (parentDiv) {
-                      parentDiv.style.backgroundImage = `url(${getImagePath("/images/news1.png")})`;
+                      parentDiv.style.backgroundImage = `url(${"/mng/images/news1.png"})`;
                     }
                   }}
                 />

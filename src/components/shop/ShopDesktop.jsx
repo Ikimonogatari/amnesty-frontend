@@ -6,7 +6,7 @@ import { getImageUrl } from "@/utils/fetcher";
 // Helper functions for GridLayout component
 const getMerchImageUrl = (merch) => {
   if (!merch?.images?.data?.attributes?.url) {
-    return "/images/no-image-icon.png";
+    return "/mng/images/no-image-icon.png";
   }
 
   const directUrl = merch.images.data.attributes.url;
@@ -69,7 +69,7 @@ export default function ShopDesktop({ merchandise = [] }) {
   return (
     <div className="h-full hidden sm:flex gap-10 flex-shrink-0 p-4">
       <StaticHeader
-        image="/images/merch/header-img-amnestyshop.jpg"
+        image="/mng/images/merch/header-img-amnestyshop.jpg"
         alt="Shop Page Header"
         width="90rem"
         title="ᠡᠮᠨᠧᠰᠲᠢ ᠳᠡᠯᠭᠦᠦᠷ"

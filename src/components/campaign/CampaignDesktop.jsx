@@ -8,7 +8,7 @@ import {
   useGetCompanyWorkFeaturesQuery,
 } from "@/redux/services/apiService";
 import { getImageUrl } from "@/config/api";
-import { getImagePath } from "@/utils/imagePath";
+
 import FullScreenLoader from "../common/FullScreenLoader";
 
 export default function CampaignDesktop() {
@@ -40,7 +40,7 @@ export default function CampaignDesktop() {
         .map((companyWork) => ({
         id: companyWork.static_id || companyWork.id, // Use static_id for routing
         title: companyWork.title || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ",
-        image: getImageUrl(companyWork.icon) || getImagePath("/images/about1.png"),
+        image: getImageUrl(companyWork.icon) || "/mng/images/about1.png",
         description: companyWork.description || "ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ",
       }))
         .sort((a, b) => {
@@ -53,26 +53,26 @@ export default function CampaignDesktop() {
 
   // Static image paths for the first 3 feature items (from old web)
   const staticFeatureImages = [
-    "/images/campaign/211568.png",
-    "/images/campaign/211450.png",
-    "/images/campaign/211464.png",
+    "/mng/images/campaign/211568.png",
+    "/mng/images/campaign/211450.png",
+    "/mng/images/campaign/211464.png",
   ];
 
   // Dynamic campaign images array
   const campaignImages = [
-    "/images/campaign/cam1.png",
-    "/images/campaign/cam2.png",
-    "/images/campaign/childrights.png",
-    "/images/campaign/cam4.png",
-    "/images/campaign/cam5.png",
-    "/images/campaign/cam6.png",
-    "/images/campaign/cam7.png",
-    "/images/campaign/cam8.png",
-    "/images/campaign/durvegch.png",
-    "/images/campaign/cam10.png",
-    "/images/campaign/cam11.webp",
-    "/images/campaign/eruuden.png",
-    "/images/campaign/cam13.webp",
+    "/mng/images/campaign/cam1.png",
+    "/mng/images/campaign/cam2.png",
+    "/mng/images/campaign/childrights.png",
+    "/mng/images/campaign/cam4.png",
+    "/mng/images/campaign/cam5.png",
+    "/mng/images/campaign/cam6.png",
+    "/mng/images/campaign/cam7.png",
+    "/mng/images/campaign/cam8.png",
+    "/mng/images/campaign/durvegch.png",
+    "/mng/images/campaign/cam10.png",
+    "/mng/images/campaign/cam11.webp",
+    "/mng/images/campaign/eruuden.png",
+    "/mng/images/campaign/cam13.webp",
   ];
 
   // Convert features data to changeitems format, with fallback to static data
@@ -82,21 +82,21 @@ export default function CampaignDesktop() {
       title: "ᠰᠤᠳᠤᠯᠭ᠎ᠠ",
       description:
         "ᠭᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᠭᠡ ᠶ᠋ᠢᠨ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠪᠣᠯ ᠪᠠᠷᠢᠮᠲᠠ ᠡᠴᠠ ᠡᠭᠢᠯᠡᠳᠡᠭ᠃ ᠮᠠᠨ ᠤ᠋ ᠮᠡᠷᢉᠡᠵᠢᠯᠲᠡᠨ ᠨᠦ᠋ᢉᠦᠳ ᠳᠡᠯᠡᠭᠡᠢ ᠶ᠋ᠢᠨ ᠭᠡᠮᠵᠢᠶᠡᠨ ᠳ᠋ᠦ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᠬᠦᠮᠦᠰ ᠦ᠋ᠨ ᠬᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᠭᠡ ᠶ᠋ᠢᠨ ᠵᠥᠷᠢᠴᠡᠯ ᠦ᠋ᠨ ᠲᠠᠯᠠᠭᠠᠷ ᠦᠨᠡᠨ ᠵᠥᠪ᠂ ᠭᠥᠨᠳᠡᠯᠡᠨ ᠰᠢᠯᠭᠠᠭᠰᠠᠨ ᠰᠤᠳᠤᠯᠭ᠎ᠠ ᠭᠢᠳᠡᠭ᠃",
-      image: getImagePath("/images/campaign/211568.png"),
+      image: "/mng/images/campaign/211568.png",
     },
     {
       id: 2,
       title: "ᠨᠥᠯᠦᢉᠡᠯᠡᠯ ᠦ᠋ᠨ ᠠᠵᠢᠯ",
       description:
         "ᠪᠢᠳᠡ ᠳ᠋ᠦᠩ ᠰᠢᠨᠵᠢᠯᠡᢉᠡ ᠪᠡᠨ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ᠂ ᠻᠣᠮᠫᠠᠨᠢ ᠨᠤᠭᠤᠳ ᠪᠣᠯᠤᠨ ᠰᠢᠢᠳᠪᠦᠷᠢ ᠭᠠᠷᠭᠠᠭᠴᠢᠳ ᠲᠤ ᠵᠥᠪ ᠵᠦᠢᠯ ᠭᠢᢈᠦ ᠳ᠋ᠦ ᠨᠥᠯᠦᢉᠡᠯᠡᠭᠦ᠂ ᠰᠢᠬᠠᠬᠤ ᠵᠣᠷᠢᠯᠭ᠎ᠠ ᠪᠠᠷ ᠠᠰᠢᠭᠯᠠᠳᠠᠭ᠃",
-      image: getImagePath("/images/campaign/211450.png"),
+      image: "/mng/images/campaign/211450.png",
     },
     {
       id: 3,
       title: "ᠦᠶᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭ᠎ᠠ᠂ ᠠᠻᠼ",
       description:
         "ᠡᠷᢉᠦᠳᠡᠯ᠂ ᠵᠠᢈᠢᠳᠠᠯ᠂ ᠡᠰᠡᠷᢉᠦᠴᠡᠯ ᠢ᠋ᠢᠡᠷ ᠳᠠᠮᠵᠢᠭᠤᠯᠤᠨ ᠳᠡᠯᠡᠭᠡᠢ ᠳᠠᠶᠠᠭᠠᠷᢈᠬ ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯᠴᠢᠳ ᠥᢉᠡᠷᠡᠴᠢᠯᠡᠯᠲᠡ ᠭᠢᠵᠦ ᠴᠢᠳᠠᠬᠤ ᠭᠦᠮᠦᠰ᠂ ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠨᠤᠭᠤᠳ ᠡᠴᠠ ᠠᠷᠭ᠎ᠠ ᠭᠡᠮᠵᠢᠶ᠎ᠡ ᠠᠪᠬᠤ ᠶ᠋ᠢ ᠰᠢᠬᠠᠳᠠᠭ᠃",
-      image: getImagePath("/images/campaign/211464.png"),
+      image: "/mng/images/campaign/211464.png",
     },
   ];
 
@@ -124,7 +124,7 @@ export default function CampaignDesktop() {
   return (
     <div className="h-full hidden sm:flex gap-10 w-auto flex-shrink-0 min-w-screen">
       <StaticHeader
-        image="/images/image-campaign-header.jpg"
+        image="/mng/images/image-campaign-header.jpg"
         alt="Campaign Page Header"
         width="90rem"
         title="ᠪᠢᠳᠡ ᠶᠠᠭᠤ ᠭᠢᠳᠡᠭ ᠪᠤᠢ?"
@@ -146,7 +146,7 @@ export default function CampaignDesktop() {
                     height={120}
                     className="object-cover rounded-lg"
                     onError={(e) => {
-                      e.target.src = getImagePath("/images/campaign/211568.png"); // fallback image
+                      e.target.src = "/mng/images/campaign/211568.png"; // fallback image
                     }}
                   />
                 </div>

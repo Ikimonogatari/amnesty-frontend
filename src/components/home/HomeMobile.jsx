@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
-import { getImagePath } from "@/utils/imagePath";
+
 import { useRouter } from "next/router";
 import Link from "next/link";
 import FullScreenLoader from "../common/FullScreenLoader";
@@ -24,28 +24,28 @@ export default function HomeMobile() {
       id: 1,
       title: "ᠪᠢᠳᠡ ᠬᠡᠨ ᠪᠡ?",
       body: "ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠰᠢᠨ᠋ᠯ ᠨᠢ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ ᢈᠦᠮᠦᠰ ᠦ᠋ᠨ ᠳᠡᠯᠡᢈᠡᠢ ᠳᠠᠶᠠᠷ᠎ᠠ ᠬᠥᠳᠡᠯᠭᠡᠭᠡᠨ ᠶᠤᠮ᠃",
-      image: getImagePath("/images/footer-img-1.jpg"),
+      image: "/mng/images/footer-img-1.jpg",
       buttonHref: "/about",
     },
     {
       id: 2,
       title: "ᠪᠢᠳᠡ ᠶᠤᠤ ᢈᠢᠶᠡᠳᠡᠭ ᠪᠡ?",
       body: "ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠦᠭᠡᠮᠡᠯ ᠲᠤᠨᠬᠠᠭᠯᠠᠯ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠠᠳ ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠵᠢᠰᠢᠭ ᢈᠡᠮ ᢈᠡᠮᠵᠢᠶ᠎ᠡ ᠳ᠋ᠤ ᠵᠠᠠᠰᠠᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠡᠨᠡ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠦᠮᠦᠨ ᠪᠦᠷᠢ ᠳ᠋ᠦ ᠡᠳ᠋ᠯᠡᢉᠦᠯᢈᠦ ᠳ᠋ᠤ ᠣᠷᠣᠰᠢᠨ᠎ᠠ᠃",
-      image: getImagePath("/images/footer-img-2.jpg"),
+      image: "/mng/images/footer-img-2.jpg",
       buttonHref: "/about/3",
     },
     {
       id: 3,
       title: "ᠲᠠ ᠶᠤᠤ ᢈᠢᠶᠡᠵᠤ ᠴᠠᠳᠠᠬᠤ ᠪᠡ?",
       body: "ᠳᠡᠯᠡᢈᠡᠢ ᠳᠠᠶᠠᠷ᠎ᠠ ᠶᠠᠪᠤᠭᠤᠯᠵᠤ ᠪᠠᠶᠢᠭ᠎ᠠ ᠣᠯᠠᠨ ᠤᠯᠤᠰ ᠤ᠋ᠨ ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠪᠣᠯᠤᠨ ᠳᠣᠲᠣᠭᠠᠳ ᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠬᠠᠮᠠᠭᠠᠯᠠᠬᠤ, ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠲᠤᠬᠠᠢ ᠪᠣᠯᠪᠠᠰᠤᠷᠠᠯ ᠮᠡᠳᠡᠯᠭᠡ ᠶ᠋ᠢ ᠳᠡᠭᠡᠰᠢᠯᠡᢉᠦᠯᢈᠦ ᠦᠶ᠎ᠡᠳ ᠤ ᠬᠠᠮᠲᠤᠷᠠᠨ ᠠᠵᠢᠯᠯᠠᠬᠤ᠃",
-      image: getImagePath("/images/footer-img-3.jpg"),
+      image: "/mng/images/footer-img-3.jpg",
       buttonHref: "/member",
     },
     {
       id: 4,
       title: "ᢈᠠᠨᠳᠢᠪ ᠥᠭᠴᠦ, ᠠᠮᠢᠳᠤᠷᠠᠯ ᠥᠥᠷᠴᠢᠯᢉᠦ",
       body: "ᠪᠢᠳᠡ ᠠᠯᠢᠪᠠ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ, ᠤᠯᠤᠰ ᠲᠥᠷ ᠦ᠋ᠨ ᠦᠵᠡᠯ ᠰᠤᠷᠲᠠᠯ, ᠡᠳ᠋ᠦᠨ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠠᠰᠢᠭ ᠰᠣᠨᠢᠷᠬᠣᠯ, ᠰᠠᠰᠢᠨ ᠰᠦᠲᠡᠯᠡᠭ ᠡᠴᠡ ᠠᠩᠭᠢᠳ ᠪᠢᠶ᠎ᠡ ᠳᠠᠭᠠᠰᠠᠨ, ᠬᠠᠷᠠᠭᠠᠳ ᠦᠭᠡᠢ ᠪᠥᠭᠡᠳ ᠭᠢᠰᠦᠨ ᠳᠡᠮᠵᠢᠭᠴᠢᠳ ᠦ᠋ᠨ ᢈᠠᠨᠳᠢᠪ ᠲᠤᠰᠠᠯᠠᠮᠵᠢ ᠪᠠᠷ ᠰᠠᠨᢈᠦᠦᠵᠢᠳᠡᠭ᠃",
-      image: getImagePath("/images/footer-img-4.jpg"),
+      image: "/mng/images/footer-img-4.jpg",
       buttonHref: "/donation",
     },
   ];
@@ -80,7 +80,7 @@ export default function HomeMobile() {
     return {
       id: post.id,
       title: post.short_description || post.title || "ᠭᠠᠷᠴᠢᠭ ᠦᠭᠡᠢ",
-      image: getImageUrl(post.cover) || getImagePath("/images/news1.png"),
+      image: getImageUrl(post.cover) || "/mng/images/news1.png",
       body: post.short_description || post.body || "",
     };
   });
@@ -161,7 +161,7 @@ export default function HomeMobile() {
                     fill
                     className="min-w-[200px] min-h-[200px] max-w-[200px] max-h-[200px] object-cover rounded-xl"
                     onError={(e) => {
-                      e.target.src = getImagePath("/images/news1.png"); // fallback image
+                      e.target.src = "/mng/images/news1.png"; // fallback image
                     }}
                   />
                   <Button
@@ -226,7 +226,7 @@ export default function HomeMobile() {
                     width={28}
                     height={28}
                     onError={(e) => {
-                      e.target.src = getImagePath("/images/about1.png"); // fallback image
+                      e.target.src = "/mng/images/about1.png"; // fallback image
                     }}
                   />
                   <h4

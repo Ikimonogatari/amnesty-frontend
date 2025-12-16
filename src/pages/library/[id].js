@@ -95,7 +95,7 @@ export default function LibraryDetail() {
         library.cover ||
         library.image ||
         library.featured_image
-    ) || "/images/news1.png";
+    ) || "/mng/images/news1.png";
 
   const pdfUrl =
     getImageUrl(library.pdf_file) || library.file_url || library.pdf_file;
@@ -225,7 +225,7 @@ export default function LibraryDetail() {
                         src={
                           getImageUrl(
                             item.thumbnail || item.cover || item.image
-                          ) || "/images/news1.png"
+                          ) || "/mng/images/news1.png"
                         }
                         alt={item.title || item.name || "Library image"}
                         fill

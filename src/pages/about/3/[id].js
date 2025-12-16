@@ -128,7 +128,7 @@ export default function ReportDetail() {
 
   // RTK Query flattens attributes, but cover is still nested
   const coverImage =
-    getImageUrl(report?.cover?.data?.attributes?.url) || "/images/news1.png";
+    getImageUrl(report?.cover?.data?.attributes?.url) || "/mng/images/news1.png";
 
   return (
     <Layout>
@@ -136,7 +136,7 @@ export default function ReportDetail() {
       <div className="sm:hidden flex flex-col w-full">
         {/* Mobile StaticHeader */}
         <StaticHeader
-          image="/images/header-img.png"
+          image="/mng/images/header-img.png"
           alt={title || "ᠲᠠᠶᠢᠯᠤᠨ"}
           title={title}
           width="100%"
@@ -272,7 +272,7 @@ export default function ReportDetail() {
                           <Image
                             src={
                               getImageUrl(item?.cover?.data?.attributes?.url) ||
-                              "/images/news1.png"
+                              "/mng/images/news1.png"
                             }
                             alt={item?.title || "Report image"}
                             fill
@@ -298,7 +298,7 @@ export default function ReportDetail() {
       <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
         {/* Report Title Header */}
         <StaticHeader
-          image="/images/header-img.png"
+          image="/mng/images/header-img.png"
           alt="Report Page Header"
           width="90rem"
           title={title}
