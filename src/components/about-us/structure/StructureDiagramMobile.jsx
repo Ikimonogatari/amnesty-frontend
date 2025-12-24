@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function StructureDiagramMobile() {
   return (
-    <div className="relative">
-      <div className="relative w-full h-full">
+    <div className="relative min-h-[400px] w-full">
+      <div className="relative w-full h-full min-h-[400px]">
         <Image
           src={"/mng/images/structure-diagram.png"}
           alt="Structure diagram"

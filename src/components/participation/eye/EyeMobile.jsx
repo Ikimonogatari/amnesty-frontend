@@ -96,15 +96,64 @@ export default function EyeMobile() {
           fetch("/api/human-right-reports/stats"),
         ]);
 
-        const subjectsData = await subjectsResponse.json();
-        const statsData = await statsResponse.json();
+        // Safely parse JSON responses
+        let subjectsData = null;
+        let statsData = null;
 
-        if (subjectsResponse.ok && subjectsData.payload) {
-          setHumanRightsSubjects(subjectsData.payload);
-          setSubjects(subjectsData.payload);
+        // Check if subjects response is JSON before parsing
+        const subjectsContentType = subjectsResponse.headers.get("content-type");
+        if (subjectsContentType?.includes("application/json")) {
+          try {
+            subjectsData = await subjectsResponse.json();
+          } catch (e) {
+            console.error("Failed to parse subjects JSON:", e);
+            subjectsData = null;
+          }
+        } else {
+          console.warn("Subjects API returned non-JSON response:", subjectsContentType);
         }
 
-        if (statsResponse.ok && statsData.payload?.provinceData) {
+        // Check if stats response is JSON before parsing
+        const statsContentType = statsResponse.headers.get("content-type");
+        if (statsContentType?.includes("application/json")) {
+          try {
+            statsData = await statsResponse.json();
+          } catch (e) {
+            console.error("Failed to parse stats JSON:", e);
+            statsData = null;
+          }
+        } else {
+          console.warn("Stats API returned non-JSON response:", statsContentType);
+        }
+
+        if (subjectsData?.payload) {
+          setHumanRightsSubjects(subjectsData.payload);
+          setSubjects(subjectsData.payload);
+        } else {
+          // Fallback to default subjects if API fails or returns non-JSON
+          setHumanRightsSubjects([
+            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ" },
+            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ" },
+            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ" },
+            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ" },
+            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
+            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
+          ]);
+          setSubjects([
+            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          ]);
+        }
+
+        if (statsData?.payload?.provinceData) {
           setProvinceStats(statsData.payload.provinceData);
         } else {
           // Show empty array but let findTop5 work with it
@@ -123,6 +172,17 @@ export default function EyeMobile() {
           { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
           { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
         ]);
+        setSubjects([
+          { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+        ]);
+        setProvinceStats([]);
       } finally {
         setLoading(false);
       }

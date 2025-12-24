@@ -6,11 +6,12 @@ export default function StructureDiagram() {
   // Max height: 85vh, Aspect ratio: 1.39:1, Max width: flexible (calculated from height)
   // All positioning uses percentages for responsive scaling
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="w-full h-full flex justify-center items-center min-h-[600px]">
       <div 
         className="relative"
         style={{ 
           maxHeight: "85vh",
+          minHeight: "600px",
           maxWidth: "100%",
           width: "100%",
           aspectRatio: "1.39 / 1",

@@ -106,15 +106,64 @@ export default function EyeDesktop() {
           fetch("/api/human-right-reports/stats"),
         ]);
 
-        const subjectsData = await subjectsResponse.json();
-        const statsData = await statsResponse.json();
+        // Safely parse JSON responses
+        let subjectsData = null;
+        let statsData = null;
 
-        if (subjectsResponse.ok && subjectsData.payload) {
-          setHumanRightsSubjects(subjectsData.payload);
-          setSubjects(subjectsData.payload);
+        // Check if subjects response is JSON before parsing
+        const subjectsContentType = subjectsResponse.headers.get("content-type");
+        if (subjectsContentType?.includes("application/json")) {
+          try {
+            subjectsData = await subjectsResponse.json();
+          } catch (e) {
+            console.error("Failed to parse subjects JSON:", e);
+            subjectsData = null;
+          }
+        } else {
+          console.warn("Subjects API returned non-JSON response:", subjectsContentType);
         }
 
-        if (statsResponse.ok && statsData.payload?.provinceData) {
+        // Check if stats response is JSON before parsing
+        const statsContentType = statsResponse.headers.get("content-type");
+        if (statsContentType?.includes("application/json")) {
+          try {
+            statsData = await statsResponse.json();
+          } catch (e) {
+            console.error("Failed to parse stats JSON:", e);
+            statsData = null;
+          }
+        } else {
+          console.warn("Stats API returned non-JSON response:", statsContentType);
+        }
+
+        if (subjectsData?.payload) {
+          setHumanRightsSubjects(subjectsData.payload);
+          setSubjects(subjectsData.payload);
+        } else {
+          // Fallback to default subjects if API fails or returns non-JSON
+          setHumanRightsSubjects([
+            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ" },
+            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ" },
+            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ" },
+            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ" },
+            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
+            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
+          ]);
+          setSubjects([
+            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          ]);
+        }
+
+        if (statsData?.payload?.provinceData) {
           setProvinceStats(statsData.payload.provinceData);
         } else {
           // Show empty array but let findTop5 work with it
@@ -133,6 +182,17 @@ export default function EyeDesktop() {
           { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
           { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
         ]);
+        setSubjects([
+          { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+        ]);
+        setProvinceStats([]);
       } finally {
         setLoading(false);
       }
@@ -431,7 +491,7 @@ export default function EyeDesktop() {
 
         {/* Yellow Arch Visualization */}
         <div className="flex flex-col items-center">
-          <div className="w-[546px] h-[311px] flex items-center justify-end flex-col gap-2">
+          <div className="w-[546px] h-[311px] flex items-center justify-end flex-col gap2">
             <div className="flex items-center gap-4">
               <div className="text-3xl flex flex-col items-center justify-center gap-0 pr-2 pl-3 border-r-[2px] border-black">
                 {String(archInfo.percent)
@@ -460,7 +520,7 @@ export default function EyeDesktop() {
               {archGraduses.map((item, index) => (
                 <div
                   key={index}
-                  className="w-[260px] h-[45px] absolute right-0 bottom-4 flex items-center space-x-1.5"
+                  className="w-[260px] h-[45px] absolute right-0 -bottom-4 flex items-center space-x-1.5"
                   style={{
                     transform: `rotate(${item.gradus}deg)`,
                     transformOrigin: "right",
@@ -484,7 +544,7 @@ export default function EyeDesktop() {
           {/* Top provinces with most reports section */}
           <div className="flex flex-col">
             <div
-              className="w-[507px] h-[100px] flex items-center justify-center border border-black text-lg font-bold p-4"
+              className="w-[507px] h-[75px] flex items-center justify-center border border-black text-lg font-bold p-4"
               style={{
                 writingMode: "vertical-lr",
               }}
@@ -523,7 +583,7 @@ export default function EyeDesktop() {
             {top5Provinces.map((item, index) => (
               <div
                 key={index}
-                className="flex w-[507px] h-[80px] pl-[10px] mb-3 border-l-2 border-black"
+                className="flex w-[507px] h-[70px] pl-[10px] mb-3 border-l-2 border-black"
               >
                 <div
                   className={`flex-1 flex items-center justify-center border border-black ${

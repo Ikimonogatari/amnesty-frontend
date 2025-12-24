@@ -141,19 +141,43 @@ export default function EventsMobile() {
           return;
         }
 
-        const startDate = new Date(eventAttrs.start_date);
-        const endDate = new Date(eventAttrs.end_date);
+        // Extract date part directly from ISO string to avoid timezone issues
+        // If the date string is "2024-01-15T10:00:00.000Z", extract "2024-01-15"
+        const getDatePart = (dateString) => {
+          if (typeof dateString === 'string') {
+            // Extract YYYY-MM-DD from ISO string
+            const dateMatch = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
+            if (dateMatch) {
+              return {
+                year: parseInt(dateMatch[1], 10),
+                month: parseInt(dateMatch[2], 10),
+                day: parseInt(dateMatch[3], 10)
+              };
+            }
+          }
+          // Fallback to Date object if not a string
+          const date = new Date(dateString);
+          if (isNaN(date.getTime())) {
+            throw new Error("Invalid date");
+          }
+          return {
+            year: date.getFullYear(),
+            month: date.getMonth() + 1,
+            day: date.getDate()
+          };
+        };
 
-        // Skip invalid dates
-        if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
-          console.warn("Invalid date found in event:", eventAttrs);
-          return;
-        }
+        const startDateParts = getDatePart(eventAttrs.start_date);
+        const endDateParts = getDatePart(eventAttrs.end_date);
 
-        // Fix timezone issue: use local date parts instead of UTC conversion
-        const dateKey = `${startDate.getFullYear()}-${String(
-          startDate.getMonth() + 1
-        ).padStart(2, "0")}-${String(startDate.getDate()).padStart(2, "0")}`;
+        // Create Date objects for comparison (using local time at midnight)
+        const startDate = new Date(startDateParts.year, startDateParts.month - 1, startDateParts.day);
+        const endDate = new Date(endDateParts.year, endDateParts.month - 1, endDateParts.day);
+
+        // Create date key from date parts (avoiding timezone conversion)
+        const dateKey = `${startDateParts.year}-${String(
+          startDateParts.month
+        ).padStart(2, "0")}-${String(startDateParts.day).padStart(2, "0")}`;
 
         // Use current date for comparison (removed 2025 specific logic)
         const currentDate = new Date();
@@ -196,25 +220,37 @@ export default function EventsMobile() {
          }
 
         // Also add events for multi-day events (if end date is different)
-        if (startDate.toDateString() !== endDate.toDateString()) {
-          const currentDateIter = new Date(startDate);
-          currentDateIter.setDate(currentDateIter.getDate() + 1);
-
-          while (currentDateIter <= endDate) {
-            // Fix timezone issue: use local date parts instead of UTC conversion
-            const multiDayKey = `${currentDateIter.getFullYear()}-${String(
-              currentDateIter.getMonth() + 1
-            ).padStart(2, "0")}-${String(currentDateIter.getDate()).padStart(
-              2,
-              "0"
-            )}`;
+        if (dateKey !== `${endDateParts.year}-${String(
+          endDateParts.month
+        ).padStart(2, "0")}-${String(endDateParts.day).padStart(2, "0")}`) {
+          // Iterate through each day of the multi-day event
+          let currentDateParts = { ...startDateParts };
+          const endDateKey = `${endDateParts.year}-${String(
+            endDateParts.month
+          ).padStart(2, "0")}-${String(endDateParts.day).padStart(2, "0")}`;
+          
+          while (true) {
+            // Move to next day
+            const currentDate = new Date(currentDateParts.year, currentDateParts.month - 1, currentDateParts.day);
+            currentDate.setDate(currentDate.getDate() + 1);
+            
+            const nextYear = currentDate.getFullYear();
+            const nextMonth = currentDate.getMonth() + 1;
+            const nextDay = currentDate.getDate();
+            const multiDayKey = `${nextYear}-${String(
+              nextMonth
+            ).padStart(2, "0")}-${String(nextDay).padStart(2, "0")}`;
+            
+            if (multiDayKey > endDateKey) break;
+            
             if (!eventsMap[multiDayKey]) {
               eventsMap[multiDayKey] = {
                 ...eventObj,
                 title: `${eventObj.title} (continued)`,
               };
             }
-            currentDateIter.setDate(currentDateIter.getDate() + 1);
+            
+            currentDateParts = { year: nextYear, month: nextMonth, day: nextDay };
           }
         }
       } catch (error) {
@@ -329,7 +365,7 @@ export default function EventsMobile() {
           }`}
           onClick={() => handleDayClick(dateString)}
         >
-          <span className="absolute top-1 left-1 font-medium">
+          <span style={{ writingMode: "vertical-lr" }} className="absolute top-1 left-1 font-medium">
             {toMongolianNumerals(day)}
           </span>
           {event && (
@@ -450,6 +486,7 @@ export default function EventsMobile() {
               <ChevronRight className="w-5 h-5" />
             </button>
             <button
+              style={{ writingMode: "vertical-lr" }}
               onClick={navigateToToday}
               disabled={loading}
               className="px-2 py-1 hover:bg-gray-100 text-[10px] border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -458,7 +495,7 @@ export default function EventsMobile() {
             </button>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <h2 className="text-xs font-bold">
+            <h2 className="text-xs font-bold" style={{ writingMode: "vertical-lr" }}>
               {monthNames[currentDate.getMonth()]}{" "}
               {toMongolianNumerals(currentDate.getFullYear())}
             </h2>
