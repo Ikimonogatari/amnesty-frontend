@@ -1,39 +1,79 @@
 // Donation Status Check API - Next.js API Route
-// Proxy to User API like the old web
+// Verifies payment status of a pending donation/transaction
+// Supports both GET (query param) and POST (body) methods
 
 import axios from "axios";
+import {
+  donationCheckSchema,
+  donationCheckQuerySchema,
+  validateRequestBody,
+  createErrorResponse,
+  createSuccessResponse,
+  checkRateLimit,
+} from "@/lib/validations/donation";
 
-const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
+// Use server-side only env var, fallback to public for backwards compatibility
+const USER_API_BASE_URL =
+  process.env.USER_API_URL || process.env.NEXT_PUBLIC_USER_API_URL;
 
 export default async function handler(req, res) {
-  // Only allow POST requests
-  if (req.method !== "POST") {
-    return res.status(405).json({
-      success: false,
-      message: "Method not allowed",
-    });
+  // Allow GET and POST requests
+  if (req.method !== "GET" && req.method !== "POST") {
+    res.setHeader("Allow", ["GET", "POST"]);
+    return createErrorResponse(res, 405, "Method not allowed");
+  }
+
+  // Rate limiting (more lenient for check endpoint as it's polled)
+  const clientIp =
+    req.headers["x-forwarded-for"]?.split(",")[0]?.trim() ||
+    req.socket?.remoteAddress ||
+    "unknown";
+
+  const rateLimit = checkRateLimit(`check:${clientIp}`);
+  res.setHeader("X-RateLimit-Remaining", rateLimit.remaining);
+
+  if (!rateLimit.allowed) {
+    res.setHeader("Retry-After", rateLimit.retryAfter);
+    return createErrorResponse(
+      res,
+      429,
+      `Too many requests. Please try again in ${rateLimit.retryAfter} seconds.`
+    );
   }
 
   try {
-    console.log("🔍 Donation API - check called with:", {
-      body: req.body,
-      userApiUrl: USER_API_BASE_URL,
-    });
+    let invoiceCode;
 
-    // Extract data from request body
-    const { invoiceCode } = req.body;
+    // Handle GET request (query parameter)
+    if (req.method === "GET") {
+      const validation = validateRequestBody(donationCheckQuerySchema, req.query);
 
-    // Validation
-    if (!invoiceCode) {
-      return res.status(400).json({
-        success: false,
-        message: "Invoice code is required",
+      if (!validation.success) {
+        return createErrorResponse(res, 400, validation.message, validation.errors);
+      }
+
+      invoiceCode = validation.data.invoiceCode;
+    }
+    // Handle POST request (body)
+    else {
+      const validation = validateRequestBody(donationCheckSchema, req.body);
+
+      if (!validation.success) {
+        return createErrorResponse(res, 400, validation.message, validation.errors);
+      }
+
+      invoiceCode = validation.data.invoiceCode;
+    }
+
+    if (process.env.NODE_ENV === "development") {
+      console.log("[Donation API] check - Checking invoice status:", {
+        url: `${USER_API_BASE_URL}/donation/check`,
+        invoiceCode,
+        method: req.method,
       });
     }
 
-    console.log("📤 Sending to User API /donation/check:", { invoiceCode });
-
-    // Call the actual User API like old web
+    // Call the actual User API (always POST to backend)
     const response = await axios.post(
       `${USER_API_BASE_URL}/donation/check`,
       { invoiceCode },
@@ -41,43 +81,48 @@ export default async function handler(req, res) {
         headers: {
           "Content-Type": "application/json",
         },
-        timeout: 10000, // 10 second timeout
+        timeout: 10000, // 10 second timeout for status check
       }
     );
 
-    console.log("📥 User API response:", {
-      status: response.status,
-      data: response.data,
-    });
+    if (process.env.NODE_ENV === "development") {
+      console.log("[Donation API] check - User API response:", {
+        status: response.status,
+        paymentStatus: response.data?.payload?.status,
+      });
+    }
 
-    // Normalize response format to include success field
-    const normalizedResponse = {
-      success: true,
-      payload: response.data.payload,
-      message: response.data.message,
-    };
-
-    console.log("✅ Sending normalized response:", normalizedResponse);
-
-    // Return normalized response
-    res.status(200).json(normalizedResponse);
+    // Return normalized response with payment status
+    return createSuccessResponse(
+      res,
+      response.data.payload,
+      response.data.message
+    );
   } catch (error) {
-    console.error("❌ Donation check API error:", {
-      message: error.message,
-      response: error.response?.data,
-      status: error.response?.status,
-    });
+    // Log error in development
+    if (process.env.NODE_ENV === "development") {
+      console.error("[Donation API] check - Error:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+      });
+    }
 
-    res.status(error.response?.status || 500).json({
-      success: false,
-      message:
+    // Handle axios errors
+    if (axios.isAxiosError(error)) {
+      const status = error.response?.status || 500;
+      const message =
         error.response?.data?.message ||
-        error.message ||
-        "Internal server error",
-      error:
-        process.env.NODE_ENV === "development"
-          ? error.message
-          : "Internal server error",
-    });
+        (status === 404
+          ? "Invoice not found"
+          : status === 502
+          ? "Payment service temporarily unavailable"
+          : "Payment status check failed");
+
+      return createErrorResponse(res, status, message);
+    }
+
+    // Generic error
+    return createErrorResponse(res, 500, "Internal server error");
   }
 }

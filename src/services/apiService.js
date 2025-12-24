@@ -264,7 +264,7 @@ export const actionsService = {
       console.log("Form data being submitted:", formData);
       console.log("Making request to: /api/actions/submit");
 
-      const response = await fetch("/api/actions/submit", {
+      const response = await fetch("/mng/api/actions/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

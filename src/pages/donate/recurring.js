@@ -156,7 +156,7 @@ export default function RecurringDonation() {
   // Fetch user subscriptions
   const fetchUserSubscriptions = async (token) => {
     try {
-      const response = await fetch("/api/donation/recurring/subscriptions", {
+      const response = await fetch("/mng/api/donation/recurring/subscriptions", {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -355,7 +355,7 @@ export default function RecurringDonation() {
   const handleCancelSubscription = async (subscriptionId) => {
     if (confirm("ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠢ ᠴᠠᠷ᠎ᠠ ᠬᠢᠬᠦ ᠦᠦ?")) {
       try {
-        const response = await fetch(`/api/donation/recurring/cancel/${subscriptionId}`, {
+        const response = await fetch(`/mng/api/donation/recurring/cancel/${subscriptionId}`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${authToken}`,

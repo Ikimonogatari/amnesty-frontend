@@ -172,7 +172,7 @@ export default function ReportDesktop() {
               text={"ᠬᠠᠨᠳᠢᠪ ᠥᢉᢈᠦ"}
               type="primary"
               className="max-h-min whitespace-nowrap"
-              onClick={() => router.push("/donation")}
+              onClick={() => router.push("/donate")}
             />
           </div>
         </div>

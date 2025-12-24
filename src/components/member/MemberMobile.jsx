@@ -442,7 +442,7 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
               ᠱᠤᠤᠷᠬᠠᠢ ᠦᠢᠯᠡᠳᠦᠯ
             </h2>
             <button
-              onClick={() => router.push("/donation")}
+              onClick={() => router.push("/donate")}
               className="p-2 rounded-md text-xs font-bold bg-red-500 text-white hover:bg-red-600"
               style={{
                 writingMode: "vertical-lr",

@@ -7,6 +7,9 @@ import Cookies from "js-cookie";
 
 const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
 
+// Base path for internal API routes (must match next.config.mjs basePath)
+const BASE_PATH = "/mng";
+
 // Cookie names (matches old project)
 const COOKIES = {
   MEMBER_TOKEN: "amnesty_member_token",
@@ -28,7 +31,7 @@ export const authService = {
   // Register new user
   async register(userData) {
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch(`${BASE_PATH}/api/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +57,7 @@ export const authService = {
   // Send SMS verification code (matches old project)
   async sendVerificationCode(phone) {
     try {
-      const response = await fetch("/api/auth/verify", {
+      const response = await fetch(`${BASE_PATH}/api/auth/verify`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +83,7 @@ export const authService = {
   // Login user (matches old project)
   async login(credentials) {
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(`${BASE_PATH}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -150,7 +153,7 @@ export const authService = {
   // Reset password - send verification (matches old project)
   async resetPasswordSendCode(phone) {
     try {
-      const response = await fetch("/api/auth/resetPass", {
+      const response = await fetch(`${BASE_PATH}/api/auth/resetPass`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -176,7 +179,7 @@ export const authService = {
   // Reset password - verify code (matches old project)
   async resetPasswordVerifyCode(phone, verifyCode) {
     try {
-      const response = await fetch("/api/auth/resetPassVerify", {
+      const response = await fetch(`${BASE_PATH}/api/auth/resetPassVerify`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -202,7 +205,7 @@ export const authService = {
   // Reset password - confirm with new password (matches old project)
   async resetPasswordConfirm(token, password) {
     try {
-      const response = await fetch("/api/auth/resetPassConfirm", {
+      const response = await fetch(`${BASE_PATH}/api/auth/resetPassConfirm`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -288,7 +291,7 @@ export const userService = {
   async getProfile() {
     try {
       const authHeaders = getAuthHeaders();
-      const response = await fetch("/api/users/me", {
+      const response = await fetch(`${BASE_PATH}/api/users/me`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -332,7 +335,7 @@ export const userService = {
   async uploadAvatar(formData) {
     try {
       const authHeaders = getAuthHeaders();
-      const response = await fetch("/api/users/avatar", {
+      const response = await fetch(`${BASE_PATH}/api/users/avatar`, {
         method: "POST",
         headers: {
           ...authHeaders,
@@ -386,7 +389,7 @@ export const userService = {
   // Get user groups
   async getUserGroups() {
     try {
-      const response = await fetch("/api/user-groups", {
+      const response = await fetch(`${BASE_PATH}/api/user-groups`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -458,7 +461,7 @@ export const memberService = {
   async getUserEvents() {
     try {
       const authHeaders = getAuthHeaders();
-      const response = await fetch("/api/users/events", {
+      const response = await fetch(`${BASE_PATH}/api/users/events`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -485,7 +488,7 @@ export const memberService = {
   async getPaymentHistory() {
     try {
       const authHeaders = getAuthHeaders();
-      const response = await fetch("/api/users/payments", {
+      const response = await fetch(`${BASE_PATH}/api/users/payments`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -516,7 +519,7 @@ export const donationService = {
   // Create anonymous donation
   async createAnonymousDonation(donationData) {
     try {
-      const response = await fetch("/api/donation/anonymous", {
+      const response = await fetch(`${BASE_PATH}/api/donation/anonymous`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -535,7 +538,7 @@ export const donationService = {
   // Check donation status
   async checkDonationStatus(invoiceCode) {
     try {
-      const response = await fetch("/api/donation/check", {
+      const response = await fetch(`${BASE_PATH}/api/donation/check`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -568,7 +571,7 @@ export const donationService = {
   // Bank donation QPay
   async createBankQPayDonation(donationData) {
     try {
-      const response = await fetch("/api/donation/bank/qpay", {
+      const response = await fetch(`${BASE_PATH}/api/donation/bank/qpay`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -589,7 +592,7 @@ export const donationService = {
     // Register for recurring donation
     async register(userData) {
       try {
-        const response = await fetch("/api/donation/recurring/register", {
+        const response = await fetch(`${BASE_PATH}/api/donation/recurring/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -608,7 +611,7 @@ export const donationService = {
     // Login to recurring donation
     async login(credentials) {
       try {
-        const response = await fetch("/api/donation/recurring/login", {
+        const response = await fetch(`${BASE_PATH}/api/donation/recurring/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -627,7 +630,7 @@ export const donationService = {
     // Verify email for recurring donation
     async verifyEmail(email) {
       try {
-        const response = await fetch("/api/donation/recurring/verify-email", {
+        const response = await fetch(`${BASE_PATH}/api/donation/recurring/verify-email`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
