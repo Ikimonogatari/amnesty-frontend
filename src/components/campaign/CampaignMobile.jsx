@@ -53,6 +53,23 @@ export default function CampaignMobile() {
     "/mng/images/campaign/211464.png",
   ];
 
+  // Dynamic campaign images array (same as CampaignDesktop)
+  const campaignImages = [
+    "/mng/images/campaign/cam1.png",
+    "/mng/images/campaign/cam2.png",
+    "/mng/images/campaign/childrights.png",
+    "/mng/images/campaign/cam4.png",
+    "/mng/images/campaign/cam5.png",
+    "/mng/images/campaign/cam6.png",
+    "/mng/images/campaign/cam7.png",
+    "/mng/images/campaign/cam8.png",
+    "/mng/images/campaign/durvegch.png",
+    "/mng/images/campaign/cam10.png",
+    "/mng/images/campaign/cam11.webp",
+    "/mng/images/campaign/eruuden.png",
+    "/mng/images/campaign/cam13.webp",
+  ];
+
   // Convert features data to changeitems format, with fallback to static data
   const changeitems = [
     {
@@ -173,22 +190,27 @@ export default function CampaignMobile() {
             ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠳ
           </h2>
           <div className="h-full grid grid-cols-5 gap-2">
-            {campaignItems.slice(0, 12).map((item, index) => (
-              <div
-                key={item.id}
-                className="flex flex-col items-center justify-center gap-2 border rounded p-4 cursor-pointer hover:bg-gray-100 transition-colors"
-                onClick={() => router.push(`/campaign/${index + 1}`)}
-              >
-                <Image
-                  src={campaignImages[index]}
-                  alt={item.title}
-                  width={20}
-                  height={20}
-                  className="min-w-5 min-h-5"
-                  onError={(e) => {
-                    e.target.src = "/mng/images/about1.png"; // fallback image
-                  }}
-                />
+            {campaignItems.slice(0, 12).map((item, index) => {
+              // Use modulo to cycle through campaign images safely
+              const imageIndex = index % campaignImages.length;
+              return (
+                <div
+                  key={item.id}
+                  className="flex flex-col items-center justify-center gap-2 border rounded p-4 cursor-pointer hover:bg-gray-100 transition-colors"
+                  onClick={() => router.push(`/campaign/${index + 1}`)}
+                >
+                  <Image
+                    src={campaignImages[imageIndex]}
+                    alt={item.title}
+                    width={20}
+                    height={20}
+                    className="min-w-5 min-h-5"
+                    onError={(e) => {
+                      // Use campaign images as fallback, cycling through them
+                      const fallbackIndex = item.id % campaignImages.length;
+                      e.target.src = campaignImages[fallbackIndex] || campaignImages[0];
+                    }}
+                  />
                 <p
                   className="text-[10px] pl-[2px] font-bold"
                   style={{
@@ -201,7 +223,8 @@ export default function CampaignMobile() {
                     : item.title}
                 </p>
               </div>
-            ))}
+              );
+            })}
             {/* Fill empty slots if we have less than 12 campaigns */}
             {Array.from({ length: Math.max(0, 12 - campaignItems.length) }).map(
               (_, index) => (

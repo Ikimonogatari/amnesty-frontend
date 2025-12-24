@@ -116,7 +116,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
   };
 
   const handleActionClick = (actionId) => {
-    router.push(`/writeforrights/${actionId}`);
+    router.push(`/campaign/writeforrights/${actionId}`);
   };
 
   // Show error state if there's an API error

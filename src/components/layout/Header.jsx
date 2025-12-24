@@ -80,7 +80,7 @@ export default function Header() {
         },
         {
           text: "ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠢᠴᠢᠴᠡᠭᠡᠶ᠎ᠡ",
-          link: "/writeforrights",
+          link: "/campaign/writeforrights",
         },
       ],
     },
