@@ -67,20 +67,26 @@ export default function StaticHeader({
               </h1>
             </div>
 
-            {/* Mobile Title Overlay */}
-            <div className="md:hidden w-full p-4 text-white z-0 h-full">
-              <div className="flex items-center justify-center w-full h-full">
-                <h1
-                  className="text-base font-bold font-mongolian text-center px-4 py-3 bg-black/60 rounded-lg backdrop-blur-md shadow-lg overflow-y-auto break-words max-h-[200px] max-w-[200px] leading-tight"
+            {/* Mobile Title Overlay - Same layout as BannerSlider mobile caption */}
+            <div className="md:hidden absolute h-[250px] w-1/5 top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] overflow-x-auto gap-3 p-4 flex z-0">
+              <h1
+                className="text-base font-bold font-mongolian mb-2 flex-shrink-0 line-clamp-2"
+                style={{
+                  writingMode: "vertical-rl",
+                }}
+              >
+                {title}
+              </h1>
+              {desc && (
+                <p
+                  className="text-xs text-gray-200 flex-shrink-0 line-clamp-3"
                   style={{
-                    writingMode: "vertical-lr",
-                    wordBreak: "break-all",
-                    overflowWrap: "break-word",
+                    writingMode: "vertical-rl",
                   }}
                 >
-                  {title}
-                </h1>
-              </div>
+                  {desc}
+                </p>
+              )}
             </div>
           </>
         )}

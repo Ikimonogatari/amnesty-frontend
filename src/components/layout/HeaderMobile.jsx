@@ -61,7 +61,7 @@ export default function HeaderMobile() {
         },
         {
           text: "ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠢᠴᠢᠴᠡᠭᠡᠶ᠎ᠡ",
-          link: "/writeforrights",
+          link: "/campaign/writeforrights",
         },
       ],
     },

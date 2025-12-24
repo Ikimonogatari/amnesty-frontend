@@ -30,6 +30,33 @@ export default function Layout({ children }) {
     };
   }, []);
 
+  // Reset scroll position when route changes (prevents jump/scroll animation)
+  useEffect(() => {
+    // Use requestAnimationFrame to ensure DOM is ready
+    const resetScroll = () => {
+      // Reset desktop horizontal scroll immediately
+      const el = scrollRef.current;
+      if (el) {
+        el.scrollLeft = 0;
+      }
+
+      // Reset mobile vertical scroll immediately
+      if (typeof window !== "undefined") {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
+    };
+
+    // Reset immediately
+    resetScroll();
+
+    // Also reset after a short delay to catch any late updates
+    const timeoutId = setTimeout(resetScroll, 0);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [router.asPath]); // Use asPath instead of pathname to catch query changes too
+
   return (
     <>
       {/* Desktop Layout - Horizontal scrolling for Mongolian script */}
