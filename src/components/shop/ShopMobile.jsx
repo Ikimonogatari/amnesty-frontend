@@ -66,15 +66,15 @@ const renderMerchPrice = (merch) => {
 
 export default function ShopMobile({ merchandise = [] }) {
   return (
-    <div className="h-full flex flex-col sm:hidden gap-7">
+    <div className="flex flex-col sm:hidden gap-7 w-full">
       <StaticHeader
         image="/mng/images/merch/header-img-amnestyshop.jpg"
         alt="Shop Page Header"
         width="100%"
         title="ᠡᠮᠨᠧᠰᠲᠢ ᠳᠡᠯᠭᠦᠦᠷ"
       />
-      <div className="h-full p-4">
-        <div className="h-full flex flex-col gap-7">
+      <div className="flex-1 p-4 overflow-y-auto">
+        <div className="flex flex-col gap-7">
           <div className="flex gap-2 max-h-[200px] overflow-x-auto">
             <h1
               className="text-xs font-bold"

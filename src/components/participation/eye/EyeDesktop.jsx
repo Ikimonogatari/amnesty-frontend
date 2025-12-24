@@ -106,15 +106,64 @@ export default function EyeDesktop() {
           fetch("/api/human-right-reports/stats"),
         ]);
 
-        const subjectsData = await subjectsResponse.json();
-        const statsData = await statsResponse.json();
+        // Safely parse JSON responses
+        let subjectsData = null;
+        let statsData = null;
 
-        if (subjectsResponse.ok && subjectsData.payload) {
-          setHumanRightsSubjects(subjectsData.payload);
-          setSubjects(subjectsData.payload);
+        // Check if subjects response is JSON before parsing
+        const subjectsContentType = subjectsResponse.headers.get("content-type");
+        if (subjectsContentType?.includes("application/json")) {
+          try {
+            subjectsData = await subjectsResponse.json();
+          } catch (e) {
+            console.error("Failed to parse subjects JSON:", e);
+            subjectsData = null;
+          }
+        } else {
+          console.warn("Subjects API returned non-JSON response:", subjectsContentType);
         }
 
-        if (statsResponse.ok && statsData.payload?.provinceData) {
+        // Check if stats response is JSON before parsing
+        const statsContentType = statsResponse.headers.get("content-type");
+        if (statsContentType?.includes("application/json")) {
+          try {
+            statsData = await statsResponse.json();
+          } catch (e) {
+            console.error("Failed to parse stats JSON:", e);
+            statsData = null;
+          }
+        } else {
+          console.warn("Stats API returned non-JSON response:", statsContentType);
+        }
+
+        if (subjectsData?.payload) {
+          setHumanRightsSubjects(subjectsData.payload);
+          setSubjects(subjectsData.payload);
+        } else {
+          // Fallback to default subjects if API fails or returns non-JSON
+          setHumanRightsSubjects([
+            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ" },
+            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ" },
+            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ" },
+            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ" },
+            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ" },
+            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
+            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
+          ]);
+          setSubjects([
+            { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+            { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          ]);
+        }
+
+        if (statsData?.payload?.provinceData) {
           setProvinceStats(statsData.payload.provinceData);
         } else {
           // Show empty array but let findTop5 work with it
@@ -133,6 +182,17 @@ export default function EyeDesktop() {
           { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ" },
           { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ" },
         ]);
+        setSubjects([
+          { id: 1, title: "ᠠᠮᠢᠳᠤᠷᠠᠯ ᠪᠠ ᠤᠯᠠᠰ ᠲᠦᠷᠦ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 2, title: "ᠡᠳ᠋ᠦ ᠡᠷᠬᠡ ᠪᠠ ᠨᠢᠭᠡᠮᠯᠢᠭ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 3, title: "ᠦᠭᠡ ᠬᠡᠯᠡᠬᠦ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 4, title: "ᠠᠮᠢᠨ ᠠᠮᠢᠳᠤᠷᠠᠯ ᠤ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 5, title: "ᠦᠭᠡ ᠰᠤᠷᠭᠠᠬᠤ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 6, title: "ᠡᠮᠨᠡᠯᠭᠡ ᠶᠢᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 7, title: "ᠬᠦᠦᠬᠡᠳ ᠦᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+          { id: 8, title: "ᠭᠡᠷ ᠪᠦᠯ ᠢ᠋ᠨ ᠡᠷᠬᠡ", reportCounts: 0 },
+        ]);
+        setProvinceStats([]);
       } finally {
         setLoading(false);
       }
@@ -167,7 +227,7 @@ export default function EyeDesktop() {
     return () => clearInterval(interval);
   }, [timeLeft]);
 
-  // Send SMS OTP - using the same system as registration/password reset
+  // Send SMS OTP - using human rights reports specific endpoint
   const handleSendOtp = async () => {
     // Validate phone number first
     if (!phoneValue || phoneValue.length !== 8) {
@@ -179,21 +239,36 @@ export default function EyeDesktop() {
 
     setIsSendingSms(true);
     try {
-      const response = await userApiService.auth.sendVerificationCode(
-        phoneValue
-      );
+      // Use human rights reports specific phone verification endpoint
+      const response = await fetch("/api/human-right-reports/verify/phone", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: phoneValue }),
+      });
 
-      if (response.payload?.availableAfter) {
-        const availableTime = response.payload.availableAfter;
-        const currentTime = Math.floor(Date.now() / 1000);
-        setTimeLeft(availableTime - currentTime);
+      const result = await response.json();
+
+      if (response.ok && result.payload) {
+        if (result.payload?.availableAfter) {
+          const availableTime = result.payload.availableAfter;
+          const currentTime = Math.floor(Date.now() / 1000);
+          setTimeLeft(availableTime - currentTime);
+        } else {
+          setTimeLeft(60); // Default 60 seconds if no availableAfter
+        }
+
+        const successMessage = "ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ!";
+        toast.success(successMessage, { duration: 6000 });
+        setIsOtpSent(true);
       } else {
-        setTimeLeft(60); // Default 60 seconds if no availableAfter
+        const errorMessage =
+          result?.error?.message ||
+          result?.message ||
+          "ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
+        toast.error(errorMessage);
       }
-
-      const successMessage = "ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ!";
-      toast.success(successMessage, { duration: 6000 });
-      setIsOtpSent(true);
     } catch (error) {
       console.error("SMS send error:", error);
       const errorMessage =
@@ -310,15 +385,15 @@ export default function EyeDesktop() {
     }
 
     try {
-      // Format data to match the working curl structure
+      // Format data to match API specification
       const formData = {
-        subjectId: parseInt(data.subjectId),
-        title: data.incident || "", // Using incident as title
-        message: data.details || "", // Using details as message
-        coverImage: coverImage,
-        provinceId: 21, // Default province ID (you may need to get this from form)
-        phone: data.phone,
-        verifyCode: data.otp, // OTP is called verifyCode in API
+        subjectId: String(data.subjectId), // Human rights issue category ID (string)
+        title: data.incident || "", // Report title
+        message: data.details || "", // Report content
+        coverImage: coverImage, // Image URL (from upload endpoint)
+        provinceId: "21", // Province/location ID (string) - default to 21
+        phone: String(data.phone), // 8-digit phone number (string)
+        verifyCode: String(data.otp), // 6-digit SMS verification code (string)
       };
 
       console.log("Sending form data:", JSON.stringify(formData, null, 2));
@@ -431,7 +506,7 @@ export default function EyeDesktop() {
 
         {/* Yellow Arch Visualization */}
         <div className="flex flex-col items-center">
-          <div className="w-[546px] h-[311px] flex items-center justify-end flex-col gap-2">
+          <div className="w-[546px] h-[311px] flex items-center justify-end flex-col gap2">
             <div className="flex items-center gap-4">
               <div className="text-3xl flex flex-col items-center justify-center gap-0 pr-2 pl-3 border-r-[2px] border-black">
                 {String(archInfo.percent)
@@ -460,7 +535,7 @@ export default function EyeDesktop() {
               {archGraduses.map((item, index) => (
                 <div
                   key={index}
-                  className="w-[260px] h-[45px] absolute right-0 bottom-4 flex items-center space-x-1.5"
+                  className="w-[260px] h-[45px] absolute right-0 -bottom-4 flex items-center space-x-1.5"
                   style={{
                     transform: `rotate(${item.gradus}deg)`,
                     transformOrigin: "right",
@@ -484,7 +559,7 @@ export default function EyeDesktop() {
           {/* Top provinces with most reports section */}
           <div className="flex flex-col">
             <div
-              className="w-[507px] h-[100px] flex items-center justify-center border border-black text-lg font-bold p-4"
+              className="w-[507px] h-[75px] flex items-center justify-center border border-black text-lg font-bold p-4"
               style={{
                 writingMode: "vertical-lr",
               }}
@@ -523,7 +598,7 @@ export default function EyeDesktop() {
             {top5Provinces.map((item, index) => (
               <div
                 key={index}
-                className="flex w-[507px] h-[80px] pl-[10px] mb-3 border-l-2 border-black"
+                className="flex w-[507px] h-[70px] pl-[10px] mb-3 border-l-2 border-black"
               >
                 <div
                   className={`flex-1 flex items-center justify-center border border-black ${
