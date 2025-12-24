@@ -227,7 +227,7 @@ export default function EyeDesktop() {
     return () => clearInterval(interval);
   }, [timeLeft]);
 
-  // Send SMS OTP - using the same system as registration/password reset
+  // Send SMS OTP - using human rights reports specific endpoint
   const handleSendOtp = async () => {
     // Validate phone number first
     if (!phoneValue || phoneValue.length !== 8) {
@@ -239,21 +239,36 @@ export default function EyeDesktop() {
 
     setIsSendingSms(true);
     try {
-      const response = await userApiService.auth.sendVerificationCode(
-        phoneValue
-      );
+      // Use human rights reports specific phone verification endpoint
+      const response = await fetch("/api/human-right-reports/verify/phone", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phone: phoneValue }),
+      });
 
-      if (response.payload?.availableAfter) {
-        const availableTime = response.payload.availableAfter;
-        const currentTime = Math.floor(Date.now() / 1000);
-        setTimeLeft(availableTime - currentTime);
+      const result = await response.json();
+
+      if (response.ok && result.payload) {
+        if (result.payload?.availableAfter) {
+          const availableTime = result.payload.availableAfter;
+          const currentTime = Math.floor(Date.now() / 1000);
+          setTimeLeft(availableTime - currentTime);
+        } else {
+          setTimeLeft(60); // Default 60 seconds if no availableAfter
+        }
+
+        const successMessage = "ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ!";
+        toast.success(successMessage, { duration: 6000 });
+        setIsOtpSent(true);
       } else {
-        setTimeLeft(60); // Default 60 seconds if no availableAfter
+        const errorMessage =
+          result?.error?.message ||
+          result?.message ||
+          "ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᢈᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ";
+        toast.error(errorMessage);
       }
-
-      const successMessage = "ᠲᠠᠨ ᠤ᠋ ᠤᠲᠠᠰᠤᠨ ᠳ᠋ᠤ 6 ᠣᠷᠣᠨᠲᠠᠢ ᠻᠣᠳ ᠢᠯᠭᠡᢉᠡᠯᠡᢉᠡ!";
-      toast.success(successMessage, { duration: 6000 });
-      setIsOtpSent(true);
     } catch (error) {
       console.error("SMS send error:", error);
       const errorMessage =
@@ -370,15 +385,15 @@ export default function EyeDesktop() {
     }
 
     try {
-      // Format data to match the working curl structure
+      // Format data to match API specification
       const formData = {
-        subjectId: parseInt(data.subjectId),
-        title: data.incident || "", // Using incident as title
-        message: data.details || "", // Using details as message
-        coverImage: coverImage,
-        provinceId: 21, // Default province ID (you may need to get this from form)
-        phone: data.phone,
-        verifyCode: data.otp, // OTP is called verifyCode in API
+        subjectId: String(data.subjectId), // Human rights issue category ID (string)
+        title: data.incident || "", // Report title
+        message: data.details || "", // Report content
+        coverImage: coverImage, // Image URL (from upload endpoint)
+        provinceId: "21", // Province/location ID (string) - default to 21
+        phone: String(data.phone), // 8-digit phone number (string)
+        verifyCode: String(data.otp), // 6-digit SMS verification code (string)
       };
 
       console.log("Sending form data:", JSON.stringify(formData, null, 2));
