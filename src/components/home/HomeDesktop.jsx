@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Button from "@/components/common/Button";
 import BannerSlider from "@/components/common/BannerSlider";
-import { bannerImages } from "@/constants/bannerImages";
 import SectionTitle from "@/components/common/SectionTitle";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";

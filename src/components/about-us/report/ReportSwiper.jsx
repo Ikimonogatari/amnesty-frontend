@@ -112,14 +112,7 @@ export default function ReportSwiper({
             pdfUrl: fullPdfUrl,
           };
         })
-      : [
-          // Fallback slides when no reports data
-          {
-            id: 1,
-            title: "ᠦᠶᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ ᠤ᠋ ᠲᠠᠶᠢᠯᠤᠨ ᠦᠭᠡᠢ",
-            image: "/mng/images/dummy-image.png",
-          },
-        ];
+      : [];
 
   console.log("🔧 ReportSwiper - Final slides array:", slides);
 

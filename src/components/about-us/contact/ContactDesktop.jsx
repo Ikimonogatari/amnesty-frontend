@@ -379,7 +379,7 @@ export default function ContactDesktop() {
               <div className="flex flex-col">
                 <Turnstile
                   siteKey={
-                    process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY
+                    process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || "0x4AAAAAAAif1czpQqnn6cG3"
                   }
                   onSuccess={turnstileCallback}
                   onError={(error) => console.error("Turnstile error:", error)}

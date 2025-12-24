@@ -38,6 +38,27 @@ body {
     "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", serif;
 }
 
+/* Override prose font for Mongolian content */
+.prose,
+.prose *,
+.prose p,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose span,
+.prose div,
+.prose li,
+.prose a,
+.prose strong,
+.prose em,
+.prose blockquote {
+  font-family: "MongolianScript", "Mongolian Baiti", "Microsoft Mongolian Baiti",
+    "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", serif !important;
+}
+
 /* Donation button - exact copy from original Svelte version */
 .donate-floating-button {
   position: fixed;

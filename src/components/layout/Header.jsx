@@ -34,7 +34,29 @@ export default function Header() {
         { text: "ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ", link: "/contact" },
       ],
     },
+    {
+      text: "ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠭᠡᠯᠡᠯ",
+      link: "/news",
+      hasDropdown: true,
+      dropdownItems: [
+        { text: "ᠮᠡᠳᠡᠭᠡ", link: "/news" },
+        { text: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠶᠢᠷ ᠰᠤᠤᠷᠢ", link: "/news?type=statements" },
+        { text: "ᠰᠠᠢᠨ ᠮᠡᠳᠡᠭᠡ", link: "/news?type=good_news" },
+      ],
+    },
     { text: "ᠬᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ", link: "/campaign" },
+    {
+      text: "ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ",
+      link: "/knowrights",
+      hasDropdown: true,
+      dropdownItems: [
+        { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/lessons" },
+        { text: "ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/online-lessons" },
+        { text: "ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠨ", link: "/library" },
+        { text: "ᠺᠢᠳᠧᠣ", link: "/videos" },
+        { text: "ᠫᠣᠳᠺᠠᠰᠲ", link: "/podcasts" },
+      ],
+    },
     {
       text: "ᠲᠠᠨᠢ ᠣᠷᠣᠯᠴᠣᠭ᠎ᠠ",
       link: "/participation",
@@ -60,28 +82,6 @@ export default function Header() {
           text: "ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠢᠴᠢᠴᠡᠭᠡᠶ᠎ᠡ",
           link: "/writeforrights",
         },
-      ],
-    },
-    {
-      text: "ᠮᠡᠳᠡᠭᠡ ᠮᠡᠳᠡᠭᠡᠯᠡᠯ",
-      link: "/news",
-      hasDropdown: true,
-      dropdownItems: [
-        { text: "ᠮᠡᠳᠡᠭᠡ", link: "/news" },
-        { text: "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠶᠢᠷ ᠰᠤᠤᠷᠢ", link: "/news?type=statements" },
-        { text: "ᠰᠠᠢᠨ ᠮᠡᠳᠡᠭᠡ", link: "/news?type=good_news" },
-      ],
-    },
-    {
-      text: "ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ",
-      link: "/knowrights",
-      hasDropdown: true,
-      dropdownItems: [
-        { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/lessons" },
-        { text: "ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/online-lessons" },
-        { text: "ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠨ", link: "/library" },
-        { text: "ᠺᠢᠳᠧᠣ", link: "/videos" },
-        { text: "ᠫᠣᠳᠺᠠᠰᠲ", link: "/podcasts" },
       ],
     },
     { text: "ᠭᠢᠰᠦᠨ ᠴᠢᠯᠡᠯ", link: "/member" },

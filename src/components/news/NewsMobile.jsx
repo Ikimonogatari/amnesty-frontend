@@ -216,7 +216,7 @@ export default function NewsMobile() {
               newsItems.map((item) => (
                 <div key={item.id} className="flex gap-4 max-h-[150px]">
                   <h3
-                    className="text-sm font-medium line-clamp-3 mb-2"
+                    className="w-10 text-sm font-medium mb-2"
                     style={{
                       writingMode: "vertical-lr",
                     }}

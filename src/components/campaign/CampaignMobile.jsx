@@ -173,14 +173,14 @@ export default function CampaignMobile() {
             ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠳ
           </h2>
           <div className="h-full grid grid-cols-5 gap-2">
-            {campaignItems.slice(0, 12).map((item) => (
+            {campaignItems.slice(0, 12).map((item, index) => (
               <div
                 key={item.id}
                 className="flex flex-col items-center justify-center gap-2 border rounded p-4 cursor-pointer hover:bg-gray-100 transition-colors"
-                onClick={() => router.push(`/campaign/${item.id}`)}
+                onClick={() => router.push(`/campaign/${index + 1}`)}
               >
                 <Image
-                  src={item.image}
+                  src={campaignImages[index]}
                   alt={item.title}
                   width={20}
                   height={20}

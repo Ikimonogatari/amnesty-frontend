@@ -176,7 +176,7 @@ export default function SingleNews() {
           <div className="flex flex-row gap-2">
             {post.short_description && (
               <h2
-                className="text-xl font-bold mb-4"
+                className="text-xl font-bold mb-4 font-mongolian"
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -185,9 +185,10 @@ export default function SingleNews() {
               </h2>
             )}
             <div
-              className="text-base text-gray-800"
+              className="text-base text-gray-800 font-mongolian"
               style={{
                 writingMode: "vertical-lr",
+                fontFamily: '"MongolianScript", "Mongolian Baiti", "Microsoft Mongolian Baiti", "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", serif',
               }}
               dangerouslySetInnerHTML={{ __html: post.body }}
             />
@@ -199,7 +200,7 @@ export default function SingleNews() {
               {post.post_topics.map((topic) => (
                 <span
                   key={topic.id}
-                  className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer"
+                  className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer font-mongolian"
                   onClick={() => router.push(`/news?topic=${topic.slug}`)}
                 >
                   {topic.title_mn || topic.title}
@@ -296,7 +297,7 @@ export default function SingleNews() {
               ᠲᠣᠪᠴᠢᠶᠠᠨ ᠲᠠᠢᠯᠪᠤᠷᠢ
             </h2>
             <div
-              className="text-lg text-gray-800"
+              className="text-lg text-gray-800 font-mongolian"
               style={{
                 writingMode: "vertical-lr",
               }}
@@ -317,9 +318,10 @@ export default function SingleNews() {
             ᠠᠭᠤᠯᠭ᠎ᠠ
           </h2>
           <div
-            className="prose prose-lg text-base break-words max-w-8xl overflow-x-auto"
+            className="prose prose-lg text-base break-words"
             style={{
               writingMode: "vertical-lr",
+              fontFamily: '"MongolianScript"!important',
             }}
             dangerouslySetInnerHTML={{ __html: post.body }}
           />
@@ -343,7 +345,7 @@ export default function SingleNews() {
                   style={{
                     writingMode: "vertical-lr",
                   }}
-                  className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer inline-block"
+                  className="bg-gray-200 px-3 py-1 text-sm text-black hover:bg-gray-300 cursor-pointer inline-block font-mongolian"
                   onClick={() => router.push(`/news?topic=${topic.slug}`)}
                 >
                   {topic.title_mn || topic.title}

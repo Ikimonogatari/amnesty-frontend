@@ -60,7 +60,7 @@ export default function ContactBanner({ isMobile = false }) {
             style={{ writingMode: "vertical-lr" }}
             className="text-black text-sm sm:text-base"
           >
-            ᠳᠠᠪᠤᠯᠭᠠ ᠨᠠᠢᠢᠮᠠᠨ ᠨᠠᠢᠢᠮᠠᠨ ᠶᠢᠰᠦᠨ ᠴᠠᠭ 9:00-18:00
+            ᠳᠠᠪᠤᠯᠭᠠ ᠨᠠᠢᠢᠮᠠᠨ ᠨᠠᠢᠢᠮᠠᠨ ᠶᠢᠰᠦᠨ ᠴᠠᠭ ᠙:᠐᠐-᠑᠘:᠐᠐
           </p>
         </div>
 

@@ -30,7 +30,7 @@ export default function BannerSlider({
           // For consistency between environments, always use latest posts
           // This ensures production and local show the same number of items
           const response = await apiService.posts.getPostsList({
-            pageSize: 6, // Use same format as homepage news section
+            pageSize: 2, // Use same format as homepage news section
             sort: "publishedAt:desc",
           });
 
@@ -252,9 +252,9 @@ export default function BannerSlider({
                   </div>
 
                   {/* Mobile Caption - Same layout as desktop but sized for mobile */}
-                  <div className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] overflow-x-auto gap-3 p-4 flex">
+                  <div className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] gap-3 p-4 pr-6 flex">
                     <h3
-                      className="text-base font-bold mb-2 flex-shrink-0 line-clamp-2"
+                      className="text-base font-bold mb-2"
                       style={{
                         writingMode: "vertical-rl",
                       }}
@@ -262,7 +262,7 @@ export default function BannerSlider({
                       {image.caption.title}
                     </h3>
                     <p
-                      className="text-xs text-gray-200 flex-shrink-0 line-clamp-3"
+                      className="text-xs text-gray-200"
                       style={{
                         writingMode: "vertical-rl",
                       }}

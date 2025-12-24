@@ -181,14 +181,14 @@ export default function CampaignDesktop() {
         <div className="h-full flex gap-10">
           <SectionTitle title={"ᠻᠠᠮᠫᠠᠨᠢᠲᠤ ᠠᠵᠢᠯ ᠤ᠋ᠳ"} />
           <div className="h-full grid grid-rows-3 grid-flow-col gap-[10px]">
-            {campaignItems.slice(0, 13).map((item) => (
+            {campaignItems.slice(0, 13).map((item, index) => (
               <div
                 key={item.id}
                 className="flex flex-col items-center justify-center w-36 gap-5 border-2 border-black p-5 cursor-pointer hover:bg-gray-100 transition-colors"
-                onClick={() => router.push(`/campaign/${item.id}`)}
+                onClick={() => router.push(`/campaign/${index + 1}`)}
               >
                 <Image
-                  src={item.image}
+                  src={campaignImages[index]}
                   alt={item.title}
                   width={60}
                   height={60}
