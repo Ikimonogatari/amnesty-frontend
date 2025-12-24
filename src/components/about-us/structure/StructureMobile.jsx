@@ -7,7 +7,7 @@ import Button from "@/components/common/Button";
 export default function StructureMobile() {
   return (
     <div className="w-full block sm:hidden">
-      <div className="relative w-full h-[40hv]">
+      <div className="relative w-full h-[40vh]">
         <StaticHeader
           image="/mng/images/aboutSub1/organization_cover.jpg"
           alt="Structure Page Header"
@@ -49,7 +49,9 @@ export default function StructureMobile() {
             }
             containerClassName={"bg-[#FFFF00] text-[10px]"}
           />
-          <StructureDiagramMobile />
+          <div className="flex-shrink-0 min-w-[300px] min-h-[400px]">
+            <StructureDiagramMobile />
+          </div>
         </div>
         <div className="flex gap-2">
           <p

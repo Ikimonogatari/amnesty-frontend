@@ -23,6 +23,7 @@ import { toMongolianNumbers } from "@/utils/fetcher";
  * @param {function} getTitle - Function to extract title from item
  * @param {function} renderAdditionalContent - Optional function to render additional content below image
  * @param {boolean} hideCategoryButton - Whether to hide the category/read button
+ * @param {number} columns - Number of columns in desktop grid (default: 3)
  */
 export default function GridLayout({
   items = [],
@@ -38,6 +39,7 @@ export default function GridLayout({
   itemType = "item", // for different styling (e.g., "video" for play button)
   renderAdditionalContent, // Optional function to render additional content
   hideCategoryButton = false, // Hide the category/read button
+  columns = 3, // Number of columns in desktop grid
 }) {
   const router = useRouter();
 
@@ -73,10 +75,14 @@ export default function GridLayout({
       {/* Desktop Layout - EXACT NEWS STRUCTURE */}
       <div className="hidden sm:block h-full">
         <div className="h-full flex gap-4 overflow-hidden">
-          <div className="grid grid-cols-3 grid-rows-3 grid-flow-col gap-4 sm:gap-6 min-w-0">
+          <div 
+            className={`grid grid-flow-col gap-4 sm:gap-6 min-w-0 ${
+              columns === 2 ? 'grid-cols-2 grid-rows-2' : 'grid-cols-3 grid-rows-3'
+            }`}
+          >
             {isLoading || !items ? (
               // Loading placeholders to maintain layout - consistent between server and client
-              Array.from({ length: 9 }).map((_, index) => (
+              Array.from({ length: columns * columns }).map((_, index) => (
                 <div
                   key={`loading-desktop-${index}`}
                   className="w-full h-full flex items-end space-x-4"
@@ -236,11 +242,11 @@ export default function GridLayout({
             items.map((item, index) => (
               <div
                 key={item.id || index}
-                className="flex gap-4 p-2 rounded transition-colors max-h-[200px] cursor-pointer hover:bg-gray-50"
+                className="flex gap-4 p-2 rounded transition-colors cursor-pointer hover:bg-gray-50"
                 onClick={() => handleItemClick(item)}
               >
                 <h3
-                  className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto"
+                  className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto flex-shrink-0"
                   style={{
                     writingMode: "vertical-lr",
                   }}
@@ -248,30 +254,39 @@ export default function GridLayout({
                   {getTitle ? getTitle(item) : item.title}
                 </h3>
 
-                <div className="relative w-[200px] h-[200px] flex-shrink-0">
-                  <Image
-                    src={getImageUrl ? getImageUrl(item) : "/mng/images/news1.png"}
-                    alt={getTitle ? getTitle(item) : item.title || "Item image"}
-                    height={200}
-                    width={200}
-                    className="object-cover rounded-lg w-full h-full shadow-md"
-                    onError={(e) => {
-                      e.target.src = "/mng/images/news1.png";
-                    }}
-                  />
+                <div className="flex-1 flex gap-4">
+                  <div className="relative w-[200px] h-[200px] flex-shrink-0">
+                    <Image
+                      src={getImageUrl ? getImageUrl(item) : "/mng/images/news1.png"}
+                      alt={getTitle ? getTitle(item) : item.title || "Item image"}
+                      height={200}
+                      width={200}
+                      className="object-cover rounded-lg w-full h-full shadow-md"
+                      onError={(e) => {
+                        e.target.src = "/mng/images/news1.png";
+                      }}
+                    />
 
-                  {/* Mobile Video Play Button */}
-                  {itemType === "video" && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded">
-                      <div className="bg-white bg-opacity-80 rounded-full p-1">
-                        <svg
-                          className="w-4 h-4 text-black"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M8 5v10l7-5z" />
-                        </svg>
+                    {/* Mobile Video Play Button */}
+                    {itemType === "video" && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded">
+                        <div className="bg-white bg-opacity-80 rounded-full p-1">
+                          <svg
+                            className="w-4 h-4 text-black"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M8 5v10l7-5z" />
+                          </svg>
+                        </div>
                       </div>
+                    )}
+                  </div>
+
+                  {/* Additional Content for Mobile (e.g., price, shop link) */}
+                  {renderAdditionalContent && (
+                    <div className="flex-shrink-0">
+                      {renderAdditionalContent(item)}
                     </div>
                   )}
                 </div>

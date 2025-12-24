@@ -11,7 +11,7 @@ export default function VolunteerMobile() {
         width="100%"
         title="ᠳᠡᠯᠬᠡᠢ ᠶᠢᠷᠲᠡᠨ ᠦ ᠶᠡᠷ ᠳᠡ ᠶᠠᠪᠤ ᠣᠳᠣᠣ"
       />
-      <div className="flex flex-col gap-7">
+      <div className="flex flex-col gap-7 mt-4">
         {volunteerItems.map((item) => (
           <div
             key={item.id}
