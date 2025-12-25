@@ -24,7 +24,7 @@ export default function MySubscriptions({
     setIsLoading(true);
     try {
       const response = await fetch(
-        `/api/donation/recurring/pause/${subscriptionId}`,
+        `/mng/api/donation/recurring/pause/${subscriptionId}`,
         {
           method: "POST",
           headers: {

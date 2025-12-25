@@ -4,12 +4,12 @@ export default function DonateFloatingButton() {
   const router = useRouter();
 
   // Don't show on donation page
-  if (router.pathname === "/donation") {
+  if (router.pathname === "/donate") {
     return null;
   }
 
   const handleClick = () => {
-    router.push("/donation");
+    router.push("/donate");
   };
 
   return (

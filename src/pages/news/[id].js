@@ -185,10 +185,10 @@ export default function SingleNews() {
               </h2>
             )}
             <div
-              className="text-base text-gray-800 font-mongolian"
+              className="prose prose-lg text-base overflow-x-auto"
               style={{
                 writingMode: "vertical-lr",
-                fontFamily: '"MongolianScript", "Mongolian Baiti", "Microsoft Mongolian Baiti", "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", serif',
+                fontFamily: '"MongolianScript"!important',
               }}
               dangerouslySetInnerHTML={{ __html: post.body }}
             />

@@ -102,8 +102,8 @@ export default function EyeDesktop() {
 
         // Load both subjects and stats in parallel
         const [subjectsResponse, statsResponse] = await Promise.all([
-          fetch("/api/human-right-reports/subjects"),
-          fetch("/api/human-right-reports/stats"),
+          fetch("/mng/api/human-right-reports/subjects"),
+          fetch("/mng/api/human-right-reports/stats"),
         ]);
 
         // Safely parse JSON responses
@@ -240,7 +240,7 @@ export default function EyeDesktop() {
     setIsSendingSms(true);
     try {
       // Use human rights reports specific phone verification endpoint
-      const response = await fetch("/api/human-right-reports/verify/phone", {
+      const response = await fetch("/mng/api/human-right-reports/verify/phone", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -303,7 +303,7 @@ export default function EyeDesktop() {
 
       try {
         // Use local API proxy to avoid CORS
-        const response = await fetch("/api/human-right-reports/cover", {
+        const response = await fetch("/mng/api/human-right-reports/cover", {
           method: "POST",
           body: formData,
         });
@@ -415,7 +415,7 @@ export default function EyeDesktop() {
       console.log("Auth headers for form submission:", authHeaders);
 
       // Use local API proxy to avoid CORS and auth issues
-      const response = await fetch("/api/human-right-reports/submit", {
+      const response = await fetch("/mng/api/human-right-reports/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

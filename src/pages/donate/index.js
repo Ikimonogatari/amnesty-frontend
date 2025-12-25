@@ -163,7 +163,7 @@ export default function Donation() {
     setDonationType(type);
     if (type === "monthly") {
       // Navigate to recurring donation page
-      window.location.href = "/recurring-donation";
+      window.location.href = "/donate/recurring";
     }
   };
 

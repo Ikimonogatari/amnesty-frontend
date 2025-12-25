@@ -50,7 +50,7 @@ export const apiService = createApi({
     submitContactForm: builder.mutation({
       queryFn: async (data) => {
         try {
-          const response = await fetch("/api/contact-request/submit", {
+          const response = await fetch("/users/contact-request/submit", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export const apiService = createApi({
     submitHumanRightsReport: builder.mutation({
       queryFn: async (data) => {
         try {
-          const response = await fetch("/api/human-right-reports/submit", {
+          const response = await fetch("/mng/api/human-right-reports/submit", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

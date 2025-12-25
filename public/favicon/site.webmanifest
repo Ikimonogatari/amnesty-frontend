@@ -4,25 +4,24 @@
   "description": "ᠮᠣᠩᠭᠣᠯ ᠤᠯᠤᠰ ᠤᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨᠲ᠋ᠧᠷᠨᠡᠰᠢᠨᠯ - ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠬᠠᠮᠠᠭᠠᠯᠠᠯ",
   "icons": [
     {
-      "src": "/favicon/favicon-16x16.webp",
+      "src": "/mng/favicon/favicon-16x16.png",
       "sizes": "16x16",
-      "type": "image/webp"
+      "type": "image/png"
     },
     {
-      "src": "/favicon/favicon-32x32.webp",
+      "src": "/mng/favicon/favicon-32x32.png",
       "sizes": "32x32",
-      "type": "image/webp"
+      "type": "image/png"
     },
     {
-      "src": "/favicon/apple-touch-icon.webp",
+      "src": "/mng/favicon/apple-touch-icon.png",
       "sizes": "180x180",
-      "type": "image/webp"
+      "type": "image/png"
     }
   ],
   "theme_color": "#FFFF00",
   "background_color": "#FFFFFF",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/mng",
   "lang": "mn"
 }
-

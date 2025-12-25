@@ -113,7 +113,7 @@ export default function UserProfile({ userData, userGroups }) {
         router.push("/merch");
         break;
       case "donation":
-        router.push("/donation");
+        router.push("/donate");
         break;
       case "logout":
         logout();
