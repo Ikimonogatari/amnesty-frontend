@@ -175,7 +175,7 @@ export default function StructureDiagram() {
               writingMode: "vertical-lr",
               top: "38.2%", // 295/772 (relative to text container height)
               left: "2.5%", // 0/1155 (relative to text container width)
-              fontSize: "inherit",
+              fontSize: "12px",
             }}
           >
             ᠴᠢᠭᠤᠯᠭᠠᠨ
@@ -186,7 +186,7 @@ export default function StructureDiagram() {
               writingMode: "vertical-lr",
               top: "0%", // 0/772 (relative to text container height)
               left: "14%", // 125/1155 (relative to text container width)
-              fontSize: "inherit",
+              fontSize: "12px",
             }}
           >
             ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
@@ -197,7 +197,7 @@ export default function StructureDiagram() {
               writingMode: "vertical-lr",
               top: "65%", // 320/772 (relative to text container height)
               left: "14%", // 125/1155 (relative to text container width)
-              fontSize: "inherit",
+              fontSize: "12px",
             }}
           >
             ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
@@ -208,7 +208,7 @@ export default function StructureDiagram() {
               writingMode: "vertical-lr",
               top: "31.7%", // 245/772 (relative to text container height)
               left: "34.8%", // 240/1155 (relative to text container width)
-              fontSize: "inherit",
+              fontSize: "12px",
             }}
           >
             ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
@@ -219,7 +219,7 @@ export default function StructureDiagram() {
               writingMode: "vertical-lr",
               top: "31.7%", // 245/772 (relative to text container height)
               left: "56.5%", // 230/1155 (relative to text container width)
-              fontSize: "inherit",
+              fontSize: "12px",
             }}
           >
             ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
@@ -230,7 +230,7 @@ export default function StructureDiagram() {
               writingMode: "vertical-lr",
               top: "-0.5%", // -4/772 (relative to text container height)
               left: "78.3%", // 235/1155 (relative to text container width)
-              fontSize: "inherit",
+              fontSize: "12px",
             }}
           >
             ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
@@ -241,7 +241,7 @@ export default function StructureDiagram() {
               writingMode: "vertical-lr",
               top: "64.5%", // 336/772 (relative to text container height)
               left: "78.3%", // 235/1155 (relative to text container width)
-              fontSize: "inherit",
+              fontSize: "12px",
             }}
           >
             ᢈᠢᠨᠠᠯᠲᠠ ᠶ᠋ᠢᠨ ᠵᠥᠪᠡᠯᢉᠡᢉᠡ
