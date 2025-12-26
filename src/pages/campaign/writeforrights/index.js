@@ -1,7 +1,6 @@
 import Layout from "@/components/layout/Layout";
 import WriteForRightsDesktop from "@/components/campaign/writeforrights/WriteForRightsDesktop";
 import WriteForRightsMobile from "@/components/campaign/writeforrights/WriteForRightsMobile";
-import { actionsService } from "@/services/apiService";
 
 export async function getServerSideProps() {
   try {
@@ -21,17 +20,32 @@ export async function getServerSideProps() {
       `${apiUrl}/actions?populate=*&sort[0]=createdAt:desc`
     );
 
+    // Build headers - only add Authorization if API key is available
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    if (apiKey) {
+      headers.Authorization = `Bearer ${apiKey}`;
+    }
+
     const response = await fetch(
       `${apiUrl}/actions?populate=*&sort[0]=createdAt:desc`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`,
-        },
-      }
+      { headers }
     );
 
     console.log("CMS API Response Status:", response.status);
+
+    if (!response.ok) {
+      console.error("CMS API Error:", response.status, response.statusText);
+      // Return empty actions instead of error to show the page without actions
+      return {
+        props: {
+          actions: [],
+          error: null,
+        },
+      };
+    }
+
     const actionsData = await response.json();
     console.log("CMS API Response:", {
       hasData: !!actionsData.data,
@@ -59,18 +73,15 @@ export async function getServerSideProps() {
       props: {
         actions: actions,
         error: null,
-        debug: {
-          apiUrl: process.env.NEXT_PUBLIC_API_URL,
-          hasApiKey: !!process.env.NEXT_PUBLIC_API_KEY,
-          actionCount: actions.length,
-        },
       },
     };
   } catch (error) {
+    console.error("WriteForRights getServerSideProps error:", error.message);
+    // Return empty actions instead of error to allow page to render
     return {
       props: {
         actions: [],
-        error: "Failed to load actions",
+        error: null,
       },
     };
   }
