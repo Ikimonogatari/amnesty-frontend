@@ -59,6 +59,16 @@ body {
     "Menksoft Qagan", "TraditionalMongolian", "Mongolian White", serif !important;
 }
 
+/* Constrain images in prose content */
+.prose img {
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 500px !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 1rem auto !important;
+}
+
 /* Donation button - exact copy from original Svelte version */
 .donate-floating-button {
   position: fixed;

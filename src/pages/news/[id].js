@@ -18,6 +18,7 @@ export default function SingleNews() {
   const [recommended, setRecommended] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [contentReady, setContentReady] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -61,6 +62,92 @@ export default function SingleNews() {
 
     fetchData();
   }, [id]);
+
+  // Wait for images to load before rendering content
+  useEffect(() => {
+    if (!post?.body) {
+      setContentReady(false);
+      return;
+    }
+
+    setContentReady(false);
+    
+    let isCleanedUp = false;
+    let fallbackTimer = null;
+    const imageHandlers = [];
+
+    // Use setTimeout to ensure DOM is updated first
+    const timer = setTimeout(() => {
+      const contentContainer = document.querySelector('[data-content-body]');
+      if (!contentContainer) {
+        if (!isCleanedUp) {
+          setContentReady(true);
+        }
+        return;
+      }
+
+      const images = contentContainer.querySelectorAll('img');
+      if (images.length === 0) {
+        if (!isCleanedUp) {
+          setContentReady(true);
+        }
+        return;
+      }
+
+      let loadedCount = 0;
+      const totalImages = images.length;
+
+      const handleImageLoad = () => {
+        if (isCleanedUp) return;
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          setContentReady(true);
+        }
+      };
+
+      const handleImageError = () => {
+        if (isCleanedUp) return;
+        loadedCount++;
+        if (loadedCount === totalImages) {
+          setContentReady(true);
+        }
+      };
+
+      images.forEach((img) => {
+        if (img.complete) {
+          loadedCount++;
+        } else {
+          img.addEventListener('load', handleImageLoad);
+          img.addEventListener('error', handleImageError);
+          imageHandlers.push({ img, load: handleImageLoad, error: handleImageError });
+        }
+      });
+
+      // If all images are already loaded
+      if (loadedCount === totalImages && !isCleanedUp) {
+        setContentReady(true);
+      }
+
+      // Timeout fallback: render after 3 seconds even if images haven't loaded
+      fallbackTimer = setTimeout(() => {
+        if (!isCleanedUp) {
+          setContentReady(true);
+        }
+      }, 3000);
+    }, 100);
+
+    return () => {
+      isCleanedUp = true;
+      clearTimeout(timer);
+      if (fallbackTimer) {
+        clearTimeout(fallbackTimer);
+      }
+      imageHandlers.forEach(({ img, load, error }) => {
+        img.removeEventListener('load', load);
+        img.removeEventListener('error', error);
+      });
+    };
+  }, [post?.body]);
 
   const handleShare = (platform) => {
     const url = `${window.location.origin}/news/${id}`;
@@ -185,7 +272,8 @@ export default function SingleNews() {
               </h2>
             )}
             <div
-              className="prose prose-lg text-base overflow-x-auto"
+              data-content-body
+              className={`prose prose-lg text-base overflow-x-auto [&_img]:max-w-full [&_img]:max-h-[400px] [&_img]:h-auto [&_img]:object-contain [&_img]:block [&_img]:mx-auto [&_img]:my-4 ${!contentReady ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
               style={{
                 writingMode: "vertical-lr",
                 fontFamily: '"MongolianScript"!important',
@@ -318,7 +406,8 @@ export default function SingleNews() {
             ᠠᠭᠤᠯᠭ᠎ᠠ
           </h2>
           <div
-            className="prose prose-lg text-base break-words"
+            data-content-body
+            className={`prose prose-lg text-base break-words [&_img]:max-w-full [&_img]:max-h-[500px] [&_img]:h-auto [&_img]:object-contain [&_img]:block [&_img]:mx-auto [&_img]:my-4 ${!contentReady ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
             style={{
               writingMode: "vertical-lr",
               fontFamily: '"MongolianScript"!important',
