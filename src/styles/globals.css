@@ -62,11 +62,49 @@ body {
 /* Constrain images in prose content */
 .prose img {
   max-width: 100% !important;
+  width: auto !important;
   height: auto !important;
   max-height: 500px !important;
   object-fit: contain !important;
   display: block !important;
   margin: 1rem auto !important;
+  box-sizing: border-box !important;
+  vertical-align: middle !important;
+  image-rendering: auto !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  clear: both !important;
+}
+
+/* For mobile devices */
+@media (max-width: 640px) {
+  .prose img {
+    max-height: 400px !important;
+  }
+}
+
+/* Ensure images in vertical writing mode are properly sized */
+[style*="writing-mode: vertical-lr"] img,
+[style*="writingMode: vertical-lr"] img {
+  max-width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 1rem auto !important;
+  flex-shrink: 0 !important;
+  flex-grow: 0 !important;
+  clear: both !important;
+}
+
+/* Prevent images from overlapping in vertical writing mode */
+.prose p img,
+.prose div img {
+  display: block !important;
+  clear: both !important;
+  margin: 1.5rem auto !important;
 }
 
 /* Donation button - exact copy from original Svelte version */

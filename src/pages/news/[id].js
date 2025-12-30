@@ -63,7 +63,7 @@ export default function SingleNews() {
     fetchData();
   }, [id]);
 
-  // Wait for images to load before rendering content
+  // Wait for images to load and adjust their sizes
   useEffect(() => {
     if (!post?.body) {
       setContentReady(false);
@@ -76,7 +76,88 @@ export default function SingleNews() {
     let fallbackTimer = null;
     const imageHandlers = [];
 
-    // Use setTimeout to ensure DOM is updated first
+    // Function to adjust all image sizes
+    const adjustAllImages = () => {
+      if (isCleanedUp) return;
+      
+      try {
+        const contentContainer = document.querySelector('[data-content-body]');
+        if (!contentContainer) return;
+
+        const images = contentContainer.querySelectorAll('img');
+        if (images.length === 0) return;
+
+        const isMobile = window.innerWidth < 640;
+        const maxHeight = isMobile ? 400 : 500;
+        
+        // Get container dimensions
+        const containerWidth = contentContainer.clientWidth || contentContainer.offsetWidth || window.innerWidth;
+        const availableWidth = Math.min(containerWidth * 0.9, window.innerWidth * 0.8);
+        
+        images.forEach((img) => {
+          try {
+            // Skip if image doesn't have natural dimensions yet
+            if (!img || !img.naturalWidth || !img.naturalHeight || img.naturalWidth === 0 || img.naturalHeight === 0) {
+              return;
+            }
+
+            // Remove inline attributes that might interfere
+            if (img.hasAttribute('width')) img.removeAttribute('width');
+            if (img.hasAttribute('height')) img.removeAttribute('height');
+            
+            // Calculate aspect ratio
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            if (!isFinite(aspectRatio) || aspectRatio <= 0) {
+              return;
+            }
+            
+            // Calculate dimensions - prioritize max height
+            let targetHeight = maxHeight;
+            let targetWidth = targetHeight * aspectRatio;
+            
+            // If width is too large, scale down
+            if (targetWidth > availableWidth && availableWidth > 0) {
+              targetWidth = availableWidth;
+              targetHeight = targetWidth / aspectRatio;
+            }
+            
+            // Validate dimensions
+            if (!isFinite(targetWidth) || !isFinite(targetHeight) || targetWidth <= 0 || targetHeight <= 0) {
+              return;
+            }
+            
+            // Apply styles safely
+            img.style.width = `${targetWidth}px`;
+            img.style.height = `${targetHeight}px`;
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = `${maxHeight}px`;
+            img.style.objectFit = 'contain';
+            img.style.display = 'block';
+            img.style.margin = '1.5rem auto';
+            img.style.boxSizing = 'border-box';
+            img.style.verticalAlign = 'middle';
+            img.style.flexShrink = '0';
+            img.style.flexGrow = '0';
+            img.style.clear = 'both';
+            
+            // Force reflow
+            void img.offsetHeight;
+          } catch (err) {
+            console.warn('Error adjusting image size:', err);
+          }
+        });
+        
+        // Force container reflow
+        if (contentContainer) {
+          void contentContainer.offsetHeight;
+          void contentContainer.scrollHeight;
+        }
+      } catch (err) {
+        console.warn('Error in adjustAllImages:', err);
+      }
+    };
+
+    // Wait for DOM to be ready
     const timer = setTimeout(() => {
       const contentContainer = document.querySelector('[data-content-body]');
       if (!contentContainer) {
@@ -100,8 +181,27 @@ export default function SingleNews() {
       const handleImageLoad = () => {
         if (isCleanedUp) return;
         loadedCount++;
+        
+        // Adjust sizes after each image loads
+        setTimeout(() => {
+          if (!isCleanedUp) {
+            adjustAllImages();
+          }
+        }, 100);
+        
+        // When all images are loaded
         if (loadedCount === totalImages) {
-          setContentReady(true);
+          setTimeout(() => {
+            if (!isCleanedUp) {
+              adjustAllImages();
+              setTimeout(() => {
+                if (!isCleanedUp) {
+                  adjustAllImages();
+                  setContentReady(true);
+                }
+              }, 300);
+            }
+          }, 200);
         }
       };
 
@@ -109,32 +209,57 @@ export default function SingleNews() {
         if (isCleanedUp) return;
         loadedCount++;
         if (loadedCount === totalImages) {
-          setContentReady(true);
+          setTimeout(() => {
+            if (!isCleanedUp) {
+              adjustAllImages();
+              setContentReady(true);
+            }
+          }, 200);
         }
       };
 
+      // Check each image
       images.forEach((img) => {
-        if (img.complete) {
+        try {
+          if (img && img.complete && img.naturalWidth > 0 && img.naturalHeight > 0) {
+            loadedCount++;
+          } else if (img) {
+            const loadHandler = () => handleImageLoad();
+            const errorHandler = () => handleImageError();
+            
+            img.addEventListener('load', loadHandler, { once: true });
+            img.addEventListener('error', errorHandler, { once: true });
+            imageHandlers.push({ img, load: loadHandler, error: errorHandler });
+          }
+        } catch (err) {
+          console.warn('Error setting up image listeners:', err);
           loadedCount++;
-        } else {
-          img.addEventListener('load', handleImageLoad);
-          img.addEventListener('error', handleImageError);
-          imageHandlers.push({ img, load: handleImageLoad, error: handleImageError });
         }
       });
 
       // If all images are already loaded
       if (loadedCount === totalImages && !isCleanedUp) {
-        setContentReady(true);
+        setTimeout(() => {
+          if (!isCleanedUp) {
+            adjustAllImages();
+            setTimeout(() => {
+              if (!isCleanedUp) {
+                adjustAllImages();
+                setContentReady(true);
+              }
+            }, 300);
+          }
+        }, 200);
       }
 
-      // Timeout fallback: render after 3 seconds even if images haven't loaded
+      // Fallback timeout
       fallbackTimer = setTimeout(() => {
         if (!isCleanedUp) {
+          adjustAllImages();
           setContentReady(true);
         }
       }, 3000);
-    }, 100);
+    }, 150);
 
     return () => {
       isCleanedUp = true;
@@ -143,11 +268,114 @@ export default function SingleNews() {
         clearTimeout(fallbackTimer);
       }
       imageHandlers.forEach(({ img, load, error }) => {
-        img.removeEventListener('load', load);
-        img.removeEventListener('error', error);
+        try {
+          if (img && load) {
+            img.removeEventListener('load', load);
+          }
+          if (img && error) {
+            img.removeEventListener('error', error);
+          }
+        } catch (err) {
+          // Ignore cleanup errors
+        }
       });
     };
   }, [post?.body]);
+
+  // Recalculate layout when content is ready
+  useEffect(() => {
+    if (!contentReady) return;
+
+    const recalculateLayout = () => {
+      try {
+        const contentContainer = document.querySelector('[data-content-body]');
+        if (!contentContainer) return;
+
+        const images = contentContainer.querySelectorAll('img');
+        if (images.length === 0) return;
+
+        const isMobile = window.innerWidth < 640;
+        const maxHeight = isMobile ? 400 : 500;
+        
+        // Get container dimensions
+        const containerWidth = contentContainer.clientWidth || contentContainer.offsetWidth || window.innerWidth;
+        const availableWidth = Math.min(containerWidth * 0.9, window.innerWidth * 0.8);
+        
+        images.forEach((img) => {
+          try {
+            // Skip if image doesn't have natural dimensions
+            if (!img || !img.naturalWidth || !img.naturalHeight || img.naturalWidth === 0 || img.naturalHeight === 0) {
+              return;
+            }
+
+            // Remove inline attributes
+            if (img.hasAttribute('width')) img.removeAttribute('width');
+            if (img.hasAttribute('height')) img.removeAttribute('height');
+            
+            // Calculate aspect ratio
+            const aspectRatio = img.naturalWidth / img.naturalHeight;
+            if (!isFinite(aspectRatio) || aspectRatio <= 0) {
+              return;
+            }
+            
+            // Calculate dimensions
+            let targetHeight = maxHeight;
+            let targetWidth = targetHeight * aspectRatio;
+            
+            // If width is too large, scale down
+            if (targetWidth > availableWidth && availableWidth > 0) {
+              targetWidth = availableWidth;
+              targetHeight = targetWidth / aspectRatio;
+            }
+            
+            // Validate dimensions
+            if (!isFinite(targetWidth) || !isFinite(targetHeight) || targetWidth <= 0 || targetHeight <= 0) {
+              return;
+            }
+            
+            // Apply styles safely
+            img.style.width = `${targetWidth}px`;
+            img.style.height = `${targetHeight}px`;
+            img.style.maxWidth = '100%';
+            img.style.maxHeight = `${maxHeight}px`;
+            img.style.objectFit = 'contain';
+            img.style.display = 'block';
+            img.style.margin = '1.5rem auto';
+            img.style.boxSizing = 'border-box';
+            img.style.verticalAlign = 'middle';
+            img.style.flexShrink = '0';
+            img.style.flexGrow = '0';
+            img.style.clear = 'both';
+            
+            // Force reflow
+            void img.offsetHeight;
+          } catch (err) {
+            console.warn('Error recalculating image layout:', err);
+          }
+        });
+
+        // Force container reflow
+        if (contentContainer) {
+          void contentContainer.offsetHeight;
+          void contentContainer.scrollHeight;
+        }
+      } catch (err) {
+        console.warn('Error in recalculateLayout:', err);
+      }
+    };
+
+    // Recalculate multiple times
+    recalculateLayout();
+    const timer1 = setTimeout(recalculateLayout, 200);
+    const timer2 = setTimeout(recalculateLayout, 500);
+    const timer3 = setTimeout(recalculateLayout, 1000);
+
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, [contentReady]);
 
   const handleShare = (platform) => {
     const url = `${window.location.origin}/news/${id}`;
