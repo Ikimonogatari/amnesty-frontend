@@ -27,10 +27,10 @@ export default function Header() {
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠪᠠᠶᠢᠭᠤᠯᠤᠯᠭ᠎ᠠ ᠶᠢᠨ ᠪᠦᠲᠦᠬ", link: "/about/1" },
-        { text: "ᠮᠦᠢ ᠲᠦᠦᠬᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ", link: "/about/2" },
         { text: "ᠲᠠᠢᠯᠠᠨ", link: "/about/3" },
-        { text: "ᠶᠡᠷᠦᠨᠬᠢᠶ ᠴᠤᠤᠯᠭᠠᠨ", link: "/about/5" },
         { text: "ᠲᠦᠭᠡᠮᠡᠯ ᠠᠰᠠᠭᠤᠯᠲᠠ ᠬᠠᠷᠢᠭᠤᠯᠲᠠ", link: "/faq" },
+        { text: "ᠮᠦᠢ ᠲᠦᠦᠬᠡᠨ ᠲᠣᠪᠴᠢᠶ᠎ᠠ", link: "/about/2" },
+        { text: "ᠶᠡᠷᠦᠨᠬᠢᠶ ᠴᠤᠤᠯᠭᠠᠨ", link: "/about/5" },
         { text: "ᠬᠣᠯᠪᠣᠭ᠎ᠠ ᠪᠠᠷᠢᠬᠤ", link: "/contact" },
       ],
     },
@@ -51,10 +51,10 @@ export default function Header() {
       hasDropdown: true,
       dropdownItems: [
         { text: "ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/lessons" },
-        { text: "ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/online-lessons" },
         { text: "ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠨ", link: "/library" },
-        { text: "ᠺᠢᠳᠧᠣ", link: "/videos" },
         { text: "ᠫᠣᠳᠺᠠᠰᠲ", link: "/podcasts" },
+        { text: "ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ", link: "/online-lessons" },
+        { text: "ᠺᠢᠳᠧᠣ", link: "/videos" },
       ],
     },
     {
@@ -67,20 +67,20 @@ export default function Header() {
           link: "/participation/events",
         },
         {
-          text: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ",
-          link: "/participation/youthhumanrights",
-        },
-        {
           text: "ᠰᠠᠢᠨ ᠳᠤᠷᠤᠨ ᠪᠣᠯᠣᠨ ᠳᠠᠳᠯᠠᠭ᠎ᠠ ᠶᠢᠨ ᠠᠵᠢᠯ",
           link: "/participation/volunteer",
         },
         {
-          text: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠢᠳᠦᠨ",
-          link: "/participation/humanrighteye",
-        },
-        {
           text: "ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠪᠢᠴᠢᠴᠡᠭᠡᠶ᠎ᠡ",
           link: "/campaign/writeforrights",
+        },
+        {
+          text: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠲᠦᠯᠦᠭᠡ ᠵᠠᠯᠠᠭᠤᠴᠤᠳ",
+          link: "/participation/youthhumanrights",
+        },
+        {
+          text: "ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠢᠳᠦᠨ",
+          link: "/participation/humanrighteye",
         },
       ],
     },

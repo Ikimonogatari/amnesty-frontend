@@ -38,8 +38,8 @@ export default function StructureDiagram() {
           <div 
             className="absolute flex flex-col"
             style={{
-              top: "0%",
-              left: "3%",
+              top: "-5%",
+              left: "2%",
               gap: "57.2%", // 390/682 (relative to links container height)
             }}
           >
@@ -60,8 +60,8 @@ export default function StructureDiagram() {
           <div 
             className="absolute flex flex-col"
             style={{
-              top: "74%",
-              left: "3%",
+              top: "67%",
+              left: "2%",
               gap: "57.2%", // 390/682 (relative to links container height)
             }}
           >
@@ -86,8 +86,8 @@ export default function StructureDiagram() {
             className="absolute border border-solid border-[#E3E3E3] max-h-min whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ 
               writingMode: "vertical-lr",
-              left: "28.9%", // 212/925 (212px gap relative to 925px container width)
-              top: "35.9%", // 245/682 (relative to links container height)
+              left: "28%", // 212/925 (212px gap relative to 925px container width)
+              top: "30%", // 245/682 (relative to links container height)
               width: "3.2em",
               padding: "0.75em 0.5em",
               borderRadius: "0.625em",
@@ -102,8 +102,8 @@ export default function StructureDiagram() {
             className="absolute border border-solid border-[#E3E3E3] max-h-min whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ 
               writingMode: "vertical-lr",
-              left: "55.8%", // 424/925 (424px from start = 212px gap * 2)
-              top: "37.4%", // 255/682 (relative to links container height)
+              left: "55%", // 424/925 (424px from start = 212px gap * 2)
+              top: "30%", // 255/682 (relative to links container height)
               width: "3.2em",
               padding: "0.75em 0.5em",
               borderRadius: "0.625em",
@@ -116,8 +116,8 @@ export default function StructureDiagram() {
           <div 
             className="absolute flex flex-col"
             style={{
-              left: "82%", // 636/925 (636px from start = 212px gap * 3)
-              top: "0%",
+              left: "81%", // 636/925 (636px from start = 212px gap * 3)
+              top: "-5%",
               gap: "57.2%", // 390/682 (relative to links container height)
             }}
           >
@@ -138,8 +138,8 @@ export default function StructureDiagram() {
           <div 
             className="absolute flex flex-col"
             style={{
-              left: "82%", // 636/925 (636px from start = 212px gap * 3)
-              top: "72%",
+              left: "81%", // 636/925 (636px from start = 212px gap * 3)
+              top: "68%",
               gap: "57.2%", // 390/682 (relative to links container height)
             }}
           >

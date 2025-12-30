@@ -19,11 +19,15 @@ export async function getServerSideProps({ params }) {
 
     console.log("Direct API call:", `${apiUrl}/actions/${id}?populate=*`);
 
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    if (apiKey) {
+      headers.Authorization = `Bearer ${apiKey}`;
+    }
+
     const response = await fetch(`${apiUrl}/actions/${id}?populate=*`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
+      headers,
     });
 
     console.log("API Response Status:", response.status);

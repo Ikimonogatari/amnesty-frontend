@@ -68,9 +68,9 @@ export default function StaticHeader({
             </div>
 
             {/* Mobile Title Overlay - Same layout as BannerSlider mobile caption */}
-            <div className="md:hidden absolute h-[250px] w-1/5 top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] overflow-x-auto gap-3 p-4 flex z-0">
+            <div className="md:hidden absolute h-full min-h-[250px] md:min-h-[300px] w-1/5 top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] overflow-x-auto gap-3 p-4 flex z-0">
               <h1
-                className="text-base font-bold font-mongolian mb-2 flex-shrink-0 line-clamp-2"
+                className="text-base font-bold font-mongolian mb-2 flex-shrink-0"
                 style={{
                   writingMode: "vertical-rl",
                 }}

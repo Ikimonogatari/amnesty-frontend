@@ -18,6 +18,8 @@ export default function BannerSlider({
   const [featuredNewsLoading, setFeaturedNewsLoading] = useState(false);
   const [featuredNewsError, setFeaturedNewsError] = useState(null);
   const timeoutRef = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   // Fetch featured news posts for homepage slider (like old web)
   useEffect(() => {
@@ -109,6 +111,28 @@ export default function BannerSlider({
     setIsAutoPlaying(!isAutoPlaying);
   };
 
+  // Touch swipe handlers
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeThreshold = 50;
+    const diff = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  };
+
   // Auto-slide effect
   useEffect(() => {
     if (isAutoPlaying && displayImages && displayImages.length > 1) {
@@ -172,13 +196,18 @@ export default function BannerSlider({
 
   return (
     <div className={`sm:p-4 ${className}`}>
-      <div className="relative overflow-hidden h-full" style={{ width: width }}>
+      <div
+        className="relative overflow-hidden h-full"
+        style={{ width: width }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {/* Banner Images */}
         <div
           className="h-full flex transition-transform duration-700 ease-in-out"
           style={{
             transform: `translateX(-${currentIndex * 100}%)`,
-            width: "100%",
           }}
         >
           {displayImages.map((image, index) => (
