@@ -29,7 +29,7 @@ export async function getServerSideProps() {
     }
 
     const response = await fetch(
-      `${apiUrl}/actions?populate=*&sort[0]=createdAt:desc`,
+      `${apiUrl}/actions?populate=*&sort[0]=createdAt:desc&locale=mn-MN`,
       { headers }
     );
 
