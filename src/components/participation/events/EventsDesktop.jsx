@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { eventsService } from "@/services/apiService";
 import { API_CONFIG } from "@/config/api";
+import { eventsService } from "@/services/apiService";
+import { useEffect, useState } from "react";
 import EventModal from "./EventModal";
 
 export default function EventsDesktop() {
@@ -143,14 +143,14 @@ export default function EventsDesktop() {
         // Extract date part directly from ISO string to avoid timezone issues
         // If the date string is "2024-01-15T10:00:00.000Z", extract "2024-01-15"
         const getDatePart = (dateString) => {
-          if (typeof dateString === 'string') {
+          if (typeof dateString === "string") {
             // Extract YYYY-MM-DD from ISO string
             const dateMatch = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
             if (dateMatch) {
               return {
                 year: parseInt(dateMatch[1], 10),
                 month: parseInt(dateMatch[2], 10),
-                day: parseInt(dateMatch[3], 10)
+                day: parseInt(dateMatch[3], 10),
               };
             }
           }
@@ -162,7 +162,7 @@ export default function EventsDesktop() {
           return {
             year: date.getFullYear(),
             month: date.getMonth() + 1,
-            day: date.getDate()
+            day: date.getDate(),
           };
         };
 
@@ -170,8 +170,16 @@ export default function EventsDesktop() {
         const endDateParts = getDatePart(eventAttrs.end_date);
 
         // Create Date objects for comparison (using local time at midnight)
-        const startDate = new Date(startDateParts.year, startDateParts.month - 1, startDateParts.day);
-        const endDate = new Date(endDateParts.year, endDateParts.month - 1, endDateParts.day);
+        const startDate = new Date(
+          startDateParts.year,
+          startDateParts.month - 1,
+          startDateParts.day
+        );
+        const endDate = new Date(
+          endDateParts.year,
+          endDateParts.month - 1,
+          endDateParts.day
+        );
 
         // Create date key from date parts (avoiding timezone conversion)
         const dateKey = `${startDateParts.year}-${String(
@@ -216,37 +224,50 @@ export default function EventsDesktop() {
         }
 
         // Also add events for multi-day events (if end date is different)
-        if (dateKey !== `${endDateParts.year}-${String(
-          endDateParts.month
-        ).padStart(2, "0")}-${String(endDateParts.day).padStart(2, "0")}`) {
+        if (
+          dateKey !==
+          `${endDateParts.year}-${String(endDateParts.month).padStart(
+            2,
+            "0"
+          )}-${String(endDateParts.day).padStart(2, "0")}`
+        ) {
           // Iterate through each day of the multi-day event
           let currentDateParts = { ...startDateParts };
           const endDateKey = `${endDateParts.year}-${String(
             endDateParts.month
           ).padStart(2, "0")}-${String(endDateParts.day).padStart(2, "0")}`;
-          
+
           while (true) {
             // Move to next day
-            const currentDate = new Date(currentDateParts.year, currentDateParts.month - 1, currentDateParts.day);
+            const currentDate = new Date(
+              currentDateParts.year,
+              currentDateParts.month - 1,
+              currentDateParts.day
+            );
             currentDate.setDate(currentDate.getDate() + 1);
-            
+
             const nextYear = currentDate.getFullYear();
             const nextMonth = currentDate.getMonth() + 1;
             const nextDay = currentDate.getDate();
-            const multiDayKey = `${nextYear}-${String(
-              nextMonth
-            ).padStart(2, "0")}-${String(nextDay).padStart(2, "0")}`;
-            
+            const multiDayKey = `${nextYear}-${String(nextMonth).padStart(
+              2,
+              "0"
+            )}-${String(nextDay).padStart(2, "0")}`;
+
             if (multiDayKey > endDateKey) break;
-            
+
             if (!eventsMap[multiDayKey]) {
               eventsMap[multiDayKey] = {
                 ...eventObj,
                 title: `${eventObj.title} (continued)`,
               };
             }
-            
-            currentDateParts = { year: nextYear, month: nextMonth, day: nextDay };
+
+            currentDateParts = {
+              year: nextYear,
+              month: nextMonth,
+              day: nextDay,
+            };
           }
         }
       } catch (error) {
@@ -394,25 +415,25 @@ export default function EventsDesktop() {
           </div>
           {event && (
             <>
-               <div
-                 className={`absolute bottom-2 left-2 ${event.color} px-1 py-0.5 rounded text-white text-[8px] font-medium cursor-pointer min-w-[20px] text-center group`}
-                 style={{
-                   writingMode: "vertical-lr",
-                 }}
-               >
-                 {event.title.split(' ')[0] || event.title.substring(0, 3)}
-                 {/* Tooltip */}
-                 <div className="absolute left-full bottom-0 ml-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 whitespace-nowrap">
-                   <div
-                     style={{
-                       writingMode: "vertical-lr",
-                     }}
-                   >
-                     {event.title}
-                   </div>
-                   <div className="absolute top-full left-2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
-                 </div>
-               </div>
+              <div
+                className={`absolute bottom-2 left-2 ${event.color} px-1 py-0.5 rounded text-white text-[8px] font-medium cursor-pointer min-w-[20px] text-center group`}
+                style={{
+                  writingMode: "vertical-lr",
+                }}
+              >
+                {event.title.split(" ")[0] || event.title.substring(0, 3)}
+                {/* Tooltip */}
+                <div className="absolute left-full bottom-0 ml-2 px-3 py-2 bg-black text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10 whitespace-nowrap">
+                  <div
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                  >
+                    {event.title}
+                  </div>
+                  <div className="absolute top-full left-2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black"></div>
+                </div>
+              </div>
             </>
           )}
         </div>
@@ -527,100 +548,102 @@ export default function EventsDesktop() {
         </div>
       </div>
 
-      {/* Right side - Calendar Grid */}
-      <div className="flex-1 bg-white flex flex-col h-full">
-        {/* Calendar Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={() => navigateMonth(-1)}
-              disabled={loading}
-              className="p-2 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      {/* Calendar Header - Column Layout */}
+      <div className="flex flex-col items-center justify-between h-full">
+        {/* Top: Left/Right buttons in a row */}
+        <div className="flex items-center">
+          <button
+            onClick={() => navigateMonth(-1)}
+            disabled={loading}
+            className="p-2 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={() => navigateMonth(1)}
-              disabled={loading}
-              className="p-2 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <button
+            onClick={() => navigateMonth(1)}
+            disabled={loading}
+            className="p-2 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={navigateToToday}
-              disabled={loading}
-              className="px-4 py-2 hover:bg-gray-100 text-sm border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <p
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
+        {/* Middle: Date name with loader/error */}
+        <div className="flex items-center justify-center gap-2">
+          <h2
+            className="text-xl font-semibold"
+            style={{
+              writingMode: "vertical-lr",
+            }}
+          >
+            {monthNames[currentDate.getMonth()]}{" "}
+            {toMongolianNumerals(currentDate.getFullYear())}
+          </h2>
+          {loading && (
+            <div className="flex items-center text-gray-500 gap-2">
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+              <span
+                className="text-sm"
                 style={{
                   writingMode: "vertical-lr",
                 }}
               >
-                ᠥᠨᠥᠳᠦᠷ
-              </p>
-            </button>
-          </div>
-          <div className="flex items-center gap-4">
-            <h2
-              className="text-xl font-semibold max-h-[180px]"
+                ᠠᠴᠢᠯᠠᠭᠤᠯᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
+              </span>
+            </div>
+          )}
+          {error && (
+            <div
+              className="text-red-500 text-sm"
               style={{
                 writingMode: "vertical-lr",
               }}
             >
-              {monthNames[currentDate.getMonth()]}{" "}
-              {toMongolianNumerals(currentDate.getFullYear())}
-            </h2>
-            {loading && (
-              <div className="flex items-center text-gray-500">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600 mr-2"></div>
-                <span
-                  className="text-sm"
-                  style={{
-                    writingMode: "vertical-lr",
-                  }}
-                >
-                  ᠠᠴᠢᠯᠠᠭᠤᠯᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-                </span>
-              </div>
-            )}
-            {error && (
-              <div
-                className="text-red-500 text-sm"
-                style={{
-                  writingMode: "vertical-lr",
-                }}
-              >
-                ᠠᠯᠳᠠᠭ᠎ᠠ: {error}
-              </div>
-            )}
-          </div>
-          <div></div>
+              ᠠᠯᠳᠠᠭ᠎ᠠ: {error}
+            </div>
+          )}
         </div>
+        {/* Bottom: Today button */}
+        <button
+          onClick={navigateToToday}
+          disabled={loading}
+          className="px-4 py-2 hover:bg-gray-100 text-sm border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <p
+            style={{
+              writingMode: "vertical-lr",
+            }}
+          >
+            ᠥᠨᠥᠳᠦᠷ
+          </p>
+        </button>
+      </div>
 
+      {/* Right side - Calendar Grid */}
+      <div className="flex-1 bg-white flex flex-col h-full">
         {/* Calendar Grid */}
         <div className="bg-white rounded-lg border border-gray-200 overflow-hidden flex-1 flex flex-col">
           {/* Calendar days */}

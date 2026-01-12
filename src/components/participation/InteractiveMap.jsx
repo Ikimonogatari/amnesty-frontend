@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import apiService from "../../services/apiService";
+import { Eye } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const InteractiveMap = () => {
   const [hoveredProvinceId, setHoveredProvinceId] = useState(null);
@@ -27,14 +27,14 @@ const InteractiveMap = () => {
       .join("");
   };
 
-  // Province data with coordinates and counts - with Traditional Mongolian names
+  // Province data with coordinates - counts will be fetched from API
   const provinces = [
     {
       id: 1,
       title: "Архангай",
       mongolTitle: "ᠠᠷᠬᠠᠩᠭᠠᠢ",
-      count: 12,
-      mongolCount: toMongolianNumber(12),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 371,
       y: 190,
       width: 10,
@@ -44,8 +44,8 @@ const InteractiveMap = () => {
       id: 2,
       title: "Баян-Өлгий",
       mongolTitle: "ᠪᠠᠶᠠᠨ ᠥᠯᠦᠭᠡᠢ",
-      count: 8,
-      mongolCount: toMongolianNumber(8),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 10,
       y: 148,
       width: 10,
@@ -55,8 +55,8 @@ const InteractiveMap = () => {
       id: 3,
       title: "Баянхонгор",
       mongolTitle: "ᠪᠠᠶᠠᠨᠬᠣᠩᠭᠣᠷ",
-      count: 15,
-      mongolCount: toMongolianNumber(15),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 331,
       y: 300,
       width: 10,
@@ -66,8 +66,8 @@ const InteractiveMap = () => {
       id: 4,
       title: "Булган",
       mongolTitle: "ᠪᠤᠯᠭᠠᠨ",
-      count: 9,
-      mongolCount: toMongolianNumber(9),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 455,
       y: 112,
       width: 10,
@@ -77,8 +77,8 @@ const InteractiveMap = () => {
       id: 5,
       title: "Говь-Алтай",
       mongolTitle: "ᠭᠣᠪᠢ ᠠᠯᠲᠠᠢ",
-      count: 7,
-      mongolCount: toMongolianNumber(7),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 214,
       y: 300,
       width: 10,
@@ -88,8 +88,8 @@ const InteractiveMap = () => {
       id: 6,
       title: "Говьсүмбэр",
       mongolTitle: "ᠭᠣᠪᠢᠰᠦᠮᠪᠡᠷ",
-      count: 11,
-      mongolCount: toMongolianNumber(11),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 632,
       y: 203,
       width: 10,
@@ -99,8 +99,8 @@ const InteractiveMap = () => {
       id: 7,
       title: "Дархан-Уул",
       mongolTitle: "ᠳᠠᠷᠬᠠᠨ ᠤᠤᠯ",
-      count: 14,
-      mongolCount: toMongolianNumber(14),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 569,
       y: 124,
       width: 10,
@@ -110,8 +110,8 @@ const InteractiveMap = () => {
       id: 8,
       title: "Дорноговь",
       mongolTitle: "ᠳᠣᠷᠣᠨᠣᠭᠣᠪᠢ",
-      count: 6,
-      mongolCount: toMongolianNumber(6),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 640,
       y: 348,
       width: 10,
@@ -121,8 +121,8 @@ const InteractiveMap = () => {
       id: 9,
       title: "Дорнод",
       mongolTitle: "ᠳᠣᠷᠣᠨᠠᠳ",
-      count: 13,
-      mongolCount: toMongolianNumber(13),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 780,
       y: 168,
       width: 10,
@@ -132,8 +132,8 @@ const InteractiveMap = () => {
       id: 10,
       title: "Дундговь",
       mongolTitle: "ᠳᠤᠨᠳᠤᠭᠣᠪᠢ",
-      count: 10,
-      mongolCount: toMongolianNumber(10),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 530,
       y: 288,
       width: 10,
@@ -143,8 +143,8 @@ const InteractiveMap = () => {
       id: 11,
       title: "Завхан",
       mongolTitle: "ᠵᠠᠪᠬᠠᠨ",
-      count: 8,
-      mongolCount: toMongolianNumber(8),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 214,
       y: 170,
       width: 10,
@@ -154,8 +154,8 @@ const InteractiveMap = () => {
       id: 12,
       title: "Орхон",
       mongolTitle: "ᠣᠷᠬᠣᠨ",
-      count: 16,
-      mongolCount: toMongolianNumber(16),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 476,
       y: 148,
       width: 10,
@@ -165,8 +165,8 @@ const InteractiveMap = () => {
       id: 13,
       title: "Өвөрхангай",
       mongolTitle: "ᠡᠪᠡᠷᠬᠠᠩᠭᠠᠢ",
-      count: 12,
-      mongolCount: toMongolianNumber(12),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 420,
       y: 288,
       width: 10,
@@ -176,8 +176,8 @@ const InteractiveMap = () => {
       id: 14,
       title: "Өмнөговь",
       mongolTitle: "ᠡᠮᠦᠨᠡᠭᠦᠭᠣᠪᠢ",
-      count: 5,
-      mongolCount: toMongolianNumber(5),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 480,
       y: 388,
       width: 10,
@@ -187,8 +187,8 @@ const InteractiveMap = () => {
       id: 15,
       title: "Сүхбаатар",
       mongolTitle: "ᠰᠦᠬᠪᠠᠲᠤᠷ",
-      count: 9,
-      mongolCount: toMongolianNumber(9),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 750,
       y: 258,
       width: 10,
@@ -198,8 +198,8 @@ const InteractiveMap = () => {
       id: 16,
       title: "Сэлэнгэ",
       mongolTitle: "ᠰᠡᠯᠡᠩᠭᠡ",
-      count: 11,
-      mongolCount: toMongolianNumber(11),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 525,
       y: 146,
       width: 10,
@@ -209,8 +209,8 @@ const InteractiveMap = () => {
       id: 17,
       title: "Төв",
       mongolTitle: "ᠲᠥᠪ",
-      count: 18,
-      mongolCount: toMongolianNumber(18),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 539,
       y: 224,
       width: 10,
@@ -220,8 +220,8 @@ const InteractiveMap = () => {
       id: 18,
       title: "Улаанбаатар",
       mongolTitle: "ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ",
-      count: 25,
-      mongolCount: toMongolianNumber(25),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 572,
       y: 180,
       width: 10,
@@ -231,8 +231,8 @@ const InteractiveMap = () => {
       id: 19,
       title: "Увс",
       mongolTitle: "ᠤᠪᠰᠤ",
-      count: 7,
-      mongolCount: toMongolianNumber(7),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 120,
       y: 107,
       width: 10,
@@ -242,8 +242,8 @@ const InteractiveMap = () => {
       id: 20,
       title: "Ховд",
       mongolTitle: "ᠬᠣᠪᠳᠤ",
-      count: 6,
-      mongolCount: toMongolianNumber(6),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 120,
       y: 227,
       width: 10,
@@ -253,8 +253,8 @@ const InteractiveMap = () => {
       id: 21,
       title: "Хөвсгөл",
       mongolTitle: "ᠬᠥᠪᠰᠦᠭᠦᠯ",
-      count: 10,
-      mongolCount: toMongolianNumber(10),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 341,
       y: 70,
       width: 10,
@@ -264,8 +264,8 @@ const InteractiveMap = () => {
       id: 22,
       title: "Хэнтий",
       mongolTitle: "ᠬᠡᠨᠲᠡᠢ",
-      count: 8,
-      mongolCount: toMongolianNumber(8),
+      count: 0,
+      mongolCount: toMongolianNumber(0),
       x: 670,
       y: 168,
       width: 10,
@@ -274,16 +274,48 @@ const InteractiveMap = () => {
   ];
 
   useEffect(() => {
-    // Simulate API call
     const loadData = async () => {
       try {
         setLoading(true);
-        // In real implementation, this would be an API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        setCoordinatedProvinces(provinces);
+
+        // Fetch province statistics from API
+        const response = await fetch("/mng/api/human-right-reports/stats");
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch stats");
+        }
+
+        const statsData = await response.json();
+        const provinceData = statsData?.payload?.provinceData || [];
+
+        // Map API data to provinces by matching province names
+        const updatedProvinces = provinces.map((province) => {
+          // Find matching province data from API
+          const apiProvince = provinceData.find(
+            (item) =>
+              item.provinceName === province.title ||
+              item.provinceName === province.mongolTitle
+          );
+
+          const count = apiProvince?.count || 0;
+
+          return {
+            ...province,
+            count: count,
+            mongolCount: toMongolianNumber(count),
+          };
+        });
+
+        setCoordinatedProvinces(updatedProvinces);
       } catch (error) {
         console.error("Error loading provinces:", error);
-        setCoordinatedProvinces(provinces); // Fallback to static data
+        // On error, show all provinces with 0 counts
+        const provincesWithZero = provinces.map((province) => ({
+          ...province,
+          count: 0,
+          mongolCount: toMongolianNumber(0),
+        }));
+        setCoordinatedProvinces(provincesWithZero);
       } finally {
         setLoading(false);
       }
@@ -936,15 +968,15 @@ const InteractiveMap = () => {
 
             {hoveredProvinceId === province.id && (
               <div className="relative z-50">
-                <div className="absolute left-7 -top-3">
+                <div className="absolute left-7 -top-3 flex flex-row gap-1">
                   <button
                     onClick={() => navigateToDetails(province.title)}
-                    className="flex bg-yellow-300 items-center px-2 py-3 cursor-pointer mb-1"
+                    className="flex flex-col bg-yellow-300 items-center px-2 py-3 cursor-pointer gap-2"
                     style={{ minHeight: "120px" }}
                   >
-                    <div className="w-6 h-6 bg-black rounded-full mr-2"></div>
+                    <Eye className="w-4 h-4 text-black" />
                     <div
-                      className="text-xs flex-1"
+                      className="text-xs"
                       style={{
                         writingMode: "vertical-lr",
                         lineHeight: "1.4",
@@ -955,12 +987,12 @@ const InteractiveMap = () => {
                   </button>
                   <button
                     onClick={() => fillInfo(province.id)}
-                    className="flex bg-black items-center px-2 py-3 cursor-pointer"
+                    className="flex flex-col bg-black items-center px-2 py-3 cursor-pointer gap-2"
                     style={{ minHeight: "100px" }}
                   >
-                    <div className="w-6 h-6 bg-white rounded-full mr-2"></div>
+                    <Eye className="w-4 h-4 text-white" />
                     <div
-                      className="text-xs text-white flex-1"
+                      className="text-xs text-white"
                       style={{
                         writingMode: "vertical-lr",
                         lineHeight: "1.4",

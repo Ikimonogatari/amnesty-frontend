@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
 import Image from "next/image";
-import Button from "./Button";
+import { useRouter } from "next/router";
 import { getImageUrl } from "../../utils/fetcher";
+import Button from "./Button";
 
 export default function RelatedItems({
   items,
@@ -46,7 +46,7 @@ export default function RelatedItems({
             }}
           >
             <h3
-              className="max-w-12 text-xs flex-shrink-0 text-center"
+              className="w-10 text-xs flex-shrink-0"
               style={{
                 writingMode: "vertical-lr",
               }}
@@ -56,7 +56,7 @@ export default function RelatedItems({
                 ? `${(item.title || item.name).substring(0, 30)}...`
                 : item.title || item.name}
             </h3>
-            <div className="relative w-80 min-h-0" style={{ aspectRatio: "1" }}>
+            <div className="relative min-h-0" style={{ aspectRatio: "1" }}>
               <Image
                 src={
                   getImageUrl(item.thumbnail || item.cover || item.image) ||
@@ -64,7 +64,7 @@ export default function RelatedItems({
                 }
                 alt={item.title || item.name || "Related item image"}
                 fill
-                className="object-contain rounded-lg shadow-md"
+                className="object-cover shadow-md"
               />
               <Button
                 text={primaryButtonText}

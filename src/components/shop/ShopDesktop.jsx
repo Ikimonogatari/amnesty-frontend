@@ -113,7 +113,7 @@ export default function ShopDesktop({ merchandise = [] }) {
             itemType="merchandise"
             renderAdditionalContent={renderMerchPrice}
             hideCategoryButton={true}
-            columns={2}
+            columns={3}
           />
       </div>
     </div>

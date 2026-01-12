@@ -1,13 +1,13 @@
-import Image from "next/image";
 import Button from "@/components/common/Button";
-import { useRouter } from "next/router";
+import { toMongolianNumbers } from "@/utils/fetcher";
 import {
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronUp,
-  ChevronDown,
 } from "lucide-react";
-import { toMongolianNumbers } from "@/utils/fetcher";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 /**
  * Reusable Grid Layout Component matching News page layout exactly
@@ -76,7 +76,9 @@ export default function GridLayout({
       <div className="hidden sm:block h-full">
         <div className="h-full flex gap-4 overflow-hidden">
           <div
-            className={`grid grid-flow-col gap-4 sm:gap-6 min-w-0 ${columns === 2 ? 'grid-cols-2 grid-rows-2' : 'grid-cols-3 grid-rows-3'
+            className={`grid grid-flow-col gap-4 sm:gap-6 min-w-0 ${columns === 2
+                ? "grid-cols-2 grid-rows-2"
+                : "grid-cols-3 grid-rows-3"
               }`}
           >
             {isLoading || !items ? (
@@ -87,7 +89,7 @@ export default function GridLayout({
                   className="w-full h-full flex items-end space-x-4"
                   suppressHydrationWarning={false}
                 >
-                  <div className="w-16 max-w-16 h-full bg-gray-200 animate-pulse rounded"></div>
+                  <div className="w-11 max-w-11 h-full bg-gray-200 animate-pulse rounded"></div>
                   <div className="relative h-[300px] w-[300px] aspect-square shadow-md bg-gray-200 animate-pulse rounded-xl"></div>
                   <div className="w-12 h-48 bg-gray-200 animate-pulse rounded"></div>
                 </div>
@@ -100,7 +102,7 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="w-16 max-w-16 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-ellipsis text-center"
+                    className="w-11 max-w-11 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-ellipsis break-words"
                     style={{
                       writingMode: "vertical-lr",
                       // wordBreak: "break-all",
@@ -124,7 +126,9 @@ export default function GridLayout({
                   >
                     <Image
                       src={
-                        getImageUrl ? getImageUrl(item) : "/mng/images/news1.png"
+                        getImageUrl
+                          ? getImageUrl(item)
+                          : "/mng/images/news1.png"
                       }
                       alt={
                         getTitle ? getTitle(item) : item.title || "Item image"
@@ -255,8 +259,14 @@ export default function GridLayout({
                 <div className="flex-1 flex gap-4">
                   <div className="relative w-[200px] h-[200px] flex-shrink-0">
                     <Image
-                      src={getImageUrl ? getImageUrl(item) : "/mng/images/news1.png"}
-                      alt={getTitle ? getTitle(item) : item.title || "Item image"}
+                      src={
+                        getImageUrl
+                          ? getImageUrl(item)
+                          : "/mng/images/news1.png"
+                      }
+                      alt={
+                        getTitle ? getTitle(item) : item.title || "Item image"
+                      }
                       height={200}
                       width={200}
                       className="object-cover rounded-lg w-full h-full shadow-md"

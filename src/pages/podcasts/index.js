@@ -1,13 +1,12 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
-import PageIntroduction from "@/components/common/PageIntroduction";
 import LoadingSpinner from "@/components/common/LoadingSpinner";
-import Fetcher, { getImageUrl, buildFetcherUrl } from "@/utils/fetcher";
+import PageIntroduction from "@/components/common/PageIntroduction";
+import StaticHeader from "@/components/common/StaticHeader";
 import Layout from "@/components/layout/Layout";
-
+import Fetcher, { buildFetcherUrl, getImageUrl } from "@/utils/fetcher";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function PodcastsIndex() {
   const router = useRouter();
@@ -172,13 +171,13 @@ const getPodcastTitle = (podcast) => {
 const renderPodcastLinks = (podcast) => {
   const podcastAttrs = podcast.attributes || podcast;
   return (
-    <div className="flex flex-row flex-wrap items-center gap-1">
+    <div className="flex flex-col gap-1">
       {podcastAttrs.url_spotify_podcasts && (
         <a
           href={podcastAttrs.url_spotify_podcasts}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-1 py-1 text-[#1ed760] hover:opacity-80 w-full transition-opacity"
+          className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-1 py-1 text-[#1ed760] hover:opacity-80 transition-opacity"
           onClick={(e) => e.stopPropagation()}
         >
           <Image
@@ -197,7 +196,7 @@ const renderPodcastLinks = (podcast) => {
           href={podcastAttrs.url_apple_podcasts}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-1 py-1 hover:opacity-80 w-full transition-opacity"
+          className="flex items-center justify-center gap-1 rounded-lg border-2 border-black bg-black px-1 py-1 hover:opacity-80 transition-opacity"
           onClick={(e) => e.stopPropagation()}
         >
           <Image
