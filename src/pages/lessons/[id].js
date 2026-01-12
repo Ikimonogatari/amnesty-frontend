@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Layout from "@/components/layout/Layout";
-import Image from "next/image";
-import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
+import FullScreenLoader from "@/components/common/FullScreenLoader";
 import RelatedItems from "@/components/common/RelatedItems";
+import StaticHeader from "@/components/common/StaticHeader";
+import Layout from "@/components/layout/Layout";
 import { lessonsService } from "@/services/apiService";
 import { getImageUrl, toMongolianNumbers } from "@/utils/fetcher";
-import FullScreenLoader from "@/components/common/FullScreenLoader";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function LessonDetail() {
   const router = useRouter();
@@ -587,7 +587,7 @@ export default function LessonDetail() {
             sectionTitle="ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠰᠤᠷᠭᠠᠯ"
             primaryButtonText="ᠬᠢᠴᠡᠡᠯ"
             itemType="lessons"
-            maxItems={3}
+            maxItems={4}
           />
         </div>
       </div>

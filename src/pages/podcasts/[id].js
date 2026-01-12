@@ -1,13 +1,12 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Layout from "@/components/layout/Layout";
-import Image from "next/image";
-import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
+import FullScreenLoader from "@/components/common/FullScreenLoader";
+import StaticHeader from "@/components/common/StaticHeader";
+import Layout from "@/components/layout/Layout";
 import { podcastsService } from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
-import FullScreenLoader from "@/components/common/FullScreenLoader";
-
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function PodcastDetail() {
   const router = useRouter();
@@ -415,7 +414,7 @@ export default function PodcastDetail() {
                   href={podcast.url_apple_podcasts}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-4 py-3 hover:opacity-80 transition-opacity"
+                  className="w-[120px] flex items-center justify-center gap-2 rounded-lg border-2 border-black bg-black px-3 py-2 hover:opacity-80 transition-opacity"
                 >
                   <Image
                     src={"/mng/icons/applePodcasts.png"}
