@@ -1,15 +1,11 @@
-import { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import Image from "next/image";
-import BannerSlider from "@/components/common/BannerSlider";
-import StaticHeader from "@/components/common/StaticHeader";
-import { bannerImages } from "@/constants/bannerImages";
 import Button from "@/components/common/Button";
-import { toMongolianNumbers } from "@/utils/fetcher";
+import StaticHeader from "@/components/common/StaticHeader";
 import { useSubmitHumanRightsReportMutation } from "@/redux/services/apiService";
-import userApiService from "@/services/userApiService";
+import { toMongolianNumbers } from "@/utils/fetcher";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-
 
 // findTop5 function exactly like old web
 const findTop5 = (data) => {
@@ -101,7 +97,8 @@ export default function EyeMobile() {
         let statsData = null;
 
         // Check if subjects response is JSON before parsing
-        const subjectsContentType = subjectsResponse.headers.get("content-type");
+        const subjectsContentType =
+          subjectsResponse.headers.get("content-type");
         if (subjectsContentType?.includes("application/json")) {
           try {
             subjectsData = await subjectsResponse.json();
@@ -110,7 +107,10 @@ export default function EyeMobile() {
             subjectsData = null;
           }
         } else {
-          console.warn("Subjects API returned non-JSON response:", subjectsContentType);
+          console.warn(
+            "Subjects API returned non-JSON response:",
+            subjectsContentType
+          );
         }
 
         // Check if stats response is JSON before parsing
@@ -123,7 +123,10 @@ export default function EyeMobile() {
             statsData = null;
           }
         } else {
-          console.warn("Stats API returned non-JSON response:", statsContentType);
+          console.warn(
+            "Stats API returned non-JSON response:",
+            statsContentType
+          );
         }
 
         if (subjectsData?.payload) {
@@ -229,13 +232,16 @@ export default function EyeMobile() {
     setIsSendingSms(true);
     try {
       // Use human rights reports specific phone verification endpoint
-      const response = await fetch("/mng/api/human-right-reports/verify/phone", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ phone: phoneValue }),
-      });
+      const response = await fetch(
+        "/mng/api/human-right-reports/verify/phone",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ phone: phoneValue }),
+        }
+      );
 
       const result = await response.json();
 
@@ -496,50 +502,60 @@ export default function EyeMobile() {
           </div>
         </div>
 
+        {/* Bordered text outside section */}
+        <div className="flex justify-center mb-4">
+          <div
+            className="w-full max-w-[300px] h-[60px] flex items-center justify-center border border-black text-sm font-bold p-2"
+            style={{
+              writingMode: "vertical-lr",
+            }}
+          >
+            ᠬᠠᠮᠠᠭᠢᠨ ᠢ᠋ᠢᠬ ᠮᠡᠳᠡᠡᠡᠯ ᠢᠷᠰᠡᠨ ᠠ᠋ᠢᠮᠠᠭ᠂ ᠳ᠋ᠦᠦᠷᠡᠭ
+          </div>
+        </div>
+
         {/* Yellow Arch Visualization */}
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-[280px] h-[160px] flex items-center justify-end flex-col gap-2">
-            <div className="text-xl flex flex-col items-center justify-center gap-0 pb-2 pl-2 border-b border-black">
-              {String(archInfo.percent)
-                .split("")
-                .map((digit, idx) => (
-                  <span key={idx}>
-                    {toMongolianNumbers(digit)}
-                  </span>
-                ))}
-            </div>
-            <div
-              className="text-[8px] h-[30px] text-center"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              {archInfo.title}
-            </div>
-            <div className="text-xl leading-none flex flex-col items-center justify-center gap-0">
-              {String(archInfo.count)
-                .split("")
-                .map((digit, idx) => (
-                  <span key={idx}>
-                    {toMongolianNumbers(digit)}
-                  </span>
-                ))}
+        <div className="flex flex-col items-center">
+          <div className="w-[350px] h-[200px] flex items-center justify-end flex-col gap-2">
+            <div className="flex items-center gap-3">
+              <div className="text-xl flex flex-col items-center justify-center gap-0 pr-2 pl-2 border-r-[2px] border-black">
+                {String(archInfo.percent)
+                  .split("")
+                  .map((digit, idx) => (
+                    <span key={idx}>{toMongolianNumbers(digit)}</span>
+                  ))}
+              </div>
+              <div
+                className="text-[8px] h-[35px] text-center"
+                style={{
+                  writingMode: "vertical-lr",
+                }}
+              >
+                {archInfo.title}
+              </div>
+              <div className="text-lg leading-none flex flex-col items-center justify-center gap-0">
+                {String(archInfo.count)
+                  .split("")
+                  .map((digit, idx) => (
+                    <span key={idx}>{toMongolianNumbers(digit)}</span>
+                  ))}
+              </div>
             </div>
             <div className="w-0 h-0 relative">
               {archGraduses.map((item, index) => (
                 <div
                   key={index}
-                  className="w-[130px] h-[25px] absolute right-0 bottom-2 flex items-center space-x-1"
+                  className="w-[170px] h-[30px] absolute right-0 -bottom-3 flex items-center space-x-1"
                   style={{
                     transform: `rotate(${item.gradus}deg)`,
                     transformOrigin: "right",
                     clipPath: "polygon(0 0, 0 100%, 100% 50%)",
                   }}
                 >
-                  {[0, 1, 2].map((dot) => (
+                  {[0, 1, 2, 3, 4].map((dot) => (
                     <div
                       key={dot}
-                      className="w-[10px] h-[10px] rounded-full"
+                      className="w-[12px] h-[12px] rounded-full"
                       style={{
                         backgroundColor: "#fcff29",
                       }}
@@ -552,14 +568,6 @@ export default function EyeMobile() {
 
           {/* Top Provinces Section */}
           <div className="flex flex-col w-full max-w-[300px]">
-            <div
-              className="w-full h-[60px] flex items-center justify-center border border-black text-sm font-bold p-2"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              ᠬᠠᠮᠠᠭᠢᠨ ᠢ᠋ᠢᠬ ᠮᠡᠳᠡᠡᠡᠯ ᠢᠷᠰᠡᠨ ᠠ᠋ᠢᠮᠠᠭ᠂ ᠳ᠋ᠦᠦᠷᠡᠭ
-            </div>
             <div className="flex w-full h-[50px] pl-[5px] my-[10px]">
               <div className="flex-1 flex items-center justify-center">
                 <span

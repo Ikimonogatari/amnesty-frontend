@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
-import Image from "next/image";
-import BannerSlider from "@/components/common/BannerSlider";
-import { bannerImages } from "@/constants/bannerImages";
-import InteractiveMap from "@/components/participation/InteractiveMap";
-import StaticHeader from "@/components/common/StaticHeader";
 import Button from "@/components/common/Button";
-import { toMongolianNumbers } from "@/utils/fetcher";
+import StaticHeader from "@/components/common/StaticHeader";
+import InteractiveMap from "@/components/participation/InteractiveMap";
 import { useSubmitHumanRightsReportMutation } from "@/redux/services/apiService";
-import userApiService from "@/services/userApiService";
+import { toMongolianNumbers } from "@/utils/fetcher";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-
 
 // findTop5 function exactly like old web
 const findTop5 = (data) => {
@@ -111,7 +107,8 @@ export default function EyeDesktop() {
         let statsData = null;
 
         // Check if subjects response is JSON before parsing
-        const subjectsContentType = subjectsResponse.headers.get("content-type");
+        const subjectsContentType =
+          subjectsResponse.headers.get("content-type");
         if (subjectsContentType?.includes("application/json")) {
           try {
             subjectsData = await subjectsResponse.json();
@@ -120,7 +117,10 @@ export default function EyeDesktop() {
             subjectsData = null;
           }
         } else {
-          console.warn("Subjects API returned non-JSON response:", subjectsContentType);
+          console.warn(
+            "Subjects API returned non-JSON response:",
+            subjectsContentType
+          );
         }
 
         // Check if stats response is JSON before parsing
@@ -133,7 +133,10 @@ export default function EyeDesktop() {
             statsData = null;
           }
         } else {
-          console.warn("Stats API returned non-JSON response:", statsContentType);
+          console.warn(
+            "Stats API returned non-JSON response:",
+            statsContentType
+          );
         }
 
         if (subjectsData?.payload) {
@@ -240,13 +243,16 @@ export default function EyeDesktop() {
     setIsSendingSms(true);
     try {
       // Use human rights reports specific phone verification endpoint
-      const response = await fetch("/mng/api/human-right-reports/verify/phone", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ phone: phoneValue }),
-      });
+      const response = await fetch(
+        "/mng/api/human-right-reports/verify/phone",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ phone: phoneValue }),
+        }
+      );
 
       const result = await response.json();
 
@@ -504,143 +510,147 @@ export default function EyeDesktop() {
           </div>
         </div>
 
-        {/* Yellow Arch Visualization */}
-        <div className="flex flex-col items-center">
-          <div className="w-[546px] h-[311px] flex items-center justify-end flex-col gap2">
-            <div className="flex items-center gap-4">
-              <div className="text-3xl flex flex-col items-center justify-center gap-0 pr-2 pl-3 border-r-[2px] border-black">
-                {String(archInfo.percent)
-                  .split("")
-                  .map((digit, idx) => (
-                    <span key={idx}>{toMongolianNumbers(digit)}</span>
-                  ))}
-              </div>
-              <div
-                className="text-[10px] h-[50px] text-center"
-                style={{
-                  writingMode: "vertical-lr",
-                }}
-              >
-                {archInfo.title}
-              </div>
-              <div className="text-3xl leading-none flex flex-col items-center justify-center gap-0">
-                {String(archInfo.count)
-                  .split("")
-                  .map((digit, idx) => (
-                    <span key={idx}>{toMongolianNumbers(digit)}</span>
-                  ))}
-              </div>
-            </div>
-            <div className="w-0 h-0 relative">
-              {archGraduses.map((item, index) => (
-                <div
-                  key={index}
-                  className="w-[260px] h-[45px] absolute right-0 -bottom-4 flex items-center space-x-1.5"
-                  style={{
-                    transform: `rotate(${item.gradus}deg)`,
-                    transformOrigin: "right",
-                    clipPath: "polygon(0 0, 0 100%, 100% 50%)",
-                  }}
-                >
-                  {[0, 1, 2, 3, 4].map((dot) => (
-                    <div
-                      key={dot}
-                      className="w-[17px] h-[17px] rounded-full"
-                      style={{
-                        backgroundColor: "#fcff29",
-                      }}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Top provinces with most reports section */}
-          <div className="flex flex-col">
+        <div className="flex flex-row items-center gap-4">
+          {/* Bordered text outside section */}
+          <div className="flex justify-center mb-4">
             <div
-              className="w-[507px] h-[75px] flex items-center justify-center border border-black text-lg font-bold p-4"
+              className="flex items-center justify-center border border-black text-lg font-bold p-4"
               style={{
                 writingMode: "vertical-lr",
               }}
             >
               ᠬᠠᠮᠠᠭᠢᠨ ᠢ᠋ᠢᠬ ᠮᠡᠳᠡᠡᠡᠯ ᠢᠷᠰᠡᠨ ᠠ᠋ᠢᠮᠠᠭ᠂ ᠳ᠋ᠦᠦᠷᠡᠭ
             </div>
-            <div className="flex w-[507px] h-[60px] pl-[10px] my-[10px] text-sm">
-              <div className="flex-1 flex items-center justify-center">
-                <span
+          </div>
+          {/* Yellow Arch Visualization */}
+          <div className="flex flex-col items-center">
+            <div className="w-[350px] h-[200px] flex items-center justify-end flex-col gap2">
+              <div className="flex items-center gap-3">
+                <div className="text-xl flex flex-col items-center justify-center gap-0 pr-2 pl-2 border-r-[2px] border-black">
+                  {String(archInfo.percent)
+                    .split("")
+                    .map((digit, idx) => (
+                      <span key={idx}>{toMongolianNumbers(digit)}</span>
+                    ))}
+                </div>
+                <div
+                  className="text-[8px] h-[35px] text-center"
                   style={{
                     writingMode: "vertical-lr",
                   }}
                 >
-                  ᠠ᠋ᠢᠮᠠᠭ
-                </span>
+                  {archInfo.title}
+                </div>
+                <div className="text-xl leading-none flex flex-col items-center justify-center gap-0">
+                  {String(archInfo.count)
+                    .split("")
+                    .map((digit, idx) => (
+                      <span key={idx}>{toMongolianNumbers(digit)}</span>
+                    ))}
+                </div>
               </div>
-              <div className="flex-1 flex items-center justify-center">
-                <span
-                  style={{
-                    writingMode: "vertical-lr",
-                  }}
-                >
-                  ᠨᠢᠢᠢᠲ
-                </span>
-              </div>
-              <div className="flex-1 flex items-center justify-center">
-                <span
-                  style={{
-                    writingMode: "vertical-lr",
-                  }}
-                >
-                  %
-                </span>
+              <div className="w-0 h-0 relative">
+                {archGraduses.map((item, index) => (
+                  <div
+                    key={index}
+                    className="w-[170px] h-[30px] absolute right-0 -bottom-3 flex items-center space-x-1"
+                    style={{
+                      transform: `rotate(${item.gradus}deg)`,
+                      transformOrigin: "right",
+                      clipPath: "polygon(0 0, 0 100%, 100% 50%)",
+                    }}
+                  >
+                    {[0, 1, 2, 3, 4].map((dot) => (
+                      <div
+                        key={dot}
+                        className="w-[12px] h-[12px] rounded-full"
+                        style={{
+                          backgroundColor: "#fcff29",
+                        }}
+                      />
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
-            {top5Provinces.map((item, index) => (
-              <div
-                key={index}
-                className="flex w-[507px] h-[70px] pl-[10px] mb-3 border-l-2 border-black"
-              >
-                <div
-                  className={`flex-1 flex items-center justify-center border border-black ${
-                    index === 0 ? "border-none" : ""
-                  }`}
-                  style={{
-                    backgroundColor: index === 0 ? "#fcff29" : "transparent",
-                  }}
-                >
+
+            {/* Top provinces with most reports section */}
+            <div className="flex flex-col">
+              <div className="flex w-[350px] h-[60px] pl-[10px] my-[10px] text-sm">
+                <div className="flex-1 flex items-center justify-center">
                   <span
                     style={{
                       writingMode: "vertical-lr",
                     }}
-                    className="max-h-[70px] overflow-x-auto text-[10px] text-center"
                   >
-                    {item.provinceName}
+                    ᠠ᠋ᠢᠮᠠᠭ
                   </span>
                 </div>
                 <div className="flex-1 flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center gap-0">
-                    {String(item.count)
-                      .split("")
-                      .map((digit, idx) => (
-                        <span key={idx}>{toMongolianNumbers(digit)}</span>
-                      ))}
-                  </div>
+                  <span
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                  >
+                    ᠨᠢᠢᠢᠲ
+                  </span>
                 </div>
                 <div className="flex-1 flex items-center justify-center">
-                  <div className="flex flex-col items-center justify-center gap-0">
-                    {String(item.percent)
-                      .split("")
-                      .map((digit, idx) => (
-                        <span key={idx}>{toMongolianNumbers(digit)}</span>
-                      ))}
-                    <span>%</span>
-                  </div>
+                  <span
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                  >
+                    %
+                  </span>
                 </div>
               </div>
-            ))}
+              {top5Provinces.map((item, index) => (
+                <div
+                  key={index}
+                  className="flex w-[350px] h-[70px] pl-[10px] mb-3 border-l-2 border-black"
+                >
+                  <div
+                    className={`flex-1 flex items-center justify-center border border-black ${
+                      index === 0 ? "border-none" : ""
+                    }`}
+                    style={{
+                      backgroundColor: index === 0 ? "#fcff29" : "transparent",
+                    }}
+                  >
+                    <span
+                      style={{
+                        writingMode: "vertical-lr",
+                      }}
+                      className="max-h-[70px] overflow-x-auto text-[10px] text-center"
+                    >
+                      {item.provinceName}
+                    </span>
+                  </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-0">
+                      {String(item.count)
+                        .split("")
+                        .map((digit, idx) => (
+                          <span key={idx}>{toMongolianNumbers(digit)}</span>
+                        ))}
+                    </div>
+                  </div>
+                  <div className="flex-1 flex items-center justify-center">
+                    <div className="flex flex-col items-center justify-center gap-0">
+                      {String(item.percent)
+                        .split("")
+                        .map((digit, idx) => (
+                          <span key={idx}>{toMongolianNumbers(digit)}</span>
+                        ))}
+                      <span>%</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-
         <div className="flex gap-7">
           {/* Information Section */}
           <div className="bg-[#FCFF29] rounded-lg p-4">
