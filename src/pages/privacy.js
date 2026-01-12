@@ -82,7 +82,7 @@ export default function Privacy() {
         </div>
 
         {/* Contact Section */}
-        <div className="flex h-full gap-7 px-14 py-4 bg-[#F1F1F1]">
+        <div className="flex h-full gap-7 px-14 py-4 bg-white">
           <h2
             className="text-2xl font-bold"
             style={{ writingMode: "vertical-lr" }}
