@@ -4,6 +4,7 @@ import userApiService from "@/services/userApiService";
 import Layout from "@/components/layout/Layout";
 import Button from "@/components/common/Button";
 import toast from "react-hot-toast";
+import { ChevronDown, ChevronRight } from "lucide-react";
 
 export default function Register() {
   const router = useRouter();
@@ -68,6 +69,48 @@ export default function Register() {
     };
   }, [isGroupDropdownOpen, isSubGroupDropdownOpen]);
 
+  const GROUP_TRANSLATIONS = {
+    "Залуучууд": "ᠵᠠᠯᠠᠭᠤᠴᠤᠳ",
+    "Мэргэжил, Сонирхол": "ᠮᠡᠷᢉᠡᠵᠢᠯ᠂ ᠰᠣᠨᠢᠷᠬᠠᠯ",
+    "Орон нутгийн бүлэг": "ᠣᠷᠤᠨ ᠨᠤᠲᠤᠭ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+  };
+
+  const SUBGROUP_TRANSLATIONS = {
+    "Сурагчдын бүлэг": "ᠰᠤᠷᠤᠭᠴᠢᠳ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Оюутны бүлэг": "ᠣᠶᠤᠲᠠᠨ ᠤ᠋ ᠪᠦᠯᠦᢉ",
+    "Залуучуудын бүлэг": "ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Хуульчдын бүлэг": "ᠬᠠᠤᠯᠢᠴᠢᠳ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Сэтгүүлчдийн бүлэг": "ᠰᠡᠳᢈᠦᠯᠴᠢᠳ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Багш нарын бүлэг": "ᠪᠠᠭᠰᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Эмч нарын бүлэг": "ᠡᠮᠴᠢ ᠨᠠᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Үйлдвэрчний эвлэлийн бүлэг": "ᠦᠢᠯᠡᠳᠪᠦᠷᠢᠴᠢᠨ ᠦ᠋ ᠡᠪᠯᠡᠯ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Эрэгтэйчүүдийн бүлэг": "ᠡᠷᠡᢉᠲᠡᠢ ᠨᠦ᠋ᢉᠦᠳ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ",
+    "Эмэгтэйчүүдийн бүлэг": "ᠡᠮᠡᢉᠲᠡᠢ ᠨᠦ᠋ᢉᠦᠳ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ",
+    "Урлагийн бүлэг": "ᠤᠷᠠᠯᠢᠭ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Чөлөөт бүлэг": "ᠴᠢᠯᠦᢉᠡᠲᠦ ᠪᠦᠯᠦᢉ",
+    "Архангайн бүлэг": "ᠠᠷᠤᠬᠠᠩᠭᠠᠢ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Баян-Өлгийн бүлэг": "ᠪᠠᠶᠠᠨ-ᠥᠯᠦᢉᠡᠢ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Баянхонгорын бүлэг": "ᠪᠠᠶᠠᠩᠬᠣᠩᠭᠤᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Булганы бүлэг": "ᠪᠤᠯᠠᠭᠠᠨ ᠤ᠋ ᠪᠦᠯᠦᢉ",
+    "Говь-Алтайн бүлэг": "ᠭᠣᠪᠢ-ᠠᠯᠲᠠᠢ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Говьсүмбэрийн бүлэг": "ᠭᠣᠪᠢᠰᠦ᠋ᠮᠪᠦᠷ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Дарханы бүлэг": "ᠳᠠᠷᠬᠠᠨ ᠤ᠋ ᠪᠦᠯᠦᢉ",
+    "Дорноговь аймгийн бүлэг": "ᠳᠣᠷᠤᠨᠠᠭᠣᠪᠢ ᠠᠶᠢᠮᠠᠭ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Дорнодын бүлэг": "ᠳᠣᠷᠤᠨᠠᠳᠤ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Дундговийн бүлэг": "ᠳᠤᠮᠳᠠᠭᠣᠪᠢ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Завханы бүлэг": "ᠵᠠᠪᠬᠠᠨ ᠤ᠋ ᠪᠦᠯᠦᢉ",
+    "Орхоны бүлэг": "ᠣᠷᠬᠤᠨ ᠤ᠋ ᠪᠦᠯᠦᢉ",
+    "Өвөрхангайн бүлэг": "ᠥᠪᠦᠷᠬᠠᠩᠭᠠᠢ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ ᠲᠦ",
+    "Өмнөговийн бүлэг": "ᠡᠮᠦᠨᠡᠭᠣᠪᠢ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Сүхбаатарын бүлэг": "ᠰᠦᢈᠡᠪᠠᠭᠠᠲᠤᠷ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Сэлэнгийн бүлэг": "ᠰᠡᠯᠡᠩᢉᠡ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ ᠦ᠋ᠨ",
+    "Төв аймгийн бүлэг": "ᠲᠥᠪ ᠠᠶᠢᠮᠠᠭ ᠤ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Увсын бүлэг": "ᠤᠪᠰᠤ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Ховдын бүлэг": "ᠬᠣᠪᠳᠤ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+    "Хөвсгөлийн бүлэг": "ᢈᠥᠪᠰᠦᢉᠦᠯ ᠦ᠋ᠨ ᠪᠦᠯᠦᢉ",
+    "Хэнтийн бүлэг": "ᢈᠡᠨᠲᠡᠢ ᠶ᠋ᠢᠨ ᠪᠦᠯᠦᢉ",
+  };
+
   const loadUserGroups = async () => {
     try {
       const response = await userApiService.user.getUserGroups();
@@ -77,6 +120,23 @@ export default function Register() {
       console.log("Response structure:", Object.keys(response));
 
       const groupsData = response.payload || response;
+
+      // Translate user groups
+      if (groupsData.userGroups) {
+        groupsData.userGroups = groupsData.userGroups.map((group) => ({
+          ...group,
+          title: GROUP_TRANSLATIONS[group.title] || group.title,
+        }));
+      }
+
+      // Translate user sub groups
+      if (groupsData.userSubGroups) {
+        groupsData.userSubGroups = groupsData.userSubGroups.map((subGroup) => ({
+          ...subGroup,
+          title: SUBGROUP_TRANSLATIONS[subGroup.title] || subGroup.title,
+        }));
+      }
+
       console.log("Groups data to set:", groupsData);
       setGroups(groupsData);
     } catch (error) {
@@ -290,7 +350,7 @@ export default function Register() {
                       alignItems: "center",
                     }}
                   >
-                    ᠪᠦᠯᠦᠭ*:
+                    ᠪᠦᠯᠦᠭ*
                   </label>
                   <div className="relative group-dropdown-container">
                     <button
@@ -298,23 +358,29 @@ export default function Register() {
                       onClick={() =>
                         setIsGroupDropdownOpen(!isGroupDropdownOpen)
                       }
-                      className="border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12 bg-white text-sm"
+                      className="border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12 bg-white text-sm hover:bg-gray-50 transition-colors"
                       style={{
                         writingMode: "vertical-lr",
                         height: "auto",
                         minHeight: "2.5rem",
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center",
+                        justifyContent: "space-between",
                         padding: "0.5rem 0.25rem",
                       }}
                     >
-                      {formData.groupId
-                        ? groups.userGroups?.find(
+                      <span className="flex-1 flex items-center justify-center">
+                        {formData.groupId
+                          ? groups.userGroups?.find(
                             (group) => group.id === formData.groupId
                           )?.title || "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"
-                        : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}{" "}
-                      {isGroupDropdownOpen ? "◀" : "▶"}
+                          : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}
+                      </span>
+                      {isGroupDropdownOpen ? (
+                        <ChevronDown size={16} className="mt-2 text-gray-500" />
+                      ) : (
+                        <ChevronRight size={16} className="mt-2 text-gray-500" />
+                      )}
                     </button>
                     {isGroupDropdownOpen && (
                       <div className="absolute top-0 left-24 bg-white border border-gray-300 rounded-md shadow-lg z-10 flex">
@@ -363,25 +429,30 @@ export default function Register() {
                         setIsSubGroupDropdownOpen(!isSubGroupDropdownOpen)
                       }
                       disabled={!formData.groupId}
-                      className={`border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12 bg-white text-sm ${
-                        !formData.groupId ? "opacity-50 cursor-not-allowed" : ""
-                      }`}
+                      className={`border-2 border-gray-300 pl-1 text-center rounded-lg flex-1 md:w-12 bg-white text-sm transition-colors ${!formData.groupId ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50"
+                        }`}
                       style={{
                         writingMode: "vertical-lr",
                         height: "auto",
                         minHeight: "2.5rem",
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "center",
+                        justifyContent: "space-between",
                         padding: "0.5rem 0.25rem",
                       }}
                     >
-                      {formData.subGroupId
-                        ? availableSubGroups.find(
+                      <span className="flex-1 flex items-center justify-center">
+                        {formData.subGroupId
+                          ? availableSubGroups.find(
                             (subGroup) => subGroup.id === formData.subGroupId
                           )?.title || "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"
-                        : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}{" "}
-                      {isSubGroupDropdownOpen ? "◀" : "▶"}
+                          : "ᠰᠣᠩᠭᠣᠨ᠎ᠠ ᠤᠤ"}
+                      </span>
+                      {isSubGroupDropdownOpen ? (
+                        <ChevronDown size={16} className="mt-2 text-gray-500" />
+                      ) : (
+                        <ChevronRight size={16} className="mt-2 text-gray-500" />
+                      )}
                     </button>
                     {isSubGroupDropdownOpen && formData.groupId && (
                       <div className="absolute top-0 left-24 bg-white border border-gray-300 rounded-md shadow-lg z-10 flex">

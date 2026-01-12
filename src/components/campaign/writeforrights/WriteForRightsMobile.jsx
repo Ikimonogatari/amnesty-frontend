@@ -276,7 +276,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     onChange={(e) =>
                       handleInputChange("lastName", e.target.value)
                     }
-                    className="border rounded-md p-2 w-16 text-xs"
+                    className="border rounded-md p-2 w-16 text-xs max-h-[500px]"
                     style={{
                       writingMode: "vertical-lr",
                     }}
@@ -299,7 +299,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     onChange={(e) =>
                       handleInputChange("firstName", e.target.value)
                     }
-                    className="border rounded-md p-2 w-16 text-xs"
+                    className="border rounded-md p-2 w-16 text-xs max-h-[500px]"
                     style={{
                       writingMode: "vertical-lr",
                     }}
@@ -320,7 +320,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     type="email"
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="border rounded-md p-2 w-16 text-xs"
+                    className="border rounded-md p-2 w-16 text-xs max-h-[500px]"
                     style={{
                       writingMode: "vertical-lr",
                     }}
@@ -341,7 +341,7 @@ export default function WriteForRightsMobile({ actions = [], error = null }) {
                     name="country"
                     control={control}
                     render={({ field }) => (
-                      <div className="relative dropdown-container">
+                      <div className="relative dropdown-container max-h-[500px]">
                         <button
                           type="button"
                           onClick={() =>

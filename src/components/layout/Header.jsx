@@ -46,7 +46,7 @@ export default function Header() {
     },
     { text: "ᠬᠠᠮᠫᠠᠨᠢᠲ ᠠᠵᠢᠯ", link: "/campaign" },
     {
-      text: "ᠡᠷᠬᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶᠡ",
+      text: "ᠡᠷᢈᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠶ᠎ᠡ",
       link: "/knowrights",
       hasDropdown: true,
       dropdownItems: [
@@ -89,74 +89,26 @@ export default function Header() {
 
   return (
     <div className="h-full py-4 px-2 max-h-screen min-w-[150px] inline-flex flex-col items-center justify-between gap-4 bg-white border-r border-[#E3E3E3] z-20">
-        <Link href="/" className="">
-          <Image
-            src={"/mng/images/amnesty-wide-logo.png"}
-            alt="logo"
-            width={150}
-            height={60}
-            className="object-contain w-[150px] h-[60px]"
-          />
-        </Link>
-        <div className="">
-          {/* 2x3 Grid Layout - spans top to bottom, then continues in col 2 */}
-          <div className="grid grid-cols-2 gap-2">
-            {menuItems.map((item, index) => (
-              <div key={index} className="relative">
-                {item.hasDropdown ? (
-                  <div
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                  >
-                    <Link href={item.link || "#"}>
-                      <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
-                        <p
-                          className="text-black font-bold text-xs"
-                          style={{
-                            writingMode: "vertical-lr",
-                          }}
-                        >
-                          {item.text}
-                        </p>
-                      </div>
-                    </Link>
-                    {activeDropdown === index && (
-                      <div className="absolute left-[38px] top-[-30px] bg-white rounded-xl p-6 z-30 border border-[#E3E3E3] shadow-lg">
-                        <div className="flex justify-between items-center">
-                          <div className="grid grid-cols-3 grid-rows-2 gap-10">
-                            {item.dropdownItems.map(
-                              (dropdownItem, dropdownIndex) => (
-                                <Link
-                                  key={dropdownIndex}
-                                  href={dropdownItem.link}
-                                >
-                                  <div
-                                    className={`flex flex-col items-center cursor-pointer group rounded-md hover:bg-gray-50 transition-all duration-200 ${
-                                      dropdownIndex <
-                                      item.dropdownItems.length - 1
-                                        ? "border-b border-gray-200"
-                                        : ""
-                                    }`}
-                                  >
-                                    <p
-                                      className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
-                                      style={{
-                                        writingMode: "vertical-lr",
-                                      }}
-                                    >
-                                      {dropdownItem.text}
-                                    </p>
-                                  </div>
-                                </Link>
-                              )
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ) : item.link ? (
-                  <Link href={item.link}>
+      <Link href="/" className="">
+        <Image
+          src={"/mng/images/amnesty-wide-logo.png"}
+          alt="logo"
+          width={150}
+          height={60}
+          className="object-contain w-[150px] h-[60px]"
+        />
+      </Link>
+      <div className="">
+        {/* 2x3 Grid Layout - spans top to bottom, then continues in col 2 */}
+        <div className="grid grid-cols-2 gap-2">
+          {menuItems.map((item, index) => (
+            <div key={index} className="relative">
+              {item.hasDropdown ? (
+                <div
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <Link href={item.link || "#"}>
                     <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
                       <p
                         className="text-black font-bold text-xs"
@@ -168,7 +120,42 @@ export default function Header() {
                       </p>
                     </div>
                   </Link>
-                ) : (
+                  {activeDropdown === index && (
+                    <div className="absolute left-[38px] top-[-30px] bg-white rounded-xl p-6 z-30 border border-[#E3E3E3] shadow-lg">
+                      <div className="flex justify-between items-center">
+                        <div className="grid grid-cols-3 grid-rows-2 gap-10">
+                          {item.dropdownItems.map(
+                            (dropdownItem, dropdownIndex) => (
+                              <Link
+                                key={dropdownIndex}
+                                href={dropdownItem.link}
+                              >
+                                <div
+                                  className={`flex flex-col items-center cursor-pointer group rounded-md hover:bg-gray-50 transition-all duration-200 ${dropdownIndex <
+                                    item.dropdownItems.length - 1
+                                    ? "border-b border-gray-200"
+                                    : ""
+                                    }`}
+                                >
+                                  <p
+                                    className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
+                                    style={{
+                                      writingMode: "vertical-lr",
+                                    }}
+                                  >
+                                    {dropdownItem.text}
+                                  </p>
+                                </div>
+                              </Link>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : item.link ? (
+                <Link href={item.link}>
                   <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
                     <p
                       className="text-black font-bold text-xs"
@@ -179,28 +166,40 @@ export default function Header() {
                       {item.text}
                     </p>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
+                </Link>
+              ) : (
+                <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
+                  <p
+                    className="text-black font-bold text-xs"
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                  >
+                    {item.text}
+                  </p>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-        <button className="text-base text-black px-3 py-2 rounded border border-[#E3E3E3] hover:bg-gray-50 transition-colors">
-          MNG
-        </button>
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#432C2C] to-transparent via-50%" />
-        <button
-          className="hover:bg-gray-100 rounded-md transition-colors"
-          onClick={() => setIsSearchOpen(true)}
-        >
-          <Icon icon={"lucide:search"} fontSize={25} />
-        </button>
-        <Button
-          text={<span>ᠡᠮᠨᠧᠰᠲ᠋ᠢ <br /> ᠳᠡᠯᢉᠡᢉᠦᠷ</span>}
-          onClick={() => {
-            router.push("/shop");
-          }}
-          type="primary"
-        />
+      </div>
+      <button className="text-base text-black px-3 py-2 rounded border border-[#E3E3E3] hover:bg-gray-50 transition-colors">
+        MNG
+      </button>
+      <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#432C2C] to-transparent via-50%" />
+      <button
+        className="hover:bg-gray-100 rounded-md transition-colors"
+        onClick={() => setIsSearchOpen(true)}
+      >
+        <Icon icon={"lucide:search"} fontSize={25} />
+      </button>
+      <Button
+        text={<span>ᠡᠮᠨᠧᠰᠲ᠋ᠢ <br /> ᠳᠡᠯᢉᠡᢉᠦᠷ</span>}
+        onClick={() => {
+          router.push("/shop");
+        }}
+        type="primary"
+      />
 
       {/* Search Modal */}
       <SearchModal

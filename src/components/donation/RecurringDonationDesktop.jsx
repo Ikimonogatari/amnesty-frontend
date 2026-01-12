@@ -38,10 +38,10 @@ export default function RecurringDonationDesktop({
   handleLogin,
 }) {
   return (
-    <div className="hidden sm:block">
+    <div className="hidden sm:block h-full">
       {/* Content Section */}
-      <div className="h-full flex flex-col gap-8 w-auto flex-shrink-0 mt-10">
-        <div className="flex gap-16 p-8 m-4 h-full bg-[#48483D] text-white rounded-lg">
+      <div className="h-full flex items-center gap-4 w-auto flex-shrink-0 p-4">
+        <div className="flex gap-16 p-8 h-full bg-[#48483D] text-white rounded-lg">
           <div className="flex gap-7">
             <h2
               className="text-2xl font-bold"
@@ -49,7 +49,7 @@ export default function RecurringDonationDesktop({
                 writingMode: "vertical-lr",
               }}
             >
-              ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
+              ᠰᠠᠷ᠎ᠠ ᠪᠣᠯᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠡᠷᢉᠦᢈᠦ
             </h2>
             <p
               style={{
@@ -57,40 +57,12 @@ export default function RecurringDonationDesktop({
               }}
               className="text-sm"
             >
-              ᠲᠠᠨ ᠳᠣᠤᠷᠠᠬᠢ ᠮᠡᠳᠡᢉᠡ ᠶᠢ ᠬᠠᠷᠲ ᠤᠨ ᠮᠡᠳᠡᢉᠡᠲᠡᠢ ᠠᠳᠠᠯᠢ ᠪᠢᢈᠢᠨᠡ ᠦᠦ
+              ᠲᠠ ᠳᠣᠣᠷᠠᢈᠢ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠢ᠋ ᠶᠠᠭ ᠻᠠᠷᠲ ᠤ᠋ᠨ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠲᠡᠢ ᠢᠵᠢᠯ ᠪᠢᠴᠢᠨ᠎ᠡ ᠦᠦ! <br />
+              ᠦᢉᠡ ᠦᠰᠦᢉ ᠦ᠋ᠨ ᠵᠥᠷᠢᢉᠦᠦᠲᠡᠢ ᠪᠠᠶᠢᠬᠤ ᠲᠣᢈᠢᠶᠠᠯᠳᠤᠯ ᠳ᠋ᠤ ᠠᠵᠢᠯᠯᠠᠬᠤ ᠦᢉᠡᠢ ᠪᠣᠯᠬᠤ ᠶ᠋ᠢ ᠠᠩᠬᠠᠷᠤᠨ᠎ᠠ ᠤᠤ!
             </p>
           </div>
 
           <div className="flex gap-7">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              ᠬᠠᠷᠢ ᠦᠦᠯ
-            </h2>
-
-            {/* Back to Once-time Button */}
-            <div className="flex gap-2">
-              <Button
-                text="ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ ᠬᠠᠨᠳᠢᠪ"
-                onClick={handleBackToOnceTime}
-                className="text-black text-sm"
-              />
-            </div>
-          </div>
-
-          <div className="flex gap-7">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              ᠪᠦᠷᠳᠦᢉᠦᠯ
-            </h2>
-
             {/* Last Name (first in old web) */}
             <div className="flex gap-2">
               <p
@@ -145,7 +117,7 @@ export default function RecurringDonationDesktop({
                   writingMode: "vertical-lr",
                 }}
               >
-                ᠤᠲᠠᠰᠤᠨ*
+                ᠤᠲᠠᠰᠤ*
               </p>
               <input
                 type="tel"
@@ -171,7 +143,7 @@ export default function RecurringDonationDesktop({
                   writingMode: "vertical-lr",
                 }}
               >
-                ᠬᠠᠷᠲ ᠤᠨ 16 ᠣᠷᠣᠨᠲᠠᠢ ᠳᠤᠭᠠᠷ*
+                ᠻᠠᠷᠲ ᠤ᠋ᠨ ᠑᠖ ᠣᠷᠤᠨ ᠲᠠᠢ ᠳ᠋ᠤᠭᠠᠷ*
               </p>
               <input
                 type="text"
@@ -290,7 +262,7 @@ export default function RecurringDonationDesktop({
         </div>
 
         {/* Login Form - Side by side like old web */}
-        <div className="flex gap-16 p-8 max-w-min m-4 h-full bg-[#48483D] text-white rounded-lg">
+        <div className="flex gap-16 p-8 max-w-min h-full bg-[#48483D] text-white rounded-lg">
           <div className="flex gap-7">
             <h2
               className="text-2xl font-bold"
@@ -298,7 +270,7 @@ export default function RecurringDonationDesktop({
                 writingMode: "vertical-lr",
               }}
             >
-              ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠪᠠᠢᢈᠠᠨ ᠤᠤ
+              ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᠴᠦ ᠪᠠᠶᠢᠭᠰᠠᠨ ᠤᠤ?
             </h2>
             <p
               style={{
@@ -306,20 +278,11 @@ export default function RecurringDonationDesktop({
               }}
               className="text-sm"
             >
-              ᠬᠠᠳᠠᠭᠠᠯᠠᢉᠠᢉᠠᠢ ᠢᠮᠡᠶᠢᠯ ᠪᠠᠷ ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
+              ᠲᠠ ᠬᠠᠨᠳᠢᠪ ᠥᢉᠴᠦ ᠪᠠᠶᠢᠬᠤ ᠳ᠋ᠤ ᠪᠠᠨ ᠠᠰᠢᠭᠯᠠᠵᠤ ᠪᠠᠶᠢᠭᠰᠠᠨ ᠢᠮᠧᠶᠢᠯ ᠬᠠᠶ᠋ᠢᠭ ᠢ᠋ᠶᠠᠷ ᠨᠡᠪᠲᠡᠷᠡᠵᠦ ᠣᠷᠤᠨ᠎ᠠ ᠤᠤ!
             </p>
           </div>
 
           <div className="flex gap-7">
-            <h2
-              className="text-2xl font-bold"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
-            </h2>
-
             {/* Email */}
             <div className="flex gap-2">
               <p

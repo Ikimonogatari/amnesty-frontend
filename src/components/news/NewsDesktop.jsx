@@ -198,33 +198,30 @@ export default function NewsDesktop() {
           <div className="h-full flex flex-col items-center gap-4">
             <button
               onClick={() => handleCategoryChange("news")}
-              className={`w-full h-full flex justify-center items-center text-center text-2xl font-bold rounded-xl p-8 transition-colors cursor-pointer ${
-                activeCategory === "news"
+              className={`w-full h-full flex justify-center items-center text-center text-2xl font-bold rounded-xl p-8 transition-colors cursor-pointer ${activeCategory === "news"
                   ? "text-white bg-[#2D2D2D] border border-[#2D2D2D]"
                   : "text-black bg-white border border-[#E3E3E3] hover:bg-gray-50"
-              }`}
+                }`}
               style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᢉᠡ
             </button>
             <button
               onClick={() => handleCategoryChange("statements")}
-              className={`w-full h-full flex justify-center items-center text-center text-2xl font-bold rounded-xl p-8 transition-colors cursor-pointer ${
-                activeCategory === "statements"
+              className={`w-full h-full flex justify-center items-center text-center text-2xl font-bold rounded-xl p-8 transition-colors cursor-pointer ${activeCategory === "statements"
                   ? "text-white bg-[#2D2D2D] border border-[#2D2D2D]"
                   : "text-black bg-white border border-[#E3E3E3] hover:bg-gray-50"
-              }`}
+                }`}
               style={{ writingMode: "vertical-lr" }}
             >
               ᠮᠡᠳᠡᠭᠳᠡᠯ ᠪᠠᠶᠢᠷ ᠰᠤᠤᠷᠢ
             </button>
             <button
               onClick={() => handleCategoryChange("good_news")}
-              className={`w-full h-full flex justify-center items-center text-center text-2xl font-bold rounded-xl p-8 transition-colors cursor-pointer ${
-                activeCategory === "good_news"
+              className={`w-full h-full flex justify-center items-center text-center text-2xl font-bold rounded-xl p-8 transition-colors cursor-pointer ${activeCategory === "good_news"
                   ? "text-white bg-[#2D2D2D] border border-[#2D2D2D]"
                   : "text-black bg-white border border-[#E3E3E3] hover:bg-gray-50"
-              }`}
+                }`}
               style={{ writingMode: "vertical-lr" }}
             >
               ᠣᠨᠴᠤᠯᠠᠬᠤ ᠮᠡᠳᠡᢉᠡ
@@ -256,8 +253,8 @@ export default function NewsDesktop() {
                   activeCategory === "statements"
                     ? "ᠮᠡᠳᠡᠭᠳᠡᠯ"
                     : activeCategory === "good_news"
-                    ? "ᠣᠨᠴᠤᠯᠠᠬᠤ ᠮᠡᠳᠡᢉᠡ"
-                    : "ᠮᠡᠳᠡᢉᠡ"
+                      ? "ᠣᠨᠴᠤᠯᠠᠬᠤ ᠮᠡᠳᠡᢉᠡ"
+                      : "ᠮᠡᠳᠡᢉᠡ"
                 }
                 getImageUrl={(item) => item.image}
                 getTitle={(item) => item.title}
@@ -270,15 +267,15 @@ export default function NewsDesktop() {
                   activeCategory === "good_news"
                     ? "ᠣᠨᠴᠤᠯᠠᠬᠤ ᠮᠡᠳᠡᢉᠡ ᠦᠭᠡᠢ"
                     : activeCategory === "statements"
-                    ? "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠦᠭᠡᠢ"
-                    : "ᠮᠡᠳᠡᢉᠡ ᠦᠭᠡᠢ"
+                      ? "ᠮᠡᠳᠡᠭᠳᠡᠯ ᠦᠭᠡᠢ"
+                      : "ᠮᠡᠳᠡᢉᠡ ᠦᠭᠡᠢ"
                 }
               />
             )}
           </div>
 
           {/* Related News Section */}
-          {relatedItems && relatedItems.length > 0 && (
+          {/* {relatedItems && relatedItems.length > 0 && (
             <RelatedItems
               items={relatedItems}
               sectionTitle="ᠬᠠᠮᠠᠭ᠎ᠠᠯᠠᠯᠲᠠᠢ ᠮᠡᠳᠡᠭᠡ"
@@ -286,7 +283,7 @@ export default function NewsDesktop() {
               itemType="news"
               maxItems={6}
             />
-          )}
+          )} */}
         </div>
       </div>
     </div>

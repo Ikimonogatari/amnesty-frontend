@@ -75,10 +75,9 @@ export default function GridLayout({
       {/* Desktop Layout - EXACT NEWS STRUCTURE */}
       <div className="hidden sm:block h-full">
         <div className="h-full flex gap-4 overflow-hidden">
-          <div 
-            className={`grid grid-flow-col gap-4 sm:gap-6 min-w-0 ${
-              columns === 2 ? 'grid-cols-2 grid-rows-2' : 'grid-cols-3 grid-rows-3'
-            }`}
+          <div
+            className={`grid grid-flow-col gap-4 sm:gap-6 min-w-0 ${columns === 2 ? 'grid-cols-2 grid-rows-2' : 'grid-cols-3 grid-rows-3'
+              }`}
           >
             {isLoading || !items ? (
               // Loading placeholders to maintain layout - consistent between server and client
@@ -101,11 +100,11 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="w-16 max-w-16 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-ellipsis break-words"
+                    className="w-16 max-w-16 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-ellipsis text-center"
                     style={{
                       writingMode: "vertical-lr",
-                      wordBreak: "break-all",
-                      overflowWrap: "break-word",
+                      // wordBreak: "break-all",
+                      // overflowWrap: "break-word",
                     }}
                     title={getTitle ? getTitle(item) : item.title}
                     onClick={() => handleItemClick(item)}
@@ -164,11 +163,10 @@ export default function GridLayout({
                     )}
                   </div>
                   <div
-                    className={`flex flex-col h-full ${
-                      renderAdditionalContent
-                        ? "justify-between"
-                        : "justify-end"
-                    }`}
+                    className={`flex flex-col h-full ${renderAdditionalContent
+                      ? "justify-between"
+                      : "justify-end"
+                      }`}
                   >
                     {/* Additional Content (e.g., podcast links) */}
                     {renderAdditionalContent && renderAdditionalContent(item)}

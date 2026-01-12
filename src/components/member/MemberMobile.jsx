@@ -140,7 +140,7 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             </Link>
             <Link
               target="_blank"
-              href="https://apps.apple.com/app/id15800000000000000"
+              href="https://apps.apple.com/mn/app/зоригтон-amnesty-mongolia/id6450171471"
             >
               <Image
                 src={"/mng/images/app-store.png"}
@@ -153,7 +153,7 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
         </div>
 
         {/* Login Form */}
-        <form onSubmit={handleSubmit(handleLogin)} className="flex gap-2">
+        <form onSubmit={handleSubmit(handleLogin)} className="flex gap-2 min-w-max">
           {/* Phone Field */}
           <div className="flex gap-2">
             <p
@@ -219,11 +219,10 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
             <button
               type="submit"
               disabled={isLoading}
-              className={`p-2 rounded-md text-[10px] font-bold bg-[#FFFF00] text-black flex items-center justify-center ${
-                isLoading
-                  ? "cursor-not-allowed opacity-70"
-                  : "hover:brightness-105 transition-all"
-              }`}
+              className={`p-2 rounded-md text-[10px] font-bold bg-[#FFFF00] text-black flex items-center justify-center ${isLoading
+                ? "cursor-not-allowed opacity-70"
+                : "hover:brightness-105 transition-all"
+                }`}
               style={{
                 writingMode: "vertical-lr",
                 width: "50px",
@@ -236,7 +235,7 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
           {/* Register Link */}
           <div className="flex gap-2">
             <p
-              onClick={() => router.push("/register")}
+              onClick={() => router.push("/reset-password")}
               className="p-2 text-[10px] font-bold cursor-pointer text-center flex items-center justify-center"
               style={{
                 writingMode: "vertical-lr",
@@ -251,7 +250,7 @@ export default function MemberMobile({ user, onLogout, onLogin }) {
           <div className="flex gap-2">
             <button
               type="button"
-              onClick={() => router.push("/reset-password")}
+              onClick={() => router.push("/register")}
               className="p-2 rounded-md text-[10px] font-bold bg-[#FFFF00] text-black flex items-center justify-center hover:brightness-105 transition-all"
               style={{
                 writingMode: "vertical-lr",

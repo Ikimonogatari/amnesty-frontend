@@ -134,7 +134,7 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
           </Link>
           <Link
             target="_blank"
-            href="https://apps.apple.com/app/id15800000000000000"
+            href="https://apps.apple.com/mn/app/зоригтон-amnesty-mongolia/id6450171471"
           >
             <Image
               src={"/mng/images/app-store.png"}
@@ -146,7 +146,7 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(handleLogin)} className="flex gap-2">
+      <form onSubmit={handleSubmit(handleLogin)} className="flex gap-2 min-w-max">
         {/* Phone Field */}
         <div className="flex gap-2">
           <p
@@ -212,11 +212,10 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
           <button
             type="submit"
             disabled={isLoading}
-            className={`p-2 rounded-md text-sm font-bold bg-[#FFFF00] text-black flex items-center justify-center ${
-              isLoading
-                ? "cursor-not-allowed opacity-70"
-                : "hover:brightness-105 transition-all"
-            }`}
+            className={`p-2 rounded-md text-sm font-bold bg-[#FFFF00] text-black flex items-center justify-center ${isLoading
+              ? "cursor-not-allowed opacity-70"
+              : "hover:brightness-105 transition-all"
+              }`}
             style={{
               writingMode: "vertical-lr",
               width: "60px",
@@ -229,7 +228,7 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
         {/* Links */}
         <div className="flex gap-2">
           <p
-            onClick={() => router.push("/register")}
+            onClick={() => router.push("/reset-password")}
             className="p-2 text-sm font-bold cursor-pointer text-center flex items-center justify-center"
             style={{
               writingMode: "vertical-lr",
@@ -243,7 +242,7 @@ export default function MemberDesktop({ user, onLogout, onLogin }) {
         <div className="flex gap-2">
           <button
             type="button"
-            onClick={() => router.push("/reset-password")}
+            onClick={() => router.push("/register")}
             className="p-2 rounded-md text-sm font-bold bg-[#FFFF00] text-black flex items-center justify-center hover:brightness-105 transition-all"
             style={{
               writingMode: "vertical-lr",

@@ -217,7 +217,7 @@ export default function ResetPassword() {
                       style={{
                         writingMode: "vertical-lr",
                       }}
-                      placeholder="99123456"
+                      placeholder="xxxx-xxxx"
                       maxLength="8"
                       required
                     />

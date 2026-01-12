@@ -92,9 +92,9 @@ export default function LibraryDetail() {
   const coverImage =
     getImageUrl(
       library.thumbnail ||
-        library.cover ||
-        library.image ||
-        library.featured_image
+      library.cover ||
+      library.image ||
+      library.featured_image
     ) || "/mng/images/news1.png";
 
   const pdfUrl =
@@ -113,7 +113,7 @@ export default function LibraryDetail() {
         />
 
         {/* Mobile Content */}
-        <div className="flex flex-col gap-4 p-4 max-h-screen overflow-y-auto">
+        <div className="flex flex-col gap-4 p-4">
           {/* Mobile PDF Viewer */}
           {pdfUrl && (
             <div>
@@ -156,7 +156,7 @@ export default function LibraryDetail() {
                 ᠲᠠᠢᠯᠪᠤᠷᠢ
               </h2>
               <div
-                className="text-base text-gray-800"
+                className="text-base text-gray-800 max-h-[300px]"
                 style={{
                   writingMode: "vertical-lr",
                 }}

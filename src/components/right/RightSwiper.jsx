@@ -105,6 +105,8 @@ export default function RightSwiper({
 
   // Navigate to detail page based on content type
   const navigateToDetail = (item) => {
+    console.log("navigateToDetail", item);
+    console.log("navigateToDetail:sectionTitle", sectionTitle);
     const itemId = item.id;
 
     // Determine the route based on section title
@@ -112,12 +114,12 @@ export default function RightSwiper({
 
     // Check if section title contains specific keywords - updated to match new page structure
     if (
-      sectionTitle.includes("ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
+      sectionTitle.includes("ᠴᠠᢈᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ") ||
       sectionTitle.toLowerCase().includes("online lesson")
     ) {
       route = `/online-lessons/${itemId}`;
     } else if (
-      sectionTitle.includes("ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
+      sectionTitle.includes("ᠰᠤᠷᠭᠠᠯᠲᠠ") ||
       sectionTitle.toLowerCase().includes("lesson")
     ) {
       route = `/lessons/${itemId}`;
@@ -127,12 +129,12 @@ export default function RightSwiper({
     ) {
       route = `/videos/${itemId}`;
     } else if (
-      sectionTitle.includes("ᠨᠣᠮ ᠲᠣᠪᠴᠢᠮᠠᠯ") ||
+      sectionTitle.includes("ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠩ") ||
       sectionTitle.toLowerCase().includes("librar")
     ) {
       route = `/library/${itemId}`;
     } else if (
-      sectionTitle.includes("ᠫᠣᠳᠺᠠᠰᠲ") ||
+      sectionTitle.includes("ᠫᠣᠳ᠋ᠻᠠᠰᠲ") ||
       sectionTitle.toLowerCase().includes("podcast")
     ) {
       route = `/podcasts/${itemId}`;
@@ -149,12 +151,12 @@ export default function RightSwiper({
 
     // Determine the category page route based on section title
     if (
-      sectionTitle.includes("ᠴᠠᠬᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
+      sectionTitle.includes("ᠴᠠᢈᠢᠮ ᠰᠤᠷᠭᠠᠯᠲᠠ") ||
       sectionTitle.toLowerCase().includes("online lesson")
     ) {
       route = "/online-lessons";
     } else if (
-      sectionTitle.includes("ᠰᠤᠷᠭᠠᠯᠲᠤ") ||
+      sectionTitle.includes("ᠰᠤᠷᠭᠠᠯᠲᠠ") ||
       sectionTitle.toLowerCase().includes("lesson")
     ) {
       route = "/lessons";
@@ -164,12 +166,12 @@ export default function RightSwiper({
     ) {
       route = "/videos";
     } else if (
-      sectionTitle.includes("ᠨᠣᠮ ᠲᠣᠪᠴᠢᠮᠠᠯ") ||
+      sectionTitle.includes("ᠣᠨᠴᠠᠯᠠᠬᠤ ᠨᠣᠮ ᠲᠣᠪᢈᠢᠮᠠᠯ ᠤ᠋ᠳ") ||
       sectionTitle.toLowerCase().includes("librar")
     ) {
       route = "/library";
     } else if (
-      sectionTitle.includes("ᠫᠣᠳᠺᠠᠰᠲ") ||
+      sectionTitle.includes("ᠣᠨᠴᠠᠯᠠᠬᠤ ᠫᠣᠳ᠋ᠻᠠᠰᠲ ᠤ᠋ᠳ") ||
       sectionTitle.toLowerCase().includes("podcast")
     ) {
       route = "/podcasts";
@@ -244,7 +246,7 @@ export default function RightSwiper({
             {title}
           </h1>
           <p
-            className="text-[8px] sm:text-sm font-bold max-h-[400px] overflow-y-auto font-mongolian"
+            className="text-[8px] sm:text-sm font-bold max-h-[200px] overflow-y-auto font-mongolian"
             style={{
               writingMode: "vertical-lr",
               wordBreak: "keep-all",
@@ -264,9 +266,9 @@ export default function RightSwiper({
           containerClassName="hidden sm:block"
         />
       </div>
-      <div className="flex flex-row gap-2 h-full min-h-[280px] sm:h-auto">
+      <div className="flex flex-row gap-2 h-full min-h-[200px] sm:h-auto">
         <p
-          className="text-[10px] font-bold block sm:hidden border-r pr-2 max-h-[250px] overflow-y-auto font-mongolian"
+          className="text-[10px] font-bold block sm:hidden max-h-[200px] overflow-y-auto font-mongolian"
           style={{
             writingMode: "vertical-lr",
             wordBreak: "keep-all",
@@ -277,7 +279,7 @@ export default function RightSwiper({
 
         <Swiper
           direction={isMobile ? "horizontal" : "vertical"}
-          slidesPerView={isMobile ? 1.3 : 3}
+          slidesPerView={isMobile ? 1 : 3}
           spaceBetween={isMobile ? 10 : 40}
           navigation={false}
           pagination={false}
@@ -346,6 +348,7 @@ export default function RightSwiper({
         </Swiper>
       </div>
 
+      {/* Desktop Navigation */}
       <div className="hidden sm:flex flex-col justify-start items-center gap-2">
         <Button text={<ChevronUp />} type="chevron" onClick={handlePrevSlide} />
         <div className="text-[10px] sm:text-sm flex flex-col items-center justify-center gap-0">
@@ -358,6 +361,27 @@ export default function RightSwiper({
           type="chevron"
           onClick={handleNextSlide}
         />
+      </div>
+
+      {/* Mobile Navigation - Below the slider */}
+      <div className="flex sm:hidden items-center justify-center gap-2 mt-4">
+        <button
+          onClick={handlePrevSlide}
+          className="w-8 h-8 rounded-full border border-black flex items-center justify-center bg-white hover:bg-gray-100 transition-colors"
+          disabled={currentSlide === 1}
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+        <div className="text-sm font-medium">
+          {toMongolianNumeral(currentSlide)}/{toMongolianNumeral(slides.length)}
+        </div>
+        <button
+          onClick={handleNextSlide}
+          className="w-8 h-8 rounded-full border border-black flex items-center justify-center bg-white hover:bg-gray-100 transition-colors"
+          disabled={currentSlide === slides.length}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
       </div>
     </div>
   );

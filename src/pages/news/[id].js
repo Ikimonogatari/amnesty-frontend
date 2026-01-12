@@ -71,7 +71,7 @@ export default function SingleNews() {
     }
 
     setContentReady(false);
-    
+
     let isCleanedUp = false;
     let fallbackTimer = null;
     const imageHandlers = [];
@@ -79,7 +79,7 @@ export default function SingleNews() {
     // Function to adjust all image sizes
     const adjustAllImages = () => {
       if (isCleanedUp) return;
-      
+
       try {
         const contentContainer = document.querySelector('[data-content-body]');
         if (!contentContainer) return;
@@ -89,11 +89,11 @@ export default function SingleNews() {
 
         const isMobile = window.innerWidth < 640;
         const maxHeight = isMobile ? 400 : 500;
-        
+
         // Get container dimensions
         const containerWidth = contentContainer.clientWidth || contentContainer.offsetWidth || window.innerWidth;
         const availableWidth = Math.min(containerWidth * 0.9, window.innerWidth * 0.8);
-        
+
         images.forEach((img) => {
           try {
             // Skip if image doesn't have natural dimensions yet
@@ -104,28 +104,28 @@ export default function SingleNews() {
             // Remove inline attributes that might interfere
             if (img.hasAttribute('width')) img.removeAttribute('width');
             if (img.hasAttribute('height')) img.removeAttribute('height');
-            
+
             // Calculate aspect ratio
             const aspectRatio = img.naturalWidth / img.naturalHeight;
             if (!isFinite(aspectRatio) || aspectRatio <= 0) {
               return;
             }
-            
+
             // Calculate dimensions - prioritize max height
             let targetHeight = maxHeight;
             let targetWidth = targetHeight * aspectRatio;
-            
+
             // If width is too large, scale down
             if (targetWidth > availableWidth && availableWidth > 0) {
               targetWidth = availableWidth;
               targetHeight = targetWidth / aspectRatio;
             }
-            
+
             // Validate dimensions
             if (!isFinite(targetWidth) || !isFinite(targetHeight) || targetWidth <= 0 || targetHeight <= 0) {
               return;
             }
-            
+
             // Apply styles safely
             img.style.width = `${targetWidth}px`;
             img.style.height = `${targetHeight}px`;
@@ -139,14 +139,14 @@ export default function SingleNews() {
             img.style.flexShrink = '0';
             img.style.flexGrow = '0';
             img.style.clear = 'both';
-            
+
             // Force reflow
             void img.offsetHeight;
           } catch (err) {
             console.warn('Error adjusting image size:', err);
           }
         });
-        
+
         // Force container reflow
         if (contentContainer) {
           void contentContainer.offsetHeight;
@@ -181,14 +181,14 @@ export default function SingleNews() {
       const handleImageLoad = () => {
         if (isCleanedUp) return;
         loadedCount++;
-        
+
         // Adjust sizes after each image loads
         setTimeout(() => {
           if (!isCleanedUp) {
             adjustAllImages();
           }
         }, 100);
-        
+
         // When all images are loaded
         if (loadedCount === totalImages) {
           setTimeout(() => {
@@ -226,7 +226,7 @@ export default function SingleNews() {
           } else if (img) {
             const loadHandler = () => handleImageLoad();
             const errorHandler = () => handleImageError();
-            
+
             img.addEventListener('load', loadHandler, { once: true });
             img.addEventListener('error', errorHandler, { once: true });
             imageHandlers.push({ img, load: loadHandler, error: errorHandler });
@@ -296,11 +296,11 @@ export default function SingleNews() {
 
         const isMobile = window.innerWidth < 640;
         const maxHeight = isMobile ? 400 : 500;
-        
+
         // Get container dimensions
         const containerWidth = contentContainer.clientWidth || contentContainer.offsetWidth || window.innerWidth;
         const availableWidth = Math.min(containerWidth * 0.9, window.innerWidth * 0.8);
-        
+
         images.forEach((img) => {
           try {
             // Skip if image doesn't have natural dimensions
@@ -311,28 +311,28 @@ export default function SingleNews() {
             // Remove inline attributes
             if (img.hasAttribute('width')) img.removeAttribute('width');
             if (img.hasAttribute('height')) img.removeAttribute('height');
-            
+
             // Calculate aspect ratio
             const aspectRatio = img.naturalWidth / img.naturalHeight;
             if (!isFinite(aspectRatio) || aspectRatio <= 0) {
               return;
             }
-            
+
             // Calculate dimensions
             let targetHeight = maxHeight;
             let targetWidth = targetHeight * aspectRatio;
-            
+
             // If width is too large, scale down
             if (targetWidth > availableWidth && availableWidth > 0) {
               targetWidth = availableWidth;
               targetHeight = targetWidth / aspectRatio;
             }
-            
+
             // Validate dimensions
             if (!isFinite(targetWidth) || !isFinite(targetHeight) || targetWidth <= 0 || targetHeight <= 0) {
               return;
             }
-            
+
             // Apply styles safely
             img.style.width = `${targetWidth}px`;
             img.style.height = `${targetHeight}px`;
@@ -346,7 +346,7 @@ export default function SingleNews() {
             img.style.flexShrink = '0';
             img.style.flexGrow = '0';
             img.style.clear = 'both';
-            
+
             // Force reflow
             void img.offsetHeight;
           } catch (err) {
@@ -463,7 +463,7 @@ export default function SingleNews() {
             >
               {publishedAt}
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex gap-2">
               <button
                 style={{
                   writingMode: "vertical-lr",
@@ -491,7 +491,7 @@ export default function SingleNews() {
           <div className="flex flex-row gap-2">
             {post.short_description && (
               <h2
-                className="text-xl font-bold mb-4 font-mongolian"
+                className="text-xl font-bold mb-4 font-mongolian max-h-[400px]"
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -501,7 +501,7 @@ export default function SingleNews() {
             )}
             <div
               data-content-body
-              className={`prose prose-lg text-base overflow-x-auto [&_img]:max-w-full [&_img]:max-h-[400px] [&_img]:h-auto [&_img]:object-contain [&_img]:block [&_img]:mx-auto [&_img]:my-4 ${!contentReady ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
+              className={`max-h-[400px] prose prose-lg text-base overflow-x-auto [&_img]:max-w-full [&_img]:max-h-[400px] [&_img]:h-auto [&_img]:object-contain [&_img]:block [&_img]:mx-auto [&_img]:my-4 ${!contentReady ? 'opacity-0' : 'opacity-100 transition-opacity duration-300'}`}
               style={{
                 writingMode: "vertical-lr",
                 fontFamily: '"MongolianScript"!important',

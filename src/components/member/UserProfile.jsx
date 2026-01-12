@@ -163,7 +163,7 @@ export default function UserProfile({ userData, userGroups }) {
         console.error("Avatar upload error:", error);
         toast.error(
           error?.response?.data?.message ||
-            "ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
+          "ᠠᠷᠠᠳ ᠤᠨ ᠵᠢᠷᠤᠭ ᠰᠢᠨᠡᠴᠢᠯᠡᠬᠦᠳ ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠯᠠᠭ᠎ᠠ"
         );
       }
     };
@@ -287,11 +287,10 @@ export default function UserProfile({ userData, userGroups }) {
                       onChildTabPress(tab, index);
                       setIsMobileSidebarOpen(false);
                     }}
-                    className={`px-3 py-2 rounded-lg ${
-                      index === childTabIndex
-                        ? "bg-[#FFFF00] text-black"
-                        : "bg-[#eee] text-black hover:bg-gray-300"
-                    }`}
+                    className={`px-3 py-2 rounded-lg ${index === childTabIndex
+                      ? "bg-[#FFFF00] text-black"
+                      : "bg-[#eee] text-black hover:bg-gray-300"
+                      }`}
                     style={{
                       writingMode: "vertical-lr",
                     }}
@@ -311,11 +310,10 @@ export default function UserProfile({ userData, userGroups }) {
                       onParentTabPress(tab);
                       setIsMobileSidebarOpen(false);
                     }}
-                    className={`px-3 py-2 rounded-lg ${
-                      index === 0
-                        ? "bg-[#FFFF00] text-black"
-                        : "bg-[#eee] text-black hover:bg-gray-300"
-                    }`}
+                    className={`px-3 py-2 rounded-lg ${index === 0
+                      ? "bg-[#FFFF00] text-black"
+                      : "bg-[#eee] text-black hover:bg-gray-300"
+                      }`}
                     style={{
                       writingMode: "vertical-lr",
                     }}
@@ -338,11 +336,10 @@ export default function UserProfile({ userData, userGroups }) {
               <button
                 key={tab.key}
                 onClick={() => onParentTabPress(tab)}
-                className={`px-3 py-2 text-md font-mongolian ${
-                  index === 0
-                    ? "bg-[#FFFF00] text-black"
-                    : "bg-[#eee] text-black hover:bg-gray-300"
-                }`}
+                className={`px-3 py-2 text-md font-mongolian ${index === 0
+                  ? "bg-[#FFFF00] text-black"
+                  : "bg-[#eee] text-black hover:bg-gray-300"
+                  }`}
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -357,11 +354,10 @@ export default function UserProfile({ userData, userGroups }) {
               <button
                 key={tab.key}
                 onClick={() => onChildTabPress(tab, index)}
-                className={`px-3 py-2 text-md font-mongolian ${
-                  index === childTabIndex
-                    ? "bg-[#FFFF00] text-black"
-                    : "bg-[#eee] text-black hover:bg-gray-300"
-                }`}
+                className={`px-3 py-2 text-md font-mongolian w-20 ${index === childTabIndex
+                  ? "bg-[#FFFF00] text-black"
+                  : "bg-[#eee] text-black hover:bg-gray-300"
+                  }`}
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -644,8 +640,8 @@ function MyInfo({ userData }) {
               {userData?.gender === "male"
                 ? "ᠡᠷᠡᠭᠲᠡᠢ"
                 : userData?.gender === "female"
-                ? "ᠡᠮᠡᠭᠲᠡᠢ"
-                : "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
+                  ? "ᠡᠮᠡᠭᠲᠡᠢ"
+                  : "ᠣᠷᠣᠭᠤᠯᠠᠭᠠᠳ ᠦᠭᠡᠢ"}
             </p>
           </div>
           <div>
@@ -967,8 +963,8 @@ function MySubscriptions({ payments = [], loading = false }) {
               >
                 {payment.created_at || payment.date
                   ? new Date(
-                      payment.created_at || payment.date
-                    ).toLocaleDateString()
+                    payment.created_at || payment.date
+                  ).toLocaleDateString()
                   : "ᠡᠳᠦᠷ ᠦᠭᠡᠢ"}
               </span>
               <span

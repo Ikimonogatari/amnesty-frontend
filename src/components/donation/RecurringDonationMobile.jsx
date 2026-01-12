@@ -46,23 +46,24 @@ export default function RecurringDonationMobile({
           pointerEvents: isLoading ? "none" : "auto",
         }}
       >
-        <div className="flex flex-row gap-2">
-          {/* Traditional Mongolian Header */}
+        <div className="flex gap-7 mb-4">
           <h2
-            className="text-sm font-bold"
+            className="text-xl font-bold flex-shrink-0 max-h-[200px]"
             style={{
               writingMode: "vertical-lr",
             }}
           >
-            ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
+            ᠰᠠᠷ᠎ᠠ ᠪᠣᠯᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠡᠷᢉᠦᢈᠦ
           </h2>
-
-          {/* Back Button */}
-          <Button
-            text="ᠨᠢᢉᠡᠨ ᠤᠳᠠᠭ᠎ᠠ ᠬᠠᠨᠳᠢᠪ"
-            onClick={handleBackToOnceTime}
-            className="text-black text-sm max-h-max"
-          />
+          <p
+            style={{
+              writingMode: "vertical-lr",
+            }}
+            className="text-sm flex-1 max-h-[200px] overflow-x-auto"
+          >
+            ᠲᠠ ᠳᠣᠣᠷᠠᢈᠢ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠢ᠋ ᠶᠠᠭ ᠻᠠᠷᠲ ᠤ᠋ᠨ ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠲᠡᠢ ᠢᠵᠢᠯ ᠪᠢᠴᠢᠨ᠎ᠡ ᠦᠦ! <br />
+            ᠦᢉᠡ ᠦᠰᠦᢉ ᠦ᠋ᠨ ᠵᠥᠷᠢᢉᠦᠦᠲᠡᠢ ᠪᠠᠶᠢᠬᠤ ᠲᠣᢈᠢᠶᠠᠯᠳᠤᠯ ᠳ᠋ᠤ ᠠᠵᠢᠯᠯᠠᠬᠤ ᠦᢉᠡᠢ ᠪᠣᠯᠬᠤ ᠶ᠋ᠢ ᠠᠩᠬᠠᠷᠤᠨ᠎ᠠ ᠤᠤ!
+          </p>
         </div>
 
         {/* Form Fields - Contact Form Style */}
@@ -157,7 +158,7 @@ export default function RecurringDonationMobile({
                   writingMode: "vertical-lr",
                 }}
               >
-                ᠬᠠᠷᠲ ᠤᠨ 16 ᠣᠷᠣᠨ*
+                ᠻᠠᠷᠲ ᠤ᠋ᠨ ᠑᠖ ᠣᠷᠤᠨ ᠲᠠᠢ ᠳ᠋ᠤᠭᠠᠷ*
               </p>
               <input
                 type="text"
@@ -214,9 +215,9 @@ export default function RecurringDonationMobile({
                 }}
               >
                 {timeLeft > 0
-                  ? `${timeLeft}ᠰ`
+                  ? `${timeLeft}ᠰ ᠬᠦᠯᠢᢉᠡᠨ᠎ᠡ`
                   : isLoading
-                  ? "..."
+                  ? "ᠢᠯᠭᠡᢉᠦ..."
                   : "ᠬᠣᠳ ᠢᠯᠭᠡᢉᠦ"}
               </button>
             </div>
@@ -236,7 +237,7 @@ export default function RecurringDonationMobile({
                 value={verifyCode}
                 onChange={(e) => setVerifyCode(e.target.value)}
                 maxLength={6}
-                placeholder="6"
+                placeholder="᠖ ᠣᠷᠣᠨ"
                 className={`border rounded-md p-2 w-16 text-xs ${
                   fullField && !verifyCode
                     ? "border-red-500"
@@ -288,24 +289,22 @@ export default function RecurringDonationMobile({
       <div className="bg-[#48483D] text-white rounded-lg p-6 m-4">
         {/* Traditional Mongolian Header */}
 
-        <div className="flex flex-row gap-2">
+        <div className="flex gap-7 mb-4">
           <h2
-            className="text-sm font-bold"
+            className="text-xl font-bold flex-shrink-0 max-h-[200px]"
             style={{
               writingMode: "vertical-lr",
             }}
           >
-            ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠪᠠᠢᢈᠠᠨ ᠤᠤ
+            ᠲᠠ ᠡᠮᠦᠨ᠎ᠡ ᠬᠠᠨᠳᠢᠪ ᠥᢉᠴᠦ ᠪᠠᠶᠢᠭᠰᠠᠨ ᠤᠤ?
           </h2>
-
           <p
-            className="text-xs"
             style={{
               writingMode: "vertical-lr",
-              minHeight: "80px",
             }}
+            className="text-sm flex-1 max-h-[200px] overflow-x-auto"
           >
-            ᠬᠠᠳᠠᠭᠠᠯᠠᢉᠠᢉᠠᠢ ᠢᠮᠡᠶᠢᠯ ᠪᠠᠷ ᠨᠡᠪᠲᠡᠷᠡᢉᠦ
+            ᠲᠠ ᠬᠠᠨᠳᠢᠪ ᠥᢉᠴᠦ ᠪᠠᠶᠢᠬᠤ ᠳ᠋ᠤ ᠪᠠᠨ ᠠᠰᠢᠭᠯᠠᠵᠤ ᠪᠠᠶᠢᠭᠰᠠᠨ ᠢᠮᠧᠶᠢᠯ ᠬᠠᠶ᠋ᠢᠭ ᠢ᠋ᠶᠠᠷ ᠨᠡᠪᠲᠡᠷᠡᠵᠦ ᠣᠷᠤᠨ᠎ᠠ ᠤᠤ!
           </p>
         </div>
 
@@ -357,7 +356,7 @@ export default function RecurringDonationMobile({
                   writingMode: "vertical-lr",
                 }}
               >
-                {loginTimeLeft > 0 ? `${loginTimeLeft}s` : "ᠬᠣᠳ ᠢᠯᠭᠡᢉᠦ"}
+                {loginTimeLeft > 0 ? `${loginTimeLeft}ᠰ` : "ᠬᠣᠳ ᠢᠯᠭᠡᢉᠦ"}
               </button>
             </div>
 
@@ -374,7 +373,7 @@ export default function RecurringDonationMobile({
               <input
                 type="text"
                 maxLength={6}
-                placeholder=""
+                placeholder="᠖ ᠣᠷᠣᠨ"
                 className="border rounded-md p-2 w-16 text-xs border-gray-300"
                 value={loginVerifyCode}
                 onChange={(e) => setLoginVerifyCode(e.target.value)}
@@ -403,38 +402,6 @@ export default function RecurringDonationMobile({
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Information Section */}
-      <div className="bg-gray-100 p-6 m-4 rounded-lg">
-        <div className="flex flex-row gap-2 max-h-[300px]">
-          <h3
-            className="text-lg font-bold"
-            style={{
-              writingMode: "vertical-lr",
-            }}
-          >
-            ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ
-          </h3>
-          <p
-            className="text-sm text-gray-700 max-w-xs"
-            style={{
-              writingMode: "vertical-lr",
-            }}
-          >
-            ᠰᠠᠷ ᠪᠣᠯᠤᠭᠠᠨ ᠬᠠᠨᠳᠢᠪ ᠥᢉᢉᠦ ᠶᠢᠨ ᠠᠷᠭᠠ ᠵᠠᠮ ᠢ ᠲᠠᠨ ᠳ᠋ᠤ ᠮᠡᠳᠡᠭᠦᠯᠬᠦ ᠪᠣᠯᠣᠨ᠎ᠠ᠃
-            ᠲᠠᠨ ᠤ᠋ ᠬᠠᠷᠲ ᠢ ᠪᠦᠷᠳᠦᠯᠦᠨ᠎ᠡ ᠠᠦᠲᠣᠮᠠᠲ ᠬᠠᠨᠳᠢᠪ ᠢᠯᠡᢉᠡᠨ᠎ᠡ᠃
-          </p>
-          <p
-            className="text-xs text-gray-600 max-w-xs"
-            style={{
-              writingMode: "vertical-lr",
-            }}
-          >
-            ᠬᠣᠯᠪᠤᠭ᠎ᠠ: ᠤᠯᠠᠭᠠᠨᠪᠠᠭᠠᠲᠤᠷ ᠬᠣᠲᠠ᠂ ᠰᠦᢈᠡᠪᠠᠭᠠᠲᠤᠷ ᠳᠡᢉᠦᠷᢉᠡ᠂ ᠖-ᠷ ᠬᠣᠷᠢᠶ᠎ᠠ᠂ AB
-            Center᠂ ᠗ ᠳᠠᠪᠬᠤᠷ
-          </p>
         </div>
       </div>
     </div>

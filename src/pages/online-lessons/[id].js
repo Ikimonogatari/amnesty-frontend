@@ -123,48 +123,50 @@ export default function OnlineLessonDetail() {
               className="w-[200px] h-[120px] object-contain"
             />
 
-            {/* Course Title */}
-            <div className="flex justify-center mb-2">
-              <h2
-                className="text-lg font-bold text-gray-900 max-h-[300px]"
-                style={{
-                  writingMode: "vertical-lr",
-                }}
-              >
-                {onlineLesson.title || "ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ"}
-              </h2>
-            </div>
-
-            {/* Course Metadata */}
-            <div className="flex flex-row gap-4 justify-center">
-              <div
-                className="text-gray-600 text-sm"
-                style={{
-                  writingMode: "vertical-lr",
-                }}
-              >
-                ID: {toMongolianNumbers(onlineLesson.id)}
+            <div className="flex flex-row gap-4">
+              {/* Course Title */}
+              <div className="flex justify-center mb-2">
+                <h2
+                  className="text-lg font-bold text-gray-900 max-h-[300px]"
+                  style={{
+                    writingMode: "vertical-lr",
+                  }}
+                >
+                  {onlineLesson.title || "ᠣᠨᠯᠠᠢᠨ ᠰᠤᠷᠭᠠᠯ"}
+                </h2>
               </div>
-              {onlineLesson.lesson_length && (
+
+              {/* Course Metadata */}
+              <div className="flex flex-row gap-4 justify-center">
                 <div
                   className="text-gray-600 text-sm"
                   style={{
                     writingMode: "vertical-lr",
                   }}
                 >
-                  ᠬᠤᠭᠠᠴᠠᠭ᠎ᠠ: {convertTextNumbers(onlineLesson.lesson_length)}
+                  ID: {toMongolianNumbers(onlineLesson.id)}
                 </div>
-              )}
-              {onlineLesson.level && (
-                <div
-                  className="text-gray-600 text-sm"
-                  style={{
-                    writingMode: "vertical-lr",
-                  }}
-                >
-                  ᠲᠦᠪᠰᠢᠨ: {onlineLesson.level}
-                </div>
-              )}
+                {onlineLesson.lesson_length && (
+                  <div
+                    className="text-gray-600 text-sm"
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                  >
+                    ᠬᠤᠭᠠᠴᠠᠭ᠎ᠠ: {convertTextNumbers(onlineLesson.lesson_length)}
+                  </div>
+                )}
+                {onlineLesson.level && (
+                  <div
+                    className="text-gray-600 text-sm"
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                  >
+                    ᠲᠦᠪᠰᠢᠨ: {onlineLesson.level}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
@@ -173,11 +175,10 @@ export default function OnlineLessonDetail() {
             {/* Mobile Tab Buttons */}
             <div className="flex flex-row justify-center gap-4 mb-4 border-b border-gray-200 pb-2">
               <button
-                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
-                  activeTab === "introduction"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
-                }`}
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${activeTab === "introduction"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -186,11 +187,10 @@ export default function OnlineLessonDetail() {
                 ᠲᠠᠨᠢᠯᠴᠤᠭᠤᠯᠭ᠎ᠠ
               </button>
               <button
-                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
-                  activeTab === "content"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
-                }`}
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${activeTab === "content"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -199,11 +199,10 @@ export default function OnlineLessonDetail() {
                 ᠠᠭᠤᠯᠭ᠎ᠠ
               </button>
               <button
-                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${
-                  activeTab === "additional"
-                    ? "border-blue-500 text-blue-600"
-                    : "border-transparent text-gray-500 hover:text-gray-700"
-                }`}
+                className={`px-2 py-1 text-xs font-medium border-b-2 transition-colors ${activeTab === "additional"
+                  ? "border-blue-500 text-blue-600"
+                  : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -216,7 +215,7 @@ export default function OnlineLessonDetail() {
             {/* Mobile Tab Content */}
             <div className="min-h-[150px] max-h-[300px] overflow-hidden flex justify-center">
               {activeTab === "introduction" && (
-                <div className="flex flex-col gap-4 items-center w-full h-full">
+                <div className="flex flex-col gap-4 items-center w-full h-auto">
                   {onlineLesson.description && (
                     <div className="flex-1 overflow-x-auto overflow-y-hidden max-w-[280px] w-full">
                       <div
@@ -327,7 +326,7 @@ export default function OnlineLessonDetail() {
                     className="flex items-start gap-3 p-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
                     onClick={() => router.push(`/online-lessons/${item.id}`)}
                   >
-                    <div className="relative w-12 h-12 flex-shrink-0">
+                    <div className="relative w-40 h-40 flex-shrink-0">
                       <Image
                         src={
                           getImageUrl(item.thumbnail || item.cover) ||
@@ -340,7 +339,7 @@ export default function OnlineLessonDetail() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3
-                        className="text-sm font-medium text-gray-900 line-clamp-2"
+                        className="text-sm font-medium text-gray-900 line-clamp-2 max-h-40"
                         style={{
                           writingMode: "vertical-lr",
                         }}
@@ -350,16 +349,16 @@ export default function OnlineLessonDetail() {
                           ? `${item.title.substring(0, 25)}...`
                           : item.title}
                       </h3>
-                      {item.lesson_length && (
+                      {/* {item.lesson_length && (
                         <p
-                          className="text-xs text-gray-500 mt-1"
+                          className="text-xs text-gray-500 mt-1 max-h-40"
                           style={{
                             writingMode: "vertical-lr",
                           }}
                         >
                           {convertTextNumbers(item.lesson_length)}
                         </p>
-                      )}
+                      )} */}
                     </div>
                     <div className="flex-shrink-0">
                       <Button
@@ -453,11 +452,10 @@ export default function OnlineLessonDetail() {
               {/* Tab Buttons */}
               <div className="flex flex-col justify-start gap-2 border-r border-gray-200 pr-4">
                 <button
-                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
-                    activeTab === "introduction"
-                      ? "border-blue-500 text-blue-600"
-                      : "border-transparent text-gray-500 hover:text-gray-700"
-                  }`}
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${activeTab === "introduction"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                    }`}
                   style={{
                     writingMode: "vertical-lr",
                   }}
@@ -466,11 +464,10 @@ export default function OnlineLessonDetail() {
                   ᠲᠠᠨᠢᠯᠴᠤᠭᠤᠯᠭ᠎ᠠ
                 </button>
                 <button
-                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
-                    activeTab === "content"
-                      ? "border-blue-500 text-blue-600"
-                      : "border-transparent text-gray-500 hover:text-gray-700"
-                  }`}
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${activeTab === "content"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                    }`}
                   style={{
                     writingMode: "vertical-lr",
                   }}
@@ -479,11 +476,10 @@ export default function OnlineLessonDetail() {
                   ᠠᠭᠤᠯᠭ᠎ᠠ
                 </button>
                 <button
-                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${
-                    activeTab === "additional"
-                      ? "border-blue-500 text-blue-600"
-                      : "border-transparent text-gray-500 hover:text-gray-700"
-                  }`}
+                  className={`px-4 py-2 text-sm font-medium border-r-2 transition-colors ${activeTab === "additional"
+                    ? "border-blue-500 text-blue-600"
+                    : "border-transparent text-gray-500 hover:text-gray-700"
+                    }`}
                   style={{
                     writingMode: "vertical-lr",
                   }}
@@ -499,7 +495,7 @@ export default function OnlineLessonDetail() {
                   <div className="flex flex-row gap-4 items-center max-h-[calc(100vh-120px)]">
                     {onlineLesson.description && (
                       <div
-                        className="text-sm text-gray-700 break-words"
+                        className="text-sm text-gray-700 break-words h-2/3"
                         style={{
                           writingMode: "vertical-lr",
                         }}
@@ -560,7 +556,7 @@ export default function OnlineLessonDetail() {
                   <div className="flex flex-col gap-4 items-center">
                     {onlineLesson.extra_details ? (
                       <div
-                        className="text-sm text-gray-700 break-words"
+                        className="text-sm text-gray-700 break-words h-2/3"
                         style={{
                           writingMode: "vertical-lr",
                         }}

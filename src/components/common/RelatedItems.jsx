@@ -46,7 +46,7 @@ export default function RelatedItems({
             }}
           >
             <h3
-              className="max-w-12 text-xs flex-shrink-0"
+              className="max-w-12 text-xs flex-shrink-0 text-center"
               style={{
                 writingMode: "vertical-lr",
               }}
