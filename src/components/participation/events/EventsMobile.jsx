@@ -1,7 +1,7 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
-import { eventsService } from "@/services/apiService";
 import { API_CONFIG } from "@/config/api";
+import { eventsService } from "@/services/apiService";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import EventModal from "./EventModal";
 
 export default function EventsMobile() {
@@ -144,14 +144,14 @@ export default function EventsMobile() {
         // Extract date part directly from ISO string to avoid timezone issues
         // If the date string is "2024-01-15T10:00:00.000Z", extract "2024-01-15"
         const getDatePart = (dateString) => {
-          if (typeof dateString === 'string') {
+          if (typeof dateString === "string") {
             // Extract YYYY-MM-DD from ISO string
             const dateMatch = dateString.match(/^(\d{4})-(\d{2})-(\d{2})/);
             if (dateMatch) {
               return {
                 year: parseInt(dateMatch[1], 10),
                 month: parseInt(dateMatch[2], 10),
-                day: parseInt(dateMatch[3], 10)
+                day: parseInt(dateMatch[3], 10),
               };
             }
           }
@@ -163,7 +163,7 @@ export default function EventsMobile() {
           return {
             year: date.getFullYear(),
             month: date.getMonth() + 1,
-            day: date.getDate()
+            day: date.getDate(),
           };
         };
 
@@ -171,8 +171,16 @@ export default function EventsMobile() {
         const endDateParts = getDatePart(eventAttrs.end_date);
 
         // Create Date objects for comparison (using local time at midnight)
-        const startDate = new Date(startDateParts.year, startDateParts.month - 1, startDateParts.day);
-        const endDate = new Date(endDateParts.year, endDateParts.month - 1, endDateParts.day);
+        const startDate = new Date(
+          startDateParts.year,
+          startDateParts.month - 1,
+          startDateParts.day
+        );
+        const endDate = new Date(
+          endDateParts.year,
+          endDateParts.month - 1,
+          endDateParts.day
+        );
 
         // Create date key from date parts (avoiding timezone conversion)
         const dateKey = `${startDateParts.year}-${String(
@@ -208,49 +216,62 @@ export default function EventsMobile() {
           endDate: eventAttrs.end_date,
         };
 
-         // Handle multiple events on the same date
-         if (eventsMap[dateKey]) {
-           // Convert to array if not already
-           if (!Array.isArray(eventsMap[dateKey])) {
-             eventsMap[dateKey] = [eventsMap[dateKey]];
-           }
-           eventsMap[dateKey].push(eventObj);
-         } else {
-           eventsMap[dateKey] = eventObj; // Single event stays as object for backward compatibility
-         }
+        // Handle multiple events on the same date
+        if (eventsMap[dateKey]) {
+          // Convert to array if not already
+          if (!Array.isArray(eventsMap[dateKey])) {
+            eventsMap[dateKey] = [eventsMap[dateKey]];
+          }
+          eventsMap[dateKey].push(eventObj);
+        } else {
+          eventsMap[dateKey] = eventObj; // Single event stays as object for backward compatibility
+        }
 
         // Also add events for multi-day events (if end date is different)
-        if (dateKey !== `${endDateParts.year}-${String(
-          endDateParts.month
-        ).padStart(2, "0")}-${String(endDateParts.day).padStart(2, "0")}`) {
+        if (
+          dateKey !==
+          `${endDateParts.year}-${String(endDateParts.month).padStart(
+            2,
+            "0"
+          )}-${String(endDateParts.day).padStart(2, "0")}`
+        ) {
           // Iterate through each day of the multi-day event
           let currentDateParts = { ...startDateParts };
           const endDateKey = `${endDateParts.year}-${String(
             endDateParts.month
           ).padStart(2, "0")}-${String(endDateParts.day).padStart(2, "0")}`;
-          
+
           while (true) {
             // Move to next day
-            const currentDate = new Date(currentDateParts.year, currentDateParts.month - 1, currentDateParts.day);
+            const currentDate = new Date(
+              currentDateParts.year,
+              currentDateParts.month - 1,
+              currentDateParts.day
+            );
             currentDate.setDate(currentDate.getDate() + 1);
-            
+
             const nextYear = currentDate.getFullYear();
             const nextMonth = currentDate.getMonth() + 1;
             const nextDay = currentDate.getDate();
-            const multiDayKey = `${nextYear}-${String(
-              nextMonth
-            ).padStart(2, "0")}-${String(nextDay).padStart(2, "0")}`;
-            
+            const multiDayKey = `${nextYear}-${String(nextMonth).padStart(
+              2,
+              "0"
+            )}-${String(nextDay).padStart(2, "0")}`;
+
             if (multiDayKey > endDateKey) break;
-            
+
             if (!eventsMap[multiDayKey]) {
               eventsMap[multiDayKey] = {
                 ...eventObj,
                 title: `${eventObj.title} (continued)`,
               };
             }
-            
-            currentDateParts = { year: nextYear, month: nextMonth, day: nextDay };
+
+            currentDateParts = {
+              year: nextYear,
+              month: nextMonth,
+              day: nextDay,
+            };
           }
         }
       } catch (error) {
@@ -309,7 +330,9 @@ export default function EventsMobile() {
     const eventOrEvents = events[dateString];
     if (eventOrEvents) {
       // Handle both single event (object) and multiple events (array)
-      const eventsArray = Array.isArray(eventOrEvents) ? eventOrEvents : [eventOrEvents];
+      const eventsArray = Array.isArray(eventOrEvents)
+        ? eventOrEvents
+        : [eventOrEvents];
       setSelectedEvent({ events: eventsArray, date: dateString });
       setShowModal(true);
     }
@@ -365,7 +388,10 @@ export default function EventsMobile() {
           }`}
           onClick={() => handleDayClick(dateString)}
         >
-          <span style={{ writingMode: "vertical-lr" }} className="absolute top-1 left-1 font-medium">
+          <span
+            style={{ writingMode: "vertical-lr" }}
+            className="absolute top-1 left-1 font-medium"
+          >
             {toMongolianNumerals(day)}
           </span>
           {event && (
@@ -398,10 +424,9 @@ export default function EventsMobile() {
                     writingMode: "vertical-lr",
                   }}
                 >
-                  {Array.isArray(event) 
+                  {Array.isArray(event)
                     ? `${event.length} ᠠᠷᠭ᠎ᠠ ᢈᠡᠮᠵᠢᠶ᠎ᠡ`
-                    : event.title
-                  }
+                    : event.title}
                 </div>
                 <div className="absolute top-full right-1 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-black"></div>
               </div>
@@ -469,49 +494,59 @@ export default function EventsMobile() {
       {/* Right side - Calendar Grid */}
       <div className="flex-1 bg-white flex flex-col gap-4 h-full">
         {/* Calendar Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2 w-full">
           <div className="flex items-center gap-2">
             <button
               onClick={() => navigateMonth(-1)}
               disabled={loading}
-              className="hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => navigateMonth(1)}
               disabled={loading}
-              className="hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-2 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
-            <button
-              style={{ writingMode: "vertical-lr" }}
-              onClick={navigateToToday}
-              disabled={loading}
-              className="px-2 py-1 hover:bg-gray-100 text-[10px] border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <p>ᠥᠨᠥᠳᠦᠷ</p>
-            </button>
           </div>
-          <div className="flex flex-col items-center gap-1">
-            <h2 className="text-xs font-bold" style={{ writingMode: "vertical-lr" }}>
+          <div className="flex items-center gap-2">
+            <h2
+              className="text-xs font-bold"
+              style={{ writingMode: "vertical-lr" }}
+            >
               {monthNames[currentDate.getMonth()]}{" "}
               {toMongolianNumerals(currentDate.getFullYear())}
             </h2>
             {loading && (
-              <div className="flex items-center text-gray-500">
-                <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-600 mr-1"></div>
-                <span className="text-[10px]">ᠠᠴᠢᠯᠠᠭᠤᠯᠵᠤ...</span>
+              <div className="flex items-center text-gray-500 gap-1">
+                <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-600"></div>
+                <span
+                  className="text-[10px]"
+                  style={{ writingMode: "vertical-lr" }}
+                >
+                  ᠠᠴᠢᠯᠠᠭᠤᠯᠵᠤ...
+                </span>
               </div>
             )}
             {error && (
-              <div className="text-red-500 text-[10px] text-center">
+              <div
+                className="text-red-500 text-[10px]"
+                style={{ writingMode: "vertical-lr" }}
+              >
                 ᠠᠯᠳᠠᠭ᠎ᠠ
               </div>
             )}
           </div>
-          <div></div>
+          <button
+            style={{ writingMode: "vertical-lr" }}
+            onClick={navigateToToday}
+            disabled={loading}
+            className="px-2 py-1 hover:bg-gray-100 text-[10px] border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <p>ᠥᠨᠥᠳᠦᠷ</p>
+          </button>
         </div>
 
         {/* Calendar Grid */}

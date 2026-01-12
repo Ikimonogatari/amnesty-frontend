@@ -591,39 +591,41 @@ export default function EventsDesktop() {
             </svg>
           </button>
         </div>
-        {/* Middle: Date name */}
-        <h2
-          className="text-xl font-semibold"
-          style={{
-            writingMode: "vertical-lr",
-          }}
-        >
-          {monthNames[currentDate.getMonth()]}{" "}
-          {toMongolianNumerals(currentDate.getFullYear())}
-        </h2>
-        {loading && (
-          <div className="flex items-center text-gray-500">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600 mr-2"></div>
-            <span
-              className="text-sm"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              ᠠᠴᠢᠯᠠᠭᠤᠯᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
-            </span>
-          </div>
-        )}
-        {error && (
-          <div
-            className="text-red-500 text-sm"
+        {/* Middle: Date name with loader/error */}
+        <div className="flex items-center justify-center gap-2">
+          <h2
+            className="text-xl font-semibold"
             style={{
               writingMode: "vertical-lr",
             }}
           >
-            ᠠᠯᠳᠠᠭ᠎ᠠ: {error}
-          </div>
-        )}
+            {monthNames[currentDate.getMonth()]}{" "}
+            {toMongolianNumerals(currentDate.getFullYear())}
+          </h2>
+          {loading && (
+            <div className="flex items-center text-gray-500 gap-2">
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+              <span
+                className="text-sm"
+                style={{
+                  writingMode: "vertical-lr",
+                }}
+              >
+                ᠠᠴᠢᠯᠠᠭᠤᠯᠵᠤ ᠪᠠᠶᠢᠨ᠎ᠠ...
+              </span>
+            </div>
+          )}
+          {error && (
+            <div
+              className="text-red-500 text-sm"
+              style={{
+                writingMode: "vertical-lr",
+              }}
+            >
+              ᠠᠯᠳᠠᠭ᠎ᠠ: {error}
+            </div>
+          )}
+        </div>
         {/* Bottom: Today button */}
         <button
           onClick={navigateToToday}
