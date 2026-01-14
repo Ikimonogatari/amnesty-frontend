@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Button from "@/components/common/Button";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
@@ -264,13 +265,13 @@ export default function BannerSlider({
                       {image.caption.description}
                     </p>
                     {image.link ? (
-                      <a href={image.link}>
+                      <Link href={image.link}>
                         <Button
                           text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
                           type="primary"
                           className="text-black h-40"
                         />
-                      </a>
+                      </Link>
                     ) : (
                       <Button
                         text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
@@ -299,13 +300,13 @@ export default function BannerSlider({
                       {image.caption.description}
                     </p>
                     {image.link ? (
-                      <a href={image.link} className="flex-shrink-0">
+                      <Link href={image.link} className="flex-shrink-0">
                         <Button
                           text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
                           type="primary"
                           className="text-black h-32 text-xs"
                         />
-                      </a>
+                      </Link>
                     ) : (
                       <Button
                         text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢉᠦᠢ"}
