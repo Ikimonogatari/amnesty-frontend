@@ -100,9 +100,9 @@ export default function StructureControlManagersDesktop() {
               </div>
 
               {/* Manager Description */}
-              <div className="max-h-[800px]">
+              <div className="max-h-[800px] overflow-y-auto overflow-x-hidden">
                 <p
-                  className="font-semibold text-sm leading-relaxed"
+                  className="font-semibold text-sm leading-relaxed break-words"
                   style={{
                     writingMode: "vertical-lr",
                   }}
