@@ -372,6 +372,11 @@ export default function EventsMobile() {
     }
 
     // Current month days
+    const today = new Date();
+    const todayString = `${today.getFullYear()}-${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+
     for (let day = 1; day <= daysInMonth; day++) {
       const dateString = `${currentDate.getFullYear()}-${String(
         currentDate.getMonth() + 1
@@ -379,12 +384,17 @@ export default function EventsMobile() {
       const event = events[dateString];
       const dayIndex = firstDay + day - 1;
       const isLastInRow = dayIndex % 7 === 0;
+      const isToday = dateString === todayString;
 
       days.push(
         <div
           key={day}
-          className={`border-b border-r border-gray-200 p-2 text-[8px] cursor-pointer hover:bg-gray-50 relative h-full min-h-[40px] w-full min-w-[40px] ${
-            event ? "hover:bg-blue-50" : ""
+          className={`border-b border-r border-gray-200 p-2 text-[8px] cursor-pointer relative h-full min-h-[40px] w-full min-w-[40px] ${
+            isToday
+              ? "bg-[#fffadf] hover:bg-[#fffadf]"
+              : event
+              ? "hover:bg-blue-50"
+              : "hover:bg-gray-50"
           }`}
           onClick={() => handleDayClick(dateString)}
         >
