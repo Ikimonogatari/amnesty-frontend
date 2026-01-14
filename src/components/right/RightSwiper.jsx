@@ -46,6 +46,8 @@ export default function RightSwiper({
   description,
   sectionTitle,
   data = [],
+  needSubSection = true,
+  needReadButton = true,
 }) {
   const router = useRouter();
   const swiperRef = useRef(null);
@@ -233,39 +235,41 @@ export default function RightSwiper({
 
   return (
     <div className="h-full flex flex-col sm:flex-row gap-4 sm:gap-8 overflow-x-auto sm:overflow-auto">
-      <div className="flex flex-row gap-4 sm:gap-8">
-        <div className="flex gap-2 sm:gap-8 h-full min-h-[200px] sm:h-auto overflow-visible">
-          <h1
-            className="text-xs sm:text-2xl font-bold max-h-[300px] overflow-y-auto font-mongolian"
-            style={{
-              writingMode: "vertical-lr",
-              wordBreak: "keep-all",
-              lineHeight: "1.2",
-            }}
-          >
-            {title}
-          </h1>
-          <p
-            className="text-[8px] sm:text-sm font-bold max-h-[200px] overflow-y-auto font-mongolian"
-            style={{
-              writingMode: "vertical-lr",
-              wordBreak: "keep-all",
-              lineHeight: "1.2",
-            }}
-          >
-            {description}
-          </p>
+      {needSubSection && (
+        <div className="flex flex-row gap-4 sm:gap-8">
+          <div className="flex gap-2 sm:gap-8 h-full min-h-[200px] sm:h-auto overflow-visible">
+            <h1
+              className="text-xs sm:text-2xl font-bold max-h-[300px] overflow-y-auto font-mongolian"
+              style={{
+                writingMode: "vertical-lr",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
+            >
+              {title}
+            </h1>
+            <p
+              className="text-[8px] sm:text-sm font-bold max-h-[200px] overflow-y-auto font-mongolian"
+              style={{
+                writingMode: "vertical-lr",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
+            >
+              {description}
+            </p>
+          </div>
+          <Button
+            text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"}
+            type="secondary"
+            onClick={navigateToCategoryPage}
+          />
+          <SectionTitle
+            title={sectionTitle}
+            containerClassName="hidden sm:block"
+          />
         </div>
-        <Button
-          text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"}
-          type="secondary"
-          onClick={navigateToCategoryPage}
-        />
-        <SectionTitle
-          title={sectionTitle}
-          containerClassName="hidden sm:block"
-        />
-      </div>
+      )}
       <div className="flex flex-row gap-2 h-full min-h-[200px] sm:h-auto">
         <p
           className="text-[10px] font-bold block sm:hidden max-h-[200px] overflow-y-auto font-mongolian"
@@ -314,7 +318,7 @@ export default function RightSwiper({
                       : slide.title}
                   </p>
                   <div className="flex-1"></div>
-                  <p
+                  {/* <p
                     className="text-[9px] sm:text-sm font-medium flex-shrink-0"
                     style={{
                       writingMode: "vertical-lr",
@@ -322,9 +326,9 @@ export default function RightSwiper({
                     }}
                   >
                     {slide.duration}
-                  </p>
+                  </p> */}
                 </div>
-                <div className="relative z-0 aspect-square min-h-[200px] min-w-[200px] sm:min-h-[270px] sm:min-w-[270px]">
+                <div className="relative z-0 aspect-square w-full">
                   <Image
                     src={slide.image}
                     alt={slide.title}
@@ -333,15 +337,17 @@ export default function RightSwiper({
                   />
                   <Button text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢈᠦᠢ"} type="details" />
                 </div>
-                <p
-                  className="text-[9px] sm:text-sm flex justify-end cursor-pointer hover:text-blue-600 transition-colors"
-                  style={{
-                    writingMode: "vertical-lr",
-                  }}
-                  onClick={() => navigateToDetail({ id: slide.id })}
-                >
-                  ᠤᠩᠰᠢᠬᠤ
-                </p>
+                {needReadButton && (
+                  <p
+                    className="text-[9px] sm:text-sm flex justify-end cursor-pointer hover:text-blue-600 transition-colors"
+                    style={{
+                      writingMode: "vertical-lr",
+                    }}
+                    onClick={() => navigateToDetail({ id: slide.id })}
+                  >
+                    ᠤᠩᠰᠢᠬᠤ
+                  </p>
+                )}
               </div>
             </SwiperSlide>
           ))}

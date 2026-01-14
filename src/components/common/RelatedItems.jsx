@@ -32,7 +32,7 @@ export default function RelatedItems({
           {sectionTitle}
         </div>
       </div>
-      <div className="flex flex-col gap-2 justify-start h-full overflow-hidden">
+      <div className="flex flex-col gap-10 justify-start h-full overflow-hidden">
         {items.slice(0, maxItems).map((item, index) => (
           <div
             key={item.id || index}

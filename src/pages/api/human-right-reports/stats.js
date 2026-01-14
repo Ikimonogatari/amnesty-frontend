@@ -1,5 +1,3 @@
-import apiService from "../../../services/apiService";
-
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({
@@ -9,23 +7,48 @@ export default async function handler(req, res) {
   }
 
   try {
+    const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
+
     // Fetch province statistics from the backend API
-    const response = await apiService.get("/api/human-right-reports/stats");
-
-    if (response.success && response.payload) {
-      // Transform the data to match old web format exactly
-      const statsData = {
-        success: true,
-        payload: {
-          provinceData: response.payload.provinceData || [],
-          totalReports: response.payload.totalReports || 0,
-          // Additional stats can be added here as needed
+    const response = await fetch(
+      `${USER_API_BASE_URL}/human-right-reports/stats`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
         },
-      };
+      }
+    );
 
-      return res.status(200).json(statsData);
+    // Check if response is JSON
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.includes("application/json")) {
+      const data = await response.json();
+
+      if (data.success && data.payload) {
+        // Transform the data to match old web format exactly
+        const statsData = {
+          success: true,
+          payload: {
+            provinceData: data.payload.provinceData || [],
+            totalReports: data.payload.totalReports || 0,
+          },
+        };
+
+        return res.status(200).json(statsData);
+      } else {
+        // Return fallback empty data if backend fails
+        return res.status(200).json({
+          success: true,
+          payload: {
+            provinceData: [],
+            totalReports: 0,
+          },
+        });
+      }
     } else {
-      // Return fallback empty data if backend fails
+      // If not JSON, return fallback data
+      console.error("Stats API returned non-JSON response");
       return res.status(200).json({
         success: true,
         payload: {
