@@ -5,7 +5,8 @@ export default async function handler(req, res) {
 
   try {
     // Make request to backend API
-    const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
+    const USER_API_BASE_URL =
+      process.env.NEXT_PUBLIC_USER_API_URL || "https://api.amnesty.mn/users";
 
     const response = await fetch(
       `${USER_API_BASE_URL}/human-right-reports/subjects`,

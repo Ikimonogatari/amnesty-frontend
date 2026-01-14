@@ -4,7 +4,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
+    const USER_API_BASE_URL =
+      process.env.NEXT_PUBLIC_USER_API_URL || "https://api.amnesty.mn/users";
 
     // Get the raw body chunks
     const chunks = [];
