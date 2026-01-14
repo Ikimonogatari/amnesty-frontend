@@ -3,162 +3,68 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import WriteForRightsActionDesktop from "@/components/campaign/writeforrights/WriteForRightsActionDesktop";
 import WriteForRightsActionMobile from "@/components/campaign/writeforrights/WriteForRightsActionMobile";
-import { actionsService } from "@/services/apiService";
 import FullScreenLoader from "@/components/common/FullScreenLoader";
+import Fetcher from "@/utils/fetcher";
 
-export async function getServerSideProps({ params }) {
-  try {
-    const { id } = params;
-    console.log("=== FETCHING ACTION BY ID ===");
-    console.log("Action ID:", id);
-
-    const normalizeApiUrl = (value) => {
-      if (!value) return null;
-      const trimmed = value.replace(/\/+$/, "");
-      if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
-        return trimmed;
-      }
-      return `https://${trimmed}`;
-    };
-
-    const fallbackApiKey = "70412827041a1cada9c8c234bb111c64704ef4aaf148136f19ffc25e6403f944d8ad25a2f70004eaa8a3c9167f6234676b990608bcfdfbd2d9d7da835a0327fa0b9ad93d64f9331bdfe1a362ce7f546bd3a2ff160f5e3232afc4a5a1ec6533ee07a5bfafda0aaf1126c3f476e0434e623ad50c7842cda7145df959378a4a584e";
-    const envApiKey = process.env.NEXT_PUBLIC_API_KEY || process.env.STRAPI_API_KEY;
-    const apiUrl =
-      normalizeApiUrl(
-        process.env.NEXT_PUBLIC_API_URL || process.env.STRAPI_API_URL
-      ) || "https://cms.amnesty.mn/api";
-    const envLocale = process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN";
-
-    const fetchAction = async (key, keySource, locale) => {
-      console.log(`Attempting fetch with ${keySource} key, locale ${locale}...`);
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      if (key) {
-        headers.Authorization = `Bearer ${key}`;
-      }
-
-      const response = await fetch(
-        `${apiUrl}/actions/${id}?populate=*&locale=${locale}`,
-        { headers, cache: "no-store" }
-      );
-
-      return response;
-    };
-
-    const localeCandidates = Array.from(
-      new Set([envLocale, "mn", "mn-MN"].filter(Boolean))
-    );
-
-    const fetchWithAuthFallback = async (locale) => {
-      if (envApiKey) {
-        let response = await fetchAction(envApiKey, "ENVIRONMENT", locale);
-        let usedFallbackKey = false;
-        if (!response.ok && (response.status === 403 || response.status === 401)) {
-          console.warn(
-            `Environment key failed with ${response.status}. Retrying with fallback key...`
-          );
-          response = await fetchAction(fallbackApiKey, "FALLBACK", locale);
-          usedFallbackKey = true;
-        }
-        return { response, usedFallbackKey };
-      }
-
-      return {
-        response: await fetchAction(fallbackApiKey, "FALLBACK", locale),
-        usedFallbackKey: true,
-      };
-    };
-
-    let response;
-    let usedFallback = false;
-    let actionData = null;
-    let selectedLocale = envLocale;
-
-    for (const locale of localeCandidates) {
-      const result = await fetchWithAuthFallback(locale);
-      response = result.response;
-      usedFallback = result.usedFallbackKey;
-
-      if (!response.ok) {
-        break;
-      }
-
-      const data = await response.json();
-      actionData = data;
-      selectedLocale = locale;
-
-      if (data?.data) {
-        break;
-      }
-    }
-
-    console.log(
-      `Final API Response Status: ${response.status} (Used fallback: ${usedFallback}, Locale: ${selectedLocale})`
-    );
-
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.status}`);
-    }
-
-    console.log("Action API Response:", {
-      hasData: !!actionData.data,
-      actionId: actionData.data?.id,
-      title: actionData.data?.attributes?.title,
-    });
-
-    // Format the action data like the list page does
-    let formattedAction = null;
-    if (actionData.data) {
-      formattedAction = {
-        id: actionData.data.id,
-        title: actionData.data.attributes?.title || actionData.data.title,
-        description:
-          actionData.data.attributes?.description ||
-          actionData.data.description,
-        cover: actionData.data.attributes?.cover || actionData.data.cover,
-        problem: actionData.data.attributes?.problem || "",
-        action: actionData.data.attributes?.action || "",
-        problemDescription:
-          actionData.data.attributes?.problemDescription || "",
-        actionDescription: actionData.data.attributes?.actionDescription || "",
-      };
-    }
-
-    console.log("Formatted action:", formattedAction);
-
-    return {
-      props: {
-        action: formattedAction,
-        error: null,
-        debug: {
-          actionId: id,
-          hasAction: !!formattedAction,
-        },
-      },
-    };
-  } catch (error) {
-    console.error("=== ACTION FETCH ERROR ===");
-    console.error("Error:", error.message);
-    return {
-      props: {
-        action: null,
-        error: "Failed to load action",
-        debug: {
-          errorMessage: error.message,
-          actionId: params.id,
-        },
-      },
-    };
-  }
-}
-
-export default function WriteForRightsDetail({ action, error }) {
+export default function WriteForRightsDetail() {
   const router = useRouter();
   const { id } = router.query;
+  const [action, setAction] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (!id) return;
+    let isMounted = true;
+
+    const loadAction = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await Fetcher(`/actions/${id}?populate=*`);
+        const actionData = response?.data;
+
+        if (!actionData) {
+          throw new Error("Failed to load action");
+        }
+
+        const formattedAction = {
+          id: actionData.id,
+          title: actionData.attributes?.title || actionData.title,
+          description:
+            actionData.attributes?.description || actionData.description,
+          cover: actionData.attributes?.cover || actionData.cover,
+          problem: actionData.attributes?.problem || "",
+          action: actionData.attributes?.action || "",
+          problemDescription: actionData.attributes?.problemDescription || "",
+          actionDescription: actionData.attributes?.actionDescription || "",
+        };
+
+        if (isMounted) {
+          setAction(formattedAction);
+        }
+      } catch (fetchError) {
+        if (isMounted) {
+          setAction(null);
+          setError(fetchError?.message || "Failed to load action");
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadAction();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [id]);
 
   // Loading state
-  if (!id) {
+  if (!id || isLoading) {
     return <FullScreenLoader />;
   }
 
