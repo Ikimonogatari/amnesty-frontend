@@ -6,9 +6,21 @@ export async function getServerSideProps() {
   try {
     console.log("=== WRITEFORRIGHT PAGE LOADING ===");
 
+    const normalizeApiUrl = (value) => {
+      if (!value) return null;
+      const trimmed = value.replace(/\/+$/, "");
+      if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+        return trimmed;
+      }
+      return `https://${trimmed}`;
+    };
+
     const fallbackApiKey = "70412827041a1cada9c8c234bb111c64704ef4aaf148136f19ffc25e6403f944d8ad25a2f70004eaa8a3c9167f6234676b990608bcfdfbd2d9d7da835a0327fa0b9ad93d64f9331bdfe1a362ce7f546bd3a2ff160f5e3232afc4a5a1ec6533ee07a5bfafda0aaf1126c3f476e0434e623ad50c7842cda7145df959378a4a584e";
-    const envApiKey = process.env.NEXT_PUBLIC_API_KEY;
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://cms.amnesty.mn/api";
+    const envApiKey = process.env.NEXT_PUBLIC_API_KEY || process.env.STRAPI_API_KEY;
+    const apiUrl =
+      normalizeApiUrl(
+        process.env.NEXT_PUBLIC_API_URL || process.env.STRAPI_API_URL
+      ) || "https://cms.amnesty.mn/api";
     const envLocale = process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN";
 
     console.log("Environment check:", {

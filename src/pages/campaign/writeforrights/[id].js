@@ -12,31 +12,95 @@ export async function getServerSideProps({ params }) {
     console.log("=== FETCHING ACTION BY ID ===");
     console.log("Action ID:", id);
 
-    // Direct API fetch to bypass service layer issues
-    const apiUrl =
-      process.env.NEXT_PUBLIC_API_URL || "https://cms.amnesty.mn/api";
-    const apiKey = process.env.NEXT_PUBLIC_API_KEY || "70412827041a1cada9c8c234bb111c64704ef4aaf148136f19ffc25e6403f944d8ad25a2f70004eaa8a3c9167f6234676b990608bcfdfbd2d9d7da835a0327fa0b9ad93d64f9331bdfe1a362ce7f546bd3a2ff160f5e3232afc4a5a1ec6533ee07a5bfafda0aaf1126c3f476e0434e623ad50c7842cda7145df959378a4a584e";
-
-    console.log("Direct API call:", `${apiUrl}/actions/${id}?populate=*`);
-
-    const headers = {
-      "Content-Type": "application/json",
+    const normalizeApiUrl = (value) => {
+      if (!value) return null;
+      const trimmed = value.replace(/\/+$/, "");
+      if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) {
+        return trimmed;
+      }
+      return `https://${trimmed}`;
     };
-    if (apiKey) {
-      headers.Authorization = `Bearer ${apiKey}`;
+
+    const fallbackApiKey = "70412827041a1cada9c8c234bb111c64704ef4aaf148136f19ffc25e6403f944d8ad25a2f70004eaa8a3c9167f6234676b990608bcfdfbd2d9d7da835a0327fa0b9ad93d64f9331bdfe1a362ce7f546bd3a2ff160f5e3232afc4a5a1ec6533ee07a5bfafda0aaf1126c3f476e0434e623ad50c7842cda7145df959378a4a584e";
+    const envApiKey = process.env.NEXT_PUBLIC_API_KEY || process.env.STRAPI_API_KEY;
+    const apiUrl =
+      normalizeApiUrl(
+        process.env.NEXT_PUBLIC_API_URL || process.env.STRAPI_API_URL
+      ) || "https://cms.amnesty.mn/api";
+    const envLocale = process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN";
+
+    const fetchAction = async (key, keySource, locale) => {
+      console.log(`Attempting fetch with ${keySource} key, locale ${locale}...`);
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      if (key) {
+        headers.Authorization = `Bearer ${key}`;
+      }
+
+      const response = await fetch(
+        `${apiUrl}/actions/${id}?populate=*&locale=${locale}`,
+        { headers, cache: "no-store" }
+      );
+
+      return response;
+    };
+
+    const localeCandidates = Array.from(
+      new Set([envLocale, "mn", "mn-MN"].filter(Boolean))
+    );
+
+    const fetchWithAuthFallback = async (locale) => {
+      if (envApiKey) {
+        let response = await fetchAction(envApiKey, "ENVIRONMENT", locale);
+        let usedFallbackKey = false;
+        if (!response.ok && (response.status === 403 || response.status === 401)) {
+          console.warn(
+            `Environment key failed with ${response.status}. Retrying with fallback key...`
+          );
+          response = await fetchAction(fallbackApiKey, "FALLBACK", locale);
+          usedFallbackKey = true;
+        }
+        return { response, usedFallbackKey };
+      }
+
+      return {
+        response: await fetchAction(fallbackApiKey, "FALLBACK", locale),
+        usedFallbackKey: true,
+      };
+    };
+
+    let response;
+    let usedFallback = false;
+    let actionData = null;
+    let selectedLocale = envLocale;
+
+    for (const locale of localeCandidates) {
+      const result = await fetchWithAuthFallback(locale);
+      response = result.response;
+      usedFallback = result.usedFallbackKey;
+
+      if (!response.ok) {
+        break;
+      }
+
+      const data = await response.json();
+      actionData = data;
+      selectedLocale = locale;
+
+      if (data?.data) {
+        break;
+      }
     }
 
-    const response = await fetch(`${apiUrl}/actions/${id}?populate=*`, {
-      headers,
-    });
-
-    console.log("API Response Status:", response.status);
+    console.log(
+      `Final API Response Status: ${response.status} (Used fallback: ${usedFallback}, Locale: ${selectedLocale})`
+    );
 
     if (!response.ok) {
       throw new Error(`API Error: ${response.status}`);
     }
 
-    const actionData = await response.json();
     console.log("Action API Response:", {
       hasData: !!actionData.data,
       actionId: actionData.data?.id,
@@ -143,4 +207,3 @@ export default function WriteForRightsDetail({ action, error }) {
     </Layout>
   );
 }
-
