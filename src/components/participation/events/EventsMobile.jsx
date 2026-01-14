@@ -1,10 +1,12 @@
 import { API_CONFIG } from "@/config/api";
 import { eventsService } from "@/services/apiService";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import EventModal from "./EventModal";
 
 export default function EventsMobile() {
+  const router = useRouter();
   const [currentDate, setCurrentDate] = useState(new Date()); // Current date
   const [showModal, setShowModal] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -293,6 +295,40 @@ export default function EventsMobile() {
     });
   };
 
+  // Initialize date from URL query parameters
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const { month, year } = router.query;
+    if (month && year) {
+      const monthNum = parseInt(month, 10);
+      const yearNum = parseInt(year, 10);
+      if (
+        !isNaN(monthNum) &&
+        !isNaN(yearNum) &&
+        monthNum >= 0 &&
+        monthNum <= 11
+      ) {
+        const newDate = new Date(yearNum, monthNum, 1);
+        // Only update if different to avoid unnecessary re-renders
+        if (
+          currentDate.getFullYear() !== newDate.getFullYear() ||
+          currentDate.getMonth() !== newDate.getMonth()
+        ) {
+          setCurrentDate(newDate);
+        }
+      }
+    } else {
+      // No query params, set default to current month/year and update URL
+      const today = new Date();
+      router.replace(
+        `/participation/events?month=${today.getMonth()}&year=${today.getFullYear()}`,
+        undefined,
+        { shallow: true }
+      );
+    }
+  }, [router.isReady, router.query]);
+
   // Fetch events when component mounts or date changes
   useEffect(() => {
     fetchEventsData(currentDate.getFullYear(), currentDate.getMonth());
@@ -315,15 +351,24 @@ export default function EventsMobile() {
   };
 
   const navigateMonth = (direction) => {
-    setCurrentDate((prev) => {
-      const newDate = new Date(prev);
-      newDate.setMonth(prev.getMonth() + direction);
-      return newDate;
-    });
+    const newDate = new Date(currentDate);
+    newDate.setMonth(currentDate.getMonth() + direction);
+    // Update URL - the useEffect will update currentDate
+    router.push(
+      `/participation/events?month=${newDate.getMonth()}&year=${newDate.getFullYear()}`,
+      undefined,
+      { shallow: true }
+    );
   };
 
   const navigateToToday = () => {
-    setCurrentDate(new Date());
+    const today = new Date();
+    // Update URL - the useEffect will update currentDate
+    router.push(
+      `/participation/events?month=${today.getMonth()}&year=${today.getFullYear()}`,
+      undefined,
+      { shallow: true }
+    );
   };
 
   const handleDayClick = (dateString) => {
