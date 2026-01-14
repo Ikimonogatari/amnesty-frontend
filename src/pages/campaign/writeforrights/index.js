@@ -9,16 +9,18 @@ export async function getServerSideProps() {
     const fallbackApiKey = "70412827041a1cada9c8c234bb111c64704ef4aaf148136f19ffc25e6403f944d8ad25a2f70004eaa8a3c9167f6234676b990608bcfdfbd2d9d7da835a0327fa0b9ad93d64f9331bdfe1a362ce7f546bd3a2ff160f5e3232afc4a5a1ec6533ee07a5bfafda0aaf1126c3f476e0434e623ad50c7842cda7145df959378a4a584e";
     const envApiKey = process.env.NEXT_PUBLIC_API_KEY;
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || "https://cms.amnesty.mn/api";
+    const envLocale = process.env.NEXT_PUBLIC_CMS_LOCALE || "mn-MN";
 
     console.log("Environment check:", {
       CMS_API: apiUrl,
       HasEnvApiKey: !!envApiKey,
       EnvApiKeyLength: envApiKey ? envApiKey.length : 0,
+      Locale: envLocale,
     });
 
     // Helper to fetch actions with a specific key
-    const fetchActions = async (key, keySource) => {
-      console.log(`Attempting fetch with ${keySource} key...`);
+    const fetchActions = async (key, keySource, locale) => {
+      console.log(`Attempting fetch with ${keySource} key, locale ${locale}...`);
       const headers = {
         "Content-Type": "application/json",
       };
@@ -27,33 +29,70 @@ export async function getServerSideProps() {
       }
 
       const response = await fetch(
-        `${apiUrl}/actions?populate=*&sort[0]=createdAt:desc&locale=mn-MN`,
-        { headers }
+        `${apiUrl}/actions?populate=*&sort[0]=createdAt:desc&locale=${locale}`,
+        { headers, cache: "no-store" }
       );
 
       return response;
     };
 
-    // 1. Try with Environment Variable Key first (if exists)
+    const localeCandidates = Array.from(
+      new Set([envLocale, "mn", "mn-MN"].filter(Boolean))
+    );
+
+    const fetchWithAuthFallback = async (locale) => {
+      if (envApiKey) {
+        let response = await fetchActions(envApiKey, "ENVIRONMENT", locale);
+        let usedFallbackKey = false;
+        if (!response.ok && (response.status === 403 || response.status === 401)) {
+          console.warn(
+            `Environment key failed with ${response.status}. Retrying with fallback key...`
+          );
+          response = await fetchActions(fallbackApiKey, "FALLBACK", locale);
+          usedFallbackKey = true;
+        }
+        return { response, usedFallbackKey };
+      }
+
+      return {
+        response: await fetchActions(fallbackApiKey, "FALLBACK", locale),
+        usedFallbackKey: true,
+      };
+    };
+
     let response;
     let usedFallback = false;
+    let actionsData = null;
+    let selectedLocale = envLocale;
 
-    if (envApiKey) {
-      response = await fetchActions(envApiKey, "ENVIRONMENT");
+    for (const locale of localeCandidates) {
+      const result = await fetchWithAuthFallback(locale);
+      response = result.response;
+      usedFallback = result.usedFallbackKey;
 
-      // If forbidden/unauthorized, might be a bad specific key, try fallback
-      if (!response.ok && (response.status === 403 || response.status === 401)) {
-        console.warn(`Environment key failed with ${response.status}. Retrying with fallback key...`);
-        response = await fetchActions(fallbackApiKey, "FALLBACK");
-        usedFallback = true;
+      if (!response.ok) {
+        break;
       }
-    } else {
-      // No env key, go straight to fallback
-      response = await fetchActions(fallbackApiKey, "FALLBACK");
-      usedFallback = true;
+
+      const data = await response.json();
+      const hasActions = Array.isArray(data?.data) && data.data.length > 0;
+
+      console.log("CMS API Response Success:", {
+        count: data.data?.length || 0,
+        locale,
+      });
+
+      actionsData = data;
+      selectedLocale = locale;
+
+      if (hasActions) {
+        break;
+      }
     }
 
-    console.log(`Final API Response Status: ${response.status} (Used fallback: ${usedFallback})`);
+    console.log(
+      `Final API Response Status: ${response.status} (Used fallback: ${usedFallback}, Locale: ${selectedLocale})`
+    );
 
     if (!response.ok) {
       console.error("CMS API Error:", response.status, response.statusText);
@@ -68,14 +107,9 @@ export async function getServerSideProps() {
       };
     }
 
-    const actionsData = await response.json();
-    console.log("CMS API Response Success:", {
-      count: actionsData.data?.length || 0,
-    });
-
     // Format the response like Strapi v4
     const actions =
-      actionsData.data?.map((item) => ({
+      actionsData?.data?.map((item) => ({
         id: item.id,
         title: item.attributes?.title || item.title,
         description: item.attributes?.description || item.description,
