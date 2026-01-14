@@ -2,7 +2,8 @@ import Layout from "@/components/layout/Layout";
 import WriteForRightsDesktop from "@/components/campaign/writeforrights/WriteForRightsDesktop";
 import WriteForRightsMobile from "@/components/campaign/writeforrights/WriteForRightsMobile";
 import { useEffect, useState } from "react";
-import Fetcher from "@/utils/fetcher";
+import Fetcher, { buildFetcherUrl } from "@/utils/fetcher";
+import { getLocale } from "@/utils/locale";
 
 export default function WriteForRights() {
   const [actions, setActions] = useState([]);
@@ -15,7 +16,11 @@ export default function WriteForRights() {
       try {
         setError(null);
         const response = await Fetcher(
-          "/actions?populate=*&sort[0]=createdAt:desc"
+          buildFetcherUrl("/actions", {
+            populate: "*",
+            "sort[0]": "createdAt:desc",
+            locale: getLocale(),
+          })
         );
 
         const formattedActions =

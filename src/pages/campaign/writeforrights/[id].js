@@ -4,7 +4,8 @@ import Layout from "@/components/layout/Layout";
 import WriteForRightsActionDesktop from "@/components/campaign/writeforrights/WriteForRightsActionDesktop";
 import WriteForRightsActionMobile from "@/components/campaign/writeforrights/WriteForRightsActionMobile";
 import FullScreenLoader from "@/components/common/FullScreenLoader";
-import Fetcher from "@/utils/fetcher";
+import Fetcher, { buildFetcherUrl } from "@/utils/fetcher";
+import { getLocale } from "@/utils/locale";
 
 export default function WriteForRightsDetail() {
   const router = useRouter();
@@ -22,7 +23,12 @@ export default function WriteForRightsDetail() {
         setIsLoading(true);
         setError(null);
 
-        const response = await Fetcher(`/actions/${id}?populate=*`);
+        const response = await Fetcher(
+          buildFetcherUrl(`/actions/${id}`, {
+            populate: "*",
+            locale: getLocale(),
+          })
+        );
         const actionData = response?.data;
 
         if (!actionData) {
