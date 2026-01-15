@@ -557,13 +557,37 @@ export default function SingleNews() {
           >
             ᠣᠭᠲᠠᠷᠭᠤᠯ
           </h2>
-          <div
-            className="text-xl text-gray-600"
-            style={{
-              writingMode: "vertical-lr",
-            }}
-          >
-            {publishedAt}
+          <div className="flex flex-col justify-between">
+            <div
+              className="text-xl text-gray-600 mx-auto"
+              style={{
+                writingMode: "vertical-lr",
+              }}
+            >
+              {publishedAt}
+            </div>
+            <div className="flex flex-col gap-4">
+              <button
+                style={{
+                  writingMode: "vertical-lr",
+                }}
+                onClick={() => handleShare("facebook")}
+                className="flex items-center gap-2 bg-[#385898] text-white px-4 py-3 text-sm font-semibold hover:bg-[#2d4373] transition-colors"
+              >
+                <Facebook size={16} />
+                {/* Facebook */}
+              </button>
+              <button
+                style={{
+                  writingMode: "vertical-lr",
+                }}
+                onClick={() => handleShare("general")}
+                className="flex items-center gap-2 bg-gray-600 text-white px-4 py-3 text-sm font-semibold hover:bg-gray-700 transition-colors"
+              >
+                <Share2 size={16} />
+                {/* ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ */}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -577,28 +601,6 @@ export default function SingleNews() {
           >
             ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
           </h2>
-          <div className="flex flex-col gap-4">
-            <button
-              style={{
-                writingMode: "vertical-lr",
-              }}
-              onClick={() => handleShare("facebook")}
-              className="flex items-center gap-2 bg-[#385898] text-white px-4 py-3 text-sm font-semibold hover:bg-[#2d4373] transition-colors"
-            >
-              <Facebook size={16} />
-              Facebook
-            </button>
-            <button
-              style={{
-                writingMode: "vertical-lr",
-              }}
-              onClick={() => handleShare("general")}
-              className="flex items-center gap-2 bg-gray-600 text-white px-4 py-3 text-sm font-semibold hover:bg-gray-700 transition-colors"
-            >
-              <Share2 size={16} />
-              ᠬᠤᠪᠢᠶᠠᠯᠠᠬᠤ
-            </button>
-          </div>
         </div>
 
         {/* Short Description Section */}
