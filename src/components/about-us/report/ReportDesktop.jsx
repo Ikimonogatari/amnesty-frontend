@@ -85,10 +85,10 @@ export default function ReportDesktop() {
           className={`flex flex-col items-center justify-center border border-[#E3E3E3] rounded-xl my-4`}
         >
           <div
-          style={{ writingMode: "vertical-lr" }}
-          className="h-1/2 text-lg font-bold flex items-center justify-center w-full rounded-t-xl bg-[#FFFF00] p-8">
+            style={{ writingMode: "vertical-lr" }}
+            className="h-1/2 text-lg font-bold flex items-center justify-center w-full rounded-t-xl bg-[#FFFF00] p-8">
 
-              ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠳᠡᢉᠡᠳᠦᠯᠡᠳᠡᢉ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ
+            ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢ ᠳᠡᢉᠡᠳᠦᠯᠡᠳᠡᢉ ᠳᠡᠯᠡᢈᠡᠢ ᠶᠢᠷᠲᠢᠨᠴᠦ ᠶ᠋ᠢᠨ ᠲᠥᠯᠦᢉᠡ
           </div>
           <div className="text-lg font-bold h-1/2 flex flex-row items-start justify-center w-full rounded-b-xl bg-black p-8">
 
@@ -98,7 +98,7 @@ export default function ReportDesktop() {
             <h2
               className={`text-white`} style={{ writingMode: "vertical-lr" }}
             >
-              ᠨᠡᠩ ᠲᠡᠷᠢᢉᠦᠨ ᠳ᠋ᠦ ᠠᠩᠬᠠᠷᠴᠤ <br/> ᠠᠵᠢᠯᠯᠠᠬᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ <br/> ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠰᠲ᠋ᠷᠠᠲ᠋ᠧᢉᠢ
+              ᠨᠡᠩ ᠲᠡᠷᠢᢉᠦᠨ ᠳ᠋ᠦ ᠠᠩᠬᠠᠷᠴᠤ <br /> ᠠᠵᠢᠯᠯᠠᠬᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ <br /> ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠰᠲ᠋ᠷᠠᠲ᠋ᠧᢉᠢ
               ᠵᠣᠷᠢᠯᠲᠠ
             </h2>
           </div>

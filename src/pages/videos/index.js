@@ -92,11 +92,30 @@ export default function VideosIndex() {
           />
 
           {/* Desktop Introduction Section */}
-          <PageIntroduction
-            variant="desktop"
-            title="ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ"
-            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠸᠢᠳᠧᠣ ᠳᠠᠪᠲᠠᠨ ᠤᠷᠤᠨ"
-          />
+          <div className="flex-shrink-0 bg-gray-50 p-8 flex gap-4">
+            <h2
+              className="text-2xl font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
+            >
+              ᠸᠢᠳᠧᠣ᠋ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠭ᠎ᠠ:
+            </h2>
+            <p
+              className="text-gray-700 leading-relaxed"
+              style={{
+                writingMode: "vertical-lr",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
+            >
+              ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠮᠡᠳᠡᠯᢉᠡ ᠣᠯᠭᠤᠬᠤ ᠪᠢᠴᠢᠯ ᠸᠢᠳᠧᠣ᠋᠂ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᢈᠢᠴᠢᠶᠡᠯ ᠦ᠋ᠳ᠂
+              ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠧᠮᠨᠧᠰᠲ᠋ᠣ᠋ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠱᠢᠨ᠋ᠯ ᠦ᠋ᠨ ᠵᠣᢈᠢᠶᠠᠨ ᠪᠠᠶᠢᠭᠤᠯᠳᠠᠭ ᠦᠶᠢᠯᠡ ᠠᠵᠢᠯᠯᠠᠭᠠᠨ ᠤ᠋ ᠲᠣᠶᠢᠮᠤ
+              ᠮᠡᠳᠡᢉᠡᠯᠡᠯ ᠵᠡᠷᢉᠡ ᠶ᠋ᠢ ᠳᠠᠷᠠᠭᠠᢈᠢ ᠴᠠᢈᠢᠮ ᠸᠢᠳᠧᠣ᠋ ᠰᠠᠩ ᠠ᠋ᠴᠠ ᢈᠦᠯᠢᠶᠡᠨ ᠠᠪᠴᠤ ᠦᠵᠡᠨ᠎ᠡ ᠦᠦ᠃
+            </p>
+          </div>
 
           {/* Desktop Grid Layout */}
           <div className="flex-1 p-8 overflow-y-auto">

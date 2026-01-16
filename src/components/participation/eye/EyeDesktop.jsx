@@ -391,12 +391,22 @@ export default function EyeDesktop() {
     }
 
     try {
+      // Convert cover image URL to full URL if it's a relative path
+      let coverImageUrl = coverImage;
+      if (coverImage && !coverImage.startsWith("http")) {
+        // If it's a relative path, prepend the API base URL
+        const apiBaseUrl = process.env.NEXT_PUBLIC_USER_API_URL || "";
+        coverImageUrl = coverImage.startsWith("/")
+          ? `${apiBaseUrl}${coverImage}`
+          : `${apiBaseUrl}/${coverImage}`;
+      }
+
       // Format data to match API specification
       const formData = {
         subjectId: String(data.subjectId), // Human rights issue category ID (string)
         title: data.incident || "", // Report title
         message: data.details || "", // Report content
-        coverImage: coverImage, // Image URL (from upload endpoint)
+        coverImage: coverImageUrl, // Image URL (full URL from whitelisted domain)
         provinceId: "21", // Province/location ID (string) - default to 21
         phone: String(data.phone), // 8-digit phone number (string)
         verifyCode: String(data.otp), // 6-digit SMS verification code (string)
@@ -444,8 +454,17 @@ export default function EyeDesktop() {
           toast.error(
             "ᠨᠢᠭᠤᠴᠠ ᠨᠣᠮ ᠢ ᠪᠠᠲᠠᠯᠭᠠᠵᠢᠯᠠᠬᠤ ᠬᠡᠷᠡᠭᠲᠡᠢ! ᠳᠠᠬᠢᠨ ᠨᠢᠷᠤᠭᠤᠯᠤᠨ᠎ᠠ ᠤᠤ!"
           );
+        } else if (
+          result.error.code === "UNMET_CONDITIONAL_ERROR" ||
+          result.message?.includes("whitelisted domain")
+        ) {
+          toast.error(
+            "ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠤᠨ ᠬᠠᠷᠢᠤᠴᠠ ᠬᠡᠷᠡᠭᠲᠡᠢ! ᠳᠠᠬᠢᠨ ᠨᠢᠷᠤᠭᠤᠯᠤᠨ ᠤᠤ!"
+          );
         } else {
-          toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
+          toast.error(
+            result.message || "ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃"
+          );
         }
       } else {
         toast.error("ᠠᠯᠳᠠᠭ᠎ᠠ ᠭᠠᠷᠪᠠ᠃ ᠳᠠᠬᠢᠨ ᠤᠷᠢᠳᠤᠨ ᠳᠤ ᠰᠢᠯᠢᠳᠡᠭᠡᠷᠡᠢ᠃");
@@ -751,7 +770,7 @@ export default function EyeDesktop() {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex gap-2 overflow-x-auto overflow-y-hidden"
+            className="flex gap-2 overflow-x-auto overflow-y-auto"
           >
             {/* Phone Number Field */}
             <h2
@@ -876,7 +895,7 @@ export default function EyeDesktop() {
                 ᠺᠣᠪᠧᠷ ᠵᠢᠷᠤᠭ ᠰᠣᠩᠭᠣᠬᠤ*
               </p>
               {coverImage ? (
-                <div className="relative max-w-[400px] max-h-[400px] aspect-square">
+                <div className="relative w-24 h-24 flex-shrink-0 aspect-square">
                   <Image
                     src={
                       coverImage.startsWith("http")
@@ -1187,7 +1206,7 @@ export default function EyeDesktop() {
               type="primary"
               onClick={handleSubmit(onSubmit)}
               disabled={isSubmitting || !isOtpSent}
-              className={`${
+              className={`flex-shrink-0 ${
                 isSubmitting || !isOtpSent
                   ? "opacity-50 cursor-not-allowed"
                   : "hover:bg-blue-600"

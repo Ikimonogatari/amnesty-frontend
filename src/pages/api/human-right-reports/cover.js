@@ -1,12 +1,11 @@
-import { IncomingForm } from "formidable";
-
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
   try {
-    const USER_API_BASE_URL = process.env.NEXT_PUBLIC_USER_API_URL;
+    const USER_API_BASE_URL =
+      process.env.NEXT_PUBLIC_USER_API_URL || "https://api.amnesty.mn/users";
 
     // Get the raw body chunks
     const chunks = [];

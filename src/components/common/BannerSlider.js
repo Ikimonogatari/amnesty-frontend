@@ -67,21 +67,21 @@ export default function BannerSlider({
   // Convert featured news data to banner format (like old web)
   const dynamicImages = featuredNewsData
     ? featuredNewsData.map((newsPost) => {
-        // Now always using posts data (flattened format) for consistency
-        const post = newsPost;
+      // Now always using posts data (flattened format) for consistency
+      const post = newsPost;
 
-        return {
-          id: post.id,
-          src: getImageUrl(post.cover) || "/mng/images/news1.png",
-          alt: post.title || `News ${post.id}`,
-          caption: {
-            title: post.short_description || post.title || "ᠮᠡᠳᠡᢉᠡ",
-            description: post.short_description || post.description || "",
-          },
-          // Add link to news detail page (like old web)
-          link: `/news/${post.id}`,
-        };
-      })
+      return {
+        id: post.id,
+        src: getImageUrl(post.cover) || "/mng/images/news1.png",
+        alt: post.title || `News ${post.id}`,
+        caption: {
+          title: post.short_description || post.title || "ᠮᠡᠳᠡᢉᠡ",
+          description: post.short_description || post.description || "",
+        },
+        // Add link to news detail page (like old web)
+        link: `/news/${post.id}`,
+      };
+    })
     : [];
 
   // Use dynamic images if available and useDynamic is true, otherwise use static images
@@ -247,7 +247,7 @@ export default function BannerSlider({
               {image.caption && (
                 <>
                   {/* Desktop Caption */}
-                  <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-xs overflow-x-auto rounded-xl gap-8 p-10">
+                  <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl gap-8 p-10 min-w-80">
                     <h3
                       className="text-2xl font-bold mb-3"
                       style={{
@@ -328,11 +328,10 @@ export default function BannerSlider({
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                  currentIndex === index
-                    ? "bg-white scale-125"
-                    : "bg-white/40 hover:bg-white/70"
-                }`}
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${currentIndex === index
+                  ? "bg-white scale-125"
+                  : "bg-white/40 hover:bg-white/70"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

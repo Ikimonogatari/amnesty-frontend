@@ -258,3 +258,21 @@ body {
   font-style: normal;
   font-display: swap;
 }
+
+/* Safari fix for vertical Swiper */
+.report-swiper.swiper-vertical {
+  overflow: hidden !important;
+  height: 660px !important;
+}
+
+.report-swiper.swiper-vertical > .swiper-wrapper {
+  flex-direction: column !important;
+  height: 660px !important;
+}
+
+.report-swiper.swiper-vertical .swiper-slide {
+  height: 200px !important;
+  max-height: 200px !important;
+  flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+}

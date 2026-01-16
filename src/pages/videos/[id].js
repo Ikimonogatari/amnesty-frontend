@@ -163,7 +163,7 @@ export default function VideoDetail() {
                 ᠲᠠᠢᠯᠪᠤᠷᠢ
               </h2>
               <div
-                className="text-base text-gray-800"
+                className="text-base text-gray-800 max-h-[200px]"
                 style={{
                   writingMode: "vertical-lr",
                 }}
@@ -175,7 +175,7 @@ export default function VideoDetail() {
           )}
 
           {/* Mobile Publication Date */}
-          {(video.createdAt || video.publishedAt) && (
+          {/* {(video.createdAt || video.publishedAt) && (
             <div className="flex flex-row gap-2">
               <h3
                 className="text-lg font-semibold"
@@ -194,7 +194,7 @@ export default function VideoDetail() {
                 {formatDate(video.createdAt || video.publishedAt)}
               </p>
             </div>
-          )}
+          )} */}
 
           {/* Mobile Duration */}
           {video.duration && (
@@ -273,10 +273,10 @@ export default function VideoDetail() {
       {/* Desktop Layout */}
       <div className="h-full p-4 hidden sm:flex gap-7 overflow-x-auto w-auto flex-shrink-0 max-h-screen min-w-screen">
         {/* Main Video Player Section */}
-        <div className="flex gap-4">
-          <div className="flex flex-col gap-4 items-center">
+        <div className="flex gap-8">
+          <div className="flex gap-4 items-center">
             <h1
-              className="text-3xl font-bold"
+              className="text-xl font-bold"
               style={{
                 writingMode: "vertical-lr",
               }}
@@ -284,14 +284,6 @@ export default function VideoDetail() {
             >
               {video.title || "ᠪᠢᠳᠢᠶᠣ"}
             </h1>
-            <h2
-              className="text-xl font-medium text-gray-600"
-              style={{
-                writingMode: "vertical-lr",
-              }}
-            >
-              ᠪᠢᠳᠢᠶᠣ
-            </h2>
           </div>
           {video.youtube_video_id || video.video_url ? (
             <div className="w-[800px] h-[450px] relative shadow-lg rounded-lg overflow-hidden">
@@ -357,7 +349,7 @@ export default function VideoDetail() {
         )}
 
         {/* Publication Date Section */}
-        {(video.createdAt || video.publishedAt) && (
+        {/* {(video.createdAt || video.publishedAt) && (
           <div className="flex gap-4">
             <h2
               className="text-2xl font-bold"
@@ -376,7 +368,7 @@ export default function VideoDetail() {
               {formatDate(video.createdAt || video.publishedAt)}
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Duration Section */}
         {video.duration && (
