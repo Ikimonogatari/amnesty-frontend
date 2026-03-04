@@ -100,25 +100,34 @@ export default function GridLayout({
                   key={item.id || index}
                   className="w-full h-full flex items-end gap-4"
                 >
-                  {/* Title - Fixed width with proper line clamping */}
-                  <h3
-                    className="w-11 max-w-11 h-full text-xs transition-opacity cursor-pointer hover:opacity-70 overflow-hidden text-center antialiased"
-                    style={{
-                      writingMode: "vertical-lr",
-                      transform: "translateZ(0)",
-                      WebkitBackfaceVisibility: "hidden",
-                      backfaceVisibility: "hidden",
-                    }}
-                    title={getTitle ? getTitle(item) : item.title}
-                    onClick={() => handleItemClick(item)}
+                  {/* Title wrapper - fixed container so Safari can't shift it */}
+                  <div
+                    className="w-11 max-w-11 h-full flex items-end justify-center overflow-hidden flex-shrink-0"
+                    style={{ position: "relative" }}
                   >
-                    {(() => {
-                      const title = getTitle ? getTitle(item) : item.title;
-                      return title && title.length > 40
-                        ? `${title.substring(0, 40)}...`
-                        : title;
-                    })()}
-                  </h3>
+                    <h3
+                      className="text-xs cursor-pointer antialiased"
+                      style={{
+                        writingMode: "vertical-lr",
+                        transform: "translateZ(0)",
+                        WebkitBackfaceVisibility: "hidden",
+                        backfaceVisibility: "hidden",
+                        willChange: "opacity",
+                        transition: "opacity 0.2s ease",
+                      }}
+                      title={getTitle ? getTitle(item) : item.title}
+                      onClick={() => handleItemClick(item)}
+                      onMouseEnter={(e) => e.currentTarget.style.opacity = "0.6"}
+                      onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
+                    >
+                      {(() => {
+                        const title = getTitle ? getTitle(item) : item.title;
+                        return title && title.length > 40
+                          ? `${title.substring(0, 40)}...`
+                          : title;
+                      })()}
+                    </h3>
+                  </div>
 
                   {/* Main Image with proper aspect ratio */}
                   <div
