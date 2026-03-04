@@ -21,6 +21,7 @@ export default function VerticalSwiperLayout({
   totalSlides,
   onPrevSlide,
   onNextSlide,
+  onNavigateAll,
   children,
   isLoading = false,
   error = null,
@@ -87,7 +88,7 @@ export default function VerticalSwiperLayout({
       )}
 
       {/* Swiper Content Area */}
-      <div className="flex flex-row gap-2 h-full min-h-[200px] sm:h-auto overflow-hidden flex-1">
+      <div className="flex flex-row gap-2 h-full min-h-[200px] overflow-hidden flex-1">
         {sectionTitle && (
           <div className="flex items-center justify-center">
             <p
@@ -109,6 +110,13 @@ export default function VerticalSwiperLayout({
           {children}
         </div>
       </div>
+
+      {/* See All Button Column */}
+      {onNavigateAll && (
+        <div className="hidden sm:flex items-start justify-center">
+          <Button text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"} type="secondary" onClick={onNavigateAll} />
+        </div>
+      )}
 
       {/* Navigation and Pagination */}
       <div className="flex flex-row sm:flex-col justify-center sm:justify-start items-center gap-2 mt-4 sm:mt-0">

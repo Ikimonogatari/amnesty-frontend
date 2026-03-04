@@ -118,13 +118,9 @@ export default function RightSwiper({
       totalSlides={slides.length}
       onPrevSlide={() => swiperRef.current?.slidePrev()}
       onNextSlide={() => swiperRef.current?.slideNext()}
+      onNavigateAll={needSubSection ? navigateToCategoryPage : undefined}
     >
       <div className="flex flex-col gap-4 h-full">
-        {needSubSection && (
-          <div className="hidden sm:block">
-            <Button text={"ᠪᠦᢉᠦᠳᠡ ᠶ᠋ᠢ ᠦᠵᠡᢈᠦ"} type="secondary" onClick={navigateToCategoryPage} />
-          </div>
-        )}
         <Swiper
           direction={isMobile ? "horizontal" : "vertical"}
           slidesPerView={isMobile ? 1 : 3}
