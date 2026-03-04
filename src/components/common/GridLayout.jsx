@@ -102,14 +102,12 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="w-11 max-w-11 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-center antialiased"
+                    className="w-11 max-w-11 h-full text-xs transition-opacity cursor-pointer hover:opacity-70 overflow-hidden text-center antialiased"
                     style={{
                       writingMode: "vertical-lr",
                       transform: "translateZ(0)",
                       WebkitBackfaceVisibility: "hidden",
                       backfaceVisibility: "hidden",
-                      // wordBreak: "break-all",
-                      // overflowWrap: "break-word",
                     }}
                     title={getTitle ? getTitle(item) : item.title}
                     onClick={() => handleItemClick(item)}
@@ -251,7 +249,7 @@ export default function GridLayout({
                 onClick={() => handleItemClick(item)}
               >
                 <h3
-                  className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto flex-shrink-0 antialiased"
+                  className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto flex-shrink-0 antialiased transition-opacity hover:opacity-70"
                   style={{
                     writingMode: "vertical-lr",
                     transform: "translateZ(0)",
