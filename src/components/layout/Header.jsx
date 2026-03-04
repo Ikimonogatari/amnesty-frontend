@@ -1,10 +1,10 @@
-import { useState } from "react";
-import Image from "next/image";
-import { Icon } from "@iconify/react";
 import Button from "@/components/common/Button";
+import SearchModal from "@/components/common/SearchModal";
+import { Icon } from "@iconify/react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import SearchModal from "@/components/common/SearchModal";
+import { useState } from "react";
 
 
 export default function Header() {
@@ -121,7 +121,7 @@ export default function Header() {
                     </div>
                   </Link>
                   {activeDropdown === index && (
-                    <div className="absolute left-[38px] top-[-30px] bg-white rounded-xl p-6 z-30 border border-[#E3E3E3] shadow-lg">
+                    <div className="absolute left-[38px] top-[-30px] bg-white rounded-xl p-6 z-30 border border-[#E3E3E3] shadow-lg before:content-[''] before:absolute before:inset-y-0 before:-left-[38px] before:w-[38px] before:bg-transparent">
                       <div className="flex justify-between items-center">
                         <div className="grid grid-cols-3 grid-rows-2 gap-10">
                           {item.dropdownItems.map(
