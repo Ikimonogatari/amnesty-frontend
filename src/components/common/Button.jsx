@@ -33,11 +33,16 @@ export default function Button({
         target={target}
         rel={rel}
         className={buttonClasses}
-        style={{ writingMode: "vertical-lr" }}
+        style={{
+          writingMode: "vertical-lr",
+          transform: "translateZ(0)",
+          WebkitBackfaceVisibility: "hidden",
+          backfaceVisibility: "hidden",
+        }}
       >
         <p
           className={`${type !== "chevron" && "pl-1"
-            } font-bold text-[10px] sm:text-base`}
+            } font-bold text-[10px] sm:text-base antialiased`}
         >
           {text}
         </p>
@@ -51,11 +56,16 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       className={`${buttonClasses} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
-      style={{ writingMode: "vertical-lr" }}
+      style={{
+        writingMode: "vertical-lr",
+        transform: "translateZ(0)",
+        WebkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+      }}
     >
       <p
         className={`${type !== "chevron" && ""
-          } font-bold text-[10px] sm:text-base whitespace-normal break-words`}
+          } font-bold text-[10px] sm:text-base whitespace-normal break-words antialiased`}
       >
         {text}
       </p>
