@@ -140,7 +140,7 @@ export default function GridLayout({
                       alt={
                         getTitle ? getTitle(item) : item.title || "Item image"
                       }
-                      className="object-cover shadow-md rounded-xl aspect-square hover:opacity-80 transition-opacity h-1/3"
+                      className="object-cover shadow-md rounded-xl aspect-square hover:opacity-80 transition-opacity"
                       width={200}
                       height={200}
                       onError={(e) => {
