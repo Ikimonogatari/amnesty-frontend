@@ -147,9 +147,9 @@ export default function StructureManagersDesktop() {
               </div>
 
               {/* Manager Description */}
-              <div className="max-h-[500px]">
+              <div className="max-h-[500px] flex-shrink-0">
                 <p
-                  className="font-semibold text-sm leading-relaxed"
+                  className="font-semibold text-sm leading-relaxed break-words"
                   style={{
                     writingMode: "vertical-lr",
                   }}

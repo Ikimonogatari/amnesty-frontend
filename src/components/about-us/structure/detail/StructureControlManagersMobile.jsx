@@ -97,7 +97,7 @@ export default function StructureControlManagersMobile() {
               </div>
               <div className="flex-1 min-w-0 overflow-x-auto max-h-[400px]">
                 <p
-                  className="text-xs leading-relaxed"
+                  className="text-xs leading-relaxed break-words"
                   style={{
                     writingMode: "vertical-lr",
                   }}
