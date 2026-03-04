@@ -1,10 +1,10 @@
 import Button from "@/components/common/Button";
 import { toMongolianNumbers } from "@/utils/fetcher";
 import {
-    ChevronDown,
-    ChevronLeft,
-    ChevronRight,
-    ChevronUp,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -128,7 +128,7 @@ export default function GridLayout({
 
                   {/* Main Image with proper aspect ratio */}
                   <div
-                    className="relative cursor-pointer flex-shrink-0 w-[200px] h-[200px] overflow-hidden rounded-xl"
+                    className="relative cursor-pointer m-auto"
                     onClick={() => handleItemClick(item)}
                   >
                     <Image
@@ -140,8 +140,9 @@ export default function GridLayout({
                       alt={
                         getTitle ? getTitle(item) : item.title || "Item image"
                       }
-                      className="object-cover shadow-md hover:opacity-80 transition-opacity"
-                      fill
+                      className="object-cover shadow-md rounded-xl aspect-square hover:opacity-80 transition-opacity h-1/3"
+                      width={200}
+                      height={200}
                       onError={(e) => {
                         e.target.src = "/mng/images/news1.png"; // fallback image
                       }}
