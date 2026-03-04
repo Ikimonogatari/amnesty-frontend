@@ -128,7 +128,7 @@ export default function GridLayout({
 
                   {/* Main Image with proper aspect ratio */}
                   <div
-                    className="relative cursor-pointer m-auto"
+                    className="relative cursor-pointer flex-shrink-0 w-[200px] h-[200px] overflow-hidden rounded-xl"
                     onClick={() => handleItemClick(item)}
                   >
                     <Image
@@ -140,9 +140,8 @@ export default function GridLayout({
                       alt={
                         getTitle ? getTitle(item) : item.title || "Item image"
                       }
-                      className="object-cover shadow-md rounded-xl aspect-square hover:opacity-80 transition-opacity"
-                      width={200}
-                      height={200}
+                      className="object-cover shadow-md hover:opacity-80 transition-opacity"
+                      fill
                       onError={(e) => {
                         e.target.src = "/mng/images/news1.png"; // fallback image
                       }}
