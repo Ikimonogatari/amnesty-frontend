@@ -2,10 +2,12 @@ export default function Button({
   text,
   onClick,
   type = "primary",
+  buttonType = "button", // HTML button type: "button", "submit", or "reset"
   className = "",
   href,
   target,
   rel,
+  disabled = false,
 }) {
   let buttonClasses;
 
@@ -34,9 +36,8 @@ export default function Button({
         style={{ writingMode: "vertical-lr" }}
       >
         <p
-          className={`${
-            type !== "chevron" && "pl-1"
-          } font-bold text-[10px] sm:text-base`}
+          className={`${type !== "chevron" && "pl-1"
+            } font-bold text-[10px] sm:text-base`}
         >
           {text}
         </p>
@@ -46,14 +47,15 @@ export default function Button({
 
   return (
     <button
+      type={buttonType}
       onClick={onClick}
-      className={buttonClasses}
+      disabled={disabled}
+      className={`${buttonClasses} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
       style={{ writingMode: "vertical-lr" }}
     >
       <p
-        className={`${
-          type !== "chevron" && ""
-        } font-bold text-[10px] sm:text-base whitespace-normal break-words`}
+        className={`${type !== "chevron" && ""
+          } font-bold text-[10px] sm:text-base whitespace-normal break-words`}
       >
         {text}
       </p>

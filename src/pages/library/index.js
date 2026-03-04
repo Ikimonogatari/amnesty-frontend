@@ -89,11 +89,30 @@ export default function LibraryIndex() {
           />
 
           {/* Desktop Introduction Section */}
-          <PageIntroduction
-            variant="desktop"
-            title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-            description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ"
-          />
+          <div className="flex-shrink-0 bg-gray-50 p-8 flex gap-4">
+            <h2
+              className="text-2xl font-bold"
+              style={{
+                writingMode: "vertical-lr",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
+            >
+              ᠴᠠᢈᠢᠮ ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠩ ᠤ᠋ᠨ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠭ᠎ᠠ:
+            </h2>
+            <p
+              className="text-gray-700 leading-relaxed"
+              style={{
+                writingMode: "vertical-lr",
+                wordBreak: "keep-all",
+                lineHeight: "1.2",
+              }}
+            >
+              ᠲᠠ ᠡᠮᠨᠧᠰᠲ᠋ᠧ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠱᠢᠨ᠋ᠯ ᠡᠴᠡ ᠡᠷᢈᠢᠯᠡᠨ ᠭᠠᠷᠭᠠᠭᠰᠠᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠣᠯᠠᠨ ᠨᠣᠮ ᠲᠣᠪᢈᠢᠮᠠᠯ᠂ᠰᠤᠳᠤᠯᠭ᠎ᠠ᠂
+              ᠭᠠᠷ ᠤ᠋ᠨ ᠠᠪᠤᠯᠭ᠎ᠠ᠂ ᠲᠠᠶᠢᠯᠤᠨ ᠠ᠋ᠴᠠ ᢈᠦᠰᠡᢉᠰᠡᠨ ᠢ᠋ᠶᠡᠷ ᠢ᠋ᠶᠡᠨ ᠦᠵᠡᠵᠦ ᠰᠤᠳᠤᠯᠵᠤ ᠥᠪᠡᠷ ᠢ᠋ ᠪᠡᠨ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᠢ᠋
+              ᠡᠷᢈᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠳᠡᢉ᠂ ᠡᠷᢈᠡ ᠪᠡᠨ ᠱᠠᠭᠠᠷᠳᠠᠳᠠᠭ᠂ ᠡᠷᢈᠡ ᠪᠡᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠳᠠᠭ ᢈᠦᠮᠦᠨ ᠪᠣᠯᠬᠤ ᠳ᠋ᠤ ᠲᠤᠰᠠᠯᠠᠭᠠᠷᠠᠢ᠃
+            </p>
+          </div>
 
           {/* Desktop Grid Layout */}
           <div className="flex-1 p-8 overflow-y-auto">
@@ -120,14 +139,28 @@ export default function LibraryIndex() {
             image="/mng/images/libraries/header-img-library.jpg"
           />
 
-          <div className="p-4">
-            {/* Mobile Introduction Section */}
-            <PageIntroduction
-              variant="mobile"
-              title="ᠴᠠᠬᠢᠮ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ"
-              description="ᠬᠦᠮᠦᠨ ᠦ ᠡᠷᠬᠡ ᠶᠢᠨ ᠨᠣᠮ ᠤᠨ ᠰᠠᠩ ᠪᠣᠯᠣᠨ ᠦᠢᠯᠡᠴᠢᠯᠡᠭᠡ"
-            />
+          <div className="flex-shrink-0 bg-gray-50 p-4 flex gap-4">
+            <h2
+              className="text-lg font-bold max-h-[300px]"
+              style={{
+                writingMode: "vertical-lr",
+              }}
+            >
+              ᠴᠠᢈᠢᠮ ᠨᠣᠮ ᠤ᠋ᠨ ᠰᠠᠩ ᠤ᠋ᠨ ᠲᠠᠨᠢᠯᠴᠠᠭᠤᠯᠭ᠎ᠠ:
+            </h2>
+            <p
+              className="text-gray-700 leading-relaxed max-h-[300px]"
+              style={{
+                writingMode: "vertical-lr",
+              }}
+            >
+              ᠲᠠ ᠡᠮᠨᠧᠰᠲ᠋ᠧ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠧᠱᠢᠨ᠋ᠯ ᠡᠴᠡ ᠡᠷᢈᠢᠯᠡᠨ ᠭᠠᠷᠭᠠᠭᠰᠠᠨ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠣᠯᠠᠨ ᠨᠣᠮ ᠲᠣᠪᢈᠢᠮᠠᠯ᠂ᠰᠤᠳᠤᠯᠭ᠎ᠠ᠂
+              ᠭᠠᠷ ᠤ᠋ᠨ ᠠᠪᠤᠯᠭ᠎ᠠ᠂ ᠲᠠᠶᠢᠯᠤᠨ ᠠ᠋ᠴᠠ ᢈᠦᠰᠡᢉᠰᠡᠨ ᠢ᠋ᠶᠡᠷ ᠢ᠋ᠶᠡᠨ ᠦᠵᠡᠵᠦ ᠰᠤᠳᠤᠯᠵᠤ ᠥᠪᠡᠷ ᠢ᠋ ᠪᠡᠨ ᠪᠣᠯᠤᠨ ᠪᠤᠰᠤᠳ ᠢ᠋
+              ᠡᠷᢈᠡ ᠪᠡᠨ ᠮᠡᠳᠡᠳᠡᢉ᠂ ᠡᠷᢈᠡ ᠪᠡᠨ ᠱᠠᠭᠠᠷᠳᠠᠳᠠᠭ᠂ ᠡᠷᢈᠡ ᠪᠡᠨ ᠬᠠᠮᠠᠭᠠᠯᠠᠳᠠᠭ ᢈᠦᠮᠦᠨ ᠪᠣᠯᠬᠤ ᠳ᠋ᠤ ᠲᠤᠰᠠᠯᠠᠭᠠᠷᠠᠢ᠃
+            </p>
+          </div>
 
+          <div className="p-4">
             {/* Mobile Grid Layout */}
             <GridLayout
               items={libraries}
@@ -153,8 +186,8 @@ const getLibraryImageUrl = (library) => {
   return (
     getImageUrl(
       library.attributes?.thumbnail ||
-        library.attributes?.cover ||
-        library.attributes?.image
+      library.attributes?.cover ||
+      library.attributes?.image
     ) || "/mng/images/news1.png"
   );
 };

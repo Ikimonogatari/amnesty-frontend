@@ -77,8 +77,8 @@ export default function GridLayout({
         <div className="h-full flex gap-4 overflow-hidden">
           <div
             className={`grid grid-flow-col gap-4 sm:gap-6 min-w-0 ${columns === 2
-                ? "grid-cols-2 grid-rows-2"
-                : "grid-cols-3 grid-rows-3"
+              ? "grid-cols-2 grid-rows-2"
+              : "grid-cols-3 grid-rows-3"
               }`}
           >
             {isLoading || !items ? (
@@ -102,7 +102,7 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="w-11 max-w-11 line-clamp-3 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-ellipsis break-words"
+                    className="w-11 max-w-11 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-center"
                     style={{
                       writingMode: "vertical-lr",
                       // wordBreak: "break-all",

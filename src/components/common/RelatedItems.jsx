@@ -32,21 +32,15 @@ export default function RelatedItems({
           {sectionTitle}
         </div>
       </div>
-      <div className="flex flex-col gap-2 justify-start h-full overflow-hidden">
+      <div className="flex flex-col gap-4 justify-start h-full">
         {items.slice(0, maxItems).map((item, index) => (
           <div
             key={item.id || index}
             onClick={() => handleItemClick(item.id)}
-            className="flex space-x-3 cursor-pointer hover:opacity-80 transition-opacity flex-1 min-h-0"
-            style={{
-              height: `calc(100% / ${Math.min(
-                items.length,
-                maxItems
-              )} - 0.5rem)`,
-            }}
+            className="flex space-x-3 cursor-pointer hover:opacity-80 transition-opacity h-1/3"
           >
             <h3
-              className="w-10 text-xs flex-shrink-0"
+              className="w-10 text-xs flex-shrink-0 text-center"
               style={{
                 writingMode: "vertical-lr",
               }}
@@ -56,7 +50,7 @@ export default function RelatedItems({
                 ? `${(item.title || item.name).substring(0, 30)}...`
                 : item.title || item.name}
             </h3>
-            <div className="relative min-h-0" style={{ aspectRatio: "1" }}>
+            <div className="relative w-[250px] h-full flex-shrink-0">
               <Image
                 src={
                   getImageUrl(item.thumbnail || item.cover || item.image) ||

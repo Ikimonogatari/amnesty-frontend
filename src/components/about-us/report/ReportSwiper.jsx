@@ -71,47 +71,46 @@ export default function ReportSwiper({
   const validReports =
     reports && Array.isArray(reports)
       ? reports
-          .filter((report) => report && report.id) // Remove invalid entries
-          .filter(
-            (report, index, self) =>
-              index ===
-              self.findIndex((r) => r.id?.toString() === report.id?.toString())
-          ) // Remove duplicates
+        .filter((report) => report && report.id) // Remove invalid entries
+        .filter(
+          (report, index, self) =>
+            index ===
+            self.findIndex((r) => r.id?.toString() === report.id?.toString())
+        ) // Remove duplicates
       : [];
 
   const slides =
     validReports.length > 0
       ? validReports.map((report, index) => {
-          // RTK Query flattens attributes, but cover is still nested
-          const imageUrl =
-            report?.cover?.data?.attributes?.url || "/mng/images/dummy-image.png";
+        // RTK Query flattens attributes, but cover is still nested
+        const imageUrl =
+          report?.cover?.data?.attributes?.url || "/mng/images/dummy-image.png";
 
-          // Add base URL if the image URL is a relative path from the API
-          const fullImageUrl = imageUrl.startsWith("/uploads/")
-            ? `${
-                process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
-              }${imageUrl}`
-            : imageUrl;
+        // Add base URL if the image URL is a relative path from the API
+        const fullImageUrl = imageUrl.startsWith("/uploads/")
+          ? `${process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
+          }${imageUrl}`
+          : imageUrl;
 
-          // RTK Query flattens attributes, but pdf_file is still nested
-          const pdfUrl = report?.pdf_file?.data?.attributes?.url;
+        // RTK Query flattens attributes, but pdf_file is still nested
+        const pdfUrl = report?.pdf_file?.data?.attributes?.url;
 
-          // Handle PDF URL exactly like old web
-          let fullPdfUrl = pdfUrl;
-          if (pdfUrl && !pdfUrl.includes("https:")) {
-            fullPdfUrl = `https://${pdfUrl}`;
-          }
+        // Handle PDF URL exactly like old web
+        let fullPdfUrl = pdfUrl;
+        if (pdfUrl && !pdfUrl.includes("https:")) {
+          fullPdfUrl = `https://${pdfUrl}`;
+        }
 
-          // RTK Query flattens attributes, so title is directly accessible
-          const reportTitle = report?.title || `ᠲᠠᠶᠢᠯᠤᠨ ${index + 1}`;
+        // RTK Query flattens attributes, so title is directly accessible
+        const reportTitle = report?.title || `ᠲᠠᠶᠢᠯᠤᠨ ${index + 1}`;
 
-          return {
-            id: report.id || index + 1,
-            title: reportTitle,
-            image: fullImageUrl,
-            pdfUrl: fullPdfUrl,
-          };
-        })
+        return {
+          id: report.id || index + 1,
+          title: reportTitle,
+          image: fullImageUrl,
+          pdfUrl: fullPdfUrl,
+        };
+      })
       : [];
 
   console.log("🔧 ReportSwiper - Final slides array:", slides);
@@ -159,7 +158,7 @@ export default function ReportSwiper({
         )}
       </div>
       <SectionTitle title={sectionTitle} containerClassName="hidden sm:block" />
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row gap-2 h-full">
         {sectionTitle && (
           <p
             className="text-[10px] font-bold block sm:hidden"
@@ -175,7 +174,9 @@ export default function ReportSwiper({
           navigation={false}
           pagination={false}
           modules={[Navigation, Pagination]}
-          className="h-full"
+          className="report-swiper h-full"
+          observer={true}
+          observeParents={true}
           onSwiper={(swiper) => {
             swiperRef.current = swiper;
           }}
@@ -198,16 +199,17 @@ export default function ReportSwiper({
                     {slide.title}
                   </p>
                 </div>
-                <Image
-                  src={slide.image}
-                  alt={""}
-                  width={200}
-                  height={112.5}
-                  className={`rounded-lg shadow-lg relative z-0 w-full aspect-[204/290]`}
+                <div className="relative w-40 h-full">
+                  <Image
+                    src={slide.image}
+                    alt={""}
+                    fill
+                    className={`rounded-lg shadow-lg relative z-0 w-full aspect-[204/290]`}
                     onError={(e) => {
                       e.target.src = "/mng/images/dummy-image.png";
                     }}
-                />
+                  />
+                </div>
               </div>
             </SwiperSlide>
           ))}
