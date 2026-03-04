@@ -248,7 +248,7 @@ export default function BannerSlider({
                 <>
                   {/* Desktop Caption */}
                   <div 
-                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl gap-8 p-10 min-w-80"
+                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl p-10 w-fit max-w-[80%] overflow-hidden"
                     style={{
                       transform: "translateZ(0)",
                       WebkitBackfaceVisibility: "hidden",
@@ -257,7 +257,7 @@ export default function BannerSlider({
                     }}
                   >
                     <h3
-                      className="text-2xl font-bold mb-3"
+                      className="text-2xl font-bold mb-3 mr-8"
                       style={{
                         writingMode: "vertical-rl",
                       }}
@@ -265,7 +265,7 @@ export default function BannerSlider({
                       {image.caption.title}
                     </h3>
                     <p
-                      className="text-gray-200"
+                      className="text-gray-200 mr-8"
                       style={{
                         writingMode: "vertical-rl",
                       }}
@@ -291,7 +291,7 @@ export default function BannerSlider({
 
                   {/* Mobile Caption - Same layout as desktop but sized for mobile */}
                   <div 
-                    className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] gap-3 p-4 pr-6 flex"
+                    className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white gap-0 p-4 pr-6 flex w-fit max-w-[90%] overflow-hidden"
                     style={{
                       transform: "translateZ(0)",
                       WebkitBackfaceVisibility: "hidden",
@@ -300,7 +300,7 @@ export default function BannerSlider({
                     }}
                   >
                     <h3
-                      className="text-base font-bold mb-2"
+                      className="text-base font-bold mb-2 mr-3"
                       style={{
                         writingMode: "vertical-rl",
                       }}
@@ -308,7 +308,7 @@ export default function BannerSlider({
                       {image.caption.title}
                     </h3>
                     <p
-                      className="text-xs text-gray-200"
+                      className="text-xs text-gray-200 mr-3"
                       style={{
                         writingMode: "vertical-rl",
                       }}
