@@ -687,11 +687,14 @@ export default function EventsDesktop() {
         <button
           onClick={navigateToToday}
           disabled={loading}
-          className="px-4 py-2 hover:bg-gray-100 text-sm border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 hover:bg-gray-100 text-sm border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
         >
           <p
             style={{
               writingMode: "vertical-lr",
+              transform: "translateZ(0)",
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
             }}
           >
             ᠥᠨᠥᠳᠦᠷ

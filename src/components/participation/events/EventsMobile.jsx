@@ -595,12 +595,18 @@ export default function EventsMobile() {
             )}
           </div>
           <button
-            style={{ writingMode: "vertical-lr" }}
             onClick={navigateToToday}
             disabled={loading}
-            className="px-2 py-1 hover:bg-gray-100 text-[10px] border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-2 py-1 hover:bg-gray-100 text-[10px] border rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
           >
-            <p>ᠥᠨᠥᠳᠦᠷ</p>
+            <p
+              style={{
+                writingMode: "vertical-lr",
+                transform: "translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
+              }}
+            >ᠥᠨᠥᠳᠦᠷ</p>
           </button>
         </div>
 
