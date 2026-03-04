@@ -1,3 +1,4 @@
+import Button from "@/components/common/Button";
 import VerticalSwiperLayout from "@/components/common/VerticalSwiperLayout";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -63,45 +64,50 @@ export default function ReportSwiper({
         <Swiper
           direction={isMobile ? "horizontal" : "vertical"}
           slidesPerView={isMobile ? (slides.length === 1 ? 1 : 1.8) : 3}
-          spaceBetween={isMobile ? 20 : 30}
+          spaceBetween={isMobile ? 10 : 40}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
           modules={[Navigation, Pagination]}
-          className="report-swiper h-full w-full"
+          className="h-full w-full"
           observer={true}
           observeParents={true}
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={`${slide.id}-${index}`}>
               <div
-                className="w-full h-full flex gap-7 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                className="w-full h-full flex gap-2 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => slide.id && router.push(`/about/3/${slide.id}`)}
               >
-                <div className="flex flex-col items-center gap-4">
+                <div className="flex flex-col items-center justify-center h-full sm:h-auto w-fit">
                   <div className="flex items-center justify-center">
                     <p
-                      className="text-sm font-bold overflow-x-auto font-mongolian"
+                      className="text-[10px] sm:text-base font-medium text-center overflow-visible max-h-[140px] sm:max-h-[200px] flex-shrink-0 font-mongolian"
                       style={{
                         writingMode: "vertical-lr",
+                        lineHeight: "1.3",
+                        wordBreak: "keep-all",
+                        whiteSpace: "nowrap",
                         transform: "translateZ(0)",
                         WebkitBackfaceVisibility: "hidden",
                         backfaceVisibility: "hidden",
                       }}
+                      title={slide.title}
                     >
-                      {slide.title}
+                      {slide.title.length > 15 ? `${slide.title.substring(0, 15)}...` : slide.title}
                     </p>
                   </div>
                 </div>
-                <div className="relative w-40 h-full">
+                <div className="relative z-0 aspect-square w-full">
                   <Image
                     src={slide.image}
                     alt={slide.title}
                     fill
-                    className="rounded-lg shadow-lg object-cover"
+                    className="rounded-lg object-cover"
                     onError={(e) => {
                       e.target.src = "/mng/images/dummy-image.png";
                     }}
                   />
+                  <Button text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢈᠦᠢ"} type="details" />
                 </div>
               </div>
             </SwiperSlide>

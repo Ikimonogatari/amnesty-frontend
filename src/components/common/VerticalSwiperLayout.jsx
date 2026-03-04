@@ -1,10 +1,10 @@
 import Button from "@/components/common/Button";
 import { toMongolianNumeral } from "@/utils/mongolian-numerals";
 import {
-    ChevronDown,
-    ChevronLeft,
-    ChevronRight,
-    ChevronUp,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import SectionTitle from "./SectionTitle";
@@ -38,7 +38,7 @@ export default function VerticalSwiperLayout({
   }, []);
 
   return (
-    <div className="h-full flex flex-col sm:flex-row gap-4 sm:gap-8 overflow-x-auto sm:overflow-auto">
+    <div className="h-full flex flex-col sm:flex-row gap-4 sm:gap-8 overflow-x-auto sm:overflow-auto p-4">
       {/* Sidebar with title and description */}
       <div className="flex flex-row gap-4 sm:gap-8">
         <div className="flex gap-2 sm:gap-8 h-full min-h-[150px] sm:h-auto overflow-visible">
