@@ -28,7 +28,7 @@ export default function StructureDiagramMobile() {
 
         {/* First column - top yellow box */}
         <Link
-          href="/about/1/control-managers"
+          href="/about/1/controlManagers"
           className="absolute z-10 border border-solid border-[#E3E3E3] whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
           style={{
             ...buttonStyle,
@@ -58,7 +58,7 @@ export default function StructureDiagramMobile() {
 
         {/* Middle column - left yellow box (Network) */}
         <Link
-          href="/about/1/chapter-members"
+          href="/about/1/chapterMembers"
           className="absolute z-10 border border-solid border-[#E3E3E3] whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
           style={{
             ...buttonStyle,
@@ -73,7 +73,7 @@ export default function StructureDiagramMobile() {
 
         {/* Middle column - right yellow box (Committee) */}
         <Link
-          href="/about/1/chapter-members"
+          href="/about/1/chapterMembers"
           className="absolute z-10 border border-solid border-[#E3E3E3] whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
           style={{
             ...buttonStyle,
@@ -88,7 +88,7 @@ export default function StructureDiagramMobile() {
 
         {/* Right column - top yellow box */}
         <Link
-          href="/about/1/chapter-members"
+          href="/about/1/chapterMembers"
           className="absolute z-10 border border-solid border-[#E3E3E3] whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
           style={{
             ...buttonStyle,
@@ -103,7 +103,7 @@ export default function StructureDiagramMobile() {
 
         {/* Right column - bottom yellow box */}
         <Link
-          href="/about/1/chapter-members"
+          href="/about/1/chapterMembers"
           className="absolute z-10 border border-solid border-[#E3E3E3] whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
           style={{
             ...buttonStyle,

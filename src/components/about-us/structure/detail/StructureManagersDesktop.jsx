@@ -115,7 +115,7 @@ export default function StructureManagersDesktop() {
           {managers.map((manager, index) => (
             <div
               key={manager.id}
-              className={`max-h-[800px] flex flex-row gap-8 items-center pr-8 border-r-2 border-dashed border-gray-300 h-full`}
+              className={`max-h-screen flex flex-row gap-8 items-center pr-8 border-r-2 border-dashed border-gray-300 h-full`}
             >
               {/* Manager Image and Info */}
               <div className="flex flex-col items-center flex-shrink-0">
@@ -147,7 +147,7 @@ export default function StructureManagersDesktop() {
               </div>
 
               {/* Manager Description */}
-              <div className="max-h-[800px] flex-shrink-0">
+              <div className="max-h-[500px]">
                 <p
                   className="font-semibold text-sm leading-relaxed"
                   style={{

@@ -44,7 +44,7 @@ export default function StructureDiagram() {
             }}
           >
             <Link
-              href="/about/1/control-managers"
+              href="/about/1/controlManagers"
               className="border border-solid border-[#E3E3E3] max-h-min whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
               style={{ 
                 writingMode: "vertical-lr",
@@ -82,7 +82,7 @@ export default function StructureDiagram() {
           
           {/* Second column */}
           <Link
-            href="/about/1/chapter-members"
+            href="/about/1/chapterMembers"
             className="absolute border border-solid border-[#E3E3E3] max-h-min whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ 
               writingMode: "vertical-lr",
@@ -98,7 +98,7 @@ export default function StructureDiagram() {
           </Link>
           {/* Third column */}
           <Link
-            href="/about/1/chapter-members"
+            href="/about/1/chapterMembers"
             className="absolute border border-solid border-[#E3E3E3] max-h-min whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
             style={{ 
               writingMode: "vertical-lr",
@@ -122,7 +122,7 @@ export default function StructureDiagram() {
             }}
           >
             <Link
-              href="/about/1/chapter-members"
+              href="/about/1/chapterMembers"
               className="border border-solid border-[#E3E3E3] max-h-min whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
               style={{ 
                 writingMode: "vertical-lr",
@@ -144,7 +144,7 @@ export default function StructureDiagram() {
             }}
           >
             <Link
-              href="/about/1/chapter-members"
+              href="/about/1/chapterMembers"
               className="border border-solid border-[#E3E3E3] max-h-min whitespace-nowrap flex items-center justify-center hover:brightness-105 transition-all bg-white hover:bg-gray-100"
               style={{ 
                 writingMode: "vertical-lr",
