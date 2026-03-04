@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef, useCallback } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import Button from "@/components/common/Button";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
+import Image from "next/image";
+import Link from "next/link";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import FullScreenLoader from "./FullScreenLoader";
 
@@ -247,7 +247,15 @@ export default function BannerSlider({
               {image.caption && (
                 <>
                   {/* Desktop Caption */}
-                  <div className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl gap-8 p-10 min-w-80">
+                  <div 
+                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl gap-8 p-10 min-w-80"
+                    style={{
+                      transform: "translateZ(0)",
+                      WebkitBackfaceVisibility: "hidden",
+                      backfaceVisibility: "hidden",
+                      WebkitBackdropFilter: "blur(16px)", // safari specific
+                    }}
+                  >
                     <h3
                       className="text-2xl font-bold mb-3"
                       style={{
@@ -282,7 +290,15 @@ export default function BannerSlider({
                   </div>
 
                   {/* Mobile Caption - Same layout as desktop but sized for mobile */}
-                  <div className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] gap-3 p-4 pr-6 flex">
+                  <div 
+                    className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white min-w-[120px] gap-3 p-4 pr-6 flex"
+                    style={{
+                      transform: "translateZ(0)",
+                      WebkitBackfaceVisibility: "hidden",
+                      backfaceVisibility: "hidden",
+                      WebkitBackdropFilter: "blur(16px)", // safari specific
+                    }}
+                  >
                     <h3
                       className="text-base font-bold mb-2"
                       style={{
