@@ -102,14 +102,15 @@ export default function Header() {
         {/* 2x3 Grid Layout - spans top to bottom, then continues in col 2 */}
         <div className="grid grid-cols-2 gap-2">
           {menuItems.map((item, index) => (
-            <div key={index} className="relative">
+            <div key={index} className="relative flex justify-center items-center w-full h-full">
               {item.hasDropdown ? (
                 <div
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
+                  className="flex justify-center items-center w-full h-full"
                 >
-                  <Link href={item.link || "#"}>
-                    <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
+                  <Link href={item.link || "#"} className="flex justify-center items-center w-full h-full">
+                    <div className="py-3 px-1 min-w-[36px] flex items-center justify-center cursor-pointer hover:bg-gray-100 rounded-md transition-colors">
                       <p
                         className="text-black font-bold text-xs"
                         style={{
@@ -121,42 +122,45 @@ export default function Header() {
                     </div>
                   </Link>
                   {activeDropdown === index && (
-                    <div className="absolute left-[38px] top-[-30px] bg-white rounded-xl p-6 z-30 border border-[#E3E3E3] shadow-lg before:content-[''] before:absolute before:inset-y-0 before:-left-[38px] before:w-[38px] before:bg-transparent">
-                      <div className="flex justify-between items-center">
-                        <div className="grid grid-cols-3 grid-rows-2 gap-10">
-                          {item.dropdownItems.map(
-                            (dropdownItem, dropdownIndex) => (
-                              <Link
-                                key={dropdownIndex}
-                                href={dropdownItem.link}
-                              >
-                                <div
-                                  className={`flex flex-col items-center cursor-pointer group rounded-md hover:bg-gray-50 transition-all duration-200 ${dropdownIndex <
-                                    item.dropdownItems.length - 1
-                                    ? "border-b border-gray-200"
-                                    : ""
-                                    }`}
+                    <div className="absolute left-[90%] top-[-30px] z-30 pl-[10%]">
+                      <div className="bg-white rounded-xl p-6 border border-[#E3E3E3] shadow-lg">
+                        <div className="flex justify-between items-center">
+                          <div className="grid grid-cols-3 grid-rows-2 gap-10">
+                            {item.dropdownItems.map(
+                              (dropdownItem, dropdownIndex) => (
+                                <Link
+                                  key={dropdownIndex}
+                                  href={dropdownItem.link}
+                                  className="flex justify-center items-center h-full"
                                 >
-                                  <p
-                                    className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
-                                    style={{
-                                      writingMode: "vertical-lr",
-                                    }}
+                                  <div
+                                    className={`flex justify-center items-center cursor-pointer group rounded-md hover:bg-gray-50 transition-all duration-200 py-1 px-2 ${dropdownIndex <
+                                      item.dropdownItems.length - 1
+                                      ? "border-b border-gray-200"
+                                      : ""
+                                      }`}
                                   >
-                                    {dropdownItem.text}
-                                  </p>
-                                </div>
-                              </Link>
-                            )
-                          )}
+                                    <p
+                                      className="text-black font-bold group-hover:text-[#444] transition-colors text-xs"
+                                      style={{
+                                        writingMode: "vertical-lr",
+                                      }}
+                                    >
+                                      {dropdownItem.text}
+                                    </p>
+                                  </div>
+                                </Link>
+                              )
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
                   )}
                 </div>
               ) : item.link ? (
-                <Link href={item.link}>
-                  <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
+                <Link href={item.link} className="flex justify-center items-center w-full h-full">
+                  <div className="py-3 px-1 min-w-[36px] flex items-center justify-center cursor-pointer hover:bg-gray-100 rounded-md transition-colors">
                     <p
                       className="text-black font-bold text-xs"
                       style={{
@@ -168,7 +172,7 @@ export default function Header() {
                   </div>
                 </Link>
               ) : (
-                <div className="p-3 cursor-pointer hover:bg-gray-100 rounded-md transition-colors text-center">
+                <div className="py-3 px-1 min-w-[36px] flex items-center justify-center cursor-pointer hover:bg-gray-100 rounded-md transition-colors">
                   <p
                     className="text-black font-bold text-xs"
                     style={{
