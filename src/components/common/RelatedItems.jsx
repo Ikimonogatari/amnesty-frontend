@@ -22,15 +22,18 @@ export default function RelatedItems({
 
   return (
     <div className="h-full flex gap-4 w-auto">
-      <div className="h-full flex flex-col items-center">
-        <div
-          className="w-full h-full flex justify-center items-center text-center text-xl font-bold rounded-xl p-4 text-black bg-white border border-[#E3E3E3] min-h-0"
+      <div className="h-full flex flex-col items-center justify-center">
+        <span
+          className="w-full text-xl font-bold rounded-xl p-4 text-black bg-white border border-[#E3E3E3] text-center"
           style={{
             writingMode: "vertical-lr",
+            transform: "translateZ(0)",
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden",
           }}
         >
           {sectionTitle}
-        </div>
+        </span>
       </div>
       <div className="flex flex-col gap-4 justify-start h-full">
         {items.slice(0, maxItems).map((item, index) => (
@@ -43,6 +46,9 @@ export default function RelatedItems({
               className="w-10 text-xs flex-shrink-0 text-center"
               style={{
                 writingMode: "vertical-lr",
+                transform: "translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
+                backfaceVisibility: "hidden",
               }}
               title={item.title || item.name}
             >
