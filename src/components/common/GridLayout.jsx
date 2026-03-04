@@ -1,10 +1,10 @@
 import Button from "@/components/common/Button";
 import { toMongolianNumbers } from "@/utils/fetcher";
 import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    ChevronUp,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -102,9 +102,12 @@ export default function GridLayout({
                 >
                   {/* Title - Fixed width with proper line clamping */}
                   <h3
-                    className="w-11 max-w-11 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-center"
+                    className="w-11 max-w-11 h-full text-xs transition-colors cursor-pointer hover:text-blue-600 overflow-hidden text-center antialiased"
                     style={{
                       writingMode: "vertical-lr",
+                      transform: "translateZ(0)",
+                      WebkitBackfaceVisibility: "hidden",
+                      backfaceVisibility: "hidden",
                       // wordBreak: "break-all",
                       // overflowWrap: "break-word",
                     }}
@@ -248,9 +251,12 @@ export default function GridLayout({
                 onClick={() => handleItemClick(item)}
               >
                 <h3
-                  className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto flex-shrink-0"
+                  className="text-sm font-medium line-clamp-3 w-12 max-h-[200px] overflow-x-auto flex-shrink-0 antialiased"
                   style={{
                     writingMode: "vertical-lr",
+                    transform: "translateZ(0)",
+                    WebkitBackfaceVisibility: "hidden",
+                    backfaceVisibility: "hidden",
                   }}
                 >
                   {getTitle ? getTitle(item) : item.title}
