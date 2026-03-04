@@ -1,7 +1,5 @@
-import Image from "next/image";
-import BannerSlider from "@/components/common/BannerSlider";
-import { bannerImages } from "@/constants/bannerImages";
 import StaticHeader from "@/components/common/StaticHeader";
+import Image from "next/image";
 
 
 export default function StructureManagersMobile() {
@@ -145,7 +143,7 @@ export default function StructureManagersMobile() {
                   </p>
                 </div>
               </div>
-              <div className="flex-1 min-w-0 overflow-x-auto max-h-[400px]">
+              <div className="flex-1 min-w-0 overflow-x-auto max-h-[400px] flex-shrink-0">
                 <p
                   className="text-xs leading-relaxed"
                   style={{

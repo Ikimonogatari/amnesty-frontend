@@ -1,6 +1,5 @@
-import Image from "next/image";
 import StaticHeader from "@/components/common/StaticHeader";
-import SectionTitle from "@/components/common/SectionTitle";
+import Image from "next/image";
 
 
 export default function StructureManagersDesktop() {
@@ -119,7 +118,7 @@ export default function StructureManagersDesktop() {
               className={`max-h-[800px] flex flex-row gap-8 items-center pr-8 border-r-2 border-dashed border-gray-300 h-full`}
             >
               {/* Manager Image and Info */}
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center flex-shrink-0">
                 <Image
                   src={manager.image || "/mng/images/no-image-icon.png"}
                   alt={manager.name}
@@ -148,7 +147,7 @@ export default function StructureManagersDesktop() {
               </div>
 
               {/* Manager Description */}
-              <div className="max-h-[800px]">
+              <div className="max-h-[800px] flex-shrink-0">
                 <p
                   className="font-semibold text-sm leading-relaxed"
                   style={{
