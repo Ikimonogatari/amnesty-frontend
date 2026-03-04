@@ -2,10 +2,10 @@ import Button from "@/components/common/Button";
 import SectionTitle from "@/components/common/SectionTitle";
 import { getImageUrl } from "@/utils/fetcher";
 import {
-    ChevronDown,
-    ChevronLeft,
-    ChevronRight,
-    ChevronUp,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -297,7 +297,7 @@ export default function RightSwiper({
           {slides.map((slide, index) => (
             <SwiperSlide key={slide.id}>
               <div
-                className="w-full h-full flex gap-2 cursor-pointer"
+                className="w-full h-full flex gap-2 cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => navigateToDetail({ id: slide.id })}
               >
                 <div className="flex flex-col items-center gap-2 justify-start h-full min-h-[200px] sm:min-h-[270px] sm:h-auto w-fit">
@@ -318,20 +318,22 @@ export default function RightSwiper({
                       : slide.title}
                   </p>
                   <div className="flex-1"></div>
+                  {/* <p
+                    className="text-[9px] sm:text-sm font-medium flex-shrink-0"
+                    style={{
+                      writingMode: "vertical-lr",
+                      lineHeight: "1.2",
+                    }}
+                  >
+                    {slide.duration}
+                  </p> */}
                 </div>
-                <div
-                  className="relative z-0 aspect-square w-full overflow-hidden rounded-lg"
-                  style={{
-                    transform: "translateZ(0)",
-                    WebkitBackfaceVisibility: "hidden",
-                    backfaceVisibility: "hidden",
-                  }}
-                >
+                <div className="relative z-0 aspect-square w-full">
                   <Image
                     src={slide.image}
                     alt={slide.title}
                     fill
-                    className="object-cover hover:opacity-80 transition-opacity"
+                    className="rounded-lg object-cover"
                   />
                   <Button text={"ᠳᠡᠯᢉᠡᠷᠡᠩᢈᠦᠢ"} type="details" />
                 </div>
