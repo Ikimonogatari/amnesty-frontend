@@ -1,46 +1,12 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import VerticalSwiperLayout from "@/components/common/VerticalSwiperLayout";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect, useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Button from "@/components/common/Button";
-import {
-  ChevronUp,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import { useRef, useState, useEffect } from "react";
-import SectionTitle from "@/components/common/SectionTitle";
-import Image from "next/image";
-
-import { useRouter } from "next/router";
-import { getImageUrl } from "@/config/api";
-
-// Custom hook for Mongolian numeral conversion
-const useMongolianNumeral = () => {
-  const toMongolianNumeral = (num) => {
-    const mongolianNumerals = {
-      0: "᠐",
-      1: "᠑",
-      2: "᠒",
-      3: "᠓",
-      4: "᠔",
-      5: "᠕",
-      6: "᠖",
-      7: "᠗",
-      8: "᠘",
-      9: "᠙",
-    };
-    return num
-      .toString()
-      .split("")
-      .map((digit) => mongolianNumerals[digit])
-      .join("");
-  };
-
-  return { toMongolianNumeral };
-};
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function ReportSwiper({
   title,
@@ -51,160 +17,87 @@ export default function ReportSwiper({
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
-  const { toMongolianNumeral } = useMongolianNumeral();
   const router = useRouter();
 
-  // Check if screen is mobile size
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640); // sm breakpoint
+      setIsMobile(window.innerWidth < 640);
     };
-
     checkMobile();
     window.addEventListener("resize", checkMobile);
-
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Convert reports data to slides format
-  // Remove duplicates and invalid data first
-  const validReports =
-    reports && Array.isArray(reports)
-      ? reports
-        .filter((report) => report && report.id) // Remove invalid entries
-        .filter(
-          (report, index, self) =>
-            index ===
-            self.findIndex((r) => r.id?.toString() === report.id?.toString())
-        ) // Remove duplicates
-      : [];
+  const validReports = reports && Array.isArray(reports)
+    ? reports
+      .filter((report) => report && report.id)
+      .filter((report, index, self) =>
+        index === self.findIndex((r) => r.id?.toString() === report.id?.toString())
+      )
+    : [];
 
-  const slides =
-    validReports.length > 0
-      ? validReports.map((report, index) => {
-        // RTK Query flattens attributes, but cover is still nested
-        const imageUrl =
-          report?.cover?.data?.attributes?.url || "/mng/images/dummy-image.png";
+  const slides = validReports.map((report, index) => {
+    const imageUrl = report?.cover?.data?.attributes?.url || "/mng/images/dummy-image.png";
+    const fullImageUrl = imageUrl.startsWith("/uploads/")
+      ? `${process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"}${imageUrl}`
+      : imageUrl;
 
-        // Add base URL if the image URL is a relative path from the API
-        const fullImageUrl = imageUrl.startsWith("/uploads/")
-          ? `${process.env.NEXT_PUBLIC_MEDIA_URL || "https://cms.amnesty.mn"
-          }${imageUrl}`
-          : imageUrl;
-
-        // RTK Query flattens attributes, but pdf_file is still nested
-        const pdfUrl = report?.pdf_file?.data?.attributes?.url;
-
-        // Handle PDF URL exactly like old web
-        let fullPdfUrl = pdfUrl;
-        if (pdfUrl && !pdfUrl.includes("https:")) {
-          fullPdfUrl = `https://${pdfUrl}`;
-        }
-
-        // RTK Query flattens attributes, so title is directly accessible
-        const reportTitle = report?.title || `ᠲᠠᠶᠢᠯᠤᠨ ${index + 1}`;
-
-        return {
-          id: report.id || index + 1,
-          title: reportTitle,
-          image: fullImageUrl,
-          pdfUrl: fullPdfUrl,
-        };
-      })
-      : [];
-
-  console.log("🔧 ReportSwiper - Final slides array:", slides);
-
-  const handlePrevSlide = () => {
-    if (swiperRef.current) {
-      swiperRef.current.slidePrev();
-    }
-  };
-
-  const handleNextSlide = () => {
-    if (swiperRef.current) {
-      swiperRef.current.slideNext();
-    }
-  };
-
-  const handleSlideChange = (swiper) => {
-    setCurrentSlide(swiper.activeIndex + 1);
-  };
-
-  const handleSlideClick = (slide) => {
-    if (slide.id) {
-      router.push(`/about/3/${slide.id}`);
-    }
-  };
+    return {
+      id: report.id || index + 1,
+      title: report?.title || `ᠲᠠᠶᠢᠯᠤᠨ ${index + 1}`,
+      image: fullImageUrl,
+    };
+  });
 
   return (
-    <div className="h-full flex flex-col sm:flex-row gap-8 p-4">
-      <div className="flex gap-2 sm:gap-8 max-h-[150px] sm:max-h-max">
-        {title && (
-          <h1
-            className="text-[10px] sm:text-2xl font-bold"
-            style={{ writingMode: "vertical-lr" }}
-          >
-            {title}
-          </h1>
-        )}
-        {description && (
-          <p
-            className="text-[10px] sm:text-sm font-bold text-[#848382] sm:text-black"
-            style={{ writingMode: "vertical-lr" }}
-          >
-            {description}
-          </p>
-        )}
-      </div>
-      <SectionTitle title={sectionTitle} containerClassName="hidden sm:block" />
-      <div className="flex flex-row gap-2 h-full">
-        {sectionTitle && (
-          <p
-            className="text-[10px] font-bold block sm:hidden"
-            style={{ writingMode: "vertical-lr" }}
-          >
-            {sectionTitle}
-          </p>
-        )}
+    <VerticalSwiperLayout
+      title={title}
+      description={description}
+      sectionTitle={sectionTitle}
+      currentSlide={currentSlide}
+      totalSlides={slides.length}
+      onPrevSlide={() => swiperRef.current?.slidePrev()}
+      onNextSlide={() => swiperRef.current?.slideNext()}
+    >
+      <div className="flex flex-col gap-4 h-full">
         <Swiper
           direction={isMobile ? "horizontal" : "vertical"}
           slidesPerView={isMobile ? (slides.length === 1 ? 1 : 1.8) : 3}
           spaceBetween={isMobile ? 20 : 30}
-          navigation={false}
-          pagination={false}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
           modules={[Navigation, Pagination]}
-          className="report-swiper h-full"
+          className="report-swiper h-full w-full"
           observer={true}
           observeParents={true}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          onSlideChange={handleSlideChange}
         >
           {slides.map((slide, index) => (
             <SwiperSlide key={`${slide.id}-${index}`}>
               <div
-                className={`w-full h-full flex gap-7 cursor-pointer hover:opacity-80 transition-opacity duration-300`}
-                onClick={() => handleSlideClick(slide)}
+                className="w-full h-full flex gap-7 cursor-pointer hover:opacity-80 transition-opacity duration-300"
+                onClick={() => slide.id && router.push(`/about/3/${slide.id}`)}
               >
                 <div className="flex flex-col items-center gap-4">
-                  <p
-                    className="text-sm font-bold overflow-x-auto"
-                    style={{
-                      writingMode: "vertical-lr",
-                      maxHeight: "",
-                    }}
-                  >
-                    {slide.title}
-                  </p>
+                  <div className="flex items-center justify-center">
+                    <p
+                      className="text-sm font-bold overflow-x-auto font-mongolian"
+                      style={{
+                        writingMode: "vertical-lr",
+                        transform: "translateZ(0)",
+                        WebkitBackfaceVisibility: "hidden",
+                        backfaceVisibility: "hidden",
+                      }}
+                    >
+                      {slide.title}
+                    </p>
+                  </div>
                 </div>
                 <div className="relative w-40 h-full">
                   <Image
                     src={slide.image}
-                    alt={""}
+                    alt={slide.title}
                     fill
-                    className={`rounded-lg shadow-lg relative z-0 w-full aspect-[204/290]`}
+                    className="rounded-lg shadow-lg object-cover"
                     onError={(e) => {
                       e.target.src = "/mng/images/dummy-image.png";
                     }}
@@ -215,35 +108,6 @@ export default function ReportSwiper({
           ))}
         </Swiper>
       </div>
-      <div className="flex flex-row sm:flex-col justify-center sm:justify-start items-center gap-2">
-        <Button
-          text={isMobile ? <ChevronLeft /> : <ChevronUp />}
-          type="chevron"
-          onClick={handlePrevSlide}
-          disabled={currentSlide === 1}
-        />
-        <div className="text-center space-y-2">
-          <div className="text-sm font-bold flex flex-row sm:flex-col items-center justify-center gap-0">
-            <span>{toMongolianNumeral(currentSlide)}</span>
-            <span className="text-xs">/</span>
-            <span>{toMongolianNumeral(slides.length)}</span>
-          </div>
-          {slides.length > 5 && (
-            <p
-              className="text-xs text-gray-500"
-              style={{ writingMode: "vertical-lr" }}
-            >
-              ᠦᠷᠭᠦᠯᠵᠢᠯᠡᢉᠦ
-            </p>
-          )}
-        </div>
-        <Button
-          text={isMobile ? <ChevronRight /> : <ChevronDown />}
-          type="chevron"
-          onClick={handleNextSlide}
-          disabled={currentSlide === slides.length}
-        />
-      </div>
-    </div>
+    </VerticalSwiperLayout>
   );
 }

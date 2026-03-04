@@ -1,41 +1,10 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import VerticalSwiperLayout from "@/components/common/VerticalSwiperLayout";
+import { useEffect, useRef, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Button from "@/components/common/Button";
-import {
-  ChevronUp,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import { useRef, useState, useEffect } from "react";
-
-// Custom hook for Mongolian numeral conversion
-const useMongolianNumeral = () => {
-  const toMongolianNumeral = (num) => {
-    const mongolianNumerals = {
-      0: "᠐",
-      1: "᠑",
-      2: "᠒",
-      3: "᠓",
-      4: "᠔",
-      5: "᠕",
-      6: "᠖",
-      7: "᠗",
-      8: "᠘",
-      9: "᠙",
-    };
-    return num
-      .toString()
-      .split("")
-      .map((digit) => mongolianNumerals[digit])
-      .join("");
-  };
-
-  return { toMongolianNumeral };
-};
+import { Navigation, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Helper function to extract YouTube video ID from URL
 const getYouTubeVideoId = (url) => {
@@ -48,141 +17,70 @@ export default function AssemblySwiper() {
   const swiperRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMobile, setIsMobile] = useState(false);
-  const { toMongolianNumeral } = useMongolianNumeral();
 
-  // Check if screen is mobile size
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640); // sm breakpoint
+      setIsMobile(window.innerWidth < 640);
     };
-
     checkMobile();
     window.addEventListener("resize", checkMobile);
-
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const slides = [
-    {
-      id: 1,
-      image: "https://www.youtube.com/watch?v=aCi-sflmu2Y",
-    },
-    {
-      id: 2,
-      image: "https://www.youtube.com/watch?v=a0w2NjR8iUU",
-    },
-    {
-      id: 3,
-      image: "https://www.youtube.com/watch?v=WCgBkzwGxtQ",
-    },
-    {
-      id: 4,
-      image: "https://www.youtube.com/watch?v=YsLw5PNtJV8",
-    },
-    {
-      id: 5,
-      image: "https://www.youtube.com/watch?v=sLAliIBTZtI",
-    },
-    {
-      id: 6,
-      image: "https://www.youtube.com/watch?v=NqvasOvgYwo",
-    },
-    {
-      id: 7,
-      image: "https://www.youtube.com/watch?v=a4z8D-jl07g",
-    },
+    { id: 1, image: "https://www.youtube.com/watch?v=aCi-sflmu2Y" },
+    { id: 2, image: "https://www.youtube.com/watch?v=a0w2NjR8iUU" },
+    { id: 3, image: "https://www.youtube.com/watch?v=WCgBkzwGxtQ" },
+    { id: 4, image: "https://www.youtube.com/watch?v=YsLw5PNtJV8" },
+    { id: 5, image: "https://www.youtube.com/watch?v=sLAliIBTZtI" },
+    { id: 6, image: "https://www.youtube.com/watch?v=NqvasOvgYwo" },
+    { id: 7, image: "https://www.youtube.com/watch?v=a4z8D-jl07g" },
   ];
 
-  const handlePrevSlide = () => {
-    if (swiperRef.current) {
-      swiperRef.current.slidePrev();
-    }
-  };
-
-  const handleNextSlide = () => {
-    if (swiperRef.current) {
-      swiperRef.current.slideNext();
-    }
-  };
-
-  const handleSlideChange = (swiper) => {
-    setCurrentSlide(swiper.activeIndex + 1);
-  };
-
   return (
-    <div className="h-full flex flex-col sm:flex-row gap-7 p-4 sm:p-0 relative z-10">
-      <div className="flex flex-row gap-2">
-        <Swiper
-          direction={isMobile ? "horizontal" : "vertical"}
-          slidesPerView={isMobile ? 1.3 : 3}
-          spaceBetween={20}
-          navigation={false}
-          pagination={false}
-          modules={[Navigation, Pagination]}
-          className="h-full"
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          onSlideChange={handleSlideChange}
-        >
-          {slides.map((slide) => {
-            const videoId = getYouTubeVideoId(slide.image);
-            return (
-              <SwiperSlide key={slide.id}>
-                <div className={`w-full h-full flex gap-4`}>
-                  <div
-                    className={`relative z-20 ${
-                      isMobile ? "max-w-[300px]" : "aspect-square"
-                    }`}
-                  >
-                    {videoId ? (
-                      <iframe
-                        src={`https://www.youtube.com/embed/${videoId}`}
-                        title={`Video ${slide.id}`}
-                        className={`rounded-lg shadow-lg relative z-30 ${
-                          isMobile
-                            ? "w-full"
-                            : "aspect-square h-full"
-                        }`}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <div
-                        className={`rounded-lg shadow-lg ${
-                          isMobile
-                            ? "w-full aspect-[16/9]"
-                            : "aspect-square min-h-[270px]"
-                        } relative z-30 bg-gray-200 flex items-center justify-center`}
-                      >
-                        <p>Invalid video URL</p>
-                      </div>
-                    )}
-                  </div>
+    <VerticalSwiperLayout
+      currentSlide={currentSlide}
+      totalSlides={slides.length}
+      onPrevSlide={() => swiperRef.current?.slidePrev()}
+      onNextSlide={() => swiperRef.current?.slideNext()}
+    >
+      <Swiper
+        direction={isMobile ? "horizontal" : "vertical"}
+        slidesPerView={isMobile ? 1.3 : 3}
+        spaceBetween={20}
+        navigation={false}
+        pagination={false}
+        modules={[Navigation, Pagination]}
+        className="h-full w-full"
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        onSlideChange={(swiper) => setCurrentSlide(swiper.activeIndex + 1)}
+      >
+        {slides.map((slide) => {
+          const videoId = getYouTubeVideoId(slide.image);
+          return (
+            <SwiperSlide key={slide.id}>
+              <div className="w-full h-full flex gap-4">
+                <div className={`relative z-20 ${isMobile ? "w-full" : "aspect-square h-full"}`}>
+                  {videoId ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoId}`}
+                      title={`Video ${slide.id}`}
+                      className="rounded-lg shadow-lg relative z-30 w-full h-full aspect-square"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <div className="rounded-lg shadow-lg aspect-square w-full h-full bg-gray-200 flex items-center justify-center">
+                      <p>Invalid video URL</p>
+                    </div>
+                  )}
                 </div>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div>
-      <div className="flex flex-row sm:flex-col justify-center sm:justify-start items-center gap-2">
-        <Button
-          text={isMobile ? <ChevronLeft /> : <ChevronUp />}
-          type="chevron"
-          onClick={handlePrevSlide}
-        />
-        <div className="text-sm flex flex-row sm:flex-col items-center justify-center gap-0">
-          <span>{toMongolianNumeral(currentSlide)}</span>
-          <span className="text-xs">/</span>
-          <span>{toMongolianNumeral(slides.length)}</span>
-        </div>
-        <Button
-          text={isMobile ? <ChevronRight /> : <ChevronDown />}
-          type="chevron"
-          onClick={handleNextSlide}
-        />
-      </div>
-    </div>
+              </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </VerticalSwiperLayout>
   );
 }
