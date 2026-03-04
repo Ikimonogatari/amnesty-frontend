@@ -1,7 +1,6 @@
-import StaticHeader from "@/components/common/StaticHeader";
 import GridLayout from "@/components/common/GridLayout";
+import StaticHeader from "@/components/common/StaticHeader";
 import SectionTitle from "../common/SectionTitle";
-import { getImageUrl } from "@/utils/fetcher";
 
 // Helper functions for GridLayout component
 const getMerchImageUrl = (merch) => {
@@ -44,7 +43,6 @@ const renderMerchPrice = (merch) => {
       >
         {price} ₮
       </div>
-      <div className="flex items-center justify-center">
       <div className="flex items-center justify-center h-full">
         <a
           className="flex flex-col items-center justify-center border border-gray-300 py-4 px-2 text-xs font-mongolian rounded-md hover:bg-gray-100 transition-colors h-auto min-h-[100px]"
