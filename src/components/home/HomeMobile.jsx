@@ -1,14 +1,13 @@
 import BannerSlider from "@/components/common/BannerSlider";
-import { bannerImages } from "@/constants/bannerImages";
-import SectionTitle from "../common/SectionTitle";
-import Button from "../common/Button";
-import Image from "next/image";
-import { useState, useEffect } from "react";
 import apiService from "@/services/apiService";
 import { getImageUrl } from "@/utils/fetcher";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Button from "../common/Button";
+import SectionTitle from "../common/SectionTitle";
 
-import { useRouter } from "next/router";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import FullScreenLoader from "../common/FullScreenLoader";
 
 export default function HomeMobile() {
@@ -46,7 +45,7 @@ export default function HomeMobile() {
       title: "ᢈᠠᠨᠳᠢᠪ ᠥᠭᠴᠦ, ᠠᠮᠢᠳᠤᠷᠠᠯ ᠥᠥᠷᠴᠢᠯᢉᠦ",
       body: "ᠪᠢᠳᠡ ᠠᠯᠢᠪᠠ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠭᠠᠵᠠᠷ, ᠤᠯᠤᠰ ᠲᠥᠷ ᠦ᠋ᠨ ᠦᠵᠡᠯ ᠰᠤᠷᠲᠠᠯ, ᠡᠳ᠋ᠦᠨ ᠵᠠᠰᠠᠭ ᠤ᠋ᠨ ᠠᠰᠢᠭ ᠰᠣᠨᠢᠷᠬᠣᠯ, ᠰᠠᠰᠢᠨ ᠰᠦᠲᠡᠯᠡᠭ ᠡᠴᠡ ᠠᠩᠭᠢᠳ ᠪᠢᠶ᠎ᠡ ᠳᠠᠭᠠᠰᠠᠨ, ᠬᠠᠷᠠᠭᠠᠳ ᠦᠭᠡᠢ ᠪᠥᠭᠡᠳ ᠭᠢᠰᠦᠨ ᠳᠡᠮᠵᠢᠭᠴᠢᠳ ᠦ᠋ᠨ ᢈᠠᠨᠳᠢᠪ ᠲᠤᠰᠠᠯᠠᠮᠵᠢ ᠪᠠᠷ ᠰᠠᠨᢈᠦᠦᠵᠢᠳᠡᠭ᠃",
       image: "/mng/images/footer-img-4.jpg",
-      buttonHref: "/donation",
+      buttonHref: "/donate",
     },
   ];
 

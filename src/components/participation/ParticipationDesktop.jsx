@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Button from "@/components/common/Button";
 import StaticHeader from "@/components/common/StaticHeader";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function ParticipationDesktop() {
@@ -175,7 +175,7 @@ const secondRowItems = [
     description:
       "ᠥᠳᠦᠷ ᠪᠦᠷ ᠥᠮᠰᠦᠰᠦᠨ ᢈᠤᠪᠴᠠᠰᠠᠷᠠᠶᠠᠨ ᠳᠠᠮᠵᠢᠤᠯᠵᠤ ᢈᠦᠮᠦᠨ ᠦ᠋ ᠡᠷᢈᠡ ᠶ᠋ᠢᠨ ᠮᠡᠰᠰᠡᠵ ᠲᠦᠭᠡᢉᠦ ᠵᠠᠭᠪᠠᠷᠯᠠᠭ ᠪᠣᠭᠢᠨᠣ ᢈᠠᠨᠴᠤᠢᠲ ᠴᠠᠮᠴ᠂ ᠹᠯᠡᠰ ᠳᠢᠰᠻ᠂ ᠲᠡᠮᠳᠡᠭᠯᠡᠯ ᠤ᠋ᠨ ᠳᠡᠪᠲᠡᠷ᠂ ᠡᠩᠭᠡᠷ ᠤ᠋ᠨ ᠲᠡᠮᠳᠡᠭ ᠵᠡᠷᠡᠭ ᠣᠯᠠᠨ ᠪᠦᠲᠡᠭᠡᠳᢈᠦᠨ ᠡᠴᠡ ᠲᠠ ᠥᠪᠡᠷᠲᠡ ᠪᠣᠯᠣᠭᠠᠳ ᢈᠠᠢᠷᠠᠲᠠᠢ ᢈᠦᠮᠦᠨ ᠲᠡᠢ ᠠᠪᠴᠤ ᠪᠡᠯᠡᠭᠯᠡᠡᠷᠡᠢ᠃",
     buttonText: "ᢈᠠᠨᠳᠢᠪ ᠥᠷᢈᠦ",
-    link: "/donation",
+    link: "/donate",
     image: "/mng/images/participation/2f_thumbnail.jpg.png",
   },
 ];
