@@ -45,16 +45,20 @@ const renderMerchPrice = (merch) => {
         {price} ₮
       </div>
       <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center h-full">
         <a
-          className="border border-gray-300 py-2 px-3 text-xs font-mongolian rounded-md hover:bg-gray-100 transition-colors"
+          className="flex flex-col items-center justify-center border border-gray-300 py-4 px-2 text-xs font-mongolian rounded-md hover:bg-gray-100 transition-colors h-auto min-h-[100px]"
           href={merch?.shop_link || "#"}
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()} // Prevent grid item click
         >
           <span
+            className="flex items-center justify-center leading-none"
             style={{
               writingMode: "vertical-lr",
+              transform: "translateZ(0)",
+              WebkitBackfaceVisibility: "hidden",
             }}
           >
             ᠵᠠᠬᠢᠶᠠᠯᠠᠬᠤ
