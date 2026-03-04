@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Button from "@/components/common/Button";
-import StaticHeader from "@/components/common/StaticHeader";
 import SectionTitle from "@/components/common/SectionTitle";
+import StaticHeader from "@/components/common/StaticHeader";
 import { Download } from "lucide-react";
+import Image from "next/image";
 
 
 export default function YouthDesktop() {
@@ -17,9 +17,11 @@ export default function YouthDesktop() {
 
       <div className="h-full p-4 flex gap-20">
         <p
-          className="text-sm"
+          className="text-sm antialiased"
           style={{
             writingMode: "vertical-lr",
+            transform: "translateZ(0)",
+            WebkitBackfaceVisibility: "hidden",
           }}
         >
           The Youth᠂ᠹ᠂ Power᠂ᠹ᠂ Action!ᠤᠹ ᠲᠥ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᢈᠡᠦᢈᠡᠳ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ
@@ -69,18 +71,22 @@ export default function YouthDesktop() {
           </div>
           <div className="flex gap-12">
             <p
-              className="font-bold text-lg"
+              className="font-bold text-lg antialiased"
               style={{
                 writingMode: "vertical-lr",
+                transform: "translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
               }}
             >
               «ᠪᠢᠳᠡ ᠬᠠᠮᠲᠤ ᠳ᠋ᠤ ᠪᠠᠨ ᠤᠳᠬ᠎ᠠ ᠤᠴᠢᠷᠲᠠᠢ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ ᠶ᠋ᠢ <br /> ᠪᠦᠲᠦᢉᠡᠵᠦ
               ᠴᠢᠳᠠᠨ᠎ᠠ᠃
             </p>
             <p
-              className="font-bold text-lg"
+              className="font-bold text-lg antialiased"
               style={{
                 writingMode: "vertical-lr",
+                transform: "translateZ(0)",
+                WebkitBackfaceVisibility: "hidden",
               }}
             >
               ᠸᠢᠪᠾᠠ ᠸᠧᠨᠻᠠᠲ᠋ᠧᠱᠢ᠂ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᠬᠠᠮᠲᠤ ᠶ᠋ᠢᠨ <br />
@@ -90,8 +96,11 @@ export default function YouthDesktop() {
         </div>
         <div className="px-24 py-10 bg-[#F1F1F1] flex gap-7">
           <p
+            className="antialiased"
             style={{
               writingMode: "vertical-lr",
+              transform: "translateZ(0)",
+              WebkitBackfaceVisibility: "hidden",
             }}
           >
             “YOUTH POWER FOR YOUTH RIGHTS” ᠭᠠᠷ ᠤ᠋ᠨ ᠠᠪᠤᠯᠭ᠎ᠠ ᠲᠠᠲᠠᠵᠤ ᠠᠪᠬᠤ ᠡᠮᠨᠧᠰᠲ᠋ᠢ
@@ -175,31 +184,37 @@ export default function YouthDesktop() {
           />
           <div className="flex flex-col gap-4">
             {youthItems.map((item) => (
-              <div key={item.id} className="flex gap-7 max-h-[400px]">
+              <div key={item.id} className="flex gap-7 min-w-0 flex-shrink-0">
                 <h3
-                  className="text-2xl font-bold"
+                  className="text-2xl font-bold antialiased flex-shrink-0"
                   style={{
                     writingMode: "vertical-lr",
+                    transform: "translateZ(0)",
+                    WebkitBackfaceVisibility: "hidden",
                   }}
                 >
                   {item.title}
                 </h3>
                 <p
-                  className="text-sm font-bold"
+                  className="text-sm font-bold antialiased"
                   style={{
                     writingMode: "vertical-lr",
+                    transform: "translateZ(0)",
+                    WebkitBackfaceVisibility: "hidden",
                   }}
                 >
                   {item.description}
                 </p>
-                <Button
-                  text={item.id === 1 ? "ᠠᠻᠲ᠋ᠢᠸᠢᠰᠮ ᠳ᠋ᠤ ᠣᠷᠤᠯᠴᠠᠬᠤ" : "ᢉᠡᠰᠢᢉᠦᠨ ᠪᠣᠯᠬᠤ"}
-                  type="primary"
-                  className="w-12 whitespace-nowrap"
-                  href={item.id === 1 ? "/mng/participation" : "https://forms.office.com/pages/responsepage.aspx?id=Kfjbwo03wUS0ehwEOSTd82OOUTGBqCBLh99jR3DTwohUNlJYR041VjdWSTVMQTEyNEozWkY1RU8wNS4u&route=shorturl"}
-                  target={item.id === 2 ? "_blank" : undefined}
-                  rel={item.id === 2 ? "noopener noreferrer" : undefined}
-                />
+                <div className="flex-shrink-0">
+                  <Button
+                    text={item.id === 1 ? "ᠠᠻᠲ᠋ᠢᠸᠢᠰᠮ ᠳ᠋ᠤ ᠣᠷᠤᠯᠴᠠᠬᠤ" : "ᢉᠡᠰᠢᢉᠦᠨ ᠪᠣᠯᠬᠤ"}
+                    type="primary"
+                    className="w-12 whitespace-nowrap"
+                    href={item.id === 1 ? "/mng/participation" : "https://forms.office.com/pages/responsepage.aspx?id=Kfjbwo03wUS0ehwEOSTd82OOUTGBqCBLh99jR3DTwohUNlJYR041VjdWSTVMQTEyNEozWkY1RU8wNS4u&route=shorturl"}
+                    target={item.id === 2 ? "_blank" : undefined}
+                    rel={item.id === 2 ? "noopener noreferrer" : undefined}
+                  />
+                </div>
               </div>
             ))}
           </div>
