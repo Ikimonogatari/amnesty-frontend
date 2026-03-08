@@ -111,7 +111,7 @@ export default function StructureManagersDesktop() {
         </div>
 
         {/* Managers Section */}
-        <div className="flex gap-4 items-center h-full ">
+        <div className="flex flex-row gap-8 justify-between items-center w-full h-full ">
           {managers.map((manager, index) => (
             <div
               key={manager.id}

@@ -63,7 +63,7 @@ export default function StructureControlManagersDesktop() {
         </div>
 
         {/* Control Managers Section */}
-        <div className="flex gap-4 items-center h-full">
+        <div className="flex flex-row gap-8 items-center justify-between w-full h-full">
           {controlManagers.map((manager, index) => (
             <div
               key={manager.id}
