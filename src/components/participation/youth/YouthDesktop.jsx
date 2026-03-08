@@ -180,7 +180,7 @@ export default function YouthDesktop() {
             title={<>ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠡᠰᠢᠩᠯᠡ ᠶ᠋ᠢᠨ ᠳᠡᠮᠵᠢᢉᠴᠢ <br /> ᠪᠣᠯᠤᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠦ᠋ ᠶ᠋ᠢᠨ ᠢᠯᠭᠠᠭ᠎ᠠ ᠨᠢ ᠶᠠᠭᠤ ᠪᠤᠢ?</>}
             className="text-xl font-bold"
           />
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row gap-8">
             {youthItems.map((item) => (
               <div key={item.id} className="flex gap-7 min-w-0 flex-shrink-0">
                 <h3
