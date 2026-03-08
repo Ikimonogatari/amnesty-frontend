@@ -60,7 +60,7 @@ export default function YouthDesktop() {
           ᠦᠶᠢᠯᠡ ᢈᠡᠷᠡᢉ ᠢ᠋ ᠳᠡᠮᠵᠢᢈᠦ ᠵᠣᠷᠢᠯᠭ᠎ᠠ ᠪᠠᠷ ᠒᠐᠒᠒ ᠣᠨ ᠳ᠋ᠤ ᢈᠡᠦᢈᠡᠳ᠂ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ
           ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᠰᠲ᠋ᠷᠠᠲ᠋ᠧᢉᠢ ᠶ᠋ᠢ ᠪᠠᠲᠤᠯᠠᠭᠰᠠᠨ᠃
         </p>
-        <div className="h-full flex flex-col gap-4">
+        <div className="h-full flex flex-row gap-4">
           <div className="relative min-w-[283px] min-h-[400px] max-w-[283px] max-h-[400px]">
             <Image
               src={"/mng/images/youthpoweraction.png"}
@@ -69,7 +69,7 @@ export default function YouthDesktop() {
               className="object-contain"
             />
           </div>
-          <div className="flex gap-12">
+          <div className="flex gap-4 h-full">
             <p
               className="font-bold text-lg antialiased"
               style={{
@@ -78,8 +78,7 @@ export default function YouthDesktop() {
                 WebkitBackfaceVisibility: "hidden",
               }}
             >
-              «ᠪᠢᠳᠡ ᠬᠠᠮᠲᠤ ᠳ᠋ᠤ ᠪᠠᠨ ᠤᠳᠬ᠎ᠠ ᠤᠴᠢᠷᠲᠠᠢ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ ᠶ᠋ᠢ <br /> ᠪᠦᠲᠦᢉᠡᠵᠦ
-              ᠴᠢᠳᠠᠨ᠎ᠠ᠃
+              «ᠪᠢᠳᠡ ᠬᠠᠮᠲᠤ ᠳ᠋ᠤ ᠪᠠᠨ ᠤᠳᠬ᠎ᠠ ᠤᠴᠢᠷᠲᠠᠢ ᠣᠷᠤᠯᠴᠠᠭ᠎ᠠ ᠶ᠋ᠢ ᠪᠦᠲᠦᢉᠡᠵᠦ ᠴᠢᠳᠠᠨ᠎ᠠ᠃
             </p>
             <p
               className="font-bold text-lg antialiased"
@@ -89,8 +88,7 @@ export default function YouthDesktop() {
                 WebkitBackfaceVisibility: "hidden",
               }}
             >
-              ᠸᠢᠪᠾᠠ ᠸᠧᠨᠻᠠᠲ᠋ᠧᠱᠢ᠂ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᠬᠠᠮᠲᠤ ᠶ᠋ᠢᠨ <br />
-              ᠨᠡᠶᠢᢉᠡᠮᠯᠢᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ
+              ᠸᠢᠪᠾᠠ ᠸᠧᠨᠻᠠᠲ᠋ᠧᠱᠢ᠂ ᠳᠡᠯᠡᢈᠡᠢ ᠶ᠋ᠢᠨ ᠵᠠᠯᠠᠭᠤᠴᠤᠤᠯ ᠤ᠋ᠨ ᠬᠠᠮᠲᠤ ᠶ᠋ᠢᠨ ᠨᠡᠶᠢᢉᠡᠮᠯᠢᢉ ᠦ᠋ᠨ ᢉᠡᠰᠢᢉᠦᠨ
             </p>
           </div>
         </div>
@@ -182,7 +180,7 @@ export default function YouthDesktop() {
             title="ᠮᠣᠩᠭᠣᠯ ᠤ᠋ᠨ ᠡᠮᠨᠧᠰᠲ᠋ᠢ ᠢᠨ᠋ᠲ᠋ᠧᠷᠨᠡᠰᠢᠩᠯᠡ ᠶ᠋ᠢᠨ ᠳᠡᠮᠵᠢᢉᠴᠢ ᠪᠣᠯᠤᠨ ᢉᠡᠰᠢᢉᠦᠨ ᠦ᠋ ᠶ᠋ᠢᠨ ᠢᠯᠭᠠᠭ᠎ᠠ ᠨᠢ ᠶᠠᠭᠤ ᠪᠤᠢ?"
             className="text-xl font-bold"
           />
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-row gap-4">
             {youthItems.map((item) => (
               <div key={item.id} className="flex gap-7 min-w-0 flex-shrink-0">
                 <h3
