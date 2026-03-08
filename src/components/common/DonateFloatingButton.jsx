@@ -74,6 +74,7 @@ export default function DonateFloatingButton() {
           className="font-extrabold text-lg absolute left-6 top-16 text-black font-mongolian transform -translate-x-1/2"
           style={{
             writingMode: "vertical-lr",
+            WebkitWritingMode: "vertical-lr",
           }}
         >
           ᠬᠠᠨᠳᠢᠪ
