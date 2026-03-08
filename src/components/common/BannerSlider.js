@@ -257,7 +257,7 @@ export default function BannerSlider({
                     }}
                   >
                     <h3
-                      className="text-2xl font-bold mb-3 mr-8 line-clamp-3"
+                      className="text-2xl font-bold mb-3 mr-8"
                       style={{
                         writingMode: "vertical-rl",
                       }}
@@ -265,7 +265,7 @@ export default function BannerSlider({
                       {image.caption.title}
                     </h3>
                     <p
-                      className="text-gray-200 mr-8 line-clamp-3"
+                      className="text-gray-200 mr-8"
                       style={{
                         writingMode: "vertical-rl",
                       }}
