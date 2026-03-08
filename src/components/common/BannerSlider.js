@@ -248,7 +248,7 @@ export default function BannerSlider({
                 <>
                   {/* Desktop Caption */}
                   <div 
-                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl p-10 w-fit max-w-[80%] overflow-hidden"
+                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl p-10 w-max max-w-[80%] overflow-hidden"
                     style={{
                       transform: "translateZ(0)",
                       WebkitBackfaceVisibility: "hidden",
@@ -291,7 +291,7 @@ export default function BannerSlider({
 
                   {/* Mobile Caption - Same layout as desktop but sized for mobile */}
                   <div 
-                    className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white gap-0 p-4 pr-6 flex w-fit max-w-[90%] overflow-hidden"
+                    className="md:hidden absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white gap-0 p-4 pr-6 flex w-max max-w-[90%] overflow-hidden"
                     style={{
                       transform: "translateZ(0)",
                       WebkitBackfaceVisibility: "hidden",
