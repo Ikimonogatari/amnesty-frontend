@@ -248,7 +248,7 @@ export default function BannerSlider({
                 <>
                   {/* Desktop Caption */}
                   <div 
-                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl p-10 max-w-min overflow-hidden"
+                    className="hidden md:flex absolute h-full w-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl p-10 max-w-min overflow-hidden"
                     style={{
                       transform: "translateZ(0)",
                       WebkitBackfaceVisibility: "hidden",
@@ -257,7 +257,7 @@ export default function BannerSlider({
                     }}
                   >
                     <h3
-                      className="text-2xl font-bold mb-3 mr-8 max-w-min"
+                      className="text-2xl font-bold mb-3 mr-8"
                       style={{
                         writingMode: "vertical-rl",
                       }}
