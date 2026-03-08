@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <div
-      className="flex flex-shrink-0 ml-auto justify-between h-full py-5 px-10 text-[#ECECEC] bg-[#2D2D2D] shadow-[-4px_0_10px_rgba(0,0,0,0.2)] z-10"
+      className="flex flex-shrink-0 ml-auto justify-between h-full py-5 px-10 text-[#A0A0A0] bg-[#2D2D2D] shadow-[-4px_0_10px_rgba(0,0,0,0.2)] z-10"
       style={{ 
         writingMode: "vertical-rl",
         WebkitWritingMode: "vertical-rl",
