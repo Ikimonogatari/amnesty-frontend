@@ -182,9 +182,9 @@ export default function YouthDesktop() {
           />
           <div className="flex flex-row gap-8">
             {youthItems.map((item) => (
-              <div key={item.id} className="flex gap-7 min-w-0 flex-shrink-0">
+              <div key={item.id} className="flex gap-7 min-w-0">
                 <h3
-                  className="text-2xl font-bold antialiased flex-shrink-0"
+                  className="text-2xl font-bold antialiased"
                   style={{
                     writingMode: "vertical-lr",
                     transform: "translateZ(0)",
