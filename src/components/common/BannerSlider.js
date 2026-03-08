@@ -248,7 +248,7 @@ export default function BannerSlider({
                 <>
                   {/* Desktop Caption */}
                   <div 
-                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl p-10 w-min overflow-hidden"
+                    className="hidden md:flex absolute h-full top-0 left-0 bg-black/50 backdrop-blur-lg text-white rounded-xl p-10 max-w-min overflow-hidden"
                     style={{
                       transform: "translateZ(0)",
                       WebkitBackfaceVisibility: "hidden",
